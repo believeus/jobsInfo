@@ -25,7 +25,7 @@
 		<!-- memcached是分布是的缓存系统,可以配置多个memcached -->
 		<!-- <property name="hibernate.memcached.servers">localhost:11211</property> -->
 		<!-- 设置二级缓存的前缀名称   -->
-		<property name="hibernate.cache.region_prefix">com.etech.ehcache</property>
+		<property name="hibernate.cache.region_prefix">believeus.cn.ehcache</property>
 		<!--End 设置缓存类 memcached 没有兼容hibernate4x 故而弃用改用encached  -->
 		<!--Begin Name:wuqiwei Date:2014-04-06 ConfigNote: 只对对象查询有效,对sql和hql语句的查询无效  -->
 		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>

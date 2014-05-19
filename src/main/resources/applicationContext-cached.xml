@@ -5,7 +5,11 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd"
 	default-lazy-init="true">
-	
+
+	<!-- 使用方法 MemCachedClient mc = (MemCachedClient)context.getBean("memcachedClient"); 
+		mc.set("name", "wuqiwei"); -->
+	<!-- end Name:wuqiwei Data:2013-4-20 11:52:43 配置mencached 单独使用 -->
+
 	<!--Begin Name:wuqiwei Data:2013-10-2 23:11:57 AddReason:encached 内部缓存系统 -->
 	<!--spring对ehcache的缓存工厂支持,指定encache的配置文件所在地和相关设置-->
 	<!-- spring 使用缓存annotation 配置-->
