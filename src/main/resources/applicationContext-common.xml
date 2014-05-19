@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+	http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.2.xsd
+	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd"
+	default-lazy-init="true">
+
+	<context:property-placeholder location="classpath*:/jobs.properties"
+		ignore-resource-not-found="true" ignore-unresolvable="true" />
+
+	<!-- 对包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能 -->
+	<!-- 默认对类中出现@Component, @Repository, @Service, or @Controller 的注释的都进行 初始化，但是除了org.springframework.stereotype.Controller 
+		注释的类进行初始化。 -->
+	<context:component-scan base-package="com.etech">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	<!-- 连接数据库 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="initialPoolSize" value="${connection_pools.initial_pool_size}" />
+		<property name="minPoolSize" value="${connection_pools.min_pool_size}" />
+		<property name="maxPoolSize" value="${connection_pools.max_pool_size}" />
+		<property name="maxIdleTime" value="${connection_pools.max_idle_time}" />
+		<property name="acquireIncrement" value="${connection_pools.acquire_increment}" />
+		<property name="checkoutTimeout" value="${connection_pools.checkout_timeout}" />
+		<!-- Begin name:wuhuanrong Date:2013-06-10 AddReason:网络通讯断开,会导致c3p0不会再次和数据库链接 -->
+		<!-- 当请求失败是否断开和mysql的链接,如果设置成true,当网络通讯断开,会导致c3p0不会再次和数据库链接 -->
+		<property name="breakAfterAcquireFailure" value="${breakAfterAcquireFailure}" />
+		<!-- 当断网时c3p0会每隔3秒尝试和mysql建立网络链接 -->
+		<property name="acquireRetryDelay" value="${acquireRetryDelay}" />
+		<!-- c3p0每3秒进行一次建立链接，一共尝试无数次 0代表无数次 -->
+		<property name="acquireRetryAttempts" value="${acquireRetryAttempts}" />
+		<!-- End name:wuhuanrong Date:2013-06-10 AddReason:网络通讯断开,会导致c3p0不会再次和数据库链接 -->
+	</bean>
+
+	<!-- 使用jpa配置数据库的连接，相当于sessionFactory -->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="persistenceXmlLocation" value="classpath*:/persistence.xml" />
+		<property name="persistenceUnitName" value="persistenceUnit" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="false" />
+				<property name="generateDdl" value="true" />
+			</bean>
+		</property>
+		<!-- 配置jpa 对数据库访问的一些属性 -->
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
+				<!-- 配置cached -->
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<prop key="hibernate.cache.use_structured_entries">${hibernate.cache.use_structured_entries}</prop> 
+				<prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+				
+				<!--使用memcached时反注释掉即可。wuhuanrong -->
+				<!--<prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop> 
+				<prop key="hibernate.memcached.servers">${hibernate.memcached.servers}</prop>
+				<prop key="hibernate.cache.region_prefix">${hibernate.cache.region_prefix}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.memcached.cacheTimeSeconds">${hibernate.memcached.cacheTimeSeconds}</prop> 
+				 -->
+				<prop key="hibernate.jdbc.fetch_size">${hibernate.jdbc.fetch_size}</prop>
+				<prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+				<prop key="hibernate.connection.isolation">2</prop>
+				<prop key="javax.persistence.validation.mode">none</prop>
+				<prop key="hibernate.search.default.directory_provider">org.hibernate.search.store.FSDirectoryProvider</prop>
+				<prop key="hibernate.search.default.indexBase">${java.io.tmpdir}/${system.project_name}/index</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- spring的事务 -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	<!--开启事务管理 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- jdbc的事物 -->
+	<bean id="jdbcTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+	</bean>
+	
+	<bean id = "jdbcTemplate"   
+         class = "org.springframework.jdbc.core.JdbcTemplate">   
+         <property name = "dataSource" ref="dataSource"/>   
+    </bean>  
+
+
+	<!-- 待研究 -->
+	<bean
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="java.lang.System" />
+		<property name="targetMethod" value="setProperty" />
+		<property name="arguments">
+			<list>
+				<value>system.project_name</value>
+				<value>${system.project_name}</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="freeMarkerConfigurer"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<!-- 这里配置了freemarker从哪个路径开始寻找ftl模板文件 -->
+		<property name="templateLoaderPaths" value="${template.loader_path}" />
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="defaultEncoding">${template.encoding}</prop>
+				<prop key="url_escaping_charset">${url_escaping_charset}</prop>
+				<prop key="locale">${locale}</prop>
+				<!-- freemarker 对 ftl模板 更新数据的时间 -->
+				<prop key="template_update_delay">${template.update_delay}</prop>
+				<prop key="tag_syntax">auto_detect</prop>
+				<prop key="whitespace_stripping">true</prop>
+				<prop key="classic_compatible">true</prop>
+				<prop key="number_format">${template.number_format}</prop>
+				<prop key="boolean_format">${template.boolean_format}</prop>
+				<prop key="datetime_format">${template.datetime_format}</prop>
+				<prop key="date_format">${template.date_format}</prop>
+				<prop key="time_format">${template.time_format}</prop>
+				<prop key="object_wrapper">freemarker.ext.beans.BeansWrapper</prop>
+				<prop key="default_encoding">UTF-8</prop>
+			</props>
+		</property>
+		<!-- 配置freemarker 的键值对的信息 -->
+		<!-- 这里配置了freemarker的自定义指令。 -->
+		<property name="freemarkerVariables">
+			<map>
+				<entry key="systemName" value="${system.name}" />
+				<entry key="systemVersion" value="${system.version}" />
+				<entry key="systemDescription" value="${system.description}" />
+				<entry key="systemShowPowered" value="${system.show_powered}" />
+				<entry key="base" value="" />
+				<entry key="locale" value="${locale}" />
+				<entry key="setting" value="#{T(com.tdgogou.util.UtilsSetting).get()}" />
+				<!-- <entry key="member_find_by_wwmallid" value-ref="directiveMemberFindByWwmallid" /> -->
+			</map>
+		</property>
+	</bean>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="cacheSeconds" value="${message.cache_seconds}" />
+		<property name="useCodeAsDefaultMessage" value="true" />
+		<property name="basenames">
+			<list>
+				<value>${message.common_path}</value>
+				<value>${message.shop_path}</value>
+				<value>${message.admin_path}</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.FixedLocaleResolver">
+		<property name="defaultLocale" value="${locale}" />
+	</bean>
+	<!-- spring 发送邮箱的配置 -->
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+				<prop key="mail.smtp.timeout">${mail.smtp.timeout}</prop>
+				<prop key="mail.smtp.starttls.enable">${mail.smtp.starttls.enable}</prop>
+				<!-- <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop> -->
+			</props>
+		</property>
+	</bean>
+
+
+</beans>
