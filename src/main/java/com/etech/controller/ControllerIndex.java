@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ControllerIndex {
  private static Log log=LogFactory.getLog(ControllerIndex.class);
- @RequestMapping(value="/",method=RequestMethod.GET)
+ @RequestMapping(value="/index",method=RequestMethod.GET)
    public String index(){
 	   log.debug("current controller is ControllerIndex !");
 	   return "index";
