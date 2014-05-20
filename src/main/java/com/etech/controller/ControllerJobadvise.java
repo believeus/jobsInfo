@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * 首页面
+ * 职业咨询
  * */
 @Controller
-public class ControllerIndex {
-	private static Log log = LogFactory.getLog(ControllerIndex.class);
+public class ControllerJobadvise {
+	private static Log log = LogFactory.getLog(ControllerJobadvise.class);
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String defaultIndex() {
-		log.debug("current controller is defaultIndex !");
+	@RequestMapping(value = "/jobadvise", method = RequestMethod.GET)
+	public String jobadviseView() {
+		log.debug("current controller is searchView !");
 		return "index";
 	}
 }

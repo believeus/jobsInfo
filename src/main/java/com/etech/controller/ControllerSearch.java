@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * 首页面
+ * 高级搜索页
  * */
 @Controller
-public class ControllerIndex {
-	private static Log log = LogFactory.getLog(ControllerIndex.class);
+public class ControllerSearch {
+	private static Log log = LogFactory.getLog(ControllerSearch.class);
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String defaultIndex() {
-		log.debug("current controller is defaultIndex !");
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String searchView() {
+		log.debug("current controller is searchView !");
 		return "index";
 	}
 }

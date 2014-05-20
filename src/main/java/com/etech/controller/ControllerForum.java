@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * 首页面
+ * 论坛
  * */
 @Controller
-public class ControllerIndex {
-	private static Log log = LogFactory.getLog(ControllerIndex.class);
+public class ControllerForum {
+	private static Log log = LogFactory.getLog(ControllerForum.class);
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String defaultIndex() {
-		log.debug("current controller is defaultIndex !");
+	@RequestMapping(value = "/Forum", method = RequestMethod.GET)
+	public String forumView() {
+		log.debug("current controller is forumView !");
 		return "index";
 	}
 }

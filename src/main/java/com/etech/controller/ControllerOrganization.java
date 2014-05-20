@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * 首页面
+ * 内设机构
  * */
 @Controller
-public class ControllerIndex {
-	private static Log log = LogFactory.getLog(ControllerIndex.class);
+public class ControllerOrganization {
+	private static Log log = LogFactory.getLog(ControllerOrganization.class);
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String defaultIndex() {
-		log.debug("current controller is defaultIndex !");
+	@RequestMapping(value = "/organization", method = RequestMethod.GET)
+	public String organizationView() {
+		log.debug("current controller is organizationView !");
 		return "index";
 	}
 }

@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * 首页面
+ * 企业注册页
  * */
 @Controller
-public class ControllerIndex {
-	private static Log log = LogFactory.getLog(ControllerIndex.class);
+public class ControllerEnterpriseReg {
+	private static Log log = LogFactory.getLog(ControllerEnterpriseReg.class);
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String defaultIndex() {
-		log.debug("current controller is defaultIndex !");
+	@RequestMapping(value = "/enterpriseReg", method = RequestMethod.GET)
+	public String enterpriseRegView() {
+		log.debug("current controller is enterpriseRegView !");
 		return "index";
 	}
 }

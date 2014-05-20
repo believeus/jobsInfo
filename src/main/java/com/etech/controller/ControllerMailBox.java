@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * 首页面
+ * 局长信箱
  * */
 @Controller
-public class ControllerIndex {
-	private static Log log = LogFactory.getLog(ControllerIndex.class);
+public class ControllerMailBox {
+	private static Log log = LogFactory.getLog(ControllerMailBox.class);
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String defaultIndex() {
-		log.debug("current controller is defaultIndex !");
+	@RequestMapping(value = "/mailBox", method = RequestMethod.GET)
+	public String mailBoxView() {
+		log.debug("current controller is mailBoxView !");
 		return "index";
 	}
 }

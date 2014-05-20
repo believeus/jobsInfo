@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * 首页面
+ * 数据频道
  * */
 @Controller
-public class ControllerIndex {
-	private static Log log = LogFactory.getLog(ControllerIndex.class);
+public class ControllerDataChanel {
+	private static Log log = LogFactory.getLog(ControllerDataChanel.class);
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String defaultIndex() {
-		log.debug("current controller is defaultIndex !");
+	@RequestMapping(value = "/dataChanel", method = RequestMethod.GET)
+	public String dataChanelView() {
+		log.debug("current controller is dataChanelView !");
 		return "index";
 	}
 }

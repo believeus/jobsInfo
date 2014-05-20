@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * 首页面
+ * 图片展示详情
  * */
 @Controller
-public class ControllerIndex {
-	private static Log log = LogFactory.getLog(ControllerIndex.class);
+public class ControllerImgShow {
+	private static Log log = LogFactory.getLog(ControllerImgShow.class);
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String defaultIndex() {
-		log.debug("current controller is defaultIndex !");
+	@RequestMapping(value = "/imgShow", method = RequestMethod.GET)
+	public String imgShowView() {
+		log.debug("current controller is imgShowView !");
 		return "index";
 	}
 }

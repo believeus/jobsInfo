@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * 首页面
+ * 新闻详情
  * */
 @Controller
-public class ControllerIndex {
-	private static Log log = LogFactory.getLog(ControllerIndex.class);
+public class ControllerNewsInfo {
+	private static Log log = LogFactory.getLog(ControllerNewsInfo.class);
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String defaultIndex() {
-		log.debug("current controller is defaultIndex !");
+	@RequestMapping(value = "/newsInfo", method = RequestMethod.GET)
+	public String newsInfoView() {
+		log.debug("current controller is newsInfoView !");
 		return "index";
 	}
 }

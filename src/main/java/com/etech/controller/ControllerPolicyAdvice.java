@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * 首页面
+ * 政策咨询
  * */
 @Controller
-public class ControllerIndex {
-	private static Log log = LogFactory.getLog(ControllerIndex.class);
+public class ControllerPolicyAdvice {
+	private static Log log = LogFactory.getLog(ControllerPolicyAdvice.class);
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String defaultIndex() {
-		log.debug("current controller is defaultIndex !");
+	@RequestMapping(value = "/policyAdvice", method = RequestMethod.GET)
+	public String policyAdviceView() {
+		log.debug("current controller is policyAdviceView !");
 		return "index";
 	}
 }
