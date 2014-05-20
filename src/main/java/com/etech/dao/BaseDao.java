@@ -32,7 +32,7 @@ public abstract class BaseDao {
 	public BaseDao() {
 	}
 
-	protected Object execute(BelieveusCallBack<?> callBack) {
+	protected Object execute(EtechCallBack<?> callBack) {
 		Session session = null;
 		Object result = null;
 		try {
@@ -48,13 +48,13 @@ public abstract class BaseDao {
 		return result;
 	}
 
-	public interface BelieveusCallBack<T> {
+	public interface EtechCallBack<T> {
 		public abstract T callBack(Session session);
 	}
 
-	// 根据对象保存对象
+	/** 根据对象保存对象 */
 	protected Integer save(final Object object) {
-		return (Integer) execute(new BelieveusCallBack<Object>() {
+		return (Integer) execute(new EtechCallBack<Object>() {
 
 			@Override
 			public Object callBack(Session session) {
@@ -64,9 +64,9 @@ public abstract class BaseDao {
 		});
 	}
 
-	// 根据对象删除对象
+	/** 根据对象删除对象 */
 	protected void delete(final Object object) {
-		this.execute(new BelieveusCallBack<Object>() {
+		this.execute(new EtechCallBack<Object>() {
 
 			@Override
 			public Object callBack(Session session) {
@@ -77,7 +77,7 @@ public abstract class BaseDao {
 	}
 
 	protected Object get(final Class<?> clazz, final Serializable id) {
-		return this.execute(new BelieveusCallBack<Object>() {
+		return this.execute(new EtechCallBack<Object>() {
 
 			@Override
 			public Object callBack(Session session) {
@@ -87,7 +87,7 @@ public abstract class BaseDao {
 	}
 
 	protected Object delete(final String hql) {
-		return this.execute(new BelieveusCallBack<Object>() {
+		return this.execute(new EtechCallBack<Object>() {
 
 			@Override
 			public Object callBack(Session session) {
@@ -98,7 +98,7 @@ public abstract class BaseDao {
 	}
 
 	protected void saveOrUpdate(final Object object) {
-		this.execute(new BelieveusCallBack<Object>() {
+		this.execute(new EtechCallBack<Object>() {
 
 			@Override
 			public Object callBack(Session session) {
@@ -109,7 +109,7 @@ public abstract class BaseDao {
 	}
 
 	protected Integer saveOrUpdateByHQL(final String hql) {
-		return (Integer) this.execute(new BelieveusCallBack<Integer>() {
+		return (Integer) this.execute(new EtechCallBack<Integer>() {
 			@Override
 			public Integer callBack(Session session) {
 				Query query = session.createQuery(hql);
@@ -119,7 +119,7 @@ public abstract class BaseDao {
 	}
 
 	protected Object getObjectByHQL(final String hql) {
-		return (Object) this.execute(new BelieveusCallBack<Object>() {
+		return (Object) this.execute(new EtechCallBack<Object>() {
 			@Override
 			public Object callBack(Session session) {
 				Query query = session.createQuery(hql);
@@ -129,7 +129,7 @@ public abstract class BaseDao {
 	}
 
 	protected List<?> getObjecListByHQL(final String hql) {
-		return (List<?>) this.execute(new BelieveusCallBack<List<?>>() {
+		return (List<?>) this.execute(new EtechCallBack<List<?>>() {
 			@Override
 			public List<?> callBack(Session session) {
 				Query query = session.createQuery(hql);

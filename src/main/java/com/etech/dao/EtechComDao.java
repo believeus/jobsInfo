@@ -18,52 +18,48 @@ import org.springframework.stereotype.Repository;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 @Repository
 public class EtechComDao extends BaseDao {
-	// 以对象的方式保存对象
+	/** 以对象的方式保存对象*/ 
 	public void saveOrUpdateByObject(final Object object){
 		super.saveOrUpdate(object);
 		/*HibernateTemplate ht = getHibernateTemplate();
 		// 如果session中有该对象,只是更新了session缓存中的数据，不会把
-		// 发出sql语句，必须要flush一下才会发出sql语句同步session缓存中
-		// 的数据
+		// 发出sql语句，必须要flush一下才会发出sql语句同步session缓存中的数据
 		// 原因已经更新了数据库的数据，但是读取数据的时候却是从内存中获取的数据
 		// 解决办法是保存一个对象的时候清空缓存数据即可
 		ht.saveOrUpdate(object);
-		ht.flush();
-		// 奇怪的问题: 小欢的计算机不需要添加ht.flush 即可更新
-		// 而我的计算机需要添加这句话才能更新。故而加之
-		// 原因找到了，小欢的数据在内存中没有命中所以可以即使的显示
-*/	}
+		ht.flush();*/	
+	}
 
-	// 以HQL的方式保存对象
+	/** 以HQL的方式保存对象*/
 	public Integer saveOrUpdateByHQL(final String hql) {
 		return super.saveOrUpdateByHQL(hql);
 	}
 
-	// 以对象的方式删除对象
+	/**以对象的方式删除对象*/
 	public void deleteByObject(Object object) {
 		super.delete(object);
 	}
 
-	// 以HQL的方式删除对象
+	/**以HQL的方式删除对象*/
 	public void deleteObjectByHQL(final String hql) {
 		super.saveOrUpdateByHQL(hql);
 	}
 
-	// 获取单一对象
+	/**获取单一对象*/
 	public Object getObjectByHQL(final String hql) {
 		return super.getObjectByHQL(hql);
 	}
 
-	// 获取多个对象
+	/**获取多个对象*/
 	public List<?> getObjecListByHQL(final String hql) {
 		return (List<?>) super.getObjecListByHQL(hql.toString());
 	}
-	//以对象的方式获取对象。
+	/**以对象的方式获取对象。*/
 	public Object getObjecById(Class<?> clazz, Integer id) {
 		return super.get(clazz, id);
 	}
 	
-	// 分页查询  
+	/** 分页查询  */
 	//  第一个参数：当前页数 
 	//  第二个参数：每页显示多少条数据
 	//  第三个参数：共有多少条数据
@@ -79,7 +75,7 @@ public class EtechComDao extends BaseDao {
 	 * */
 	public List<?> getPageDateList(final String hql,final Integer currentPage,final Integer perPageCount,final Integer totalCount){
 		
-		return (List<?>)super.execute(new BelieveusCallBack<List<?>>() {
+		return (List<?>)super.execute(new EtechCallBack<List<?>>() {
 			@Override
 			public List<?> callBack(Session session) {
 				Query query = session.createQuery(hql);
@@ -110,7 +106,7 @@ public class EtechComDao extends BaseDao {
 	}
 	/*Begin Name:wuqiwei Date:2013-11-5 07:24:40 AddReason:返回一定数量的行数*/
 	public List<?> getPageDateList(final String hql,final Integer num){
-		return(List<?>) super.execute(new BelieveusCallBack<List<?>>() {
+		return(List<?>) super.execute(new EtechCallBack<List<?>>() {
 
 			@Override
 			public List<?> callBack(Session session) {
