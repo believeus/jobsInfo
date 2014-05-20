@@ -6,12 +6,9 @@
 	<!-- begin Name:wuqiwei Data:2013-319 Email:1058633117@qq.com AddReason: 
 		主页面使用index.do的请求实现MVC的效果 -->
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 	<!-- end Name:wuqiwei Data:2013-319 Email:1058633117@qq.com AddReason: 主页面使用index.do的请求实现MVC的效果 -->
-
-
-	
 
 	<!--Begin 这是Spring中的一个编码过滤器 设置每次请求的request请求解码的类型为UTF-8 -->
 	<filter>
@@ -61,10 +58,8 @@
 	<!-- Begin Name:wuqiwei Date:2013-10-4 08:39:02 AddReason:访问一个页面直到页面完全打开之后session才关闭,解决懒加载问题 -->
 
 	<!-- Begin Name:wuqiwei Date:2013-10-2 AddReason:在url重写之前缓存页面,避免Encached不缓存浏览器的链接地址 -->
-	<!-- <filter-mapping> 
-			<filter-name>indexPageCacheFilter</filter-name>
-			<url-pattern>/index.html</url-pattern> 
-	</filter-mapping> -->
+	<!-- <filter-mapping> <filter-name>indexPageCacheFilter</filter-name> <url-pattern>/index.html</url-pattern> 
+		</filter-mapping> -->
 	<!-- End Name:wuqiwei Date:2013-10-2 AddReason:在url重写之前缓存页面,避免Encached不缓存浏览器的链接地址 -->
 
 	<!-- begin:spring 配置 tomcat启动实例化 spring配置文件 -->
@@ -77,12 +72,12 @@
 	</listener>
 	<!-- End:spring 配置 tomcat启动实例化 spring配置文件 -->
 
-	
+
 	<!-- 配置session的过期时间为30分钟 -->
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
-	
+
 	<!--Begin Name:wuqiwei Date:2013-08-10 AddReason:添加springMVC的支持 -->
 	<servlet>
 		<servlet-name>spring</servlet-name>
@@ -93,6 +88,10 @@
 		<servlet-name>spring</servlet-name>
 		<url-pattern>*.jhtml</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
 	<!--end Name:wuqiwei Date:2013-08-10 AddReason:添加springMVC的支持 -->
-	<distributable/>
 </web-app>
