@@ -65,7 +65,7 @@
 	<!-- begin:spring 配置 tomcat启动实例化 spring配置文件 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/classes/applicationContext.xml</param-value>
+		<param-value>classpath*:/applicationContext.xml</param-value>
 	</context-param>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -80,17 +80,21 @@
 
 	<!--Begin Name:wuqiwei Date:2013-08-10 AddReason:添加springMVC的支持 -->
 	<servlet>
-		<servlet-name>spring</servlet-name>
+		<servlet-name>springmvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath*:/applicationContext-mvc.xml</param-value>
+		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>spring</servlet-name>
+		<servlet-name>springmvc</servlet-name>
 		<url-pattern>*.jhtml</url-pattern>
 	</servlet-mapping>
 	
 	<servlet-mapping>
-		<servlet-name>spring</servlet-name>
+		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/index</url-pattern>
 	</servlet-mapping>
 
