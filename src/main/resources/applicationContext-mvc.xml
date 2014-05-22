@@ -43,9 +43,7 @@
 		<!-- 这里配置了freemarker的自定义指令。 -->
 		<property name="freemarkerVariables">
 			<map>
-				<!-- <entry key="base" value="" />
-				<entry key="promotion_list" value-ref="directivePromotionList" />
-				 -->
+				<entry key="pagination" value-ref="directivePagination" />
 			</map>
 		</property>
 	</bean>
