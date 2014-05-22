@@ -7,6 +7,11 @@
 		text-decoration:none;
 		color:#555555;
 	}
+	.w{
+		overflow:hidden;
+		margin-left:auto;
+		margin-right:auto;
+	}
 	.j_head{
 		width:100%;
 		height:172px;
@@ -44,10 +49,10 @@
 		</div>
 		<div class="j_head_nav">
 			<div class="nav">
-				<a href="" title="">首页</a>
+				<a href="/" title="">首页</a>
 				<a href="" title="">资讯中心</a>
 				<a href="" title="">工作指南</a>
-				<a href="" title="">职业介绍</a>
+				<a href="/jobIntroduce.jhtml" title="">职业介绍</a>
 				<a href="" title="">政策咨询</a>
 				<a href="" title="">数据频道</a>
 				<a href="" title="">网上展示厅</a>

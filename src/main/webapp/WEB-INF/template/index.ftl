@@ -6,11 +6,6 @@
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <style type="text/css">
-    	.w{
-    		overflow:hidden;
-    		margin-left:auto;
-    		margin-right:auto;
-    	}
     	.j_mian{
     		width:1000px;
     		height:auto;
@@ -148,6 +143,7 @@
     	.xinxi_1 li{
     		font-size:12px;
     		line-height:23px;
+    		list-style:none;
     	}
     	.xinxi_1 span{
     		float:right;
@@ -348,3 +344,4 @@
 	</div>
 	[#include "/include/footer.ftl" /]
 </body>
+</html>

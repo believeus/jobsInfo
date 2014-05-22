@@ -16,6 +16,6 @@ public class ControllerJobIntroduce {
 	@RequestMapping(value = "/jobIntroduce", method = RequestMethod.GET)
 	public String jobIntroduceView() {
 		log.debug("current controller is jobIntroduceView !");
-		return "index";
+		return "occupationIntroduction";
 	}
 }
