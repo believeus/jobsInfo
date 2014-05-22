@@ -10,7 +10,7 @@ import com.etech.dao.EtechComDao;
  * 下载专区
  * */
 @Service
-public class DownloadZoneService {
+public class DownloadZoneService extends BaseService{
 	private static Log log = LogFactory.getLog(DownloadZoneService.class);
 	@Resource
 	private EtechComDao etechComDao;

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
  * 咨询中心
  * */
 @Service
-public class InfoCenterService {
+public class InfoCenterService extends BaseService {
 	private static Log log = LogFactory.getLog(InfoCenterService.class);
    
 }

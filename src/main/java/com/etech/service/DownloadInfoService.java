@@ -11,8 +11,7 @@ import com.etech.dao.EtechComDao;
  * 下载详情
  * */
 @Service
-public class DownloadInfoService {
+public class DownloadInfoService extends BaseService{
 	private static Log log = LogFactory.getLog(DownloadInfoService.class);
-	@Resource
-	private EtechComDao etechComDao;
+
 }

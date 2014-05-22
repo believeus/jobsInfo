@@ -10,9 +10,7 @@ import com.etech.dao.EtechComDao;
  * 内设机构
  * */
 @Service
-public class OrganizationService {
+public class OrganizationService extends BaseService{
 	private static Log log = LogFactory.getLog(OrganizationService.class);
 
-	@Resource
-	private EtechComDao etechComDao;
 }

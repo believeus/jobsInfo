@@ -16,6 +16,8 @@ import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
 import org.springframework.stereotype.Repository;
 import org.wltea.analyzer.lucene.IKAnalyzer;
+
+import com.etech.entity.EnterpriseUser;
 @Repository
 public class EtechComDao extends BaseDao {
 	/** 以对象的方式保存对象*/ 
@@ -44,7 +46,17 @@ public class EtechComDao extends BaseDao {
 	public void deleteObjectByHQL(final String hql) {
 		super.saveOrUpdateByHQL(hql);
 	}
-
+	/**根据id的方式删除对象*/
+	public void deleteObjectById(Class<?> clazz,Integer id) {
+		String clazzName = clazz.getClass().getName();
+		String hql="delete from "+clazzName+" where id="+id;
+		super.saveOrUpdateByHQL(hql);
+	}
+	public static void main(String[] args) {
+		String result="";
+		String name = String.class.getName();
+		System.out.println(name);
+	}
 	/**获取单一对象*/
 	public Object getObjectByHQL(final String hql) {
 		return super.getObjectByHQL(hql);

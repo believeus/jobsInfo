@@ -11,8 +11,7 @@ import com.etech.dao.EtechComDao;
  * 职业咨询
  * */
 @Service
-public class JobadviseService {
+public class JobadviseService extends BaseService{
 	private static Log log = LogFactory.getLog(JobadviseService.class);
-	@Resource
-	private EtechComDao etechComDao;
+
 }

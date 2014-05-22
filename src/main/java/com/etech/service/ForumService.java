@@ -10,7 +10,7 @@ import com.etech.dao.EtechComDao;
  * 论坛
  * */
 @Service
-public class ForumService {
+public class ForumService extends BaseService{
 	private static Log log = LogFactory.getLog(ForumService.class);
 	@Resource
 	private EtechComDao etechComDao;

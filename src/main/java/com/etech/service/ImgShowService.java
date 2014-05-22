@@ -10,8 +10,6 @@ import com.etech.dao.EtechComDao;
  * 图片展示详情
  * */
 @Service
-public class ImgShowService {
+public class ImgShowService extends BaseService{
 	private static Log log = LogFactory.getLog(ImgShowService.class);
-	@Resource
-	private EtechComDao etechComDao;
 }

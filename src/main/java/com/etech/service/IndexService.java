@@ -10,9 +10,7 @@ import com.etech.dao.EtechComDao;
  * 首页面
  * */
 @Service
-public class IndexService {
+public class IndexService extends BaseService{
 	private static Log log = LogFactory.getLog(IndexService.class);
 
-	@Resource
-	private EtechComDao etechComDao;
 }

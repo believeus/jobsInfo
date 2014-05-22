@@ -10,7 +10,7 @@ import com.etech.dao.EtechComDao;
  * 工作指南
  * */
 @Service
-public class GuideService {
+public class GuideService extends BaseService{
 	private static Log log = LogFactory.getLog(GuideService.class);
 	@Resource
 	private EtechComDao etechComDao;

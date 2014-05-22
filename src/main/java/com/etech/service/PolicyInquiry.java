@@ -11,9 +11,7 @@ import com.etech.dao.EtechComDao;
  * 政策查询
  * */
 @Service
-public class PolicyInquiry {
+public class PolicyInquiry extends BaseService{
 	private static Log log = LogFactory.getLog(PolicyInquiry.class);
 
-	@Resource
-	private EtechComDao etechComDao;
 }

@@ -10,9 +10,7 @@ import com.etech.dao.EtechComDao;
  * 网上展示厅
  * */
 @Service
-public class OnlineShowService {
+public class OnlineShowService extends BaseService{
 	private static Log log = LogFactory.getLog(OnlineShowService.class);
 
-	@Resource
-	private EtechComDao etechComDao;
 }

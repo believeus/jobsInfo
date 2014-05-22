@@ -7,11 +7,10 @@ import org.springframework.stereotype.Service;
 import com.etech.dao.EtechComDao;
 
 /**
- * 个人注册页
+ * 高级搜索页
  * */
 @Service
-public class PersonalRegService {
-	private static Log log = LogFactory.getLog(PersonalRegService.class);
-	@Resource
-	private EtechComDao etechComDao;
+public class SearchService extends BaseService{
+	private static Log log = LogFactory.getLog(SearchService.class);
+
 }
