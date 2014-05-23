@@ -28,5 +28,6 @@
 	<import resource="applicationContext-datasource.xml"/>
 	<import resource="applicationContext-common.xml"/>
 	<import resource="applicationContext-cached.xml"/>
+	<import resource="applicationContext-shiro.xml"/>
 	
 </beans>
