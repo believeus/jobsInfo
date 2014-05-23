@@ -35,7 +35,7 @@
 	.j_head_nav a{
 		color: #FFFFFF;
 	    float: left;
-	    padding-top: 12px;
+	    margin-top: 12px;
 	    text-align: center;
 	    text-decoration: none;
 	    vertical-align: top;
@@ -50,10 +50,10 @@
 		<div class="j_head_nav">
 			<div class="nav">
 				<a href="/" title="">首页</a>
-				<a href="" title="">资讯中心</a>
-				<a href="" title="">工作指南</a>
+				<a href="/infoCenter.jhtml" title="">资讯中心</a>
+				<a href="/guide.jhtml" title="">工作指南</a>
 				<a href="/jobIntroduce.jhtml" title="">职业介绍</a>
-				<a href="" title="">政策咨询</a>
+				<a href="/policyAdvice.jhtml" title="">政策咨询</a>
 				<a href="" title="">数据频道</a>
 				<a href="" title="">网上展示厅</a>
 				<div style="float: right; width: 330px; margin-top: 10px;text-align:right;">

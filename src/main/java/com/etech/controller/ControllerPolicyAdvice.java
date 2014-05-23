@@ -16,6 +16,6 @@ public class ControllerPolicyAdvice {
 	@RequestMapping(value = "/policyAdvice", method = RequestMethod.GET)
 	public String policyAdviceView() {
 		log.debug("current controller is policyAdviceView !");
-		return "index";
+		return "policyAdvice/policyAdvice";
 	}
 }

@@ -16,6 +16,6 @@ public class ControllerInfoCenter {
 	@RequestMapping(value = "/infoCenter", method = RequestMethod.GET)
 	public String infoCenterView() {
 		log.debug("current controller is infoCenterView !");
-		return "index";
+		return "infoCenter/infoCenter";
 	}
 }

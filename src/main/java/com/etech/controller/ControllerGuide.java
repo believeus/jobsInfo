@@ -16,6 +16,6 @@ public class ControllerGuide {
 	@RequestMapping(value = "/guide", method = RequestMethod.GET)
 	public String guideView() {
 		log.debug("current controller is guideView !");
-		return "index";
+		return "guide/guide";
 	}
 }

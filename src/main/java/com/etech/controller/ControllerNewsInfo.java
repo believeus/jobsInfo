@@ -16,6 +16,6 @@ public class ControllerNewsInfo {
 	@RequestMapping(value = "/newsInfo", method = RequestMethod.GET)
 	public String newsInfoView() {
 		log.debug("current controller is newsInfoView !");
-		return "index";
+		return "infoCenter/newsInfo";
 	}
 }
