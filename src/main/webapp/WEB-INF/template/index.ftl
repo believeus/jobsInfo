@@ -5,6 +5,8 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script src="/resource/public/resources/scripts/jquery-1.10.2.min.js"></script>
+    
     <style type="text/css">
     	.j_mian{
     		width:1000px;
@@ -150,6 +152,18 @@
     		margin-right:10px;
     	}
     </style>
+    <script style="text/javascript">
+    $().ready(function() {
+    	alert(" 开始使用！");
+		// 更换验证码
+		$("#register").click(function() {
+			// 需要跳转到注册页面
+			alert("需要跳转到注册页面");
+			//window.location.href="http://www.baidu.com";
+		});
+		
+	})
+	</script>
 </head>
 <body>
 	[#include "/include/header.ftl" /]
@@ -267,6 +281,7 @@
 			</div>
 			<div class="denglu">
 				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);">会员登录</p>
+				<form id="loginForm" action="" method="post">
 				<table style="padding:19px;">
 					<tr>
 						<td>用户名:</td>
@@ -278,17 +293,18 @@
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
-							<input type="radio" name="zhuce" checked="ture">个人用户
-							<input type="radio" name="zhuce">企业用户
+							<input type="radio" name="zhuce" checked="ture" value="commonUser">个人用户
+							<input type="radio" name="zhuce" value="enterpriseUser">企业用户
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
-							<input type="button" value="登录" style="margin-right: 10px;">
-							<input type="button" value="注册">
+							<input type="submit" id="login" value="登录" style="margin-right: 10px;">
+							<input type="button" id="register" value="注册">
 						</td>
 					</tr>
 				</table>
+				</form>
 			</div>
 			<div class="jiuye">
 				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);margin-bottom:10px;">就业业务办理</p>

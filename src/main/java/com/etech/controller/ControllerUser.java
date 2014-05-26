@@ -1,14 +1,19 @@
 package com.etech.controller;
 
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
+
 import com.etech.entity.CommonUser;
 import com.etech.entity.EnterpriseUser;
 import com.etech.service.CommonUserService;
 import com.etech.service.EnterpriseUserService;
 
 @Controller
+@RequestMapping("/register")
 public class ControllerUser {
 	@Resource
 	private CommonUserService commonUserService;
@@ -35,12 +40,19 @@ public class ControllerUser {
 		return result;
 	}
 	/**一般用户注册*/
-	@RenderMapping(value="/commonregister")
-	public String commonuserReg(CommonUser commonUser){
-		commonUserService.saveOrUpdate(commonUser);
-		String result="";
-		return result;
+	@RequestMapping(value = "/commonregister", method = RequestMethod.GET)
+	public String commonuserReg(){
+		System.out.println("xxxxxxxxxxx");
+		return "register/enterpriseRegister";
 	}
+	/**一般用户注册*/
+	@RequestMapping(value = "/commonUserSubmit", method = RequestMethod.POST)
+	public String commonUserSubmit(){
+		//commonUserService.saveOrUpdate(commonUser);
+		System.out.println("xxxxxxxxxxx");
+		return "register/enterpriseRegister";
+	}
+	
 	/**企业用户注册*/
 	@RenderMapping(value="/enterpriseregister")
 	public String enterpriseReg(EnterpriseUser enterpriseUser){
