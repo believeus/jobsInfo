@@ -156,7 +156,7 @@
     		width:322px;
     		height:180px;
     		float:left;
-    		margin-right:10px;
+    		margin-right:16px;
     	}
     	.j_main_7_1 li{
     		font-size: 13px;
@@ -197,7 +197,7 @@
 			</table>	
 		</div>
 		<div class="j_main_3">
-			<div class="j_main_3_1">
+			<div class="j_main_3_1" style="display:block;">
 				<table style="padding: 6px 19px 19px;">
 					<tr>
 						<td colspan="2" align="center" style="background:#EE981F;color:#FFFFFF;border-radius:4px;">用户登录</td>
@@ -224,6 +224,29 @@
 					</tr>
 				</table>
 			</div>
+			
+			<!--登录后的界面begin-->
+			<div class="j_main_3_1" style="display:none;">
+				<table style="padding: 6px 19px 19px;">
+					<tr>
+						<td colspan="2" align="center" style="background:#EE981F;color:#FFFFFF;border-radius:4px;">用户登录</td>
+					</tr>
+					<tr>
+						<td colspan="2"><font color="red" size="2">李妹</font>，欢迎您登录！</td>
+					</tr>
+					<tr>
+						<td colspan="2">上次登录时间:<span style="font-size:13px">2014-04-15 20：20</span></td>
+					</tr>
+					<tr>
+						<td align="center" colspan="2" style="padding-top: 20px;">
+							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" value="个人中心">
+							<input type="button" style="background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" value="退出">
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!--登录后的界面end-->
+			
 			<div class="j_main_3_2">
 				<div style="width:460px;height:42px;">
 					<div id="" class="current" style="border:1px solid #E45900;border-bottom:0;cursor:pointer;height: 42px; float: left; text-align: center; line-height: 42px; font-size: 20px;width: 228px;color:#E45900;cursor:point;">岗位搜索</div>
@@ -438,7 +461,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="j_main_7_1">
+			<div class="j_main_7_1" style="margin-right:0px;">
 				<img src="/resource/public/images/qiuzhi.png">
 				<div style="width: 320px; height: 150px;border:1px solid #e4e4e4;margin-top:-5px;">
 					<img style="float:left;" src="/resource/public/images/meinv.png">

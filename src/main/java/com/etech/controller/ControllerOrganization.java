@@ -16,6 +16,6 @@ public class ControllerOrganization {
 	@RequestMapping(value = "/organization", method = RequestMethod.GET)
 	public String organizationView() {
 		log.debug("current controller is organizationView !");
-		return "index";
+		return "guide/organization";
 	}
 }

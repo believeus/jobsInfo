@@ -16,6 +16,6 @@ public class ControllerDataChanel {
 	@RequestMapping(value = "/dataChanel", method = RequestMethod.GET)
 	public String dataChanelView() {
 		log.debug("current controller is dataChanelView !");
-		return "index";
+		return "dataChanel/dataChanel";
 	}
 }

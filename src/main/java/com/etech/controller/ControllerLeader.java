@@ -16,6 +16,6 @@ public class ControllerLeader {
 	@RequestMapping(value = "/leader", method = RequestMethod.GET)
 	public String leaderView() {
 		log.debug("current controller is leaderView !");
-		return "index";
+		return "guide/leader";
 	}
 }

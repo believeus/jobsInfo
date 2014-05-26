@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * 个人注册页
+ *求职者中心
  * */
 @Controller
 public class ControllerPersonal {

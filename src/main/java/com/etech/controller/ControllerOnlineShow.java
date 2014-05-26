@@ -16,6 +16,6 @@ public class ControllerOnlineShow {
 	@RequestMapping(value = "/onlineShow", method = RequestMethod.GET)
 	public String onlineShowView() {
 		log.debug("current controller is imgShowView !");
-		return "index";
+		return "onlineShow/onlineShow";
 	}
 }

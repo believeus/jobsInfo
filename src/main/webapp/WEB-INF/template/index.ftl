@@ -339,8 +339,8 @@
 					<div style="width:225px;height:70px;float:left;margin-left:10px;border:1px solid;">
 						<img src="/resource/public/images/01.png" style="width: 225px; height: 70px;">
 					</div>
-					<a style="background: url(/resource/public/images/u6_normal_33.gif); height: 62px; width: 14px; position: absolute;left:150px;margin-top:3px;"></a>
-					<a style="background: url(/resource/public/images/222.png); height: 62px; width: 13px; position: absolute;right:150px;margin-top:3px;"></a>
+					<a href="/" style="background: url(/resource/public/images/u6_normal_33.gif); height: 62px; width: 14px; position: absolute;left:150px;margin-top:3px;"></a>
+					<a href="/" style="background: url(/resource/public/images/222.png); height: 62px; width: 13px; position: absolute;right:150px;margin-top:3px;"></a>
 				</div>
 			</div>
 		</div>
