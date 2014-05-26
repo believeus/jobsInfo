@@ -1,5 +1,6 @@
 package com.etech.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
@@ -16,9 +17,11 @@ public class ControllerLogout {
 	private static Log log = LogFactory.getLog(ControllerLogout.class);
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) {
+	public String logout(HttpServletRequest request) {
 		log.debug("current user logout");
-		session.invalidate();
-		return "redirect:/"; 
+		request.getSession().invalidate();
+		//退出之后停留在当前页面
+		StringBuffer currentURL = request.getRequestURL();
+		return "redirect:"+currentURL.toString(); 
 	}
 }
