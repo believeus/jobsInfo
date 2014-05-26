@@ -33,6 +33,7 @@ public class ControllerRegister {
 	/** End Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:普通用户注册页面*/
 	
 	/** Begin Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:普通用户注册*/
+	@RequestMapping(value="/submitpersonalReg")
 	public String submitpersonalReg(TCommonUser user,HttpServletRequest request){
 		if(user.getLoginName()!=null || user.getPassword()!=null){
 			String referer=request.getHeader("Referer");
@@ -87,7 +88,8 @@ public class ControllerRegister {
 	}
 	/** End Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:企业用户注册*/
 	/** Begin Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:普通用户注册*/
-	public String submitpersonalReg(EnterpriseUser user,HttpServletRequest request){
+	@RequestMapping(value="/submitEnterpriseReg")
+	public String submitEnterpriseReg(EnterpriseUser user,HttpServletRequest request){
 		if(user.getLoginName()!=null || user.getPassword()!=null){
 			String referer=request.getHeader("Referer");
 			String password = DigestUtils.md5Hex(user.getPassword());
