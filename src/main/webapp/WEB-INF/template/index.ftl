@@ -5,7 +5,6 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <script src="/resource/public/resources/scripts/jquery-1.10.2.min.js"></script>
     
     <style type="text/css">
     	.j_mian{
@@ -152,18 +151,6 @@
     		margin-right:10px;
     	}
     </style>
-    <script style="text/javascript">
-    $().ready(function() {
-    	alert(" 开始使用！");
-		// 更换验证码
-		$("#register").click(function() {
-			// 需要跳转到注册页面
-			alert("需要跳转到注册页面");
-			//window.location.href="http://www.baidu.com";
-		});
-		
-	})
-	</script>
 </head>
 <body>
 	[#include "/include/header.ftl" /]
@@ -279,33 +266,110 @@
 					<li><a href="">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
 				</ul>
 			</div>
-			<div class="denglu">
+			
+			 <script style="text/javascript">
+		    $().ready(function() {
+		    	// ajax 提交验证和登录。
+		    	function submitF(){
+						var loginName=$("#username").val();
+						var password=$("#password").val();
+						var userType=$('input:radio[name="userType"]:checked').val();
+					 	if(loginName==""){
+					 	  return false;
+					 	}
+						$.ajax({
+							url: "/ajaxLoginValid.jhtml",
+							type: "POST",
+							data: {
+								loginName: loginName,
+								password:password,
+								userType: userType
+									},
+							dataType: "json",
+							cache: false,
+							success: function(data) {
+									// 如果登录成功，则显示成功
+									if(data.success=="success"){
+										$("#denglu2").attr("style","");
+										$("#denglu1").attr("style","display:none;");
+									}else{
+										alert(data.errorLoginName);
+										alert(data.errorPwd);
+									}
+								}
+							});
+					}
+		    	//验证。
+				$("#username,input:radio[name='userType']").change(function(){
+					submitF();
+				});
+				
+				// 登录。
+				$("#login").click(function() {
+					var loginName=$("#username").val();
+					var password=$("#password").val();
+					if(loginName==""&&password==""){
+						alert("用户名和密码不能为空！");
+					}else{
+						submitF();
+					}
+				});
+				$("#register").click(function() {
+					// 需要跳转到注册页面
+					alert("需要跳转到注册页面");
+					//window.location.href="http://www.baidu.com";
+				});
+				
+			})
+	</script>
+	
+			<div class="denglu" id="denglu1">
 				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);">会员登录</p>
-				<form id="loginForm" action="" method="post">
+				<form id="loginForm" action="/ajaxLoginValid.jhtml" method="post">
 				<table style="padding:19px;">
 					<tr>
 						<td>用户名:</td>
-						<td><input type="text" name="username" style="width:150px"></td>
+						<td><input id="username" type="text" name="username" style="width:150px"></td>
 					</tr>
 					<tr>
 						<td>密&nbsp;&nbsp;&nbsp;码:</td>
-						<td><input type="password" name="password" style="width:150px"></td>
+						<td><input id="password" type="password" name="password" style="width:150px"></td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
-							<input type="radio" name="zhuce" checked="ture" value="commonUser">个人用户
-							<input type="radio" name="zhuce" value="enterpriseUser">企业用户
+							<input type="radio" name="userType" checked="ture" value="commonUser">个人用户
+							<input type="radio" name="userType" value="enterpriseUser">企业用户
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
-							<input type="submit" id="login" value="登录" style="margin-right: 10px;">
+							<input type="button" id="login" value="登录" style="margin-right: 10px;">
 							<input type="button" id="register" value="注册">
 						</td>
 					</tr>
 				</table>
 				</form>
 			</div>
+			<div class="denglu" id="denglu2" style="display:none;">
+				<table style="padding:19px;">
+					<tr>
+						<td colspan="2" align="center" style="background:#EE981F;color:#FFFFFF;border-radius:4px;">用户登录</td>
+					</tr>
+					<tr>
+						<td colspan="2"><font color="red" size="2">李妹</font>，欢迎您登录！</td>
+					</tr>
+					<tr>
+						<td colspan="2">上次登录时间:<span style="font-size:13px">2014-04-15 20：20</span></td>
+					</tr>
+					<tr>
+						<td align="center" colspan="2" style="padding-top: 20px;">
+							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" value="个人中心">
+							<input type="button" style="background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" value="退出">
+						</td>
+					</tr>
+				</table>
+			</div>
+			
 			<div class="jiuye">
 				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);margin-bottom:10px;">就业业务办理</p>
 				<input type="button" value="就业失业登记" style="">		

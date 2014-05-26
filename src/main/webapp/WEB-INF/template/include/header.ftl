@@ -43,6 +43,7 @@
 	    width: 90px;
 	}
 </style>
+ <script src="/resource/public/resources/scripts/jquery-1.10.2.min.js"></script>
 <div style="width:100%">
 	<div class="j_head">
 		<div class="j_head_pic">
