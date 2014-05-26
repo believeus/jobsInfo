@@ -279,7 +279,7 @@
 					<tr>
 						<td colspan="2">上次登录时间:
 						  <span style="font-size:13px">
-							${commonuser.lastLoginData?number_to_datetime}
+							${commonuser.lastLoginData?number_to_datetime}&nbsp;${commonuser.lastLoginData?number_to_time}
 						  </span>
 						 </td>
 					</tr>

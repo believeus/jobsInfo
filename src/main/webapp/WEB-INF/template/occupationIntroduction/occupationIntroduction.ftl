@@ -208,7 +208,11 @@
 						<td colspan="2"><font color="red" size="2">${commonuser.loginName}${enterpriseuser.loginName}</font>，欢迎您登录！</td>
 					</tr>
 					<tr>
-						<td colspan="2">上次登录时间:<span style="font-size:13px">${commonuser.lastLoginData}${enterpriseuser.lastLoginData}2014-04-15 20：20</span></td>
+						<td colspan="2">上次登录时间:
+						 <span style="font-size:13px">
+						  	${commonuser.lastLoginData?number_to_datetime}&nbsp;${commonuser.lastLoginData?number_to_time}
+						 </span>
+						</td>
 					</tr>
 					<tr>
 						<td align="center" colspan="2" style="padding-top: 20px;">
