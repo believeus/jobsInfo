@@ -65,7 +65,7 @@ public class TCommonUser implements Serializable{
 	public void setLoginName(String loginName) {
 		this.loginName = loginName;
 	}
-	@Column(nullable = false,columnDefinition="varchar(25) comment '登录密码'  default '' ")
+	@Column(nullable = false,columnDefinition="varchar(40) comment '登录密码'  default '' ")
 	public String getPassword() {
 		return password;
 	}

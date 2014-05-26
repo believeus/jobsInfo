@@ -29,13 +29,15 @@ public class ControllerRegister {
 	@RequestMapping(value = "/personalReg")
 	public String personalRegister(TCommonUser user,HttpServletRequest request) {
 		String password = DigestUtils.md5Hex(user.getPassword());
+		user.setCreateDate(System.currentTimeMillis());
+		user.setPassword(password);
 		return "register/personalRegister";
 	}
 	/** End Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:普通用户注册*/
 	
 	/** Begin Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:ajax判断用户名是否已经存在*/
-	@RequestMapping(value="/ajaxValidLoginName")
-	public void ajaxValidLoginName(String loginName,HttpServletResponse response){
+	@RequestMapping(value="/ajaxValidReg")
+	public void ajaxValidReg(String loginName,String idcard,HttpServletResponse response){
 		log.debug("loginName:"+loginName);
 		TCommonUser user = (TCommonUser)commonUserService.findObjectByProperty(TCommonUser.class, EtechGobal.LoginName, loginName);
 		Map<String, Object> message=new HashMap<String, Object>();
@@ -43,10 +45,12 @@ public class ControllerRegister {
 			message.put("error","error");
 			message.put("message","用户名已存在，请重新填写用户名");
 			JsonOutToBrower.out(message, response);
+			return;
 		}else {
 			message.put("success","success");
 			JsonOutToBrower.out(message, response);
 		}
+		TCommonUser user = (TCommonUser)commonUserService.findObjectByProperty(TCommonUser.class, EtechGobal.Idcard, idcard);
 	}
 	/** End Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:ajax判断用户名是否已经存在*/
 	
