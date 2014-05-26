@@ -7,10 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
@@ -22,6 +25,7 @@ import com.etech.service.EnterpriseUserService;
 
 @Controller
 public class ControllerUser {
+	private static final Log log=LogFactory.getLog(ControllerUser.class);
 	@Resource
 	private CommonUserService commonUserService;
 	@Resource
@@ -39,23 +43,36 @@ public class ControllerUser {
 		JSONObject json=null;
 		response.setContentType("text/html;charset=UTF-8");
 		OutputStream out = response.getOutputStream();
-		
+		log.debug("current propertyValue:"+propertyValue);
+		TCommonUser comUser=null;
 		/*根据注册名查询该用户是否存在*/
-		TCommonUser comUser= (TCommonUser) commonUserService.findObjectById(TCommonUser.class, TCommonUser.LoginName, propertyValue);
-		if(comUser!=null){
-			map.put("result", "loginNameExist");
-			json = JSONObject.fromObject(map);
-			outToBrowser(out,json.toString());
-			return;
+		if (propertyValue!=null&&!"".equals(propertyValue)) {
+			if (propertyValue.equalsIgnoreCase(TCommonUser.LoginName)) {
+				// 用户登录名只能是英文
+				propertyValue = propertyValue.trim();
+				comUser= (TCommonUser) commonUserService.findObjectById(TCommonUser.class, TCommonUser.LoginName, propertyValue);
+				if(comUser!=null){
+					map.put("result", "用户名已经存在");
+					json = JSONObject.fromObject(map);
+					outToBrowser(out,json.toString());
+					return;
+				}else {
+					map.put("result", "用户名可以使用");
+					json = JSONObject.fromObject(map);
+					outToBrowser(out,json.toString());
+					return;
+				}
+			}
+			/*根据注册身份证号查询该用户是否存在*/
+			comUser = (TCommonUser) commonUserService.findObjectById(TCommonUser.class, "idcard", propertyValue);
+			if (comUser!=null) {
+				map.put("result", "iscardExist");
+				json = JSONObject.fromObject(map);
+				outToBrowser(out,json.toString());
+				return;
+			}
 		}
-		/*根据注册身份证号查询该用户是否存在*/
-		comUser = (TCommonUser) commonUserService.findObjectById(TCommonUser.class, "idcard", propertyValue);
-		if (comUser!=null) {
-			map.put("result", "iscardExist");
-			json = JSONObject.fromObject(map);
-			outToBrowser(out,json.toString());
-			return;
-		}
+		
 		
 	}
 	/*关闭流*/
@@ -72,9 +89,34 @@ public class ControllerUser {
 		return result;
 	}
 	/**企业用户登录验证*/
-	public String ajaxLoginValidEnterpriseUser(){
-		String result="";
-		return result;
+	public void ajaxLoginValidEnterpriseUser(String propertyValue,String type,HttpServletResponse response){
+		Map<String,Object> map = new HashMap<String,Object>();
+		JSONObject json=null;
+		response.setContentType("text/html;charset=UTF-8");
+		OutputStream out = response.getOutputStream();
+		log.debug("current propertyValue:"+propertyValue);
+		TCommonUser comUser=null;
+		if(propertyValue!=null&&!"".equals(propertyValue)){
+			propertyValue=propertyValue.trim();
+			// 用户名判断是否存在
+			if(propertyValue.equalsIgnoreCase(TCommonUser.LoginName)){
+				if (propertyValue.equalsIgnoreCase(TCommonUser.LoginName)) {
+					// 用户登录名只能是英文
+					propertyValue = propertyValue.trim();
+					comUser= (TCommonUser) commonUserService.findObjectById(TCommonUser.class, TCommonUser.LoginName, propertyValue);
+					if(comUser!=null){
+						map.put("result", "可以登录");
+						json = JSONObject.fromObject(map);
+						outToBrowser(out,json.toString());
+						return;
+					}else {
+						map.put("result", "用户名不存在,请注册");
+						json = JSONObject.fromObject(map);
+						outToBrowser(out,json.toString());
+						return;
+					}
+			}
+		}
 	}
 	/**一般用户注册*/
 	@RenderMapping(value="/commonregister")

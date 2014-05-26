@@ -20,6 +20,7 @@ public class TCommonUser implements Serializable{
 
 	private static final long serialVersionUID = 5791526164788361621L;
 	public static final String LoginName="loginName";
+	public static final String Idcard="idcard";
 	private int id;
 	/** 登录名 */
 	private String loginName;
