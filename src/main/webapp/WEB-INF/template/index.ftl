@@ -270,7 +270,7 @@
 			 <script style="text/javascript">
 		    $().ready(function() {
 		    	// ajax 提交验证和登录。
-		    	function submitF(){
+		    	function submitF(flag){
 						var loginName=$("#username").val();
 						var password=$("#password").val();
 						var userType=$('input:radio[name="userType"]:checked').val();
@@ -290,18 +290,25 @@
 							success: function(data) {
 									// 如果登录成功，则显示成功
 									if(data.success=="success"){
-										$("#denglu2").attr("style","");
-										$("#denglu1").attr("style","display:none;");
+										// 刷新页面
+										window.location.href="/";
 									}else{
-										alert(data.errorLoginName);
-										alert(data.errorPwd);
+										if(data.errorLoginName=="用户不存在，请注册"){
+											alert(data.errorLoginName);										
+										}
+										if(flag !="true"){
+											if(data.errorPwd=="用户密码错误"){
+												alert(data.errorPwd);										
+											}
+										}
+										
 									}
 								}
 							});
 					}
-		    	//验证。
+		    	// 用户名验证。
 				$("#username,input:radio[name='userType']").change(function(){
-					submitF();
+					submitF("true");
 				});
 				
 				// 登录。
@@ -311,13 +318,12 @@
 					if(loginName==""&&password==""){
 						alert("用户名和密码不能为空！");
 					}else{
-						submitF();
+						submitF("false");
 					}
 				});
 				$("#register").click(function() {
 					// 需要跳转到注册页面
-					alert("需要跳转到注册页面");
-					//window.location.href="http://www.baidu.com";
+					window.location.href="/personalReg.jhtml";
 				});
 				
 			})

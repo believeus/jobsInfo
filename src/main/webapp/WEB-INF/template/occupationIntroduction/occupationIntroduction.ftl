@@ -196,6 +196,67 @@
 				</tr>
 			</table>	
 		</div>
+			 <script style="text/javascript">
+		    $().ready(function() {
+		    	// ajax 提交验证和登录。
+		    	function submitF(flag){
+						var loginName=$("#username").val();
+						var password=$("#password").val();
+						var userType=$('input:radio[name="userType"]:checked').val();
+					 	if(loginName==""){
+					 	  return false;
+					 	}
+						$.ajax({
+							url: "/ajaxLoginValid.jhtml",
+							type: "POST",
+							data: {
+								loginName: loginName,
+								password:password,
+								userType: userType
+									},
+							dataType: "json",
+							cache: false,
+							success: function(data) {
+									// 如果登录成功，则显示成功
+									if(data.success=="success"){
+										// 刷新页面
+										window.location.href="/";
+									}else{
+										if(data.errorLoginName=="用户不存在，请注册"){
+											alert(data.errorLoginName);										
+										}
+										if(flag !="true"){
+											if(data.errorPwd=="用户密码错误"){
+												alert(data.errorPwd);										
+											}
+										}
+										
+									}
+								}
+							});
+					}
+		    	// 用户名验证。
+				$("#username,input:radio[name='userType']").change(function(){
+					submitF("true");
+				});
+				
+				// 登录。
+				$("#login").click(function() {
+					var loginName=$("#username").val();
+					var password=$("#password").val();
+					if(loginName==""&&password==""){
+						alert("用户名和密码不能为空！");
+					}else{
+						submitF("false");
+					}
+				});
+				$("#register").click(function() {
+					// 需要跳转到注册页面
+					window.location.href="/personalReg.jhtml";
+				});
+				
+			})
+	</script>
 		<div class="j_main_3">
 			<div class="j_main_3_1" style="display:block;">
 				<table style="padding: 6px 19px 19px;">
@@ -204,22 +265,22 @@
 					</tr>
 					<tr>
 						<td>用户名:</td>
-						<td><input type="text" style="width:150px" name="username"></td>
+						<td><input id="username" type="text" style="width:150px" name="username"></td>
 					</tr>
 					<tr>
 						<td>密&nbsp;&nbsp;&nbsp;码:</td>
-						<td><input type="password" style="width:150px" name="password"></td>
+						<td><input id="password" type="password" style="width:150px" name="password"></td>
 					</tr>
 					<tr>
 						<td align="center" colspan="2">
-							<input type="radio" checked="ture" name="zhuce">个人用户
-							<input type="radio" name="zhuce">企业用户
+							<input type="radio" checked="ture" name="userType">个人用户
+							<input type="radio" name="userType">企业用户
 						</td>
 					</tr>
 					<tr>
 						<td align="center" colspan="2">
-							<input type="button" style="margin-right: 10px;" value="登录">
-							<input type="button" value="注册">
+							<input type="button" id="login" style="margin-right: 10px;" value="登录">
+							<input type="button" id="register" value="注册">
 						</td>
 					</tr>
 				</table>
