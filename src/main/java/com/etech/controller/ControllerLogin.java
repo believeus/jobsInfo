@@ -47,7 +47,7 @@ public class ControllerLogin {
 					usermap=new HashMap<String, Object>();
 					usermap.put("loginName", commonuser.getLoginName());
 					usermap.put("password", commonuser.getPassword());
-					usermap.put("sessionUser", commonuser);
+					usermap.put("commonuser", commonuser);
 				}
 				// 企业级用户
 			} else {
@@ -57,7 +57,7 @@ public class ControllerLogin {
 					usermap=new HashMap<String, Object>();
 					usermap.put("loginName", enterpriseuser.getLoginName());
 					usermap.put("password", enterpriseuser.getPassword());
-					usermap.put("sessionUser", enterpriseuser);
+					usermap.put("enterpriseuser", enterpriseuser);
 				}
 				
 			}
@@ -74,14 +74,15 @@ public class ControllerLogin {
 					jsonmap.put("success", message.get("success"));
 					log.debug("login success");
 					//普通用户
-					if(usermap.get("sessionUser") instanceof TCommonUser){
-						TCommonUser commonUser = (TCommonUser)usermap.get("sessionUser");
-						request.getSession().setAttribute("sessionUser",commonUser);
-					// 企业级用户
+					if(usermap.get("enterpriseuser")==null){
+						TCommonUser commonUser=(TCommonUser)usermap.get("commonuser");
+						request.getSession().setAttribute("commonuser", commonUser);
+						log.debug("commonuser login success");
 					}else {
-						EnterpriseUser enterpriseUser = (EnterpriseUser)usermap.get("sessionUser");
-						request.getSession().setAttribute("sessionUser",enterpriseUser);
-					}
+						EnterpriseUser enterpriseuser=(EnterpriseUser)usermap.get("enterpriseuser");
+						request.getSession().setAttribute("enterpriseuser", enterpriseuser);
+						log.debug("enterpriseuser login success");
+					};
 					JsonOutToBrower.out(jsonmap, response);
 				/*用户名正确密码不正确*/
 				}else {

@@ -2,18 +2,14 @@ package com.etech.controller;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.etech.entity.EnterpriseUser;
 import com.etech.entity.TCommonUser;
 import com.etech.service.CommonUserService;
