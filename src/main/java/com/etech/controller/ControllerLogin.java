@@ -1,131 +1,113 @@
 package com.etech.controller;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import net.sf.json.JSONObject;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
+
 import com.etech.entity.TCommonUser;
 import com.etech.entity.EnterpriseUser;
 import com.etech.service.CommonUserService;
 import com.etech.service.EnterpriseUserService;
+import com.etech.util.EtechGobal;
+import com.etech.util.JsonOutToBrower;
 
 @Controller
 public class ControllerLogin {
-	private static final Log log=LogFactory.getLog(ControllerLogin.class);
+	private static final Log log = LogFactory.getLog(ControllerLogin.class);
 	@Resource
 	private CommonUserService commonUserService;
 	@Resource
 	private EnterpriseUserService enterpriseUserService;
-	/**普通用户登录验证*/
-	public String ajaxLoginValidComUser(){
-		String result="";
+
+	/** 普通用户登录验证 */
+	public String ajaxLoginValidComUser() {
+		String result = "";
 		return result;
 	}
-	/**普通用户注册验证 */
-	@RequestMapping(value="/ajaxRegValid")
-	public void ajaxRegValid(String propertyValue,HttpServletResponse response) throws IOException{
-		//技巧：将map转换成json避免字符拼接成json带来的麻烦
-		Map<String,Object> map = new HashMap<String,Object>();
-		JSONObject json=null;
-		response.setContentType("text/html;charset=UTF-8");
-		OutputStream out = response.getOutputStream();
-		log.debug("current propertyValue:"+propertyValue);
-		TCommonUser comUser=null;
-		/*根据注册名查询该用户是否存在*/
-		if (propertyValue!=null&&!"".equals(propertyValue)) {
-			if (propertyValue.equalsIgnoreCase(TCommonUser.LoginName)) {
-				// 用户登录名只能是英文
-				propertyValue = propertyValue.trim();
-				comUser= (TCommonUser) commonUserService.findObjectById(TCommonUser.class, TCommonUser.LoginName, propertyValue);
-				if(comUser!=null){
-					map.put("result", "用户名已经存在");
-					json = JSONObject.fromObject(map);
-					outToBrowser(out,json.toString());
-					return;
+
+	/** 普通用户注册验证 */
+	@RequestMapping(value = "/ajaxRegValid")
+	public void ajaxRegValid(String loginName, String password,
+			String userType, HttpServletResponse response) throws Exception {
+
+	}
+
+	/**Begin Author:wuqiwei Data:2014-05-26 Email:1058633117@qq.com AddReason:根据登录用户的类型,进行ajax登录验证 */
+	@RequestMapping(value = "/ajaxLoginValid")
+	public void ajaxLoginValid(String loginName,String userType,String password, HttpServletResponse response) throws Exception {
+		log.debug("current loginName:" + loginName);
+		if (loginName != null && !"".equals(loginName)) {
+			Map<String, String> message=new HashMap<String, String>();
+			message.put("error", "error");
+			message.put("errorLoginName", "用户不存在，请注册");
+			message.put("errorPwd", "用户密码错误");
+			message.put("success", "success");
+			Map<String, Object> jsonmap = new HashMap<String, Object>();
+			Map<String, String> usermap=null;
+			// 一般用户登录
+			if (userType.equals("commonUser")) {
+				TCommonUser commonuser = (TCommonUser) commonUserService.findObjectById(TCommonUser.class, EtechGobal.LoginName, loginName);
+				if (commonuser!=null) {
+					log.debug("TCommonUser:"+commonuser);
+					usermap=new HashMap<String, String>();
+					usermap.put("loginName", commonuser.getLoginName());
+					usermap.put("password", commonuser.getPassword());
+				}
+				// 企业级用户
+			} else {
+				EnterpriseUser enterpriseuser = (EnterpriseUser) enterpriseUserService.findObjectById(TCommonUser.class, EtechGobal.LoginName,loginName);
+				if (enterpriseuser!=null) {
+					log.debug("EnterpriseUser:"+enterpriseuser);
+					usermap=new HashMap<String, String>();
+					usermap.put("loginName", enterpriseuser.getLoginName());
+					usermap.put("password", enterpriseuser.getPassword());
+				}
+				
+			}
+			if (usermap == null) {
+				jsonmap.put("error", message.get("error"));
+				jsonmap.put("errorLoginName", message.get("errorLoginName"));
+				log.debug("error loginName:" + loginName);
+				JsonOutToBrower.out(jsonmap, response);
+			}else {
+				/*用户名和密码都正确*/
+				if (usermap.get("password").equals(password)) {
+					jsonmap.put("success", message.get("success"));
+					log.debug("login success");
+					JsonOutToBrower.out(jsonmap, response);
+				/*用户名正确密码不正确*/
 				}else {
-					map.put("result", "用户名可以使用");
-					json = JSONObject.fromObject(map);
-					outToBrowser(out,json.toString());
-					return;
+					jsonmap.put("error", message.get("error"));
+					jsonmap.put("errorPwd", message.get("errorPwd"));
+					log.debug("error password");
+					JsonOutToBrower.out(jsonmap, response);
 				}
 			}
-			/*根据注册身份证号查询该用户是否存在*/
-			comUser = (TCommonUser) commonUserService.findObjectById(TCommonUser.class, "idcard", propertyValue);
-			if (comUser!=null) {
-				map.put("result", "iscardExist");
-				json = JSONObject.fromObject(map);
-				outToBrowser(out,json.toString());
-				return;
-			}
-		}
-		
-		
-	}
-	/*关闭流*/
-	private void outToBrowser(OutputStream out,String json) {
-		try {
-			PrintWriter writer = new PrintWriter(out);
-			writer.println(json.toString());
-			writer.flush();
-			writer.close();
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
-	
-	/**企业用户登录验证 */
-	@RequestMapping(value="/ajaxLoginValid")
-	public void ajaxLoginValid(String propertyValue,String type,HttpServletResponse response) throws IOException{
-		Map<String,Object> map = new HashMap<String,Object>();
-		JSONObject json=null;
-		response.setContentType("text/html;charset=UTF-8");
-		OutputStream out = response.getOutputStream();
-		log.debug("current propertyValue:"+propertyValue);
-		TCommonUser comUser=null;
-		if(propertyValue!=null&&!"".equals(propertyValue)){
-			propertyValue=propertyValue.trim();
-			// 用户名判断是否存在
-			if(propertyValue.equalsIgnoreCase(TCommonUser.LoginName)){
-				if (propertyValue.equalsIgnoreCase(TCommonUser.LoginName)) {
-					// 用户登录名只能是英文
-					propertyValue = propertyValue.trim();
-					comUser= (TCommonUser) commonUserService.findObjectById(TCommonUser.class, TCommonUser.LoginName, propertyValue);
-					if(comUser!=null){
-						map.put("result", "可以登录");
-						json = JSONObject.fromObject(map);
-						outToBrowser(out,json.toString());
-						return;
-					}else {
-						map.put("result", "用户名不存在,请注册");
-						json = JSONObject.fromObject(map);
-						outToBrowser(out,json.toString());
-						return;
-					}
-				}
-			}
-	}}
-	/**一般用户注册*/
-	@RenderMapping(value="/commonregister")
-	public String commonuserReg(TCommonUser commonUser){
+	/**End Author:wuqiwei Data:2014-05-26 Email:1058633117@qq.com AddReason:根据登录用户的类型,进行ajax登录验证 */
+
+	/** 一般用户注册 */
+	@RenderMapping(value = "/commonregister")
+	public String commonuserReg(TCommonUser commonUser) {
 		commonUserService.saveOrUpdate(commonUser);
-		String result="";
+		String result = "";
 		return result;
 	}
-	/**企业用户注册*/
-	@RenderMapping(value="/enterpriseregister")
-	public String enterpriseReg(EnterpriseUser enterpriseUser){
+
+	/** 企业用户注册 */
+	@RenderMapping(value = "/enterpriseregister")
+	public String enterpriseReg(EnterpriseUser enterpriseUser) {
 		enterpriseUserService.saveOrUpdate(enterpriseUser);
-		String result="";
+		String result = "";
 		return result;
 	}
 }

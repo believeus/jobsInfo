@@ -1,10 +1,19 @@
 package com.etech.entity;
 
+import java.io.Serializable;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /** 企业用户 */
-public class EnterpriseUser extends BaseEntity {
+public class EnterpriseUser implements Serializable {
+	
 	private static final long serialVersionUID = 6293704345783832975L;
+	public static final String LoginName="loginName";
+	private int id;
 	/** 用户名 */
-	private String name;
+	private String loginName;
 	/** 用户登录密码 */
 	private String password;
 	/** 公司联系电话 */
@@ -19,12 +28,29 @@ public class EnterpriseUser extends BaseEntity {
 	/** 公司性质 */
 	private String kindOfcp;
 
-	public String getName() {
-		return name;
+	
+	@Id
+	// MySQL/SQLServer: @GeneratedValue(strategy = GenerationType.AUTO)
+	// Oracle: @GeneratedValue(strategy = GenerationType.AUTO, generator = "sequenceGenerator")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public int getId() {
+		return id;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getLoginName() {
+		return loginName;
+	}
+
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
+	}
+
+	public static String getLoginname() {
+		return LoginName;
 	}
 
 	public String getPassword() {
