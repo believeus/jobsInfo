@@ -83,15 +83,14 @@ public class EtechComDao extends HibernateDaoSupport {
 	}
 	/**Begin Author:wuqiwei Data:2014-05-22 AddReason:根据id的方式删除对象*/
 	public void delete(Class<?> clazz,final Integer id) {
-		final String clazzName = clazz.getClass().getName();
-		final String hql="delete from :clazzName where id=':id'";
+		final String clazzName = clazz.getName();
+		final String hql="delete from "+clazzName+" where id=:id";
 		this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
 
 			@Override
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
 				Query query = session.createQuery(hql);
-				query.setString("clazzName", clazzName);
 				query.setInteger("id", id);
 				query.executeUpdate();
 				return null;
@@ -143,15 +142,15 @@ public class EtechComDao extends HibernateDaoSupport {
 	}
 	//以对象的方式获取对象。
 	public Object getObjecById(Class<?> clazz, final Integer id) {
-		final String clazzName = clazz.getClass().getName();
-		final String hql="from :className where id =':id'";
+		final String clazzName = clazz.getName();
+		final String hql="from "+clazzName+" className where id =':id'";
+		log.debug("current hql:"+hql);
 		return (List<?>) this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
 
 			@Override
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
 				Query query = session.createQuery(hql);
-				query.setString("className", clazzName);
 				query.setInteger("id", id);
 				return query.uniqueResult();
 			}
