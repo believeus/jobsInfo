@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
@@ -30,7 +32,7 @@ public class ControllerLogin {
 
 	/**Begin Author:wuqiwei Data:2014-05-26 Email:1058633117@qq.com AddReason:根据登录用户的类型,进行ajax登录验证 */
 	@RequestMapping(value = "/ajaxLoginValid")
-	public void ajaxLoginValid(String loginName,String userType,String password, HttpServletResponse response) throws Exception {
+	public void ajaxLoginValid(String loginName,String userType,String password, HttpServletResponse response,HttpServletRequest request) throws Exception {
 		log.debug("current loginName:" + loginName);
 		if (loginName != null && !"".equals(loginName)) {
 			Map<String, String> message=new HashMap<String, String>();
@@ -39,24 +41,26 @@ public class ControllerLogin {
 			message.put("errorPwd", "用户密码错误");
 			message.put("success", "success");
 			Map<String, Object> jsonmap = new HashMap<String, Object>();
-			Map<String, String> usermap=null;
+			Map<String, Object> usermap=null;
 			// 一般用户登录
 			if (userType.equals("commonUser")) {
 				TCommonUser commonuser = (TCommonUser) commonUserService.findObjectByProperty(TCommonUser.class, EtechGobal.LoginName, loginName);
 				if (commonuser!=null) {
 					log.debug("TCommonUser:"+commonuser);
-					usermap=new HashMap<String, String>();
+					usermap=new HashMap<String, Object>();
 					usermap.put("loginName", commonuser.getLoginName());
 					usermap.put("password", commonuser.getPassword());
+					usermap.put("sessionUser", commonuser);
 				}
 				// 企业级用户
 			} else {
 				EnterpriseUser enterpriseuser = (EnterpriseUser) enterpriseUserService.findObjectByProperty(EnterpriseUser.class, EtechGobal.LoginName,loginName);
 				if (enterpriseuser!=null) {
 					log.debug("EnterpriseUser:"+enterpriseuser);
-					usermap=new HashMap<String, String>();
+					usermap=new HashMap<String, Object>();
 					usermap.put("loginName", enterpriseuser.getLoginName());
 					usermap.put("password", enterpriseuser.getPassword());
+					usermap.put("sessionUser", enterpriseuser);
 				}
 				
 			}
@@ -72,6 +76,15 @@ public class ControllerLogin {
 				if (usermap.get("password").equals(password)) {
 					jsonmap.put("success", message.get("success"));
 					log.debug("login success");
+					//普通用户
+					if(usermap.get("sessionUser") instanceof TCommonUser){
+						TCommonUser commonUser = (TCommonUser)usermap.get("sessionUser");
+						request.getSession().setAttribute("sessionUser",commonUser);
+					// 企业级用户
+					}else {
+						EnterpriseUser enterpriseUser = (EnterpriseUser)usermap.get("sessionUser");
+						request.getSession().setAttribute("sessionUser",enterpriseUser);
+					}
 					JsonOutToBrower.out(jsonmap, response);
 				/*用户名正确密码不正确*/
 				}else {
