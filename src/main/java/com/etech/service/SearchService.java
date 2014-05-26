@@ -10,7 +10,7 @@ import com.etech.dao.EtechComDao;
  * 高级搜索页
  * */
 @Service
-public class SearchService extends BaseService{
+public class SearchService extends EtechBaseService{
 	private static Log log = LogFactory.getLog(SearchService.class);
 
 }

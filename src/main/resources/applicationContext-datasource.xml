@@ -13,29 +13,32 @@
 		http://www.springframework.org/schema/aop/spring-aop-2.5.xsd -->
 
 	<!-- begin Spring 通过数据库连接池整合hibernate -->
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
-		<property name="jdbcUrl" value="jdbc:mysql://mysqlJobs:3306/jobs?useUnicode=true&amp;characterEncoding=UTF-8"/>
-		<property name="user" value="root"/>
-		<property name="password" value="root"/>
-		<property name="initialPoolSize" value="10"/>
-		<property name="minPoolSize" value="5"/>
-		<property name="maxPoolSize" value="100"/>
-		<property name="maxIdleTime" value="300"/>
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://192.168.1.10:3306/jobs?useUnicode=true&amp;characterEncoding=UTF-8" />
+		<property name="user" value="root" />
+		<property name="password" value="root" />
+		<property name="initialPoolSize" value="10" />
+		<property name="minPoolSize" value="5" />
+		<property name="maxPoolSize" value="100" />
+		<property name="maxIdleTime" value="300" />
 		<!-- 当请求失败是否断开和mysql的链接,如果设置成true,当网络通讯断开,会导致c3p0不会再次和数据库链接 -->
-		<property name="breakAfterAcquireFailure" value="false"/>
+		<property name="breakAfterAcquireFailure" value="false" />
 		<!-- 当断网时c3p0会每隔3秒尝试和mysql建立网络链接 -->
-		<property name="acquireRetryDelay" value="3000"/>
+		<property name="acquireRetryDelay" value="3000" />
 		<!-- c3p0每3秒进行一次建立链接，一共尝试无数次 0代表无数次 -->
-		<property name="acquireRetryAttempts" value="0"/>
+		<property name="acquireRetryAttempts" value="0" />
 	</bean>
 
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+		
 		<!-- Begin Name:wuqiwei Date:2013-09-03 AddReason:使用注释实现ORMaping的映射 -->
-		<!-- <property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration" /> -->
+		<!-- <property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration" 
+			/> -->
 		<!-- End Name:wuqiwei Date:2013-09-03 AddReason:使用注释实现ORMaping的映射 -->
 	</bean>
 	<!-- end Spring 通过数据库连接池整合hibernate -->
@@ -48,7 +51,7 @@
 		check;不会回滚， 必须将异常往上抛，抛到最外层的action层，此时的事务才会回滚,action一定要重写execute 之后action才可以有事务的支持了。 
 		在同一个类中一个方法调用另一个有事务的方法，事务是不会起作用的。 -->
 	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 		<property name="dataSource" ref="dataSource" />
 	</bean>

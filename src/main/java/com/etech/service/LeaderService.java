@@ -10,6 +10,6 @@ import com.etech.dao.EtechComDao;
  * 局领导
  * */
 @Service
-public class LeaderService extends BaseService{
+public class LeaderService extends EtechBaseService{
 	private static Log log = LogFactory.getLog(LeaderService.class);
 }

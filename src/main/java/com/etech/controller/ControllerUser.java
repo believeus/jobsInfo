@@ -1,19 +1,26 @@
 package com.etech.controller;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONObject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 
-import com.etech.entity.CommonUser;
+import com.etech.entity.TCommonUser;
 import com.etech.entity.EnterpriseUser;
 import com.etech.service.CommonUserService;
 import com.etech.service.EnterpriseUserService;
 
 @Controller
-@RequestMapping("/register")
 public class ControllerUser {
 	@Resource
 	private CommonUserService commonUserService;
@@ -24,10 +31,40 @@ public class ControllerUser {
 		String result="";
 		return result;
 	}
-	/**普通用户注册验证*/
-	public String ajaxRegValidComUser(){
-		String result="";
-		return result;
+	/**普通用户注册验证 */
+	@RequestMapping(value="/ajaxRegValidComUser")
+	public void ajaxRegValidComUser(String propertyValue,HttpServletResponse response) throws IOException{
+		//技巧：将map转换成json避免字符拼接成json带来的麻烦
+		Map<String,Object> map = new HashMap<String,Object>();
+		JSONObject json=null;
+		response.setContentType("text/html;charset=UTF-8");
+		OutputStream out = response.getOutputStream();
+		
+		/*根据注册名查询该用户是否存在*/
+		TCommonUser comUser= (TCommonUser) commonUserService.findObjectById(TCommonUser.class, TCommonUser.LoginName, propertyValue);
+		if(comUser!=null){
+			map.put("result", "loginNameExist");
+			json = JSONObject.fromObject(map);
+			outToBrowser(out,json.toString());
+			return;
+		}
+		/*根据注册身份证号查询该用户是否存在*/
+		comUser = (TCommonUser) commonUserService.findObjectById(TCommonUser.class, "idcard", propertyValue);
+		if (comUser!=null) {
+			map.put("result", "iscardExist");
+			json = JSONObject.fromObject(map);
+			outToBrowser(out,json.toString());
+			return;
+		}
+		
+	}
+	/*关闭流*/
+	private void outToBrowser(OutputStream out,String json) throws IOException{
+		PrintWriter writer = new PrintWriter(out);
+		writer.println(json.toString());
+		writer.flush();
+		writer.close();
+		out.close();
 	}
 	/**企业用户注册验证*/
 	public String ajaxRegEnterpriseComUser(){
@@ -40,19 +77,12 @@ public class ControllerUser {
 		return result;
 	}
 	/**一般用户注册*/
-	@RequestMapping(value = "/commonregister", method = RequestMethod.GET)
-	public String commonuserReg(){
-		System.out.println("xxxxxxxxxxx");
-		return "register/enterpriseRegister";
+	@RenderMapping(value="/commonregister")
+	public String commonuserReg(TCommonUser commonUser){
+		commonUserService.saveOrUpdate(commonUser);
+		String result="";
+		return result;
 	}
-	/**一般用户注册*/
-	@RequestMapping(value = "/commonUserSubmit", method = RequestMethod.POST)
-	public String commonUserSubmit(){
-		//commonUserService.saveOrUpdate(commonUser);
-		System.out.println("xxxxxxxxxxx");
-		return "register/enterpriseRegister";
-	}
-	
 	/**企业用户注册*/
 	@RenderMapping(value="/enterpriseregister")
 	public String enterpriseReg(EnterpriseUser enterpriseUser){

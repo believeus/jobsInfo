@@ -11,7 +11,7 @@ import com.etech.dao.EtechComDao;
  * 局长信箱
  * */
 @Service
-public class MailBoxService extends BaseService{
+public class MailBoxService extends EtechBaseService{
 	private static Log log = LogFactory.getLog(MailBoxService.class);
 
 }

@@ -1,14 +1,30 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.etech</groupId>
-	<artifactId>jobs</artifactId>
+	<groupId>cn.believeus</groupId>
+	<artifactId>open-freemdom</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>JobsInfo</name>
+	<name>Believeus</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.ant</groupId>
+			<artifactId>ant</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.morph</groupId>
+			<artifactId>morph</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.ezmorph</groupId>
+			<artifactId>ezmorph</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache-jgroupsreplication</artifactId>
@@ -137,7 +153,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>3.2.2.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -150,32 +166,32 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-expression</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>3.2.2.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-instrument</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>3.2.2.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-instrument-tomcat</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>3.2.2.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>3.2.2.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jms</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>3.2.2.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>3.2.2.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.xml.ws</groupId>
@@ -199,12 +215,12 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>3.2.2.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>3.2.2.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -217,7 +233,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc-portlet</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>3.2.2.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate.common</groupId>
@@ -231,23 +247,20 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-ehcache</artifactId>
-			<version>4.2.8.Final</version>
+			<version>3.6.2.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-search-analyzers</artifactId>
-			<version>4.4.2.Final</version>
+			<version>3.4.2.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-search</artifactId>
-			<version>4.4.2.Final</version>
+			<version>3.4.2.Final</version>
 		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-search-orm</artifactId>
-			<version>4.4.2.Final</version>
-		</dependency>
+		<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-search-orm</artifactId> 
+			<version>4.4.2.Final</version> </dependency> -->
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
@@ -299,6 +312,14 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.5</version>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
 	</dependencies>
 
 	<!--Begin Name:wuqiwei Date:2013-12-20 AddReason:当多个个jar包分别有依赖不同版本的jar时，就使用该配置的jar -->
@@ -332,7 +353,17 @@
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-core</artifactId>
-				<version>4.2.8.Final</version>
+				<version>3.6.2.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate.javax.persistence</groupId>
+				<artifactId>hibernate-jpa-2.0-api</artifactId>
+				<version>1.0.1.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>4.2.0.Final</version>
 			</dependency>
 			<dependency>
 				<groupId>antlr</groupId>
@@ -422,12 +453,12 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
-				<version>4.0.0.RELEASE</version>
+				<version>3.2.2.RELEASE</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-aop</artifactId>
-				<version>4.0.0.RELEASE</version>
+				<version>3.2.2.RELEASE</version>
 			</dependency>
 			<dependency>
 				<groupId>net.sf.ehcache</groupId>
@@ -442,22 +473,22 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-core</artifactId>
-				<version>4.0.0.RELEASE</version>
+				<version>3.2.2.RELEASE</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-web</artifactId>
-				<version>4.0.0.RELEASE</version>
+				<version>3.2.2.RELEASE</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-beans</artifactId>
-				<version>4.0.0.RELEASE</version>
+				<version>3.2.2.RELEASE</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-webmvc</artifactId>
-				<version>4.0.0.RELEASE</version>
+				<version>3.2.2.RELEASE</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-fileupload</groupId>
@@ -559,6 +590,26 @@
 				<artifactId>lucene-sandbox</artifactId>
 				<version>3.6.2</version>
 			</dependency>
+			<dependency>
+				<groupId>net.sf.morph</groupId>
+				<artifactId>morph</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.ezmorph</groupId>
+				<artifactId>ezmorph</artifactId>
+				<version>1.0.6</version>
+			</dependency>
+			<dependency>
+				<groupId>javassist</groupId>
+				<artifactId>javassist</artifactId>
+				<version>3.12.1.GA</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ant</groupId>
+				<artifactId>ant</artifactId>
+				<version>1.7.1</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<!--End Name:wuqiwei Date:2013-12-20 AddReason:当多个个jar包分别有依赖不同版本的jar时，就使用该配置的jar -->
@@ -592,6 +643,11 @@
 						<additionalClasspathElement>src/main/webapp/WEB-INF/lib/memcached-2.1.jar</additionalClasspathElement>
 						<additionalClasspathElement>src/main/webapp/WEB-INF/lib/spy-2.4.jar</additionalClasspathElement>
 						<additionalClasspathElement>src/main/webapp/WEB-INF/lib/IKAnalyzer-3.2.8.jar</additionalClasspathElement>
+						<additionalClasspathElement>src/main/webapp/WEB-INF/lib/bsh.jar</additionalClasspathElement>
+						<additionalClasspathElement>src/main/webapp/WEB-INF/lib/jbpm-identity.jar</additionalClasspathElement>
+						<additionalClasspathElement>src/main/webapp/WEB-INF/lib/jbpm-jpdl.jar</additionalClasspathElement>
+						<additionalClasspathElement>src/main/webapp/WEB-INF/lib/spring-modules-jbpm31.jar</additionalClasspathElement>
+						<additionalClasspathElement>src/main/webapp/WEB-INF/lib/jcr-1.0.jar</additionalClasspathElement>
 					</additionalClasspathElements>
 				</configuration>
 			</plugin>

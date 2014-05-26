@@ -11,7 +11,7 @@ import com.etech.dao.EtechComDao;
  * 业务办理流程
  * */
 @Service
-public class BusProcess extends BaseService {
+public class BusProcess extends EtechBaseService {
 	private static Log log = LogFactory.getLog(BusProcess.class);
 
 }

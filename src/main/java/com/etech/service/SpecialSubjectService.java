@@ -10,7 +10,7 @@ import com.etech.dao.EtechComDao;
  * 专栏
  * */
 @Service
-public class SpecialSubjectService extends BaseService{
+public class SpecialSubjectService extends EtechBaseService{
 	private static Log log = LogFactory.getLog(SpecialSubjectService.class);
 	@Resource
 	private EtechComDao etechComDao;

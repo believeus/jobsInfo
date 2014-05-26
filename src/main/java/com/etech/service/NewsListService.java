@@ -10,7 +10,7 @@ import com.etech.dao.EtechComDao;
  * 新闻列表
  * */
 @Service
-public class NewsListService extends BaseService{
+public class NewsListService extends EtechBaseService{
 	private static Log log = LogFactory.getLog(NewsListService.class);
 
 }

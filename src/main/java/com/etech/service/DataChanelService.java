@@ -10,7 +10,7 @@ import com.etech.dao.EtechComDao;
  * 数据频道
  * */
 @Service
-public class DataChanelService extends BaseService{
+public class DataChanelService extends EtechBaseService{
 	private static Log log = LogFactory.getLog(DataChanelService.class);
 
 }

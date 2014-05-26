@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service;
  * 高级搜索页
  * */
 @Service
-public class CommonUserService extends BaseService{
+public class CommonUserService extends EtechBaseService{
 	private static Log log = LogFactory.getLog(CommonUserService.class);
 }

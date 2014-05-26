@@ -11,7 +11,7 @@ import com.etech.dao.EtechComDao;
  * 高级搜索页
  * */
 @Service
-public class AdvancedSearch extends BaseService{
+public class AdvancedSearch extends EtechBaseService{
 	private static Log log = LogFactory.getLog(AdvancedSearch.class);
 
 }

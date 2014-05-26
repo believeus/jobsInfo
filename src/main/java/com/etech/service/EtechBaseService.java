@@ -1,13 +1,11 @@
 package com.etech.service;
 
 import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
-
 import com.etech.dao.EtechComDao;
 
 @Service
-public class BaseService {
+public class EtechBaseService {
 	@Resource
 	private EtechComDao etechComDao;
 
@@ -17,12 +15,16 @@ public class BaseService {
 	}
 
 	/** 根据id获取对象 */
-	public void findObjectById(Class<?> clazz, Integer id) {
-		etechComDao.getObjecById(clazz, id);
+	public Object findObjectById(Class<?> clazz, Integer id) {
+		return etechComDao.getObjecById(clazz, id);
+	}
+	/** 根据属性获取对象 */
+	public Object findObjectById(Class<?> clazz, Object witchProperty, Object propertyValue) {
+		return etechComDao.getObjectByProperty(clazz, witchProperty, propertyValue);
 	}
 
 	/** 根据id删除对象 */
 	public void deleteObjectById(Class<?> clazz, Integer id) {
-		etechComDao.deleteObjectById(clazz, id);
+		etechComDao.delete(clazz, id);
 	}
 }

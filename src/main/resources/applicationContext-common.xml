@@ -14,7 +14,9 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<!--End:Hibernate4不再支持hibernateTemplite了所以用不了,放到此处作为记录使用 -->
-
+	<bean id="etechComDao" class="com.etech.dao.EtechComDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+	</bean>
 	<bean id="believeusJDBC" class="org.springframework.jdbc.core.JdbcTemplate">
 		<constructor-arg><ref bean="dataSource" /></constructor-arg>
 	</bean>

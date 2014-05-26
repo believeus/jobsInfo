@@ -1,6 +1,9 @@
 package com.etech.dao;
 
+import java.sql.SQLException;
 import java.util.List;
+
+import javax.annotation.Resource;
 
 import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
@@ -8,70 +11,145 @@ import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.util.Version;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.search.FullTextQuery;
 import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
+import org.springframework.orm.hibernate3.HibernateCallback;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
 @Repository
-public class EtechComDao extends BaseDao {
-	/** 以对象的方式保存对象*/ 
+public class EtechComDao extends HibernateDaoSupport {
+	@Resource
+	private SessionFactory sessionFactory;
+	// 以对象的方式保存对象
 	public void saveOrUpdateByObject(final Object object){
-		super.saveOrUpdate(object);
+		super.getHibernateTemplate().saveOrUpdate(object);
 		/*HibernateTemplate ht = getHibernateTemplate();
 		// 如果session中有该对象,只是更新了session缓存中的数据，不会把
-		// 发出sql语句，必须要flush一下才会发出sql语句同步session缓存中的数据
+		// 发出sql语句，必须要flush一下才会发出sql语句同步session缓存中
+		// 的数据
 		// 原因已经更新了数据库的数据，但是读取数据的时候却是从内存中获取的数据
 		// 解决办法是保存一个对象的时候清空缓存数据即可
 		ht.saveOrUpdate(object);
-		ht.flush();*/	
+		ht.flush();
+		// 奇怪的问题: 小欢的计算机不需要添加ht.flush 即可更新
+		// 而我的计算机需要添加这句话才能更新。故而加之
+		// 原因找到了，小欢的数据在内存中没有命中所以可以即使的显示
+*/	}
+
+	// 以HQL的方式保存对象
+	public Integer saveOrUpdate(final String hql) {
+		this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				Query query = session.createQuery(hql);
+				int result = query.executeUpdate();
+				return result;
+			}
+		});
+		return 0;
 	}
 
-	/** 以HQL的方式保存对象*/
-	public Integer saveOrUpdateByHQL(final String hql) {
-		return super.saveOrUpdateByHQL(hql);
+	// 以对象的方式删除对象
+	public void delete(Object object) {
+		this.getHibernateTemplate().delete(object);
 	}
 
-	/**以对象的方式删除对象*/
-	public void deleteByObject(Object object) {
-		super.delete(object);
-	}
+	// 以HQL的方式删除对象
+	public void delete(final String hql) {
+		this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
 
-	/**以HQL的方式删除对象*/
-	public void deleteObjectByHQL(final String hql) {
-		super.saveOrUpdateByHQL(hql);
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				Query query = session.createQuery(hql);
+				query.executeUpdate();
+				return null;
+			}
+		});
+		
 	}
-	/**根据id的方式删除对象*/
-	public void deleteObjectById(Class<?> clazz,Integer id) {
+	/**Begin Author:wuqiwei Data:2014-05-22 AddReason:根据id的方式删除对象*/
+	public void delete(Class<?> clazz,final Integer id) {
 		String clazzName = clazz.getClass().getName();
-		String hql="delete from "+clazzName+" where id="+id;
-		super.saveOrUpdateByHQL(hql);
-	}
-	@SuppressWarnings("unused")
-	public static void main(String[] args) {
-		String result="";
-		String name = String.class.getName();
-		System.out.println(name);
-	}
-	/**获取单一对象*/
-	public Object getObjectByHQL(final String hql) {
-		return super.getObjectByHQL(hql);
-	}
+		final String hql="delete from "+clazzName+" where id=:id";
+		this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
 
-	/**获取多个对象*/
-	public List<?> getObjecListByHQL(final String hql) {
-		return (List<?>) super.getObjecListByHQL(hql.toString());
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				Query query = session.createQuery(hql).setInteger("id", id);
+				query.executeUpdate();
+				return null;
+			}
+		});
 	}
-	/**以对象的方式获取对象。*/
+	/**End Author:wuqiwei Data:2014-05-22 AddReason:根据id的方式删除对象*/
+	// 获取单一对象
+	public Object getObjectByHQL(final String hql) {
+		return this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				Query query = session.createQuery(hql);
+				return query.uniqueResult();
+			}
+		});
+	}
+	/**Begin Author:wuqiwei Data:2014-05-12 AddReason:根据属性获取对象*/
+	public Object getObjectByProperty(Class<?> clazz,Object witchProperty,final Object propertyValue){
+		String clazzName = clazz.getClass().getName();
+		final String hql="from "+clazzName+" as model where "+"model."+witchProperty+" =':propertyValue";
+		return this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				Query query = session.createQuery(hql).setParameter("propertyValue", propertyValue);
+				return query.uniqueResult();
+			}
+		});
+	}
+	/**End Author:wuqiwei Data:2014-05-12 AddReason:根据属性获取对象*/
+	
+	// 获取多个对象
+	public List<?> getObjecListByHQL(final String hql) {
+		return (List<?>) this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				Query query = session.createQuery(hql);
+				return query.list();
+			}
+		});
+	}
+	//以对象的方式获取对象。
 	public Object getObjecById(Class<?> clazz, Integer id) {
-		return super.get(clazz, id);
+		String clazzName = clazz.getClass().getName();
+		final String hql="from "+clazzName+" where "+"id ='"+id+"'";
+		return (List<?>) this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				Query query = session.createQuery(hql);
+				return query.uniqueResult();
+			}
+		});
 	}
 	
-	/** 分页查询  */
+	// 分页查询  
 	//  第一个参数：当前页数 
 	//  第二个参数：每页显示多少条数据
 	//  第三个参数：共有多少条数据
@@ -87,7 +165,7 @@ public class EtechComDao extends BaseDao {
 	 * */
 	public List<?> getPageDateList(final String hql,final Integer currentPage,final Integer perPageCount,final Integer totalCount){
 		
-		return (List<?>)super.execute(new EtechCallBack<List<?>>() {
+	/*	return (List<?>)super.execute(new BelieveusCallBack<List<?>>() {
 			@Override
 			public List<?> callBack(Session session) {
 				Query query = session.createQuery(hql);
@@ -114,21 +192,12 @@ public class EtechComDao extends BaseDao {
 				}
 				return query.list();
 			}
-		});
+		});*/
+		return null;
 	}
 	/*Begin Name:wuqiwei Date:2013-11-5 07:24:40 AddReason:返回一定数量的行数*/
 	public List<?> getPageDateList(final String hql,final Integer num){
-		return(List<?>) super.execute(new EtechCallBack<List<?>>() {
-
-			@Override
-			public List<?> callBack(Session session) {
-				Query query = session.createQuery(hql);
-				if (num!=null) {
-					query.setMaxResults(num);
-				}
-				return query.list();
-			}
-		});
+		return null;
 	}
 	/*End Name:wuqiwei Date:2013-11-5 07:24:40 AddReason:返回一定数量的行数*/
 	
