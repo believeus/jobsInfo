@@ -51,7 +51,7 @@ public class ControllerLogin {
 				}
 				// 企业级用户
 			} else {
-				EnterpriseUser enterpriseuser = (EnterpriseUser) enterpriseUserService.findObjectByProperty(TCommonUser.class, EtechGobal.LoginName,loginName);
+				EnterpriseUser enterpriseuser = (EnterpriseUser) enterpriseUserService.findObjectByProperty(EnterpriseUser.class, EtechGobal.LoginName,loginName);
 				if (enterpriseuser!=null) {
 					log.debug("EnterpriseUser:"+enterpriseuser);
 					usermap=new HashMap<String, String>();
