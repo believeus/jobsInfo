@@ -28,6 +28,8 @@ public class TCommonUser implements Serializable{
 	private long editDate;
 	/*创建时间*/
 	private long createDate;
+	/**上次登录时间*/
+	private long lastLoginData;
 	/**身高*/
 	private String height;
 	/** 用户登录密码 */
@@ -162,6 +164,13 @@ public class TCommonUser implements Serializable{
 	}
 	public void setCreateDate(long createDate) {
 		this.createDate = createDate;
+	}
+	@Column(nullable = false,columnDefinition="bigint comment '最近登录时间'")
+	public long getLastLoginData() {
+		return lastLoginData;
+	}
+	public void setLastLoginData(long lastLoginData) {
+		this.lastLoginData = lastLoginData;
 	}
 	
 }

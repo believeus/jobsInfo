@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /** 企业用户 */
+/**
+ * @author wuqiwei
+ *
+ */
 @Entity
 @Table(name="TEnterpriseUser")
 public class EnterpriseUser implements Serializable {
@@ -20,6 +24,12 @@ public class EnterpriseUser implements Serializable {
 	private String loginName;
 	/** 用户登录密码 */
 	private String password;
+	/**上次登录时间*/
+	private long lastLoginData;
+	/**编辑更新时间*/
+	private long editDate;
+	/*创建时间*/
+	private long createDate;
 	/** 公司联系电话 */
 	private String cpPhoneNum;
 	/** 公司邮箱 */
@@ -114,5 +124,30 @@ public class EnterpriseUser implements Serializable {
 	public void setKindOfcp(String kindOfcp) {
 		this.kindOfcp = kindOfcp;
 	}
+	
+	@Column(nullable = false,columnDefinition="bigint comment '上次登录时间'")
+	public long getLastLoginData() {
+		return lastLoginData;
+	}
 
+	public void setLastLoginData(long lastLoginData) {
+		this.lastLoginData = lastLoginData;
+	}
+	@Column(nullable = false,columnDefinition="bigint comment '最新编辑时间'")
+	public long getEditDate() {
+		return editDate;
+	}
+
+	public void setEditDate(long editDate) {
+		this.editDate = editDate;
+	}
+	@Column(nullable = false,columnDefinition="bigint comment '创建时间'")
+	public long getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(long createDate) {
+		this.createDate = createDate;
+	}
+	
 }
