@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
@@ -26,6 +28,7 @@ import org.wltea.analyzer.lucene.IKAnalyzer;
 
 @Repository
 public class EtechComDao extends HibernateDaoSupport {
+	private static final Log log=LogFactory.getLog(EtechComDao.class);
 	@Resource
 	private SessionFactory sessionFactory;
 	// 以对象的方式保存对象
@@ -110,16 +113,15 @@ public class EtechComDao extends HibernateDaoSupport {
 	}
 	/**Begin Author:wuqiwei Data:2014-05-12 AddReason:根据属性获取对象*/
 	public Object getObjectByProperty(Class<?> clazz,final Object witchProperty,final Object propertyValue){
-		 final String clazzName = clazz.getClass().getName();
-		final String hql="from :clazzName as entity where entity.:witchProperty =':propertyValue";
+		final String clazzName = clazz.getName();
+		final String hql="from "+clazzName+" as entity where entity."+witchProperty+" =:propertyValue";
+		log.debug("current hql:"+hql);
 		return this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
 
 			@Override
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
 				Query query = session.createQuery(hql);
-				query.setString("clazzName", clazzName);
-				query.setParameter("witchProperty", witchProperty);
 				query.setParameter("propertyValue", propertyValue);
 				return query.uniqueResult();
 			}

@@ -2,12 +2,16 @@ package com.etech.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.etech.entity.TCommonUser;
 import com.etech.entity.EnterpriseUser;
 import com.etech.service.CommonUserService;
@@ -38,7 +42,7 @@ public class ControllerLogin {
 			Map<String, String> usermap=null;
 			// 一般用户登录
 			if (userType.equals("commonUser")) {
-				TCommonUser commonuser = (TCommonUser) commonUserService.findObjectById(TCommonUser.class, EtechGobal.LoginName, loginName);
+				TCommonUser commonuser = (TCommonUser) commonUserService.findObjectByProperty(TCommonUser.class, EtechGobal.LoginName, loginName);
 				if (commonuser!=null) {
 					log.debug("TCommonUser:"+commonuser);
 					usermap=new HashMap<String, String>();
@@ -47,7 +51,7 @@ public class ControllerLogin {
 				}
 				// 企业级用户
 			} else {
-				EnterpriseUser enterpriseuser = (EnterpriseUser) enterpriseUserService.findObjectById(TCommonUser.class, EtechGobal.LoginName,loginName);
+				EnterpriseUser enterpriseuser = (EnterpriseUser) enterpriseUserService.findObjectByProperty(TCommonUser.class, EtechGobal.LoginName,loginName);
 				if (enterpriseuser!=null) {
 					log.debug("EnterpriseUser:"+enterpriseuser);
 					usermap=new HashMap<String, String>();
@@ -63,6 +67,8 @@ public class ControllerLogin {
 				JsonOutToBrower.out(jsonmap, response);
 			}else {
 				/*用户名和密码都正确*/
+				/*密码使用md5加密*/
+				password =DigestUtils.md5Hex(password);
 				if (usermap.get("password").equals(password)) {
 					jsonmap.put("success", message.get("success"));
 					log.debug("login success");

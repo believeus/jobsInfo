@@ -19,7 +19,7 @@ public class EtechBaseService {
 		return etechComDao.getObjecById(clazz, id);
 	}
 	/** 根据属性获取对象 */
-	public Object findObjectById(Class<?> clazz, Object witchProperty, Object propertyValue) {
+	public Object findObjectByProperty(Class<?> clazz, Object witchProperty, Object propertyValue) {
 		return etechComDao.getObjectByProperty(clazz, witchProperty, propertyValue);
 	}
 
