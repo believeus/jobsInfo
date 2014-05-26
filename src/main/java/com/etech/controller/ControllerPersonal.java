@@ -16,6 +16,6 @@ public class ControllerPersonal {
 	@RequestMapping(value = "/personalreg", method = RequestMethod.GET)
 	public String personalregView() {
 		log.debug("current controller is personalregView !");
-		return "index";
+		return "employmentService/personalCenter";
 	}
 }
