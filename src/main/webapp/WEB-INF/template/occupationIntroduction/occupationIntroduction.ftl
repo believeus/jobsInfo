@@ -196,68 +196,30 @@
 				</tr>
 			</table>	
 		</div>
-			 <script style="text/javascript">
-		    $().ready(function() {
-		    	// ajax 提交验证和登录。
-		    	function submitF(flag){
-						var loginName=$("#username").val();
-						var password=$("#password").val();
-						var userType=$('input:radio[name="userType"]:checked').val();
-					 	if(loginName==""){
-					 	  return false;
-					 	}
-						$.ajax({
-							url: "/ajaxLoginValid.jhtml",
-							type: "POST",
-							data: {
-								loginName: loginName,
-								password:password,
-								userType: userType
-									},
-							dataType: "json",
-							cache: false,
-							success: function(data) {
-									// 如果登录成功，则显示成功
-									if(data.success=="success"){
-										// 刷新页面
-										window.location.href="/";
-									}else{
-										if(data.errorLoginName=="用户不存在，请注册"){
-											alert(data.errorLoginName);										
-										}
-										if(flag !="true"){
-											if(data.errorPwd=="用户密码错误"){
-												alert(data.errorPwd);										
-											}
-										}
-										
-									}
-								}
-							});
-					}
-		    	// 用户名验证。
-				$("#username,input:radio[name='userType']").change(function(){
-					submitF("true");
-				});
-				
-				// 登录。
-				$("#login").click(function() {
-					var loginName=$("#username").val();
-					var password=$("#password").val();
-					if(loginName==""&&password==""){
-						alert("用户名和密码不能为空！");
-					}else{
-						submitF("false");
-					}
-				});
-				$("#register").click(function() {
-					// 需要跳转到注册页面
-					window.location.href="/personalReg.jhtml";
-				});
-				
-			})
-	</script>
-		<div class="j_main_3">
+		<div class="j_main_3" >
+		[#if commonuser?exists||enterpriseuser?exists]
+			<!--登录后的界面begin-->
+			<div class="j_main_3_1" style="display:block;">
+				<table style="padding: 6px 19px 19px;">
+					<tr>
+						<td colspan="2" align="center" style="background:#EE981F;color:#FFFFFF;border-radius:4px;">用户登录</td>
+					</tr>
+					<tr>
+						<td colspan="2"><font color="red" size="2">${commonuser.loginName}${enterpriseuser.loginName}</font>，欢迎您登录！</td>
+					</tr>
+					<tr>
+						<td colspan="2">上次登录时间:<span style="font-size:13px">${commonuser.lastLoginData}${enterpriseuser.lastLoginData}2014-04-15 20：20</span></td>
+					</tr>
+					<tr>
+						<td align="center" colspan="2" style="padding-top: 20px;">
+							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" value="个人中心">
+							<input id="logout" type="button" style="background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" value="退出">
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!--登录后的界面end-->
+		[#else]
 			<div class="j_main_3_1" style="display:block;">
 				<table style="padding: 6px 19px 19px;">
 					<tr>
@@ -273,8 +235,8 @@
 					</tr>
 					<tr>
 						<td align="center" colspan="2">
-							<input type="radio" checked="ture" name="userType">个人用户
-							<input type="radio" name="userType">企业用户
+							<input type="radio" name="userType" checked="ture" value="commonUser">个人用户
+							<input type="radio" name="userType" value="enterpriseUser">企业用户
 						</td>
 					</tr>
 					<tr>
@@ -286,27 +248,8 @@
 				</table>
 			</div>
 			
-			<!--登录后的界面begin-->
-			<div class="j_main_3_1" style="display:none;">
-				<table style="padding: 6px 19px 19px;">
-					<tr>
-						<td colspan="2" align="center" style="background:#EE981F;color:#FFFFFF;border-radius:4px;">用户登录</td>
-					</tr>
-					<tr>
-						<td colspan="2"><font color="red" size="2">李妹</font>，欢迎您登录！</td>
-					</tr>
-					<tr>
-						<td colspan="2">上次登录时间:<span style="font-size:13px">2014-04-15 20：20</span></td>
-					</tr>
-					<tr>
-						<td align="center" colspan="2" style="padding-top: 20px;">
-							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" value="个人中心">
-							<input type="button" style="background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" value="退出">
-						</td>
-					</tr>
-				</table>
-			</div>
-			<!--登录后的界面end-->
+		[/#if]
+			
 			
 			<div class="j_main_3_2">
 				<div style="width:460px;height:42px;">
