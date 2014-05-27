@@ -119,6 +119,10 @@ public class ControllerRegister {
 			session.setAttribute("clazz",regUser.getClass().getName());
 			message.put("message","success");
 			JsonOutToBrower.out(message, response);
+		}else {
+			// 完成所有验证
+			message.put("message","finish");
+			JsonOutToBrower.out(message, response);
 		}
 	}
 	/** End Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:ajax判断一般用户的ajax验证*/

@@ -91,24 +91,39 @@ body {
 								trueName:$("#trueName").val(),
 								phoneNum:$("#phoneNum").val(),
 								email:$("#email").val(),
-								sex:$("#sex").val(),
+								sex:$('input:radio[name="sex"]:checked').val(),
 								submit:submitx
 								},
 							dataType: "json",
 							cache: false,
-							success: function(data) {	
+							success: function(data) {
 									// 如果登录成功，则进行跳转
 									if(data.message=="success"){
 										window.location.href="/";
 									}else{
-										$("#"+data.property).parent().append("<br><span><font color='red'>*</font>"+data.message+"</span>");
+										if(data.message == "man"){
+											$("#girl").parent().hide();
+											$("#boy").parent().show();
+											$("#boy").attr("checked",true);
+										}else if(data.message == "woman"){
+											$("#boy").parent().hide();
+											$("#girl").parent().show();
+											$("#girl").attr("checked",true);
+										}else{
+											$("#girl").parent().show();
+											$("#boy").parent().show();
+											$("#girl").attr("checked",true);
+										}
+										// 先删除上一个错误
+										$("#Error").remove();
+										$("#"+data.property).parent().parent().append("<span id='Error'><font color='red'>*</font>"+data.message+"</span>");
 									}
 								}
 							});
 					}
 					
 				// 用户名验证。
-				$("#loginName,#idcard,#password,#comfirmPwd,#trueName,#phoneNum,#email").change(function(){
+				$("#loginName,#idcard,#password,#comfirmPwd,#phoneNum,#email").change(function(){
 					submitF("nosubmit");
 				});
 				
@@ -164,8 +179,12 @@ body {
             <div style="">
             	<span>性别：</span>
                 <span>
-                	<input type="radio" name="sex"  value="boy" checked="true" style="width: 10px;height: 12px;"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                	<input type="radio" name="sex" value="girl" style="width: 10px;height: 12px;"/>女
+                	<font>
+                	<input type="radio" id="boy" name="sex"  value="男" checked="true" style="width: 10px;height: 12px;"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	</font>
+                	<font>
+                	<input type="radio" id="girl" name="sex" value="女" checked="false" style="width: 10px;height: 12px;"/>女
+                	</font>
             	</span>
             </div>
             <div>
