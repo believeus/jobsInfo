@@ -78,37 +78,38 @@ body {
 	<script style="text/javascript">
 		    $().ready(function() {
 		    
-		    	// ajax 提交验证和登录。
+		    	// ajax 提交验证和注册。
 		    		function submitF(submitx){
 						$.ajax({
-							url: "/ajaxComValidReg.jhtml",
+							url: "/ajaxEnterpriseValidReg.jhtml",
 							type: "POST",
 							data: {
 								loginName: $("#loginName").val(),
 								password:$("#password").val(),
 								comfirmPwd:$("#comfirmPwd").val(),
-								cpName:$("#trueName").val(),
-								legalPerson:$("#phoneNum").val(),
-								email:$("#email").val(),
-								sex:$("#sex").val(),
+								cpName:$("#cpName").val(),
+								LegalMan:$("#LegalMan").val(),
+								cpContacts:$("#cpContacts").val(),
+								cpPhoneNum:$("#cpPhoneNum").val(),
 								submit:submitx
 								},
 							dataType: "json",
 							cache: false,
 							success: function(data) {
-									alert(data.message);
-									// 如果登录成功，则显示成功
-									if(data.message == "success"){
+									// 如果登录成功，则进行跳转
+									if(data.message=="success"){
 										window.location.href="/";
 									}else{
-											
+										// 先删除上一个错误
+										$("#Error").remove();
+										$("#"+data.property).parent().parent().append("<span id='Error'><font color='red'>*</font>"+data.message+"</span>");
 									}
 								}
 							});
 					}
 					
 				// 用户名验证。
-				$("#loginName,#idcard").change(function(){
+				$("#loginName,#password,#comfirmPwd").change(function(){
 					submitF("nosubmit");
 				});
 				
@@ -158,7 +159,7 @@ body {
             </div>
             <div>
             	<span>法人：</span>
-                <span><input type="" id="legalPerson" /></span>
+                <span><input type="" id="LegalMan" /></span>
             </div>
             <div>
             	<span>联系人：</span>
@@ -171,8 +172,8 @@ body {
     	</div>
     </div>
 	<div class="register" style="text-align:center;">
-    	<input type="submit" name="" value="注册"  style="cursor:pointer;background:#FFFDE8;border:1px solid #DBAF72;border-radius:4px;" />
-        <input type="reset" name="" value="重填"  style="cursor:pointer;background:#FFFDE8;border:1px solid #DBAF72;border-radius:4px;" />
+    	<input type="button" id="register"  value="注册"  style="cursor:pointer;background:#FFFDE8;border:1px solid #DBAF72;border-radius:4px;" />
+        <input type="reset" value="重填"  style="cursor:pointer;background:#FFFDE8;border:1px solid #DBAF72;border-radius:4px;" />
     </div>
     </form>
 </div>

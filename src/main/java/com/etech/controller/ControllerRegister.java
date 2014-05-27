@@ -138,7 +138,7 @@ public class ControllerRegister {
 			JsonOutToBrower.out(message, response);
 			return;
 		}
-		boolean matches = regUser.getLoginName().matches("[a-zA-Z0-9]{6}");
+		boolean matches = regUser.getLoginName().matches("[a-zA-Z0-9]{6,}");
 		if(matches==false){
 			message.put("property","loginName");
 			message.put("message","最少6位的英文字母或数字");
@@ -174,6 +174,10 @@ public class ControllerRegister {
 			session.setAttribute("sessionUser", regUser);
 			session.setAttribute("clazz",regUser.getClass().getName());
 			message.put("message","success");
+			JsonOutToBrower.out(message, response);
+		}else {
+			// 完成所有验证
+			message.put("message","finish");
 			JsonOutToBrower.out(message, response);
 		}
 	}

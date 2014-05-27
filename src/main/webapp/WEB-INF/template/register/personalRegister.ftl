@@ -78,7 +78,7 @@ body {
 [#include "/include/header.ftl" /]
 	<script type="text/javascript">
 		    $().ready(function() {
-					// ajax 提交验证和登录。
+					// ajax 提交验证和注册。
 		    		function submitF(submitx){
 						$.ajax({
 							url: "/ajaxComValidReg.jhtml",
