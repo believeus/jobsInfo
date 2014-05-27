@@ -217,7 +217,7 @@
 				
 				$("#logout").click(function() {
 					// 需要跳转到注册页面
-					window.location.href="/logout.jhtml";
+					Etech.logout();
 				});
 				
 				

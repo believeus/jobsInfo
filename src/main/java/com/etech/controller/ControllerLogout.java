@@ -19,7 +19,6 @@ public class ControllerLogout {
 		log.debug("current user logout");
 		request.getSession().invalidate();
 		//退出之后停留在当前页面
-		StringBuffer currentURL = request.getRequestURL();
-		return "redirect:"+currentURL.toString(); 
+		return "redirect:"+request.getParameter("return"); 
 	}
 }
