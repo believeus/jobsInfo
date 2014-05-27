@@ -84,10 +84,14 @@ body {
 							type: "POST",
 							data: {
 								loginName: $("#loginName").val(),
+								idcard:$("#idcard").val(),
+								password:$("#password").val(),
+								comfirmPwd:$("#comfirmPwd").val(),
+								trueName:$("#trueName").val(),
+								phoneNum:$("#phoneNum").val(),
+								email:$("#email").val(),
+								sex:$("#sex").val(),
 								submit:submitx
-								
-								
-								
 								},
 							dataType: "json",
 							cache: false,
@@ -95,10 +99,9 @@ body {
 									alert(data.message);
 									// 如果登录成功，则显示成功
 									if(data.success=="success"){
-										
+										window.location.href="/";
 									}else{
-										
-										
+											
 									}
 								}
 							});
@@ -109,6 +112,17 @@ body {
 					submitF("nosubmit");
 				});
 				
+				// 注册。
+				$("#register").click(function() {
+					var loginName= $("#loginName").val();
+					var password=$("#password").val();
+					var comfirmPwd=$("#comfirmPwd").val()
+					if(loginName==""&&password==""&&comfirmPwd==""){
+						alert("用户名和密码和确认密码不能为空！");
+					}else{
+						submitF("submit");
+					}
+				});
 				
 				$("#enterpriseReg").click(function() {
 					// 需要跳转到注册页面
@@ -129,19 +143,19 @@ body {
     		<p style="color: rgb(211, 54, 49); font-size: 20px; margin-bottom: 20px; margin-top: 0px; text-align: left;">欢迎个人用户注册</p>
             <div>
             	<span><font color="red">*</font>用户名：</span>
-                <span><input type="text" name="loginName" id="loginName"/></span>
+                <span><input type="text"  id="loginName"/></span>
             </div>
             <div>
             	<span><font color="red">*</font>密码：</span>
-                <span><input type="password" name="password" /></span>
+                <span><input type="password" id="password" /></span>
             </div>
             <div>
             	<span><font color="red">*</font>重复密码：</span>
-                <span><input type="password" name="enpassword" /></span>
+                <span><input type="password" id="comfirmPwd" /></span>
             </div>
             <div>
             	<span>真实姓名：</span>
-                <span><input name="loginName" /></span>
+                <span><input id="trueName" /></span>
             </div>
             <div>
             	<span>身份证号：</span>
@@ -156,16 +170,16 @@ body {
             </div>
             <div>
             	<span>联系电话：</span>
-                <span><input type="" name="phoneNum" /></span>
+                <span><input type="" id="phoneNum" /></span>
             </div>
             <div>
             	<span>电子邮箱：</span>
-                <span><input type="email" name="email" /></span>
+                <span><input type="email" id="email" /></span>
             </div>
     	</div>
     </div>
 	<div class="register" style="">
-    	<input type="submit" name="" value="注册" style="cursor:pointer;background:#FFFDE8;border:1px solid #DBAF72;border-radius:4px;"/>
+    	<input type="button" id="register" value="注册" style="cursor:pointer;background:#FFFDE8;border:1px solid #DBAF72;border-radius:4px;"/>
         <input type="reset" name="" value="重填" style="cursor:pointer;background:#FFFDE8;border:1px solid #DBAF72;border-radius:4px;" />
     </div>
     </form>
