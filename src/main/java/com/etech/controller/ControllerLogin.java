@@ -58,6 +58,8 @@ public class ControllerLogin {
 				if (sessionUser.getPassword().equals(password)) {
 					message.put("success","success");
 					session.setAttribute("sessionUser",sessionUser);
+					log.debug("current clazz:"+sessionUser.getClass().getName());
+					session.setAttribute("clazz", sessionUser.getClass().getName());
 					log.debug("login success");
 					JsonOutToBrower.out(message, response);
 				/*用户名正确密码不正确*/
