@@ -123,14 +123,52 @@ public class ControllerRegister {
 	
 	/**Begin Author:wuqiwei Data:2014-05-26  Email:1058633117@qq.com:AddReason:企业注册登陆名验证*/
 	@RequestMapping(value="/ajaxEnterpriseValidReg")
-	public void ajaxEnterpriseValidReg(EnterpriseUser regUser,HttpServletResponse response){
-		log.debug("loginName:"+regUser.getLoginName());
-		TUser user = (TUser) userService.findObjectByProperty(EnterpriseUser.class, EtechGobal.LoginName, regUser.getLoginName());
+	public void ajaxEnterpriseValidReg(EnterpriseUser regUser,String submit,String comfirmPwd,HttpSession session,HttpServletResponse response){
 		Map<String, Object> message=new HashMap<String, Object>();
-		if (StringUtils.isEmpty(user)) {
-			message.put("messageLoginName","用户名已存在，请重新填写用户名");
+		if(StringUtils.isEmpty(regUser.getLoginName())){
+			message.put("property","loginName");
+			message.put("message","重新填写用户名");
+			JsonOutToBrower.out(message, response);
+			return;
 		}
-		JsonOutToBrower.out(message, response);
+		boolean matches = regUser.getLoginName().matches("[a-zA-Z0-9]{6}");
+		if(matches==false){
+			message.put("property","loginName");
+			message.put("message","最少6位的英文字母或数字");
+			JsonOutToBrower.out(message, response);
+			return;
+		}
+		if(StringUtils.isEmpty(regUser.getPassword())){
+			message.put("property","password");
+			message.put("message","密码必填!");
+			JsonOutToBrower.out(message, response);
+			return;
+		}
+		if(!regUser.getPassword().equals(comfirmPwd)){
+			message.put("property","comfirmPwd");
+			message.put("message","密码和确定密码不一致!");
+			JsonOutToBrower.out(message, response);
+			return;
+		}
+		TUser user = (TUser) userService.findObjectByProperty(EnterpriseUser.class, EtechGobal.LoginName, regUser.getLoginName());
+		if (!StringUtils.isEmpty(user)) {
+			message.put("property","loginName");
+			message.put("message","用户名已存在");
+			JsonOutToBrower.out(message, response);
+			return;
+		}
+		if(!StringUtils.isEmpty(submit)&&submit.equals("submit")){
+			String password = DigestUtils.md5Hex(regUser.getPassword());
+			regUser.setCreateDate(System.currentTimeMillis());
+			regUser.setEditDate(System.currentTimeMillis());
+			regUser.setLastLoginData(System.currentTimeMillis());
+			regUser.setPassword(password);
+			userService.saveOrUpdate(regUser);
+			session.setAttribute("sessionUser", regUser);
+			session.setAttribute("clazz",regUser.getClass().getName());
+			message.put("message","success");
+			JsonOutToBrower.out(message, response);
+		}
 	}
 	/**End Author:wuqiwei Data:2014-05-26  Email:1058633117@qq.com:AddReason:企业注册登陆名验证*/
 	

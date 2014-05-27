@@ -22,6 +22,8 @@ public class EnterpriseUser extends TUser implements Serializable {
 	private String cpContacts;
 	/** 公司性质 */
 	private String kindOfcp;
+	/**法人*/
+	private String LegalMan;
 
 	
 	
@@ -51,4 +53,14 @@ public class EnterpriseUser extends TUser implements Serializable {
 	public void setKindOfcp(String kindOfcp) {
 		this.kindOfcp = kindOfcp;
 	}
+
+	@Column(nullable = false,columnDefinition="varchar(30) comment '法人' default '' ")
+	public String getLegalMan() {
+		return LegalMan;
+	}
+
+	public void setLegalMan(String legalMan) {
+		LegalMan = legalMan;
+	}
+	
 }
