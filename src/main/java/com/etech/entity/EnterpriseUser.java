@@ -24,10 +24,10 @@ public class EnterpriseUser extends TUser implements Serializable {
 	private String kindOfcp;
 	/**法人*/
 	private String LegalMan;
-
 	
 	
-	@Column(nullable = false,columnDefinition="varchar(30) comment '企业名' default '' ")
+	
+	@Column(nullable = true,columnDefinition="varchar(30) comment '企业名' default '' ")
 	public String getCpName() {
 		return cpName;
 	}
@@ -36,7 +36,7 @@ public class EnterpriseUser extends TUser implements Serializable {
 		this.cpName = cpName;
 	}
 	
-	@Column(nullable = false,columnDefinition="varchar(30) comment '企业联系方式' default '' ")
+	@Column(nullable = true,columnDefinition="varchar(30) comment '企业联系方式' default '' ")
 	public String getCpContacts() {
 		return cpContacts;
 	}
@@ -45,7 +45,7 @@ public class EnterpriseUser extends TUser implements Serializable {
 		this.cpContacts = cpContacts;
 	}
 	
-	@Column(nullable = false,columnDefinition="varchar(30) comment '企业类型' default '' ")
+	@Column(nullable = true,columnDefinition="varchar(30) comment '企业类型' default '' ")
 	public String getKindOfcp() {
 		return kindOfcp;
 	}
@@ -54,7 +54,7 @@ public class EnterpriseUser extends TUser implements Serializable {
 		this.kindOfcp = kindOfcp;
 	}
 
-	@Column(nullable = false,columnDefinition="varchar(30) comment '法人' default '' ")
+	@Column(nullable = true,columnDefinition="varchar(30) comment '法人' default '' ")
 	public String getLegalMan() {
 		return LegalMan;
 	}
