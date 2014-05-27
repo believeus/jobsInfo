@@ -1,7 +1,7 @@
 /*从哪个页面退出就回到哪个页面去*/
 var Etech={
+  "current": encodeURIComponent(window.location),
   "logout":function(){
-	        var current = encodeURIComponent(window.location);
-			window.location = "/logout.jhtml?return="+current;
+			window.location = "/logout.jhtml?return="+this.current;
 	}
 }

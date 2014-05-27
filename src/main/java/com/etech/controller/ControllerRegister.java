@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
@@ -33,42 +34,56 @@ public class ControllerRegister {
 	}
 	/** End Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:普通用户注册页面*/
 	
-	/** Begin Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:普通用户注册*/
-	@RequestMapping(value="/submitpersonalReg")
-	public String submitpersonalReg(TCommonUser user,HttpServletRequest request){
-		if(user.getLoginName()!=null || user.getPassword()!=null){
-			String referer=request.getHeader("Referer");
-			String password = DigestUtils.md5Hex(user.getPassword());
-			user.setCreateDate(System.currentTimeMillis());
-			user.setEditDate(System.currentTimeMillis());
-			user.setLastLoginData(System.currentTimeMillis());
-			user.setPassword(password);
-			userService.saveOrUpdate(user);
-			return "redirect:"+referer; 
-		}else{
-			request.setAttribute("email", user.getEmail());
-			request.setAttribute("phoneNum", user.getPhoneNum());
-			return "register/personalRegister";
-		}
-	}
-	/** End Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:普通用户注册*/
 	
-	/** Begin Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:ajax判断用户名是否已经存在*/
+	/** Begin Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:ajax判断一般用户的ajax验证*/
 	@RequestMapping(value="/ajaxComValidReg")
-	public void ajaxComValidReg(TUser regUser,HttpServletResponse response){
+	public void ajaxComValidReg(TUser regUser,String submit,HttpSession session,HttpServletResponse response){
 		log.debug("current regUser reginName:"+regUser.getLoginName());
-		TUser user = (TUser) userService.findObjectByProperty(TCommonUser.class, EtechGobal.LoginName, regUser.getLoginName());
 		Map<String, Object> message=new HashMap<String, Object>();
+		if("".equals(regUser.getLoginName())){
+			message.put("message","用户名必填!");
+			JsonOutToBrower.out(message, response);
+			return;
+		}
+		if(!"".equals(regUser.getIdcard())){
+			//身份证正则表达式
+			boolean matcheIdCard1 = regUser.getIdcard().matches("^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])((\\d{4})|\\d{3}[A-Z])$");
+			boolean matcheIdCard2 = regUser.getIdcard().matches("/^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$/");
+			// 身份证验证不匹配
+			if(matcheIdCard1==false && matcheIdCard2==false){
+				message.put("message","身份证格式不对");
+				JsonOutToBrower.out(message, response);
+				return;
+			}
+		}
+		TUser user = (TUser) userService.findObjectByProperty(TCommonUser.class, EtechGobal.LoginName, regUser.getLoginName());
 		if (user!=null) {
-			message.put("messageLoginName","用户名已存在，请重新填写用户名");
+			message.put("message","用户名已存在，请重新填写用户名");
+			JsonOutToBrower.out(message, response);
+			return;
 		}
 		user = (TUser) userService.findObjectByProperty(TCommonUser.class, EtechGobal.Idcard, regUser.getIdcard());
 		if (user!=null) {
-			message.put("messagePwd","身份证号已存在,请重新填写");
+			message.put("message","身份证号已存在,请重新填写");
+			JsonOutToBrower.out(message, response);
+			return;
 		}
-		JsonOutToBrower.out(message, response);
+		//表单点击提交
+		if(submit.equals("submit")){
+			String password = DigestUtils.md5Hex(regUser.getPassword());
+			regUser.setCreateDate(System.currentTimeMillis());
+			regUser.setEditDate(System.currentTimeMillis());
+			regUser.setLastLoginData(System.currentTimeMillis());
+			regUser.setPassword(password);
+			userService.saveOrUpdate(regUser);
+			session.setAttribute("sessionUser", regUser);
+			session.setAttribute("clazz",regUser.getClass().getName());
+			message.put("message","success");
+			JsonOutToBrower.out(message, response);
+		}
 	}
-	/** End Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:ajax判断用户名是否已经存在*/
+	/** End Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:ajax判断一般用户的ajax验证*/
+	
 	
 	/**Begin Author:wuqiwei Data:2014-05-26  Email:1058633117@qq.com:AddReason:企业注册登陆名验证*/
 	@RequestMapping(value="/ajaxEnterpriseValidReg")

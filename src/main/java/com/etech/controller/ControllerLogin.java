@@ -30,8 +30,7 @@ public class ControllerLogin {
 		Map<String, Object> message=new HashMap<String, Object>();
 		//登录用户名为空
 		if(user.getLoginName()==null){
-			message.put("error", "error");
-			message.put("errorLoginName","请填写登录名");
+			message.put("message","请填写登录名");
 			JsonOutToBrower.out(message, response);
 		//登录用户名不为空
 		}else {
@@ -45,8 +44,7 @@ public class ControllerLogin {
 				sessionUser = (EnterpriseUser) userService.findObjectByProperty(EnterpriseUser.class, EtechGobal.LoginName,user.getLoginName());
 			}
 			if (sessionUser == null) {
-				message.put("error", "error");
-				message.put("errorLoginName", "用户不存在，请注册");
+				message.put("message", "用户不存在，请注册");
 				log.debug("error loginName:" + user.getLoginName());
 				JsonOutToBrower.out(message, response);
 			}else {
@@ -56,7 +54,7 @@ public class ControllerLogin {
 				String password =DigestUtils.md5Hex(user.getPassword());
 				log.debug("db user password:"+sessionUser.getPassword()+" form password:"+password);
 				if (sessionUser.getPassword().equals(password)) {
-					message.put("success","success");
+					message.put("message","success");
 					session.setAttribute("sessionUser",sessionUser);
 					log.debug("current clazz:"+sessionUser.getClass().getName());
 					session.setAttribute("clazz", sessionUser.getClass().getName());
@@ -64,8 +62,7 @@ public class ControllerLogin {
 					JsonOutToBrower.out(message, response);
 				/*用户名正确密码不正确*/
 				}else {
-					message.put("error","error");
-					message.put("errorPwd","用户密码错误");
+					message.put("message","用户密码错误");
 					log.debug("error password");
 					JsonOutToBrower.out(message, response);
 				}
