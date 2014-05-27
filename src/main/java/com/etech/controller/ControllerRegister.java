@@ -92,12 +92,16 @@ public class ControllerRegister {
 				JsonOutToBrower.out(message, response);
 				return;
 			}
+			//如果提交的表单中的性别和身份证计算的不一致,则返回身份证计算的性别
 			int sexIndex = Integer.parseInt(regUser.getIdcard().substring(16,regUser.getIdcard().length()-1));
 			String sex=sexIndex%2!=0?"man":"woman";
-			message.put("property","sex");
-			message.put("message",sex);
-			JsonOutToBrower.out(message, response);
-			return;
+			log.debug("sex:"+regUser.getSex());
+			if(!regUser.getSex().equals(sex)){
+				message.put("property","sex");
+				message.put("message",sex);
+				JsonOutToBrower.out(message, response);
+				return;
+			}
 		}
 		
 		TUser user = (TUser) userService.findObjectByProperty(TCommonUser.class, EtechGobal.LoginName, regUser.getLoginName());

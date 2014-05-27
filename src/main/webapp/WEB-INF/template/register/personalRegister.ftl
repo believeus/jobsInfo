@@ -180,10 +180,10 @@ body {
             	<span>性别：</span>
                 <span>
                 	<font>
-                	<input type="radio" id="boy" name="sex"  value="男" checked="true" style="width: 10px;height: 12px;"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	<input type="radio" id="boy" name="sex"  value="man" checked="true" style="width: 10px;height: 12px;"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 	</font>
                 	<font>
-                	<input type="radio" id="girl" name="sex" value="女" checked="false" style="width: 10px;height: 12px;"/>女
+                	<input type="radio" id="girl" name="sex" value="woman" checked="false" style="width: 10px;height: 12px;"/>女
                 	</font>
             	</span>
             </div>
