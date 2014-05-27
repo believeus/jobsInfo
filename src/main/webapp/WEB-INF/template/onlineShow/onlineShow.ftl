@@ -44,7 +44,7 @@ table td > p + p{
 <body>
 [#include "/include/header.ftl" /]
 <div style="width:1000px;height:auto; margin-left:auto; margin-right:auto;overflow:hidden;">
-    <div style="width:1000px; height:520px; margin-top:10px; background-color:#FC0;">
+    <div style="width:1000px; height:520px; background-color:#FC0;">
         <div style="height:400px; width:1000px;">
             <div style="float:left;">
                  <div style="width:665px; height:380px; margin:10px;">

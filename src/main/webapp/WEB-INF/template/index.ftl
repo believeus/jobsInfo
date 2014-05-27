@@ -13,12 +13,12 @@
     	}
     	.j_mian_left{
     		width:720px;
-    		height:920px;
+    		height:842px;
     		float:left;
     	}
     	.j_mian_right{
     		width:260px;
-    		height:920px;
+    		height:840px;
     		float:left;
     		margin-left:15px;
     		margin-bottom:6px;
@@ -48,9 +48,16 @@
     	}
     	.jiuye{
     		width:260px;
-    		height:190px;
+    		height:320px;
     		border:1px solid #EED9C8;
     		margin-bottom:5px;
+    	}
+    	.jiuye_1{
+    		background:url(/resource/public/images/zhuye-img_12.png);
+    		width:216px;
+    		height:272px;
+    		margin-left:auto;
+    		margin-right:auto;
     	}
     	.jiuye input{
     		background: #5396E4;
@@ -64,19 +71,16 @@
 		    font-size:13px;
     	}
     	.ad{
-    		width:260px;
-    		height:204px;
-    		border:1px solid #EED9C8;
-    		background:url(/resource/public/images/u6_normal_26.png);
+    		background: url("/resource/public/images/zhuye-img_04.png");
+		    height: 55px;
+		    margin-bottom: 8px;
+		    width: 726px;
     	}
     	.ad div{
-		    font-size: 25px;
-		    height: 50px;
-		    line-height: 58px;
-		    margin-left: auto;
-		    margin-right: auto;
-		    text-align: center;
-		    width: 250px;
+		    float: left;
+		    height: 58px;
+		    margin-right: 5px;
+		    width: 237px;
     	}
     	.zhuanti{
     		width:998px;
@@ -98,14 +102,14 @@
     	}
     	.picshow{
     		width:314px;
-    		height:310px;
+    		height:285px;
     		border:1px solid #e4e4e4;
     		float:left;
     	}
     	.xinwen{
     		float:left;
 			width:396px;
-			height:310px;    		
+			height:285px;    		
     		margin-left:5px;
     	}
     	.xinwen li{
@@ -124,12 +128,12 @@
     	}
     	.xinxi{
     		border: 1px solid #E4E4E4;
-		    height: 510px;
+		    height: 392px;
 		    width: 720px;
     	}
     	.xinxi_1{
     		border: 1px solid #EED9C8;
-		    height: 240px;
+		    height: 180px;
 		    margin-left: 7px;
 		    margin-top: 5px;
 		    width: 340px;
@@ -245,12 +249,16 @@
 					<li><a href="">赢动运城创业大赛报名表</a></li>
 					<li><a href="">毕业季里的创业课</a></li>
 					<li><a href="">运城启动SIYB免费创业培训</a></li>
-					<li><a href="">全市SIYB创业培训教学研讨会在运召开</a></li>
 				</ul>
 			</div>
 			<div class="biaoti">
 				<img src="/resource/public/images/u6_normal_15.gif" style="width: 550px;">
 				<img src="/resource/public/images/u6_normal_17.gif">
+			</div>
+			<div class="ad">
+				<a href="" title="局长信箱"><div class=""></div></a>
+				<a href="" title="网站论坛"><div class=""></div></a>
+				<a href="" title="相关下载"><div class=""></div></a>
 			</div>
 			<div class="xinxi">
 				<table>
@@ -265,8 +273,6 @@
 									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 								</ul>
 							</div>
 						</td>
@@ -274,8 +280,6 @@
 							<div class="xinxi_1">
 								<p><span style="margin-left:30px;float:none;">政策信息</span></p>
 								<ul style="padding-left:25px;">
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
@@ -297,8 +301,6 @@
 									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 								</ul>
 							</div>
 						</td>
@@ -306,8 +308,6 @@
 							<div class="xinxi_1">
 								<p><span style="margin-left:30px;float:none;">就业动态</span></p>
 								<ul style="padding-left:25px;">
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
@@ -397,17 +397,22 @@
 			
 			<div class="jiuye">
 				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);margin-bottom:10px;">就业业务办理</p>
-				<input type="button" value="就业失业登记" style="">		
-				<input type="button" value="失业保险" style="">		
-				<input type="button" value="劳动保障代理" style="background:#F59C26;">		
-				<input type="button" value="创业与就业培训" style="background:#F59C26;">		
-				<input type="button" value="基层劳动保障" style="">		
-				<input type="button" value="就业援助" style="">		
-			</div>
-			<div class="ad">
-				<a href=""><div style="margin-top:15px;margin-bottom:15px;"></div></a>	
-				<a href=""><div style="margin-bottom:15px;"></div></a>
-				<a href=""><div style=""></div></a>	
+				<div class="jiuye_1">
+					<table>
+						<tr>
+							<td><div style=""></div></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+				</div>	
 			</div>
 		</div>
 		<div class="zhuanti">

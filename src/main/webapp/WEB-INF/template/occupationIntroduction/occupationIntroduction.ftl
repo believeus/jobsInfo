@@ -9,7 +9,6 @@
     	.j_main{
     		width:1000px;
     		height:auto;
-    		margin-top:-6px;
     	}
     	.j_main_1{
     		width:998px;

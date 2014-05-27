@@ -9,15 +9,13 @@ body {
 	font-size:13px;	
 }
 .top_title input{
-	font-size:16px;
-	font-weight:bold;
-	background:none;
-	border:none;
-	color:#06C;
-	width:105px;
-	height:35px;
-	margin-top:10px;
-	margin-left:15px;	
+	border: medium none;
+    color: #0066CC;
+    font-size: 16px;
+    font-weight: bold;
+    height: 30px;
+    width: 135px;
+    padding:0;	
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */
@@ -38,7 +36,6 @@ body {
 }
 .xingx span:first-of-type {
 	font-size:16px;
-	display:inline-block;
 	width:100px;	
 }
 .xingx input {
@@ -57,6 +54,21 @@ body {
 	border:1px solid #CCC;
 	margin-right:20px;
 	border-radius:3px;
+}
+.qiyezhuce{
+	border: 1px solid #E4E4E4;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    overflow: hidden;
+    width: 1000px;
+}
+.register{
+	border-top: 1px dashed #E4E4E4;
+    margin: 0 50px;
+    padding: 20px 0;
+    text-align: center;
 }
 </style></head>
 
@@ -149,18 +161,15 @@ body {
 			})
 	</script>
 
-<div style="margin-left:auto;margin-right:auto;margin-top:10px; height:auto; width:715px; overflow:hidden;">
-	<div class="top_title" style="width:715px;height:42px; background-image:url(/resource/public/images/register_1.gif)">
-    	<input type="button" value="个人用户"  />
-   		<input type="button" id="enterpriseReg" value="企业用户" style="color:#000; margin-left:0px;"/>
+<div class="qiyezhuce" >
+	<div class="top_title" style="background: #E5E5E5;border-bottom: 3px solid #E36510;height: 30px;width: 1000px;">
+    	<input type="button" value="个人用户"  style="background: #E36510;color: #FFFFFF;cursor: pointer;"/>
+   		<input type="button" id="enterpriseReg" value="企业用户" style="color:#000; margin-left:0px;cursor:pointer;margin-left:-5px;"/>
 	</div>
-    <div style="margin-top:15px;padding-left:15px;width:695px; height:85px; border:1px solid #ccc;background-color:#F9F9F9">
-    	<p style="font-family:'微软雅黑'; font-size:18px;">尊敬的用户：</p>
-        <p>请填写您现在所办社保的信息</p>
-    </div>
     <form id="registerForm" action="/submitpersonalReg.jhtml" method="post">
-    <div style="margin-top:60px; margin-left:30px;">
+    <div style="margin-top: 30px; padding: 0px 300px; text-align: right;">
     	<div class="xingx">
+    		<p style="color: rgb(211, 54, 49); font-size: 20px; margin-bottom: 20px; margin-top: 0px; text-align: left;">欢迎个人用户注册</p>
             <div>
             	<span><font color="red">*</font>用户名：</span>
                 <span><input type="text" name="username" /></span>
@@ -181,11 +190,11 @@ body {
             	<span>身份证号：</span>
                 <span><input type="text" name="idcard" /></span>
             </div>
-            <div>
+            <div style="text-align: left; margin-left: 45px;">
             	<span>性别：</span>
                 <span>
-                	<input type="radio" name="sex"  value="boy" checked="true" style="width:0;height:0;"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                	<input type="radio" name="sex" value="girl" style="width:0;height:0;"/>女
+                	<input type="radio" name="sex"  value="boy" checked="true" style="width: 10px;height: 12px;"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	<input type="radio" name="sex" value="girl" style="width: 10px;height: 12px;"/>女
             	</span>
             </div>
             <div>
@@ -198,9 +207,9 @@ body {
             </div>
     	</div>
     </div>
-	<div class="register" style="margin-left:130px;">
-    	<input type="submit" name="" value="注册"/>
-        <input type="button" name="" value="重填" />
+	<div class="register" style="">
+    	<input type="submit" name="" value="注册" style="cursor:pointer;background:#FFFDE8;border:1px solid #DBAF72;border-radius:4px;"/>
+        <input type="reset" name="" value="重填" style="cursor:pointer;background:#FFFDE8;border:1px solid #DBAF72;border-radius:4px;" />
     </div>
     </form>
 </div>

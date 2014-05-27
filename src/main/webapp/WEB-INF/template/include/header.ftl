@@ -15,16 +15,16 @@
 	}
 	.j_head{
 		width:100%;
-		height:172px;
+		height:169px;
+		background:url(/resource/public/images/zhuye-img_01.gif);
 	}
 	.j_head_pic{
 		width:100%;
-		height:126px;
+		height:132px;
 	}
 	.j_head_nav{
 		width:100%;
-		height:40px;
-		background:url(/resource/public/images/zhizuo-_07.png);
+		height:37px;
 	}
 	.nav{
 		overflow:hidden;
@@ -41,15 +41,16 @@
 	    text-decoration: none;
 	    vertical-align: top;
 	    width: 90px;
+	    margin-left:7px;
 	}
 </style>
  <script src="/resource/public/resources/scripts/jquery-1.10.2.min.js"></script>
  <script type="text/javascript" src="/resource/public/resources/scripts/jquery.validate.js"></script>
  <script type="text/javascript" src="/resource/public/js/Etech.js"></script>
-<div style="width:100%">
+<div style="width:100%;margin-bottom:5px;">
 	<div class="j_head">
 		<div class="j_head_pic">
-			<img src="/resource/public/images/1.png" width="100%" height="126px">
+			
 		</div>
 		<div class="j_head_nav">
 			<div class="nav">
@@ -60,7 +61,7 @@
 				<a href="/policyAdvice.jhtml" title="">政策咨询</a>
 				<a href="/dataChanel.jhtml" title="">数据频道</a>
 				<a href="/onlineShow.jhtml" title="">网上展示厅</a>
-				<div style="float: right; width: 330px; margin-top: 10px;text-align:right;">
+				<div style="float: right; width: 300px; margin-top: 10px;text-align:right;">
 					<form action="">
 						<span style="color:#FFFFFF;">全文检索：</span>
 						<input type="test" style="width:160px">
