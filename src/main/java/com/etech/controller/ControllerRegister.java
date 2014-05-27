@@ -44,6 +44,12 @@ public class ControllerRegister {
 			JsonOutToBrower.out(message, response);
 			return;
 		}
+		boolean matches = regUser.getLoginName().matches("[a-zA-Z0-9]{6}");
+		if(matches==false){
+			message.put("message","登录名必须是最少6位的英文字母或数字");
+			JsonOutToBrower.out(message, response);
+			return;
+		}
 		if(StringUtils.isEmpty(regUser.getPassword())||StringUtils.isEmpty(comfirmPwd)){
 			message.put("message","密码和确定密码必填!");
 			JsonOutToBrower.out(message, response);
@@ -66,6 +72,7 @@ public class ControllerRegister {
 				return;
 			}
 		}
+		
 		TUser user = (TUser) userService.findObjectByProperty(TCommonUser.class, EtechGobal.LoginName, regUser.getLoginName());
 		if (!StringUtils.isEmpty(user)) {
 			message.put("message","用户名已存在，请重新填写用户名");

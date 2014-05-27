@@ -19,6 +19,8 @@ public class TCommonUser extends TUser implements Serializable{
 	
 	/**真实姓名*/
 	private String trueName;
+	/**性别*/
+	private String sex;
 	/**身高*/
 	private String height;	
 	/** 用户民族 */
@@ -82,6 +84,13 @@ public class TCommonUser extends TUser implements Serializable{
 	public void setHeight(String height) {
 		this.height = height;
 	}
-
+	@Column(nullable = true,columnDefinition="varchar(5) comment '性别' default '' ")
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	
 	
 }
