@@ -90,7 +90,7 @@ body {
 								cpName:$("#cpName").val(),
 								LegalMan:$("#LegalMan").val(),
 								cpContacts:$("#cpContacts").val(),
-								cpPhoneNum:$("#cpPhoneNum").val(),
+								phoneNum:$("#phoneNum").val(),
 								submit:submitx
 								},
 							dataType: "json",
@@ -167,7 +167,7 @@ body {
             </div>
             <div>
             	<span>手机号：</span>
-                <span><input type="" id="cpPhoneNum" /></span>
+                <span><input type="" id="phoneNum" /></span>
             </div>
     	</div>
     </div>
