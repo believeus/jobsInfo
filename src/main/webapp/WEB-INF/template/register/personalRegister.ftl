@@ -75,84 +75,41 @@ body {
 
 <body>
 [#include "/include/header.ftl" /]
-<script style="text/javascript">
+	<script style="text/javascript">
 		    $().ready(function() {
-		    	// 表单验证
-					$("#registerFormx").validate({
-						rules: {
-							loginName: {
-								required: true,
-								minlength:6,
-								pattern: /^[0-9a-zA-Z_-]+$/,
-								remote: {
-									url: "/ajaxComValidReg.jhtml",
-									cache: false
-								}
-							}
-							
-						},
-						messages: {
-							loginName: {
-								pattern: "格式不对",
-								remote: "用户名已经存在"
-							}
-						},
-						
-						 errorPlacement: function (error, element) { //指定错误信息位置
-						   // error.insertAfter(element);
-						    alert(error);
-						 },
-						submitHandler: function(form) {
-							alert("xxx");
-							//return false;
-							form.submit();	
-						}
-					});
-		    
-		    	// ajax 提交验证和登录。
-		    	function submitF(){
-						var propertyValue=$("#username").val();
-						var password=$("#password").val();
-						var userType=$('input:radio[name="userType"]:checked').val();
-					 	if(propertyValue==""){
-					 	  return false;
-					 	}
+					// ajax 提交验证和登录。
+		    		function submitF(submitx){
 						$.ajax({
-							url: "/ajaxLoginValid.jhtml",
+							url: "/ajaxComValidReg.jhtml",
 							type: "POST",
 							data: {
-								propertyValue: propertyValue,
-								password:password,
-								userType: userType
-									},
+								loginName: $("#loginName").val(),
+								submit:submitx
+								
+								
+								
+								},
 							dataType: "json",
 							cache: false,
 							success: function(data) {
+									alert(data.message);
 									// 如果登录成功，则显示成功
-									if(data.result=="success"){
-										$("#denglu2").attr("style","");
-										$("#denglu1").attr("style","display:none;");
+									if(data.success=="success"){
+										
 									}else{
-										alert(data.result);
+										
+										
 									}
 								}
 							});
 					}
-		    	//验证。
-				$("#username,input:radio[name='userType']").change(function(){
-					submitF();
+					
+				// 用户名验证。
+				$("#loginName,#idcard").change(function(){
+					submitF("nosubmit");
 				});
 				
-				// 登录。
-				$("#login").click(function() {
-					var propertyValue=$("#username").val();
-					var password=$("#password").val();
-					if(propertyValue==""&&password==""){
-						alert("用户名和密码不能为空！");
-					}else{
-						submitF();
-					}
-				});
+				
 				$("#enterpriseReg").click(function() {
 					// 需要跳转到注册页面
 					window.location.href="/enterpriseReg.jhtml";
@@ -172,7 +129,7 @@ body {
     		<p style="color: rgb(211, 54, 49); font-size: 20px; margin-bottom: 20px; margin-top: 0px; text-align: left;">欢迎个人用户注册</p>
             <div>
             	<span><font color="red">*</font>用户名：</span>
-                <span><input type="text" name="username" /></span>
+                <span><input type="text" name="loginName" id="loginName"/></span>
             </div>
             <div>
             	<span><font color="red">*</font>密码：</span>
@@ -188,7 +145,7 @@ body {
             </div>
             <div>
             	<span>身份证号：</span>
-                <span><input type="text" name="idcard" /></span>
+                <span><input type="text" name="idcard" id="idcard" /></span>
             </div>
             <div style="text-align: left; margin-left: 45px;">
             	<span>性别：</span>
