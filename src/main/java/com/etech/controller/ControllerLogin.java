@@ -2,14 +2,18 @@ package com.etech.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.etech.entity.TCommonUser;
 import com.etech.entity.EnterpriseUser;
 import com.etech.entity.TUser;
@@ -29,7 +33,7 @@ public class ControllerLogin {
 	public void ajaxLoginValid(TUser user, String userType,HttpServletResponse response,HttpSession session) throws Exception {
 		Map<String, Object> message=new HashMap<String, Object>();
 		//登录用户名为空
-		if(user.getLoginName()==null){
+		if(StringUtils.isEmpty(user.getLoginName())){
 			message.put("message","请填写登录名");
 			JsonOutToBrower.out(message, response);
 		//登录用户名不为空
@@ -43,7 +47,7 @@ public class ControllerLogin {
 			} else {
 				sessionUser = (EnterpriseUser) userService.findObjectByProperty(EnterpriseUser.class, EtechGobal.LoginName,user.getLoginName());
 			}
-			if (sessionUser == null) {
+			if (StringUtils.isEmpty(sessionUser)) {
 				message.put("message", "用户不存在，请注册");
 				log.debug("error loginName:" + user.getLoginName());
 				JsonOutToBrower.out(message, response);
@@ -62,7 +66,7 @@ public class ControllerLogin {
 					JsonOutToBrower.out(message, response);
 				/*用户名正确密码不正确*/
 				}else {
-					if (null == user.getPassword()) {
+					if (StringUtils.isEmpty(user.getPassword())) {
 						message.put("message", "请输入密码");
 						JsonOutToBrower.out(message, response);
 						return;
