@@ -162,326 +162,390 @@
 					<span>登记编号:1234567890</span>
 					<span style="float: right; padding-right: 20px;">更新日期:2014-5-26</span>
 				</p>
-				<div style="height: 30px; width: 728px;">
-					<span style="float:left;">基本信息</span>
-					<div style="border: 1px dashed #E4E4E4; height: 0px; width: 600px; float: left; margin-left: 10px; margin-top: 9px;"></div>
-				</div>
-				<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
-					<div class="" style="height: auto; overflow: hidden; float: left; width: 230px; margin-left: 30px; margin-top: 10px;margin-right:10px;">
+				
+				<div style="width::728px;height:auto;overflow:hidden;">
+					<div style="height: 30px; width: 728px;">
+						<span style="float:left;">基本信息</span>
+						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 600px; float: left; margin-left: 10px; margin-top: 9px;"></div>
+					</div>
+					<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+						<div class="" style="height: auto; overflow: hidden; float: left; width: 230px; margin-left: 30px; margin-top: 10px;margin-right:10px;">
+							<table>
+								<tr>
+									<td>姓名:</td>
+									<td><input type="text"></td>
+								</tr>
+								<tr>
+									<td>登录名:</td>
+									<td><input type="text"></td>
+								</tr>
+								<tr>
+									<td>年龄:</td>
+									<td><input type="text"></td>
+								</tr>
+								<tr>
+									<td>民族:</td>
+									<td><input type="text"></td>
+								</tr>
+								<tr>
+									<td>政治面貌:</td>
+									<td>
+										<select name="" style="width:158px;">
+											<option value="">请选择..</option>
+											<option value="">团员</option>
+											<option value="">党员</option>
+											<option value="">...</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>婚姻状况:</td>
+									<td>
+										<select name="" style="width:158px;">
+											<option value="">请选择..</option>
+											<option value="">未婚</option>
+											<option value="">已婚</option>
+											<option value="">不明</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>视力:</td>
+									<td><input type="text"></td>
+								</tr>
+								<tr>
+									<td>个人特长:</td>
+									<td><input type="text"></td>
+								</tr>
+								<tr>
+									<td>联系电话:</td>
+									<td><input type="text"></td>
+								</tr>
+								<tr>
+									<td>二女户:</td>
+									<td>
+										<input type="radio" name="girl" checked="true" style="width:0">是
+										<input type="radio" name="girl" style="width:0">否
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div style="width:0px;height:320px;border-left:1px solid #C9C9C9;float:left;"></div>
+						<div class="" style="float: left; margin-left: 15px; overflow: hidden; width: 235px; margin-top: 10px;">
+							<table>
+								<tr>
+									<td>性别:</td>
+									<td>
+										<select name="" style="width:158px;">
+											<option value="">请选择..</option>
+											<option value="">男</option>
+											<option value="">女</option>
+											<option value="">...</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>密码:</td>
+									<td><input type="text" placeholder="明文密码"></td>
+								</tr>
+								<tr>
+									<td>身份证号:</td>
+									<td><input type="text"></td>
+								</tr>
+								<tr>
+									<td>文化程度:</td>
+									<td>
+										<select name="" style="width:158px;">
+											<option value="">请选择..</option>
+											<option value="">大学</option>
+											<option value="">高中</option>
+											<option value="">初中</option>
+											<option value="">小学</option>
+											<option value="">幼儿园</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>身高:</td>
+									<td><input type="text"></td>
+								</tr>
+								<tr>
+									<td>健康状况:</td>
+									<td>
+										<select name="" style="width:158px;">
+											<option value="">请选择..</option>
+											<option value="">健康</option>
+											<option value="">良好</option>
+											<option value="">恶劣</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>家庭详细地址:</td>
+									<td><input type="text"></td>
+								</tr>
+								<tr>
+									<td>原工作单位:</td>
+									<td><input type="text"></td>
+								</tr>
+								<tr>
+									<td>《就失业证》号:</td>
+									<td><input type="text"></td>
+								</tr>
+								<tr>
+									<td>独生子女:</td>
+									<td>
+										<input type="radio" name="dusheng" checked="true" style="width:0">是
+										<input type="radio" name="dusheng" style="width:0">否
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div style="width: 150px; float: left; margin-left: 15px; height: auto; margin-top: 15px;">
+							<img src="" width="100px" height="130px;">
+							<input type="button" value="上传照片" style="width:100px;">
+						</div>
+					</div>
+					
+					<div style="height: 30px; width: 728px;">
+						<span style="float:left;">具备技能</span>
+						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
+						<div style="float: left; width: 50px; margin-left: 20px;">
+							<input type="button" value="添加" style="width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
+						</div>
+					</div>
+					<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<table>
 							<tr>
-								<td>姓名:</td>
+								<td>专业:</td>
+								<td><input type="text"></td>
+								<td>工种:</td>
 								<td><input type="text"></td>
 							</tr>
 							<tr>
-								<td>登录名:</td>
-								<td><input type="text"></td>
-							</tr>
-							<tr>
-								<td>年龄:</td>
-								<td><input type="text"></td>
-							</tr>
-							<tr>
-								<td>民族:</td>
-								<td><input type="text"></td>
-							</tr>
-							<tr>
-								<td>政治面貌:</td>
-								<td>
+								<td>技能等级:</td>
+								<td style="padding-right:70px;">
 									<select name="" style="width:158px;">
 										<option value="">请选择..</option>
-										<option value="">团员</option>
-										<option value="">党员</option>
+										<option value="">精通</option>
+										<option value="">熟练</option>
+										<option value="">了解</option>
+									</select>
+								</td>
+								<td>从事年限:</td>
+								<td><input type="text"></td>
+							</tr>
+							<tr>
+								<td>说明:</td>
+								<td colspan="3"><textArea cols="50"></textArea></td>
+								<td rowspan="3"><a href="" style="margin-top:35px;float:right;">删除</a></td>
+							</tr>
+						</table>
+					</div>
+					
+					<div style="height: 30px; width: 728px;">
+						<span style="float:left;">学习经历</span>
+						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
+						<div style="float: left; width: 50px; margin-left: 20px;">
+							<input type="button" value="添加" style="width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
+						</div>
+					</div>
+					<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+						<table>
+							<tr>
+								<td>起止时间:</td>
+								<td colspan="3">
+									<select name="" style="width:80px;">
+										<option value="">请选择..</option>
+										<option value="">2014</option>
+										<option value="">2013</option>
 										<option value="">...</option>
 									</select>
-								</td>
-							</tr>
-							<tr>
-								<td>婚姻状况:</td>
-								<td>
-									<select name="" style="width:158px;">
+									年
+									<select name="" style="width:80px;">
 										<option value="">请选择..</option>
-										<option value="">未婚</option>
-										<option value="">已婚</option>
-										<option value="">不明</option>
+										<option value="">1</option>
+										<option value="">2</option>
+										<option value="">...</option>
 									</select>
+									月
+									至
+									<select name="" style="width:80px;">
+										<option value="">请选择..</option>
+										<option value="">2014</option>
+										<option value="">2013</option>
+										<option value="">...</option>
+									</select>
+									年
+									<select name="" style="width:80px;">
+										<option value="">请选择..</option>
+										<option value="">1</option>
+										<option value="">2</option>
+										<option value="">...</option>
+									</select>
+									月
 								</td>
 							</tr>
 							<tr>
-								<td>视力:</td>
+								<td>学校名称:</td>
+								<td style="padding-right:100px;"><input type="text"></td>
+								<td>系别:</td>
 								<td><input type="text"></td>
 							</tr>
 							<tr>
-								<td>个人特长:</td>
+								<td>专业:</td>
+								<td colspan="3"><input type="text"></td>
+								<td rowspan="3"><a href="">删除</a></td>
+							</tr>
+						</table>
+					</div>
+					
+					<div style="height: 30px; width: 728px;">
+						<span style="float:left;">工作经历</span>
+						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
+						<div style="float: left; width: 50px; margin-left: 20px;">
+							<input type="button" value="添加" style="width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
+						</div>
+					</div>
+					<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+						<table>
+							<tr>
+								<td>起止时间:</td>
+								<td colspan="3">
+									<select name="" style="width:80px;">
+										<option value="">请选择..</option>
+										<option value="">2014</option>
+										<option value="">2013</option>
+										<option value="">...</option>
+									</select>
+									年
+									<select name="" style="width:80px;">
+										<option value="">请选择..</option>
+										<option value="">1</option>
+										<option value="">2</option>
+										<option value="">...</option>
+									</select>
+									月
+									至
+									<select name="" style="width:80px;">
+										<option value="">请选择..</option>
+										<option value="">2014</option>
+										<option value="">2013</option>
+										<option value="">...</option>
+									</select>
+									年
+									<select name="" style="width:80px;">
+										<option value="">请选择..</option>
+										<option value="">1</option>
+										<option value="">2</option>
+										<option value="">...</option>
+									</select>
+									月	
+								</td>
+							</tr>
+							<tr>
+								<td>工作单位:</td>
+								<td style="padding-right:100px;"><input type="text"></td>
+								<td>职务:</td>
 								<td><input type="text"></td>
 							</tr>
 							<tr>
-								<td>联系电话:</td>
-								<td><input type="text"></td>
+								<td>工种:</td>
+								<td ><input type="text"></td>
+								<td>工作内容:</td>
+								<td ><input type="text"></td>
+								<td rowspan="3"><a href="">删除</a></td>
 							</tr>
+						</table>
+					</div>
+					
+					<div style="height: 30px; width: 728px;">
+						<span style="float:left;">就业服务</span>
+						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 600px; float: left; margin-left: 10px; margin-top: 9px;"></div>
+					</div>
+					<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+						<table>
 							<tr>
-								<td>二女户:</td>
+								<td>享受免费职业培训:</td>
+								<td style="padding-right:100px;">
+									<input type="radio" name="peixun" checked="true" style="width:0">是
+									<input type="radio" name="peixun" style="width:0">否
+								</td>
+								<td>享受免费职业介绍:</td>
 								<td>
-									<input type="radio" name="girl" checked="true" style="width:0">是
-									<input type="radio" name="girl" style="width:0">否
+									<input type="radio" name="jieshao" checked="true" style="width:0">是
+									<input type="radio" name="jieshao" style="width:0">否
 								</td>
 							</tr>
 						</table>
 					</div>
-					<div style="width:0px;height:320px;border-left:1px solid #C9C9C9;float:left;"></div>
-					<div class="" style="float: left; margin-left: 15px; overflow: hidden; width: 235px; margin-top: 10px;">
+					
+					<p style="text-align:center;">
+						<input type="button" value="保存">
+						<input type="reset" value="重写">
+					</p>
+				</div>
+				<div class="width:728px;height:auto;;overflow:hidden;" style="display:none;">
+					<div style="height: 30px; width: 728px;">
+						<span style="float:left;">选择志愿</span>
+						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
+						<div style="float: left; width: 50px; margin-left: 20px;">
+							<input type="button" value="添加" style="width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
+						</div>
+					</div>
+					<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<table>
 							<tr>
-								<td>性别:</td>
-								<td>
-									<select name="" style="width:158px;">
-										<option value="">请选择..</option>
-										<option value="">男</option>
-										<option value="">女</option>
-										<option value="">...</option>
-									</select>
+								<td rowspan="3" style="background:#DCDCDC;color:#FE7200;">1</td>
+								<td>专业:</td>
+								<td><input type="text"></td>
+								<td>工种:</td>
+								<td><input type="text"></td>
+							</tr>
+							<tr>
+								<td>月薪要求:</td>
+								<td style="padding-right:70px;">
+									<input type="text" name="">
 								</td>
-							</tr>
-							<tr>
-								<td>密码:</td>
-								<td><input type="text" placeholder="明文密码"></td>
-							</tr>
-							<tr>
-								<td>身份证号:</td>
+								<td>择业地区:</td>
 								<td><input type="text"></td>
 							</tr>
 							<tr>
-								<td>文化程度:</td>
-								<td>
-									<select name="" style="width:158px;">
-										<option value="">请选择..</option>
-										<option value="">大学</option>
-										<option value="">高中</option>
-										<option value="">初中</option>
-										<option value="">小学</option>
-										<option value="">幼儿园</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td>身高:</td>
-								<td><input type="text"></td>
-							</tr>
-							<tr>
-								<td>健康状况:</td>
-								<td>
-									<select name="" style="width:158px;">
-										<option value="">请选择..</option>
-										<option value="">健康</option>
-										<option value="">良好</option>
-										<option value="">恶劣</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td>家庭详细地址:</td>
-								<td><input type="text"></td>
-							</tr>
-							<tr>
-								<td>原工作单位:</td>
-								<td><input type="text"></td>
-							</tr>
-							<tr>
-								<td>《就失业证》号:</td>
-								<td><input type="text"></td>
-							</tr>
-							<tr>
-								<td>独生子女:</td>
-								<td>
-									<input type="radio" name="dusheng" checked="true" style="width:0">是
-									<input type="radio" name="dusheng" style="width:0">否
-								</td>
+								<td>其他要求:</td>
+								<td colspan="3"><textArea cols="50"></textArea></td>
+								<td rowspan="3"><a href="" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
 					</div>
-					<div style="width: 150px; float: left; margin-left: 15px; height: auto; margin-top: 15px;">
-						<img src="" width="100px" height="130px;">
-						<input type="button" value="上传照片" style="width:100px;">
+					<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+						<table>
+							<tr>
+								<td rowspan="3" style="background:#DCDCDC;color:#FE7200;">2</td>
+								<td>专业:</td>
+								<td><input type="text"></td>
+								<td>工种:</td>
+								<td><input type="text"></td>
+							</tr>
+							<tr>
+								<td>月薪要求:</td>
+								<td style="padding-right:70px;">
+									<input type="text" name="">
+								</td>
+								<td>择业地区:</td>
+								<td><input type="text"></td>
+							</tr>
+							<tr>
+								<td>其他要求:</td>
+								<td colspan="3"><textArea cols="50"></textArea></td>
+								<td rowspan="3"><a href="" style="margin-top:35px;float:right;">删除</a></td>
+							</tr>
+						</table>
 					</div>
+					<p style="text-align:center;">
+						<input type="button" value="保存">
+						<input type="reset" value="重写">
+					</p>
 				</div>
-				
-				<div style="height: 30px; width: 728px;">
-					<span style="float:left;">具备技能</span>
-					<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
-					<div style="float: left; width: 50px; margin-left: 20px;">
-						<input type="button" value="添加" style="width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
-					</div>
-				</div>
-				<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
-					<table>
-						<tr>
-							<td>专业:</td>
-							<td><input type="text"></td>
-							<td>工种:</td>
-							<td><input type="text"></td>
-						</tr>
-						<tr>
-							<td>技能等级:</td>
-							<td style="padding-right:70px;">
-								<select name="" style="width:158px;">
-									<option value="">请选择..</option>
-									<option value="">精通</option>
-									<option value="">熟练</option>
-									<option value="">了解</option>
-								</select>
-							</td>
-							<td>从事年限:</td>
-							<td><input type="text"></td>
-						</tr>
-						<tr>
-							<td>说明:</td>
-							<td colspan="3"><textArea cols="50"></textArea></td>
-							<td rowspan="3"><a href="" style="margin-top:35px;float:right;">删除</a></td>
-						</tr>
-					</table>
-				</div>
-				
-				<div style="height: 30px; width: 728px;">
-					<span style="float:left;">学习经历</span>
-					<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
-					<div style="float: left; width: 50px; margin-left: 20px;">
-						<input type="button" value="添加" style="width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
-					</div>
-				</div>
-				<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
-					<table>
-						<tr>
-							<td>起止时间:</td>
-							<td colspan="3">
-								<select name="" style="width:80px;">
-									<option value="">请选择..</option>
-									<option value="">2014</option>
-									<option value="">2013</option>
-									<option value="">...</option>
-								</select>
-								年
-								<select name="" style="width:80px;">
-									<option value="">请选择..</option>
-									<option value="">1</option>
-									<option value="">2</option>
-									<option value="">...</option>
-								</select>
-								月
-								至
-								<select name="" style="width:80px;">
-									<option value="">请选择..</option>
-									<option value="">2014</option>
-									<option value="">2013</option>
-									<option value="">...</option>
-								</select>
-								年
-								<select name="" style="width:80px;">
-									<option value="">请选择..</option>
-									<option value="">1</option>
-									<option value="">2</option>
-									<option value="">...</option>
-								</select>
-								月
-							</td>
-						</tr>
-						<tr>
-							<td>学校名称:</td>
-							<td style="padding-right:100px;"><input type="text"></td>
-							<td>系别:</td>
-							<td><input type="text"></td>
-						</tr>
-						<tr>
-							<td>专业:</td>
-							<td colspan="3"><input type="text"></td>
-							<td rowspan="3"><a href="">删除</a></td>
-						</tr>
-					</table>
-				</div>
-				
-				<div style="height: 30px; width: 728px;">
-					<span style="float:left;">工作经历</span>
-					<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
-					<div style="float: left; width: 50px; margin-left: 20px;">
-						<input type="button" value="添加" style="width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
-					</div>
-				</div>
-				<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
-					<table>
-						<tr>
-							<td>起止时间:</td>
-							<td colspan="3">
-								<select name="" style="width:80px;">
-									<option value="">请选择..</option>
-									<option value="">2014</option>
-									<option value="">2013</option>
-									<option value="">...</option>
-								</select>
-								年
-								<select name="" style="width:80px;">
-									<option value="">请选择..</option>
-									<option value="">1</option>
-									<option value="">2</option>
-									<option value="">...</option>
-								</select>
-								月
-								至
-								<select name="" style="width:80px;">
-									<option value="">请选择..</option>
-									<option value="">2014</option>
-									<option value="">2013</option>
-									<option value="">...</option>
-								</select>
-								年
-								<select name="" style="width:80px;">
-									<option value="">请选择..</option>
-									<option value="">1</option>
-									<option value="">2</option>
-									<option value="">...</option>
-								</select>
-								月	
-							</td>
-						</tr>
-						<tr>
-							<td>工作单位:</td>
-							<td style="padding-right:100px;"><input type="text"></td>
-							<td>职务:</td>
-							<td><input type="text"></td>
-						</tr>
-						<tr>
-							<td>工种:</td>
-							<td ><input type="text"></td>
-							<td>工作内容:</td>
-							<td ><input type="text"></td>
-							<td rowspan="3"><a href="">删除</a></td>
-						</tr>
-					</table>
-				</div>
-				
-				<div style="height: 30px; width: 728px;">
-					<span style="float:left;">就业服务</span>
-					<div style="border: 1px dashed #E4E4E4; height: 0px; width: 600px; float: left; margin-left: 10px; margin-top: 9px;"></div>
-				</div>
-				<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
-					<table>
-						<tr>
-							<td>享受免费职业培训:</td>
-							<td style="padding-right:100px;">
-								<input type="radio" name="peixun" checked="true" style="width:0">是
-								<input type="radio" name="peixun" style="width:0">否
-							</td>
-							<td>享受免费职业介绍:</td>
-							<td>
-								<input type="radio" name="jieshao" checked="true" style="width:0">是
-								<input type="radio" name="jieshao" style="width:0">否
-							</td>
-						</tr>
-					</table>
-				</div>
-				
-				<p style="text-align:center;">
-					<input type="button" value="保存">
-					<input type="reset" value="重写">
-				</p>
 			</div>
 		</div>
 	</div>

@@ -162,28 +162,39 @@ body {
     <div style="margin-top:60px; margin-left:30px;">
     	<div class="xingx">
             <div>
+            	<span><font color="red">*</font>用户名：</span>
+                <span><input type="text" name="username" /></span>
+            </div>
+            <div>
+            	<span><font color="red">*</font>密码：</span>
+                <span><input type="password" name="password" /></span>
+            </div>
+            <div>
+            	<span><font color="red">*</font>重复密码：</span>
+                <span><input type="password" name="enpassword" /></span>
+            </div>
+            <div>
+            	<span>真实姓名：</span>
+                <span><input name="loginName" /></span>
+            </div>
+            <div>
             	<span>身份证号：</span>
-                <span><input type="text" name="idcard" placeholder="请填写真实身份证号..."/></span>
+                <span><input type="text" name="idcard" /></span>
             </div>
             <div>
-            	<span>密码：</span>
-                <span><input type="password" name="password" placeholder="输入密码..."/></span>
+            	<span>性别：</span>
+                <span>
+                	<input type="radio" name="sex"  value="boy" checked="true" style="width:0;height:0;"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	<input type="radio" name="sex" value="girl" style="width:0;height:0;"/>女
+            	</span>
             </div>
             <div>
-            	<span>确认密码：</span>
-                <span><input type="password" name="enpassword" placeholder="确认输入..."/></span>
+            	<span>联系电话：</span>
+                <span><input type="" name="phoneNum" /></span>
             </div>
             <div>
-            	<span>姓名：</span>
-                <span><input name="loginName" placeholder="输入姓名..."/></span>
-            </div>
-            <div>
-            	<span>手机号：</span>
-                <span><input type="" name="phoneNum" placeholder="输入电话号码（含区号）"/></span>
-            </div>
-            <div>
-            	<span>邮箱：</span>
-                <span><input type="email" name="email" placeholder="输入邮箱地址..."/></span>
+            	<span>电子邮箱：</span>
+                <span><input type="email" name="email" /></span>
             </div>
     	</div>
     </div>

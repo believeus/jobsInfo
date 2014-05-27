@@ -85,50 +85,32 @@ body {
     <div style="margin-top:60px; margin-left:30px;">
    	  <div class="xingx">
             <div>
-            	<span>用户名：</span>
-                <span><input name="loginName" placeholder="请输入用户名..."/></span>
+            	<span><font color="red">*</font>用户名：</span>
+                <span><input name="loginName" /></span>
             </div>
             <div>
-            	<span>密码：</span>
-                <span><input name="password" type="password" placeholder="输入密码..."/></span>
+            	<span><font color="red">*</font>密码：</span>
+                <span><input name="password" type="password" /></span>
             </div>
             <div>
-            	<span>确认密码：</span>
-                <span><input type="password" name="enpassword" placeholder="确认输入..."/></span>
+            	<span><font color="red">*</font>重复密码：</span>
+                <span><input type="password" name="enpassword" /></span>
             </div>
             <div>
-            	<span>公司名称：</span>
-                <span><input  name="cpName" placeholder="请输入全称..."/></span>
+            	<span>企业名称：</span>
+                <span><input  name="cpName" /></span>
             </div>
             <div>
-            	<span>公司地址：</span>
-                <span><input type="" name="cpAddres" placeholder="请尽量填写详细..."/></span>
+            	<span>法人：</span>
+                <span><input type="" name="legalPerson" /></span>
             </div>
             <div>
-            	<span>公司性质：</span>
-                <span>
-                	<select name="kindOfcp"  style="height:30px; width:285px; border:1px solid #C0C0C0; color:#333; font-size:16px;border-radius:3px;">
-                    	<option value="" selected="selected">企业</option>
-                        <option value="41">企业1</option>
-                        <option value="42">企业2</option>
-                        <option value="43">企业3</option>
-                        <option value="44">企业4</option>
-                        <option value="45">企业5</option>
-                        <option value="46">企业6</option>
-                    </select>
-              </span>
+            	<span>联系人：</span>
+                <span><input type="" name="cpContacts" /></span>
             </div>
             <div>
-            	<span>公司联系人：</span>
-                <span><input type="" name="cpContacts" placeholder="请输入联系人..."/></span>
-            </div>
-            <div>
-            	<span>联系人手机：</span>
-                <span><input type="" name="cpPhoneNum" placeholder="输入电话号码（含区号）"/></span>
-            </div>
-            <div>
-            	<span>邮箱：</span>
-                <span><input type="email" name="cpEmail" placeholder="输入邮箱地址..."/></span>
+            	<span>手机号：</span>
+                <span><input type="" name="cpPhoneNum" /></span>
             </div>
     	</div>
     </div>
