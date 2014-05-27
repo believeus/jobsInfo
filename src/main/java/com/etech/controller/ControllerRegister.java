@@ -49,7 +49,7 @@ public class ControllerRegister {
 			boolean matcheIdCard1 = regUser.getIdcard().matches("^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])((\\d{4})|\\d{3}[A-Z])$");
 			boolean matcheIdCard2 = regUser.getIdcard().matches("/^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$/");
 			// 身份证验证不匹配
-			if(matcheIdCard1==false && matcheIdCard2==false){
+			if(matcheIdCard1==false || matcheIdCard2==false){
 				message.put("message","身份证格式不对");
 				JsonOutToBrower.out(message, response);
 				return;
@@ -68,7 +68,7 @@ public class ControllerRegister {
 			return;
 		}
 		//表单点击提交
-		if(submit.equals("submit")){
+		if(!StringUtils.isEmpty(submit)&&submit.equals("submit")){
 			String password = DigestUtils.md5Hex(regUser.getPassword());
 			regUser.setCreateDate(System.currentTimeMillis());
 			regUser.setEditDate(System.currentTimeMillis());
