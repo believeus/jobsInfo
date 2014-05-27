@@ -37,6 +37,7 @@ body {
 .xingx span:first-of-type {
 	font-size:16px;
 	width:100px;	
+	display:inline-block;
 }
 .xingx input {
 	height:28px;
@@ -136,7 +137,7 @@ body {
    		<input type="button" value="企业用户" style="background: #E36510;color: #FFFFFF;cursor: pointer;margin-left:-5px;"/>
 	</div>
     <form id="registerForm" action="/submitEnterpriseReg.jhtml" method="post">
-    <div style="margin-top: 30px; padding: 0px 300px; text-align: right;">
+    <div style="margin-top: 30px; padding: 0px 200px; width: 600px; text-align: left;">
    	  <div class="xingx">
    	  		<p style="color: rgb(211, 54, 49); font-size: 20px; margin-bottom: 20px; margin-top: 0px; text-align: left;">欢迎企业用户注册</p>
             <div>

@@ -158,7 +158,7 @@
 </head>
 <body>
 	[#include "/include/header.ftl" /]
-	<script style="text/javascript">
+	<script type="text/javascript">
 		    $().ready(function() {
 		    	// ajax 提交验证和登录。
 		    	function submitF(or,flag){

@@ -37,6 +37,7 @@ body {
 .xingx span:first-of-type {
 	font-size:16px;
 	width:100px;	
+	display:inline-block;
 }
 .xingx input {
 	height:32px;
@@ -75,7 +76,7 @@ body {
 
 <body>
 [#include "/include/header.ftl" /]
-	<script style="text/javascript">
+	<script type="text/javascript">
 		    $().ready(function() {
 					// ajax 提交验证和登录。
 		    		function submitF(submitx){
@@ -137,7 +138,7 @@ body {
    		<input type="button" id="enterpriseReg" value="企业用户" style="color:#000; margin-left:0px;cursor:pointer;margin-left:-5px;"/>
 	</div>
     <form id="registerForm" action="/submitpersonalReg.jhtml" method="post">
-    <div style="margin-top: 30px; padding: 0px 300px; text-align: right;">
+    <div style="margin-top: 30px; padding: 0px 200px; width: 600px; text-align: left;">
     	<div class="xingx">
     		<p style="color: rgb(211, 54, 49); font-size: 20px; margin-bottom: 20px; margin-top: 0px; text-align: left;">欢迎个人用户注册</p>
             <div>
@@ -160,7 +161,7 @@ body {
             	<span>身份证号：</span>
                 <span><input type="text" name="idcard" id="idcard" /></span>
             </div>
-            <div style="text-align: left; margin-left: 45px;">
+            <div style="">
             	<span>性别：</span>
                 <span>
                 	<input type="radio" name="sex"  value="boy" checked="true" style="width: 10px;height: 12px;"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -5,6 +5,25 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script type="text/javascript" src="/resource/public/js/jquery.js"></script>
+    <script type="text/javascript">
+    	$().ready(function(){
+    		$("#personal_xinxi").click(function(){
+    			$("#personal_xinxi").removeClass("current");
+    			$("#select_zhiyuan").removeClass("current");
+    			$("#personal_xinxi").addClass("current");
+    			$("#base_xinxi").show();
+    			$("#select_zhuti").hide();
+    		});
+    		$("#select_zhiyuan").click(function(){
+    			$("#select_zhiyuan").removeClass("current");
+    			$("#personal_xinxi").removeClass("current");
+    			$("#select_zhiyuan").addClass("current");
+    			$("#select_zhuti").show();
+    			$("#base_xinxi").hide();
+    		});
+    	});
+    </script>
     <style type="text/css">
    		.j_main{
     		width:1000px;
@@ -60,8 +79,6 @@
 			border-bottom:3px solid #E36510;
 		}
 		.j_main_right_2_1_1{
-			background: #E36510;
-		    color: #FFFFFF;
 		    font-size: 16px;
 		    height: 30px;
 		    line-height: 30px;
@@ -98,6 +115,10 @@
 		}
 		.j_main_right_2 input{
 			width:150px;
+		}
+		.current{
+			background:#E36510;
+			color:#FFFFFF;
 		}
     </style>
 </head>
@@ -155,15 +176,15 @@
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<div class="j_main_right_2_1">
-					<div class="j_main_right_2_1_1">个人信息</div>
-					<div class="j_main_right_2_1_2">选择志愿</div>
+					<div id="personal_xinxi" class="j_main_right_2_1_1 current" style="cursor:pointer;">个人信息</div>
+					<div id="select_zhiyuan" class="j_main_right_2_1_2" style="cursor:pointer;">选择志愿</div>
 				</div>
 				<p>
 					<span>登记编号:1234567890</span>
 					<span style="float: right; padding-right: 20px;">更新日期:2014-5-26</span>
 				</p>
 				
-				<div style="width::728px;height:auto;overflow:hidden;">
+				<div id="base_xinxi" style="width::728px;height:auto;overflow:hidden;">
 					<div style="height: 30px; width: 728px;">
 						<span style="float:left;">基本信息</span>
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 600px; float: left; margin-left: 10px; margin-top: 9px;"></div>
@@ -192,9 +213,10 @@
 									<td>
 										<select name="" style="width:158px;">
 											<option value="">请选择..</option>
-											<option value="">团员</option>
-											<option value="">党员</option>
-											<option value="">...</option>
+											<option value="">中共党员</option>
+											<option value="">共青团员</option>
+											<option value="">民主党派</option>
+											<option value="">普通公民</option>
 										</select>
 									</td>
 								</tr>
@@ -205,7 +227,7 @@
 											<option value="">请选择..</option>
 											<option value="">未婚</option>
 											<option value="">已婚</option>
-											<option value="">不明</option>
+											<option value="">离异</option>
 										</select>
 									</td>
 								</tr>
@@ -240,7 +262,6 @@
 											<option value="">请选择..</option>
 											<option value="">男</option>
 											<option value="">女</option>
-											<option value="">...</option>
 										</select>
 									</td>
 								</tr>
@@ -275,8 +296,8 @@
 										<select name="" style="width:158px;">
 											<option value="">请选择..</option>
 											<option value="">健康</option>
-											<option value="">良好</option>
-											<option value="">恶劣</option>
+											<option value="">患病</option>
+											<option value="">残疾</option>
 										</select>
 									</td>
 								</tr>
@@ -485,7 +506,7 @@
 						<input type="reset" value="重写">
 					</p>
 				</div>
-				<div class="width:728px;height:auto;;overflow:hidden;" style="display:none;">
+				<div id="select_zhuti" style="width:728px;height:auto;;overflow:hidden;display:none;">
 					<div style="height: 30px; width: 728px;">
 						<span style="float:left;">选择志愿</span>
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
