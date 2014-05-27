@@ -62,7 +62,12 @@ public class ControllerLogin {
 					JsonOutToBrower.out(message, response);
 				/*用户名正确密码不正确*/
 				}else {
-					message.put("message","用户密码错误");
+					if (null == user.getPassword()) {
+						message.put("message", "请输入密码");
+						JsonOutToBrower.out(message, response);
+						return;
+					}
+					message.put("message", "用户密码错误");
 					log.debug("error password");
 					JsonOutToBrower.out(message, response);
 				}
