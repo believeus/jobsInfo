@@ -39,12 +39,25 @@
 		</init-param>
 	</filter>
 	<!--end: 这个过滤器是用在一个页面请求时，打来Session，生成完页面生关闭Session，这样就可以解决lazy -->
-
+	<filter>
+		<filter-name>accessFilter</filter-name>
+		<filter-class>com.etech.filter.URLAccessFilter</filter-class>
+		<init-param>
+			<param-name>denyurl</param-name>
+			<param-value>
+			 /personalCenter.jhtml,/enterpriseCenter.jhtml
+			</param-value>
+		</init-param>
+	</filter>
 
 
 	<!-- 经测试filter的执行过程是按照filter-mapping的顺序决定的 ,比如说来了一个.html的请求 -->
 	<!-- 会先被SessionUserCheckUpdate拦截,之后才会被UrlRewriteFilter拦截UrlRewriteFilter被拦截到请求 -->
 	<!-- 是不会传递到下一个filter的，这是UrlRewriteFilter重写URL导致的 -->
+	<filter-mapping>
+		<filter-name>accessFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	<filter-mapping>
 		<filter-name>charsetEncoding</filter-name>
 		<url-pattern>/*</url-pattern>
@@ -92,7 +105,7 @@
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>*.jhtml</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/index</url-pattern>
