@@ -97,7 +97,7 @@ public class TUser implements Serializable{
 		this.email = email;
 	}
 	/** 身份证号码 */
-	@Column(unique=true,nullable = false,columnDefinition="varchar(45) comment '身份证号码'")
+	@Column(unique=true,nullable = true,columnDefinition="varchar(45) comment '身份证号码'")
 	public String getIdcard() {
 		return idcard;
 	}

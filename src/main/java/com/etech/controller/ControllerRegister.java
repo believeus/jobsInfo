@@ -71,6 +71,12 @@ public class ControllerRegister {
 			return;
 		}
 		log.debug("current idcard:"+regUser.getIdcard());
+		if(StringUtils.isEmpty(regUser.getIdcard())){
+			message.put("property","idcard");
+			message.put("message","身份证必填");
+			JsonOutToBrower.out(message, response);
+			return;
+		}
 		if(!StringUtils.isEmpty(regUser.getIdcard())){
 			//身份证正则表达式
 			boolean matcheIdCard1 = regUser.getIdcard().matches("^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])((\\d{4})|\\d{3}[A-Z])$");
@@ -98,6 +104,8 @@ public class ControllerRegister {
 			return;
 		}
 		user = (TUser) userService.findObjectByProperty(TCommonUser.class, EtechGobal.Idcard, regUser.getIdcard());
+		log.debug("idcard:"+regUser.getIdcard());
+		log.debug("current user:"+user);
 		if (!StringUtils.isEmpty(user)) {
 			message.put("property","idcard");
 			message.put("message","身份证号已存在,请重新填写");
