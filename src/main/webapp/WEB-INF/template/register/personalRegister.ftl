@@ -95,20 +95,19 @@ body {
 								},
 							dataType: "json",
 							cache: false,
-							success: function(data) {
-									alert(data.message);
-									// 如果登录成功，则显示成功
-									if(data.success=="success"){
+							success: function(data) {	
+									// 如果登录成功，则进行跳转
+									if(data.message=="success"){
 										window.location.href="/";
 									}else{
-											
+										$("#"+data.property).parent().append("<br><span><font color='red'>*</font>"+data.message+"</span>");
 									}
 								}
 							});
 					}
 					
 				// 用户名验证。
-				$("#loginName,#idcard").change(function(){
+				$("#loginName,#idcard,#password,#comfirmPwd,#trueName,#phoneNum,#email").change(function(){
 					submitF("nosubmit");
 				});
 				
@@ -155,7 +154,7 @@ body {
             </div>
             <div>
             	<span>真实姓名：</span>
-                <span><input id="trueName" /></span>
+                <span><input type="text id="trueName" /></span>
             </div>
             <div>
             	<span>身份证号：</span>

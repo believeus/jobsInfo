@@ -76,6 +76,53 @@ body {
 [#include "/include/header.ftl" /]
 	<script style="text/javascript">
 		    $().ready(function() {
+		    
+		    	// ajax 提交验证和登录。
+		    		function submitF(submitx){
+						$.ajax({
+							url: "/ajaxComValidReg.jhtml",
+							type: "POST",
+							data: {
+								loginName: $("#loginName").val(),
+								password:$("#password").val(),
+								comfirmPwd:$("#comfirmPwd").val(),
+								cpName:$("#trueName").val(),
+								legalPerson:$("#phoneNum").val(),
+								email:$("#email").val(),
+								sex:$("#sex").val(),
+								submit:submitx
+								},
+							dataType: "json",
+							cache: false,
+							success: function(data) {
+									alert(data.message);
+									// 如果登录成功，则显示成功
+									if(data.message == "success"){
+										window.location.href="/";
+									}else{
+											
+									}
+								}
+							});
+					}
+					
+				// 用户名验证。
+				$("#loginName,#idcard").change(function(){
+					submitF("nosubmit");
+				});
+				
+				// 注册。
+				$("#register").click(function() {
+					var loginName= $("#loginName").val();
+					var password=$("#password").val();
+					var comfirmPwd=$("#comfirmPwd").val()
+					if(loginName==""&&password==""&&comfirmPwd==""){
+						alert("用户名和密码和确认密码不能为空！");
+					}else{
+						submitF("submit");
+					}
+				});
+				
 				$("#personalReg").click(function() {
 					// 需要跳转到注册页面
 					window.location.href="/personalReg.jhtml";
@@ -94,31 +141,31 @@ body {
    	  		<p style="color: rgb(211, 54, 49); font-size: 20px; margin-bottom: 20px; margin-top: 0px; text-align: left;">欢迎企业用户注册</p>
             <div>
             	<span><font color="red">*</font>用户名：</span>
-                <span><input name="loginName" /></span>
+                <span><input id="loginName" /></span>
             </div>
             <div>
             	<span><font color="red">*</font>密码：</span>
-                <span><input name="password" type="password" /></span>
+                <span><input id="password" type="password" /></span>
             </div>
             <div>
             	<span><font color="red">*</font>重复密码：</span>
-                <span><input type="password" name="enpassword" /></span>
+                <span><input type="password" id="comfirmPwd" /></span>
             </div>
             <div>
             	<span>企业名称：</span>
-                <span><input  name="cpName" /></span>
+                <span><input  id="cpName" /></span>
             </div>
             <div>
             	<span>法人：</span>
-                <span><input type="" name="legalPerson" /></span>
+                <span><input type="" id="legalPerson" /></span>
             </div>
             <div>
             	<span>联系人：</span>
-                <span><input type="" name="cpContacts" /></span>
+                <span><input type="" id="cpContacts" /></span>
             </div>
             <div>
             	<span>手机号：</span>
-                <span><input type="" name="cpPhoneNum" /></span>
+                <span><input type="" id="cpPhoneNum" /></span>
             </div>
     	</div>
     </div>
