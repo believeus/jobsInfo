@@ -158,19 +158,16 @@
 		    $().ready(function() {
 		    	// ajax 提交验证和登录。
 		    	function submitF(or,flag){
-						var loginName=$("#username").val();
-						var password=$("#password").val();						
-						var userType=$('input:radio[name="userType"]:checked').val();
-					 	if(loginName==""){
+					 	if($("#username").val()==""){
 					 	  return false;
 					 	}
 						$.ajax({
 							url: "/ajaxLoginValid.jhtml",
 							type: "POST",
 							data: {
-								loginName: loginName,
-								password:password,
-								userType: userType
+								loginName: $("#username").val(),
+								password:$("#password").val(),
+								userType: $('input:radio[name="userType"]:checked').val()
 									},
 							dataType: "json",
 							cache: false,
@@ -339,26 +336,30 @@
 				</ul>
 			</div>
 			
-			[#if commonuser?exists||enterpriseuser?exists]
+			[#if sessionUser?exists]
 				<div class="denglu" id="denglu2">
 				<table style="padding:19px;">
 					<tr>
 						<td colspan="2" align="center" style="background:#EE981F;color:#FFFFFF;border-radius:4px;">用户登录</td>
 					</tr>
 					<tr>
-						<td colspan="2"><font color="red" size="2">${commonuser.loginName}${enterpriseuser.loginName}</font>，欢迎您登录！</td>
+						<td colspan="2"><font color="red" size="2">${sessionUser.loginName}</font>，欢迎您登录！</td>
 					</tr>
 					<tr>
 						<td colspan="2">上次登录时间:
 						  <span style="font-size:13px">
-							${commonuser.lastLoginData?number_to_datetime}&nbsp;${commonuser.lastLoginData?number_to_time}
-							${enterpriseuser.lastLoginData?number_to_datetime}&nbsp;${enterpriseuser.lastLoginData?number_to_time}
+							${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
+							${sessionUser.class}
 						  </span>
 						 </td>
 					</tr>
 					<tr>
 						<td align="center" colspan="2" style="padding-top: 20px;">
-							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" value="个人中心">
+							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" 
+							
+							onclick="[#if 1=="1"]javascript:alert('xxxx');[#else]javascript:alert('alter');[/#if]" 
+							
+							value="个人中心">
 							<input id="logout" type="button" style="background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" value="退出">
 						</td>
 					</tr>

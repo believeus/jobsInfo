@@ -269,7 +269,7 @@
 			</table>	
 		</div>
 		<div class="j_main_3" >
-		[#if commonuser?exists||enterpriseuser?exists]
+		[#if sessionUser?exists]
 			<!--登录后的界面begin-->
 			<div class="j_main_3_1" style="display:block;">
 				<table style="padding: 6px 19px 19px;">
@@ -277,13 +277,12 @@
 						<td colspan="2" align="center" style="background:#EE981F;color:#FFFFFF;border-radius:4px;">用户登录</td>
 					</tr>
 					<tr>
-						<td colspan="2"><font color="red" size="2">${commonuser.loginName}${enterpriseuser.loginName}</font>，欢迎您登录！</td>
+						<td colspan="2"><font color="red" size="2">${sessionUser.loginName}</font>，欢迎您登录！</td>
 					</tr>
 					<tr>
 						<td colspan="2">上次登录时间:
 						 <span style="font-size:13px">
-						  	${commonuser.lastLoginData?number_to_datetime}&nbsp;${commonuser.lastLoginData?number_to_time}
-						  	${enterpriseuser.lastLoginData?number_to_datetime}&nbsp;${enterpriseuser.lastLoginData?number_to_time}
+						  	${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
 						 </span>
 						</td>
 					</tr>
