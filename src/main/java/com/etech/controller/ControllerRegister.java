@@ -40,23 +40,33 @@ public class ControllerRegister {
 		log.debug("current regUser reginName:"+regUser.getLoginName());
 		Map<String, Object> message=new HashMap<String, Object>();
 		if(StringUtils.isEmpty(regUser.getLoginName())){
-			message.put("loginName","用户名必填!");
+			message.put("property","loginName");
+			message.put("message","用户名必填!");
 			JsonOutToBrower.out(message, response);
 			return;
 		}
 		boolean matches = regUser.getLoginName().matches("[a-zA-Z0-9]{6}");
 		if(matches==false){
-			message.put("loginName","登录名必须是最少6位的英文字母或数字");
+			message.put("property","loginName");
+			message.put("message","登录名必须是最少6位的英文字母或数字");
 			JsonOutToBrower.out(message, response);
 			return;
 		}
-		if(StringUtils.isEmpty(regUser.getPassword())||StringUtils.isEmpty(comfirmPwd)){
-			message.put("password","密码和确定密码必填!");
+		if(StringUtils.isEmpty(regUser.getPassword())){
+			message.put("property","password");
+			message.put("message","密码必填!");
+			JsonOutToBrower.out(message, response);
+			return;
+		}
+		if(StringUtils.isEmpty(comfirmPwd)){
+			message.put("property","comfirmPwd");
+			message.put("message","密码和确定密码必填!");
 			JsonOutToBrower.out(message, response);
 			return;
 		}
 		if(!regUser.getPassword().equals(comfirmPwd)){
-			message.put("password","密码和确定密码不一致!");
+			message.put("property","comfirmPwd");
+			message.put("message","密码和确定密码不一致!");
 			JsonOutToBrower.out(message, response);
 			return;
 		}
@@ -67,26 +77,30 @@ public class ControllerRegister {
 			boolean matcheIdCard2 = regUser.getIdcard().matches("/^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$/");
 			// 身份证验证不匹配
 			if(matcheIdCard1==false && matcheIdCard2==false){
-				message.put("idcard","身份证格式不对");
+				message.put("property","idcard");
+				message.put("message","身份证格式不对");
 				JsonOutToBrower.out(message, response);
 				return;
 			}
 			int sexIndex = Integer.parseInt(regUser.getIdcard().substring(16,regUser.getIdcard().length()-1));
 			String sex=sexIndex%2!=0?"man":"woman";
-			message.put("sex",sex);
+			message.put("property","sex");
+			message.put("message",sex);
 			JsonOutToBrower.out(message, response);
 			return;
 		}
 		
 		TUser user = (TUser) userService.findObjectByProperty(TCommonUser.class, EtechGobal.LoginName, regUser.getLoginName());
 		if (!StringUtils.isEmpty(user)) {
-			message.put("loginName","用户名已存在，请重新填写用户名");
+			message.put("property","loginName");
+			message.put("message","用户名已存在，请重新填写用户名");
 			JsonOutToBrower.out(message, response);
 			return;
 		}
 		user = (TUser) userService.findObjectByProperty(TCommonUser.class, EtechGobal.Idcard, regUser.getIdcard());
 		if (!StringUtils.isEmpty(user)) {
-			message.put("idcard","身份证号已存在,请重新填写");
+			message.put("property","idcard");
+			message.put("message","身份证号已存在,请重新填写");
 			JsonOutToBrower.out(message, response);
 			return;
 		}
