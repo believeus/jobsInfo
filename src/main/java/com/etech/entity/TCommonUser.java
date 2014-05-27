@@ -4,9 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -16,30 +13,14 @@ import javax.persistence.Table;
  * */
 @Entity
 @Table
-public class TCommonUser implements Serializable{
+public class TCommonUser extends TUser implements Serializable{
 
 	private static final long serialVersionUID = 5791526164788361621L;
-	private int id;
-	/** 登录名 */
-	private String loginName;
+	
 	/**真实姓名*/
 	private String trueName;
-	/**编辑更新时间*/
-	private long editDate;
-	/*创建时间*/
-	private long createDate;
-	/**上次登录时间*/
-	private long lastLoginData;
 	/**身高*/
-	private String height;
-	/** 用户登录密码 */
-	private String password;
-	/** 身份证号码 */
-	private String idcard;
-	/** 手机号码 */
-	private String phoneNum;
-	/** 用户邮箱 */
-	private String email;
+	private String height;	
 	/** 用户民族 */
 	private String ethnic;
 	/** 教育程度 */
@@ -49,57 +30,6 @@ public class TCommonUser implements Serializable{
 	/** 户口性质 */
 	private String kindOfAccounts;
 
-	@Id
-	// MySQL/SQLServer: @GeneratedValue(strategy = GenerationType.AUTO)
-	// Oracle: @GeneratedValue(strategy = GenerationType.AUTO, generator = "sequenceGenerator")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	@Column(unique=true,nullable = false,columnDefinition="varchar(25) comment '登录名'  default '' ")
-	public String getLoginName() {
-		return loginName;
-	}
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
-	}
-	@Column(nullable = false,columnDefinition="varchar(40) comment '登录密码'  default '' ")
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	/** 身份证号码 */
-	@Column(unique=true,nullable = false,columnDefinition="varchar(45) comment '身份证号码'")
-	public String getIdcard() {
-		return idcard;
-	}
-	/** 身份证号码 */
-	public void setIdcard(String idcard) {
-		this.idcard = idcard;
-	}
-	@Column(nullable = false,columnDefinition="varchar(40) comment '电话号码' default '' ")
-	public String getPhoneNum() {
-		return phoneNum;
-	}
-
-	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
-	}
-	@Column(nullable = true,columnDefinition="varchar(30) comment '邮箱' default '' ")
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	/** 用户民族 */
 	@Column(nullable = true,columnDefinition="varchar(25) comment '民族' default '' ")
 	public String getEthnic() {
@@ -144,13 +74,7 @@ public class TCommonUser implements Serializable{
 	public void setTrueName(String trueName) {
 		this.trueName = trueName;
 	}
-	@Column(nullable = false,columnDefinition="bigint comment '用户创建时间'")
-	public long getEditDate() {
-		return editDate;
-	}
-	public void setEditDate(long editDate) {
-		this.editDate = editDate;
-	}
+
 	@Column(nullable = true,columnDefinition="varchar(10) comment '身高' default '' ")
 	public String getHeight() {
 		return height;
@@ -158,19 +82,6 @@ public class TCommonUser implements Serializable{
 	public void setHeight(String height) {
 		this.height = height;
 	}
-	@Column(nullable = false,columnDefinition="bigint comment '用户编辑时间'")
-	public long getCreateDate() {
-		return createDate;
-	}
-	public void setCreateDate(long createDate) {
-		this.createDate = createDate;
-	}
-	@Column(nullable = false,columnDefinition="bigint comment '最近登录时间'")
-	public long getLastLoginData() {
-		return lastLoginData;
-	}
-	public void setLastLoginData(long lastLoginData) {
-		this.lastLoginData = lastLoginData;
-	}
+
 	
 }
