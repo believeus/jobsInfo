@@ -36,7 +36,7 @@ public class ControllerRegister {
 	
 	/** Begin Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:ajax判断一般用户的ajax验证*/
 	@RequestMapping(value="/ajaxComValidReg")
-	public void ajaxComValidReg(TCommonUser regUser,String submit,HttpSession session,HttpServletResponse response){
+	public void ajaxComValidReg(TCommonUser regUser,String submit,String comfirmPwd,HttpSession session,HttpServletResponse response){
 		log.debug("current regUser reginName:"+regUser.getLoginName());
 		Map<String, Object> message=new HashMap<String, Object>();
 		if(StringUtils.isEmpty(regUser.getLoginName())){
@@ -44,12 +44,23 @@ public class ControllerRegister {
 			JsonOutToBrower.out(message, response);
 			return;
 		}
+		if(StringUtils.isEmpty(regUser.getPassword())||StringUtils.isEmpty(comfirmPwd)){
+			message.put("message","密码和确定密码必填!");
+			JsonOutToBrower.out(message, response);
+			return;
+		}
+		if(!regUser.getPassword().equals(comfirmPwd)){
+			message.put("message","密码和确定密码不一致!");
+			JsonOutToBrower.out(message, response);
+			return;
+		}
+		log.debug("current idcard:"+regUser.getIdcard());
 		if(!StringUtils.isEmpty(regUser.getIdcard())){
 			//身份证正则表达式
 			boolean matcheIdCard1 = regUser.getIdcard().matches("^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])((\\d{4})|\\d{3}[A-Z])$");
 			boolean matcheIdCard2 = regUser.getIdcard().matches("/^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$/");
 			// 身份证验证不匹配
-			if(matcheIdCard1==false || matcheIdCard2==false){
+			if(matcheIdCard1==false && matcheIdCard2==false){
 				message.put("message","身份证格式不对");
 				JsonOutToBrower.out(message, response);
 				return;
