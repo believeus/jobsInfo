@@ -187,23 +187,21 @@
 							dataType: "json",
 							cache: false,
 							success: function(data) {
-									
 									// 如果登录成功，则显示成功
-									if(data.success=="success"){
+									if(data.message=="success"){
 										if(or=="no"){
 											return false;
 										}else{
 											// 刷新页面
-											window.location.href="/";
+											window.location.replace(location.href);
 										}
 									}else{
-										if(data.errorLoginName=="用户不存在，请注册"){
-											alert(data.errorLoginName);										
-										}
-										if(flag !="true"){
-											if(data.errorPwd=="用户密码错误"){
-												alert(data.errorPwd);										
+										if(data.message == "请输入密码"){
+											if(flag !="true"){
+												alert(data.message);										
 											}
+										}else{
+											alert(data.message);		
 										}
 										
 									}
@@ -226,13 +224,18 @@
 					}
 				});
 				$("#register").click(function() {
+					var type=$('input:radio[name="userType"]:checked').val();
 					// 需要跳转到注册页面
-					window.location.href="/personalReg.jhtml";
+					if(type=="commonUser"){
+						window.location.href="/personalReg.jhtml";
+					}else{		
+						window.location.href="/enterpriseReg.jhtml";			
+					}
 				});
 				
 				$("#logout").click(function() {
 					// 需要跳转到注册页面
-					window.location.href="/logout.jhtml";
+					Etech.logout();
 				});
 				
 				
@@ -287,7 +290,9 @@
 					</tr>
 					<tr>
 						<td align="center" colspan="2" style="padding-top: 20px;">
-							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" value="个人中心">
+							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" value="个人中心"
+							onclick="javascript:[#if sessionUser.class.name == clazz ]window.location.href='/personalCenter.jhtml';[#else] alert('需要修改链接到企业中心');[/#if]" 
+							>
 							<input id="logout" type="button" style="background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" value="退出">
 						</td>
 					</tr>
@@ -302,11 +307,11 @@
 					</tr>
 					<tr>
 						<td>用户名:</td>
-						<td><input id="username" type="text" style="width:150px" name="username"></td>
+						<td><input id="username" type="text" autocomplete="off" style="width:150px" name="username"></td>
 					</tr>
 					<tr>
 						<td>密&nbsp;&nbsp;&nbsp;码:</td>
-						<td><input id="password" type="password" style="width:150px" name="password"></td>
+						<td><input id="password" type="password" autocomplete="off" style="width:150px" name="password"></td>
 					</tr>
 					<tr>
 						<td align="center" colspan="2">
