@@ -167,6 +167,78 @@
 </head>
 <body>
 	[#include "/include/header.ftl" /]
+	<script style="text/javascript">
+		    $().ready(function() {
+		    	// ajax 提交验证和登录。
+		    	function submitF(or,flag){
+						var loginName=$("#username").val();
+						var password=$("#password").val();						
+						var userType=$('input:radio[name="userType"]:checked').val();
+					 	if(loginName==""){
+					 	  return false;
+					 	}
+						$.ajax({
+							url: "/ajaxLoginValid.jhtml",
+							type: "POST",
+							data: {
+								loginName: loginName,
+								password:password,
+								userType: userType
+									},
+							dataType: "json",
+							cache: false,
+							success: function(data) {
+									
+									// 如果登录成功，则显示成功
+									if(data.success=="success"){
+										if(or=="no"){
+											return false;
+										}else{
+											// 刷新页面
+											window.location.href="/";
+										}
+									}else{
+										if(data.errorLoginName=="用户不存在，请注册"){
+											alert(data.errorLoginName);										
+										}
+										if(flag !="true"){
+											if(data.errorPwd=="用户密码错误"){
+												alert(data.errorPwd);										
+											}
+										}
+										
+									}
+								}
+							});
+					}
+		    	// 用户名验证。
+				$("#username,input:radio[name='userType']").change(function(){
+					submitF("no","true");
+				});
+				
+				// 登录。
+				$("#login").click(function() {
+					var loginName=$("#username").val();
+					var password=$("#password").val();
+					if(loginName==""&&password==""){
+						alert("用户名和密码不能为空！");
+					}else{
+						submitF("yes","false");
+					}
+				});
+				$("#register").click(function() {
+					// 需要跳转到注册页面
+					window.location.href="/personalReg.jhtml";
+				});
+				
+				$("#logout").click(function() {
+					// 需要跳转到注册页面
+					window.location.href="/logout.jhtml";
+				});
+				
+				
+			})
+	</script>
 	<div class="j_main w">
 		<div class="j_main_1">
 			<table align="left"  style="font-size: 13px; padding: 4px;">
@@ -211,6 +283,7 @@
 						<td colspan="2">上次登录时间:
 						 <span style="font-size:13px">
 						  	${commonuser.lastLoginData?number_to_datetime}&nbsp;${commonuser.lastLoginData?number_to_time}
+						  	${enterpriseuser.lastLoginData?number_to_datetime}&nbsp;${enterpriseuser.lastLoginData?number_to_time}
 						 </span>
 						</td>
 					</tr>

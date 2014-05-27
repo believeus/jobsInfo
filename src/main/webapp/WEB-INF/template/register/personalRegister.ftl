@@ -60,49 +60,138 @@ body {
 }
 </style></head>
 
+
 <body>
 [#include "/include/header.ftl" /]
+<script style="text/javascript">
+		    $().ready(function() {
+		    	// 表单验证
+					$("#registerFormx").validate({
+						rules: {
+							loginName: {
+								required: true,
+								minlength:6,
+								pattern: /^[0-9a-zA-Z_-]+$/,
+								remote: {
+									url: "/ajaxComValidReg.jhtml",
+									cache: false
+								}
+							}
+							
+						},
+						messages: {
+							loginName: {
+								pattern: "格式不对",
+								remote: "用户名已经存在"
+							}
+						},
+						
+						 errorPlacement: function (error, element) { //指定错误信息位置
+						   // error.insertAfter(element);
+						    alert(error);
+						 },
+						submitHandler: function(form) {
+							alert("xxx");
+							//return false;
+							form.submit();	
+						}
+					});
+		    
+		    	// ajax 提交验证和登录。
+		    	function submitF(){
+						var propertyValue=$("#username").val();
+						var password=$("#password").val();
+						var userType=$('input:radio[name="userType"]:checked').val();
+					 	if(propertyValue==""){
+					 	  return false;
+					 	}
+						$.ajax({
+							url: "/ajaxLoginValid.jhtml",
+							type: "POST",
+							data: {
+								propertyValue: propertyValue,
+								password:password,
+								userType: userType
+									},
+							dataType: "json",
+							cache: false,
+							success: function(data) {
+									// 如果登录成功，则显示成功
+									if(data.result=="success"){
+										$("#denglu2").attr("style","");
+										$("#denglu1").attr("style","display:none;");
+									}else{
+										alert(data.result);
+									}
+								}
+							});
+					}
+		    	//验证。
+				$("#username,input:radio[name='userType']").change(function(){
+					submitF();
+				});
+				
+				// 登录。
+				$("#login").click(function() {
+					var propertyValue=$("#username").val();
+					var password=$("#password").val();
+					if(propertyValue==""&&password==""){
+						alert("用户名和密码不能为空！");
+					}else{
+						submitF();
+					}
+				});
+				$("#enterpriseReg").click(function() {
+					// 需要跳转到注册页面
+					window.location.href="/enterpriseReg.jhtml";
+				});
+				
+			})
+	</script>
+
 <div style="margin-left:auto;margin-right:auto;margin-top:10px; height:auto; width:715px; overflow:hidden;">
 	<div class="top_title" style="width:715px;height:42px; background-image:url(/resource/public/images/register_1.gif)">
-    	<input type="button" value="个人用户" name="" />
-   		<input type="button" value="企业用户" name="" style="color:#000; margin-left:0px;"/>
+    	<input type="button" value="个人用户"  />
+   		<input type="button" id="enterpriseReg" value="企业用户" style="color:#000; margin-left:0px;"/>
 	</div>
     <div style="margin-top:15px;padding-left:15px;width:695px; height:85px; border:1px solid #ccc;background-color:#F9F9F9">
     	<p style="font-family:'微软雅黑'; font-size:18px;">尊敬的用户：</p>
         <p>请填写您现在所办社保的信息</p>
     </div>
+    <form id="registerForm" action="/submitpersonalReg.jhtml" method="post">
     <div style="margin-top:60px; margin-left:30px;">
     	<div class="xingx">
             <div>
             	<span>身份证号：</span>
-                <span><input type="text" placeholder="请填写真实身份证号..."/></span>
+                <span><input type="text" name="idcard" placeholder="请填写真实身份证号..."/></span>
             </div>
             <div>
             	<span>密码：</span>
-                <span><input type="password" placeholder="输入密码..."/></span>
+                <span><input type="password" name="password" placeholder="输入密码..."/></span>
             </div>
             <div>
             	<span>确认密码：</span>
-                <span><input type="password" placeholder="确认输入..."/></span>
+                <span><input type="password" name="enpassword" placeholder="确认输入..."/></span>
             </div>
             <div>
             	<span>姓名：</span>
-                <span><input placeholder="输入姓名..."/></span>
+                <span><input name="loginName" placeholder="输入姓名..."/></span>
             </div>
             <div>
             	<span>手机号：</span>
-                <span><input type="" placeholder="输入电话号码（含区号）"/></span>
+                <span><input type="" name="phoneNum" placeholder="输入电话号码（含区号）"/></span>
             </div>
             <div>
             	<span>邮箱：</span>
-                <span><input type="email" placeholder="输入邮箱地址..."/></span>
+                <span><input type="email" name="email" placeholder="输入邮箱地址..."/></span>
             </div>
     	</div>
     </div>
 	<div class="register" style="margin-left:130px;">
-    	<input type="button" name="" value="注册"/>
+    	<input type="submit" name="" value="注册"/>
         <input type="button" name="" value="重填" />
     </div>
+    </form>
 </div>
 [#include "/include/footer.ftl" /]
 </body>

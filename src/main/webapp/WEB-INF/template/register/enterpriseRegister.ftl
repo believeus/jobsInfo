@@ -63,41 +63,51 @@ body {
 
 <body>
 [#include "/include/header.ftl" /]
+	<script style="text/javascript">
+		    $().ready(function() {
+				$("#personalReg").click(function() {
+					// 需要跳转到注册页面
+					window.location.href="/personalReg.jhtml";
+				});
+				
+			})
+	</script>		    
 <div style="margin-left:auto;margin-right:auto;margin-top:10px; height:auto; width:715px; overflow:hidden;">
 	<div class="top_title" style="width:715px;height:42px; background-image:url(/resource/public/images/register_2.gif)">
-    	<input type="button" value="个人用户" name="" style="color:#000;"/>
-   		<input type="button" value="企业用户" name="" style="margin-left:0px;"/>
+    	<input type="button"  id="personalReg" value="个人用户" style="color:#000;"/>
+   		<input type="button" value="企业用户" style="margin-left:0px;"/>
 	</div>
     <div style="margin-top:15px;padding-left:15px;width:695px; height:85px; border:1px solid #ccc;background-color:#F9F9F9">
     	<p style="font-family:'微软雅黑'; font-size:18px;">尊敬的用户：</p>
         <p>请填写您现在所办社保的信息</p>
     </div>
+    <form id="registerForm" action="/submitEnterpriseReg.jhtml" method="post">
     <div style="margin-top:60px; margin-left:30px;">
    	  <div class="xingx">
             <div>
             	<span>用户名：</span>
-                <span><input placeholder="请输入用户名..."/></span>
+                <span><input name="loginName" placeholder="请输入用户名..."/></span>
             </div>
             <div>
             	<span>密码：</span>
-                <span><input type="password" placeholder="输入密码..."/></span>
+                <span><input name="password" type="password" placeholder="输入密码..."/></span>
             </div>
             <div>
             	<span>确认密码：</span>
-                <span><input type="password" placeholder="确认输入..."/></span>
+                <span><input type="password" name="enpassword" placeholder="确认输入..."/></span>
             </div>
             <div>
             	<span>公司名称：</span>
-                <span><input placeholder="请输入全称..."/></span>
+                <span><input  name="cpName" placeholder="请输入全称..."/></span>
             </div>
             <div>
             	<span>公司地址：</span>
-                <span><input type="" placeholder="请尽量填写详细..."/></span>
+                <span><input type="" name="cpAddres" placeholder="请尽量填写详细..."/></span>
             </div>
             <div>
             	<span>公司性质：</span>
                 <span>
-                	<select style="height:30px; width:285px; border:1px solid #C0C0C0; color:#333; font-size:16px;border-radius:3px;">
+                	<select name="kindOfcp"  style="height:30px; width:285px; border:1px solid #C0C0C0; color:#333; font-size:16px;border-radius:3px;">
                     	<option value="" selected="selected">企业</option>
                         <option value="41">企业1</option>
                         <option value="42">企业2</option>
@@ -110,22 +120,23 @@ body {
             </div>
             <div>
             	<span>公司联系人：</span>
-                <span><input type="" placeholder="请输入联系人..."/></span>
+                <span><input type="" name="cpContacts" placeholder="请输入联系人..."/></span>
             </div>
             <div>
             	<span>联系人手机：</span>
-                <span><input type="" placeholder="输入电话号码（含区号）"/></span>
+                <span><input type="" name="cpPhoneNum" placeholder="输入电话号码（含区号）"/></span>
             </div>
             <div>
             	<span>邮箱：</span>
-                <span><input type="email" placeholder="输入邮箱地址..."/></span>
+                <span><input type="email" name="cpEmail" placeholder="输入邮箱地址..."/></span>
             </div>
     	</div>
     </div>
 	<div class="register" style="margin-left:130px;">
-    	<input type="button" name="" value="注册"/>
+    	<input type="submit" name="" value="注册"/>
         <input type="button" name="" value="重填" />
     </div>
+    </form>
 </div>
 [#include "/include/footer.ftl" /]
 </body>
