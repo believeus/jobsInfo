@@ -36,7 +36,7 @@ public class TUser implements Serializable{
 	/** 身份证号码 */
 	private String idcard;
 	/** 公司地址 */
-	private String addres;
+	private String address;
 	@Id
 	// MySQL/SQLServer: @GeneratedValue(strategy = GenerationType.AUTO)
 	// Oracle: @GeneratedValue(strategy = GenerationType.AUTO, generator = "sequenceGenerator")
@@ -82,7 +82,7 @@ public class TUser implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	@Column(nullable = false,columnDefinition="varchar(40) comment '电话号码' default '' ")
+	@Column(nullable = true,columnDefinition="varchar(40) comment '电话号码' default '' ")
 	public String getPhoneNum() {
 		return phoneNum;
 	}
@@ -106,12 +106,13 @@ public class TUser implements Serializable{
 		this.idcard = idcard;
 	}
 	/**家庭住址*/
-	@Column(nullable = false,columnDefinition="varchar(30) comment '地址' default '' ")
-	public String getAddres() {
-		return addres;
+	@Column(nullable = true,columnDefinition="varchar(30) comment '地址' default '' ")
+	public String getAddress() {
+		return address;
 	}
-	public void setAddres(String addres) {
-		this.addres = addres;
+	public void setAddress(String address) {
+		this.address = address;
 	}
+	
 	
 }

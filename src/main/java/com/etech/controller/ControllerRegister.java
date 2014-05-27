@@ -41,6 +41,7 @@ public class ControllerRegister {
 			String password = DigestUtils.md5Hex(user.getPassword());
 			user.setCreateDate(System.currentTimeMillis());
 			user.setEditDate(System.currentTimeMillis());
+			user.setLastLoginData(System.currentTimeMillis());
 			user.setPassword(password);
 			userService.saveOrUpdate(user);
 			return "redirect:"+referer; 
@@ -99,7 +100,7 @@ public class ControllerRegister {
 			return "redirect:"+referer; 
 		}else{
 			//在页面上保留用户已经填写过的信息
-			request.setAttribute("cpAddres", user.getAddres());
+			request.setAttribute("cpAddres", user.getAddress());
 			request.setAttribute("cpContacts", user.getCpContacts());
 			request.setAttribute("cpPhoneNum", user.getPhoneNum());
 			request.setAttribute("cpEmail", user.getEmail());
