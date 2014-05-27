@@ -36,6 +36,7 @@ public class ControllerLogin {
 		//登录用户名不为空
 		}else {
 			TUser sessionUser=null;
+			log.debug("current loginName:"+user.getLoginName());
 			// 一般用户登录
 			if (userType.equals("commonUser")) {
 				sessionUser = (TCommonUser) userService.findObjectByProperty(TCommonUser.class, EtechGobal.LoginName, user.getLoginName());
@@ -51,7 +52,9 @@ public class ControllerLogin {
 			}else {
 				/*用户名和密码都正确*/
 				/*密码使用md5加密*/
-				String password =DigestUtils.md5Hex(sessionUser.getPassword());
+				log.debug("origin password:"+user.getPassword());
+				String password =DigestUtils.md5Hex(user.getPassword());
+				log.debug("db user password:"+sessionUser.getPassword()+" form password:"+password);
 				if (sessionUser.getPassword().equals(password)) {
 					message.put("success","success");
 					session.setAttribute("sessionUser",sessionUser);
