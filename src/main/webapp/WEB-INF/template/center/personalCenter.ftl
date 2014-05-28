@@ -7,24 +7,41 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script type="text/javascript" src="/resource/public/js/jquery.js"></script>
     <script type="text/javascipt"  src="/resource/public/js/Etech.js"></script>
-    <script type="text/javascript">
-    	$().ready(function(){
-    		$("#personal_xinxi").click(function(){
-    			$("#personal_xinxi").removeClass("current");
-    			$("#select_zhiyuan").removeClass("current");
-    			$("#personal_xinxi").addClass("current");
-    			$("#base_xinxi").show();
-    			$("#select_zhuti").hide();
-    		});
-    		$("#select_zhiyuan").click(function(){
-    			$("#select_zhiyuan").removeClass("current");
-    			$("#personal_xinxi").removeClass("current");
-    			$("#select_zhiyuan").addClass("current");
-    			$("#select_zhuti").show();
-    			$("#base_xinxi").hide();
-    		});
-    	});
-    </script>
+	<style type="text/css">
+	.brandImg{
+		border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
+	    border-radius: 2px 2px 2px 2px;
+	    border-style: solid;
+	    border-width: 1px;
+	    background-color: #666666;
+	    width:122px;height:150px;
+	    position:relative;
+	}
+	
+	.brandImg span{
+		display:block;
+		position:absolute;
+		top:0px;left:0px;
+		width:100px;
+		height:150px;
+	}
+	
+	.brandImg span:hover{
+		background-color:#FFFFFF;
+	    opacity: 0.7;
+	    filter:alpha(opacity=50);
+	    -moz-opacity:0.5;
+	    -khtml-opacity: 0.5;
+	}
+	
+	.brandImg span a{
+		display:block;
+		position:absolute;
+		top:65px;
+		left:20px;
+	}
+	
+	</style>
     <style type="text/css">
    		.j_main{
     		width:1000px;
@@ -122,6 +139,39 @@
 			color:#FFFFFF;
 		}
     </style>
+     <script type="text/javascript">
+     	// 图片上传
+		function loadImgFast(img,i){
+				if (img.files && img.files[0]){
+					var reader = new FileReader();
+					reader.onload = function(evt){$(".brandImg:eq("+i+") img")[0].src = evt.target.result;}
+		            reader.readAsDataURL(img.files[0]);	
+				}else if(window.navigator.userAgent.indexOf("MSIE")>=1){
+				   	file.select(); 
+		   			path = document.selection.createRange().text;
+		   			$(".brandImg:eq("+i+") img")[0].src = path;
+		   		} 
+			}
+	</script>
+	
+     <script type="text/javascript">
+    	$().ready(function(){
+    		$("#personal_xinxi").click(function(){
+    			$("#personal_xinxi").removeClass("current");
+    			$("#select_zhiyuan").removeClass("current");
+    			$("#personal_xinxi").addClass("current");
+    			$("#base_xinxi").show();
+    			$("#select_zhuti").hide();
+    		});
+    		$("#select_zhiyuan").click(function(){
+    			$("#select_zhiyuan").removeClass("current");
+    			$("#personal_xinxi").removeClass("current");
+    			$("#select_zhiyuan").addClass("current");
+    			$("#select_zhuti").show();
+    			$("#base_xinxi").hide();
+    		});
+    	});
+    </script>
 </head>
 <body>
 	[#include "/include/header.ftl" /]
@@ -328,8 +378,13 @@
 							</table>
 						</div>
 						<div style="width: 150px; float: left; margin-left: 15px; height: auto; margin-top: 15px;">
-							<img src="" width="100px" height="130px;">
-							<input type="button" value="上传照片" style="width:100px;">
+									<div class="brandImg">
+										<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
+										</span>
+												<img style="width:122px;height:150px" src="/resource/public/images/bg.png" name="img"/>
+									</div>
+									<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
+									<input type="hidden" id="filename0" name="filename0">
 						</div>
 					</div>
 					
