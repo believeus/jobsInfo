@@ -6,6 +6,7 @@
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script type="text/javascript" src="/resource/public/js/jquery.js"></script>
+    <script type="text/javascipt"  src="/resource/public/js/Etech.js"></script>
     <script type="text/javascript">
     	$().ready(function(){
     		$("#personal_xinxi").click(function(){
@@ -132,15 +133,19 @@
 						<td colspan="2" align="center" style="background:#EE981F;color:#FFFFFF;border-radius:4px;">用户登录</td>
 					</tr>
 					<tr>
-						<td colspan="2"><font color="red" size="2">李妹</font>，欢迎您登录！</td>
+						<td colspan="2"><font color="red" size="2">${sessionUser.loginName}</font>，欢迎您登录！</td>
 					</tr>
 					<tr>
-						<td colspan="2">上次登录时间:<span style="font-size:13px">2014-04-15 20：20</span></td>
+						<td colspan="2">上次登录时间:
+							<span style="font-size:13px">
+								${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
+							</span>
+						</td>
 					</tr>
 					<tr>
 						<td align="center" colspan="2" style="padding-top: 20px;">
 							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 75px;height:27px;" value="个人中心">
-							<input type="button" style="background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 75px;height:27px;" value="退出">
+							<input type="button" onclick="Etech.logout();" style="background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 75px;height:27px;" value="退出">
 						</td>
 					</tr>
 				</table>
@@ -180,8 +185,8 @@
 					<div id="select_zhiyuan" class="j_main_right_2_1_2" style="cursor:pointer;">选择志愿</div>
 				</div>
 				<p>
-					<span>登记编号:1234567890</span>
-					<span style="float: right; padding-right: 20px;">更新日期:2014-5-26</span>
+					<span>登记编号:${sessionUser.id}</span>
+					<span style="float: right; padding-right: 20px;">更新日期:${sessionUser.editDate?number_to_datetime}&nbsp;${sessionUser.editDate?number_to_time}</span>
 				</p>
 				
 				<div id="base_xinxi" style="width::728px;height:auto;overflow:hidden;">
@@ -194,11 +199,11 @@
 							<table>
 								<tr>
 									<td>姓名:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="trueName" value="${sessionUser.trueName}"></td>
 								</tr>
 								<tr>
 									<td>登录名:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="loginName" value="${sessionUser.loginName}"></td>
 								</tr>
 								<tr>
 									<td>年龄:</td>
@@ -271,7 +276,7 @@
 								</tr>
 								<tr>
 									<td>身份证号:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="idcard" value="${sessionUser.idcard}"></td>
 								</tr>
 								<tr>
 									<td>文化程度:</td>
