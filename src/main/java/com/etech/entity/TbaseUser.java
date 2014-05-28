@@ -92,7 +92,6 @@ public class TbaseUser extends TbaseEntity implements Serializable{
 		this.email = email;
 	}
 	/** 身份证号码 */
-	@NotEmpty
 	@Length(max = 18)
 	public String getIdcard() {
 		return idcard;
