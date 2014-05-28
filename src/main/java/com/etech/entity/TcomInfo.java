@@ -1,8 +1,6 @@
 package com.etech.entity;
 
 import java.io.Serializable;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.Table;
 

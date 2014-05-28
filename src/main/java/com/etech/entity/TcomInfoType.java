@@ -11,12 +11,11 @@ import org.hibernate.validator.constraints.NotEmpty;
  * */
 @Entity
 @Table
-public class TclassType extends TbaseEntity implements Serializable {
+public class TcomInfoType extends TbaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 265386274128991391L;
 	private String name;
 	private int codeId;
-	private int parent;
 	
 	/**类型描述*/
 	@NotEmpty
@@ -28,15 +27,6 @@ public class TclassType extends TbaseEntity implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	@NotEmpty
-	public int getParent() {
-		return parent;
-	}
-
-	public void setParent(int parent) {
-		this.parent = parent;
-	}
-
 	public int getCodeId() {
 		return codeId;
 	}

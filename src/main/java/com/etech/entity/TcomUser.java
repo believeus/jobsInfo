@@ -5,9 +5,13 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.validator.constraints.Length;
+
 
 /**
  * @author wuqiwei
@@ -209,7 +213,8 @@ public class TcomUser extends TbaseUser implements Serializable{
 	public void setHealth(String health) {
 		this.health = health;
 	}
-	
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "fk_comUserId", referencedColumnName = "id")
 	public List<TcomInfo> getComInfo() {
 		return comInfo;
 	}
