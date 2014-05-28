@@ -137,7 +137,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">上次登录时间:
-							<span style="font-size:13px">
+							<span style="font-size:13px;float:left;">
 								${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
 							</span>
 						</td>

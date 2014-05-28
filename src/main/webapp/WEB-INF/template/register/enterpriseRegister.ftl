@@ -96,7 +96,7 @@ body {
 							dataType: "json",
 							cache: false,
 							success: function(data) {
-									// 如果登录成功，则进行跳转
+									// 如果注册成功，则进行跳转
 									if(data.message=="success"){
 										window.location.href="/";
 									}else{

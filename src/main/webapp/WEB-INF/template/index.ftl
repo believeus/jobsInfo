@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>主页</title>
+    <title>潜江公共就业服务网</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -358,7 +358,7 @@
 					<tr>
 						<td align="center" colspan="2" style="padding-top: 5px;">
 							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" value="个人中心"
-							onclick="javascript:[#if sessionUser.class.name == clazz ]window.location.href='/personalCenter.jhtml';[#else] alert('需要修改链接到企业中心');[/#if]" 
+							onclick="javascript:[#if sessionUser.class.name == "com.etech.entity.TCommonUser"]window.location.href='/personalCenter.jhtml';[#else] alert('需要修改链接到企业中心');[/#if]" 
 							>
 							<input id="logout" type="button" style="background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" value="退出">
 						</td>
