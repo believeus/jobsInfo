@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * 个人中心
  * */
 @Controller
-public class ControllerEnterpriseCenter {
-	private static Log log = LogFactory.getLog(ControllerEnterpriseCenter.class);
+public class ControllerEntCenter {
+	private static Log log = LogFactory.getLog(ControllerEntCenter.class);
 
 	@RequestMapping(value = "/enterpriseCenter", method = RequestMethod.GET)
 	public String enterpriseCenter() {

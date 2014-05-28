@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.util.StringUtils;
 
-import com.etech.entity.TUser;
+import com.etech.entity.TbaseUser;
 
 /**
  * 链接访问控制，指定哪些链接根据规则不允许访问哪些页面
@@ -40,7 +40,7 @@ public class URLAccessFilter implements Filter{
 		HttpServletResponse httpResponse=(HttpServletResponse)response;
 		String currenturi=httpRequest.getRequestURI();
 		if(denyUrlList.contains(currenturi)){
-			TUser sessionUser=(TUser)httpRequest.getSession().getAttribute("sessionUser");
+			TbaseUser sessionUser=(TbaseUser)httpRequest.getSession().getAttribute("sessionUser");
 			if(StringUtils.isEmpty(sessionUser)){
 				//没有权限跳转到主页面
 				httpResponse.sendRedirect("/");

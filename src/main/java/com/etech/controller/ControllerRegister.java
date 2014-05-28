@@ -13,9 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.etech.entity.EnterpriseUser;
-import com.etech.entity.TCommonUser;
-import com.etech.entity.TUser;
+import com.etech.entity.TentUser;
+import com.etech.entity.TcomUser;
+import com.etech.entity.TbaseUser;
 import com.etech.service.UserService;
 import com.etech.util.EtechGobal;
 import com.etech.util.JsonOutToBrower;
@@ -36,7 +36,7 @@ public class ControllerRegister {
 	
 	/** Begin Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:ajax判断一般用户的ajax验证*/
 	@RequestMapping(value="/ajaxComValidReg")
-	public void ajaxComValidReg(TCommonUser regUser,String submit,String comfirmPwd,HttpSession session,HttpServletResponse response){
+	public void ajaxComValidReg(TcomUser regUser,String submit,String comfirmPwd,HttpSession session,HttpServletResponse response){
 		log.debug("current regUser reginName:"+regUser.getLoginName());
 		Map<String, Object> message=new HashMap<String, Object>();
 		if(StringUtils.isEmpty(regUser.getLoginName())){
@@ -84,7 +84,7 @@ public class ControllerRegister {
 				return;
 			}
 			//验证身份证号是否存在过
-			TUser user = (TUser) userService.findObjectByProperty(TCommonUser.class, EtechGobal.Idcard, regUser.getIdcard());
+			TbaseUser user = (TbaseUser) userService.findObjectByProperty(TcomUser.class, EtechGobal.Idcard, regUser.getIdcard());
 			log.debug("idcard:"+regUser.getIdcard());
 			log.debug("current user:"+user);
 			if (!StringUtils.isEmpty(user)) {
@@ -105,7 +105,7 @@ public class ControllerRegister {
 			}
 		}
 		
-		TUser user = (TUser) userService.findObjectByProperty(TCommonUser.class, EtechGobal.LoginName, regUser.getLoginName());
+		TbaseUser user = (TbaseUser) userService.findObjectByProperty(TcomUser.class, EtechGobal.LoginName, regUser.getLoginName());
 		if (!StringUtils.isEmpty(user)) {
 			message.put("property","loginName");
 			message.put("message","用户名已存在");
@@ -135,7 +135,7 @@ public class ControllerRegister {
 	
 	/**Begin Author:wuqiwei Data:2014-05-26  Email:1058633117@qq.com:AddReason:企业注册登陆名验证*/
 	@RequestMapping(value="/ajaxEnterpriseValidReg")
-	public void ajaxEnterpriseValidReg(EnterpriseUser regUser,String submit,String comfirmPwd,HttpSession session,HttpServletResponse response){
+	public void ajaxEnterpriseValidReg(TentUser regUser,String submit,String comfirmPwd,HttpSession session,HttpServletResponse response){
 		Map<String, Object> message=new HashMap<String, Object>();
 		if(StringUtils.isEmpty(regUser.getLoginName())){
 			message.put("property","loginName");
@@ -162,7 +162,7 @@ public class ControllerRegister {
 			JsonOutToBrower.out(message, response);
 			return;
 		}
-		TUser user = (TUser) userService.findObjectByProperty(EnterpriseUser.class, EtechGobal.LoginName, regUser.getLoginName());
+		TbaseUser user = (TbaseUser) userService.findObjectByProperty(TentUser.class, EtechGobal.LoginName, regUser.getLoginName());
 		if (!StringUtils.isEmpty(user)) {
 			message.put("property","loginName");
 			message.put("message","用户名已存在");

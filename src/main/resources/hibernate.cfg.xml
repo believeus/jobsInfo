@@ -72,9 +72,10 @@
 		<!-- 当超过10个索引时自动合并 -->
 		<property name="hibernate.search.default.indexwriter.max_merge_docs">50</property>
 		<!-- End Name:wuqiwei Date:2013-09-25 AddReason:配置hibernate search -->
-		
-		<mapping class="com.etech.entity.TCommonUser" />
-		<mapping class="com.etech.entity.EnterpriseUser"/>
+		<mapping class="com.etech.entity.TclassType"/>
+		<mapping class="com.etech.entity.TbaseUser"/>
+		<mapping class="com.etech.entity.TcomUser" />
+		<mapping class="com.etech.entity.TentUser"/>
 		
 		
 	</session-factory>

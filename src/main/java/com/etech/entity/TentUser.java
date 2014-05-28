@@ -12,8 +12,8 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="TEnterpriseUser")
-public class EnterpriseUser extends TUser implements Serializable {
+@Table
+public class TentUser extends TbaseUser implements Serializable {
 	
 	private static final long serialVersionUID = 6293704345783832975L;
 	/**公司名字*/

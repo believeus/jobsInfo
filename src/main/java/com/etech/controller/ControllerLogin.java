@@ -14,9 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.etech.entity.TCommonUser;
-import com.etech.entity.EnterpriseUser;
-import com.etech.entity.TUser;
+import com.etech.entity.TcomUser;
+import com.etech.entity.TentUser;
+import com.etech.entity.TbaseUser;
 import com.etech.service.UserService;
 import com.etech.util.EtechGobal;
 import com.etech.util.JsonOutToBrower;
@@ -30,7 +30,7 @@ public class ControllerLogin {
 
 	/**Begin Author:wuqiwei Data:2014-05-26 Email:1058633117@qq.com AddReason:根据登录用户的类型,进行ajax登录验证 */
 	@RequestMapping(value = "/ajaxLoginValid")
-	public void ajaxLoginValid(TUser user, String userType,HttpServletResponse response,HttpSession session) throws Exception {
+	public void ajaxLoginValid(TbaseUser user, String userType,HttpServletResponse response,HttpSession session) throws Exception {
 		Map<String, Object> message=new HashMap<String, Object>();
 		//登录用户名为空
 		if(StringUtils.isEmpty(user.getLoginName())){
@@ -38,14 +38,14 @@ public class ControllerLogin {
 			JsonOutToBrower.out(message, response);
 		//登录用户名不为空
 		}else {
-			TUser sessionUser=null;
+			TbaseUser sessionUser=null;
 			log.debug("current loginName:"+user.getLoginName());
 			// 一般用户登录
 			if (userType.equals("commonUser")) {
-				sessionUser = (TCommonUser) userService.findObjectByProperty(TCommonUser.class, EtechGobal.LoginName, user.getLoginName());
+				sessionUser = (TcomUser) userService.findObjectByProperty(TcomUser.class, EtechGobal.LoginName, user.getLoginName());
 			// 企业级用户
 			} else {
-				sessionUser = (EnterpriseUser) userService.findObjectByProperty(EnterpriseUser.class, EtechGobal.LoginName,user.getLoginName());
+				sessionUser = (TentUser) userService.findObjectByProperty(TentUser.class, EtechGobal.LoginName,user.getLoginName());
 			}
 			if (StringUtils.isEmpty(sessionUser)) {
 				message.put("message", "用户不存在，请注册");

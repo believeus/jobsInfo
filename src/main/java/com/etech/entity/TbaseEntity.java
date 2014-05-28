@@ -5,14 +5,16 @@ import java.io.Serializable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
-public class BaseEntity implements Serializable {
+@MappedSuperclass
+public class TbaseEntity implements Serializable {
 	private static final long serialVersionUID = -4017940130624140047L;
 	private int id;
 	@Id
 	// MySQL/SQLServer: @GeneratedValue(strategy = GenerationType.AUTO)
 	// Oracle: @GeneratedValue(strategy = GenerationType.AUTO, generator = "sequenceGenerator")
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "sequenceGenerator")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {
 		return id;
 	}
