@@ -47,6 +47,7 @@ public class URLAccessFilter implements Filter{
 				return;
 			}
 			filterChain.doFilter(request, response);
+			return;
 		}
 		filterChain.doFilter(request, response);
 	}
