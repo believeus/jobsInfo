@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.etech.entity.TentUser;
 import com.etech.entity.TcomUser;
 import com.etech.entity.TbaseUser;
-import com.etech.service.UserService;
+import com.etech.service.EtechService;
 import com.etech.util.EtechGobal;
 import com.etech.util.JsonOutToBrower;
 
@@ -25,7 +25,7 @@ import com.etech.util.JsonOutToBrower;
 public class ControllerRegister {
 	private static final Log log = LogFactory.getLog(ControllerRegister.class);
 	@Resource
-	private UserService userService;
+	private EtechService userService;
 	/** Begin Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:企业用户注册页面*/
 	@RequestMapping(value = "/personalReg")
 	public String personalRegister() {
@@ -175,6 +175,8 @@ public class ControllerRegister {
 			regUser.setEditDate(System.currentTimeMillis());
 			regUser.setLastLoginData(System.currentTimeMillis());
 			regUser.setPassword(password);
+			String mustVilid="0";
+			regUser.setStatus(mustVilid);
 			userService.saveOrUpdate(regUser);
 			session.setAttribute("sessionUser", regUser);
 			session.setAttribute("clazz",regUser.getClass().getName());

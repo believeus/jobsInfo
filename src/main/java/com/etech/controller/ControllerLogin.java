@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.etech.entity.TcomUser;
 import com.etech.entity.TentUser;
 import com.etech.entity.TbaseUser;
-import com.etech.service.UserService;
+import com.etech.service.EtechService;
 import com.etech.util.EtechGobal;
 import com.etech.util.JsonOutToBrower;
 
@@ -26,7 +26,7 @@ import com.etech.util.JsonOutToBrower;
 public class ControllerLogin {
 	private static final Log log = LogFactory.getLog(ControllerLogin.class);
 	@Resource
-	private UserService userService;
+	private EtechService userService;
 
 	/**Begin Author:wuqiwei Data:2014-05-26 Email:1058633117@qq.com AddReason:根据登录用户的类型,进行ajax登录验证 */
 	@RequestMapping(value = "/ajaxLoginValid")

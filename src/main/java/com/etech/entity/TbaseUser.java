@@ -1,11 +1,14 @@
 package com.etech.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -28,6 +31,8 @@ public class TbaseUser extends TbaseEntity implements Serializable{
 	private long lastLoginData;
 	/** 用户登录密码 */
 	private String password;
+	/**确定密码*/
+	private String comfirmPwd;
 	/** 手机号码 */
 	private String phoneNum;
 	/** 用户邮箱 */
@@ -36,6 +41,7 @@ public class TbaseUser extends TbaseEntity implements Serializable{
 	private String idcard;
 	/** 公司地址 */
 	private String address;
+	
 	
 	@NotEmpty
 	@Length(max = 25)
@@ -117,6 +123,13 @@ public class TbaseUser extends TbaseEntity implements Serializable{
 	}
 	public void setTrueName(String trueName) {
 		this.trueName = trueName;
+	}
+	@Transient
+	public String getComfirmPwd() {
+		return comfirmPwd;
+	}
+	public void setComfirmPwd(String comfirmPwd) {
+		this.comfirmPwd = comfirmPwd;
 	}
 	
 	

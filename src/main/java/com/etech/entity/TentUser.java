@@ -1,10 +1,11 @@
 package com.etech.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /** 企业用户 */
 /**
@@ -16,51 +17,54 @@ import javax.persistence.Table;
 public class TentUser extends TbaseUser implements Serializable {
 	
 	private static final long serialVersionUID = 6293704345783832975L;
-	/**公司名字*/
-	private String cpName;
+	
 	/** 公司联系人 */
-	private String cpContacts;
-	/** 公司性质 */
-	private String kindOfcp;
+	private String contacts;
+	/** 企业性质 */
+	private String type;
 	/**法人*/
-	private String LegalMan;
+	private String legalMan;
+	/**是否审核通过 0:审核中 1:审核通过*/
+	private String status;
 	
-	
-	
-	@Column(nullable = true,columnDefinition="varchar(30) comment '企业名' default '' ")
-	public String getCpName() {
-		return cpName;
+	@Length(max=25)
+	@Column(nullable=true)
+	public String getContacts() {
+		return contacts;
+	}
+	public void setContacts(String contacts) {
+		this.contacts = contacts;
 	}
 
-	public void setCpName(String cpName) {
-		this.cpName = cpName;
+	@Length(max=25)
+	@Column(nullable=true)
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	
-	@Column(nullable = true,columnDefinition="varchar(30) comment '企业联系方式' default '' ")
-	public String getCpContacts() {
-		return cpContacts;
-	}
-
-	public void setCpContacts(String cpContacts) {
-		this.cpContacts = cpContacts;
-	}
-	
-	@Column(nullable = true,columnDefinition="varchar(30) comment '企业类型' default '' ")
-	public String getKindOfcp() {
-		return kindOfcp;
-	}
-	/** 公司性质 */
-	public void setKindOfcp(String kindOfcp) {
-		this.kindOfcp = kindOfcp;
-	}
-
-	@Column(nullable = true,columnDefinition="varchar(30) comment '法人' default '' ")
+	@Length(max=25)
+	@Column(nullable=true)
 	public String getLegalMan() {
-		return LegalMan;
+		return legalMan;
 	}
-
 	public void setLegalMan(String legalMan) {
-		LegalMan = legalMan;
+		this.legalMan = legalMan;
 	}
+	@NotEmpty
+	@Length(max=2)
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
+	
+	
+	
 	
 }

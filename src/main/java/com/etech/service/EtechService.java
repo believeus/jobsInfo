@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import com.etech.dao.EtechComDao;
 
 @Service
-public class EtechBaseService {
+public class EtechService {
 	@Resource
 	private EtechComDao etechComDao;
 
