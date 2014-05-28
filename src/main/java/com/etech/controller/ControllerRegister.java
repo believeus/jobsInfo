@@ -71,6 +71,7 @@ public class ControllerRegister {
 			return;
 		}
 		log.debug("Idcard:"+regUser.getIdcard());
+		String sex="finish";
 		if(!StringUtils.isEmpty(regUser.getIdcard())){
 			//身份证正则表达式
 			boolean matcheIdCard1 = regUser.getIdcard().matches("^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])((\\d{4})|\\d{3}[A-Z])$");
@@ -94,7 +95,7 @@ public class ControllerRegister {
 			}
 			//如果提交的表单中的性别和身份证计算的不一致,则返回身份证计算的性别
 			int sexIndex = Integer.parseInt(regUser.getIdcard().substring(16,regUser.getIdcard().length()-1));
-			String sex=sexIndex%2!=0?"man":"woman";
+			sex=sexIndex%2!=0?"man":"woman";
 			log.debug("sex:"+regUser.getSex());
 			if(!regUser.getSex().equals(sex)){
 				message.put("property","sex");
@@ -125,7 +126,7 @@ public class ControllerRegister {
 			JsonOutToBrower.out(message, response);
 		}else {
 			// 完成所有验证
-			message.put("message","finish");
+			message.put("message",sex);
 			JsonOutToBrower.out(message, response);
 		}
 	}
