@@ -16,6 +16,6 @@ public class ControllerBusProcess {
 	@RequestMapping(value = "/busProcess", method = RequestMethod.GET)
 	public String busProcessView() {
 		log.debug("current controller is busProcessView !");
-		return "index";
+		return "guide/busProcess";
 	}
 }

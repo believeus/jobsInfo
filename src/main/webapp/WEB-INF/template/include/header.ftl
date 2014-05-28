@@ -43,6 +43,9 @@
 	    width: 90px;
 	    margin-left:7px;
 	}
+	.nav_current{
+		background:url(/resource/public/images/zhuye-img_07.png);
+	}
 </style>
  <script src="/resource/public/resources/scripts/jquery-1.10.2.min.js"></script>
  <script type="text/javascript" src="/resource/public/resources/scripts/jquery.validate.js"></script>
@@ -54,7 +57,7 @@
 		</div>
 		<div class="j_head_nav">
 			<div class="nav">
-				<a href="/" title="">首页</a>
+				<a class="nav_current" href="/" title="">首页</a>
 				<a href="/infoCenter.jhtml" title="">资讯中心</a>
 				<a href="/guide.jhtml" title="">工作指南</a>
 				<a href="/jobIntroduce.jhtml" title="">职业介绍</a>

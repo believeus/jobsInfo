@@ -16,6 +16,6 @@ public class ControllerMailBox {
 	@RequestMapping(value = "/mailBox", method = RequestMethod.GET)
 	public String mailBoxView() {
 		log.debug("current controller is mailBoxView !");
-		return "index";
+		return "MailBox/mailBox";
 	}
 }

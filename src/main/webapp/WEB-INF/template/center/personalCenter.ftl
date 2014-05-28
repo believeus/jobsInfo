@@ -46,7 +46,6 @@
    		.j_main{
     		width:1000px;
     		height:auto;
-    		//margin-top:-6px;
     	}
 		.j_main_left{
     		float:left;
@@ -170,6 +169,51 @@
     			$("#select_zhuti").show();
     			$("#base_xinxi").hide();
     		});
+    		
+    		$("#add_jineng").click(function(){
+    			[@compress single_line = true]
+    				var trHtml = 
+					'<div class="jineng" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+						<table>
+							<tr>
+								<td>专业:</td>
+								<td><input type="text"></td>
+								<td>工种:</td>
+								<td><input type="text"></td>
+							</tr>
+							<tr>
+								<td>技能等级:</td>
+								<td style="padding-right:70px;">
+									<select name="" style="width:158px;">
+										<option value="">请选择..</option>
+										<option value="">职业资格一级（高级技师）</option>
+										<option value="">职业资格二级（技师）</option>
+										<option value="">职业资格三级（高级）</option>
+										<option value="">职业资格四级（中级）</option>
+										<option value="">职业资格五级（初级）</option>
+									</select>
+								</td>
+								<td>从事年限:</td>
+								<td><input type="text"></td>
+							</tr>
+							<tr>
+								<td>说明:</td>
+								<td colspan="3"><textArea cols="50" style="resize:none;"></textArea></td>
+								<td rowspan="3"><a href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
+							</tr>
+						</table>
+					</div>';
+				[/@compress]
+				//$(".jineng").append(trHtml);
+    		});
+    		
+    		var a = $(".jineng a");
+    		a.each(function(){
+    			$(this).click(function(){
+    				//$(this).find("div.jineng").remove();
+    			});
+    		});
+    		
     	});
     </script>
 </head>
@@ -392,10 +436,10 @@
 						<span style="float:left;">具备技能</span>
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 						<div style="float: left; width: 50px; margin-left: 20px;">
-							<input type="button" value="添加" style="width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
+							<input id="add_jineng" type="button" value="添加" style="width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
 						</div>
 					</div>
-					<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+					<div class="jineng" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<table>
 							<tr>
 								<td>专业:</td>
@@ -408,9 +452,11 @@
 								<td style="padding-right:70px;">
 									<select name="" style="width:158px;">
 										<option value="">请选择..</option>
-										<option value="">精通</option>
-										<option value="">熟练</option>
-										<option value="">了解</option>
+										<option value="">职业资格一级（高级技师）</option>
+										<option value="">职业资格二级（技师）</option>
+										<option value="">职业资格三级（高级）</option>
+										<option value="">职业资格四级（中级）</option>
+										<option value="">职业资格五级（初级）</option>
 									</select>
 								</td>
 								<td>从事年限:</td>
@@ -418,8 +464,8 @@
 							</tr>
 							<tr>
 								<td>说明:</td>
-								<td colspan="3"><textArea cols="50"></textArea></td>
-								<td rowspan="3"><a href="" style="margin-top:35px;float:right;">删除</a></td>
+								<td colspan="3"><textArea cols="50" style="resize:none;"></textArea></td>
+								<td rowspan="3"><a href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
 					</div>

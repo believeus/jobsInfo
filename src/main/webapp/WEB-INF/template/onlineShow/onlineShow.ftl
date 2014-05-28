@@ -131,5 +131,6 @@ table td > p + p{
         </div>
     </div>
 </div>
+[#include "/include/footer.ftl" /]
 </body>
 </html>
