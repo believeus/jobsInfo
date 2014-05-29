@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -146,13 +147,28 @@ public class ControllerRegister {
 				if(!StringUtils.isEmpty(regUser.getPassword())){
 					String password = DigestUtils.md5Hex(regUser.getPassword());
 					regUser.setPassword(password);
+				}else{
+					log.debug(sessionUser.getLoginName()+":"+sessionUser.getPassword());
+					regUser.setPassword(sessionUser.getPassword());
+					log.debug(regUser.getPassword());
 				}
 			}
 			regUser.setCreateDate(System.currentTimeMillis());
 			regUser.setEditDate(System.currentTimeMillis());
 			regUser.setLastLoginData(System.currentTimeMillis());
-			userService.saveOrUpdate(regUser);
-			session.setAttribute("sessionUser", regUser);
+			// 用户注册
+			if(StringUtils.isEmpty(sessionUser)){
+				userService.saveOrUpdate(regUser);
+				session.setAttribute("sessionUser", regUser);
+			// 用户编辑信息
+			}else{
+				// 只有从sessionFactory中获取的对象才能updata
+				TcomUser comUser = (TcomUser)userService.findObjectById(TcomUser.class, regUser.getId());
+				BeanUtils.copyProperties(regUser, comUser);
+				System.out.println(comUser.getTrueName());
+				session.setAttribute("sessionUser", comUser);
+				userService.saveOrUpdate(comUser);
+			}
 			message.put("message","success");
 			JsonOutToBrower.out(message, response);
 		}else {

@@ -22,6 +22,7 @@ import org.hibernate.search.FullTextQuery;
 import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
 import org.springframework.orm.hibernate3.HibernateCallback;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.wltea.analyzer.lucene.IKAnalyzer;
@@ -33,19 +34,9 @@ public class EtechComDao extends HibernateDaoSupport {
 	private SessionFactory sessionFactory;
 	// 以对象的方式保存对象
 	public void saveOrUpdateByObject(final Object object){
-		super.getHibernateTemplate().saveOrUpdate(object);
-		/*HibernateTemplate ht = getHibernateTemplate();
-		// 如果session中有该对象,只是更新了session缓存中的数据，不会把
-		// 发出sql语句，必须要flush一下才会发出sql语句同步session缓存中
-		// 的数据
-		// 原因已经更新了数据库的数据，但是读取数据的时候却是从内存中获取的数据
-		// 解决办法是保存一个对象的时候清空缓存数据即可
-		ht.saveOrUpdate(object);
+		HibernateTemplate ht = super.getHibernateTemplate();
 		ht.flush();
-		// 奇怪的问题: 小欢的计算机不需要添加ht.flush 即可更新
-		// 而我的计算机需要添加这句话才能更新。故而加之
-		// 原因找到了，小欢的数据在内存中没有命中所以可以即使的显示
-*/	}
+	}
 
 	// 以HQL的方式保存对象
 	public Integer saveOrUpdate(final String hql) {
@@ -143,9 +134,9 @@ public class EtechComDao extends HibernateDaoSupport {
 	//以对象的方式获取对象。
 	public Object getObjecById(Class<?> clazz, final Integer id) {
 		final String clazzName = clazz.getName();
-		final String hql="from "+clazzName+" className where id =':id'";
+		final String hql="from "+clazzName+" as model where model.id =:id";
 		log.debug("current hql:"+hql);
-		return (List<?>) this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
+		return  this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
 
 			@Override
 			public Object doInHibernate(Session session)
