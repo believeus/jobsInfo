@@ -7,6 +7,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script type="text/javascript" src="/resource/public/js/jquery.js"></script>
     <script type="text/javascipt"  src="/resource/public/js/Etech.js"></script>
+    <link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
+    <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />  
+	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu.js"></script> 
+	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>
+	
 	<style type="text/css">
 	.brandImg{
 		border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
@@ -133,7 +138,7 @@
 		.j_main_right_2 input{
 			width:150px;
 		}
-		.current{
+		.currentSwich{
 			background:#E36510;
 			color:#FFFFFF;
 		}
@@ -159,19 +164,20 @@
     		var order = 1;
     		
     		$("#personal_xinxi").click(function(){
-    			$("#personal_xinxi").removeClass("current");
-    			$("#select_zhiyuan").removeClass("current");
-    			$("#personal_xinxi").addClass("current");
+    			$("#personal_xinxi").removeClass("currentSwich");
+    			$("#select_zhiyuan").removeClass("currentSwich");
+    			$("#personal_xinxi").addClass("currentSwich");
     			$("#base_xinxi").show();
     			$("#select_zhuti").hide();
     		});
     		$("#select_zhiyuan").click(function(){
-    			$("#select_zhiyuan").removeClass("current");
-    			$("#personal_xinxi").removeClass("current");
-    			$("#select_zhiyuan").addClass("current");
+    			$("#select_zhiyuan").removeClass("currentSwich");
+    			$("#personal_xinxi").removeClass("currentSwich");
+    			$("#select_zhiyuan").addClass("currentSwich");
     			$("#select_zhuti").show();
     			$("#base_xinxi").hide();
     		});
+    		
     		
     		$("#add_jineng").click(function(){
     			[@compress single_line = true]
@@ -179,7 +185,7 @@
 					'<div class="jineng_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<table>
 							<tr>
-								<td>专业:</td>
+								<td>专业</td>
 								<td><input type="text"></td>
 								<td>工种:</td>
 								<td><input type="text"></td>
@@ -222,6 +228,107 @@
     		
     	});
     </script>
+    <script type="text/javascript">
+		    $().ready(function() {
+		    
+		    	//专业
+				$("#selectSpecialty1").xMenu({	
+					width :600,	
+					eventType: "click", //事件类型 支持focus click hover
+					dropmenu:"#xmenuSpecialty1",//弹出层
+					emptytext:"选择专业",
+					hiddenID : "selectSpecialtyhidden1"//隐藏域ID	
+				});
+				$("#selectSpecialty2").xMenu({	
+					width :600,	
+					eventType: "click", //事件类型 支持focus click hover
+					dropmenu:"#xmenuSpecialty2",//弹出层
+					emptytext:"选择专业",
+					hiddenID : "selectSpecialtyhidden2"//隐藏域ID	
+				});
+				// 工种
+				$("#selectJobs1").xMenu({	
+					width :600,	
+					eventType: "click", //事件类型 支持focus click hover
+					dropmenu:"#xmenuJobs1",//弹出层
+					emptytext:"选择工种",
+					hiddenID : "selectJobshidden1"//隐藏域ID	
+				});
+				$("#selectJobs2").xMenu({	
+					width :600,	
+					eventType: "click", //事件类型 支持focus click hover
+					dropmenu:"#xmenuJobs2",//弹出层
+					emptytext:"选择工种",
+					hiddenID : "selectJobshidden2"//隐藏域ID	
+				});
+    	
+    	
+		    	// ajax 提交验证和登录。
+				function submitF(submitx){
+						$.ajax({
+							url: "/ajaxComValidReg.jhtml",
+							type: "POST",
+							data: {
+								loginName: $("#loginName").val(),
+								password:$("#password").val(),
+								idcard:$("#idcard").val(),
+								sex:$('input:radio[name="sex"]:checked').val(),
+								submit:submitx
+								},
+							dataType: "json",
+							cache: false,
+							success: function(data) {
+									// 如果注册成功，则进行跳转
+									if(data.message=="success"){
+										window.location.href="/";
+									}else{
+										if(data.message == "man"){
+											$("#girl").parent().hide();
+											$("#boy").parent().show();
+											$("#boy").attr("checked",true);
+										}else if(data.message == "woman"){
+											$("#boy").parent().hide();
+											$("#girl").parent().show();
+											$("#girl").attr("checked",true);
+										}else{
+											$("#girl").parent().show();
+											$("#boy").parent().show();
+											$("#girl").attr("checked",true);
+										}
+										// 先删除上一个错误
+										$("#Error").remove();
+										$("#"+data.property).parent().parent().append("<span id='Error'><font color='red'>*</font>"+data.message+"</span>");
+									}
+								}
+							});
+					}
+		    	// 用户名验证。
+				$("#username,input:radio[name='userType']").change(function(){
+					submitF("no","true");
+				});
+				
+				// 登录。
+				$("#login").click(function() {
+					var loginName=$("#username").val();
+					var password=$("#password").val();
+					if(loginName==""&&password==""){
+						alert("用户名和密码不能为空！");
+					}else{
+						submitF("yes","false");
+					}
+				});
+				$("#register").click(function() {
+					var type=$('input:radio[name="userType"]:checked').val();
+					// 需要跳转到注册页面
+					if(type=="commonUser"){
+						window.location.href="/personalReg.jhtml";
+					}else{		
+						window.location.href="/enterpriseReg.jhtml";			
+					}
+				});
+			
+			})
+		</script>
 </head>
 <body>
 	[#include "/include/header.ftl" /]
@@ -281,7 +388,7 @@
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<div class="j_main_right_2_1">
-					<div id="personal_xinxi" class="j_main_right_2_1_1 current" style="cursor:pointer;">个人信息</div>
+					<div id="personal_xinxi" class="j_main_right_2_1_1 currentSwich" style="cursor:pointer;">个人信息</div>
 					<div id="select_zhiyuan" class="j_main_right_2_1_2" style="cursor:pointer;">选择志愿</div>
 				</div>
 				<p>
@@ -299,24 +406,24 @@
 							<table>
 								<tr>
 									<td>姓名:</td>
-									<td><input type="text" id="trueName" value="${sessionUser.trueName}"></td>
+									<td><input type="text" name="trueName" value="${sessionUser.trueName}"></td>
 								</tr>
 								<tr>
 									<td>登录名:</td>
-									<td><input type="text" id="loginName" value="${sessionUser.loginName}"></td>
+									<td><input type="text" name="loginName" value="${sessionUser.loginName}"></td>
 								</tr>
 								<tr>
 									<td>年龄:</td>
-									<td><input type="text"></td>
+									<td><input type="text" name="age" value="${sessionUser.age}"></td>
 								</tr>
 								<tr>
 									<td>民族:</td>
-									<td><input type="text"></td>
+									<td><input type="text" name="nation" value="${sessionUser.nation}"></td>
 								</tr>
 								<tr>
 									<td>政治面貌:</td>
 									<td>
-										<select name="" style="width:158px;">
+										<select name="polity" style="width:158px;">
 											<option value="">请选择..</option>
 											<option value="">中共党员</option>
 											<option value="">共青团员</option>
@@ -328,7 +435,7 @@
 								<tr>
 									<td>婚姻状况:</td>
 									<td>
-										<select name="" style="width:158px;">
+										<select name="marriage" style="width:158px;">
 											<option value="">请选择..</option>
 											<option value="">未婚</option>
 											<option value="">已婚</option>
@@ -338,21 +445,21 @@
 								</tr>
 								<tr>
 									<td>视力:</td>
-									<td><input type="text"></td>
+									<td><input type="text" name="eyesight" value="${sessionUser.eyesight}"></td>
 								</tr>
 								<tr>
 									<td>个人特长:</td>
-									<td><input type="text"></td>
+									<td><input type="text" name="strongPoint" value="${sessionUser.strongPoint}"></td>
 								</tr>
 								<tr>
 									<td>联系电话:</td>
-									<td><input type="text"></td>
+									<td><input type="text" name="phoneNum" value="${sessionUser.phoneNum}"></td>
 								</tr>
 								<tr>
 									<td>二女户:</td>
 									<td>
-										<input type="radio" name="girl" checked="true" style="width:0">是
-										<input type="radio" name="girl" style="width:0">否
+										<input type="radio" name="twoGirl" value="1" checked="true" style="width:0">是
+										<input type="radio" name="twoGirl" value="0" style="width:0">否
 									</td>
 								</tr>
 							</table>
@@ -363,66 +470,66 @@
 								<tr>
 									<td>性别:</td>
 									<td>
-										<select name="" style="width:158px;">
+										<select name="sex" style="width:158px;">
 											<option value="">请选择..</option>
-											<option value="">男</option>
-											<option value="">女</option>
+											<option value="man">男</option>
+											<option value="woman">女</option>
 										</select>
 									</td>
 								</tr>
 								<tr>
 									<td>密码:</td>
-									<td><input type="text" placeholder="明文密码"></td>
+									<td><input type="text" name="password" placeholder="不填则默认"></td>
 								</tr>
 								<tr>
 									<td>身份证号:</td>
-									<td><input type="text" id="idcard" value="${sessionUser.idcard}"></td>
+									<td><input type="text" id="idcard" name="idcard" value="${sessionUser.idcard}"></td>
 								</tr>
 								<tr>
 									<td>文化程度:</td>
 									<td>
-										<select name="" style="width:158px;">
+										<select name="eduLevel" style="width:158px;">
 											<option value="">请选择..</option>
-											<option value="">大学</option>
-											<option value="">高中</option>
-											<option value="">初中</option>
-											<option value="">小学</option>
-											<option value="">幼儿园</option>
+											<option value="大学">大学</option>
+											<option value="高中">高中</option>
+											<option value="初中">初中</option>
+											<option value="小学">小学</option>
+											<option value="幼儿园">幼儿园</option>
 										</select>
 									</td>
 								</tr>
 								<tr>
 									<td>身高:</td>
-									<td><input type="text"></td>
+									<td><input type="text" value="${sessionUser.height}"></td>
 								</tr>
 								<tr>
 									<td>健康状况:</td>
 									<td>
-										<select name="" style="width:158px;">
+										<select name="health" style="width:158px;">
 											<option value="">请选择..</option>
-											<option value="">健康</option>
-											<option value="">患病</option>
-											<option value="">残疾</option>
+											<option value="健康">健康</option>
+											<option value="患病">患病</option>
+											<option value="残疾">残疾</option>
 										</select>
 									</td>
 								</tr>
 								<tr>
 									<td>家庭详细地址:</td>
-									<td><input type="text"></td>
+									<td><input type="text" name="address" value="${sessionUser.address}"></td>
 								</tr>
 								<tr>
 									<td>原工作单位:</td>
-									<td><input type="text"></td>
+									<td><input type="text"  name="workspace" value="${sessionUser.workspace}"></td>
 								</tr>
 								<tr>
 									<td>《就失业证》号:</td>
-									<td><input type="text"></td>
+									<td><input type="text" name="jobId" value="${sessionUser.jobId}"></td>
 								</tr>
 								<tr>
 									<td>独生子女:</td>
 									<td>
-										<input type="radio" name="dusheng" checked="true" style="width:0">是
-										<input type="radio" name="dusheng" style="width:0">否
+										<input type="radio" name="singleChild" value="1" checked="true" style="width:0">是
+										<input type="radio" name="singleChild" value="0" style="width:0">否
 									</td>
 								</tr>
 							</table>
@@ -449,12 +556,17 @@
 					<div class="jineng_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<table>
 							<tr>
-								<td>专业:</td>
-								<td><input type="text"></td>
-								<td>工种:</td>
-								<td><input type="text"></td>
-							</tr>
-							<tr>
+							<td>专业：</td>
+								<td>
+								<input type="hidden" value="" id="selectSpecialtyhidden1" name="brandIds" value=""/>
+								<div class="topnav">
+									<a id="selectSpecialty1" href="javascript:void(0);" class="as">
+										<span >
+													选择专业
+										</span>		
+									</a>	
+								</div>
+								</td>
 								<td>技能等级:</td>
 								<td style="padding-right:70px;">
 									<select name="" style="width:158px;">
@@ -465,6 +577,20 @@
 										<option value="">职业资格四级（中级）</option>
 										<option value="">职业资格五级（初级）</option>
 									</select>
+								</td>
+								
+							</tr>
+							<tr>
+								<td>工种:</td>
+								<td>
+								<input type="hidden" value="" id="selectJobshidden1" name="brandIds" value=""/>
+								<div class="topnav">
+									<a id="selectJobs1" href="javascript:void(0);" class="as">
+										<span >
+													选择工种
+										</span>		
+									</a>	
+								</div>
 								</td>
 								<td>从事年限:</td>
 								<td><input type="text"></td>
@@ -530,7 +656,16 @@
 							</tr>
 							<tr>
 								<td>专业:</td>
-								<td colspan="3"><input type="text"></td>
+								<td>
+								<input type="hidden" value="" id="selectSpecialtyhidden2" name="brandIds" value=""/>
+								<div class="topnav">
+									<a id="selectSpecialty2" href="javascript:void(0);" class="as">
+										<span >
+													选择专业
+										</span>		
+									</a>	
+								</div>
+								</td>
 								<td rowspan="3"><a href="">删除</a></td>
 							</tr>
 						</table>
@@ -587,7 +722,16 @@
 							</tr>
 							<tr>
 								<td>工种:</td>
-								<td ><input type="text"></td>
+								<td>
+								<input type="hidden" value="" id="selectJobshidden2" name="brandIds" value=""/>
+								<div class="topnav">
+									<a id="selectJobs2" href="javascript:void(0);" class="as">
+										<span >
+													选择工种
+										</span>		
+									</a>	
+								</div>
+								</td>
 								<td>工作内容:</td>
 								<td ><input type="text"></td>
 								<td rowspan="3"><a href="">删除</a></td>
@@ -684,6 +828,242 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div id="xmenuSpecialty1" class="xmenu" style="display: none;">
+		<div class="select-info">	
+			<label class="top-label">已选项：</label>
+			<ul>		
+			</ul>
+			<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
+				<span class="a-btn-text">确定</span>
+			</a> 
+		</div>			
+		<dl>
+		<dt class="open">工程师</dt>
+		<dd>
+			<ul>
+				<li rel="1">
+						工程师1
+				</li>
+				<li rel="2">
+						工程师2
+				</li>
+			</ul>   
+			<ul>
+				<li rel="3">
+						工程师3
+				</li>
+				<li rel="4">
+						工程师4
+				</li>
+			</ul>    
+		</dd>
+		<dt class="open">设计师</dt>
+		<dd>
+			<ul>
+				<li rel="5">
+						设计师设计师设计师你
+				</li>
+				<li rel="6">
+						设计师设计师设计师你
+				</li>
+				<li rel="7">
+						设计师设计师设计师你
+				</li>
+				<li rel="8">
+						设计师2
+				</li>
+				<li rel="56">
+						设计师2
+				</li>
+			</ul>   
+			<ul>
+				<li rel="9">
+						设计师3
+				</li>
+				<li rel="0">
+						设计师4
+				</li>
+			</ul>    
+		</dd>
+		</dl>			
+	</div>
+	<div id="xmenuSpecialty2" class="xmenu" style="display: none;">
+		<div class="select-info">	
+			<label class="top-label">已选项：</label>
+			<ul>		
+			</ul>
+			<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
+				<span class="a-btn-text">确定</span>
+			</a> 
+		</div>			
+		<dl>
+		<dt class="open">工程师</dt>
+		<dd>
+			<ul>
+				<li rel="11">
+						工程师1
+				</li>
+				<li rel="21">
+						工程师2
+				</li>
+			</ul>   
+			<ul>
+				<li rel="31">
+						工程师3
+				</li>
+				<li rel="41">
+						工程师4
+				</li>
+			</ul>    
+		</dd>
+		<dt class="open">设计师</dt>
+		<dd>
+			<ul>
+				<li rel="51">
+						设计师设计师设计师你
+				</li>
+				<li rel="61">
+						设计师设计师设计师你
+				</li>
+				<li rel="71">
+						设计师设计师设计师你
+				</li>
+				<li rel="81">
+						设计师2
+				</li>
+				<li rel="561">
+						设计师2
+				</li>
+			</ul>   
+			<ul>
+				<li rel="91">
+						设计师3
+				</li>
+				<li rel="01">
+						设计师4
+				</li>
+			</ul>    
+		</dd>
+		</dl>			
+	</div>
+	<div id="xmenuJobs1" class="xmenu" style="display: none;">
+		<div class="select-info">	
+			<label class="top-label">已选项：</label>
+			<ul>		
+			</ul>
+			<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
+				<span class="a-btn-text">确定</span>
+			</a> 
+		</div>			
+		<dl>
+		<dt class="open">管理员</dt>
+		<dd>
+			<ul>
+				<li rel="11">
+						管理员1
+				</li>
+				<li rel="21">
+						管理员2
+				</li>
+			</ul>   
+			<ul>
+				<li rel="31">
+						管理员3
+				</li>
+				<li rel="41">
+						管理员4
+				</li>
+			</ul>    
+		</dd>
+		<dt class="open">技术人员</dt>
+		<dd>
+			<ul>
+				<li rel="51">
+						技术人员
+				</li>
+				<li rel="61">
+						技术人员
+				</li>
+				<li rel="71">
+						技术人员
+				</li>
+				<li rel="81">
+						技术人员2
+				</li>
+				<li rel="561">
+						技术人员2
+				</li>
+			</ul>   
+			<ul>
+				<li rel="91">
+						技术人员3
+				</li>
+				<li rel="01">
+						技术人员4
+				</li>
+			</ul>    
+		</dd>
+		</dl>			
+	</div>
+	<div id="xmenuJobs2" class="xmenu" style="display: none;">
+		<div class="select-info">	
+			<label class="top-label">已选项：</label>
+			<ul>		
+			</ul>
+			<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
+				<span class="a-btn-text">确定</span>
+			</a> 
+		</div>			
+		<dl>
+		<dt class="open">管理员</dt>
+		<dd>
+			<ul>
+				<li rel="12">
+						管理员1
+				</li>
+				<li rel="22">
+						管理员2
+				</li>
+			</ul>   
+			<ul>
+				<li rel="32">
+						管理员3
+				</li>
+				<li rel="42">
+						管理员4
+				</li>
+			</ul>    
+		</dd>
+		<dt class="open">技术人员</dt>
+		<dd>
+			<ul>
+				<li rel="52">
+						技术人员
+				</li>
+				<li rel="62">
+						技术人员
+				</li>
+				<li rel="72">
+						技术人员
+				</li>
+				<li rel="82">
+						技术人员2
+				</li>
+				<li rel="52">
+						技术人员2
+				</li>
+			</ul>   
+			<ul>
+				<li rel="92">
+						技术人员3
+				</li>
+				<li rel="02">
+						技术人员4
+				</li>
+			</ul>    
+		</dd>
+		</dl>			
 	</div>
 	[#include "/include/footer.ftl" /]
 </body>

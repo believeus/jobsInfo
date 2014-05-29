@@ -42,13 +42,13 @@ public class TcomUser extends TbaseUser implements Serializable{
 	private String workspace;
 	/**就业失业号*/
 	private String jobId;
-	/**是否是独身子女*/
+	/**是否是独身子女，1为是，0为否*/
 	private String singleChild;
 	/**特长*/
 	private String strongPoint;
 	/**视力*/
 	private String eyesight;
-	/**是否是儿女户*/
+	/**是否是二女户，1为是，0为否*/
 	private String twoGirl;
 	/**婚姻状况*/
 	private String marriage;
