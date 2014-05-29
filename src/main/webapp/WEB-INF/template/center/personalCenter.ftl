@@ -154,7 +154,10 @@
 	</script>
 	
      <script type="text/javascript">
-    	$().ready(function(){
+    	$(function(){
+    		
+    		var order = 1;
+    		
     		$("#personal_xinxi").click(function(){
     			$("#personal_xinxi").removeClass("current");
     			$("#select_zhiyuan").removeClass("current");
@@ -173,7 +176,7 @@
     		$("#add_jineng").click(function(){
     			[@compress single_line = true]
     				var trHtml = 
-					'<div class="jineng" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+					'<div class="jineng_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<table>
 							<tr>
 								<td>专业:</td>
@@ -199,20 +202,23 @@
 							<tr>
 								<td>说明:</td>
 								<td colspan="3"><textArea cols="50" style="resize:none;"></textArea></td>
-								<td rowspan="3"><a href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
+								<td rowspan="3"><a class="delete_jineng" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
 					</div>';
 				[/@compress]
-				//$(".jineng").append(trHtml);
+				$(".jineng").append(trHtml);
+				order ++;
     		});
     		
-    		var a = $(".jineng a");
-    		a.each(function(){
-    			$(this).click(function(){
-    				//$(this).find("div.jineng").remove();
-    			});
-    		});
+			$("a.delete_jineng").on("click",function(){
+				alert("hello worl");
+				if ($(".jineng").find("div.jineng_div").size() <= 1) {
+					alert("必须至少保留一个参数");
+				} else {
+					$(this).closest("div").remove();
+				}
+			});
     		
     	});
     </script>
@@ -439,7 +445,8 @@
 							<input id="add_jineng" type="button" value="添加" style="width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
 						</div>
 					</div>
-					<div class="jineng" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+					<div class="jineng">
+					<div class="jineng_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<table>
 							<tr>
 								<td>专业:</td>
@@ -465,10 +472,12 @@
 							<tr>
 								<td>说明:</td>
 								<td colspan="3"><textArea cols="50" style="resize:none;"></textArea></td>
-								<td rowspan="3"><a href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
+								<td rowspan="3"><a class="delete_jineng" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
 					</div>
+					</div>
+					
 					
 					<div style="height: 30px; width: 728px;">
 						<span style="float:left;">学习经历</span>
