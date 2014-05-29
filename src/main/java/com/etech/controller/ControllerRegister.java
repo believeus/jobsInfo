@@ -88,34 +88,51 @@ public class ControllerRegister {
 				JsonOutToBrower.out(message, response);
 				return;
 			}
-			//验证身份证号是否存在过
-			TbaseUser user = (TbaseUser) userService.findObjectByProperty(TcomUser.class, EtechGobal.Idcard, regUser.getIdcard());
-			log.debug("idcard:"+regUser.getIdcard());
-			log.debug("current user:"+user);
-			if (!StringUtils.isEmpty(user)) {
-				message.put("property","idcard");
-				message.put("message","身份证号已存在,请重新填写");
-				JsonOutToBrower.out(message, response);
-				return;
-			}
-			//如果提交的表单中的性别和身份证计算的不一致,则返回身份证计算的性别
-			int sexIndex = Integer.parseInt(regUser.getIdcard().substring(16,regUser.getIdcard().length()-1));
-			sex=sexIndex%2!=0?"man":"woman";
-			log.debug("sex:"+regUser.getSex());
-			if(!regUser.getSex().equals(sex)){
-				message.put("property","sex");
-				message.put("message",sex);
-				JsonOutToBrower.out(message, response);
-				return;
+			if(StringUtils.isEmpty(sessionUser)){
+				//验证身份证号是否存在过
+				TbaseUser user = (TbaseUser) userService.findObjectByProperty(TcomUser.class, EtechGobal.Idcard, regUser.getIdcard());
+				log.debug("idcard:"+regUser.getIdcard());
+				log.debug("current user:"+user);
+				if (!StringUtils.isEmpty(user)) {
+					message.put("property","idcard");
+					message.put("message","身份证号已存在,请重新填写");
+					JsonOutToBrower.out(message, response);
+					return;
+				}
+				//如果提交的表单中的性别和身份证计算的不一致,则返回身份证计算的性别
+				int sexIndex = Integer.parseInt(regUser.getIdcard().substring(16,regUser.getIdcard().length()-1));
+				sex=sexIndex%2!=0?"man":"woman";
+				log.debug("sex:"+regUser.getSex());
+				if(!regUser.getSex().equals(sex)){
+					message.put("property","sex");
+					message.put("message",sex);
+					JsonOutToBrower.out(message, response);
+					return;
+				}
 			}
 		}
-		
-		TbaseUser user = (TbaseUser) userService.findObjectByProperty(TcomUser.class, EtechGobal.LoginName, regUser.getLoginName());
-		if (!StringUtils.isEmpty(user)) {
-			message.put("property","loginName");
-			message.put("message","用户名已存在");
-			JsonOutToBrower.out(message, response);
-			return;
+		//用户注册
+		if(StringUtils.isEmpty(sessionUser)){
+			TbaseUser user = (TbaseUser) userService.findObjectByProperty(TcomUser.class, EtechGobal.LoginName, regUser.getLoginName());
+			if (!StringUtils.isEmpty(user)) {
+				message.put("property","loginName");
+				message.put("message","用户名已存在");
+				JsonOutToBrower.out(message, response);
+				return;
+			}
+		// 用户编辑
+		}else{
+			TbaseUser user = (TbaseUser) userService.findObjectByProperty(TcomUser.class, "id", regUser.getId());
+			// 编辑用户名和原用户名不等
+			if(!user.getLoginName().equals(regUser.getLoginName())){
+				user = (TbaseUser) userService.findObjectByProperty(TcomUser.class, EtechGobal.LoginName, regUser.getLoginName());
+				if (!StringUtils.isEmpty(user)) {
+					message.put("property","loginName");
+					message.put("message","用户名已存在");
+					JsonOutToBrower.out(message, response);
+					return;
+				}
+			}
 		}
 		//表单点击提交
 		if("submit".equals(submit)){
