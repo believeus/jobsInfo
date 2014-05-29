@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -38,6 +39,7 @@ public class ControllerRegister {
 	@RequestMapping(value="/ajaxComValidReg")
 	public void ajaxComValidReg(TcomUser regUser,String submit,String comfirmPwd,HttpSession session,HttpServletResponse response){
 		log.debug("current regUser reginName:"+regUser.getLoginName());
+		TbaseUser sessionUser = (TbaseUser)session.getAttribute("sessionUser");
 		Map<String, Object> message=new HashMap<String, Object>();
 		if(StringUtils.isEmpty(regUser.getLoginName())){
 			message.put("property","loginName");
@@ -52,23 +54,26 @@ public class ControllerRegister {
 			JsonOutToBrower.out(message, response);
 			return;
 		}
-		if(StringUtils.isEmpty(regUser.getPassword())){
-			message.put("property","password");
-			message.put("message","密码必填!");
-			JsonOutToBrower.out(message, response);
-			return;
-		}
-		if(StringUtils.isEmpty(comfirmPwd)){
-			message.put("property","comfirmPwd");
-			message.put("message","密码和确定密码必填!");
-			JsonOutToBrower.out(message, response);
-			return;
-		}
-		if(!regUser.getPassword().equals(comfirmPwd)){
-			message.put("property","comfirmPwd");
-			message.put("message","密码和确定密码不一致!");
-			JsonOutToBrower.out(message, response);
-			return;
+		// 用户注册
+		if(StringUtils.isEmpty(sessionUser)){
+			if(StringUtils.isEmpty(regUser.getPassword())){
+				message.put("property","password");
+				message.put("message","密码必填!");
+				JsonOutToBrower.out(message, response);
+				return;
+			}
+			if(StringUtils.isEmpty(comfirmPwd)){
+				message.put("property","comfirmPwd");
+				message.put("message","密码和确定密码必填!");
+				JsonOutToBrower.out(message, response);
+				return;
+			}
+			if(!regUser.getPassword().equals(comfirmPwd)){
+				message.put("property","comfirmPwd");
+				message.put("message","密码和确定密码不一致!");
+				JsonOutToBrower.out(message, response);
+				return;
+			}
 		}
 		log.debug("Idcard:"+regUser.getIdcard());
 		String sex="finish";
@@ -113,12 +118,22 @@ public class ControllerRegister {
 			return;
 		}
 		//表单点击提交
-		if(!StringUtils.isEmpty(submit)&&submit.equals("submit")){
-			String password = DigestUtils.md5Hex(regUser.getPassword());
+		if("submit".equals(submit)){
+			// 注册
+			if(StringUtils.isEmpty(sessionUser)){
+				String password = DigestUtils.md5Hex(regUser.getPassword());
+				regUser.setPassword(password);
+			// 编辑个人资料
+			}else{
+				// 如果用户修改个人资料，并修改了密码,更新密码
+				if(!StringUtils.isEmpty(regUser.getPassword())){
+					String password = DigestUtils.md5Hex(regUser.getPassword());
+					regUser.setPassword(password);
+				}
+			}
 			regUser.setCreateDate(System.currentTimeMillis());
 			regUser.setEditDate(System.currentTimeMillis());
 			regUser.setLastLoginData(System.currentTimeMillis());
-			regUser.setPassword(password);
 			userService.saveOrUpdate(regUser);
 			session.setAttribute("sessionUser", regUser);
 			session.setAttribute("clazz",regUser.getClass().getName());
