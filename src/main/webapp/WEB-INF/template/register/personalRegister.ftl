@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>个人注册</title>
+<script type="text/javascript" src="/resource/public/js/jquery.js"></script>
 <style type="text/css">
 body {
 	font-family:Arial, Helvetica, sans-serif;
@@ -101,11 +102,11 @@ body {
 									if(data.message=="success"){
 										window.location.href="/";
 									}else{
-										if(data.message == "man"){
+										if(data.sex == "man"){
 											$("#girl").parent().hide();
 											$("#boy").parent().show();
 											$("#boy").attr("checked",true);
-										}else if(data.message == "woman"){
+										}else if(data.sex == "woman"){
 											$("#boy").parent().hide();
 											$("#girl").parent().show();
 											$("#girl").attr("checked",true);

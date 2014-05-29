@@ -6,7 +6,7 @@
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script type="text/javascript" src="/resource/public/js/jquery.js"></script>
-    <script type="text/javascipt"  src="/resource/public/js/Etech.js"></script>
+    <script type="text/javascript"  src="/resource/public/js/Etech.js"></script>
     <script type="text/javascript">
     	$().ready(function(){
     		$("#qiye_xinxi").click(function(){

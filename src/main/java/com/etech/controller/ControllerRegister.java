@@ -88,7 +88,6 @@ public class ControllerRegister {
 				JsonOutToBrower.out(message, response);
 				return;
 			}
-			//用户注册
 			if(StringUtils.isEmpty(sessionUser)){
 				//验证身份证号是否存在过
 				TbaseUser user = (TbaseUser) userService.findObjectByProperty(TcomUser.class, EtechGobal.Idcard, regUser.getIdcard());
@@ -104,9 +103,14 @@ public class ControllerRegister {
 				int sexIndex = Integer.parseInt(regUser.getIdcard().substring(16,regUser.getIdcard().length()-1));
 				String sex=sexIndex%2!=0?"man":"woman";
 				log.debug("sex:"+regUser.getSex());
-				message.put("property","sex");
-				message.put("message",sex);
-				JsonOutToBrower.out(message, response);
+				if(!regUser.getSex().equals(sex)){
+					message.put("sex",sex);
+					JsonOutToBrower.out(message, response);
+					return;
+				}else {
+					// 前台无论如何都要接受这个sex值，不可省略。
+					message.put("sex",sex);
+				}
 			}
 		}
 		//用户注册
@@ -121,7 +125,6 @@ public class ControllerRegister {
 		// 用户编辑
 		}else{
 			TbaseUser user = (TbaseUser) userService.findObjectByProperty(TcomUser.class, "id", regUser.getId());
-			log.debug(user);
 			// 编辑用户名和原用户名不等
 			if(!user.getLoginName().equals(regUser.getLoginName())){
 				user = (TbaseUser) userService.findObjectByProperty(TcomUser.class, EtechGobal.LoginName, regUser.getLoginName());
@@ -134,8 +137,6 @@ public class ControllerRegister {
 			}
 		}
 		//表单点击提交
-		log.debug("submit:"+submit);
-		log.debug(submit.equals("submit"));
 		if("submit".equals(submit)){
 			// 注册
 			if(StringUtils.isEmpty(sessionUser)){

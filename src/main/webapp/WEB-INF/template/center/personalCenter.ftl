@@ -6,7 +6,7 @@
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script type="text/javascript" src="/resource/public/js/jquery.js"></script>
-    <script type="text/javascipt"  src="/resource/public/js/Etech.js"></script>
+    <script type="text/javascript"  src="/resource/public/js/Etech.js"></script>
     <link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
     <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />  
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu.js"></script> 
