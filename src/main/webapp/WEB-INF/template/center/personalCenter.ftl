@@ -263,48 +263,30 @@
 				});
     	
     	
-		    	// ajax 提交验证和登录。
+		    	// ajax 提交验证和保存。
 				function submitF(submitx){
+						
 						$.ajax({
 							url: "/ajaxComValidReg.jhtml",
 							type: "POST",
 							data: {
+								id:${sessionUser.id}
 								loginName: $("#loginName").val(),
 								password:$("#password").val(),
 								idcard:$("#idcard").val(),
-								sex:$('input:radio[name="sex"]:checked').val(),
+								
 								submit:submitx
 								},
 							dataType: "json",
 							cache: false,
 							success: function(data) {
-									// 如果注册成功，则进行跳转
-									if(data.message=="success"){
-										window.location.href="/";
-									}else{
-										if(data.message == "man"){
-											$("#girl").parent().hide();
-											$("#boy").parent().show();
-											$("#boy").attr("checked",true);
-										}else if(data.message == "woman"){
-											$("#boy").parent().hide();
-											$("#girl").parent().show();
-											$("#girl").attr("checked",true);
-										}else{
-											$("#girl").parent().show();
-											$("#boy").parent().show();
-											$("#girl").attr("checked",true);
-										}
-										// 先删除上一个错误
-										$("#Error").remove();
-										$("#"+data.property).parent().parent().append("<span id='Error'><font color='red'>*</font>"+data.message+"</span>");
-									}
+									alert(data.message);
 								}
 							});
 					}
 		    	// 用户名验证。
-				$("#username,input:radio[name='userType']").change(function(){
-					submitF("no","true");
+				$("#loginName,#idcard").change(function(){
+					submitF("no");
 				});
 				
 				// 登录。
@@ -406,24 +388,24 @@
 							<table>
 								<tr>
 									<td>姓名:</td>
-									<td><input type="text" name="trueName" value="${sessionUser.trueName}"></td>
+									<td><input type="text" id="trueName" value="${sessionUser.trueName}"></td>
 								</tr>
 								<tr>
 									<td>登录名:</td>
-									<td><input type="text" name="loginName" value="${sessionUser.loginName}"></td>
+									<td><input type="text" id="loginName" name="loginName" value="${sessionUser.loginName}"></td>
 								</tr>
 								<tr>
 									<td>年龄:</td>
-									<td><input type="text" name="age" value="${sessionUser.age}"></td>
+									<td><input type="text" id="age" value="${sessionUser.age}"></td>
 								</tr>
 								<tr>
 									<td>民族:</td>
-									<td><input type="text" name="nation" value="${sessionUser.nation}"></td>
+									<td><input type="text" id="nation" value="${sessionUser.nation}"></td>
 								</tr>
 								<tr>
 									<td>政治面貌:</td>
 									<td>
-										<select name="polity" style="width:158px;">
+										<select id="polity" style="width:158px;">
 											<option value="">请选择..</option>
 											<option value="">中共党员</option>
 											<option value="">共青团员</option>
@@ -435,7 +417,7 @@
 								<tr>
 									<td>婚姻状况:</td>
 									<td>
-										<select name="marriage" style="width:158px;">
+										<select id="marriage" style="width:158px;">
 											<option value="">请选择..</option>
 											<option value="">未婚</option>
 											<option value="">已婚</option>
@@ -445,21 +427,21 @@
 								</tr>
 								<tr>
 									<td>视力:</td>
-									<td><input type="text" name="eyesight" value="${sessionUser.eyesight}"></td>
+									<td><input type="text" id="eyesight" value="${sessionUser.eyesight}"></td>
 								</tr>
 								<tr>
 									<td>个人特长:</td>
-									<td><input type="text" name="strongPoint" value="${sessionUser.strongPoint}"></td>
+									<td><input type="text" id="strongPoint" value="${sessionUser.strongPoint}"></td>
 								</tr>
 								<tr>
 									<td>联系电话:</td>
-									<td><input type="text" name="phoneNum" value="${sessionUser.phoneNum}"></td>
+									<td><input type="text" id="phoneNum" value="${sessionUser.phoneNum}"></td>
 								</tr>
 								<tr>
 									<td>二女户:</td>
 									<td>
-										<input type="radio" name="twoGirl" value="1" checked="true" style="width:0">是
-										<input type="radio" name="twoGirl" value="0" style="width:0">否
+										<input type="radio"  name="twoGirl" value="1" checked="true" style="width:0">是
+										<input type="radio"  name="twoGirl" value="0" style="width:0">否
 									</td>
 								</tr>
 							</table>
@@ -470,7 +452,7 @@
 								<tr>
 									<td>性别:</td>
 									<td>
-										<select name="sex" style="width:158px;">
+										<select id="sex" style="width:158px;">
 											<option value="">请选择..</option>
 											<option value="man">男</option>
 											<option value="woman">女</option>
@@ -479,7 +461,7 @@
 								</tr>
 								<tr>
 									<td>密码:</td>
-									<td><input type="text" name="password" placeholder="不填则默认"></td>
+									<td><input type="text" id="password" placeholder="不填则默认"></td>
 								</tr>
 								<tr>
 									<td>身份证号:</td>
@@ -500,12 +482,12 @@
 								</tr>
 								<tr>
 									<td>身高:</td>
-									<td><input type="text" value="${sessionUser.height}"></td>
+									<td><input type="text" id="height" value="${sessionUser.height}"></td>
 								</tr>
 								<tr>
 									<td>健康状况:</td>
 									<td>
-										<select name="health" style="width:158px;">
+										<select id="health" style="width:158px;">
 											<option value="">请选择..</option>
 											<option value="健康">健康</option>
 											<option value="患病">患病</option>
@@ -515,15 +497,15 @@
 								</tr>
 								<tr>
 									<td>家庭详细地址:</td>
-									<td><input type="text" name="address" value="${sessionUser.address}"></td>
+									<td><input type="text" id="address" value="${sessionUser.address}"></td>
 								</tr>
 								<tr>
 									<td>原工作单位:</td>
-									<td><input type="text"  name="workspace" value="${sessionUser.workspace}"></td>
+									<td><input type="text"  id="workspace" value="${sessionUser.workspace}"></td>
 								</tr>
 								<tr>
 									<td>《就失业证》号:</td>
-									<td><input type="text" name="jobId" value="${sessionUser.jobId}"></td>
+									<td><input type="text" id="jobId" value="${sessionUser.jobId}"></td>
 								</tr>
 								<tr>
 									<td>独生子女:</td>
