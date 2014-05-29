@@ -76,7 +76,6 @@ public class ControllerRegister {
 			}
 		}
 		log.debug("Idcard:"+regUser.getIdcard());
-		String sex="finish";
 		if(!StringUtils.isEmpty(regUser.getIdcard())){
 			//身份证正则表达式
 			boolean matcheIdCard1 = regUser.getIdcard().matches("^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])((\\d{4})|\\d{3}[A-Z])$");
@@ -88,6 +87,7 @@ public class ControllerRegister {
 				JsonOutToBrower.out(message, response);
 				return;
 			}
+			//用户注册
 			if(StringUtils.isEmpty(sessionUser)){
 				//验证身份证号是否存在过
 				TbaseUser user = (TbaseUser) userService.findObjectByProperty(TcomUser.class, EtechGobal.Idcard, regUser.getIdcard());
@@ -101,14 +101,11 @@ public class ControllerRegister {
 				}
 				//如果提交的表单中的性别和身份证计算的不一致,则返回身份证计算的性别
 				int sexIndex = Integer.parseInt(regUser.getIdcard().substring(16,regUser.getIdcard().length()-1));
-				sex=sexIndex%2!=0?"man":"woman";
+				String sex=sexIndex%2!=0?"man":"woman";
 				log.debug("sex:"+regUser.getSex());
-				if(!regUser.getSex().equals(sex)){
-					message.put("property","sex");
-					message.put("message",sex);
-					JsonOutToBrower.out(message, response);
-					return;
-				}
+				message.put("property","sex");
+				message.put("message",sex);
+				JsonOutToBrower.out(message, response);
 			}
 		}
 		//用户注册
@@ -123,6 +120,7 @@ public class ControllerRegister {
 		// 用户编辑
 		}else{
 			TbaseUser user = (TbaseUser) userService.findObjectByProperty(TcomUser.class, "id", regUser.getId());
+			log.debug(user);
 			// 编辑用户名和原用户名不等
 			if(!user.getLoginName().equals(regUser.getLoginName())){
 				user = (TbaseUser) userService.findObjectByProperty(TcomUser.class, EtechGobal.LoginName, regUser.getLoginName());
@@ -135,6 +133,8 @@ public class ControllerRegister {
 			}
 		}
 		//表单点击提交
+		log.debug("submit:"+submit);
+		log.debug(submit.equals("submit"));
 		if("submit".equals(submit)){
 			// 注册
 			if(StringUtils.isEmpty(sessionUser)){
@@ -153,12 +153,11 @@ public class ControllerRegister {
 			regUser.setLastLoginData(System.currentTimeMillis());
 			userService.saveOrUpdate(regUser);
 			session.setAttribute("sessionUser", regUser);
-			session.setAttribute("clazz",regUser.getClass().getName());
 			message.put("message","success");
 			JsonOutToBrower.out(message, response);
 		}else {
 			// 完成所有验证
-			message.put("message",sex);
+			message.put("message","finish");
 			JsonOutToBrower.out(message, response);
 		}
 	}
