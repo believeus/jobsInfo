@@ -262,7 +262,29 @@
 					hiddenID : "selectJobshidden2"//隐藏域ID	
 				});
     	
-    	
+    			// 提交信息列表
+    			function sumitValidLIist(){
+    				$.ajax({
+							url: "/ajaxComValidReg.jhtml",
+							type: "POST",
+							data: {
+								id:${sessionUser.id},
+								loginName: $("#loginName").val(),
+								password:$("#password").val(),
+								idcard:$("#idcard").val(),
+								trueName:$("#trueName").val(),
+								submit:submitx
+								},
+							dataType: "json",
+							cache: false,
+							success: function(data) {
+									if(data.message == "finish" && submitx == "submit"){
+										alert("要提交其他信息了。");
+									}
+									alert(data.message);
+								}
+							});
+    			}
 		    	// ajax 提交验证和保存。
 				function submitValid(submitx){
 						$.ajax({
@@ -295,8 +317,8 @@
 							dataType: "json",
 							cache: false,
 							success: function(data) {
-									if(){
-									
+									if(data.message == "finish" && submitx == "submit"){
+										alert("要提交其他信息了。");
 									}
 									alert(data.message);
 								}
@@ -313,7 +335,7 @@
 					if(loginName==""){
 						alert("用户名必填！");
 					}else{
-						submitValid("sumbit");
+						submitValid("submit");
 					}
 				});
 			
