@@ -27,14 +27,14 @@ public class ControllerCenter {
 	private EtechService etechService;
 	
 	/**个人中心*/
-	@RequestMapping(value = "/personalCenter", method = RequestMethod.GET)
+	@RequestMapping(value = "/common-user/center", method = RequestMethod.GET)
 	public String personalCenter() {
 		log.debug("current controller is personalCenter !");
 		return "center/personalCenter";
 	}
 	
 	/**企业中心*/
-	@RequestMapping(value = "/enterpriseCenter", method = RequestMethod.GET)
+	@RequestMapping(value = "/enterprise-user/center", method = RequestMethod.GET)
 	public String enterpriseCenter() {
 		log.debug("current controller is enterpriseCenter !");
 		return "center/enterpriseCenter";
@@ -47,8 +47,8 @@ public class ControllerCenter {
 	}
 	
 	/**提交普通用户的编辑信息*/
-	@RequestMapping(value="/submitTcomInfo")
-	public void submitTcomInfo(TcomInfo comInfo,HttpServletResponse response){
+	@RequestMapping(value="/common-user/center/submit-comInfo")
+	public void submitComInfo(TcomInfo comInfo,HttpServletResponse response){
 		Map<String, Object> map=new HashMap<String, Object>();
 		try{
 			etechService.saveOrUpdate(comInfo);
@@ -59,8 +59,14 @@ public class ControllerCenter {
 	}
 	
 	/**提交招聘信息*/
-	@RequestMapping(value="/submitRecruit")
+	@RequestMapping(value="/enterprise-user/center/submit-recruit")
 	public void submitRecruit(Trecruit recruit){
-		etechService.saveOrUpdate(recruit);
+		Map<String, Object> map=new HashMap<String, Object>();
+		try{
+			etechService.saveOrUpdate(recruit);
+		map.put("message", "success");
+		}catch(Exception ex){
+			map.put("message", "error");
+		}
 	}
 }
