@@ -264,48 +264,56 @@
     	
     	
 		    	// ajax 提交验证和保存。
-				function submitF(submitx){
-						
+				function submitValid(submitx){
 						$.ajax({
 							url: "/ajaxComValidReg.jhtml",
 							type: "POST",
 							data: {
-								id:${sessionUser.id}
+								id:${sessionUser.id},
 								loginName: $("#loginName").val(),
 								password:$("#password").val(),
 								idcard:$("#idcard").val(),
-								
+								trueName:$("#trueName").val(),
+								age:$("#age").val(),
+								nation:$("#nation").val(),
+								polity:$("#polity").val(),
+								marriage:$("#marriage").val(),
+								eyesight:$("#eyesight").val(),
+								strongPoint:$("#strongPoint").val(),
+								phoneNum:$("#phoneNum").val(),
+								twoGirl:$('input:radio[name="twoGirl"]:checked').val(),
+								sex:$("#sex").val(),
+								eduLevel:$("#eduLevel").val(),
+								height:$("#height").val(),
+								health:$("#health").val(),
+								address:$("#address").val(),
+								workspace:$("#workspace").val(),
+								jobId:$("#jobId").val(),
+								singleChild:$('input:radio[name="singleChild"]:checked').val(),
 								submit:submitx
 								},
 							dataType: "json",
 							cache: false,
 							success: function(data) {
+									if(){
+									
+									}
 									alert(data.message);
 								}
 							});
 					}
 		    	// 用户名验证。
 				$("#loginName,#idcard").change(function(){
-					submitF("no");
+					submitValid("no");
 				});
 				
-				// 登录。
-				$("#login").click(function() {
-					var loginName=$("#username").val();
-					var password=$("#password").val();
-					if(loginName==""&&password==""){
-						alert("用户名和密码不能为空！");
+				// 保存。
+				$("#saveInfo").click(function() {
+					var loginName=$("#loginName").val();
+					if(loginName==""){
+						alert("用户名必填！");
 					}else{
-						submitF("yes","false");
-					}
-				});
-				$("#register").click(function() {
-					var type=$('input:radio[name="userType"]:checked').val();
-					// 需要跳转到注册页面
-					if(type=="commonUser"){
-						window.location.href="/personalReg.jhtml";
-					}else{		
-						window.location.href="/enterpriseReg.jhtml";			
+						submitValid("sumbit");
 					}
 				});
 			
@@ -407,10 +415,10 @@
 									<td>
 										<select id="polity" style="width:158px;">
 											<option value="">请选择..</option>
-											<option value="">中共党员</option>
-											<option value="">共青团员</option>
-											<option value="">民主党派</option>
-											<option value="">普通公民</option>
+											<option value="中共党员">中共党员</option>
+											<option value="共青团员">共青团员</option>
+											<option value="民主党派">民主党派</option>
+											<option value="普通公民">普通公民</option>
 										</select>
 									</td>
 								</tr>
@@ -419,9 +427,9 @@
 									<td>
 										<select id="marriage" style="width:158px;">
 											<option value="">请选择..</option>
-											<option value="">未婚</option>
-											<option value="">已婚</option>
-											<option value="">离异</option>
+											<option value="未婚">未婚</option>
+											<option value="已婚">已婚</option>
+											<option value="离异">离异</option>
 										</select>
 									</td>
 								</tr>
@@ -470,7 +478,7 @@
 								<tr>
 									<td>文化程度:</td>
 									<td>
-										<select name="eduLevel" style="width:158px;">
+										<select id="eduLevel" style="width:158px;">
 											<option value="">请选择..</option>
 											<option value="大学">大学</option>
 											<option value="高中">高中</option>
@@ -743,7 +751,7 @@
 					</div>
 					
 					<p style="text-align:center;">
-						<input type="button" value="保存">
+						<input type="button" id="saveInfo" value="保存">
 						<input type="reset" value="重写">
 					</p>
 				</div>
@@ -804,7 +812,7 @@
 						</table>
 					</div>
 					<p style="text-align:center;">
-						<input type="button" value="保存">
+						<input type="button" id="save" value="保存">
 						<input type="reset" value="重写">
 					</p>
 				</div>
