@@ -862,11 +862,19 @@
 									<td>
 										<select id="eduLevel" style="width:158px;">
 											<option value="">请选择..</option>
-											<option value="大学">大学</option>
-											<option value="高中">高中</option>
-											<option value="初中">初中</option>
+											<option value="研究生以上">研究生以上</option>
+											<option value="博士研究生">博士研究生</option>
+											<option value="大学本科">大学本科</option>
+											<option value="大学专科">大学专科</option>
+											<option value="中专技校">中专技校</option>
+											<option value="中等专科">中等专科</option>
+											<option value="职业高中">职业高中</option>
+											<option value="技工学校">技工学校</option>
+											<option value="普通高中">普通高中</option>
+											<option value="初中及以下">初中及以下</option>
+											<option value="初级中学">初级中学</option>
 											<option value="小学">小学</option>
-											<option value="幼儿园">幼儿园</option>
+											<option value="其他">其他</option>
 										</select>
 									</td>
 								</tr>

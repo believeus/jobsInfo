@@ -118,7 +118,7 @@
     	.xinwen li{
     		line-height:20px;
     	}
-    	.xinwen_ul > li{
+    	.xinwen_ul li{
     		line-height:30px;
     	}
     	.biaoti{

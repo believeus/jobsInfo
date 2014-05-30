@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>新闻列表</title>
+    <title>国家法律法规/title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -9,7 +9,6 @@
    		.j_main{
     		width:1000px;
     		height:auto;
-    		//margin-top:-6px;
     	}
 		.j_main_left{
     		float:left;

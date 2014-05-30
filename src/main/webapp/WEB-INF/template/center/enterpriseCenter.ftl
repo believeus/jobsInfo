@@ -324,7 +324,7 @@
 								</tr>
 								<tr>
 									<td style="vertical-align: top;">单位简介:</td>
-									<td colspan="3"><textArea cols="50" rows="5" name=""></textArea></td>
+									<td colspan="3"><textArea cols="50" rows="5" name="" style="resize:none;"></textArea></td>
 								</tr>
 								<tr>
 									<td style="vertical-align: top;">企业电子图:</td>
@@ -484,8 +484,19 @@
 								<td>
 									<select name="" style="width: 183px;">
 										<option value="">请选择..</option>
-										<option value="">男</option>
-										<option value="">女</option>
+										<option value="">研究生以上</option>
+										<option value="">博士研究生</option>
+										<option value="">大学本科</option>
+										<option value="">大学专科</option>
+										<option value="">中专技校</option>
+										<option value="">中等专科</option>
+										<option value="">职业高中</option>
+										<option value="">技工学校</option>
+										<option value="">普通高中</option>
+										<option value="">初中及以下</option>
+										<option value="">初级中学</option>
+										<option value="">小学</option>
+										<option value="">其他</option>
 									</select>
 								</td>
 							</tr>
@@ -508,8 +519,10 @@
 								<td>
 									<select name="" style="width: 183px;">
 										<option value="">请选择..</option>
-										<option value="">男</option>
-										<option value="">女</option>
+										<option value="">兼职</option>
+										<option value="">全职</option>
+										<option value="">实习</option>
+										<option value="">...</option>
 									</select>
 								</td>
 							</tr>
@@ -518,8 +531,10 @@
 								<td>
 									<select name="" style="width: 183px;">
 										<option value="">请选择..</option>
-										<option value="">男</option>
-										<option value="">女</option>
+										<option value="">1年</option>
+										<option value="">3年</option>
+										<option value="">5年</option>
+										<option value="">...</option>
 									</select>
 								</td>
 								<td>面试时间:</td>

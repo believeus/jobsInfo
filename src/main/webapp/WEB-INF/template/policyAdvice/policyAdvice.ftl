@@ -19,24 +19,32 @@
     		margin-right:6px;
 		}
 		.j_main_left_1{
-			width:258px;
-			height:auto;
-    		border:1px solid;
+			border: 1px solid #CDCDCD;
+		    border-radius: 4px;
+		    height: 251px;
+		    width: 258px;
 		}
 		.j_main_left_1 p{
-			background: #FFCC00;
-		    border-bottom: 1px solid;
+		    color: #BF0906;
+		    font-size: 20px;
 		    margin: 0;
-		    text-align:center;
-		    padding: 5px;
-		    line-height:25px;
-		    cursor:pointer;
+		    padding: 20px;
+		    text-align: left;
 		}
 		.j_main_left_1 span{
-			float:right;
+			color: #000000;
+		    float: right;
+		    font-size: 13px;
+		    margin-top: 7px;
 		}
 		.j_main_left_1 li{
-			line-height:28px;
+			line-height:40px;
+			list-style:none;
+			border-top:1px solid #EBEBEB;
+		}
+		.j_main_left_1 a{
+			margin-left:40px;
+			font-size:17px;
 		}
 		.j_main_right{
 			float:left;
@@ -84,6 +92,7 @@
 			border: 1px solid;
 		    margin: 15px 10px;
 		    width: 336px;
+		    height:260px;
 		}
 		.j_main_right_3 p{
 			background: #FFCC00;
@@ -91,13 +100,19 @@
 		    padding: 5px;
 		    border-bottom:1px solid #000000;
 		}
-		.j_main_right_3 a{
+		.j_main_right_3 span{
 			float:right;
+			margin-right:5px;
 		}
 		.j_main_right_3_1{
 			width:336px;
-			height:200px;
+			height:231px;
 			background:#FFFFFF;
+		}
+		.j_main_right_3_1 li{
+			list-style:none;
+			font-size:13px;
+			line-height:32px;
 		}
     </style>
 </head>
@@ -105,13 +120,16 @@
 	[#include "/include/header.ftl" /]
 	<div class="j_main w">
 		<div class="j_main_left">
-			<div class="j_main_left_1" style="border:0;">
-				<p style="border-bottom:0;background:url(/resource/public/images/u14_normal.png);font-size:13px;">国家法律法规</p>
-				<p style="border-bottom:0;background:url(/resource/public/images/u14_normal.png);margin-top:-3px;font-size:13px;">地方法律法规</p>
-				<p style="border-bottom:0;background:url(/resource/public/images/u14_normal.png);margin-top:-3px;font-size:13px;">国家相关文件</p>
-				<p style="border-bottom:0;background:url(/resource/public/images/u14_normal.png);margin-top:-3px;font-size:13px;">地方相关文件</p>
+			<div class="j_main_left_1" style="background:#F3F3F3;">
+				<p>政策咨询<span>Policy Advice</span></p>
+				<ul style="padding-left:0;margin:0;">
+					<li class="current_li"><a href="/newsList.jhtml">国家法律法规</a></li>
+					<li><a href="/workList.jhtml">地方法律法规</a></li>
+					<li><a href="/imagesList.jhtml">国家相关文件</a></li>
+					<li style="border-bottom:1px solid #EBEBEB;"><a href="/videosList.jhtml">地方相关文件</a></li>
+				</ul>
 			</div>
-			<div class="j_main_left_1" style="margin-top:10px;height:380px;text-align:center;">
+			<div class="j_main_left_1" style="margin-top:10px;height:415px;text-align:center;">
 				<p style="text-align:left;cursor:auto;line-height:normal;">专题报道<span>更多</span></p>
 				<img src="/resource/public/images/zhuanti.png" style="margin-top:7px;">
 			</div>
@@ -178,7 +196,15 @@
 							<div class="j_main_right_3">
 								<p>国家法律法规<span><a href="">更多</a></span></p>
 								<div class="j_main_right_3_1">
-									
+									<ul style="padding-left:10px;margin:0;">
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+									</ul>
 								</div>
 							</div>
 						</td>
@@ -186,7 +212,15 @@
 							<div class="j_main_right_3">
 								<p>地方法律法规<span><a href="">更多</a></span></p>
 								<div class="j_main_right_3_1">
-									
+									<ul style="padding-left:10px;margin:0;">
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+									</ul>
 								</div>
 							</div>
 						</td>
@@ -196,7 +230,15 @@
 							<div class="j_main_right_3">
 								<p>国家相关文件<span><a href="">更多</a></span></p>
 								<div class="j_main_right_3_1">
-									
+									<ul style="padding-left:10px;margin:0;">
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+									</ul>
 								</div>
 							</div>
 						</td>
@@ -204,7 +246,15 @@
 							<div class="j_main_right_3">
 								<p>地方相关文件<span><a href="">更多</a></span></p>
 								<div class="j_main_right_3_1">
-									
+									<ul style="padding-left:10px;margin:0;">
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+									</ul>
 								</div>
 							</div>
 						</td>

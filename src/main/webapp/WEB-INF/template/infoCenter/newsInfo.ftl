@@ -21,20 +21,30 @@
 		.j_main_left_1{
 			width:258px;
 			height:290px;
-    		border:1px solid;
+    		border:1px solid #e4e4e4;
+    		border-radius:4px;
 		}
 		.j_main_left_1 p{
-			background: #FFCC00;
-		    border-bottom: 1px solid;
+		    color: #BF0906;
+		    font-size: 20px;
 		    margin: 0;
-		    text-align:left;
-		    padding: 5px;
+		    padding: 20px;
+		    text-align: left;
 		}
 		.j_main_left_1 span{
-			float:right;
+			color: #000000;
+		    float: right;
+		    font-size: 13px;
+		    margin-top: 7px;
 		}
 		.j_main_left_1 li{
-			line-height:28px;
+			line-height:40px;
+			list-style:none;
+			border-top:1px solid #EBEBEB;
+		}
+		.j_main_left_1 a{
+			margin-left:40px;
+			font-size:17px;
 		}
 		.j_main_right{
 			float:left;
@@ -57,7 +67,6 @@
 			width:727px;
 			height:auto;
 			margin-top:10px;
-			background:#F2F2F2;
 		}
 		.j_main_right_2 li{
 			border-bottom: 1px solid #000000;
@@ -79,23 +88,27 @@
 			height:290px;
 			margin-right:9px;
 		}
+		.current_li{
+			background:#D4130C;
+			color:#FFFFFF;
+		}
+		.current_li a{
+			color:#FFFFFF;
+		}
     </style>
 </head>
 <body>
 	[#include "/include/header.ftl" /]
 	<div class="j_main w">
 		<div class="j_main_left">
-			<div class="j_main_left_1">
-				<p>公告公示<span>更多</span></p>
-				<ul>
-					<li><a href="">就业公告公示提醒信息</a></li>
-					<li><a href="">就业公告公示提醒信息</a></li>
-					<li><a href="">就业公告公示提醒信息</a></li>
-					<li><a href="">就业公告公示提醒信息</a></li>
-					<li><a href="">就业公告公示提醒信息</a></li>
-					<li><a href="">就业公告公示提醒信息</a></li>
-					<li><a href="">就业公告公示提醒信息</a></li>
-					<li><a href="">就业公告公示提醒信息</a></li>
+			<div class="j_main_left_1" style="background:#F3F3F3;">
+				<p>资讯中心<span>Information Center</span></p>
+				<ul style="padding-left:0;margin:0;">
+					<li class="current_li"><a href="">新闻动态</a></li>
+					<li><a href="">工作动态</a></li>
+					<li><a href="">公告公示</a></li>
+					<li><a href="">图片新闻</a></li>
+					<li style="border-bottom:1px solid #EBEBEB;"><a href="">视频新闻</a></li>
 				</ul>
 			</div>
 			<div class="j_main_left_1" style="margin-top:10px;height:380px;text-align:center;">
@@ -107,7 +120,7 @@
 			<div class="j_main_right_1">
 				<p>所在位置 > 资讯中心</p>
 			</div>
-			<div class="j_main_right_2" style="border:1px solid #000000;">
+			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<h2 style="text-align:center;font-weight:normal;">面试环节中的薪资问题</h2>
 				<p>来源：人力资源和社会保障厅政府信息公开网 发布时间：2014-04-14 00:40 浏览次数： 147次 【打印文章】</p>
 				<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">
@@ -124,13 +137,15 @@
 				<p style="text-indent:16px;">
 					每一个人工作都是为了获得合理的报酬，所以广大面试者不需要任何心理负担，或者有任何难以启齿的感觉。工资是每一个员工的正常收益，只有在面试的过程中得到恰当的定位，那么让员工在工作中有更好的积极性，也让企业获得最恰当的员工。
 				</p>
-				<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">
-				<p style="padding-left:25px;">
-					上一篇：<a href="">面试时是否该化妆</a>
-				</p>
-				<p style="padding-left:25px;">
-					下一篇：<a href="">没有了</a>
-				</p>
+				<!--
+					<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">
+					<p style="padding-left:25px;">
+						上一篇：<a href="">面试时是否该化妆</a>
+					</p>
+					<p style="padding-left:25px;">
+						下一篇：<a href="">没有了</a>
+					</p>
+				-->
 			</div>
 		</div>
 	</div>

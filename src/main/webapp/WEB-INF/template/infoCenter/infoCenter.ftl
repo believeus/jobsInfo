@@ -40,7 +40,8 @@
 			float:left;
     		width:730px;
     		height:auto;
-			overflow:hidden;		
+			overflow:hidden;
+			margin-bottom:10px;
 		}
 		.j_main_right_1{
     		width:730px;
@@ -56,25 +57,31 @@
 		.j_main_right_2{
 			width:727px;
 			height:290px;
-			margin-top:10px;
+			margin-bottom:10px;
+			border:1px solid #E4E4E4;
 		}
 		.j_main_right_2_1{
 			float:left;
-			width:359px;
+			width:350px;
 			height:290px;
 			margin-right:9px;
+			padding:5px;
 		}
 		.j_main_right_2_1 p a{
 			color: #3586F2;
 		    margin-right: 10px;
-		    text-decoration: underline;
 		}
 		.j_main_right_2_1 li{
-			border-bottom: 1px solid #000000;
-    		line-height: 25px;
+			font-size: 12px;
+		    line-height: 30px;
+		    list-style: none;
+		}
+		.j_main_right_2_1 span {
+		    color: #555555;
+		    float: right;
 		}
 		.j_main_right_3{
-			border: 1px solid #000000;
+			border: 1px solid #E4E4E4;
 		    height: auto;
 		    margin-top: 10px;
 		    width: 727px;
@@ -90,152 +97,133 @@
 		.j_main_right_3 a{
 			font-size:13px;
 		}
+		.gonggao{
+    		width:255px;
+    		height:350px;
+    		border:1px solid #EED9C8;
+    		margin-bottom:5px;
+    	}
+		.gonggao li{
+			margin-right:10px;
+			line-height:30px;
+			font-size:12px;
+		}
+		.gonggao span{
+    		float:right;
+    	}
+    	.picshow{
+    		width:320px;
+    		height:285px;
+    		float:left;
+    	}
+    	.xinwen{
+    		float:left;
+			width:396px;
+			height:285px;    		
+    		margin-left:5px;
+    	}
+    	.xinwen li{
+    		line-height:20px;
+    	}
+    	.xinwen_ul li{
+    		line-height:30px;
+    	}
+    	.tupian{
+    		width:998px;
+    		height:167px;
+    		border:1px solid #e4e4e4;
+    		margin-bottom:6px;
+    		overflow:hidden;
+    	}
     </style>
 </head>
 <body>
 	[#include "/include/header.ftl" /]
 	<div class="j_main w">
 		<div class="j_main_left">
-			<div class="j_main_left_1">
-				<p>公告公示<span>更多</span></p>
-				<ul>
-					<li><a href="">就业公告公示提醒信息</a></li>
-					<li><a href="">就业公告公示提醒信息</a></li>
-					<li><a href="">就业公告公示提醒信息</a></li>
-					<li><a href="">就业公告公示提醒信息</a></li>
-					<li><a href="">就业公告公示提醒信息</a></li>
-					<li><a href="">就业公告公示提醒信息</a></li>
-					<li><a href="">就业公告公示提醒信息</a></li>
-					<li><a href="">就业公告公示提醒信息</a></li>
+			<div class="gonggao">
+				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);">公告公示<span style="float:right;"><a href="/publicityList.jhtml">更多</a></span></p>
+				<ul style="padding-left:25px;">
+					<li><a href="">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
+					<li><a href="">社会保障费申请缴纳管理规定..</a><span>10-15</span></li>
+					<li><a href="">人力资源社会保障部关于印发..</a><span>10-15</span></li>
+					<li><a href="">社会保障费申请缴纳管理规定..</a><span>10-15</span></li>
+					<li><a href="">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
+					<li><a href="">人力资源社会保障部关于印发..</a><span>10-15</span></li>
+					<li><a href="">人力资源社会保障部关于印发..</a><span>10-15</span></li>
+					<li><a href="">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
+					<li><a href="">人力资源社会保障部关于印发..</a><span>10-15</span></li>
+					<li><a href="">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
 				</ul>
 			</div>
-			<div class="j_main_left_1" style="margin-top:10px;height:380px;text-align:center;">
-				<p>专题报道<span>更多</span></p>
+			<div class="j_main_left_1" style="margin-top:10px;height:405px;text-align:center;border:1px solid #E4E4E4;">
+				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
+				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
+				<div style="width: 70px; float: left; line-height: 45px;"><a href="">更多>></a></div>
 				<img src="/resource/public/images/zhuanti.png" style="margin-top:7px;">
 			</div>
 		</div>
 		<div class="j_main_right">
-			<div class="j_main_right_1">
-				<p>所在位置 > 资讯中心</p>
+			<div class="j_main_right_2" style="border:1px solid #E4E4E4;">
+				<div class="picshow">
+				<img src="/resource/public/images/u6_normal_03.gif" style="padding:5px;">
+				<span style="padding-left:5px;">第一届潜江创业培训研讨会召开</span>
 			</div>
-			<div class="j_main_right_2" style="border:1px solid #000000;">
-				<div class="j_main_right_2_1">
-					<img src="/resource/public/images/xwdt.png" style="padding:10px;">
+			<div class="xinwen">
+				<div style="padding-left: 20px;margin-bottom:20px;">
+					<h2 style="margin: 0px; font-size: 21px; font-weight: normal;">表彰全市创业就业先进个人</h2>
+					<p style="color:#2B8BDF;margin:0;font-size:12px;">xx市人力资源和社会保障局关于表彰全市创业就业先进个人的决定</p>
 				</div>
-				<div class="j_main_right_2_1" style="margin-right:0;">
-					<h2 style="margin-top: 8px; font-weight: normal;">头条新闻</h2>
-					<p style="font-size: 13px;">头条新闻内容简介头条新闻内容简介头条新闻内容简介头条新闻内容简介头条新闻内容简介头条新闻内容简介头条新闻内容简介头条新闻内容简介头条新闻内容简介头条新闻内容简介头条新</p>
-					<p style="margin-top: 0px; text-align: right;"><a href="">详细</a></p>
-					<ul style="padding-left:14px;padding-right:14px;">
-						<li><a href="">新闻标题</a></li>
-						<li><a href="">新闻标题</a></li>
-						<li><a href="">新闻标题</a></li>
-						<li><a href="">新闻标题</a></li>
-					</ul>
+				<div style="padding-left: 20px;">
+					<h2 style="margin: 0px; font-size: 21px; font-weight: normal;">国务院六大举措力促高校毕业生就业</h2>
+					<p style="color:#2B8BDF;margin:0;font-size:12px;">昨日，国务院总理李克强主持召开国务院常务会议，对于如何做..</p>
 				</div>
+				<hr style="margin-left: 10px; margin-right: 10px; border: 1px dashed #e4e4e4;">
+				<ul class="xinwen_ul" style="padding-left: 25px;">
+					<li><a href="">推陈出新的巧克力蛋糕店创业计划书</a></li>
+					<li><a href="">创业计划书的六个概念</a></li>
+					<li><a href="">赢动运城创业大赛报名表</a></li>
+					<li><a href="">毕业季里的创业课</a></li>
+					<li><a href="">运城启动SIYB免费创业培训</a></li>
+				</ul>
+			</div>
 				
 			</div>
 			<div class="j_main_right_2" style="width:727px;">
-				<div class="j_main_right_2_1" style="margin-right:4px;border:1px solid #000000;">
-					<p style="margin:0;padding:5px;background:#FFCC00;border-bottom:1px solid #000000;">新闻动态</p>
+				<div class="j_main_right_2_1" style="margin-right:4px;">
+					<p style="margin:0;padding:5px;background:#FFCC00;border-bottom:1px solid #E4E4E4;">新闻动态<span><a href="/newsList.jhtml">更多>></a></span></p>
 					<div style="height: 100px; padding: 9px; width: 341px;">
 						<img src="/resource/public/images/dt_img.png" style="float:left;width:120px;">
-						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;">头条新闻内容简介头条新闻内容简介头条新闻内容简介头条新闻内容简介头条新闻内容简介头条新</p>
+						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;font-size:16px;color:#C42D3E;">2014年医疗、工伤和生育保险工作座谈会召开...</p>
+						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;">2014年医疗、工伤和生育保险工作座谈会召开...<span style="text-align: right;float:right;"><a href="">[详细]</a></span></p>
 					</div>
-					<p style="margin: 0px; text-align: right;"><a href="">详细</a></p>
-					<ul style="margin: 0px; padding: 0px 20px;">
-						<li><a href="">新闻标题</a></li>
-						<li><a href="">新闻标题</a></li>
-						<li><a href="">新闻标题</a></li>
-						<li><a href="">新闻标题</a></li>
+					<div style="width: 320px; height: 0px; margin-left: auto; margin-right: auto; border: 1px dashed #E4E4E4;margin-bottom:15px;"></div>
+					<ul style="margin: 0px; padding: 0px 15px;">
+						<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+						<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+						<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+						<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 					</ul>
 				</div>
-				<div class="j_main_right_2_1" style="margin-right:0;border:1px solid #000000;">
-					<p style="margin:0;padding:5px;background:#FFCC00;border-bottom:1px solid #000000;">工作动态</p>
+				<div style="float: left; border: 1px dashed #e4e4e4; width: 0px; margin-top: 6px; height: 273px;"></div>
+				<div class="j_main_right_2_1" style="margin-right:0;">
+					<p style="margin:0;padding:5px;background:#FFCC00;border-bottom:1px solid #E4E4E4;">工作动态<span><a href="/workList.jhtml">更多>></a></span></p>
 					<div style="height: 100px; padding: 9px; width: 341px;">
 						<img src="/resource/public/images/dt_img.png" style="float:left;width:120px;">
-						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;">头条新闻内容简介头条新闻内容简介头条新闻内容简介头条新闻内容简介头条新闻内容简介头条新</p>
+						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;font-size:16px;color:#C42D3E;">2014年医疗、工伤和生育保险工作座谈会召开...</p>
+						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;">2014年医疗、工伤和生育保险工作座谈会召开...<span style="text-align: right;float:right;"><a href="">[详细]</a></span></p>
 					</div>
-					<p style="margin: 0px; text-align: right;"><a href="">详细</a></p>
-					<ul style="margin: 0px; padding: 0px 20px;">
-						<li><a href="">新闻标题</a></li>
-						<li><a href="">新闻标题</a></li>
-						<li><a href="">新闻标题</a></li>
-						<li><a href="">新闻标题</a></li>
+					<div style="width: 320px; height: 0px; margin-left: auto; margin-right: auto; border: 1px dashed #E4E4E4;margin-bottom:15px;"></div>
+					<ul style="margin: 0px; padding: 0px 15px;">
+						<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+						<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+						<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+						<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 					</ul>
 				</div>
 			</div>
 			<div class="j_main_right_3">
-				<p style="background:#FFCC00;margin: 0px; padding: 5px; border-bottom: 1px solid #000000;">图片新闻</p>
-				<table>
-					<tr>
-						<td>
-							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png"></a>
-							</p>
-							<p><a href="">省人社厅正式...</a></p>
-						</td>
-						<td>
-							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png"></a>
-							</p>
-							<p><a href="">省人社厅正式...</a></p>
-						</td>
-						<td>
-							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png"></a>
-							</p>
-							<p><a href="">省人社厅正式...</a></p>
-						</td>
-						<td>
-							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png"></a>
-							</p>
-							<p><a href="">省人社厅正式...</a></p>
-						</td>
-						<td>
-							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png"></a>
-							</p>
-							<p><a href="">省人社厅正式...</a></p>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png"></a>
-							</p>
-							<p><a href="">省人社厅正式...</a></p>
-						</td>
-						<td>
-							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png"></a>
-							</p>
-							<p><a href="">省人社厅正式...</a></p>
-						</td>
-						<td>
-							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png"></a>
-							</p>
-							<p><a href="">省人社厅正式...</a></p>
-						</td>
-						<td>
-							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png"></a>
-							</p>
-							<p><a href="">省人社厅正式...</a></p>
-						</td>
-						<td>
-							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png"></a>
-							</p>
-							<p><a href="">省人社厅正式...</a></p>
-						</td>
-					</tr>
-				</table>
-			</div>
-			<div class="j_main_right_3">
-				<p style="background:#FFCC00;margin: 0px; padding: 5px; border-bottom: 1px solid #000000;">视频新闻</p>
+				<p style="background:#FFCC00;margin: 0px; padding: 5px; border-bottom: 1px solid #e4e4e4;">视频新闻<span style="float:right;"><a href="/videosList.jhtml">更多>></a></span></p>
 				<table>
 					<tr>
 						<td>
@@ -271,6 +259,13 @@
 					</tr>
 				</table>
 			</div>
+		</div>
+		<div class="tupian">
+			<div style="width:1000px;height:38px;background:url(/resource/public/images/zhizuo-_01.png);">
+				<span style="color: #FFD32A;font-size: 20px;font-weight: bold;line-height: 38px;padding-left: 15px;">图片新闻<span style="float:right;"><a style="color:#FAFAFA;font-size:15px;" href="/imagesList.jhtml">更多>></a></span></span>
+			</div>
+			<img src="/resource/public/images/u6_normal_39.gif" style="width: 998px; margin-top: -4px;">
+			<img src="/resource/public/images/u6_normal_41.gif" style="width: 998px; margin-top: -4px;">
 		</div>
 	</div>
 	[#include "/include/footer.ftl" /]
