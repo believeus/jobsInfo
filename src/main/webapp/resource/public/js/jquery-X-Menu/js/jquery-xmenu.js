@@ -77,7 +77,7 @@
 				
 				if(name.length>10){
 					$span.attr({"title":name});
-					name =name.substring(0,20)+"...";
+					name =name.substring(0,15)+"...";
 				}
 				
 				$span.text(name);
