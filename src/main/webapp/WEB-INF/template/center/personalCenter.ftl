@@ -317,15 +317,15 @@
 							<tr>
 								<td>起始时间:</td>
 								<td colspan="3">
-								<input type="text" id="beginDate" name="beginDate" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: \'#F{$dp.$D(endDate)}\'});" />
-								结束时间: <input type="text" id="endDate" name="endDate" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: \'#F{$dp.$D(beginDate)}\'});"/>
+								<input type="text" name="beginDate" id="beginDate" eidLearning="beginDateLearning'+a+'" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: \'#F{$dp.$D(endDate)}\'});" />
+								结束时间: <input type="text" name="endDate" id="endDate" eidLearning="endDateLearning'+a+'" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: \'#F{$dp.$D(beginDate)}\'});"/>
 								</td>
 							</tr>
 							<tr>
 								<td>学校名称:</td>
-								<td style="padding-right:100px;"><input type="text"></td>
+								<td style="padding-right:100px;"><input type="text" id="schoolLearning'+a+'"></td>
 								<td>系别:</td>
-								<td><input type="text"></td>
+								<td><input type="text" id="deptLearning'+a+'"> </td>
 							</tr>
 							<tr>
 								<td>专业:</td>
@@ -388,7 +388,7 @@
 							<tr>
 								<td>专业：</td>
 								<td>
-									<input type="hidden" name="SkillId" id="selectSkillhidden'+b+'" value="">
+									<input type="hidden" id="selectSkillSpecialtyhidden'+b+'" value="">
 									<div class="topnav">
 										<a href="javascript:void(0);" id="selectSkillSpecialty'+b+'" class="as">
 											<span>选择专业</span>		
@@ -397,20 +397,20 @@
 								</td>
 								<td>技能等级:</td>
 								<td style="padding-right:70px;">
-									<select name="" style="width:158px;">
+									<select id="skillLevel'+b+'" style="width:158px;">
 										<option value="">请选择..</option>
-										<option value="">职业资格一级（高级技师）</option>
-										<option value="">职业资格二级（技师）</option>
-										<option value="">职业资格三级（高级）</option>
-										<option value="">职业资格四级（中级）</option>
-										<option value="">职业资格五级（初级）</option>
+										<option value="职业资格一级（高级技师）">职业资格一级（高级技师）</option>
+										<option value="职业资格二级（技师）">职业资格二级（技师）</option>
+										<option value="职业资格三级（高级）">职业资格三级（高级）</option>
+										<option value="职业资格四级（中级）">职业资格四级（中级）</option>
+										<option value="职业资格五级（初级）">职业资格五级（初级）</option>
 									</select>
 								</td>
 							</tr>
 							<tr>
 								<td>工种:</td>
 								<td>
-									<input type="hidden" name="selectJobshiddenId" id="selectJobshidden'+b+'" value="">
+									<input type="hidden" id="selectSkillJobshidden'+b+'" value="">
 									<div class="topnav">
 										<a class="as" href="javascript:void(0);" id="selectSkillJobs'+b+'">
 											<span>选择工种</span>		
@@ -418,11 +418,11 @@
 									</div>
 								</td>
 								<td>从事年限:</td>
-								<td><input type="text"></td>
+								<td><input type="text" id="workingLifeSkill'+b+'"></td>
 							</tr>
 							<tr>
 								<td>说明:</td>
-								<td colspan="3"><textArea cols="50" style="resize:none;"></textArea></td>
+								<td colspan="3"><textArea  id="noteSkill'+b+'" cols="50" style="resize:none;"></textArea></td>
 								<td rowspan="3"><a class="delete_jineng" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
@@ -454,14 +454,14 @@
 							eventType: "click", //事件类型 支持focus click hover
 							dropmenu:"#xmenuSkillSpecialty"+b,//弹出层
 							emptytext:"选择专业",
-							hiddenID : "selectSkillhidden"+b//隐藏域ID	
+							hiddenID : "selectSkillSpecialtyhidden"+b//隐藏域ID	
 				});
 				$("#selectSkillJobs"+b).xMenu({	
 							width :600,	
 							eventType: "click", //事件类型 支持focus click hover
 							dropmenu:"#xmenuSkillJobs"+b,//弹出层
 							emptytext:"选择专业",
-							hiddenID : "selectJobshidden"+b//隐藏域ID	
+							hiddenID : "selectSkillJobshidden"+b//隐藏域ID	
 				});
 				
 				b ++;
@@ -479,20 +479,20 @@
 							<tr>
 								<td>起始时间:</td>
 								<td colspan="3">
-								<input type="text" id="beginDate" name="beginDate" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string("yyyy-MM-dd"))!}"  onfocus="WdatePicker({maxDate: \'#F{$dp.$D(endDate)}\'});" />
-								结束时间: <input type="text" id="endDate" name="endDate" style="width:100px;height:25px"class="text Wdate"value="${(endDate?string("yyyy-MM-dd"))!}"  onfocus="WdatePicker({minDate: \'#F{$dp.$D(beginDate)}\'});" />
+								<input type="text" id="beginDate" name="beginDate" eidWork="beginDateWork'+c+'" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string("yyyy-MM-dd"))!}"  onfocus="WdatePicker({maxDate: \'#F{$dp.$D(endDate)}\'});" />
+								结束时间: <input type="text" id="endDate" eidWork="endDateWork'+c+'" name="endDate" style="width:100px;height:25px"class="text Wdate"value="${(endDate?string("yyyy-MM-dd"))!}"  onfocus="WdatePicker({minDate: \'#F{$dp.$D(beginDate)}\'});" />
 								</td>	
 							</tr>
 							<tr>
 								<td>工作单位:</td>
-								<td style="padding-right:100px;"><input type="text"></td>
+								<td style="padding-right:100px;"><input type="text" id="workspaceWork'+c+'"></td>
 								<td>职务:</td>
-								<td><input type="text"></td>
+								<td><input type="text" id="dutyWork'+c+'"></td>
 							</tr>
 							<tr>
 								<td>工种:</td>
 								<td>
-									<input type="hidden" value="" id="selectWorkJobhidden'+c+'" name="brandIds" value=""/>
+									<input type="hidden" value="" id="selectWorkJobhidden'+c+'" />
 									<div class="topnav">
 										<a id="selectWorkJob'+c+'" href="javascript:void(0);" class="as">
 											<span >
@@ -502,7 +502,7 @@
 									</div>
 								</td>
 								<td>工作内容:</td>
-								<td ><input type="text"></td>
+								<td ><input type="text" id="noteWork'+c+'"></td>
 								<td rowspan="3"><a class="delete_gongzuo" href="javascript:void(0);">删除</a></td>
 							</tr>
 						</table>
@@ -547,7 +547,7 @@
 								<td rowspan="3" style="background:#DCDCDC;color:#FE7200;">'+d+'</td>
 								<td>专业:</td>
 								<td>
-									<input type="hidden" value="" id="selectVolunteerSpecialtyhidden'+d+'" name="brandIds" value=""/>
+									<input type="hidden" value="" id="selectVolunteerSpecialtyhidden'+d+'"/>
 									<div class="topnav">
 										<a id="selectVolunteerSpecialty'+d+'" href="javascript:void(0);" class="as">
 											<span >
@@ -557,13 +557,13 @@
 									</div>
 								</td>
 								<td>择业地区:</td>
-								<td><input type="text"></td>
+								<td><input type="text" id="expectAreaVolunteer'+d+'"></td>
 							</tr>
 							<tr>
 								
 								<td>工种:</td>
 								<td>
-									<input type="hidden" value="" id="selectVolunteerJobshidden'+d+'" name="brandIds" value=""/>
+									<input type="hidden" value="" id="selectVolunteerJobshidden'+d+'" />
 									<div class="topnav">
 										<a id="selectVolunteerJobs'+d+'" href="javascript:void(0);" class="as">
 											<span >
@@ -574,12 +574,12 @@
 								</td>
 								<td>月薪要求:</td>
 								<td style="padding-right:70px;">
-									<input type="text" name="">
+									<input type="text" id="expectSalaryVolunteer'+d+'">
 								</td>
 							</tr>
 							<tr>
 								<td>其他要求:</td>
-								<td colspan="3"><textArea cols="50" style="resize:none;"></textArea></td>
+								<td colspan="3"><textArea cols="50" id="noteVolunteer'+d+'" style="resize:none;"></textArea></td>
 								<td rowspan="3"><a class="delete_zhiyuan" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
@@ -631,6 +631,12 @@
     			
     		
 		    $().ready(function() {
+		    	// 初始化一些值。设置value为用户填写过的项选中。
+		    	$("#polity").val("${sessionUser.polity}");
+		    	$("#marriage").val("${sessionUser.marriage}");
+		    	$("#eduLevel").val("${sessionUser.eduLevel}");
+		    	$("#health").val("${sessionUser.health}");
+		    	$("#sex").val("${sessionUser.sex}");
 		    	// 为所有插件使用相同的模板。
 		    	var html ='<div id="xmenuSkillSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'+
 						'<div id="xmenuSkillJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>'+
@@ -646,7 +652,8 @@
 					eventType: "click", //事件类型 支持focus click hover
 					dropmenu:"#xmenuSkillSpecialty1",//弹出层
 					emptytext:"选择专业",
-					hiddenID : "selectSkillSpecialtyhidden1"//隐藏域ID	
+					hiddenID : "selectSkillSpecialtyhidden1",//隐藏域ID	
+					value : "1,8"
 				});
 				// 技能工种
 				$("#selectSkillJobs1").xMenu({	
@@ -692,24 +699,53 @@
 				
     			// 提交信息列表
     			function sumitValidLIist(submitx){
-    				$.ajax({
-							url: "/common-user/center/submit-comInfo.jhtml",
-							type: "POST",
-							data: {
-								id:${sessionUser.id},
-								specialty: $("#selectSpecialtyhidden1").val(),
-								Jobs:$("#selectSkillJobshidden1").val(),
-								skillLevel:$("#skillLevel").val(),
-								workingLife:$("#workingLife").val(),
-								note:$("#note").val(),
-								submit:submitx
-								},
-							dataType: "json",
-							cache: false,
-							success: function(data) {
-									alert(data.message);
-								}
-							});
+    				  alert("xxxxx具备技能xxxxxxxxxx");
+    				  $("div.jineng_div").each(function(index){
+    				  		index++;
+    				  		/*alert(index);
+    				  		alert("专业id:" +$("#selectSkillSpecialtyhidden"+index).val());
+							alert("工种id:"+$("#selectSkillJobshidden"+index).val());
+							alert("技能能级:"+$("#skillLevel"+index).val());
+							alert("从事年限:"+$("#workingLifeSkill"+index).val());
+							alert("说明:"+$("#noteSkill"+index).val());*/
+    				  })
+    				   alert("xxxxx学习经历xxxxxxxxxx");
+    				   $("div.xuexi_div").each(function(index){
+    				  		index++;
+    				  		/*alert(index);
+							alert("开始时间:"+$("input[eidLearning='beginDateLearning"+index+"']").val());
+							alert("结束时间:"+$("input[eidLearning='endDateLearning"+index+"']").val());
+							alert("学校名称:"+$("#schoolLearning"+index).val());
+							alert("系别:"+$("#deptLearning"+index).val());
+    				  		alert("专业id:" +$("#selectLearningSpecialtyhidden"+index).val());
+    				  		*/
+    				  })
+    				  alert("xxxxxxxx工作经验xxxxxxx");
+    				  $("div.gongzuo_div").each(function(index){
+    				  		index++;
+    				  		/*alert(index);
+							alert("开始时间:"+$("input[eidWork='beginDateWork"+index+"']").val());
+							alert("结束时间:"+$("input[eidWork='endDateWork"+index+"']").val());
+							alert("工作单位:"+$("#workspaceWork"+index).val());
+							alert("职务:"+$("#dutyWork"+index).val());
+    				  		alert("工种id:" +$("#selectWorkJobhidden"+index).val());
+							alert("工作内容:"+$("#noteWork"+index).val());
+							*/
+    				  })
+    				  
+    			}
+    			function submitVolunteer(submitx){
+    				  alert("xxxxxxxx选择志愿xxxxxxx");
+    				  $("div.zhiyuan_div").each(function(index){
+    				  		index++;
+    				  		alert(index);
+    				  		alert("专业id:" +$("#selectVolunteerSpecialtyhidden"+index).val());
+							alert("工种id:"+$("#selectVolunteerJobshidden"+index).val());
+							alert("地区:"+$("#expectAreaVolunteer"+index).val());
+							alert("薪水:"+$("#expectSalaryVolunteer"+index).val());
+							alert("要求:"+$("#noteVolunteer"+index).val());
+							
+    				  })
     			}
 		    	// ajax 提交验证和保存。
 				function submitValid(submitx){
@@ -738,6 +774,8 @@
 								workspace:$("#workspace").val(),
 								jobId:$("#jobId").val(),
 								singleChild:$('input:radio[name="singleChild"]:checked').val(),
+								freeTrain:$('input:radio[name="freeTrain"]:checked').val(),
+								freeIntro:$('input:radio[name="freeIntro"]:checked').val(),
 								submit:submitx
 								},
 							dataType: "json",
@@ -758,14 +796,19 @@
 					submitValid("no");
 				});
 				
-				// 保存。
+				// 保存其他信息。
 				$("#saveInfo").click(function() {
 					var loginName=$("#loginName").val();
 					if(loginName==""){
 						alert("用户名必填！");
 					}else{
 						submitValid("submit");
+						//sumitValidLIist("no");
 					}
+				});
+				//保存志愿。
+				$("#saveVolunteer").click(function() {
+						submitVolunteer("no");
 				});
 			
 			})
@@ -899,8 +942,8 @@
 								<tr>
 									<td>二女户:</td>
 									<td>
-										<input type="radio"  name="twoGirl" value="1" checked="true" style="width:0">是
-										<input type="radio"  name="twoGirl" value="0" style="width:0">否
+										<input type="radio"  name="twoGirl" value="1" [#if sessionUser.twoGirl=="1"]checked="true"[#elseif sessionUser.twoGirl!="0"]checked="true"[/#if] style="width:0">是
+										<input type="radio"  name="twoGirl" value="0" [#if sessionUser.twoGirl=="0"]checked="true"[/#if]style="width:0">否
 									</td>
 								</tr>
 							</table>
@@ -977,8 +1020,8 @@
 								<tr>
 									<td>独生子女:</td>
 									<td>
-										<input type="radio" name="singleChild" value="1" checked="true" style="width:0">是
-										<input type="radio" name="singleChild" value="0" style="width:0">否
+										<input type="radio" name="singleChild" value="1" [#if sessionUser.singleChild=="1"]checked="true"[#elseif sessionUser.singleChild!="0"]checked="true"[/#if] style="width:0">是
+										<input type="radio" name="singleChild" value="0" [#if sessionUser.singleChild=="0"]checked="true"[/#if]style="width:0">否
 									</td>
 								</tr>
 							</table>
@@ -1010,7 +1053,7 @@
 							<tr>
 								<td>专业：</td>
 								<td>
-									<input type="hidden" value="" id="selectSkillSpecialtyhidden1" />
+									<input type="hidden" value="" id="selectSkillSpecialtyhidden1" value="8"/>
 									<div class="topnav">
 										<a id="selectSkillSpecialty1" href="javascript:void(0);" class="as">
 											<span >
@@ -1021,13 +1064,13 @@
 								</td>
 								<td>技能等级:</td>
 								<td style="padding-right:70px;">
-									<select id="skillLevel" style="width:158px;">
+									<select id="skillLevel1" style="width:158px;">
 										<option value="">请选择..</option>
-										<option value="">职业资格一级（高级技师）</option>
-										<option value="">职业资格二级（技师）</option>
-										<option value="">职业资格三级（高级）</option>
-										<option value="">职业资格四级（中级）</option>
-										<option value="">职业资格五级（初级）</option>
+										<option value="职业资格一级（高级技师）">职业资格一级（高级技师）</option>
+										<option value="职业资格二级（技师）">职业资格二级（技师）</option>
+										<option value="职业资格三级（高级）">职业资格三级（高级）</option>
+										<option value="职业资格四级（中级）">职业资格四级（中级）</option>
+										<option value="职业资格五级（初级）">职业资格五级（初级）</option>
 									</select>
 								</td>
 							</tr>
@@ -1044,11 +1087,11 @@
 									</div>
 								</td>
 								<td>从事年限:</td>
-								<td><input type="text" id="workingLife"></td>
+								<td><input type="text" id="workingLifeSkill1"></td>
 							</tr>
 							<tr>
 								<td>说明:</td>
-								<td colspan="3"><textArea cols="50" style="resize:none;" id="note"></textArea></td>
+								<td colspan="3"><textArea cols="50" style="resize:none;" id="noteSkill1"></textArea></td>
 								<td rowspan="3"><a class="delete_jineng" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
@@ -1072,20 +1115,21 @@
 							<tr>
 								<td>起始时间:</td>
 								<td colspan="3">
-								<input type="text" id="beginDate" name="beginDate" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
-								结束时间: <input type="text" id="endDate" name="endDate" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
+								<input type="text" name="beginDate" id="beginDate"  eidLearning="beginDateLearning1" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
+								结束时间: <input type="text"  name="endDate" id="endDate" eidLearning="endDateLearning1" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
 								</td>
 							</tr>
 							<tr>
 								<td>学校名称:</td>
-								<td style="padding-right:100px;"><input type="text"></td>
+								<td style="padding-right:100px;">
+								<input type="text" id="schoolLearning1"></td>
 								<td>系别:</td>
-								<td><input type="text"></td>
+								<td><input type="text" id="deptLearning1"></td>
 							</tr>
 							<tr>
 								<td>专业:</td>
 								<td colspan="3">
-									<input type="hidden" value="" id="selectLearningSpecialtyhidden1" name="brandIds" value=""/>
+									<input type="hidden" value="" id="selectLearningSpecialtyhidden1"/>
 									<div class="topnav">
 										<a id="selectLearningSpecialty1" href="javascript:void(0);" class="as">
 											<span >
@@ -1116,20 +1160,20 @@
 							<tr>
 								<td>起始时间:</td>
 								<td colspan="3">
-								<input type="text" id="beginDate" name="beginDate" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
-								结束时间: <input type="text" id="endDate" name="endDate" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
+								<input type="text" eidWork="beginDateWork1" id="beginDate" name="beginDate" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
+								结束时间: <input type="text" eidWork="endDateWork1" id="endDate" name="endDate" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
 								</td>
 							</tr>
 							<tr>
 								<td>工作单位:</td>
-								<td style="padding-right:100px;"><input type="text"></td>
+								<td style="padding-right:100px;"><input type="text" id="workspaceWork1"></td>
 								<td>职务:</td>
-								<td><input type="text"></td>
+								<td><input type="text" id="dutyWork1"></td>
 							</tr>
 							<tr>
 								<td>工种:</td>
 								<td>
-									<input type="hidden" value="" id="selectWorkJobhidden1" name="brandIds" value=""/>
+									<input type="hidden" value="" id="selectWorkJobhidden1"/>
 									<div class="topnav">
 										<a id="selectWorkJob1" href="javascript:void(0);" class="as">
 											<span >
@@ -1139,7 +1183,7 @@
 									</div>
 								</td>
 								<td>工作内容:</td>
-								<td ><input type="text"></td>
+								<td ><input type="text" id="noteWork1"></td>
 								<td rowspan="3"><a class="delete_gongzuo" href="javascript:void(0);">删除</a></td>
 							</tr>
 						</table>
@@ -1155,13 +1199,13 @@
 							<tr>
 								<td>享受免费职业培训:</td>
 								<td style="padding-right:100px;">
-									<input type="radio" name="peixun" checked="true" style="width:0">是
-									<input type="radio" name="peixun" style="width:0">否
+									<input type="radio" name="freeTrain" checked="true" style="width:0" value="1">是
+									<input type="radio" name="freeTrain" style="width:0" value="0">否
 								</td>
 								<td>享受免费职业介绍:</td>
 								<td>
-									<input type="radio" name="jieshao" checked="true" style="width:0">是
-									<input type="radio" name="jieshao" style="width:0">否
+									<input type="radio" name="freeIntro" checked="true" style="width:0" value="1">是
+									<input type="radio" name="freeIntro" style="width:0" value="0">否
 								</td>
 							</tr>
 						</table>
@@ -1187,7 +1231,7 @@
 								<td rowspan="3" style="background:#DCDCDC;color:#FE7200;">1</td>
 								<td>专业:</td>
 								<td>
-									<input type="hidden" value="" id="selectVolunteerSpecialtyhidden1" name="brandIds" value=""/>
+									<input type="hidden" value="" id="selectVolunteerSpecialtyhidden1"/>
 									<div class="topnav">
 										<a id="selectVolunteerSpecialty1" href="javascript:void(0);" class="as">
 											<span >
@@ -1197,13 +1241,13 @@
 									</div>
 								</td>
 								<td>择业地区:</td>
-								<td><input type="text"></td>
+								<td><input type="text" id="expectAreaVolunteer1"></td>
 							</tr>
 							<tr>
 								
 								<td>工种:</td>
 								<td>
-									<input type="hidden" value="" id="selectVolunteerJobshidden1" name="brandIds" value=""/>
+									<input type="hidden" value="" id="selectVolunteerJobshidden1"/>
 									<div class="topnav">
 										<a id="selectVolunteerJobs1" href="javascript:void(0);" class="as">
 											<span >
@@ -1214,143 +1258,24 @@
 								</td>
 								<td>月薪要求:</td>
 								<td style="padding-right:70px;">
-									<input type="text" name="">
+									<input type="text" id="expectSalaryVolunteer1">
 								</td>
 							</tr>
 							<tr>
 								<td>其他要求:</td>
-								<td colspan="3"><textArea cols="50" style="resize:none;"></textArea></td>
+								<td colspan="3"><textArea cols="50" id="noteVolunteer1" style="resize:none;"></textArea></td>
 								<td rowspan="3"><a class="delete_zhiyuan" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
 					</div>
 					</div>
 					<p style="text-align:center;">
-						<input type="button" id="save" value="保存">
+						<input type="button" id="saveVolunteer" value="保存">
 						<input type="reset" value="重写">
 					</p>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div id="xmenuSkillSpecialty1" class="xmenu" style="display: none;">
-		<div class="select-info">	
-			<label class="top-label">已选项：</label>
-			<ul>		
-			</ul>
-			<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
-				<span class="a-btn-text">确定</span>
-			</a> 
-		</div>			
-		<dl>
-		<dt class="open">工程师</dt>
-		<dd>
-			<ul>
-				<li rel="1">
-						工程师1
-				</li>
-				<li rel="2">
-						工程师2
-				</li>
-			</ul>   
-			<ul>
-				<li rel="3">
-						工程师3
-				</li>
-				<li rel="4">
-						工程师4
-				</li>
-			</ul>    
-		</dd>
-		<dt class="open">设计师</dt>
-		<dd>
-			<ul>
-				<li rel="5">
-						设计师设计师设计师你
-				</li>
-				<li rel="6">
-						设计师设计师设计师你
-				</li>
-				<li rel="7">
-						设计师设计师设计师你
-				</li>
-				<li rel="8">
-						设计师2
-				</li>
-				<li rel="56">
-						设计师2
-				</li>
-			</ul>   
-			<ul>
-				<li rel="9">
-						设计师3
-				</li>
-				<li rel="0">
-						设计师4
-				</li>
-			</ul>    
-		</dd>
-		</dl>			
-	</div>
-
-	<div id="xmenuSkillJobs1" class="xmenu" style="display: none;">
-		<div class="select-info">	
-			<label class="top-label">已选项：</label>
-			<ul>		
-			</ul>
-			<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
-				<span class="a-btn-text">确定</span>
-			</a> 
-		</div>			
-		<dl>
-		<dt class="open">管理员</dt>
-		<dd>
-			<ul>
-				<li rel="11">
-						管理员1
-				</li>
-				<li rel="21">
-						管理员2
-				</li>
-			</ul>   
-			<ul>
-				<li rel="31">
-						管理员3
-				</li>
-				<li rel="41">
-						管理员4
-				</li>
-			</ul>    
-		</dd>
-		<dt class="open">技术人员</dt>
-		<dd>
-			<ul>
-				<li rel="51">
-						技术人员
-				</li>
-				<li rel="61">
-						技术人员
-				</li>
-				<li rel="71">
-						技术人员
-				</li>
-				<li rel="81">
-						技术人员2
-				</li>
-				<li rel="561">
-						技术人员2
-				</li>
-			</ul>   
-			<ul>
-				<li rel="91">
-						技术人员3
-				</li>
-				<li rel="01">
-						技术人员4
-				</li>
-			</ul>    
-		</dd>
-		</dl>			
 	</div>
 	
 	[#include "/include/footer.ftl" /]

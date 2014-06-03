@@ -56,9 +56,9 @@ public class TcomUser extends TbaseUser implements Serializable{
 	private String health;
 	/**年龄*/
 	private String age;
-	/**是否享受免费职业培训*/
+	/**是否享受免费职业培训，1为是，0为否*/
 	private String freeTrain;
-	/**是否享受免费职业介绍*/
+	/**是否享受免费职业介绍，1为是，0为否*/
 	private String freeIntro;
 	/**用户信息中心*/
 	private List<TcomInfo> comInfo;
