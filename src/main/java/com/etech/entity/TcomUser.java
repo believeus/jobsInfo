@@ -132,7 +132,7 @@ public class TcomUser extends TbaseUser implements Serializable{
 	public void setNation(String nation) {
 		this.nation = nation;
 	}
-	@Length(max =2)
+	@Length(max =4)
 	@Column(nullable = true)
 	public String getPolity() {
 		return polity;
