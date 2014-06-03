@@ -21,7 +21,7 @@
 		.j_main_left_1{
 			border: 1px solid #CDCDCD;
 		    border-radius: 4px;
-		    height: 251px;
+		    height: 215px;
 		    width: 258px;
 		}
 		.j_main_left_1 p{
@@ -38,9 +38,9 @@
 		    margin-top: 7px;
 		}
 		.j_main_left_1 li{
-			line-height:40px;
+			line-height:35px;
 			list-style:none;
-			border-top:1px solid #EBEBEB;
+			background:url(/resource/public/images/1_07.png);
 		}
 		.j_main_left_1 a{
 			margin-left:40px;
@@ -114,6 +114,13 @@
 			font-size:13px;
 			line-height:32px;
 		}
+		.current_li{
+			background:url(/resource/public/images/1_02.png) !important;
+			color:#FFFFFF;
+		}
+		.current_li a{
+			color:#FFFFFF;
+		}
     </style>
 </head>
 <body>
@@ -123,14 +130,16 @@
 			<div class="j_main_left_1" style="background:#F3F3F3;">
 				<p>政策咨询<span>Policy Advice</span></p>
 				<ul style="padding-left:0;margin:0;">
-					<li class="current_li"><a href="/newsList.jhtml">国家法律法规</a></li>
-					<li><a href="/workList.jhtml">地方法律法规</a></li>
-					<li><a href="/imagesList.jhtml">国家相关文件</a></li>
-					<li style="border-bottom:1px solid #EBEBEB;"><a href="/videosList.jhtml">地方相关文件</a></li>
+					<li><a href="/countryLawList.jhtml">国家法律法规</a></li>
+					<li><a href="/cityLawList.jhtml">地方法律法规</a></li>
+					<li><a href="/countryFileList.jhtml">国家相关文件</a></li>
+					<li><a href="/cityFileList.jhtml">地方相关文件</a></li>
 				</ul>
 			</div>
-			<div class="j_main_left_1" style="margin-top:10px;height:415px;text-align:center;">
-				<p style="text-align:left;cursor:auto;line-height:normal;">专题报道<span>更多</span></p>
+			<div class="j_main_left_1" style="margin-top:10px;height:400px;text-align:center;">
+				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
+				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
+				<div style="width: 70px; float: left; line-height: 45px;"><a href="" style="margin-left:0;">更多>></a></div>
 				<img src="/resource/public/images/zhuanti.png" style="margin-top:7px;">
 			</div>
 		</div>
@@ -194,7 +203,7 @@
 					<tr>
 						<td>
 							<div class="j_main_right_3">
-								<p>国家法律法规<span><a href="">更多</a></span></p>
+								<p>国家法律法规<span><a href="/countryLaw.jhtml">更多</a></span></p>
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
 										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
@@ -210,7 +219,7 @@
 						</td>
 						<td>
 							<div class="j_main_right_3">
-								<p>地方法律法规<span><a href="">更多</a></span></p>
+								<p>地方法律法规<span><a href="/cityLaw.jhtml">更多</a></span></p>
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
 										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>

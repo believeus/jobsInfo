@@ -20,7 +20,7 @@
 		}
 		.j_main_left_1{
 			width:258px;
-			height:290px;
+			height:251px;
     		border:1px solid #e4e4e4;
     		border-radius:4px;
 		}
@@ -38,9 +38,9 @@
 		    margin-top: 7px;
 		}
 		.j_main_left_1 li{
-			line-height:40px;
+			line-height:35px;
 			list-style:none;
-			border-top:1px solid #EBEBEB;
+			background:url(/resource/public/images/1_07.png);
 		}
 		.j_main_left_1 a{
 			margin-left:40px;
@@ -89,7 +89,7 @@
 			margin-right:9px;
 		}
 		.current_li{
-			background:#D4130C;
+			background:url(/resource/public/images/1_02.png) !important;
 			color:#FFFFFF;
 		}
 		.current_li a{
@@ -104,15 +104,17 @@
 			<div class="j_main_left_1" style="background:#F3F3F3;">
 				<p>资讯中心<span>Information Center</span></p>
 				<ul style="padding-left:0;margin:0;">
-					<li class="current_li"><a href="">新闻动态</a></li>
-					<li><a href="">工作动态</a></li>
-					<li><a href="">公告公示</a></li>
-					<li><a href="">图片新闻</a></li>
-					<li style="border-bottom:1px solid #EBEBEB;"><a href="">视频新闻</a></li>
+					<li class="current_li"><a href="/newsList.jhtml">新闻动态</a></li>
+					<li><a href="/workList.jhtml">工作动态</a></li>
+					<li><a href="/publicityList.jhtml">公告公示</a></li>
+					<li><a href="/imagesList.jhtml">图片新闻</a></li>
+					<li style=""><a href="/videosList.jhtml">视频新闻</a></li>
 				</ul>
 			</div>
-			<div class="j_main_left_1" style="margin-top:10px;height:380px;text-align:center;">
-				<p>专题报道<span>更多</span></p>
+			<div class="j_main_left_1" style="margin-top:10px;height:400px;text-align:center;">
+				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
+				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
+				<div style="width: 70px; float: left; line-height: 45px;"><a href="" style="margin-left:0;">更多>></a></div>
 				<img src="/resource/public/images/zhuanti.png" style="margin-top:7px;">
 			</div>
 		</div>

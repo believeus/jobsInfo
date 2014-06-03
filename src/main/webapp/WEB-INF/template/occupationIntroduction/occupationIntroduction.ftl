@@ -165,6 +165,17 @@
 		    line-height: 23px;
 		    list-style: none outside none;
 		}
+		.zuixinjianli td {
+		    width: 330px;
+		}
+		.zuixinjianli li {
+		    line-height: 35px;
+		}
+		.zuixinjianli span {
+		    color: #FF7800;
+		    font-size: 16px;
+		    margin-right: 15px;
+		}
     </style>
 </head>
 <body>
@@ -519,11 +530,70 @@
 				</tr>
 			</table>
 		</div>
+		
+		<div style="width:998px;height:60px;margin-top:5px;margin-bottom:5px;">
+			<img src="/resource/public/images/zhiyejieshao.png">
+		</div>
+		
+		<div class="zuixinjianli" style="width:997px;height:auto;border:1px solid #e4e4e4;">
+			<img src="/resource/public/images/zuixinjianli.png">
+			<table>
+				<tr>
+					<td>
+						<ul>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+						</ul>
+					</td>
+					<td>
+						<ul>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+						</ul>
+					</td>
+					<td>
+						<ul>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span>张三</span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
 		<div class="j_main_7">
 			<div class="j_main_7_1">
-				<img src="/resource/public/images/qiuzhi.png">
+				<div style="background:url(/resource/public/images/qiuzhi.png);width:322px;height:32px;">
+					<a href="/qiuzhizhidao.jhtml">
+						<span style="float:right;margin-right:10px;line-height:29px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					</a>
+				</div>
 				<div style="width: 320px; height: 150px;border:1px solid #e4e4e4;margin-top:-5px;">
-					<img style="float:left;" src="/resource/public/images/meinv.png">
+					<img style="float: left; margin-top: 2px;" src="/resource/public/images/meinv.png">
 					<ul  style="float: left; padding-left: 10px; margin: 5px;">
 						<li><a href="">人才招聘会春季第二期.....</a></li>
 						<li><a href="">人才招聘会春季第二期.....</a></li>
@@ -535,9 +605,13 @@
 				</div>
 			</div>
 			<div class="j_main_7_1">
-				<img src="/resource/public/images/qiuzhi.png">
+				<div style="background:url(/resource/public/images/qiuzhi.png);width:322px;height:32px;">
+					<a href="/jianlizhinan.jhtml">
+						<span style="float:right;margin-right:10px;line-height:29px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					</a>
+				</div>
 				<div style="width: 320px; height: 150px;border:1px solid #e4e4e4;margin-top:-5px;">
-					<img style="float:left;" src="/resource/public/images/meinv.png">
+					<img style="float: left; margin-top: 2px;" src="/resource/public/images/meinv.png">
 					<ul  style="float: left; padding-left: 10px; margin: 5px;">
 						<li><a href="">人才招聘会春季第二期.....</a></li>
 						<li><a href="">人才招聘会春季第二期.....</a></li>
@@ -549,9 +623,13 @@
 				</div>
 			</div>
 			<div class="j_main_7_1" style="margin-right:0px;">
-				<img src="/resource/public/images/qiuzhi.png">
+				<div style="background:url(/resource/public/images/qiuzhi.png);width:322px;height:32px;">
+					<a href="/mianshibaodian.jhtml">
+						<span style="float:right;margin-right:10px;line-height:29px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					</a>
+				</div>
 				<div style="width: 320px; height: 150px;border:1px solid #e4e4e4;margin-top:-5px;">
-					<img style="float:left;" src="/resource/public/images/meinv.png">
+					<img style="float: left; margin-top: 2px;" src="/resource/public/images/meinv.png">
 					<ul  style="float: left; padding-left: 10px; margin: 5px;">
 						<li><a href="">人才招聘会春季第二期.....</a></li>
 						<li><a href="">人才招聘会春季第二期.....</a></li>

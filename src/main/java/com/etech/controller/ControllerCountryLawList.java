@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * 国家法律法规详情
+ * 国家法律法规列表
  * */
 @Controller
-public class ControllerCountryLaw {
-	private static Log log = LogFactory.getLog(ControllerCountryLaw.class);
+public class ControllerCountryLawList {
+	private static Log log = LogFactory.getLog(ControllerCountryLawList.class);
 
-	@RequestMapping(value = "/countryLaw", method = RequestMethod.GET)
+	@RequestMapping(value = "/countryLawList", method = RequestMethod.GET)
 	public String policyAdviceView() {
 		log.debug("current controller is policyAdviceView !");
-		return "policyAdvice/countryLaw";
+		return "policyAdvice/countryLawList";
 	}
 }

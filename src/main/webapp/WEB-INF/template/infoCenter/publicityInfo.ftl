@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>工作指南-机构简介</title>
+    <title>公告详情</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -9,6 +9,7 @@
    		.j_main{
     		width:1000px;
     		height:auto;
+    		//margin-top:-6px;
     	}
 		.j_main_left{
     		float:left;
@@ -19,7 +20,7 @@
 		}
 		.j_main_left_1{
 			width:258px;
-			height:180px;
+			height:251px;
     		border:1px solid #e4e4e4;
     		border-radius:4px;
 		}
@@ -58,8 +59,8 @@
 		.j_main_right_1 p{
 			margin:0;
 			padding: 5px;
-			background: url(/resource/public/images/background_b.png);
-		    border: 1px solid #e4e4e4;
+			background: #FFCC00;
+		    border: 1px solid;
 		    font-size:13px;
 		}
 		.j_main_right_2{
@@ -101,11 +102,13 @@
 	<div class="j_main w">
 		<div class="j_main_left">
 			<div class="j_main_left_1" style="background:#F3F3F3;">
-				<p>工作指南<span>Work Instructions</span></p>
+				<p>资讯中心<span>Information Center</span></p>
 				<ul style="padding-left:0;margin:0;">
-					<li class="current_li"><a href="/organization.jhtml">机构简介</a></li>
-					<li><a href="/mainFunction.jhtml">主要职能</a></li>
-					<li><a href="/leader.jhtml">局领导</a></li>
+					<li><a href="/newsList.jhtml">新闻动态</a></li>
+					<li><a href="/workList.jhtml">工作动态</a></li>
+					<li class="current_li"><a href="/publicityList.jhtml">公告公示</a></li>
+					<li><a href="/imagesList.jhtml">图片新闻</a></li>
+					<li style=""><a href="/videosList.jhtml">视频新闻</a></li>
 				</ul>
 			</div>
 			<div class="j_main_left_1" style="margin-top:10px;height:400px;text-align:center;">
@@ -117,10 +120,7 @@
 		</div>
 		<div class="j_main_right">
 			<div class="j_main_right_1">
-				<p>
-					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-					所在位置 > 工作指南 > 机构简介
-				</p>
+				<p>所在位置 > 资讯中心</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<h2 style="text-align:center;font-weight:normal;">面试环节中的薪资问题</h2>

@@ -21,7 +21,7 @@
 		.j_main_left_1{
 			border: 1px solid #CDCDCD;
 		    border-radius: 4px;
-		    height: 290px;
+		    height: 251px;
 		    width: 258px;
 		}
 		.j_main_left_1 p{
@@ -38,9 +38,9 @@
 		    margin-top: 7px;
 		}
 		.j_main_left_1 li{
-			line-height:40px;
+			line-height:35px;
 			list-style:none;
-			border-top:1px solid #EBEBEB;
+			background:url(/resource/public/images/1_07.png);
 		}
 		.j_main_left_1 a{
 			margin-left:40px;
@@ -84,7 +84,7 @@
 			margin-right:9px;
 		}
 		.current_li{
-			background:#D4130C;
+			background:url(/resource/public/images/1_02.png) !important;
 			color:#FFFFFF;
 		}
 		.current_li a{
@@ -103,7 +103,7 @@
 					<li><a href="/workList.jhtml">工作动态</a></li>
 					<li class="current_li"><a href="/publicityList.jhtml">公告公示</a></li>
 					<li><a href="/imagesList.jhtml">图片新闻</a></li>
-					<li style="border-bottom:1px solid #EBEBEB;"><a href="/videosList.jhtml">视频新闻</a></li>
+					<li style=""><a href="/videosList.jhtml">视频新闻</a></li>
 				</ul>
 			</div>
 			<div class="j_main_left_1" style="margin-top:10px;height:400px;text-align:center;">
@@ -120,52 +120,52 @@
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<ul>
 					<li>
-						<a href="">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/publicityInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/publicityInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/publicityInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/publicityInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/publicityInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/publicityInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/publicityInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/publicityInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/publicityInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/publicityInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/publicityInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/publicityInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/publicityInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/publicityInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/publicityInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/publicityInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 				</ul>
 				<p style="padding-left:25px;">

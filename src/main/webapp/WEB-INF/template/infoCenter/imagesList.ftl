@@ -20,7 +20,7 @@
 		.j_main_left_1{
 			border: 1px solid #CDCDCD;
 		    border-radius: 4px;
-		    height: 290px;
+		    height: 251px;
 		    width: 258px;
 		}
 		.j_main_left_1 p{
@@ -37,9 +37,9 @@
 		    margin-top: 7px;
 		}
 		.j_main_left_1 li{
-			line-height:40px;
+			line-height:35px;
 			list-style:none;
-			border-top:1px solid #EBEBEB;
+			background:url(/resource/public/images/1_07.png);
 		}
 		.j_main_left_1 a{
 			margin-left:40px;
@@ -86,7 +86,7 @@
 			margin-right:9px;
 		}
 		.current_li{
-			background:#D4130C;
+			background:url(/resource/public/images/1_02.png) !important;
 			color:#FFFFFF;
 		}
 		.current_li a{

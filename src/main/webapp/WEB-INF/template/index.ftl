@@ -329,7 +329,10 @@
 		</div>
 		<div class="j_mian_right">
 			<div class="gonggao">
-				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);">公告公示<span style="float:right;">更多</span></p>
+				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);">
+					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
+					公告公示<span style="float:right;">更多</span>
+				</p>
 				<ul style="padding-left:25px;">
 					<li><a href="">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
 					<li><a href="">社会保障费申请缴纳管理规定..</a><span>10-15</span></li>
@@ -370,7 +373,10 @@
 			</div>
 			[#else]
 				<div class="denglu" id="denglu1">
-				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);">会员登录</p>
+				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);">
+					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
+					会员登录
+				</p>
 				<form id="loginForm" action="/ajaxLoginValid.jhtml" method="post">
 				<table style="padding:19px;">
 					<tr>
@@ -399,7 +405,10 @@
 			[/#if]
 			
 			<div class="jiuye">
-				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);margin-bottom:10px;">就业业务办理</p>
+				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);margin-bottom:10px;">
+					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
+					就业业务办理
+				</p>
 				<div class="jiuye_1">
 					<table>
 						<tr>

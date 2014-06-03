@@ -56,7 +56,7 @@
 			<div class="nav">
 				<a class="nav_current" href="/" title="">首页</a>
 				<a href="/infoCenter.jhtml" title="">资讯中心</a>
-				<a href="/guide.jhtml" title="">工作指南</a>
+				<a href="/organization.jhtml" title="">工作指南</a>
 				<a href="/jobIntroduce.jhtml" title="">职业介绍</a>
 				<a href="/policyAdvice.jhtml" title="">政策咨询</a>
 				<a href="/dataChanel.jhtml" title="">数据频道</a>

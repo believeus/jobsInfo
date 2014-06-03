@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>新闻列表</title>
+    <title>国家相关文件</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -9,7 +9,6 @@
    		.j_main{
     		width:1000px;
     		height:auto;
-    		//margin-top:-6px;
     	}
 		.j_main_left{
     		float:left;
@@ -21,7 +20,7 @@
 		.j_main_left_1{
 			border: 1px solid #CDCDCD;
 		    border-radius: 4px;
-		    height: 251px;
+		    height: 215px;
 		    width: 258px;
 		}
 		.j_main_left_1 p{
@@ -97,13 +96,12 @@
 	<div class="j_main w">
 		<div class="j_main_left">
 			<div class="j_main_left_1" style="background:#F3F3F3;">
-				<p>资讯中心<span>Information Center</span></p>
+				<p>政策咨询<span>Policy Advice</span></p>
 				<ul style="padding-left:0;margin:0;">
-					<li class="current_li"><a href="/newsList.jhtml">新闻动态</a></li>
-					<li><a href="/workList.jhtml">工作动态</a></li>
-					<li><a href="/publicityList.jhtml">公告公示</a></li>
-					<li><a href="/imagesList.jhtml">图片新闻</a></li>
-					<li style=""><a href="/videosList.jhtml">视频新闻</a></li>
+					<li><a href="/countryLawList.jhtml">国家法律法规</a></li>
+					<li><a href="/cityLawList.jhtml">地方法律法规</a></li>
+					<li class="current_li"><a href="/countryFileList.jhtml">国家相关文件</a></li>
+					<li><a href="/cityFileList.jhtml">地方相关文件</a></li>
 				</ul>
 			</div>
 			<div class="j_main_left_1" style="margin-top:10px;height:400px;text-align:center;">
@@ -120,52 +118,52 @@
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<ul>
 					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 				</ul>
 				<p style="padding-left:25px;">

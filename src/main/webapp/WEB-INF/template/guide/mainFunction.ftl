@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>工作指南-机构简介</title>
+    <title>工作指南-主要职能</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -103,8 +103,8 @@
 			<div class="j_main_left_1" style="background:#F3F3F3;">
 				<p>工作指南<span>Work Instructions</span></p>
 				<ul style="padding-left:0;margin:0;">
-					<li class="current_li"><a href="/organization.jhtml">机构简介</a></li>
-					<li><a href="/mainFunction.jhtml">主要职能</a></li>
+					<li><a href="/organization.jhtml">机构简介</a></li>
+					<li class="current_li"><a href="/mainFunction.jhtml">主要职能</a></li>
 					<li><a href="/leader.jhtml">局领导</a></li>
 				</ul>
 			</div>
@@ -119,7 +119,7 @@
 			<div class="j_main_right_1">
 				<p>
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-					所在位置 > 工作指南 > 机构简介
+					所在位置 > 工作指南 > 主要职能
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">

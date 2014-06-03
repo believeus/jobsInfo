@@ -91,9 +91,6 @@
 		    text-align: center;
 		    width: 104px;
 		}
-		.j_main_right_3 img{
-			width:104px;
-		}
 		.j_main_right_3 a{
 			font-size:13px;
 		}
@@ -142,7 +139,10 @@
 	<div class="j_main w">
 		<div class="j_main_left">
 			<div class="gonggao">
-				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);">公告公示<span style="float:right;"><a href="/publicityList.jhtml">更多</a></span></p>
+				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);">
+					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
+					公告公示<span style="float:right;"><a href="/publicityList.jhtml">更多</a></span>
+				</p>
 				<ul style="padding-left:25px;">
 					<li><a href="">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
 					<li><a href="">社会保障费申请缴纳管理规定..</a><span>10-15</span></li>
@@ -191,7 +191,10 @@
 			</div>
 			<div class="j_main_right_2" style="width:727px;">
 				<div class="j_main_right_2_1" style="margin-right:4px;">
-					<p style="margin:0;padding:5px;background:#FFCC00;border-bottom:1px solid #E4E4E4;">新闻动态<span><a href="/newsList.jhtml">更多>></a></span></p>
+					<p style="margin:0;padding:5px;background:url(/resource/public/images/background.png);border:1px solid #FF7800;">
+						<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
+						新闻动态<span><a href="/newsList.jhtml">更多>></a></span>
+					</p>
 					<div style="height: 100px; padding: 9px; width: 341px;">
 						<img src="/resource/public/images/dt_img.png" style="float:left;width:120px;">
 						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;font-size:16px;color:#C42D3E;">2014年医疗、工伤和生育保险工作座谈会召开...</p>
@@ -207,7 +210,10 @@
 				</div>
 				<div style="float: left; border: 1px dashed #e4e4e4; width: 0px; margin-top: 6px; height: 273px;"></div>
 				<div class="j_main_right_2_1" style="margin-right:0;">
-					<p style="margin:0;padding:5px;background:#FFCC00;border-bottom:1px solid #E4E4E4;">工作动态<span><a href="/workList.jhtml">更多>></a></span></p>
+					<p style="margin:0;padding:5px;background:url(/resource/public/images/background.png);border:1px solid #FF7800;">
+						<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
+						工作动态<span><a href="/workList.jhtml">更多>></a></span>
+					</p>
 					<div style="height: 100px; padding: 9px; width: 341px;">
 						<img src="/resource/public/images/dt_img.png" style="float:left;width:120px;">
 						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;font-size:16px;color:#C42D3E;">2014年医疗、工伤和生育保险工作座谈会召开...</p>
@@ -223,36 +229,39 @@
 				</div>
 			</div>
 			<div class="j_main_right_3">
-				<p style="background:#FFCC00;margin: 0px; padding: 5px; border-bottom: 1px solid #e4e4e4;">视频新闻<span style="float:right;"><a href="/videosList.jhtml">更多>></a></span></p>
+				<p style="background:url(/resource/public/images/background.png);margin: 0px; padding: 5px; border: 1px solid #FF7800;">
+					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
+					视频新闻<span style="float:right;"><a href="/videosList.jhtml">更多>></a></span>
+				</p>
 				<table>
 					<tr>
 						<td>
 							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png"></a>
+								<a href=""><img src="/resource/public/images/tupxinw01.png" width="104"></a>
 							</p>
 							<p><a href="">省人社厅正式...</a></p>
 						</td>
 						<td>
 							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png"></a>
+								<a href=""><img src="/resource/public/images/tupxinw01.png" width="104"></a>
 							</p>
 							<p><a href="">省人社厅正式...</a></p>
 						</td>
 						<td>
 							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png"></a>
+								<a href=""><img src="/resource/public/images/tupxinw01.png" width="104"></a>
 							</p>
 							<p><a href="">省人社厅正式...</a></p>
 						</td>
 						<td>
 							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png"></a>
+								<a href=""><img src="/resource/public/images/tupxinw01.png" width="104"></a>
 							</p>
 							<p><a href="">省人社厅正式...</a></p>
 						</td>
 						<td>
 							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png"></a>
+								<a href=""><img src="/resource/public/images/tupxinw01.png" width="104"></a>
 							</p>
 							<p><a href="">省人社厅正式...</a></p>
 						</td>

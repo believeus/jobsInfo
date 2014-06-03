@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>工作指南-机构简介</title>
+    <title>面试宝典</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -19,7 +19,7 @@
 		}
 		.j_main_left_1{
 			width:258px;
-			height:180px;
+			height:251px;
     		border:1px solid #e4e4e4;
     		border-radius:4px;
 		}
@@ -103,9 +103,11 @@
 			<div class="j_main_left_1" style="background:#F3F3F3;">
 				<p>工作指南<span>Work Instructions</span></p>
 				<ul style="padding-left:0;margin:0;">
-					<li class="current_li"><a href="/organization.jhtml">机构简介</a></li>
-					<li><a href="/mainFunction.jhtml">主要职能</a></li>
-					<li><a href="/leader.jhtml">局领导</a></li>
+					<li><a href="/jiuyegonggao.jhtml">就业公告</a></li>
+					<li><a href="/zhaopinhui.jhtml">招聘会</a></li>
+					<li><a href="/qiuzhizhidao.jhtml">求职简历</a></li>
+					<li><a href="/jianlizhinan.jhtml">简历指南</a></li>
+					<li class="current_li"><a href="/mianshibaodian.jhtml">面试宝典</a></li>
 				</ul>
 			</div>
 			<div class="j_main_left_1" style="margin-top:10px;height:400px;text-align:center;">

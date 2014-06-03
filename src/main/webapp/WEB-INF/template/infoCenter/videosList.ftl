@@ -20,7 +20,7 @@
 		.j_main_left_1{
 			border: 1px solid #CDCDCD;
 		    border-radius: 4px;
-		    height: 290px;
+		    height: 251px;
 		    width: 258px;
 		}
 		.j_main_left_1 p{
@@ -37,9 +37,9 @@
 		    margin-top: 7px;
 		}
 		.j_main_left_1 li{
-			line-height:40px;
+			line-height:35px;
 			list-style:none;
-			border-top:1px solid #EBEBEB;
+			background:url(/resource/public/images/1_07.png);
 		}
 		.j_main_left_1 a{
 			margin-left:40px;
@@ -85,8 +85,11 @@
 			height:290px;
 			margin-right:9px;
 		}
+		.j_main_right_2 a{
+			color:#3A71AA;
+		}
 		.current_li{
-			background:#D4130C;
+			background:url(/resource/public/images/1_02.png) !important;
 			color:#FFFFFF;
 		}
 		.current_li a{
@@ -139,62 +142,30 @@
 						<td>
 							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
 								<p style="margin-top: 3px; margin-bottom: 0px;">
-									<img src="/resource/public/images/tupxinwen.png" width="195" height="130">
+									<a href="/videosInfo.jhtml"><img src="/resource/public/images/tupxinwen.png" width="195" height="130"></a>
 								</p>
 								<div class="middle-money">2分30秒</div>
-								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;">2014年医疗、工伤和生育保险工作座谈会召开</p>
+								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;"><a href="/videosInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
 								<p style="margin-top:0;">[2014-04-19]</p>
 							</div>
 						</td>
 						<td>
 							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
 								<p style="margin-top: 3px; margin-bottom: 0px;">
-									<img src="/resource/public/images/tupxinwen.png" width="195" height="130">
+									<a href="/videosInfo.jhtml"><img src="/resource/public/images/tupxinwen.png" width="195" height="130"></a>
 								</p>
 								<div class="middle-money">2分30秒</div>
-								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;">2014年医疗、工伤和生育保险工作座谈会召开</p>
+								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;"><a href="/videosInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
 								<p style="margin-top:0;">[2014-04-19]</p>
 							</div>
 						</td>
 						<td>
 							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
 								<p style="margin-top: 3px; margin-bottom: 0px;">
-									<img src="/resource/public/images/tupxinwen.png" width="195" height="130">
+									<a href="/videosInfo.jhtml"><img src="/resource/public/images/tupxinwen.png" width="195" height="130"></a>
 								</p>
 								<div class="middle-money">2分30秒</div>
-								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;">2014年医疗、工伤和生育保险工作座谈会召开</p>
-								<p style="margin-top:0;">[2014-04-19]</p>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
-								<p style="margin-top: 3px; margin-bottom: 0px;">
-									<img src="/resource/public/images/tupxinwen.png" width="195" height="130">
-								</p>
-								<div class="middle-money">2分30秒</div>
-								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;">2014年医疗、工伤和生育保险工作座谈会召开</p>
-								<p style="margin-top:0;">[2014-04-19]</p>
-							</div>
-						</td>
-						<td>
-							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
-								<p style="margin-top: 3px; margin-bottom: 0px;">
-									<img src="/resource/public/images/tupxinwen.png" width="195" height="130">
-								</p>
-								<div class="middle-money">2分30秒</div>
-								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;">2014年医疗、工伤和生育保险工作座谈会召开</p>
-								<p style="margin-top:0;">[2014-04-19]</p>
-							</div>
-						</td>
-						<td>
-							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
-								<p style="margin-top: 3px; margin-bottom: 0px;">
-									<img src="/resource/public/images/tupxinwen.png" width="195" height="130">
-								</p>
-								<div class="middle-money">2分30秒</div>
-								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;">2014年医疗、工伤和生育保险工作座谈会召开</p>
+								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;"><a href="/videosInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
 								<p style="margin-top:0;">[2014-04-19]</p>
 							</div>
 						</td>
@@ -203,30 +174,62 @@
 						<td>
 							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
 								<p style="margin-top: 3px; margin-bottom: 0px;">
-									<img src="/resource/public/images/tupxinwen.png" width="195" height="130">
+									<a href="/videosInfo.jhtml"><img src="/resource/public/images/tupxinwen.png" width="195" height="130"></a>
 								</p>
 								<div class="middle-money">2分30秒</div>
-								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;">2014年医疗、工伤和生育保险工作座谈会召开</p>
+								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;"><a href="/videosInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
 								<p style="margin-top:0;">[2014-04-19]</p>
 							</div>
 						</td>
 						<td>
 							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
 								<p style="margin-top: 3px; margin-bottom: 0px;">
-									<img src="/resource/public/images/tupxinwen.png" width="195" height="130">
+									<a href="/videosInfo.jhtml"><img src="/resource/public/images/tupxinwen.png" width="195" height="130"></a>
 								</p>
 								<div class="middle-money">2分30秒</div>
-								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;">2014年医疗、工伤和生育保险工作座谈会召开</p>
+								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;"><a href="/videosInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
 								<p style="margin-top:0;">[2014-04-19]</p>
 							</div>
 						</td>
 						<td>
 							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
 								<p style="margin-top: 3px; margin-bottom: 0px;">
-									<img src="/resource/public/images/tupxinwen.png" width="195" height="130">
+									<a href="/videosInfo.jhtml"><img src="/resource/public/images/tupxinwen.png" width="195" height="130"></a>
 								</p>
 								<div class="middle-money">2分30秒</div>
-								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;">2014年医疗、工伤和生育保险工作座谈会召开</p>
+								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;"><a href="/videosInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
+								<p style="margin-top:0;">[2014-04-19]</p>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
+								<p style="margin-top: 3px; margin-bottom: 0px;">
+									<a href="/videosInfo.jhtml"><img src="/resource/public/images/tupxinwen.png" width="195" height="130"></a>
+								</p>
+								<div class="middle-money">2分30秒</div>
+								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;"><a href="/videosInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
+								<p style="margin-top:0;">[2014-04-19]</p>
+							</div>
+						</td>
+						<td>
+							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
+								<p style="margin-top: 3px; margin-bottom: 0px;">
+									<a href="/videosInfo.jhtml"><img src="/resource/public/images/tupxinwen.png" width="195" height="130"></a>
+								</p>
+								<div class="middle-money">2分30秒</div>
+								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;"><a href="/videosInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
+								<p style="margin-top:0;">[2014-04-19]</p>
+							</div>
+						</td>
+						<td>
+							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
+								<p style="margin-top: 3px; margin-bottom: 0px;">
+									<a href="/videosInfo.jhtml"><img src="/resource/public/images/tupxinwen.png" width="195" height="130"></a>
+								</p>
+								<div class="middle-money">2分30秒</div>
+								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;"><a href="/videosInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
 								<p style="margin-top:0;">[2014-04-19]</p>
 							</div>
 						</td>
