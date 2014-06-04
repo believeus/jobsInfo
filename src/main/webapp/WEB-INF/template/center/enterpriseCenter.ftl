@@ -166,6 +166,57 @@
 			color:#FFFFFF;
 		}
     </style>
+    <script text="text/javascript">
+    $().ready(function(){
+    
+    				
+		    	// ajax 提交验证和保存。
+				function submitValid(submitx){
+						$.ajax({
+							url: "/ajaxComValidReg.jhtml",
+							type: "POST",
+							data: {
+								id:${sessionUser.id},
+								fullName: $("#fullName").val(),
+								unitType:$("#unitType").val(),
+								shorName:$("#shorName").val(),
+								relationship:$("#relationship").val(),
+								economicType:$("#economicType").val(),
+								legalMan:$("#legalMan").val(),
+								area:$("#area").val(),
+								trade:$("#trade").val(),
+								regMoney:$("#regMoney").val(),
+								detailAddress:$("#detailAddress").val(),
+								contacts:$("#contacts").val(),
+								address:$("#address").val(),
+								zip:$("#zip").val(),
+								phoneNum:$("#phoneNum").val(),
+								phoneFax:$("#phoneFax").val(),
+								webSite:$("#webSite").val(),
+								introduce:$("#introduce").val(),
+								submit:submitx
+								},
+							dataType: "json",
+							cache: false,
+							success: function(data) {
+									if(data.message == "success" && submitx == "submit"){
+										alert("要提交其他信息了。");
+										sumitValidLIist("xxx");
+									}else{
+										
+									}
+									alert(data.message);
+								}
+							});
+					}
+    	// 保存信息。
+    	$("#savaAll").click(function() {
+				submitValid("no");
+			});
+    
+    })
+    
+    </script>
 </head>
 <body>
 	[#include "/include/header.ftl" /]
@@ -231,7 +282,7 @@
 				<p>
 					<span>登记编号:${sessionUser.id}</span>
 					<span style="padding-right: 20px; margin-left: 90px;">更新日期:${sessionUser.editDate?number_to_datetime}&nbsp;${sessionUser.editDate?number_to_time}</span>
-					<span style="float: right; padding-right: 20px;">审核状态:已通过审核</span>
+					<span style="float: right; padding-right: 20px;">审核状态:[#if sessionUser.status=="0"&&sessionUser.status!="1"]审核中[#elseif ssionUser.status=="1"]已通过审核[/#if]</span>
 				</p>
 				
 				<div id="base_xinxi" style="width::728px;height:auto;overflow:hidden;">
@@ -244,87 +295,87 @@
 							<table>
 								<tr>
 									<td>单位全称:</td>
-									<td style="padding-right: 80px;"><input type="text"></td>
+									<td style="padding-right: 80px;"><input type="text" id="fullName" name="fullName"></td>
 									<td>单位性质:</td>
 									<td>
-										<select name="" style="width: 182px;">
+										<select id="unitType" name="unitType" style="width: 182px;">
 											<option value="">请选择..</option>
-											<option value="">企业</option>
-											<option value="">党政机关</option>
-											<option value="">事业单位</option>
-											<option value="">社会团体</option>
+											<option value="企业">企业</option>
+											<option value="党政机关">党政机关</option>
+											<option value="事业单位">事业单位</option>
+											<option value="社会团体">社会团体</option>
 										</select>
 									</td>
 								</tr>
 								<tr>
 									<td>单位简称:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="shorName" name="shorName"></td>
 									<td>隶属关系:</td>
 									<td>
-										<select name="" style="width: 182px;">
+										<select id="relationship" name="relationship" style="width: 182px;">
 											<option value="">请选择..</option>
-											<option value="">中央</option>
-											<option value="">省</option>
-											<option value="">市</option>
-											<option value="">县</option>
-											<option value="">街道</option>
-											<option value="">居委会</option>
-											<option value="">其它</option>
+											<option value="中央">中央</option>
+											<option value="省">省</option>
+											<option value="市">市</option>
+											<option value="县">县</option>
+											<option value="街道">街道</option>
+											<option value="居委会">居委会</option>
+											<option value="其它">其它</option>
 										</select>
 									</td>
 								</tr>
 								<tr>
 									<td>经济类型:</td>
 									<td>
-										<select name="" style="width: 182px;">
+										<select id="economicType" name="economicType" style="width: 182px;">
 											<option value="">请选择..</option>
-											<option value="">国有</option>
-											<option value="">集体</option>
-											<option value="">联营</option>
-											<option value="">股份制</option>
-											<option value="">私营</option>
-											<option value="">个体</option>
-											<option value="">外商</option>
-											<option value="">港澳台</option>
-											<option value="">其它</option>
+											<option value="国有">国有</option>
+											<option value="集体">集体</option>
+											<option value="联营">联营</option>
+											<option value="股份制">股份制</option>
+											<option value="私营">私营</option>
+											<option value="个体">个体</option>
+											<option value="外商">外商</option>
+											<option value="港澳台">港澳台</option>
+											<option value="其它">其它</option>
 										</select>
 									</td>
 									<td>法人代表:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="legalMan" name="legalMan"></td>
 								</tr>
 								<tr>
 									<td>所属地区:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="area" name="area"></td>
 									<td>行业:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="trade" name="trade"></td>
 								</tr>
 								<tr>
 									<td>注册资金:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="regMoney" name="regMoney"></td>
 									<td>详细地址:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="detailAddress" name="detailAddress"></td>
 								</tr>
 								<tr>
 									<td>联系人:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="contacts" name="contacts"></td>
 									<td>通讯地址:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="address" name="address"></td>
 								</tr>
 								<tr>
 									<td>邮编:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="zip" name="zip"></td>
 									<td>手机:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="phoneNum" name="phoneNum"></td>
 								</tr>
 								<tr>
 									<td>电话/传真:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="phoneFax" name="phoneFax"></td>
 									<td>网址:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="webSite" name="webSite"></td>
 								</tr>
 								<tr>
 									<td style="vertical-align: top;">单位简介:</td>
-									<td colspan="3"><textArea cols="50" rows="5" name="" style="resize:none;"></textArea></td>
+									<td colspan="3"><textArea cols="50" rows="5" name="introduce" id="introduce" style="resize:none;"></textArea></td>
 								</tr>
 								<tr>
 									<td style="vertical-align: top;">企业电子图:</td>
@@ -394,7 +445,7 @@
 					</div>
 					
 					<p style="text-align:center;">
-						<input type="button" value="保存">
+						<input type="button" id="savaAll" value="保存">
 						<input type="reset" value="重写">
 					</p>
 				</div>

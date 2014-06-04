@@ -25,7 +25,7 @@ public class TbaseUser extends TbaseEntity implements Serializable{
 	private String trueName;
 	/**编辑更新时间*/
 	private long editDate;
-	/*创建时间*/
+	/**创建时间*/
 	private long createDate;
 	/**上次登录时间*/
 	private long lastLoginData;

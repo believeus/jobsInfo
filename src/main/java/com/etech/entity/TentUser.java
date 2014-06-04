@@ -25,8 +25,12 @@ public class TentUser extends TbaseUser implements Serializable {
 	private String economicType;
 	/**详细地址*/
 	private String detailAddress;
+	/**单位全称*/
+	private String fullName;
 	/**单位简称*/
 	private String shorName;
+	/**电话/传真*/
+	private String phoneFax;
 	/**法人*/
 	private String legalMan;
 	/**是否审核通过 0:审核中 1:审核通过*/
@@ -91,6 +95,13 @@ public class TentUser extends TbaseUser implements Serializable {
 	public void setDetailAddress(String detailAddress) {
 		this.detailAddress = detailAddress;
 	}
+	public String getFullName() {
+		return fullName;
+	}
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+	
 	@Length(max=20)
 	public String getShorName() {
 		return shorName;
@@ -98,6 +109,14 @@ public class TentUser extends TbaseUser implements Serializable {
 	public void setShorName(String shorName) {
 		this.shorName = shorName;
 	}
+
+	public String getPhoneFax() {
+		return phoneFax;
+	}
+	public void setPhoneFax(String phoneFax) {
+		this.phoneFax = phoneFax;
+	}
+	
 	public String getArea() {
 		return area;
 	}
