@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>工作详情</title>
+    <title>全市工资指导价位</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -9,7 +9,6 @@
    		.j_main{
     		width:1000px;
     		height:auto;
-    		//margin-top:-6px;
     	}
 		.j_main_left{
     		float:left;
@@ -19,10 +18,10 @@
     		margin-right:6px;
 		}
 		.j_main_left_1{
-			width:258px;
-			height:251px;
-    		border:1px solid #e4e4e4;
-    		border-radius:4px;
+			border: 1px solid #CDCDCD;
+		    border-radius: 4px;
+		    height: 251px;
+		    width: 258px;
 		}
 		.j_main_left_1 p{
 		    color: #BF0906;
@@ -69,7 +68,6 @@
 			margin-top:10px;
 		}
 		.j_main_right_2 li{
-			border-bottom: 1px solid #000000;
     		margin-right: 30px;
     		font-size: 14px;
     		line-height:35px;
@@ -86,7 +84,7 @@
 			float:left;
 			width:359px;
 			height:290px;
-			margin-right:9px;80
+			margin-right:9px;
 		}
 		.current_li{
 			background:url(/resource/public/images/1_02.png) !important;
@@ -102,27 +100,21 @@
 	<div class="j_main w">
 		<div class="j_main_left">
 			<div class="j_main_left_1" style="background:#F3F3F3;">
-				<p>资讯中心<span>Information Center</span></p>
+				<p>数据频道<span>Data Channel</span></p>
 				<ul style="padding-left:0;margin:0;">
-					<li><a href="/newsList.jhtml">新闻动态</a></li>
-					<li class="current_li"><a href="/workList.jhtml">工作动态</a></li>
-					<li><a href="/publicityList.jhtml">公告公示</a></li>
-					<li><a href="/imagesList.jhtml">图片新闻</a></li>
-					<li style=""><a href="/videosList.jhtml">视频新闻</a></li>
+					<li><a href="/fenxibaogaoList.jhtml">供求分析报告</a></li>
+					<li class="current_li"><a href="/zhidaojiaweiList.jhtml">全市工资指导价位</a></li>
+					<li><a href="/xuqiupaihangList.jhtml">职业需求排行</a></li>
+					<li><a href="/gongjipaihangList.jhtml">职业供给排行</a></li>
+					<li style=""><a href="/xiazai.jhtml">下载中心</a></li>
 				</ul>
-			</div>
-			<div class="j_main_left_1" style="margin-top:10px;height:400px;text-align:center;">
-				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
-				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
-				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml" style="margin-left:0;">更多>></a></div>
-				<img src="/resource/public/images/zhuanti.png" style="margin-top:7px;">
 			</div>
 		</div>
 		<div class="j_main_right">
 			<div class="j_main_right_1">
 				<p>
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-					所在位置 > 资讯中心
+					所在位置 > 数据频道
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
@@ -142,15 +134,20 @@
 				<p style="text-indent:16px;">
 					每一个人工作都是为了获得合理的报酬，所以广大面试者不需要任何心理负担，或者有任何难以启齿的感觉。工资是每一个员工的正常收益，只有在面试的过程中得到恰当的定位，那么让员工在工作中有更好的积极性，也让企业获得最恰当的员工。
 				</p>
-				<!--
-					<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">
-					<p style="padding-left:25px;">
-						上一篇：<a href="">面试时是否该化妆</a>
-					</p>
-					<p style="padding-left:25px;">
-						下一篇：<a href="">没有了</a>
-					</p>
-				-->
+				<p style="padding-left:25px;">
+					<a href="">首页</a>
+					<a href="">上一页</a>
+					<a href="">下一页</a>
+					<a href="">末页</a>
+					<select name="">
+						<option value="">1</option>
+						<option value="">2</option>
+						<option value="">3</option>
+						<option value="">4</option>
+						<option value="">5</option>
+					</select>
+					共<font color="red">5</font>页<font color="red">51</font>条
+				</p>
 			</div>
 		</div>
 	</div>

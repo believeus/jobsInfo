@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * 数据频道
+ * 下载中心
  * */
 @Controller
-public class ControllerDataChanel {
-	private static Log log = LogFactory.getLog(ControllerDataChanel.class);
+public class ControllerDownLoad {
+	private static Log log = LogFactory.getLog(ControllerDownLoad.class);
 
-	@RequestMapping(value = "/dataChanel", method = RequestMethod.GET)
-	public String dataChanelView() {
-		log.debug("current controller is dataChanelView !");
-		return "dataChanel/dataChanel";
+	@RequestMapping(value = "/downLoad", method = RequestMethod.GET)
+	public String newsListView() {
+		log.debug("current controller is newsListView !");
+		return "dataChannel/xiazaizhongxin";
 	}
 }

@@ -58,8 +58,8 @@
 		.j_main_right_1 p{
 			margin:0;
 			padding: 5px;
-			background: #FFCC00;
-		    border: 1px solid;
+			background: url(resource/public/images/background_b.png);
+		    border: 1px solid #e4e4e4;
 		    font-size:13px;
 		}
 		.j_main_right_2{
@@ -107,13 +107,13 @@
 			<div class="j_main_left_1" style="margin-top:10px;height:400px;text-align:center;">
 				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
-				<div style="width: 70px; float: left; line-height: 45px;"><a href="" style="margin-left:0;">更多>></a></div>
+				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml" style="margin-left:0;">更多>></a></div>
 				<img src="/resource/public/images/zhuanti.png" style="margin-top:7px;">
 			</div>
 		</div>
 		<div class="j_main_right">
 			<div class="j_main_right_1">
-				<p>所在位置 > 资讯中心</p>
+				<p><img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">所在位置 > 资讯中心</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<ul>

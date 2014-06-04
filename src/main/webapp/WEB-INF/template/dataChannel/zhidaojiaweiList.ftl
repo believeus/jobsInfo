@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>国家相关文件</title>
+    <title>全市工资指导价位列表</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -20,7 +20,7 @@
 		.j_main_left_1{
 			border: 1px solid #CDCDCD;
 		    border-radius: 4px;
-		    height: 215px;
+		    height: 251px;
 		    width: 258px;
 		}
 		.j_main_left_1 p{
@@ -58,7 +58,7 @@
 		.j_main_right_1 p{
 			margin:0;
 			padding: 5px;
-			background: url(resource/public/images/background_b.png);
+			background: url(/resource/public/images/background_b.png);
 		    border: 1px solid #e4e4e4;
 		    font-size:13px;
 		}
@@ -96,74 +96,72 @@
 	<div class="j_main w">
 		<div class="j_main_left">
 			<div class="j_main_left_1" style="background:#F3F3F3;">
-				<p>政策咨询<span>Policy Advice</span></p>
+				<p>数据频道<span>Data Channel</span></p>
 				<ul style="padding-left:0;margin:0;">
-					<li><a href="/countryLawList.jhtml">国家法律法规</a></li>
-					<li><a href="/cityLawList.jhtml">地方法律法规</a></li>
-					<li class="current_li"><a href="/countryFileList.jhtml">国家相关文件</a></li>
-					<li><a href="/cityFileList.jhtml">地方相关文件</a></li>
+					<li><a href="/fenxibaogaoList.jhtml">供求分析报告</a></li>
+					<li class="current_li"><a href="/zhidaojiaweiList.jhtml">全市工资指导价位</a></li>
+					<li><a href="/xuqiupaihangList.jhtml">职业需求排行</a></li>
+					<li><a href="/gongjipaihangList.jhtml">职业供给排行</a></li>
+					<li style=""><a href="/xiazai.jhtml">下载中心</a></li>
 				</ul>
-			</div>
-			<div class="j_main_left_1" style="margin-top:10px;height:400px;text-align:center;">
-				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
-				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
-				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml" style="margin-left:0;">更多>></a></div>
-				<img src="/resource/public/images/zhuanti.png" style="margin-top:7px;">
 			</div>
 		</div>
 		<div class="j_main_right">
 			<div class="j_main_right_1">
-				<p><img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">所在位置 > 资讯中心</p>
+				<p>
+					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
+					所在位置 > 数据频道
+				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<ul>
 					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 				</ul>
 				<p style="padding-left:25px;">

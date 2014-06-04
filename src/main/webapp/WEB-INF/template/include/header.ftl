@@ -59,7 +59,7 @@
 				<a href="/organization.jhtml" title="">工作指南</a>
 				<a href="/jobIntroduce.jhtml" title="">职业介绍</a>
 				<a href="/policyAdvice.jhtml" title="">政策咨询</a>
-				<a href="/dataChanel.jhtml" title="">数据频道</a>
+				<a href="/dataChannel.jhtml" title="">数据频道</a>
 				<a href="/onlineShow.jhtml" title="">网上展示厅</a>
 				<div style="float: right; width: 300px; margin-top: 10px;text-align:right;">
 					<form action="">
