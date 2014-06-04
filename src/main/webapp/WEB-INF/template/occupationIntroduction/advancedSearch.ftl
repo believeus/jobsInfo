@@ -10,6 +10,12 @@
     		width:1000px;
     		height:auto;
     	}
+    	.j_main_1{
+    		width:995px;
+    		height:30px;
+    		background:#FFF1DA;
+    		border:1px solid #F9CEAC;
+    	}
 		.j_main_right{
 			float:left;
     		width:998px;
@@ -23,22 +29,22 @@
 		.j_main_right_1 p{
 			margin:0;
 			padding: 5px;
-			background: #FFCC00;
-		    border: 1px solid;
+			background: url(/resource/public/images/background_b.png);
+		    border: 1px solid #e4e4e4;
 		    font-size:13px;
 		}
 		.j_main_right_2{
 			width:996px;
 			height:auto;
 			margin-top:10px;
-			background:#F7F7F7;
+			background:#FFFDF0;
 			overflow:hidden;
 		}
 		.j_main_right_2_1{
 			float: left;
 		    height: 30px;
 		    line-height: 30px;
-		    margin: 0 10px;
+		    margin: 0 25px;
 		    width: 119px;
 		}
 		.j_main_right_2_2{
@@ -60,10 +66,14 @@
 			text-decoration:underline;
 		}
 		.j_main_right_2 input{
-			width:175px;
+			width:160px;
 		}
 		.selected{
 			color:#0000FF;
+		}
+		.selected a {
+		    border: 1px solid #E4925A;
+		    padding: 3px 10px;
 		}
 		.hotword {
 			color:#0000FF;
@@ -71,20 +81,63 @@
 		.hotword a {
 		    font-size: 13px;
 		}
+		.paixu{
+			width:998px;
+			height:30px;
+		}
+		.paixu li {
+		    float: left;
+		    list-style: none outside none;
+		    margin-right: 5px;
+		}
+		.paixu a {
+		    border: 1px solid #72ABD8;
+		    border-radius: 4px;
+		    padding: 3px;
+		}
+		.paixu_1{
+			width:330px;
+			height:30px;
+			float:left;
+		}
+		.t_table{
+			width:995px;
+			height:auto;
+			overflow:hidden;
+			text-align:center;
+			border:1px solid #C1C1C1;
+		}
+		.t_table th {
+		    padding: 5px;
+		    width: 194px;
+		}
+		.t_table tr {
+		    line-height: 35px;
+		}
     </style>
 </head>
 <body>
 	[#include "/include/header.ftl" /]
 	<div class="j_main w">
 		<div class="j_main_right">
-			<div class="j_main_right_1">
-				<p>所在位置 > 就业服务 > 职位搜索</p>
+			<div class="j_main_1">
+				<table align="left"  style="font-size: 13px; padding: 4px;">
+					<tr>
+						<td style="padding-right: 20px; padding-left: 10px;">最新消息：</td>
+						<td style="padding-right: 20px;">05月21日</td>
+						<td style="padding-right: 40px;">潜江人才招聘会第二期.....</td>
+						<td style="padding-right: 20px;">05月21日</td>
+						<td style="padding-right: 40px;">潜江人才招聘会第二期.....</td>
+						<td style="padding-right: 20px;">05月21日</td>
+						<td style="padding-right: 40px;">潜江人才招聘会第二期.....</td>
+					</tr>
+				</table>
 			</div>
-			<div class="j_main_right_2" style="border:1px solid #000000;">
-				<table>
+			<div class="j_main_right_2" style="border:1px solid #E4925A;border-radius:4px;">
+				<table style="background: #60B732; border-radius: 4px; margin: 5px 25px;">
 					<tr>
 						<td>
-							<select name="">
+							<select name="" style="color:#868686;">
 								<option value="">职位搜索</option>
 								<option value="">职位搜索</option>
 								<option value="">职位搜索</option>
@@ -113,7 +166,7 @@
 						</ul>
 					</div>
 				</div>
-				<div style="width: 996px; height: 30px;">
+				<div style="width: 996px; height: 30px;background:#FFF1DA;">
 					<div class="j_main_right_2_1">
 						<span style="font-weight: bold;">起薪范围</span><span style="color: blue; float: right;"><a style="color: blue; font-size: 12px;" href="">不限</a></span>
 					</div>
@@ -144,7 +197,7 @@
 						</ul>
 					</div>
 				</div>
-				<div style="width: 996px; height: 30px;">
+				<div style="width: 996px; height: 30px;background:#FFF1DA;">
 					<div class="j_main_right_2_1">
 						<span style="font-weight: bold;">学历要求</span><span style="color: blue; float: right;"><a style="color: blue; font-size: 12px;" href="">不限</a></span>
 					</div>
@@ -181,7 +234,7 @@
 						</ul>
 					</div>
 				</div>
-				<div style="width: 996px; height: 30px;margin-bottom:25px;">
+				<div style="width: 996px; height: 30px;margin-bottom:25px;background:#FFF1DA;">
 					<div class="j_main_right_2_1">
 						<span style="font-weight: bold;">公司性质</span><span style="color: blue; float: right;"><a style="color: blue; font-size: 12px;" href="">不限</a></span>
 					</div>
@@ -200,7 +253,10 @@
 					</div>
 				</div>
 			</div>
-			<p class="selected">您选择的是：</p>
+			<p class="selected">您选择的是：
+				<span><a href="">java程序员<span style="color: #E4925A;font-size: 17px;margin-left: 10px;">&times;</span></a></span>	
+				<span><a href="">2000-2999<span style="color: #E4925A;font-size: 17px;margin-left: 10px;">&times;</span></a></span>	
+			</p>
 			<p class="hotword">搜索热词： 
 				<span><a href="">软件工程师</a></span>
 				<span><a href="">建筑工程师</a></span>
@@ -210,7 +266,203 @@
 				<span><a href="">计算机硬件工程师</a></span>
 				<span><a href="">计算机软件工程师</a></span>
 			</p>
-			<p>排序方式：</p>
+			<div class="paixu">
+				<div class="paixu_1">
+					<span>排序方式：</span>
+					<a href="">按有效日期</a>
+					<a href="">按月薪范围</a>
+					<a href="">按相关度</a>
+				</div>
+				
+				<ul style="float: right; margin: 0px;">
+					<li>
+						<a href="">上一页</a>
+					</li>
+					<li>
+						<a href="">1</a>
+					</li>
+					<li>
+						<a href="">2</a>
+					</li>
+					<li>
+						<a href="">3</a>
+					</li>
+					<li>
+						<a href="">4</a>
+					</li>
+					<li>
+						<a href="">5</a>
+					</li>
+					<li>
+						<a href="">下一页</a>
+					</li>
+				</ul>
+			</div>
+			<div class="t_table" style="">
+				<table cellspacing="0">
+					<tr style="background: url(/resource/public/images/bg-image.png); line-height: 30px;">
+						<th>岗位名称</th>
+						<th>公司名称</th>
+						<th>月薪范围</th>
+						<th>招聘人数</th>
+						<th>有效日期</th>
+					</tr>
+					<tr>
+						<td style="color:#0101FF;">java程序员</td>
+						<td style="color:#0101FF;">云科科技</td>
+						<td style="color:#0101FF;">2000-3000</td>
+						<td>3</td>
+						<td>2014-06-01</td>
+					</tr>
+					<tr style="background:#F6F6F6;">
+						<td style="color:#0101FF;">java程序员</td>
+						<td style="color:#0101FF;">云科科技</td>
+						<td style="color:#0101FF;">2000-3000</td>
+						<td>3</td>
+						<td>2014-06-01</td>
+					</tr>
+					<tr>
+						<td style="color:#0101FF;">java程序员</td>
+						<td style="color:#0101FF;">云科科技</td>
+						<td style="color:#0101FF;">2000-3000</td>
+						<td>3</td>
+						<td>2014-06-01</td>
+					</tr>
+					<tr style="background:#F6F6F6;">
+						<td style="color:#0101FF;">java程序员</td>
+						<td style="color:#0101FF;">云科科技</td>
+						<td style="color:#0101FF;">2000-3000</td>
+						<td>3</td>
+						<td>2014-06-01</td>
+					</tr>
+					<tr>
+						<td style="color:#0101FF;">java程序员</td>
+						<td style="color:#0101FF;">云科科技</td>
+						<td style="color:#0101FF;">2000-3000</td>
+						<td>3</td>
+						<td>2014-06-01</td>
+					</tr>
+					<tr style="background:#F6F6F6;">
+						<td style="color:#0101FF;">java程序员</td>
+						<td style="color:#0101FF;">云科科技</td>
+						<td style="color:#0101FF;">2000-3000</td>
+						<td>3</td>
+						<td>2014-06-01</td>
+					</tr>
+					<tr>
+						<td style="color:#0101FF;">java程序员</td>
+						<td style="color:#0101FF;">云科科技</td>
+						<td style="color:#0101FF;">2000-3000</td>
+						<td>3</td>
+						<td>2014-06-01</td>
+					</tr>
+					<tr style="background:#F6F6F6;">
+						<td style="color:#0101FF;">java程序员</td>
+						<td style="color:#0101FF;">云科科技</td>
+						<td style="color:#0101FF;">2000-3000</td>
+						<td>3</td>
+						<td>2014-06-01</td>
+					</tr>
+					<tr>
+						<td style="color:#0101FF;">java程序员</td>
+						<td style="color:#0101FF;">云科科技</td>
+						<td style="color:#0101FF;">2000-3000</td>
+						<td>3</td>
+						<td>2014-06-01</td>
+					</tr>
+					<tr style="background:#F6F6F6;">
+						<td style="color:#0101FF;">java程序员</td>
+						<td style="color:#0101FF;">云科科技</td>
+						<td style="color:#0101FF;">2000-3000</td>
+						<td>3</td>
+						<td>2014-06-01</td>
+					</tr>
+					<tr>
+						<td style="color:#0101FF;">java程序员</td>
+						<td style="color:#0101FF;">云科科技</td>
+						<td style="color:#0101FF;">2000-3000</td>
+						<td>3</td>
+						<td>2014-06-01</td>
+					</tr>
+					<tr style="background:#F6F6F6;">
+						<td style="color:#0101FF;">java程序员</td>
+						<td style="color:#0101FF;">云科科技</td>
+						<td style="color:#0101FF;">2000-3000</td>
+						<td>3</td>
+						<td>2014-06-01</td>
+					</tr>
+					<tr>
+						<td style="color:#0101FF;">java程序员</td>
+						<td style="color:#0101FF;">云科科技</td>
+						<td style="color:#0101FF;">2000-3000</td>
+						<td>3</td>
+						<td>2014-06-01</td>
+					</tr>
+					<tr style="background:#F6F6F6;">
+						<td style="color:#0101FF;">java程序员</td>
+						<td style="color:#0101FF;">云科科技</td>
+						<td style="color:#0101FF;">2000-3000</td>
+						<td>3</td>
+						<td>2014-06-01</td>
+					</tr>
+					<tr>
+						<td style="color:#0101FF;">java程序员</td>
+						<td style="color:#0101FF;">云科科技</td>
+						<td style="color:#0101FF;">2000-3000</td>
+						<td>3</td>
+						<td>2014-06-01</td>
+					</tr>
+					<tr style="background:#F6F6F6;">
+						<td style="color:#0101FF;">java程序员</td>
+						<td style="color:#0101FF;">云科科技</td>
+						<td style="color:#0101FF;">2000-3000</td>
+						<td>3</td>
+						<td>2014-06-01</td>
+					</tr>
+					<tr>
+						<td style="color:#0101FF;">java程序员</td>
+						<td style="color:#0101FF;">云科科技</td>
+						<td style="color:#0101FF;">2000-3000</td>
+						<td>3</td>
+						<td>2014-06-01</td>
+					</tr>
+					<tr style="background:#F6F6F6;">
+						<td style="color:#0101FF;">java程序员</td>
+						<td style="color:#0101FF;">云科科技</td>
+						<td style="color:#0101FF;">2000-3000</td>
+						<td>3</td>
+						<td>2014-06-01</td>
+					</tr>
+				</table>
+				<div class="paixu" style="margin-top:30px;">
+					<ul style="float: right; margin: 0px 40px 0px 0px;">
+						<li>
+							<a href="">上一页</a>
+						</li>
+						<li>
+							<a href="">1</a>
+						</li>
+						<li>
+							<a href="">2</a>
+						</li>
+						<li>
+							<a href="">3</a>
+						</li>
+						<li>
+							<a href="">4</a>
+						</li>
+						<li>
+							<a href="">5</a>
+						</li>
+						<li>
+							<a href="">下一页</a>
+						</li>
+						<li style="margin-left: 20px;">
+							<a href="#">Top</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 	[#include "/include/footer.ftl" /]

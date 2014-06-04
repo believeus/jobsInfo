@@ -431,7 +431,7 @@
 			<div>
 				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 808px;"><hr style="border:1px dashed #e4e4e4;"></div>
-				<div style="width: 70px; float: left; line-height: 45px;"><a href="">更多>></a></div>
+				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml">更多>></a></div>
 				<div id="zhuanti_pic" style="display:inline-block;">
 					<div style="width:225px;height:70px;float:left;margin-left:30px;border:1px solid;">
 						<img src="/resource/public/images/01.png" style="width: 225px; height: 70px;">

@@ -9,7 +9,6 @@
    		.j_main{
     		width:1000px;
     		height:auto;
-    		//margin-top:-6px;
     	}
 		.j_main_left{
     		float:left;
@@ -59,15 +58,14 @@
 		.j_main_right_1 p{
 			margin:0;
 			padding: 5px;
-			background: #FFCC00;
-		    border: 1px solid;
+			background: url(/resource/public/images/background_b.png);
+		    border: 1px solid #e4e4e4;
 		    font-size:13px;
 		}
 		.j_main_right_2{
 			width:728px;
 			height:auto;
 			margin-top:10px;
-			background:#F2F2F2;
 		}
 		.j_main_right_2_1{
 			float:left;
@@ -89,16 +87,15 @@
 			font-size:14px;
 		}
 		.j_main_right_3{
-			border: 1px solid;
-		    margin: 15px 10px;
+			border: 1px solid #e4e4e4;
+		    margin: 10px 10px;
 		    width: 336px;
-		    height:260px;
+		    height:262px;
 		}
 		.j_main_right_3 p{
-			background: #FFCC00;
+			background:url(/resource/public/images/background.png);
 		    margin: 0;
 		    padding: 5px;
-		    border-bottom:1px solid #000000;
 		}
 		.j_main_right_3 span{
 			float:right;
@@ -145,10 +142,13 @@
 		</div>
 		<div class="j_main_right">
 			<div class="j_main_right_1">
-				<p>所在位置 > 政策咨询</p>
+				<p>
+					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
+					所在位置 > 政策咨询
+				</p>
 			</div>
-			<div class="j_main_right_2" style="border:1px solid #000000;width:727px;">
-				<table style="border: 3px solid #FFFFFF; padding: 0px; width: 700px; margin-left: auto; margin-right: auto; margin-top: 10px;">
+			<div class="j_main_right_2" style="border:1px solid #e4e4e4;width:727px;">
+				<table style="background:#F2F2F2;border: 3px solid #FFFFFF; padding: 10px 0; width: 700px; margin-left: auto; margin-right: auto; margin-top: 10px;">
 					<tr>
 						<td>
 							<select name="">
@@ -180,7 +180,9 @@
 								<option value="">月</option>
 							</select>
 						</td>
-						<td rowspan="2" style="border: 2px solid #000000;padding: 10px;">查询</td>
+						<td rowspan="2" style="background:#FFFBDE;border: 1px solid #000000;border-radius:4px;">
+							<input type="button" value="查询" name="" style="background:none;border:0;font-size:18px;cursor:pointer;">
+						</td>
 					</tr>
 					<tr>
 						<td>效力等级：</td>
@@ -203,7 +205,9 @@
 					<tr>
 						<td>
 							<div class="j_main_right_3">
-								<p>国家法律法规<span><a href="/countryLaw.jhtml">更多</a></span></p>
+								<p>
+									<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
+									国家法律法规<span><a href="/countryLaw.jhtml">更多</a></span></p>
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
 										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
@@ -219,7 +223,10 @@
 						</td>
 						<td>
 							<div class="j_main_right_3">
-								<p>地方法律法规<span><a href="/cityLaw.jhtml">更多</a></span></p>
+								<p>
+									<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
+									地方法律法规<span><a href="/cityLaw.jhtml">更多</a></span>
+								</p>
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
 										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
@@ -237,7 +244,10 @@
 					<tr>
 						<td>
 							<div class="j_main_right_3">
-								<p>国家相关文件<span><a href="">更多</a></span></p>
+								<p>
+									<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
+									国家相关文件<span><a href="">更多</a></span>
+								</p>
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
 										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
@@ -253,7 +263,10 @@
 						</td>
 						<td>
 							<div class="j_main_right_3">
-								<p>地方相关文件<span><a href="">更多</a></span></p>
+								<p>
+									<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
+									地方相关文件<span><a href="">更多</a></span>
+								</p>
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
 										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>

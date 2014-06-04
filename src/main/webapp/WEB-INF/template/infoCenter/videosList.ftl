@@ -58,8 +58,8 @@
 		.j_main_right_1 p{
 			margin:0;
 			padding: 5px;
-			background: #FFCC00;
-		    border: 1px solid;
+			background: url(/resource/public/images/background_b.png);
+		    border: 1px solid #e4e4e4;
 		    font-size:13px;
 		}
 		.j_main_right_2{
@@ -134,7 +134,10 @@
 		</div>
 		<div class="j_main_right">
 			<div class="j_main_right_1">
-				<p>所在位置 > 资讯中心</p>
+				<p>
+					<img style="float: left; margin-right: 10px;" src="/resource/public/images/sanjiaojian.png">
+					所在位置 > 资讯中心
+				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<table>

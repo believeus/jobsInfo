@@ -364,8 +364,8 @@
 								<option value="">重庆</option>
 								<option value="">武汉</option>
 							</select>
-							<input type="button" value="搜索" style="border-radius:4px;width:100px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
-							<input type="button" value="高级搜索" style="border-radius:4px;width:100px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
+							<input type="button" value="搜索" style="cursor:pointer;border-radius:4px;width:100px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
+							<input type="button" value="高级搜索" onclick="javascript:window.location.href='/advancedSearch.jhtml'" style="cursor:pointer;border-radius:4px;width:100px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
 							<p>搜索热词：
 								<span><a href="">软件工程师</a></span>
 								<span><a href="">建筑工程师</a></span>
