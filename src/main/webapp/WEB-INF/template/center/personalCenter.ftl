@@ -637,13 +637,14 @@
 		    	$("#eduLevel").val("${sessionUser.eduLevel}");
 		    	$("#health").val("${sessionUser.health}");
 		    	$("#sex").val("${sessionUser.sex}");
+		    	
 		    	// 为所有插件使用相同的模板。
 		    	var html ='<div id="xmenuSkillSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'+
-						'<div id="xmenuSkillJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>'+
-						'<div id="xmenuLearningSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'+
-						'<div id="xmenuWorkJob1" class="xmenu" style="display: none;">'+Jobs +'</div>'+
-						'<div id="xmenuVolunteerSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'+
-						'<div id="xmenuVolunteerJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>';
+						  '<div id="xmenuSkillJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>'+
+						  '<div id="xmenuLearningSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'+
+						  '<div id="xmenuWorkJob1" class="xmenu" style="display: none;">'+Jobs +'</div>'+
+						  '<div id="xmenuVolunteerSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'+
+						  '<div id="xmenuVolunteerJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>';
 				$("#conentDiv").parent().append(html);
 		    	
 		    	//技能专业
@@ -653,7 +654,7 @@
 					dropmenu:"#xmenuSkillSpecialty1",//弹出层
 					emptytext:"选择专业",
 					hiddenID : "selectSkillSpecialtyhidden1",//隐藏域ID	
-					value : "1,8"
+					value : "1,8"  // 设置已经保存过的值。
 				});
 				// 技能工种
 				$("#selectSkillJobs1").xMenu({	
@@ -702,35 +703,58 @@
     				  alert("xxxxx具备技能xxxxxxxxxx");
     				  $("div.jineng_div").each(function(index){
     				  		index++;
-    				  		/*alert(index);
-    				  		alert("专业id:" +$("#selectSkillSpecialtyhidden"+index).val());
-							alert("工种id:"+$("#selectSkillJobshidden"+index).val());
-							alert("技能能级:"+$("#skillLevel"+index).val());
-							alert("从事年限:"+$("#workingLifeSkill"+index).val());
-							alert("说明:"+$("#noteSkill"+index).val());*/
+    				  		alert(index);
+    				  		var selectSkillSpecialtyhidden=$("#selectSkillSpecialtyhidden"+index).val();
+							var selectSkillJobshidden=$("#selectSkillJobshidden"+index).val();
+							var skillLevel=$("#skillLevel"+index).val();
+							var workingLifeSkill=$("#workingLifeSkill"+index).val();
+							var noteSkill=$("#noteSkill"+index).val();
+							
+							alert("专业id:" +selectSkillSpecialtyhidden);
+							alert("工种id:"+selectSkillJobshidden);
+							alert("技能能级:"+skillLevel);
+							alert("从事年限:"+workingLifeSkill);
+							alert("说明:"+noteSkill);
+							//系别,工作职责,开始时间, 结束时间,  技能等级,   工作年限,   工作单位,      期望薪水, 期望工作所在地,描述,  工种,      专业,    是否开启提交
+							ajax("","","","",skillLevel,workingLifeSkill,"", "","",noteSkill,selectSkillJobshidden,selectSkillSpecialtyhidden,"no");
     				  })
     				   alert("xxxxx学习经历xxxxxxxxxx");
     				   $("div.xuexi_div").each(function(index){
     				  		index++;
-    				  		/*alert(index);
-							alert("开始时间:"+$("input[eidLearning='beginDateLearning"+index+"']").val());
-							alert("结束时间:"+$("input[eidLearning='endDateLearning"+index+"']").val());
-							alert("学校名称:"+$("#schoolLearning"+index).val());
-							alert("系别:"+$("#deptLearning"+index).val());
-    				  		alert("专业id:" +$("#selectLearningSpecialtyhidden"+index).val());
-    				  		*/
+    				  		alert(index);
+							var beginDateLearning=$("input[eidLearning='beginDateLearning"+index+"']").val();
+							var endDateLearning=$("input[eidLearning='endDateLearning"+index+"']").val();
+							var schoolLearning=$("#schoolLearning"+index).val();
+							var deptLearning=$("#deptLearning"+index).val();
+    				  		var selectLearningSpecialtyhidden=$("#selectLearningSpecialtyhidden"+index).val();
+    				  		
+    				  		alert("开始时间:"+beginDateLearning);
+							alert("结束时间:"+endDateLearning);
+							alert("学校名称:"+schoolLearning);
+							alert("系别:"+deptLearning);
+    				  		alert("专业id:" +selectLearningSpecialtyhidden);
+    				  		//系别,工作职责,开始时间, 结束时间,  技能等级,   工作年限,   工作单位,      期望薪水, 期望工作所在地,描述,  工种,      专业,    是否开启提交
+							ajax(deptLearning,"",beginDateLearning,endDateLearning,"","",schoolLearning,"","","","",selectLearningSpecialtyhidden,"no");
     				  })
     				  alert("xxxxxxxx工作经验xxxxxxx");
     				  $("div.gongzuo_div").each(function(index){
     				  		index++;
-    				  		/*alert(index);
-							alert("开始时间:"+$("input[eidWork='beginDateWork"+index+"']").val());
-							alert("结束时间:"+$("input[eidWork='endDateWork"+index+"']").val());
-							alert("工作单位:"+$("#workspaceWork"+index).val());
-							alert("职务:"+$("#dutyWork"+index).val());
-    				  		alert("工种id:" +$("#selectWorkJobhidden"+index).val());
-							alert("工作内容:"+$("#noteWork"+index).val());
-							*/
+    				  		alert(index);
+							var beginDateWork=$("input[eidWork='beginDateWork"+index+"']").val();
+							var endDateWork=$("input[eidWork='endDateWork"+index+"']").val();
+							var workspaceWork=$("#workspaceWork"+index).val();
+							var dutyWork=$("#dutyWork"+index).val();
+    				  		var selectWorkJobhidden=$("#selectWorkJobhidden"+index).val();
+							var noteWork=$("#noteWork"+index).val();
+							
+							alert("开始时间:"+beginDateWork);
+							alert("结束时间:"+endDateWork);
+							alert("工作单位:"+workspaceWork);
+							alert("职务:"+dutyWork);
+    				  		alert("工种id:" +selectWorkJobhidden);
+							alert("工作内容:"+noteWork);
+							//系别,工作职责,开始时间, 结束时间,  技能等级,   工作年限,   工作单位,      期望薪水, 期望工作所在地,描述,  工种,      专业,    是否开启提交
+							ajax($("",noteWork,beginDateWork,endDateWork,"","",workspaceWork,"","","",selectWorkJobhidden,"","no");
     				  })
     				  
     			}
@@ -739,14 +763,53 @@
     				  $("div.zhiyuan_div").each(function(index){
     				  		index++;
     				  		alert(index);
-    				  		alert("专业id:" +$("#selectVolunteerSpecialtyhidden"+index).val());
-							alert("工种id:"+$("#selectVolunteerJobshidden"+index).val());
-							alert("地区:"+$("#expectAreaVolunteer"+index).val());
-							alert("薪水:"+$("#expectSalaryVolunteer"+index).val());
-							alert("要求:"+$("#noteVolunteer"+index).val());
+    				  		var selectVolunteerSpecialtyhidden=$("#selectVolunteerSpecialtyhidden"+index).val();
+							var selectVolunteerJobshidden=$("#selectVolunteerJobshidden"+index).val();
+							var expectAreaVolunteer=$("#expectAreaVolunteer"+index).val();
+							var expectSalaryVolunteer=$("#expectSalaryVolunteer"+index).val();
+							var noteVolunteer=$("#noteVolunteer"+index).val();
+							
+							alert("专业id:" +selectVolunteerSpecialtyhidden);
+							alert("工种id:"+selectVolunteerJobshidden);
+							alert("地区:"+expectAreaVolunteer);
+							alert("薪水:"+expectSalaryVolunteer);
+							alert("要求:"+noteVolunteer);
+							//系别,工作职责,开始时间, 结束时间,  技能等级,   工作年限,   工作单位,      期望薪水, 期望工作所在地,描述,  工种,      专业,    是否开启提交
+							ajax("","","","","","","", expectSalaryVolunteer,expectAreaVolunteer,noteVolunteer,$selectVolunteerJobshidden,selectVolunteerSpecialtyhidden,"no");
 							
     				  })
     			}
+    			//封装一个ajax
+    			//            系别,工作职责,开始时间, 结束时间,  技能等级,   工作年限,   工作单位,      期望薪水, 期望工作所在地,描述,  工种,      专业,    是否开启提交
+    			function ajax(dept,duty,beginData,endData,skillLevel,workingLife,workspace,expectSalary,expectArea,note,workType,majorType,submitx){
+    					alert(" 发送ajax请求。");
+    					$.ajax({
+							url: "/common-user/center/submit-comInfo.jhtml",
+							type: "POST",
+							data: {
+								uid:${sessionUser.id},
+								dept:dept,
+								duty:duty,
+								beginData:beginData,
+								endData:endData,
+								skillLevel:skillLevel,
+								workingLife:workingLife,
+								workspace:workspace,
+								expectSalary:expectSalary,
+								expectArea:expectArea,
+								note:note,
+								workType:workType,
+								majorType:majorType,
+								submit:submitx
+								},
+							dataType: "json",
+							cache: false,
+							success: function(data) {
+									alert(data.message);
+								}
+							});
+				}
+							
 		    	// ajax 提交验证和保存。
 				function submitValid(submitx){
 						$.ajax({
@@ -1199,13 +1262,13 @@
 							<tr>
 								<td>享受免费职业培训:</td>
 								<td style="padding-right:100px;">
-									<input type="radio" name="freeTrain" checked="true" style="width:0" value="1">是
-									<input type="radio" name="freeTrain" style="width:0" value="0">否
+									<input type="radio" name="freeTrain" [#if sessionUser.freeTrain=="1"]checked="true"[#elseif sessionUser.freeTrain!="0"]checked="true"[/#if] style="width:0" value="1">是
+									<input type="radio" name="freeTrain" [#if sessionUser.freeTrain=="0"]checked="true"[/#if] style="width:0" value="0">否
 								</td>
 								<td>享受免费职业介绍:</td>
 								<td>
-									<input type="radio" name="freeIntro" checked="true" style="width:0" value="1">是
-									<input type="radio" name="freeIntro" style="width:0" value="0">否
+									<input type="radio" name="freeIntro" [#if sessionUser.freeIntro=="1"]checked="true"[#elseif sessionUser.freeIntro!="0"]checked="true"[/#if] style="width:0" value="1">是
+									<input type="radio" name="freeIntro" [#if sessionUser.freeIntro=="0"]checked="true"[/#if]style="width:0" value="0">否
 								</td>
 							</tr>
 						</table>
