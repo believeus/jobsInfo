@@ -7,6 +7,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script type="text/javascript" src="/resource/public/js/jquery.js"></script>
     <script type="text/javascript"  src="/resource/public/js/Etech.js"></script>
+    <link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
+    <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />  
+	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu.js"></script> 
+	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>
+	<script type="text/javascript" src="/resource/public/js/datePicker/WdatePicker.js"></script>
     <script type="text/javascript">
     	$().ready(function(){
     		$("#qiye_xinxi").click(function(){
@@ -173,7 +178,7 @@
 		    	// ajax 提交验证和保存。
 				function submitValid(submitx){
 						$.ajax({
-							url: "/ajaxComValidReg.jhtml",
+							url: "/enterprise/submit-account-Info.jhtml",
 							type: "POST",
 							data: {
 								id:${sessionUser.id},
@@ -201,7 +206,6 @@
 							success: function(data) {
 									if(data.message == "success" && submitx == "submit"){
 										alert("要提交其他信息了。");
-										sumitValidLIist("xxx");
 									}else{
 										
 									}
@@ -209,31 +213,75 @@
 								}
 							});
 					}
-					
-				// ajax 提交验证和保存。
-				function submitJobs(submitx){
+					//封装ajax信息提交
+				function submitJobs(){
+					alert("提交招聘信息");
+					$("div.jobs").each(function(index){
+						index++;
+						alert(index);
+						alert("company:"+$("#company"+index).val());
+						alert("worknum:"+$("#worknum"+index).val());
+						alert("sex:"+$("#sex"+index).val());
+						alert("eteLevel:"+$("#eteLevel"+index).val());
+						alert("workyear:"+$("#workyear"+index).val());
+						alert("eduLevel:"+$("#eduLevel"+index).val());
+						alert("workspace:"+$("#workspace"+index).val());
+						alert("age:"+$("#age"+index).val());
+						alert("height:"+$("#height"+index).val());
+						alert("eyesight:"+$("#eyesight"+index).val());
+						alert("salary:"+$("#salary"+index).val());
+						alert("workWay:"+$("#workWay"+index).val());
+						alert("worklimit:"+$("#worklimit"+index).val());
+						alert("viewData:"+$("#viewData"+index).val());
+						alert("note:"+$("#note"+index).val());
+						alert("majorType:"+$("#majorType"+index).val());
+						alert("workType:"+$("#workType"+index).val());
+						
+						var company=$("#company"+index).val();
+						var worknum=$("#worknum"+index).val();
+						var sex=$("#sex"+index).val();
+						var eteLevel=$("#eteLevel"+index).val();
+						var workyear=$("#workyear"+index).val();
+						var eduLevel=$("#eduLevel"+index).val();
+						var workspace=$("#workspace"+index).val();
+						var age=$("#age"+index).val();
+						var height=$("#height"+index).val();
+						var eyesight=$("#eyesight"+index).val();
+						var salary=$("#salary"+index).val();
+						var workWay=$("#workWay"+index).val();
+						var worklimit=$("#worklimit"+index).val();
+						var viewData=$("#viewData"+index).val();
+						var note=$("#note"+index).val();
+						var majorType=$("#majorType"+index).val();
+						var workType=$("#workType"+index).val();
+						
+						ajax(company,worknum,sex,eteLevel,workyear,eduLevel,workspace,age,height,eyesight,salary,workWay,worklimit,viewData,note,majorType,workType,"yes");
+						})
+					}
+				// ajax 提交招聘信息验证和保存。
+				function ajax(company,worknum,sex,eteLevel,workyear,eduLevel,workspace,age,height,eyesight,salary,workWay,worklimit,viewData,note,majorType,workType,submitx){
 						$.ajax({
-							url: "/ajaxComValidReg.jhtml",
+							url: "/enterprise-user/center/submit-recruit.jhtml",
 							type: "POST",
 							data: {
-								id:${sessionUser.id},
-								fullName: $("#fullName").val(),
-								unitType:$("#unitType").val(),
-								shorName:$("#shorName").val(),
-								relationship:$("#relationship").val(),
-								economicType:$("#economicType").val(),
-								legalMan:$("#legalMan").val(),
-								area:$("#area").val(),
-								trade:$("#trade").val(),
-								regMoney:$("#regMoney").val(),
-								detailAddress:$("#detailAddress").val(),
-								contacts:$("#contacts").val(),
-								address:$("#address").val(),
-								zip:$("#zip").val(),
-								phoneNum:$("#phoneNum").val(),
-								phoneFax:$("#phoneFax").val(),
-								webSite:$("#webSite").val(),
-								introduce:$("#introduce").val(),
+								uid:${sessionUser.id},
+								company: company,
+								worknum:worknum,
+								sex:sex,
+								eteLevel:eteLevel,
+								workyear:workyear,
+								eduLevel:eduLevel,
+								workspace:workspace,
+								age:age,
+								height:height,
+								eyesight:eyesight,
+								salary:salary,
+								workWay:workWay,
+								worklimit:worklimit,
+								viewData:viewData,
+								note:note,
+								majorType:majorType,
+								workType:workType,
 								submit:submitx
 								},
 							dataType: "json",
@@ -241,7 +289,6 @@
 							success: function(data) {
 									if(data.message == "success" && submitx == "submit"){
 										alert("要提交其他信息了。");
-										sumitValidLIist("xxx");
 									}else{
 										
 									}
@@ -255,8 +302,8 @@
 		});
 		
 		// 保存招聘信息。
-    	$("#savaAll").click(function() {
-				submitValid("no");
+    	$("#savaJobs").click(function() {
+				submitJobs();
 		});
     
     })
@@ -547,105 +594,106 @@
 							<input type="button" value="添加" style="width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
 						</div>
 					</div>
-					<div style="padding:10px 30px;width:650px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+					<div class="jobs" style="padding:10px 30px;width:650px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<table>
 							<tr>
 								<td>招聘单位:</td>
-								<td style="padding-right:80px;"><input type="text"></td>
-								<td>专业:</td>
-								<td><input type="text"></td>
+								<td style="padding-right:80px;"><input type="text" id="company1" ></td>
+								<td>人数:</td>
+								<td><input type="text" id="worknum1"></td>
 							</tr>
 							<tr>
 								<td>工种:</td>
 								<td><input type="text"></td>
+								
 								<td>性别:</td>
 								<td>
-									<select name="" style="width: 183px;">
+									<select id="sex1" style="width: 183px;">
 										<option value="">请选择..</option>
-										<option value="">男</option>
-										<option value="">女</option>
+										<option value="woman">男</option>
+										<option value="man">女</option>
 									</select>
 								</td>
 							</tr>
 							<tr>
-								<td>人数:</td>
+								<td>专业:</td>
 								<td><input type="text"></td>
 								<td>技术等级:</td>
-								<td><input type="text"></td>
+								<td><input type="text" id="eteLevel1"></td>
 							</tr>
 							<tr>
 								<td>从事年限:</td>
-								<td><input type="text"></td>
+								<td><input type="text" id="workyear1"></td>
 								<td>文化程度:</td>
 								<td>
-									<select name="" style="width: 183px;">
+									<select id="eduLevel1" style="width: 183px;">
 										<option value="">请选择..</option>
-										<option value="">研究生以上</option>
-										<option value="">博士研究生</option>
-										<option value="">大学本科</option>
-										<option value="">大学专科</option>
-										<option value="">中专技校</option>
-										<option value="">中等专科</option>
-										<option value="">职业高中</option>
-										<option value="">技工学校</option>
-										<option value="">普通高中</option>
-										<option value="">初中及以下</option>
-										<option value="">初级中学</option>
-										<option value="">小学</option>
-										<option value="">其他</option>
+										<option value="研究生以上">研究生以上</option>
+										<option value="博士研究生">博士研究生</option>
+										<option value="大学本科">大学本科</option>
+										<option value="大学专科">大学专科</option>
+										<option value="中专技校">中专技校</option>
+										<option value="中等专科">中等专科</option>
+										<option value="职业高中">职业高中</option>
+										<option value="技工学校">技工学校</option>
+										<option value="普通高中">普通高中</option>
+										<option value="初中及以下">初中及以下</option>
+										<option value="初级中学">初级中学</option>
+										<option value="小学">小学</option>
+										<option value="其他">其他</option>
 									</select>
 								</td>
 							</tr>
 							<tr>
 								<td>工作地点:</td>
-								<td><input type="text"></td>
+								<td><input type="text" id="workspace1"></td>
 								<td>年龄:</td>
-								<td><input type="text"></td>
+								<td><input type="text" id="age1"></td>
 							</tr>
 							<tr>
 								<td>身高:</td>
-								<td><input type="text"></td>
+								<td><input type="text" id="height1"></td>
 								<td>视力:</td>
-								<td><input type="text"></td>
+								<td><input type="text" id="eyesight1"></td>
 							</tr>
 							<tr>
 								<td>薪资待遇:</td>
-								<td><input type="text"></td>
+								<td><input type="text" id="salary1"></td>
 								<td>用工形式:</td>
 								<td>
-									<select name="" style="width: 183px;">
+									<select id="workWay1" style="width: 183px;">
 										<option value="">请选择..</option>
-										<option value="">兼职</option>
-										<option value="">全职</option>
-										<option value="">实习</option>
-										<option value="">...</option>
+										<option value="兼职">兼职</option>
+										<option value="全职">全职</option>
+										<option value="实习">实习</option>
+										<option value="...">...</option>
 									</select>
 								</td>
 							</tr>
 							<tr>
 								<td>招聘期限:</td>
 								<td>
-									<select name="" style="width: 183px;">
+									<select id="worklimit1" style="width: 183px;">
 										<option value="">请选择..</option>
-										<option value="">1年</option>
-										<option value="">3年</option>
-										<option value="">5年</option>
-										<option value="">...</option>
+										<option value="1年">1年</option>
+										<option value="3年">3年</option>
+										<option value="5年">5年</option>
+										<option value="...">...</option>
 									</select>
 								</td>
 								<td>面试时间:</td>
-								<td><input type="text"></td>
+								<td><input type="text" id="viewData1"></td>
 							</tr>
 							<tr>
 								<td style="vertical-align:top;">其他说明:</td>
 								<td colspan="3">
-									<textArea cols="50" style="resize:none;"></textArea>
+									<textArea cols="50" style="resize:none;" id="note1"></textArea>
 								</td>
 							</tr>
 						</table>
 					</div>
 					<p style="text-align:center;">
-						<input type="button" value="保存">
+						<input type="button" id="savaJobs" value="保存">
 						<input type="reset" value="重写">
 					</p>
 				</div>
