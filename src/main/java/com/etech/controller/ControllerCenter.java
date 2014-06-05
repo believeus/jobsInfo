@@ -1,16 +1,24 @@
 package com.etech.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import mydfs.storage.client.StorageClient;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.etech.entity.TcomInfo;
 import com.etech.entity.Trecruit;
@@ -25,7 +33,8 @@ public class ControllerCenter {
 	
 	@Resource
 	private EtechService etechService;
-	
+	@Resource
+	private StorageClient storageClient;
 	/**个人中心*/
 	@RequestMapping(value = "/common-user/center", method = RequestMethod.GET)
 	public String personalCenter() {
@@ -69,4 +78,24 @@ public class ControllerCenter {
 			map.put("message", "error");
 		}
 	}
+	@RequestMapping(value = "/upload", method = RequestMethod.POST,produces = "text/html; charset=UTF-8")
+	public @ResponseBody String upload(HttpServletRequest request) {
+		// 遍历图片
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		String storepath = "";
+		Map<String, MultipartFile> files = multipartRequest.getFileMap();
+		for (MultipartFile file : files.values()) {
+			InputStream inputStream;
+			try {
+				inputStream = file.getInputStream();
+				String fileName = file.getName();
+				String fileSuffix=fileName.substring(fileName.lastIndexOf(".")+1);
+				storepath=storageClient.upload(inputStream, fileSuffix);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return storepath;
+	}
+	
 }

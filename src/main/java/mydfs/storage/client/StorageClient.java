@@ -5,8 +5,10 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import mydfs.storage.tracker.StorageTracker;
 
 /**
@@ -50,5 +52,9 @@ public class StorageClient {
 		out.flush();
 		bis.close();
 		out.close();
+	}
+	public String upload(InputStream inputStream,String fileSuffix){
+		String storepath = storageTracker.upload(inputStream, fileSuffix);
+		return storepath;
 	}
 }
