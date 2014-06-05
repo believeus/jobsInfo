@@ -13,6 +13,16 @@ import java.net.Socket;
 
 import mydfs.storage.server.StorageServer;
 
+/**
+ * @author wuqiwei
+ * Email 1058633117@qq.com
+ * Data   2014-06-05
+ * AddReason 文件上传会出现视频和附件这些比较大的文件
+ * 			 并且,并且后期tomcat进行集群的时候，访问
+ * 			 公共图片数据的时候，常规的方式出现访问
+ * 			 上的烦人事,数据迁移的时候变得困难。
+ *           故自己写了一个文件管理系统，管理上传的文件
+ * */
 public class StorageTracker {
 	private StorageServer storageServer;
 	private String host;
@@ -51,8 +61,15 @@ public class StorageTracker {
 		this.port = port;
 	}
 
-	// 发送数据到服务端
-	public String upload(final InputStream inputStream) {
+	/**
+	 * 发送数据到服务端
+	 * @param inputStream 上传的文件流
+	 * @param fileSuffix  文件的后缀名
+	 * */ 
+	public String upload(final InputStream inputStream,String fileSuffix) {
+		if("".equals(fileSuffix)||fileSuffix==null){
+			throw new RuntimeException("第二个参数必须指定");
+		}
 		String storepath = new String();
 		Socket socket;
 		try {
@@ -60,7 +77,10 @@ public class StorageTracker {
 			// 得到socket发送数据的输出流
 			OutputStream out = socket.getOutputStream();
 			DataOutputStream ps = new DataOutputStream(out);
+			//通知服务器,将要上传数据
 			ps.writeUTF("upload");
+			//将文件的后缀发送个服务器
+			ps.writeUTF(fileSuffix);
 			final BufferedOutputStream bos = new BufferedOutputStream(out);
 			try {
 				byte[] buf = new byte[1024];

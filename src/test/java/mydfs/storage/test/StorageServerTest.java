@@ -13,14 +13,14 @@ public class StorageServerTest {
 	
 	@Test
 	public void startStorageServer() throws IOException{
-		StorageServer storageServer=new StorageServer(9999,"/data/mydfs/store",4);
+		StorageServer storageServer=new StorageServer(9999,"/data/mydfs/store",4,"192.168.1.110");
 		storageServer.startServer();
 	}
 	@Test
 	public void upload() throws IOException{
 		StorageTracker client=new StorageTracker("127.0.0.1", 9999);
-		InputStream inputStream = new FileInputStream("/home/wuqiwei/2014060202.swf");
-		String storepath = client.upload(inputStream);
+		InputStream inputStream = new FileInputStream("/home/wuqiwei/hs_err_pid2872.log");
+		String storepath = client.upload(inputStream,"");
 		System.out.println(storepath);
 	}
 	@Test

@@ -12,18 +12,32 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author wuqiwei
+ * Email 1058633117@qq.com
+ * Data   2014-06-05
+ * AddReason 文件上传会出现视频和附件这些比较大的文件
+ * 			 并且,并且后期tomcat进行集群的时候，访问
+ * 			 公共图片数据的时候，常规的方式出现访问
+ * 			 上的烦人事,数据迁移的时候变得困难。
+ *           故自己写了一个文件管理系统，管理上传的文件
+ * */
 public class StorageServer {
 
 	private ServerSocket serverSocket;
 	private ExecutorService executorService;
+	//监听本机的哪个ip地址
+	private String host;
 	// 本地监听端口
 	private int port;
 	private int workers;
@@ -31,6 +45,14 @@ public class StorageServer {
 	private String basepath;
 	// 返回路径的前缀
 	private String pathPrefix;
+	
+	public String getHost() {
+		return host;
+	}
+
+	public void setHost(String host) {
+		this.host = host;
+	}
 
 	public int getPort() {
 		return port;
@@ -68,19 +90,29 @@ public class StorageServer {
 		this.pathPrefix = "group/M00";
 	}
 
-	public StorageServer(int port, String basepath, int workers) {
-		this.port = port;
-		this.workers = workers;
-		this.basepath = basepath;
-		// 指定前缀方便访问之用
-		this.pathPrefix = "group/M00";
+	public StorageServer(int port, String basepath, int workers,String host) {
+		try {
+			this.port = port;
+			this.workers = workers;
+			this.basepath = basepath;
+			// 指定前缀方便访问之用
+			this.pathPrefix = "group/M00";
+			SocketAddress endpoint=new InetSocketAddress(host,port);
+			serverSocket.bind(endpoint);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@SuppressWarnings("resource")
 	public void startServer() throws IOException {
+		serverSocket = new ServerSocket();
+		//ServerSocket 绑定的ip和端口号
+		SocketAddress socketAddress=new InetSocketAddress(host,port);
+		serverSocket.bind(socketAddress);
 		// 初始化存储文件文件夹
 		Folder.initFolder(basepath);
-		serverSocket = new ServerSocket(port);
+		
 		executorService = Executors.newFixedThreadPool(workers);
 		System.out.print("Storage Server start!");
 		new Thread(new Runnable() {
@@ -128,6 +160,9 @@ public class StorageServer {
 									}
 									// 文件上传
 									if(status.equals("upload")){
+										// 获取文件后缀名
+										String extension=datais.readUTF();
+										System.out.println("client file stuffix: "+extension);
 										String uuid = UUID.randomUUID().toString().toUpperCase();
 										// 得到存储路径
 										String storepath = Folder.getStoragePath(uuid);
@@ -169,8 +204,9 @@ public class StorageServer {
 										}
 										// 获取文件的类型
 										String fileType = FileType.getTypeByFile(file);
+										//如果查询的后缀名不在定义范围内,使用客户端传递过来的后缀名
 										if(fileType==null){
-											fileType="txt";
+											fileType=extension;
 										}
 										storepath = storepath + "."+fileType ;
 										System.out.println("disk path:"+storepath);

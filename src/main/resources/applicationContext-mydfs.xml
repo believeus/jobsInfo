@@ -9,9 +9,10 @@
 	<bean id="storageServer" class="mydfs.storage.server.StorageServer" 
 		lazy-init="false" init-method="startServer" 
 		destroy-method="stopServer">
+		<property name="host" value="127.0.0.1"/>
+		<property name="port" value="9999"/>
 		<property name="workers" value="10"/>
 		<property name="basepath" value="/data/mydfs/store"/>
-		<property name="port" value="9999"/>
 	</bean>
 	<!-- End Name:wuqiwei Data:2014-6-2 01:46:37 初始化自己的分布式文件管理系统服务端-->
 	
