@@ -175,7 +175,7 @@ a:link{
         	<div style="margin:5px 10px;">
             	<img style="height:20px; width:20px;" src="/resource/public/images/sanjiaojian.png"/>
                 <div style="width:900px; vertical-align:top; display:inline-block; font-size:16px; font-weight:bold;">图片新闻</div>
-                <a style="vertical-align:top" href="">更多</a>
+                <a style="vertical-align:top" href="/imagesList.jhtml">更多</a>
             </div>
         </div>
         <div>

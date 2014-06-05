@@ -144,23 +144,23 @@
 					公告公示<span style="float:right;"><a href="/publicityList.jhtml">更多</a></span>
 				</p>
 				<ul style="padding-left:25px;">
-					<li><a href="">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
-					<li><a href="">社会保障费申请缴纳管理规定..</a><span>10-15</span></li>
-					<li><a href="">人力资源社会保障部关于印发..</a><span>10-15</span></li>
-					<li><a href="">社会保障费申请缴纳管理规定..</a><span>10-15</span></li>
-					<li><a href="">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
-					<li><a href="">人力资源社会保障部关于印发..</a><span>10-15</span></li>
-					<li><a href="">人力资源社会保障部关于印发..</a><span>10-15</span></li>
-					<li><a href="">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
-					<li><a href="">人力资源社会保障部关于印发..</a><span>10-15</span></li>
-					<li><a href="">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
+					<li><a href="/publicityInfo.jhtml">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
+					<li><a href="/publicityInfo.jhtml">社会保障费申请缴纳管理规定..</a><span>10-15</span></li>
+					<li><a href="/publicityInfo.jhtml">人力资源社会保障部关于印发..</a><span>10-15</span></li>
+					<li><a href="/publicityInfo.jhtml">社会保障费申请缴纳管理规定..</a><span>10-15</span></li>
+					<li><a href="/publicityInfo.jhtml">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
+					<li><a href="/publicityInfo.jhtml">人力资源社会保障部关于印发..</a><span>10-15</span></li>
+					<li><a href="/publicityInfo.jhtml">人力资源社会保障部关于印发..</a><span>10-15</span></li>
+					<li><a href="/publicityInfo.jhtml">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
+					<li><a href="/publicityInfo.jhtml">人力资源社会保障部关于印发..</a><span>10-15</span></li>
+					<li><a href="/publicityInfo.jhtml">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
 				</ul>
 			</div>
 			<div class="j_main_left_1" style="margin-top:10px;height:405px;text-align:center;border:1px solid #E4E4E4;">
 				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml">更多>></a></div>
-				<img src="/resource/public/images/zhuanti.png" style="margin-top:7px;">
+				<a href="/special.jhtml"><img src="/resource/public/images/zhuanti.png" style="margin-top:7px;"></a>
 			</div>
 		</div>
 		<div class="j_main_right">
@@ -171,20 +171,20 @@
 			</div>
 			<div class="xinwen">
 				<div style="padding-left: 20px;margin-bottom:20px;">
-					<h2 style="margin: 0px; font-size: 21px; font-weight: normal;">表彰全市创业就业先进个人</h2>
+					<h2 style="margin: 0px; font-size: 21px; font-weight: normal;"><a href="/newsInfo.jhtml">表彰全市创业就业先进个人</a></h2>
 					<p style="color:#2B8BDF;margin:0;font-size:12px;">xx市人力资源和社会保障局关于表彰全市创业就业先进个人的决定</p>
 				</div>
 				<div style="padding-left: 20px;">
-					<h2 style="margin: 0px; font-size: 21px; font-weight: normal;">国务院六大举措力促高校毕业生就业</h2>
+					<h2 style="margin: 0px; font-size: 21px; font-weight: normal;"><a href="/newsInfo.jhtml">国务院六大举措力促高校毕业生就业</a></h2>
 					<p style="color:#2B8BDF;margin:0;font-size:12px;">昨日，国务院总理李克强主持召开国务院常务会议，对于如何做..</p>
 				</div>
 				<hr style="margin-left: 10px; margin-right: 10px; border: 1px dashed #e4e4e4;">
 				<ul class="xinwen_ul" style="padding-left: 25px;">
-					<li><a href="">推陈出新的巧克力蛋糕店创业计划书</a></li>
-					<li><a href="">创业计划书的六个概念</a></li>
-					<li><a href="">赢动运城创业大赛报名表</a></li>
-					<li><a href="">毕业季里的创业课</a></li>
-					<li><a href="">运城启动SIYB免费创业培训</a></li>
+					<li><a href="/newsInfo.jhtml">推陈出新的巧克力蛋糕店创业计划书</a></li>
+					<li><a href="/newsInfo.jhtml">创业计划书的六个概念</a></li>
+					<li><a href="/newsInfo.jhtml">赢动运城创业大赛报名表</a></li>
+					<li><a href="/newsInfo.jhtml">毕业季里的创业课</a></li>
+					<li><a href="/newsInfo.jhtml">运城启动SIYB免费创业培训</a></li>
 				</ul>
 			</div>
 				
@@ -197,15 +197,15 @@
 					</p>
 					<div style="height: 100px; padding: 9px; width: 341px;">
 						<img src="/resource/public/images/dt_img.png" style="float:left;width:120px;">
-						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;font-size:16px;color:#C42D3E;">2014年医疗、工伤和生育保险工作座谈会召开...</p>
-						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;">2014年医疗、工伤和生育保险工作座谈会召开...<span style="text-align: right;float:right;"><a href="">[详细]</a></span></p>
+						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;font-size:16px;"><a style="color:#C42D3E;" href="/newsInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开...</a></p>
+						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;">2014年医疗、工伤和生育保险工作座谈会召开...<span style="text-align: right;float:right;"><a href="/newsInfo.jhtml">[详细]</a></span></p>
 					</div>
 					<div style="width: 320px; height: 0px; margin-left: auto; margin-right: auto; border: 1px dashed #E4E4E4;margin-bottom:15px;"></div>
 					<ul style="margin: 0px; padding: 0px 15px;">
-						<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-						<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-						<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-						<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+						<li><a href="/newsInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+						<li><a href="/newsInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+						<li><a href="/newsInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+						<li><a href="/newsInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 					</ul>
 				</div>
 				<div style="float: left; border: 1px dashed #e4e4e4; width: 0px; margin-top: 6px; height: 273px;"></div>
@@ -216,15 +216,15 @@
 					</p>
 					<div style="height: 100px; padding: 9px; width: 341px;">
 						<img src="/resource/public/images/dt_img.png" style="float:left;width:120px;">
-						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;font-size:16px;color:#C42D3E;">2014年医疗、工伤和生育保险工作座谈会召开...</p>
-						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;">2014年医疗、工伤和生育保险工作座谈会召开...<span style="text-align: right;float:right;"><a href="">[详细]</a></span></p>
+						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;font-size:16px;color:#C42D3E;"><a style="color:#C42D3E;" href="/workInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开...</a></p>
+						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;">2014年医疗、工伤和生育保险工作座谈会召开...<span style="text-align: right;float:right;"><a href="/workInfo.jhtml">[详细]</a></span></p>
 					</div>
 					<div style="width: 320px; height: 0px; margin-left: auto; margin-right: auto; border: 1px dashed #E4E4E4;margin-bottom:15px;"></div>
 					<ul style="margin: 0px; padding: 0px 15px;">
-						<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-						<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-						<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-						<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+						<li><a href="/workInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+						<li><a href="/workInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+						<li><a href="/workInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+						<li><a href="/workInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 					</ul>
 				</div>
 			</div>
@@ -237,33 +237,33 @@
 					<tr>
 						<td>
 							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png" width="104"></a>
+								<a href="/videosInfo.jhtml"><img src="/resource/public/images/tupxinw01.png" width="104"></a>
 							</p>
-							<p><a href="">省人社厅正式...</a></p>
+							<p><a href="/videosInfo.jhtml">省人社厅正式...</a></p>
 						</td>
 						<td>
 							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png" width="104"></a>
+								<a href="/videosInfo.jhtml"><img src="/resource/public/images/tupxinw01.png" width="104"></a>
 							</p>
-							<p><a href="">省人社厅正式...</a></p>
+							<p><a href="/videosInfo.jhtml">省人社厅正式...</a></p>
 						</td>
 						<td>
 							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png" width="104"></a>
+								<a href="/videosInfo.jhtml"><img src="/resource/public/images/tupxinw01.png" width="104"></a>
 							</p>
-							<p><a href="">省人社厅正式...</a></p>
+							<p><a href="/videosInfo.jhtml">省人社厅正式...</a></p>
 						</td>
 						<td>
 							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png" width="104"></a>
+								<a href="/videosInfo.jhtml"><img src="/resource/public/images/tupxinw01.png" width="104"></a>
 							</p>
-							<p><a href="">省人社厅正式...</a></p>
+							<p><a href="/videosInfo.jhtml">省人社厅正式...</a></p>
 						</td>
 						<td>
 							<p>
-								<a href=""><img src="/resource/public/images/tupxinw01.png" width="104"></a>
+								<a href="/videosInfo.jhtml"><img src="/resource/public/images/tupxinw01.png" width="104"></a>
 							</p>
-							<p><a href="">省人社厅正式...</a></p>
+							<p><a href="/videosInfo.jhtml">省人社厅正式...</a></p>
 						</td>
 					</tr>
 				</table>

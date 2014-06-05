@@ -103,11 +103,11 @@
 			<div class="j_main_left_1" style="background:#F3F3F3;">
 				<p>工作指南<span>Work Instructions</span></p>
 				<ul style="padding-left:0;margin:0;">
-					<li class="current_li"><a href="/jiuyegonggao.jhtml">就业公告</a></li>
-					<li><a href="/zhaopinhui.jhtml">招聘会</a></li>
-					<li><a href="/qiuzhizhidao.jhtml">求职指导</a></li>
-					<li><a href="/jianlizhinan.jhtml">简历指南</a></li>
-					<li><a href="/mianshibaodian.jhtml">面试宝典</a></li>
+					<li class="current_li"><a href="/jiuyegonggaoList.jhtml">就业公告</a></li>
+					<li><a href="/zhaopinhuiList.jhtml">招聘会</a></li>
+					<li><a href="/qiuzhizhidaoList.jhtml">求职指导</a></li>
+					<li><a href="/jianlizhinanList.jhtml">简历指南</a></li>
+					<li><a href="/mianshibaodianList.jhtml">面试宝典</a></li>
 				</ul>
 			</div>
 			<div class="j_main_left_1" style="margin-top:10px;height:400px;text-align:center;">

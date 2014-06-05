@@ -181,7 +181,7 @@
 							</select>
 						</td>
 						<td rowspan="2" style="background:#FFFBDE;border: 1px solid #000000;border-radius:4px;">
-							<input type="button" value="查询" name="" style="background:none;border:0;font-size:18px;cursor:pointer;">
+							<input type="button" value="查询" name="" onclick="javascript:window.location.href='/policyAdviceSearch.jhtml'" style="background:none;border:0;font-size:18px;cursor:pointer;">
 						</td>
 					</tr>
 					<tr>
@@ -210,13 +210,13 @@
 									国家法律法规<span><a href="/countryLaw.jhtml">更多</a></span></p>
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
 									</ul>
 								</div>
 							</div>
@@ -229,13 +229,13 @@
 								</p>
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/cityLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/cityLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/cityLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/cityLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/cityLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/cityLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/cityLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
 									</ul>
 								</div>
 							</div>
@@ -250,13 +250,13 @@
 								</p>
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/countryFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/countryFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/countryFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/countryFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/countryFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/countryFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/countryFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
 									</ul>
 								</div>
 							</div>
@@ -269,13 +269,13 @@
 								</p>
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/cityFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/cityFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/cityFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/cityFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/cityFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/cityFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										<li><a href="/cityFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
 									</ul>
 								</div>
 							</div>

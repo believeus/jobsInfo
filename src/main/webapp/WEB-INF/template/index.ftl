@@ -241,30 +241,30 @@
 			</div>
 			<div class="xinwen">
 				<div style="padding-left: 20px;margin-bottom:20px;">
-					<h2 style="margin: 0px; font-size: 21px; font-weight: normal;">表彰全市创业就业先进个人</h2>
+					<h2 style="margin: 0px; font-size: 21px; font-weight: normal;"><a href="/newsInfo.jhtml">表彰全市创业就业先进个人</a></h2>
 					<p style="color:#2B8BDF;margin:0;font-size:12px;">xx市人力资源和社会保障局关于表彰全市创业就业先进个人的决定</p>
 				</div>
 				<div style="padding-left: 20px;">
-					<h2 style="margin: 0px; font-size: 21px; font-weight: normal;">国务院六大举措力促高校毕业生就业</h2>
+					<h2 style="margin: 0px; font-size: 21px; font-weight: normal;"><a href="/newsInfo.jhtml">国务院六大举措力促高校毕业生就业</a></h2>
 					<p style="color:#2B8BDF;margin:0;font-size:12px;">昨日，国务院总理李克强主持召开国务院常务会议，对于如何做..</p>
 				</div>
 				<hr style="margin-left: 10px; margin-right: 10px; border: 1px dashed #e4e4e4;">
 				<ul class="xinwen_ul" style="padding-left: 25px;">
-					<li><a href="">推陈出新的巧克力蛋糕店创业计划书</a></li>
-					<li><a href="">创业计划书的六个概念</a></li>
-					<li><a href="">赢动运城创业大赛报名表</a></li>
-					<li><a href="">毕业季里的创业课</a></li>
-					<li><a href="">运城启动SIYB免费创业培训</a></li>
+					<li><a href="/newsInfo.jhtml">推陈出新的巧克力蛋糕店创业计划书</a></li>
+					<li><a href="/newsInfo.jhtml">创业计划书的六个概念</a></li>
+					<li><a href="/newsInfo.jhtml">赢动运城创业大赛报名表</a></li>
+					<li><a href="/newsInfo.jhtml">毕业季里的创业课</a></li>
+					<li><a href="/newsInfo.jhtml">运城启动SIYB免费创业培训</a></li>
 				</ul>
 			</div>
 			<div class="biaoti">
-				<img src="/resource/public/images/u6_normal_15.gif" style="width: 550px;">
-				<img src="/resource/public/images/u6_normal_17.gif">
+				<a href="/specialList.jhtml"><img src="/resource/public/images/u6_normal_15.gif" style="width: 550px;"></a>
+				<a href="/jobIntroduce.jhtml"><img src="/resource/public/images/u6_normal_17.gif"></a>
 			</div>
 			<div class="ad">
-				<a href="" title="局长信箱"><div class=""></div></a>
-				<a href="" title="网站论坛"><div class=""></div></a>
-				<a href="" title="相关下载"><div class=""></div></a>
+				<a href="/mailBox.jhtml" title="局长信箱"><div class=""></div></a>
+				<a href="#" title="网站论坛"><div class=""></div></a>
+				<a href="/xiazai.jhtml" title="相关下载"><div class=""></div></a>
 			</div>
 			<div class="xinxi">
 				<table>
@@ -286,12 +286,12 @@
 							<div class="xinxi_1">
 								<p><span style="margin-left:30px;float:none;">政策信息</span></p>
 								<ul style="padding-left:25px;">
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 								</ul>
 							</div>
 						</td>
@@ -312,7 +312,7 @@
 						</td>
 						<td>
 							<div class="xinxi_1">
-								<p><span style="margin-left:30px;float:none;">就业动态</span></p>
+								<p><span style="margin-left:30px;float:none;">工作动态</span></p>
 								<ul style="padding-left:25px;">
 									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
@@ -331,17 +331,17 @@
 			<div class="gonggao">
 				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);">
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-					公告公示<span style="float:right;">更多</span>
+					公告公示<span style="float:right;"><a href="/publicityList.jhtml">更多</a></span>
 				</p>
 				<ul style="padding-left:25px;">
-					<li><a href="">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
-					<li><a href="">社会保障费申请缴纳管理规定..</a><span>10-15</span></li>
-					<li><a href="">人力资源社会保障部关于印发..</a><span>10-15</span></li>
-					<li><a href="">社会保障费申请缴纳管理规定..</a><span>10-15</span></li>
-					<li><a href="">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
-					<li><a href="">人力资源社会保障部关于印发..</a><span>10-15</span></li>
-					<li><a href="">人力资源社会保障部关于印发..</a><span>10-15</span></li>
-					<li><a href="">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
+					<li><a href="/publicityInfo.jhtml">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
+					<li><a href="/publicityInfo.jhtml">社会保障费申请缴纳管理规定..</a><span>10-15</span></li>
+					<li><a href="/publicityInfo.jhtml">人力资源社会保障部关于印发..</a><span>10-15</span></li>
+					<li><a href="/publicityInfo.jhtml">社会保障费申请缴纳管理规定..</a><span>10-15</span></li>
+					<li><a href="/publicityInfo.jhtml">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
+					<li><a href="/publicityInfo.jhtml">人力资源社会保障部关于印发..</a><span>10-15</span></li>
+					<li><a href="/publicityInfo.jhtml">人力资源社会保障部关于印发..</a><span>10-15</span></li>
+					<li><a href="/publicityInfo.jhtml">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
 				</ul>
 			</div>
 			
@@ -434,16 +434,16 @@
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml">更多>></a></div>
 				<div id="zhuanti_pic" style="display:inline-block;">
 					<div style="width:225px;height:70px;float:left;margin-left:30px;border:1px solid;">
-						<img src="/resource/public/images/01.png" style="width: 225px; height: 70px;">
+						<a href="/special.jhtml"><img src="/resource/public/images/01.png" style="width: 225px; height: 70px;"></a>
 					</div>
 					<div style="width:225px;height:70px;float:left;margin-left:10px;border:1px solid;">
-						<img src="/resource/public/images/01.png" style="width: 225px; height: 70px;">
+						<a href="/special.jhtml"><img src="/resource/public/images/01.png" style="width: 225px; height: 70px;"></a>
 					</div>
 					<div style="width:225px;height:70px;float:left;margin-left:10px;border:1px solid;">
-						<img src="/resource/public/images/01.png" style="width: 225px; height: 70px;">
+						<a href="/special.jhtml"><img src="/resource/public/images/01.png" style="width: 225px; height: 70px;"></a>
 					</div>
 					<div style="width:225px;height:70px;float:left;margin-left:10px;border:1px solid;">
-						<img src="/resource/public/images/01.png" style="width: 225px; height: 70px;">
+						<a href="/special.jhtml"><img src="/resource/public/images/01.png" style="width: 225px; height: 70px;"></a>
 					</div>
 					<a href="/" style="background: url(/resource/public/images/u6_normal_33.gif); height: 62px; width: 14px; position: absolute;left:150px;margin-top:3px;"></a>
 					<a href="/" style="background: url(/resource/public/images/222.png); height: 62px; width: 13px; position: absolute;right:150px;margin-top:3px;"></a>
@@ -453,6 +453,7 @@
 		<div class="tupian">
 			<div style="width:1000px;height:38px;background:url(/resource/public/images/zhizuo-_01.png);">
 				<span style="color: #FFD32A;font-size: 20px;font-weight: bold;line-height: 38px;padding-left: 15px;">图片新闻</span>
+				<span style="float: right; line-height: 35px; margin-right: 10px;"><a style="color:#FFFFFF;" href="/imagesList.jhtml">更多>></a></span>
 			</div>
 			<img src="/resource/public/images/u6_normal_39.gif" style="width: 998px; margin-top: -4px;">
 			<img src="/resource/public/images/u6_normal_41.gif" style="width: 998px; margin-top: -4px;">

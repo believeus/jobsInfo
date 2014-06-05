@@ -46,6 +46,7 @@ a:link{
 }
 .gongji li {
     border-bottom: 1px dashed #FF7800;
+    line-height:31px;
 }
 </style>
 
@@ -63,28 +64,28 @@ a:link{
             <div class="gg" style="font-size:12px; font-weight:100;">
               <ul>
                 <li>
-                  就业公告信息提醒
+                   <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
                 </li>
                 <li>
-                  就业公告信息提醒
+                   <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
                 </li>
                 <li>
-                  就业公告信息提醒
+                   <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
                 </li>
                 <li>
-                  就业公告信息提醒
+                   <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
                 </li>
                 <li>
-                  就业公告信息提醒
+                   <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
                 </li>
                 <li>
-                  就业公告信息提醒
+                   <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
                 </li>
                 <li>
-                  就业公告信息提醒
+                   <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
                 </li>
                 <li>
-                  就业公告信息提醒
+                   <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
                 </li>
               </ul>
             </div>
@@ -114,31 +115,31 @@ a:link{
                     <div class="gg">
                       <ul style="font-size:13px; letter-spacing:0px;">
                         <li>
-                          <div style="width:375px; display:inline-block;">人力资源供求市场供求分析报告</div>
+                          <div style="width:375px; display:inline-block;"><a href="/report.jhtml">人力资源供求市场供求分析报告</a></div>
                           <span>2014/04/24</span>
                         </li>
                         <li>
-                          <div style="width:375px; display:inline-block;">人力资源供求市场供求分析报告</div>
+                          <div style="width:375px; display:inline-block;"><a href="/report.jhtml">人力资源供求市场供求分析报告</a></div>
                           <span>2014/04/24</span>
                         </li>
                         <li>
-                          <div style="width:375px; display:inline-block;">人力资源供求市场供求分析报告</div>
+                          <div style="width:375px; display:inline-block;"><a href="/report.jhtml">人力资源供求市场供求分析报告</a></div>
                           <span>2014/04/24</span>
                         </li>
                         <li>
-                          <div style="width:375px; display:inline-block;">人力资源供求市场供求分析报告</div>
+                          <div style="width:375px; display:inline-block;"><a href="/report.jhtml">人力资源供求市场供求分析报告</a></div>
                           <span>2014/04/24</span>
                         </li>
                         <li>
-                          <div style="width:375px; display:inline-block;">人力资源供求市场供求分析报告</div>
+                          <div style="width:375px; display:inline-block;"><a href="/report.jhtml">人力资源供求市场供求分析报告</a></div>
                           <span>2014/04/24</span>
                         </li>
                         <li>
-                          <div style="width:375px; display:inline-block;">人力资源供求市场供求分析报告</div>
+                          <div style="width:375px; display:inline-block;"><a href="/report.jhtml">人力资源供求市场供求分析报告</a></div>
                           <span>2014/04/24</span>
                         </li>
                         <li>
-                          <div style="width:375px; display:inline-block;">人力资源供求市场供求分析报告</div>
+                          <div style="width:375px; display:inline-block;"><a href="/report.jhtml">人力资源供求市场供求分析报告</a></div>
                           <span>2014/04/24</span>
                         </li>
                       </ul>
@@ -153,31 +154,31 @@ a:link{
                      <div class="gg">
                       <ul style="font-size:13px; letter-spacing:0px;">
                         <li>
-                          <div style="width:375px; display:inline-block;">全市工资指导价位报告</div>
+                          <div style="width:375px; display:inline-block;"><a href="/guidance.jhtml">全市工资指导价位报告</a></div>
                           <span>2014/04/22</span>
                         </li>
                         <li>
-                          <div style="width:375px; display:inline-block;">全市工资指导价位报告</div>
+                          <div style="width:375px; display:inline-block;"><a href="/guidance.jhtml">全市工资指导价位报告</a></div>
                           <span>2014/04/22</span>
                         </li>
                         <li>
-                          <div style="width:375px; display:inline-block;">全市工资指导价位报告</div>
+                          <div style="width:375px; display:inline-block;"><a href="/guidance.jhtml">全市工资指导价位报告</a></div>
                           <span>2014/04/22</span>
                         </li>
                         <li>
-                          <div style="width:375px; display:inline-block;">全市工资指导价位报告</div>
+                          <div style="width:375px; display:inline-block;"><a href="/guidance.jhtml">全市工资指导价位报告</a></div>
                           <span>2014/04/22</span>
                         </li>
                         <li>
-                          <div style="width:375px; display:inline-block;">全市工资指导价位报告</div>
+                          <div style="width:375px; display:inline-block;"><a href="/guidance.jhtml">全市工资指导价位报告</a></div>
                           <span>2014/04/22</span>
                         </li>
                         <li>
-                          <div style="width:375px; display:inline-block;">全市工资指导价位报告</div>
+                          <div style="width:375px; display:inline-block;"><a href="/guidance.jhtml">全市工资指导价位报告</a></div>
                           <span>2014/04/22</span>
                         </li>
                         <li>
-                          <div style="width:375px; display:inline-block;">全市工资指导价位报告</div>
+                          <div style="width:375px; display:inline-block;"><a href="/guidance.jhtml">全市工资指导价位报告</a></div>
                           <span>2014/04/22</span>
                         </li>
                       </ul>
@@ -192,58 +193,58 @@ a:link{
                      <div class="gg">
                       <ul style="font-size:13px; letter-spacing:0px;">
                         <li>
-                          <div style="width:395px; display:inline-block;">新闻标题</div>
-                          <a href="">下载</a>
+                          <div style="width:395px; display:inline-block;"><a href="">资料下载</a></div>
+                        </li>	
+                        <li>
+                          <div style="width:395px; display:inline-block;"><a href="">表格下载</a></div>
                         </li>
                         <li>
-                          <div style="width:395px; display:inline-block;">新闻标题</div>
-                          <a href="">下载</a>
-                        </li>
-                        <li>
-                          <div style="width:395px; display:inline-block;">新闻标题</div>
-                          <a href="">下载</a>
+                          <div style="width:395px; display:inline-block;"><a href="">软件下载</a></div>
                         </li>
                       </ul>
                     </div>   
                 </div>
              </div>
-             <div style="width:215px; float:left; border:1px solid #999; height:290px; margin-top:10px;background:#FFF6E5;">
+             <div style="width:215px; float:left; border:1px solid #999; height:357px; margin-top:10px;background:#FFF6E5;">
                 <div class="middle_" style="text-align:center; padding-top:8px; height:22px;"> 
                     <div>每月职业供给排行榜<span style="float:right;"><a href="/gongjipaihangList.jhtml">更多</a></span></div>
                 </div>
                 <div class="gg" style="">
                   <ul class="gongji" style="font-size:13px; letter-spacing:0px; list-style-type:none;margin:0;padding-left:15px;padding-right:15px;">
                     <li>
-                      <div style="color:#fe0002;">1、教师<span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span></div>
+                      <div><a style="color:#fe0002;" href="/supply.jhtml">1、教师</a><span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span></div>
                     </li>
                     <li>
-                      <div style="color:#fe0002;">2、教师<span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span></div>
+                      <div><a style="color:#fe0002;" href="/supply.jhtml">2、教师</a><span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span></div>
                     </li>
                     <li>
-                      <div style="color:#2ccd0f;">3、教师<span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span></div>
+                      <div><a style="color:#2ccd0f;" href="/supply.jhtml">3、教师</a><span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span></div>
                     </li>
                     <li>
-                      <div style="">4、教师</div>
+                      <div style=""><a href="/supply.jhtml">4、教师</a></div>
                     </li>
                     <li>
-                      <div style="">5、教师</div>
+                      <div style=""><a href="/supply.jhtml">5、教师</a></div>
                     </li>
                     <li>
-                      <div style="">6、教师</div>
+                      <div style=""><a href="/supply.jhtml">6、教师</a></div>
                     </li>
                     <li>
-                      <div style="">7、教师</div>
+                      <div style=""><a href="/supply.jhtml">7、教师</a></div>
                     </li>
                     <li>
-                      <div style="">8、教师</div>
+                      <div style=""><a href="/supply.jhtml">8、教师</a></div>
+                    </li>
+                    <li>
+                      <div style=""><a href="/supply.jhtml">9、教师</a></div>
                     </li>
                     <li style="border-bottom:0;">
-                      <div style="">9、教师</div>
+                      <div style=""><a href="/supply.jhtml">10、教师</a></div>
                     </li>
                   </ul>
                 </div>     
              </div>
-             <div style="width:215px; float:left; border:1px solid #999; height:295px; margin-top:10px;background:#FFF6E5;">
+             <div style="width:215px; float:left; border:1px solid #999; height:370px; margin-top:10px;background:#FFF6E5;">
                 <div class="middle_" style="text-align:center; padding-top:8px; height:22px;"> 
                     <div>每月职业需求排行榜<span style="float:right;"><a href="/xuqiupaihangList.jhtml">更多</a></span></div>
                 </div>
@@ -273,19 +274,14 @@ a:link{
                     <li>
                       <div style="">8、教师</div>
                     </li>
-                    <li style="border-bottom:0;">
+                    <li>
                       <div style="">9、教师</div>
+                    </li>
+                    <li style="border-bottom:0;">
+                      <div style="">10、教师</div>
                     </li>
                   </ul>
                 </div>     
-             </div>
-             <div style="width:215px; float:left; height:140px; margin-top:10px;">
-             	<div style="width:215px; height:55px; margin:7px 0px;">
-                	<img src="/resource/public/images/right_00.jpg" />
-                </div>
-                <div style="width:215px; height:55px; margin:7px 0px;">
-                	<img src="/resource/public/images/right_00.jpg" />
-                </div>
              </div>
         </div>
     </div>
