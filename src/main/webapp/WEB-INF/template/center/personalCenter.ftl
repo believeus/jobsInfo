@@ -709,14 +709,14 @@
 							var skillLevel=$("#skillLevel"+index).val();
 							var workingLifeSkill=$("#workingLifeSkill"+index).val();
 							var noteSkill=$("#noteSkill"+index).val();
-							
+							var id=$("#id").val();
 							alert("专业id:" +selectSkillSpecialtyhidden);
 							alert("工种id:"+selectSkillJobshidden);
 							alert("技能能级:"+skillLevel);
 							alert("从事年限:"+workingLifeSkill);
 							alert("说明:"+noteSkill);
 							//系别,工作职责,开始时间, 结束时间,  技能等级,   工作年限,   工作单位,      期望薪水, 期望工作所在地,描述,  工种,      专业,    是否开启提交
-							ajax("","","","",skillLevel,workingLifeSkill,"", "","",noteSkill,selectSkillJobshidden,selectSkillSpecialtyhidden,"no");
+							ajax(id,"","","","",skillLevel,workingLifeSkill,"", "","",noteSkill,selectSkillJobshidden,selectSkillSpecialtyhidden,"no");
     				  })
     				   alert("xxxxx学习经历xxxxxxxxxx");
     				   $("div.xuexi_div").each(function(index){
@@ -734,7 +734,7 @@
 							alert("系别:"+deptLearning);
     				  		alert("专业id:" +selectLearningSpecialtyhidden);
     				  		//系别,工作职责,开始时间, 结束时间,  技能等级,   工作年限,   工作单位,      期望薪水, 期望工作所在地,描述,  工种,      专业,    是否开启提交
-							ajax(deptLearning,"",beginDateLearning,endDateLearning,"","",schoolLearning,"","","","",selectLearningSpecialtyhidden,"no");
+							ajax("",deptLearning,"",beginDateLearning,endDateLearning,"","",schoolLearning,"","","","",selectLearningSpecialtyhidden,"no");
     				  })
     				  alert("xxxxxxxx工作经验xxxxxxx");
     				  $("div.gongzuo_div").each(function(index){
@@ -754,7 +754,7 @@
     				  		alert("工种id:" +selectWorkJobhidden);
 							alert("工作内容:"+noteWork);
 							//系别,工作职责,开始时间, 结束时间,  技能等级,   工作年限,   工作单位,      期望薪水, 期望工作所在地,描述,  工种,      专业,    是否开启提交
-							ajax("",noteWork,beginDateWork,endDateWork,"","",workspaceWork,"","","",selectWorkJobhidden,"","no");
+							ajax("","",noteWork,beginDateWork,endDateWork,"","",workspaceWork,"","","",selectWorkJobhidden,"","no");
     				  })
     				  
     			}
@@ -775,19 +775,19 @@
 							alert("薪水:"+expectSalaryVolunteer);
 							alert("要求:"+noteVolunteer);
 							//系别,工作职责,开始时间, 结束时间,  技能等级,   工作年限,   工作单位,      期望薪水, 期望工作所在地,描述,  工种,      专业,    是否开启提交
-							ajax("","","","","","","", expectSalaryVolunteer,expectAreaVolunteer,noteVolunteer,$selectVolunteerJobshidden,selectVolunteerSpecialtyhidden,"no");
+							ajax("","","","","","","","", expectSalaryVolunteer,expectAreaVolunteer,noteVolunteer,$selectVolunteerJobshidden,selectVolunteerSpecialtyhidden,"no");
 							
     				  })
     			}
     			//封装一个ajax
     			//            系别,工作职责,开始时间, 结束时间,  技能等级,   工作年限,   工作单位,      期望薪水, 期望工作所在地,描述,  工种,      专业,    是否开启提交
-    			function ajax(dept,duty,beginData,endData,skillLevel,workingLife,workspace,expectSalary,expectArea,note,workType,majorType,submitx){
+    			function ajax(id,dept,duty,beginData,endData,skillLevel,workingLife,workspace,expectSalary,expectArea,note,workType,majorType,submitx){
     					alert(" 发送ajax请求。");
     					$.ajax({
 							url: "/common-user/center/submit-comInfo.jhtml",
 							type: "POST",
 							data: {
-								uid:${sessionUser.id},
+								id:id,
 								dept:dept,
 								duty:duty,
 								beginData:beginData,
@@ -1153,7 +1153,9 @@
 									</div>
 								</td>
 								<td>从事年限:</td>
-								<td><input type="text" id="workingLifeSkill1"></td>
+								<td><input type="text" id="workingLifeSkill1">
+									<input type="hidden" id="id">
+								</td>
 							</tr>
 							<tr>
 								<td>说明:</td>
