@@ -4,6 +4,9 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -110,5 +113,11 @@ public class StorageTracker {
 			ex.printStackTrace();
 		}
 		return socket;
+	}
+	public static void main(String[] args) throws Exception {
+		StorageTracker storageTracker=new StorageTracker("127.0.0.1", 9999);
+		InputStream inputStream=new FileInputStream(new File("/home/ztx/erweima.gif"));
+		String path = storageTracker.upload(inputStream);
+		System.out.println(path);
 	}
 }

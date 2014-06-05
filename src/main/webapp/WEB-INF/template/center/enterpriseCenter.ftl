@@ -257,100 +257,101 @@
     	$("#add_zhaopin").click(function(){
     		[@compress single_line = true]
     		var html = 
-    			'<div class="zhaopinxinxi" style="padding:10px 18px;width:650px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+    			'<div class="zhaopinxinxi" style="padding:10px 30px;width:650px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 					<table>
 						<tr>
 							<td rowspan="9" style="color:#E2652E;">'+b+'</td>
 							<td>招聘单位:</td>
-							<td style="padding-right:80px;"><input type="text"></td>
-							<td>专业:</td>
-							<td><input type="text"></td>
+							<td style="padding-right:80px;"><input type="text" id="company1" ></td>
+							<td>人数:</td>
+							<td><input type="text" id="worknum1"></td>
 						</tr>
 						<tr>
 							<td>工种:</td>
 							<td><input type="text"></td>
+							
 							<td>性别:</td>
 							<td>
-								<select name="" style="width: 183px;">
+								<select id="sex1" style="width: 183px;">
 									<option value="">请选择..</option>
-									<option value="">男</option>
-									<option value="">女</option>
+									<option value="woman">男</option>
+									<option value="man">女</option>
 								</select>
 							</td>
 						</tr>
 						<tr>
-							<td>人数:</td>
+							<td>专业:</td>
 							<td><input type="text"></td>
 							<td>技术等级:</td>
-							<td><input type="text"></td>
+							<td><input type="text" id="eteLevel1"></td>
 						</tr>
 						<tr>
 							<td>从事年限:</td>
-							<td><input type="text"></td>
+							<td><input type="text" id="workyear1"></td>
 							<td>文化程度:</td>
 							<td>
-								<select name="" style="width: 183px;">
+								<select id="eduLevel1" style="width: 183px;">
 									<option value="">请选择..</option>
-									<option value="">研究生以上</option>
-									<option value="">博士研究生</option>
-									<option value="">大学本科</option>
-									<option value="">大学专科</option>
-									<option value="">中专技校</option>
-									<option value="">中等专科</option>
-									<option value="">职业高中</option>
-									<option value="">技工学校</option>
-									<option value="">普通高中</option>
-									<option value="">初中及以下</option>
-									<option value="">初级中学</option>
-									<option value="">小学</option>
-									<option value="">其他</option>
+									<option value="研究生以上">研究生以上</option>
+									<option value="博士研究生">博士研究生</option>
+									<option value="大学本科">大学本科</option>
+									<option value="大学专科">大学专科</option>
+									<option value="中专技校">中专技校</option>
+									<option value="中等专科">中等专科</option>
+									<option value="职业高中">职业高中</option>
+									<option value="技工学校">技工学校</option>
+									<option value="普通高中">普通高中</option>
+									<option value="初中及以下">初中及以下</option>
+									<option value="初级中学">初级中学</option>
+									<option value="小学">小学</option>
+									<option value="其他">其他</option>
 								</select>
 							</td>
 						</tr>
 						<tr>
 							<td>工作地点:</td>
-							<td><input type="text"></td>
+							<td><input type="text" id="workspace1"></td>
 							<td>年龄:</td>
-							<td><input type="text"></td>
+							<td><input type="text" id="age1"></td>
 						</tr>
 						<tr>
 							<td>身高:</td>
-							<td><input type="text"></td>
+							<td><input type="text" id="height1"></td>
 							<td>视力:</td>
-							<td><input type="text"></td>
+							<td><input type="text" id="eyesight1"></td>
 						</tr>
 						<tr>
 							<td>薪资待遇:</td>
-							<td><input type="text"></td>
+							<td><input type="text" id="salary1"></td>
 							<td>用工形式:</td>
 							<td>
-								<select name="" style="width: 183px;">
+								<select id="workWay1" style="width: 183px;">
 									<option value="">请选择..</option>
-									<option value="">兼职</option>
-									<option value="">全职</option>
-									<option value="">实习</option>
-									<option value="">...</option>
+									<option value="兼职">兼职</option>
+									<option value="全职">全职</option>
+									<option value="实习">实习</option>
+									<option value="...">...</option>
 								</select>
 							</td>
 						</tr>
 						<tr>
 							<td>招聘期限:</td>
 							<td>
-								<select name="" style="width: 183px;">
+								<select id="worklimit1" style="width: 183px;">
 									<option value="">请选择..</option>
-									<option value="">1年</option>
-									<option value="">3年</option>
-									<option value="">5年</option>
-									<option value="">...</option>
+									<option value="1年">1年</option>
+									<option value="3年">3年</option>
+									<option value="5年">5年</option>
+									<option value="...">...</option>
 								</select>
 							</td>
 							<td>面试时间:</td>
-							<td><input type="text"></td>
+							<td><input type="text" id="viewData1"></td>
 						</tr>
 						<tr>
 							<td style="vertical-align:top;">其他说明:</td>
 							<td colspan="2">
-								<textArea cols="30" style="resize:none;"></textArea>
+								<textArea cols="30" style="resize:none;" id="note1"></textArea>
 							</td>
 							<td style="vertical-align: bottom; text-align: right;">
 								<a class="delete_zhaopin" href="javascript:void(0);">删除</a>
@@ -359,10 +360,10 @@
 					</table>
 				</div>';
 			[/@compress]
-			if($(".zhaopinxinxi").size() <3){
+			if($(".zhaopinxinxi").size() <5){
 				$(".zhaopinxinxi").parent().append(html);
 			}else{
-				alert("最多添加3条数据");
+				alert("最多添加5条数据");
 			}
 			
 			//删除招聘信息
@@ -787,100 +788,101 @@
 						</div>
 					</div>
 					<div>
-						<div class="zhaopinxinxi" style="padding:10px 18px;width:650px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+						<div class="zhaopinxinxi" style="padding:10px 30px;width:650px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 							<table>
 								<tr>
 									<td rowspan="9" style="color:#E2652E;">1</td>
 									<td>招聘单位:</td>
-									<td style="padding-right:80px;"><input type="text"></td>
-									<td>专业:</td>
-									<td><input type="text"></td>
+									<td style="padding-right:80px;"><input type="text" id="company1" ></td>
+									<td>人数:</td>
+									<td><input type="text" id="worknum1"></td>
 								</tr>
 								<tr>
 									<td>工种:</td>
 									<td><input type="text"></td>
+									
 									<td>性别:</td>
 									<td>
-										<select name="" style="width: 183px;">
+										<select id="sex1" style="width: 183px;">
 											<option value="">请选择..</option>
-											<option value="">男</option>
-											<option value="">女</option>
+											<option value="woman">男</option>
+											<option value="man">女</option>
 										</select>
 									</td>
 								</tr>
 								<tr>
-									<td>人数:</td>
+									<td>专业:</td>
 									<td><input type="text"></td>
 									<td>技术等级:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="eteLevel1"></td>
 								</tr>
 								<tr>
 									<td>从事年限:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="workyear1"></td>
 									<td>文化程度:</td>
 									<td>
-										<select name="" style="width: 183px;">
+										<select id="eduLevel1" style="width: 183px;">
 											<option value="">请选择..</option>
-											<option value="">研究生以上</option>
-											<option value="">博士研究生</option>
-											<option value="">大学本科</option>
-											<option value="">大学专科</option>
-											<option value="">中专技校</option>
-											<option value="">中等专科</option>
-											<option value="">职业高中</option>
-											<option value="">技工学校</option>
-											<option value="">普通高中</option>
-											<option value="">初中及以下</option>
-											<option value="">初级中学</option>
-											<option value="">小学</option>
-											<option value="">其他</option>
+											<option value="研究生以上">研究生以上</option>
+											<option value="博士研究生">博士研究生</option>
+											<option value="大学本科">大学本科</option>
+											<option value="大学专科">大学专科</option>
+											<option value="中专技校">中专技校</option>
+											<option value="中等专科">中等专科</option>
+											<option value="职业高中">职业高中</option>
+											<option value="技工学校">技工学校</option>
+											<option value="普通高中">普通高中</option>
+											<option value="初中及以下">初中及以下</option>
+											<option value="初级中学">初级中学</option>
+											<option value="小学">小学</option>
+											<option value="其他">其他</option>
 										</select>
 									</td>
 								</tr>
 								<tr>
 									<td>工作地点:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="workspace1"></td>
 									<td>年龄:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="age1"></td>
 								</tr>
 								<tr>
 									<td>身高:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="height1"></td>
 									<td>视力:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="eyesight1"></td>
 								</tr>
 								<tr>
 									<td>薪资待遇:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="salary1"></td>
 									<td>用工形式:</td>
 									<td>
-										<select name="" style="width: 183px;">
+										<select id="workWay1" style="width: 183px;">
 											<option value="">请选择..</option>
-											<option value="">兼职</option>
-											<option value="">全职</option>
-											<option value="">实习</option>
-											<option value="">...</option>
+											<option value="兼职">兼职</option>
+											<option value="全职">全职</option>
+											<option value="实习">实习</option>
+											<option value="...">...</option>
 										</select>
 									</td>
 								</tr>
 								<tr>
 									<td>招聘期限:</td>
 									<td>
-										<select name="" style="width: 183px;">
+										<select id="worklimit1" style="width: 183px;">
 											<option value="">请选择..</option>
-											<option value="">1年</option>
-											<option value="">3年</option>
-											<option value="">5年</option>
-											<option value="">...</option>
+											<option value="1年">1年</option>
+											<option value="3年">3年</option>
+											<option value="5年">5年</option>
+											<option value="...">...</option>
 										</select>
 									</td>
 									<td>面试时间:</td>
-									<td><input type="text"></td>
+									<td><input type="text" id="viewData1"></td>
 								</tr>
 								<tr>
 									<td style="vertical-align:top;">其他说明:</td>
 									<td colspan="2">
-										<textArea cols="30" style="resize:none;"></textArea>
+										<textArea cols="30" style="resize:none;" id="note1"></textArea>
 									</td>
 									<td style="vertical-align: bottom; text-align: right;">
 										<a class="delete_zhaopin" href="javascript:void(0);">删除</a>
