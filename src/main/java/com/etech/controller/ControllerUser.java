@@ -21,7 +21,7 @@ public class ControllerUser {
 	private EtechService etechService;
 
 	/**一般用户信息提交*/
-	@RequestMapping(value = "/submitComUserInfo")
+	@RequestMapping(value = "/common-user/submit-account-Info")
 	public void submitComUserInfo(TcomUser comUser,HttpServletResponse response) {
 		Map<String, Object> map=new HashMap<String,Object>();
 		try{
@@ -33,7 +33,7 @@ public class ControllerUser {
 		}
 	}
 	/**企业用户信息提交*/
-	@RequestMapping(value = "/submitEntUserInfo")
+	@RequestMapping(value = "/enterprise/submit-account-Info")
 	public void submitEntUserInfo(TentUser entUser) {
 		etechService.saveOrUpdate(entUser);
 	}

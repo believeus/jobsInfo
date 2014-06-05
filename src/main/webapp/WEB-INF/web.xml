@@ -110,6 +110,16 @@
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/index</url-pattern>
 	</servlet-mapping>
-
 	<!--end Name:wuqiwei Date:2013-08-10 AddReason:添加springMVC的支持 -->
+	
+	<!-- Begin Author:wuqiwei:Data:2014-06-05 AddReason:内嵌式小型分布式文件系统集成 -->
+	 <servlet>
+		<servlet-name>storageClient</servlet-name>
+		<servlet-class>mydfs.storage.httpclient.HttpStorageClient</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>storageClient</servlet-name>
+		<url-pattern>/group/M00/*</url-pattern>
+	</servlet-mapping>
+	<!-- End Author:wuqiwei:Data:2014-06-05 AddReason:内嵌式小型分布式文件系统集成 -->
 </web-app>
