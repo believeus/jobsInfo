@@ -209,10 +209,55 @@
 								}
 							});
 					}
+					
+				// ajax 提交验证和保存。
+				function submitJobs(submitx){
+						$.ajax({
+							url: "/ajaxComValidReg.jhtml",
+							type: "POST",
+							data: {
+								id:${sessionUser.id},
+								fullName: $("#fullName").val(),
+								unitType:$("#unitType").val(),
+								shorName:$("#shorName").val(),
+								relationship:$("#relationship").val(),
+								economicType:$("#economicType").val(),
+								legalMan:$("#legalMan").val(),
+								area:$("#area").val(),
+								trade:$("#trade").val(),
+								regMoney:$("#regMoney").val(),
+								detailAddress:$("#detailAddress").val(),
+								contacts:$("#contacts").val(),
+								address:$("#address").val(),
+								zip:$("#zip").val(),
+								phoneNum:$("#phoneNum").val(),
+								phoneFax:$("#phoneFax").val(),
+								webSite:$("#webSite").val(),
+								introduce:$("#introduce").val(),
+								submit:submitx
+								},
+							dataType: "json",
+							cache: false,
+							success: function(data) {
+									if(data.message == "success" && submitx == "submit"){
+										alert("要提交其他信息了。");
+										sumitValidLIist("xxx");
+									}else{
+										
+									}
+									alert(data.message);
+								}
+							});
+					}
     	// 保存信息。
     	$("#savaAll").click(function() {
 				submitValid("no");
-			});
+		});
+		
+		// 保存招聘信息。
+    	$("#savaAll").click(function() {
+				submitValid("no");
+		});
     
     })
     

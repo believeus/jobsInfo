@@ -754,7 +754,7 @@
     				  		alert("工种id:" +selectWorkJobhidden);
 							alert("工作内容:"+noteWork);
 							//系别,工作职责,开始时间, 结束时间,  技能等级,   工作年限,   工作单位,      期望薪水, 期望工作所在地,描述,  工种,      专业,    是否开启提交
-							ajax($("",noteWork,beginDateWork,endDateWork,"","",workspaceWork,"","","",selectWorkJobhidden,"","no");
+							ajax("",noteWork,beginDateWork,endDateWork,"","",workspaceWork,"","","",selectWorkJobhidden,"","no");
     				  })
     				  
     			}
