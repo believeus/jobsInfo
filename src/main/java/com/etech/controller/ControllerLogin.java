@@ -64,6 +64,7 @@ public class ControllerLogin {
 					JsonOutToBrower.out(message, response);
 				/*用户名正确密码不正确*/
 				}else {
+					log.debug("password unmatch !");
 					if (StringUtils.isEmpty(user.getPassword())) {
 						message.put("message", "请输入密码");
 						JsonOutToBrower.out(message, response);

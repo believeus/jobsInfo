@@ -3,15 +3,14 @@ package mydfs.storage.tracker;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
+
 import mydfs.storage.server.StorageServer;
 
 public class StorageTracker {
@@ -86,7 +85,7 @@ public class StorageTracker {
 		}
 		return storepath;
 	}
-
+	//获取数据
 	public InputStream receiveData(String currenturl) {
 		InputStream inputStream = null;
 		try {
@@ -114,10 +113,32 @@ public class StorageTracker {
 		}
 		return socket;
 	}
-	public static void main(String[] args) throws Exception {
-		StorageTracker storageTracker=new StorageTracker("127.0.0.1", 9999);
-		InputStream inputStream=new FileInputStream(new File("/home/ztx/erweima.gif"));
-		String path = storageTracker.upload(inputStream);
-		System.out.println(path);
+	// 删除数据
+	public boolean removeData(String url){
+		Socket socket = null;
+		Boolean success=false;
+		try {
+			socket = new Socket(host, port);
+			// 得到socket发送数据的输出流
+			OutputStream out = socket.getOutputStream();
+			DataOutputStream ps = new DataOutputStream(out);
+			ps.writeUTF("remove");
+			ps.flush();
+			ps.writeUTF(url);
+			ps.flush();
+			InputStream in = socket.getInputStream();
+			DataInputStream dataIn = new DataInputStream(in);
+			success=dataIn.readBoolean();
+			return success;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}finally{
+			try {
+				socket.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return success;
 	}
 }

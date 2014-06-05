@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -123,6 +124,7 @@ public class StorageServer {
 											System.out.println(url+" output success");
 											bos.close();
 										}
+										return;
 									}
 									// 文件上传
 									if(status.equals("upload")){
@@ -158,6 +160,7 @@ public class StorageServer {
 												bos.write(buf, 0, len);
 												bos.flush();
 												// 客户端不关闭,永远读不到流的结尾
+												////手动判断退出循环
 												if (len < buf.length) {
 													break;
 												}
@@ -182,8 +185,31 @@ public class StorageServer {
 										pw.flush();
 										bos.close();
 										br.close();
+										return;
 									}
-								
+									// 删除StoreServer中的数据
+									if(status.equals("remove")){
+										boolean success=false;
+										OutputStream out = socket.getOutputStream();
+										DataOutputStream dataos = new DataOutputStream(out);
+										// 读取到请求的url
+										String url = datais.readUTF();
+										Pattern regex = Pattern.compile("/[A-Z0-9]{2}/[A-Z0-9]{2}/[A-Za-z0-9-]+\\.[a-z]+");
+										Matcher matcher = regex.matcher(url);
+										if(matcher.find()){
+											String storepath=basepath+matcher.group();
+											System.out.println("file disk store path:"+storepath);
+											File file=new File(storepath);
+											if(file.exists()){
+												success= file.delete();
+											}
+										}
+										dataos.writeBoolean(success);
+										dataos.flush();
+										dataos.close();
+										return;
+									}
+									
 								} catch (IOException e) {
 									e.printStackTrace();
 								}
