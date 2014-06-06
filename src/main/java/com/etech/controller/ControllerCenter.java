@@ -23,6 +23,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -101,20 +102,24 @@ public class ControllerCenter {
 	/**企业用户信息提交*/
 	@RequestMapping(value = "/enterprise/submit-account-Info")
 	public void submitEntUserInfo(TentUser entUser) {
+		TentUser sessionUser=null;
 		try {
-			TentUser sessionUser = (TentUser)etechService.findObjectById(TentUser.class, entUser.getId());
+			// 如果为空就报错
+			Assert.notNull(entUser.getId(),"user.id is not null");
+			sessionUser = (TentUser)etechService.findObjectById(TentUser.class, entUser.getId());
 			String password = entUser.getPassword();
 			//如果没有输入密码,使用原密码
 			password=StringUtils.isEmpty(password)?sessionUser.getPassword():DigestUtils.md5Hex(password);
 			System.out.println(password);
 			entUser.setPassword(password);
-			BeanUtils.copyProperties(entUser, sessionUser);
+			// 将注编辑的数据复制给sessionUser
+			BeanUtils.copyProperties(sessionUser,entUser);
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
-		etechService.saveOrUpdate(entUser);
+		etechService.saveOrUpdate(sessionUser);
 	}
 	
 	/**提交招聘信息*/
@@ -147,4 +152,5 @@ public class ControllerCenter {
 		}
 		return storepath;
 	}
+
 }
