@@ -81,6 +81,7 @@
 		<mapping class="com.etech.entity.TentUser"/>
 		<mapping class="com.etech.entity.Trole"/>
 		<mapping class="com.etech.entity.Tauthority"/>
+		<mapping class="com.etech.entity.TentImgVedio"/>
 		
 	</session-factory>
 
