@@ -271,10 +271,10 @@
 		</div>
 		<div class="tupian">
 			<div style="width:1000px;height:38px;background:url(/resource/public/images/zhizuo-_01.png);">
-				<span style="color: #FFD32A;font-size: 20px;font-weight: bold;line-height: 38px;padding-left: 15px;">图片新闻<span style="float:right;"><a style="color:#FAFAFA;font-size:15px;" href="/imagesList.jhtml">更多>></a></span></span>
+				<span style="color: #FFD32A;font-size: 20px;font-weight: bold;line-height: 38px;padding-left: 15px;">图片新闻<span style="float:right;"><a style="color:#FAFAFA;font-size:13px;" href="/imagesList.jhtml">更多>></a></span></span>
 			</div>
-			<img src="/resource/public/images/u6_normal_39.gif" style="width: 998px; margin-top: -4px;">
-			<img src="/resource/public/images/u6_normal_41.gif" style="width: 998px; margin-top: -4px;">
+			<a href="/imgShow.jhtml"><img src="/resource/public/images/u6_normal_39.gif" style="width: 998px; margin-top: -4px;"></a>
+			<a href="/imgShow.jhtml"><img src="/resource/public/images/u6_normal_41.gif" style="width: 998px; margin-top: -4px;"></a>
 		</div>
 	</div>
 	[#include "/include/footer.ftl" /]

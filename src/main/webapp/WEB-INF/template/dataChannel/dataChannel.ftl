@@ -59,7 +59,7 @@ a:link{
             <div class="left_top">
             	<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-top: 7px; margin-left: 10px;">
                 <div style="margin:8px 10px; width:160px; display:inline-block">公告公示</div>
-                <a href="/publicityList.jhtml" style="vertical-align:middle; font-size:15px;">更多</a>
+                <a href="/publicityList.jhtml" style="vertical-align:middle; font-size:13px;">更多</a>
             </div>
             <div class="gg" style="font-size:12px; font-weight:100;">
               <ul>
@@ -110,7 +110,7 @@ a:link{
                     <div class="middle_">
                     	<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-top: 7px; margin-left: 10px;">
                         <div style="margin:8px; width:405px; display:inline-block">人力资源供求市场供求分析报告</div>
-                        <a href="/fenxibaogaoList.jhtml" style="vertical-align:middle; font-size:15px;">更多</a>
+                        <a href="/fenxibaogaoList.jhtml" style="vertical-align:middle; font-size:13px;">更多</a>
                     </div>
                     <div class="gg">
                       <ul style="font-size:13px; letter-spacing:0px;">
@@ -149,7 +149,7 @@ a:link{
                     <div class="middle_">
                     	<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-top: 7px; margin-left: 10px;">
                         <div style="margin:8px; width:405px; display:inline-block">全市工资指导价位</div>
-                        <a href="/zhidaojiaweiList.jhtml" style="vertical-align:middle; font-size:15px;">更多</a>
+                        <a href="/zhidaojiaweiList.jhtml" style="vertical-align:middle; font-size:13px;">更多</a>
                     </div>
                      <div class="gg">
                       <ul style="font-size:13px; letter-spacing:0px;">
@@ -188,18 +188,18 @@ a:link{
                     <div class="middle_">
                     	<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-top: 7px; margin-left: 10px;">
                         <div style="margin:8px; width:405px; display:inline-block">相关下载</div>
-                        <a href="/xiazai.jhtml" style="vertical-align:middle; font-size:15px;">更多</a>
+                        <a href="/xiazai.jhtml" style="vertical-align:middle; font-size:13px;">更多</a>
                     </div>
                      <div class="gg">
                       <ul style="font-size:13px; letter-spacing:0px;">
                         <li>
-                          <div style="width:395px; display:inline-block;"><a href="">资料下载</a></div>
+                          <div style="width:395px; display:inline-block;"><a href="/ziliao.jhtml">资料下载</a></div>
                         </li>	
                         <li>
-                          <div style="width:395px; display:inline-block;"><a href="">表格下载</a></div>
+                          <div style="width:395px; display:inline-block;"><a href="/biaoge.jhtml">表格下载</a></div>
                         </li>
                         <li>
-                          <div style="width:395px; display:inline-block;"><a href="">软件下载</a></div>
+                          <div style="width:395px; display:inline-block;"><a href="/ruanjian.jhtml">软件下载</a></div>
                         </li>
                       </ul>
                     </div>   
@@ -251,34 +251,34 @@ a:link{
                 <div class="gg">
                   <ul class="gongji" style="font-size:13px; letter-spacing:0px; list-style-type:none;margin:0;padding-left:15px;padding-right:15px;">
                     <li>
-                      <div style="color:#fe0002;">1、教师<span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span></div>
+                      <div><a style="color:#fe0002;" href="/demand.jhtml">1、教师</a><span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span></div>
                     </li>
                     <li>
-                      <div style="color:#fe0002;">2、教师<span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span></div>
+                      <div><a style="color:#fe0002;" href="/demand.jhtml">2、教师</a><span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span></div>
                     </li>
                     <li>
-                      <div style="color:#2ccd0f;">3、教师<span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span></div>
+                      <div><a style="color:#2ccd0f;" href="/demand.jhtml">3、教师</a><span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span></div>
                     </li>
                     <li>
-                      <div style="">4、教师</div>
+                      <div style=""><a href="/demand.jhtml">4、教师</a></div>
                     </li>
                     <li>
-                      <div style="">5、教师</div>
+                      <div style=""><a href="/demand.jhtml">5、教师</a></div>
                     </li>
                     <li>
-                      <div style="">6、教师</div>
+                      <div style=""><a href="/demand.jhtml">6、教师</a></div>
                     </li>
                     <li>
-                      <div style="">7、教师</div>
+                      <div style=""><a href="/demand.jhtml">7、教师</a></div>
                     </li>
                     <li>
-                      <div style="">8、教师</div>
+                      <div style=""><a href="/demand.jhtml">8、教师</a></div>
                     </li>
                     <li>
                       <div style="">9、教师</div>
                     </li>
                     <li style="border-bottom:0;">
-                      <div style="">10、教师</div>
+                      <div style=""><a href="/demand.jhtml">10、教师</a></div>
                     </li>
                   </ul>
                 </div>     

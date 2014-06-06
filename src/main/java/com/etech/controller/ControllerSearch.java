@@ -17,7 +17,7 @@ public class ControllerSearch {
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String searchView() {
 		log.debug("current controller is searchView !");
-		return "index";
+		return "occupationIntroduction/search";
 	}
 	/**高级搜索*/
 	@RequestMapping(value = "/advancedSearch", method = RequestMethod.GET)

@@ -938,7 +938,10 @@
 				<div id="base_xinxi" style="width::728px;height:auto;overflow:hidden;">
 					<div style="height: 30px; width: 728px;">
 						<span style="float:left;">基本信息</span>
-						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 600px; float: left; margin-left: 10px; margin-top: 9px;"></div>
+						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 525px; float: left; margin-left: 10px; margin-top: 9px;"></div>
+						<div style="float: left; width: 50px; margin-left: 20px;">
+							<input id="update_mima" type="button" value="修改密码" style="cursor:pointer;width: 80px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
+						</div>
 					</div>
 					<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<div class="" style="height: auto; overflow: hidden; float: left; width: 230px; margin-left: 30px; margin-top: 10px;margin-right:10px;">

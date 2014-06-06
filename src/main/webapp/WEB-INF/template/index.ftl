@@ -273,12 +273,12 @@
 							<div class="xinxi_1">
 								<p><span style="margin-left:30px;float:none;">招聘信息</span></p>
 								<ul style="padding-left:25px;">
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									<li><a href="/enterpriseInformation.jhtml#zp">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									<li><a href="/enterpriseInformation.jhtml#zp">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									<li><a href="/enterpriseInformation.jhtml#zp">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									<li><a href="/enterpriseInformation.jhtml#zp">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									<li><a href="/enterpriseInformation.jhtml#zp">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									<li><a href="/enterpriseInformation.jhtml#zp">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 								</ul>
 							</div>
 						</td>
@@ -455,8 +455,8 @@
 				<span style="color: #FFD32A;font-size: 20px;font-weight: bold;line-height: 38px;padding-left: 15px;">图片新闻</span>
 				<span style="float: right; line-height: 35px; margin-right: 10px;"><a style="color:#FFFFFF;" href="/imagesList.jhtml">更多>></a></span>
 			</div>
-			<img src="/resource/public/images/u6_normal_39.gif" style="width: 998px; margin-top: -4px;">
-			<img src="/resource/public/images/u6_normal_41.gif" style="width: 998px; margin-top: -4px;">
+			<a href="/imgShow.jhtml"><img src="/resource/public/images/u6_normal_39.gif" style="width: 998px; margin-top: -4px;"></a>
+			<a href="/imgShow.jhtml"><img src="/resource/public/images/u6_normal_41.gif" style="width: 998px; margin-top: -4px;"></a>
 		</div>
 		<div class="youqing">
 			<span style="line-height: 55px; padding-left: 15px;">友情链接</span>

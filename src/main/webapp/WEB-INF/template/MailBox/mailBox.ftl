@@ -18,7 +18,7 @@ a:link{
 .left_top{
 	height:35px; 
 	border-bottom: 1px solid #999; 
-	background-color:#FC0;
+	background:url(/resource/public/images/background_b.png);
 }
 .zti_im{
 	margin:3px 25px;
@@ -134,54 +134,55 @@ textarea{
 	<div style="width:240px; float:left;">
         <div class="left_">  
             <div class="left_top">
-                <div style="margin:8px 10px; width:160px; display:inline-block">公告公示</div>
-                <a href="" style="vertical-align:middle; font-size:18px;">more</a>
+                <div style="margin:8px 10px; width:160px; display:inline-block"><img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">公告公示</div>
+                <a href="/publicityList.jhtml" style="vertical-align:middle; font-size:18px;">更多</a>
             </div>
             <div class="gg" style="font-size:12px; font-weight:100;">
               <ul>
                 <li>
-                  就业公告信息提醒
+                  <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
                 </li>
                 <li>
-                  就业公告信息提醒
+                  <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
                 </li>
                 <li>
-                  就业公告信息提醒
+                  <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
                 </li>
                 <li>
-                  就业公告信息提醒
+                  <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
                 </li>
                 <li>
-                  就业公告信息提醒
+                  <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
                 </li>
                 <li>
-                  就业公告信息提醒
+                  <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
                 </li>
                 <li>
-                  就业公告信息提醒
+                  <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
                 </li>
                 <li>
-                  就业公告信息提醒
+                  <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
                 </li>
               </ul>
             </div>
         </div>
         <div class="left_" style="height:360px; margin-top:10px;">
             <div class="left_top">
-                <div style="margin:8px 10px; width:160px; display:inline-block">专题报道</div>
-                <a href="" style="vertical-align:middle; font-size:18px;">more</a>
+                <div style="margin:8px 10px; width:160px; display:inline-block"><img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">专题报道</div>
+                <a href="/specialList.jhtml" style="vertical-align:middle; font-size:18px;">更多</a>
             </div>
             <div style="padding:5px 0px;">
-            	<div class="zti_im"><img src="/resource/public/images/zti_im01.jpg" /></div>
-                <div class="zti_im"><img src="/resource/public/images/zti_im02.jpg" /></div>
-                <div class="zti_im"><img src="/resource/public/images/zti_im03.jpg" /></div>
-                <div class="zti_im"><img src="/resource/public/images/zti_im04.jpg" /></div>
-                <div class="zti_im"><img src="/resource/public/images/zti_im05.jpg" /></div>
+            	<div class="zti_im"><a href="/special.jhtml"><img src="/resource/public/images/zti_im01.jpg" /></a></div>
+                <div class="zti_im"><a href="/special.jhtml"><img src="/resource/public/images/zti_im02.jpg" /></a></div>
+                <div class="zti_im"><a href="/special.jhtml"><img src="/resource/public/images/zti_im03.jpg" /></a></div>
+                <div class="zti_im"><a href="/special.jhtml"><img src="/resource/public/images/zti_im04.jpg" /></a></div>
+                <div class="zti_im"><a href="/special.jhtml"><img src="/resource/public/images/zti_im05.jpg" /></a></div>
             </div>	 
         </div>
     </div>
     <div style="width:750px; float:left; margin-left:10px;">
-    	<div style="width:710px; height:17px; background-color:#FC0; padding:9px 20px;">
+    	<div style="width:710px; height:30px;line-height:30px;border:1px solid #e4e4e4; background:url(/resource/public/images/background_b.png);">
+        	<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-left: 10px; margin-top: 7px; margin-right: 10px;">
         	<span>所在位置</span>
             <span>></span>
         	<span>服务功能</span>

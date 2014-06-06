@@ -16,6 +16,6 @@ public class ControllerImgShow {
 	@RequestMapping(value = "/imgShow", method = RequestMethod.GET)
 	public String imgShowView() {
 		log.debug("current controller is imgShowView !");
-		return "index";
+		return "infoCenter/imageInfo";
 	}
 }

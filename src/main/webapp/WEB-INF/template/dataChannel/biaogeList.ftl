@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>下载中心列表</title>
+    <title>表格下载列表</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -94,7 +94,7 @@
     <script type="text/javascript">
     	$().ready(function(){
     		$("#xiazai_center").click(function(){
-    			$("#xiazai_list").toggle(500);
+    			$("#xiazai_list").toggle(1000);
     		});
     	});
     </script>
@@ -114,8 +114,8 @@
 				</ul>
 				<div id="xiazai_list" class="j_main_left_1" style="background:#F3F3F3;height:111px;border:0;">
 					<ul style="padding-left:0;margin:0;">
-						<li class="current_li" ><a style="margin-left:80px;" href="/ziliaoList.jhtml">资料下载</a></li>
-						<li><a style="margin-left:80px;" href="/biaogeList.jhtml">表格下载</a></li>
+						<li ><a style="margin-left:80px;" href="/ziliaoList.jhtml">资料下载</a></li>
+						<li class="current_li"><a style="margin-left:80px;" href="/biaogeList.jhtml">表格下载</a></li>
 						<li><a style="margin-left:80px;" href="/ruanjianList.jhtml">软件下载</a></li>
 					</ul>
 				</div>
@@ -131,52 +131,52 @@
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<ul>
 					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/biaoge.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/biaoge.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/biaoge.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/biaoge.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/biaoge.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/biaoge.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/biaoge.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/biaoge.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/biaoge.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/biaoge.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/biaoge.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/biaoge.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/biaoge.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/biaoge.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/biaoge.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/biaoge.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
 					</li>
 				</ul>
 				<p style="padding-left:25px;">
