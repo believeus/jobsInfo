@@ -1,9 +1,15 @@
 package com.etech.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -49,6 +55,8 @@ public class TentUser extends TbaseUser implements Serializable {
 	private String webSite;
 	/**隶属关系*/
 	private String relationship;
+	/**企业图片信息*/
+	private Set<TentImgVedio> imgVedios=new HashSet<TentImgVedio>();
 	@Length(max=25)
 	@Column(nullable=true)
 	public String getContacts() {
@@ -161,6 +169,14 @@ public class TentUser extends TbaseUser implements Serializable {
 	}
 	public void setRelationship(String relationship) {
 		this.relationship = relationship;
+	}
+	@OneToMany
+	@JoinColumn(columnDefinition="fk_ImgVedioId",referencedColumnName="id")
+	public Set<TentImgVedio> getImgVedios() {
+		return imgVedios;
+	}
+	public void setImgVedios(Set<TentImgVedio> imgVedios) {
+		this.imgVedios = imgVedios;
 	}
 	
 }
