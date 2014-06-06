@@ -14,7 +14,7 @@ var $dp, WdatePicker;
 		autoUpdateOnChanged : null,
 		whichDayIsfirstWeek : 4,
 		position : {},
-		lang : "zh-cn",
+		lang : "zh_CN",
 		skin : "default",
 		dateFmt : "yyyy-MM-dd",
 		realDateFmt : "yyyy-MM-dd",

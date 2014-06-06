@@ -6,6 +6,7 @@
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script type="text/javascript" src="/resource/public/js/jquery.js"></script>
+    <script type="text/javascript" src="/resource/public/js/jquery.form.js"></script>
     <script type="text/javascript"  src="/resource/public/js/Etech.js"></script>
     <link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
     <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />  
@@ -280,6 +281,7 @@
 				</div>';
 	[/@compress]
 						
+    	
     	$().ready(function() {
     		
     		
@@ -629,7 +631,8 @@
     </script>
     <script type="text/javascript">
     			
-    		
+    		//检查图片是否需要重新上传。
+			var checkChange=0;
 		    $().ready(function() {
 		    	// 初始化一些值。设置value为用户填写过的项选中。
 		    	$("#polity").val("${sessionUser.polity}");
@@ -716,10 +719,10 @@
 							alert("从事年限:"+workingLifeSkill);
 							alert("说明:"+noteSkill);
 							//系别,工作职责,开始时间, 结束时间,  技能等级,   工作年限,   工作单位,      期望薪水, 期望工作所在地,描述,  工种,      专业,    是否开启提交
-							ajax(id,"","","","",skillLevel,workingLifeSkill,"", "","",noteSkill,selectSkillJobshidden,selectSkillSpecialtyhidden,"no");
+							ajax(index,"","","","",skillLevel,workingLifeSkill,"", "","",noteSkill,selectSkillJobshidden,selectSkillSpecialtyhidden,"no");
     				  })
-    				   alert("xxxxx学习经历xxxxxxxxxx");
-    				   $("div.xuexi_div").each(function(index){
+    				    /*alert("xxxxx学习经历xxxxxxxxxx");
+    				  $("div.xuexi_div").each(function(index){
     				  		index++;
     				  		alert(index);
 							var beginDateLearning=$("input[eidLearning='beginDateLearning"+index+"']").val();
@@ -755,7 +758,7 @@
 							alert("工作内容:"+noteWork);
 							//系别,工作职责,开始时间, 结束时间,  技能等级,   工作年限,   工作单位,      期望薪水, 期望工作所在地,描述,  工种,      专业,    是否开启提交
 							ajax("","",noteWork,beginDateWork,endDateWork,"","",workspaceWork,"","","",selectWorkJobhidden,"","no");
-    				  })
+    				  })*/
     				  
     			}
     			function submitVolunteer(submitx){
@@ -787,76 +790,63 @@
 							url: "/common-user/center/submit-comInfo.jhtml",
 							type: "POST",
 							data: {
-								id:id,
 								dept:dept,
 								duty:duty,
+								/* 不能封装为对象属性值。
+								id:id,
 								beginData:beginData,
 								endData:endData,
+								workType:workType,
+								majorType:majorType,*/
 								skillLevel:skillLevel,
 								workingLife:workingLife,
 								workspace:workspace,
 								expectSalary:expectSalary,
 								expectArea:expectArea,
 								note:note,
-								workType:workType,
-								majorType:majorType,
 								submit:submitx
 								},
 							dataType: "json",
 							cache: false,
 							success: function(data) {
-									alert(data.message);
+									alert("提交完成");
 								}
 							});
 				}
-							
-		    	// ajax 提交验证和保存。
+				// ajax 提交验证和保存，先提交图片再提交个人信息。
 				function submitValid(submitx){
-						$.ajax({
-							url: "/ajaxComValidReg.jhtml",
-							type: "POST",
-							data: {
-								id:${sessionUser.id},
-								loginName: $("#loginName").val(),
-								password:$("#password").val(),
-								idcard:$("#idcard").val(),
-								trueName:$("#trueName").val(),
-								age:$("#age").val(),
-								nation:$("#nation").val(),
-								polity:$("#polity").val(),
-								marriage:$("#marriage").val(),
-								eyesight:$("#eyesight").val(),
-								strongPoint:$("#strongPoint").val(),
-								phoneNum:$("#phoneNum").val(),
-								twoGirl:$('input:radio[name="twoGirl"]:checked').val(),
-								sex:$("#sex").val(),
-								eduLevel:$("#eduLevel").val(),
-								height:$("#height").val(),
-								health:$("#health").val(),
-								address:$("#address").val(),
-								workspace:$("#workspace").val(),
-								jobId:$("#jobId").val(),
-								singleChild:$('input:radio[name="singleChild"]:checked').val(),
-								freeTrain:$('input:radio[name="freeTrain"]:checked').val(),
-								freeIntro:$('input:radio[name="freeIntro"]:checked').val(),
-								submit:submitx
-								},
-							dataType: "json",
-							cache: false,
-							success: function(data) {
-									if(data.message == "success" && submitx == "submit"){
-										alert("要提交其他信息了。");
-										sumitValidLIist("xxx");
-									}else{
-										
-									}
-									alert(data.message);
-								}
-							});
+				
+						// 上传图片，并且得到图片路径返回值。
+						if(checkChange==1){
+							$("#imageForm").ajaxSubmit(function (data) {
+					            $("#imgHead").val(data);
+					            submitInfo(submitx);
+					            return false;
+				        	});	
+						}else{
+							submitInfo(submitx);
+						}
+						
 					}
+					
+		    	// 提交用户信息
+				function submitInfo(submitx){
+						$("#freeTrain").val($('input:radio[name="freeTrain"]:checked').val());
+						$("#freeIntro").val($('input:radio[name="freeIntro"]:checked').val());
+						$("#submit").val(submitx);
+			        	$("#InfoForm").ajaxSubmit(function (data) {
+							data = JSON.parse(data);
+	        				if(data.message == "success" && $("#submit").val() == "submit"){
+								alert("要提交其他信息了。");
+								sumitValidLIist("xxx");
+							}else{
+								alert(data.message);								
+							}
+			        	});	
+				}
 		    	// 用户名验证。
 				$("#loginName,#idcard").change(function(){
-					submitValid("no");
+					submitInfo("nosubmit");
 				});
 				
 				// 保存其他信息。
@@ -866,7 +856,6 @@
 						alert("用户名必填！");
 					}else{
 						submitValid("submit");
-						//sumitValidLIist("no");
 					}
 				});
 				//保存志愿。
@@ -953,10 +942,17 @@
 					</div>
 					<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<div class="" style="height: auto; overflow: hidden; float: left; width: 230px; margin-left: 30px; margin-top: 10px;margin-right:10px;">
+						<form novalidate="novalidate"  action="/ajaxComValidReg.jhtml" method="post" id="InfoForm">
+							<input type="hidden" name="id" value="${sessionUser.id}">
+							<input type="hidden" name="submit" value="nosubmit" id="submit">
+							<input type="hidden" name="freeTrain" value="${sessionUser.freeTrain}" id="freeTrain">
+							<input type="hidden" name="freeIntro" value="${sessionUser.freeIntro}" id="freeIntro">
+							<input type="hidden" name="imgHead" value="${sessionUser.imgHead}" id="imgHead">
+						
 							<table>
 								<tr>
 									<td>姓名:</td>
-									<td><input type="text" id="trueName" value="${sessionUser.trueName}"></td>
+									<td><input type="text" id="trueName" name="trueName" value="${sessionUser.trueName}"></td>
 								</tr>
 								<tr>
 									<td>登录名:</td>
@@ -964,16 +960,16 @@
 								</tr>
 								<tr>
 									<td>年龄:</td>
-									<td><input type="text" id="age" value="${sessionUser.age}"></td>
+									<td><input type="text" id="age" name="age" value="${sessionUser.age}"></td>
 								</tr>
 								<tr>
 									<td>民族:</td>
-									<td><input type="text" id="nation" value="${sessionUser.nation}"></td>
+									<td><input type="text" id="nation" name="nation" value="${sessionUser.nation}"></td>
 								</tr>
 								<tr>
 									<td>政治面貌:</td>
 									<td>
-										<select id="polity" style="width:158px;">
+										<select id="polity" name="polity" style="width:158px;">
 											<option value="">请选择..</option>
 											<option value="中共党员">中共党员</option>
 											<option value="共青团员">共青团员</option>
@@ -985,7 +981,7 @@
 								<tr>
 									<td>婚姻状况:</td>
 									<td>
-										<select id="marriage" style="width:158px;">
+										<select id="marriage" name="marriage" style="width:158px;">
 											<option value="">请选择..</option>
 											<option value="未婚">未婚</option>
 											<option value="已婚">已婚</option>
@@ -995,15 +991,15 @@
 								</tr>
 								<tr>
 									<td>视力:</td>
-									<td><input type="text" id="eyesight" value="${sessionUser.eyesight}"></td>
+									<td><input type="text" id="eyesight" name="eyesight" value="${sessionUser.eyesight}"></td>
 								</tr>
 								<tr>
 									<td>个人特长:</td>
-									<td><input type="text" id="strongPoint" value="${sessionUser.strongPoint}"></td>
+									<td><input type="text" id="strongPoint" name="strongPoint" value="${sessionUser.strongPoint}"></td>
 								</tr>
 								<tr>
 									<td>联系电话:</td>
-									<td><input type="text" id="phoneNum" value="${sessionUser.phoneNum}"></td>
+									<td><input type="text" id="phoneNum" name="phoneNum" value="${sessionUser.phoneNum}"></td>
 								</tr>
 								<tr>
 									<td>二女户:</td>
@@ -1020,7 +1016,7 @@
 								<tr>
 									<td>性别:</td>
 									<td>
-										<select id="sex" style="width:158px;">
+										<select id="sex" name="sex" style="width:158px;">
 											<option value="">请选择..</option>
 											<option value="man">男</option>
 											<option value="woman">女</option>
@@ -1029,7 +1025,7 @@
 								</tr>
 								<tr>
 									<td>密码:</td>
-									<td><input type="text" id="password" placeholder="不填则默认"></td>
+									<td><input type="text" id="password"  name="password" placeholder="不填则默认"></td>
 								</tr>
 								<tr>
 									<td>身份证号:</td>
@@ -1038,7 +1034,7 @@
 								<tr>
 									<td>文化程度:</td>
 									<td>
-										<select id="eduLevel" style="width:158px;">
+										<select id="eduLevel" name="eduLevel" style="width:158px;">
 											<option value="">请选择..</option>
 											<option value="研究生以上">研究生以上</option>
 											<option value="博士研究生">博士研究生</option>
@@ -1058,12 +1054,12 @@
 								</tr>
 								<tr>
 									<td>身高:</td>
-									<td><input type="text" id="height" value="${sessionUser.height}"></td>
+									<td><input type="text" id="height" name="height" value="${sessionUser.height}"></td>
 								</tr>
 								<tr>
 									<td>健康状况:</td>
 									<td>
-										<select id="health" style="width:158px;">
+										<select id="health" name="health" style="width:158px;">
 											<option value="">请选择..</option>
 											<option value="健康">健康</option>
 											<option value="患病">患病</option>
@@ -1073,15 +1069,15 @@
 								</tr>
 								<tr>
 									<td>家庭详细地址:</td>
-									<td><input type="text" id="address" value="${sessionUser.address}"></td>
+									<td><input type="text" id="address" name="address" value="${sessionUser.address}"></td>
 								</tr>
 								<tr>
 									<td>原工作单位:</td>
-									<td><input type="text"  id="workspace" value="${sessionUser.workspace}"></td>
+									<td><input type="text"  id="workspace" name="workspace" value="${sessionUser.workspace}"></td>
 								</tr>
 								<tr>
 									<td>《就失业证》号:</td>
-									<td><input type="text" id="jobId" value="${sessionUser.jobId}"></td>
+									<td><input type="text" id="jobId" name="jobId" value="${sessionUser.jobId}"></td>
 								</tr>
 								<tr>
 									<td>独生子女:</td>
@@ -1091,15 +1087,18 @@
 									</td>
 								</tr>
 							</table>
+							</form>
 						</div>
 						<div style="width: 150px; float: left; margin-left: 15px; height: auto; margin-top: 15px;">
+								<form novalidate="novalidate"  action="/upload.jhtml" method="post" encType="multipart/form-data" id="imageForm">
 									<div class="brandImg">
 										<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
 										</span>
-												<img style="width:122px;height:150px" src="/resource/public/images/bg.png" name="img"/>
+												<img style="width:122px;height:150px" src="[#if sessionUser.imgHead?exists]/${sessionUser.imgHead}[#else]/resource/public/images/bg.png[/#if]" name="img"/>
 									</div>
-									<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
+									<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;checkChange=1;loadImgFast(this,0)">
 									<input type="hidden" id="filename0" name="filename0">
+								</form>			
 						</div>
 					</div>
 					
@@ -1154,7 +1153,6 @@
 								</td>
 								<td>从事年限:</td>
 								<td><input type="text" id="workingLifeSkill1">
-									<input type="hidden" id="id">
 								</td>
 							</tr>
 							<tr>
