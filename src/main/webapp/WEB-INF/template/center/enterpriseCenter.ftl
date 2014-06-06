@@ -6,6 +6,7 @@
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script type="text/javascript" src="/resource/public/js/jquery.js"></script>
+    <script type="text/javascript" src="/resource/public/js/jquery.form.js"></script>
     <script type="text/javascript"  src="/resource/public/js/Etech.js"></script>
     <link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
     <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />  
@@ -176,6 +177,21 @@
 			color:#FFFFFF;
 		}
     </style>
+     <script type="text/javascript">
+     	// 图片上传
+		function loadImgFast(img,i){
+				if (img.files && img.files[0]){
+					var reader = new FileReader();
+					reader.onload = function(evt){$(".brandImg:eq("+i+") img")[0].src = evt.target.result;}
+		            reader.readAsDataURL(img.files[0]);	
+				}else if(window.navigator.userAgent.indexOf("MSIE")>=1){
+				   	file.select(); 
+		   			path = document.selection.createRange().text;
+		   			$(".brandImg:eq("+i+") img")[0].src = path;
+		   		} 
+			}
+	</script>
+	
     <script text="text/javascript">
     [@compress single_line = true]
     		var Specialty='<div class="select-info">	
@@ -555,12 +571,16 @@
 		});
     				
 		    	// ajax 提交验证和保存。
-				function submitValid(submitx){
+				function submitValid(){
+						var password="";
 						$.ajax({
 							url: "/enterprise/submit-account-Info.jhtml",
 							type: "POST",
 							data: {
 								id:${sessionUser.id},
+								loginName:"${sessionUser.loginName}",
+								password:password,
+								status:"${sessionUser.status}",
 								fullName: $("#fullName").val(),
 								unitType:$("#unitType").val(),
 								shorName:$("#shorName").val(),
@@ -577,8 +597,7 @@
 								phoneNum:$("#phoneNum").val(),
 								phoneFax:$("#phoneFax").val(),
 								webSite:$("#webSite").val(),
-								introduce:$("#introduce").val(),
-								submit:submitx
+								introduce:$("#introduce").val()
 								},
 							dataType: "json",
 							cache: false,
@@ -677,13 +696,18 @@
 					}
     	// 保存信息。
     	$("#savaAll").click(function() {
-				submitValid("no");
+				submitValid();
 		});
 		
 		// 保存招聘信息。
     	$("#savaJobs").click(function() {
 				submitJobs();
 		});
+		$("#imageForm").ajaxSubmit(function (data) {
+            //$("#imgHead").val(data);
+            alert(data);
+            return false;
+    	});	
     
     })
     
@@ -769,6 +793,11 @@
 					</div>
 					<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<div class="" style="height: auto; overflow: hidden; float: left; width: 660px; margin-left: 30px; margin-top: 10px;margin-right:10px;">
+							<form novalidate="novalidate"  action="/enterprise-user/center/submit-recruit.jhtml" method="post" id="InfoForm">
+							<input type="hidden" name="id" value="${sessionUser.id}">
+							<input type="hidden" name="status" value="${sessionUser.status}">
+							<input type="hidden" name="loginName" value="${sessionUser.loginName}">
+							<input type="hidden" name="password" value="${sessionUser.password}">
 							<table>
 								<tr>
 									<td>单位全称:</td>
@@ -857,11 +886,20 @@
 								<tr>
 									<td style="vertical-align: top;">企业电子图:</td>
 									<td colspan="3">
-										<img src="" width="260px" height="30px"/>
-										<input type="button" value="上传" style="width:60px;">
+										<form novalidate="novalidate"  action="/upload.jhtml" method="post" encType="multipart/form-data" id="imageForm">
+											<div class="brandImg">
+												<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
+												</span>
+														<img width="260px" height="30px" src="[#if sessionUser.imgHead?exists]/${sessionUser.imgHead}[#else]/resource/public/images/bg.png[/#if]" name="img"/>
+														<input type="button" value="上传" style="width:60px;">
+											</div>
+											<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;checkChange=1;loadImgFast(this,0)">
+											<input type="hidden" id="filename0" name="filename0">
+										</form>	
 									</td>
 								</tr>
 							</table>
+							</form>
 						</div>
 					</div>
 					
