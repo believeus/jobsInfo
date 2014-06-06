@@ -32,10 +32,11 @@ import java.util.regex.Pattern;
  * 			 上的烦人事,数据迁移的时候变得困难。
  *           故自己写了一个文件管理系统，管理上传的文件
  * */
-public class StorageServer {
+public class MydfsStorageServer {
 
 	private ServerSocket serverSocket;
 	private ExecutorService executorService;
+	private boolean stop=false;
 	//监听本机的哪个ip地址
 	private String host;
 	// 本地监听端口
@@ -86,11 +87,11 @@ public class StorageServer {
 		this.pathPrefix = pathPrefix;
 	}
 
-	public StorageServer() {
+	public MydfsStorageServer() {
 		this.pathPrefix = "group/M00";
 	}
 
-	public StorageServer(int port, String basepath, int workers,String host) {
+	public MydfsStorageServer(int port, String basepath, int workers,String host) {
 		try {
 			this.port = port;
 			this.workers = workers;
@@ -121,6 +122,7 @@ public class StorageServer {
 			public void run() {
 				while (true) {
 					try {
+						if(stop)break;
 						final Socket socket = serverSocket.accept();
 						//保存客户端上传的文件,并返回文件存储的路径给客户端
 						// 每次接受一个客户端连接都执行一个线程
@@ -155,6 +157,7 @@ public class StorageServer {
 											}
 											System.out.println(url+" output success");
 											bos.close();
+											inputStream.close();
 										}
 										return;
 									}
@@ -180,34 +183,18 @@ public class StorageServer {
 										byte[] buf = new byte[1024];
 										//客户端不关闭,br.read(buf);会一直等待,所以必须
 										//手动判断退出循环
-										switch (size % buf.length) {
-										case 0:
-											//文件是buf的整数
-											int times = size / buf.length;
-											for (int i = 0; i < times; i++) {
-												len = br.read(buf);
-												bos.write(buf, 0, len);
-												bos.flush();
-											}
-											break;
-										default:
-											while ((len = br.read(buf)) != -1) {
-												bos.write(buf, 0, len);
-												bos.flush();
-												// 客户端不关闭,永远读不到流的结尾
-												////手动判断退出循环
-												if (len < buf.length) {
-													break;
-												}
-											}
-											break;
+										System.out.println("virtual times:"+(float)size/(float)buf.length);
+										double times=Math.ceil((float)size / (float)buf.length);
+										System.out.println("read times:"+times);
+										for (int i = 0; i < times; i++) {
+											len = br.read(buf);
+											bos.write(buf, 0, len);
+											bos.flush();
 										}
 										// 获取文件的类型
 										String fileType = FileType.getTypeByFile(file);
 										//如果查询的后缀名不在定义范围内,使用客户端传递过来的后缀名
-										if(fileType==null){
-											fileType=extension;
-										}
+										if(fileType==null)fileType=extension;
 										storepath = storepath + "."+fileType ;
 										System.out.println("disk path:"+storepath);
 										// 将文件改名
@@ -221,6 +208,7 @@ public class StorageServer {
 										pw.flush();
 										bos.close();
 										br.close();
+										pw.close();
 										return;
 									}
 									// 删除StoreServer中的数据
@@ -236,9 +224,7 @@ public class StorageServer {
 											String storepath=basepath+matcher.group();
 											System.out.println("file disk store path:"+storepath);
 											File file=new File(storepath);
-											if(file.exists()){
-												success= file.delete();
-											}
+											if(file.exists())success= file.delete();
 										}
 										dataos.writeBoolean(success);
 										dataos.flush();
@@ -261,6 +247,7 @@ public class StorageServer {
 	}
 
 	public void stopServer() {
+		stop=true;
 		try {
 			if (serverSocket != null) {
 				serverSocket.close();
@@ -272,5 +259,4 @@ public class StorageServer {
 			e.printStackTrace();
 		}
 	}
-
 }

@@ -1,4 +1,4 @@
-package mydfs.storage.tracker;
+package mydfs.storage.server;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -11,8 +11,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
 
-import mydfs.storage.server.StorageServer;
-
 /**
  * @author wuqiwei
  * Email 1058633117@qq.com
@@ -23,8 +21,8 @@ import mydfs.storage.server.StorageServer;
  * 			 上的烦人事,数据迁移的时候变得困难。
  *           故自己写了一个文件管理系统，管理上传的文件
  * */
-public class StorageTracker {
-	private StorageServer storageServer;
+public class MydfsTrackerServer {
+	private MydfsStorageServer mydfsStorageServer;
 	private String host;
 	private int port;
 
@@ -32,18 +30,18 @@ public class StorageTracker {
 		return host;
 	}
 
-	public StorageServer getStorageServer() {
-		return storageServer;
+	public MydfsStorageServer getMydfsStorageServer() {
+		return mydfsStorageServer;
 	}
 
-	public void setStorageServer(StorageServer storageServer) {
-		this.storageServer = storageServer;
+	public void setMydfsStorageServer(MydfsStorageServer mydfsStorageServer) {
+		this.mydfsStorageServer = mydfsStorageServer;
 	}
 
-	public StorageTracker() {
+	public MydfsTrackerServer() {
 	}
 
-	public StorageTracker(String host, int port) {
+	public MydfsTrackerServer(String host, int port) {
 		super();
 		this.host = host;
 		this.port = port;
