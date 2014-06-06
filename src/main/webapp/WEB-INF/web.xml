@@ -45,7 +45,7 @@
 		<init-param>
 			<param-name>denyurl</param-name>
 			<param-value>
-			 /personalCenter.jhtml,/enterpriseCenter.jhtml
+			 /common-user/center.jhtml,/enterprise-user/center.jhtml
 			</param-value>
 		</init-param>
 	</filter>

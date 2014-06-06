@@ -41,6 +41,10 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 	private TmajorType workType;
 	/**专业*/
 	private TmajorType majorType;
+	/**该信息属于哪个用户*/
+	@ManyToOne//多对一的时候可以获取admin对象
+	@JoinColumn(name="fk_comUserId",referencedColumnName="id")
+	private TcomUser comUser;
 	@ManyToOne//多对一的时候可以获取admin对象
 	@JoinColumn(name="fk_workTypeId",referencedColumnName="id")
 	public TmajorType getWorkType() {
@@ -50,6 +54,12 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 		this.workType = workType;
 	}
 	
+	public TcomUser getComUser() {
+		return comUser;
+	}
+	public void setComUser(TcomUser comUser) {
+		this.comUser = comUser;
+	}
 	@Column(nullable=true)
 	@Length(max=30)
 	public String getDept() {

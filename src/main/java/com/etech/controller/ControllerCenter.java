@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import mydfs.storage.client.StorageClient;
 
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.etech.entity.TcomInfo;
+import com.etech.entity.TcomUser;
 import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
 
@@ -57,9 +59,11 @@ public class ControllerCenter {
 	
 	/**提交普通用户的编辑信息*/
 	@RequestMapping(value="/common-user/center/submit-comInfo")
-	public void submitComInfo(TcomInfo comInfo,HttpServletResponse response){
+	public void submitComInfo(TcomInfo comInfo,HttpServletResponse response,HttpSession session){
 		Map<String, Object> map=new HashMap<String, Object>();
 		try{
+			TcomUser sessionUser = (TcomUser)session.getAttribute("sessionUser");
+			comInfo.setComUser(sessionUser);
 			etechService.saveOrUpdate(comInfo);
 			map.put("message", "success");
 		}catch(Exception ex){
@@ -80,7 +84,7 @@ public class ControllerCenter {
 	}
 	@RequestMapping(value = "/upload", method = RequestMethod.POST,produces = "text/html; charset=UTF-8")
 	public @ResponseBody String upload(HttpServletRequest request) {
-		// 遍历图片
+		// 遍历有二进制文件的form表单
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		String storepath = "";
 		Map<String, MultipartFile> files = multipartRequest.getFileMap();
