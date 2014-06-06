@@ -2,25 +2,31 @@ package com.etech.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import mydfs.storage.client.StorageClient;
+import mydfs.storage.server.MydfsTrackerServer;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.shiro.authz.annotation.RequiresUser;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
 import com.etech.entity.TcomInfo;
 import com.etech.entity.TcomUser;
@@ -37,7 +43,7 @@ public class ControllerCenter {
 	@Resource
 	private EtechService etechService;
 	@Resource
-	private StorageClient storageClient;
+	private MydfsTrackerServer mydfsTrackerServer;
 	/**个人中心*/
 	@RequestMapping(value = "/common-user/center", method = RequestMethod.GET)
 	public String personalCenter() {
@@ -95,12 +101,11 @@ public class ControllerCenter {
 				inputStream = file.getInputStream();
 				String fileName = file.getName();
 				String fileSuffix=fileName.substring(fileName.lastIndexOf(".")+1);
-				storepath=storageClient.upload(inputStream, fileSuffix);
+				storepath=mydfsTrackerServer.upload(inputStream, fileSuffix);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 		return storepath;
 	}
-	
 }
