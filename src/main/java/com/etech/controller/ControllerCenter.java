@@ -1,7 +1,9 @@
 package com.etech.controller;
 
+import java.beans.PropertyEditorSupport;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,10 +17,13 @@ import javax.servlet.http.HttpSession;
 
 import mydfs.storage.server.MydfsTrackerServer;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,8 +35,10 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
 import com.etech.entity.TcomInfo;
 import com.etech.entity.TcomUser;
+import com.etech.entity.TentUser;
 import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
+import com.etech.util.JsonOutToBrower;
 
 /**
  * 中心
@@ -44,6 +51,7 @@ public class ControllerCenter {
 	private EtechService etechService;
 	@Resource
 	private MydfsTrackerServer mydfsTrackerServer;
+	
 	/**个人中心*/
 	@RequestMapping(value = "/common-user/center", method = RequestMethod.GET)
 	public String personalCenter() {
@@ -51,17 +59,30 @@ public class ControllerCenter {
 		return "center/personalCenter";
 	}
 	
-	/**企业中心*/
+	/**进入企业中心*/
 	@RequestMapping(value = "/enterprise-user/center", method = RequestMethod.GET)
 	public String enterpriseCenter() {
 		log.debug("current controller is enterpriseCenter !");
 		return "center/enterpriseCenter";
 	}
+	
 	/**信息中心*/
 	@RequestMapping(value = "/infoCenter", method = RequestMethod.GET)
 	public String infoCenter() {
 		log.debug("current controller is infoCenterView !");
 		return "infoCenter/infoCenter";
+	}
+	/**一般用户信息提交*/
+	@RequestMapping(value = "/common-user/submit-account-Info")
+	public void submitComUserInfo(TcomUser comUser,HttpServletResponse response) {
+		Map<String, Object> map=new HashMap<String,Object>();
+		try{
+			etechService.saveOrUpdate(comUser);
+			map.put("message", "success");
+		}catch(Exception ex){
+			map.put("message", "error");
+			JsonOutToBrower.out(map, response);
+		}
 	}
 	
 	/**提交普通用户的编辑信息*/
@@ -77,6 +98,24 @@ public class ControllerCenter {
 			map.put("message", "error");
 		}
 	}
+	/**企业用户信息提交*/
+	@RequestMapping(value = "/enterprise/submit-account-Info")
+	public void submitEntUserInfo(TentUser entUser) {
+		try {
+			TentUser sessionUser = (TentUser)etechService.findObjectById(TentUser.class, entUser.getId());
+			String password = entUser.getPassword();
+			//如果没有输入密码,使用原密码
+			password=StringUtils.isEmpty(password)?sessionUser.getPassword():DigestUtils.md5Hex(password);
+			System.out.println(password);
+			entUser.setPassword(password);
+			BeanUtils.copyProperties(entUser, sessionUser);
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+		etechService.saveOrUpdate(entUser);
+	}
 	
 	/**提交招聘信息*/
 	@RequestMapping(value="/enterprise-user/center/submit-recruit")
@@ -84,7 +123,7 @@ public class ControllerCenter {
 		Map<String, Object> map=new HashMap<String, Object>();
 		try{
 			etechService.saveOrUpdate(recruit);
-		map.put("message", "success");
+			map.put("message", "success");
 		}catch(Exception ex){
 			map.put("message", "error");
 		}
