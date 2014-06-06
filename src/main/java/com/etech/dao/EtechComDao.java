@@ -35,6 +35,7 @@ public class EtechComDao extends HibernateDaoSupport {
 	// 以对象的方式保存对象
 	public void saveOrUpdateByObject(final Object object){
 		HibernateTemplate ht = super.getHibernateTemplate();
+		ht.saveOrUpdate(object);
 		ht.flush();
 	}
 
