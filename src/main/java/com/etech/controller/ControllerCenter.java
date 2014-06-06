@@ -101,7 +101,7 @@ public class ControllerCenter {
 	}
 	/**企业用户信息提交*/
 	@RequestMapping(value = "/enterprise/submit-account-Info")
-	public void submitEntUserInfo(TentUser entUser) {
+	public void submitEntUserInfo(TentUser entUser,HttpSession session) {
 		TentUser sessionUser=null;
 		try {
 			// 如果为空就报错
@@ -120,6 +120,7 @@ public class ControllerCenter {
 			e.printStackTrace();
 		}
 		etechService.saveOrUpdate(sessionUser);
+		session.setAttribute("sessionUser", sessionUser);
 	}
 	
 	/**提交招聘信息*/

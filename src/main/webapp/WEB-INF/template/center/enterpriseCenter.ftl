@@ -177,6 +177,40 @@
 			color:#FFFFFF;
 		}
     </style>
+    <style type="text/css">
+	.brandImg{
+		border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
+	    border-radius: 2px 2px 2px 2px;
+	    border-style: solid;
+	    border-width: 1px;
+	    background-color: #666666;
+	    width:260px;height:30px;
+	    position:relative;
+	}
+	
+	.brandImg span{
+		display:block;
+		position:absolute;
+		top:0px;left:0px;
+		width:240px;
+		height:30px;
+	}
+	
+	.brandImg span:hover{
+		background-color:#FFFFFF;
+	    opacity: 0.7;
+	    filter:alpha(opacity=50);
+	    -moz-opacity:0.5;
+	    -khtml-opacity: 0.5;
+	}
+	
+	.brandImg span a{
+		display:block;
+		position:absolute;
+		left:90px;
+	}
+	
+	</style>
      <script type="text/javascript">
      	// 图片上传
 		function loadImgFast(img,i){
@@ -572,44 +606,14 @@
     				
 		    	// ajax 提交验证和保存。
 				function submitValid(){
-						var password="";
-						$.ajax({
-							url: "/enterprise/submit-account-Info.jhtml",
-							type: "POST",
-							data: {
-								id:${sessionUser.id},
-								loginName:"${sessionUser.loginName}",
-								password:password,
-								status:"${sessionUser.status}",
-								fullName: $("#fullName").val(),
-								unitType:$("#unitType").val(),
-								shorName:$("#shorName").val(),
-								relationship:$("#relationship").val(),
-								economicType:$("#economicType").val(),
-								legalMan:$("#legalMan").val(),
-								area:$("#area").val(),
-								trade:$("#trade").val(),
-								regMoney:$("#regMoney").val(),
-								detailAddress:$("#detailAddress").val(),
-								contacts:$("#contacts").val(),
-								address:$("#address").val(),
-								zip:$("#zip").val(),
-								phoneNum:$("#phoneNum").val(),
-								phoneFax:$("#phoneFax").val(),
-								webSite:$("#webSite").val(),
-								introduce:$("#introduce").val()
-								},
-							dataType: "json",
-							cache: false,
-							success: function(data) {
-									if(data.message == "success" && submitx == "submit"){
-										alert("要提交其他信息了。");
-									}else{
-										
-									}
-									alert(data.message);
-								}
-							});
+						$("#InfoForm").ajaxSubmit(function (data) {
+							alert(data);								
+			        	});	
+			        	/*$("#imageForm").ajaxSubmit(function (data) {
+				            //$("#imgHead").val(data);
+				            alert(data);
+				            return false;
+				    	});*/	
 					}
 					//封装ajax信息提交
 				function submitJobs(){
@@ -703,11 +707,7 @@
     	$("#savaJobs").click(function() {
 				submitJobs();
 		});
-		$("#imageForm").ajaxSubmit(function (data) {
-            //$("#imgHead").val(data);
-            alert(data);
-            return false;
-    	});	
+		
     
     })
     
@@ -793,15 +793,15 @@
 					</div>
 					<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<div class="" style="height: auto; overflow: hidden; float: left; width: 660px; margin-left: 30px; margin-top: 10px;margin-right:10px;">
-							<form novalidate="novalidate"  action="/enterprise-user/center/submit-recruit.jhtml" method="post" id="InfoForm">
+						<form novalidate="novalidate"  action="/enterprise/submit-account-Info.jhtml" method="post" id="InfoForm">
 							<input type="hidden" name="id" value="${sessionUser.id}">
 							<input type="hidden" name="status" value="${sessionUser.status}">
 							<input type="hidden" name="loginName" value="${sessionUser.loginName}">
-							<input type="hidden" name="password" value="${sessionUser.password}">
+							<input type="hidden" name="password" value="">
 							<table>
 								<tr>
 									<td>单位全称:</td>
-									<td style="padding-right: 80px;"><input type="text" id="fullName" name="fullName"></td>
+									<td style="padding-right: 80px;"><input type="text" value="${sessionUser.fullName}" id="fullName" name="fullName"></td>
 									<td>单位性质:</td>
 									<td>
 										<select id="unitType" name="unitType" style="width: 182px;">
@@ -815,7 +815,7 @@
 								</tr>
 								<tr>
 									<td>单位简称:</td>
-									<td><input type="text" id="shorName" name="shorName"></td>
+									<td><input type="text" id="shorName" value="${sessionUser.shorName}" name="shorName"></td>
 									<td>隶属关系:</td>
 									<td>
 										<select id="relationship" name="relationship" style="width: 182px;">
@@ -847,59 +847,62 @@
 										</select>
 									</td>
 									<td>法人代表:</td>
-									<td><input type="text" id="legalMan" name="legalMan"></td>
+									<td><input type="text" value="${sessionUser.legalMan}" id="legalMan" name="legalMan"></td>
 								</tr>
 								<tr>
 									<td>所属地区:</td>
-									<td><input type="text" id="area" name="area"></td>
+									<td><input type="text"  value="${sessionUser.area}" id="area" name="area"></td>
 									<td>行业:</td>
-									<td><input type="text" id="trade" name="trade"></td>
+									<td><input type="text"  value="${sessionUser.trade}" id="trade" name="trade"></td>
 								</tr>
 								<tr>
 									<td>注册资金:</td>
-									<td><input type="text" id="regMoney" name="regMoney"></td>
+									<td><input type="text"  value="${sessionUser.regMoney}" id="regMoney" name="regMoney"></td>
 									<td>详细地址:</td>
-									<td><input type="text" id="detailAddress" name="detailAddress"></td>
+									<td><input type="text"  value="${sessionUser.detailAddress}"id="detailAddress" name="detailAddress"></td>
 								</tr>
 								<tr>
 									<td>联系人:</td>
-									<td><input type="text" id="contacts" name="contacts"></td>
+									<td><input type="text"  value="${sessionUser.contacts}" id="contacts" name="contacts"></td>
 									<td>通讯地址:</td>
-									<td><input type="text" id="address" name="address"></td>
+									<td><input type="text"  value="${sessionUser.address}" id="address" name="address"></td>
 								</tr>
 								<tr>
 									<td>邮编:</td>
-									<td><input type="text" id="zip" name="zip"></td>
+									<td><input type="text"  value="${sessionUser.zip}" id="zip" name="zip"></td>
 									<td>手机:</td>
-									<td><input type="text" id="phoneNum" name="phoneNum"></td>
+									<td><input type="text"  value="${sessionUser.phoneNum}" id="phoneNum" name="phoneNum"></td>
 								</tr>
 								<tr>
 									<td>电话/传真:</td>
-									<td><input type="text" id="phoneFax" name="phoneFax"></td>
+									<td><input type="text"  value="${sessionUser.phoneFax}" id="phoneFax" name="phoneFax"></td>
 									<td>网址:</td>
-									<td><input type="text" id="webSite" name="webSite"></td>
+									<td><input type="text"  value="${sessionUser.webSite}" id="webSite" name="webSite"></td>
 								</tr>
 								<tr>
 									<td style="vertical-align: top;">单位简介:</td>
-									<td colspan="3"><textArea cols="50" rows="5" name="introduce" id="introduce" style="resize:none;"></textArea></td>
+									<td colspan="3"><textArea cols="50" rows="5"  value="${sessionUser.introduce}" name="introduce" id="introduce" style="resize:none;"></textArea></td>
 								</tr>
+								</form>
 								<tr>
 									<td style="vertical-align: top;">企业电子图:</td>
-									<td colspan="3">
+									<td colspan="2">
 										<form novalidate="novalidate"  action="/upload.jhtml" method="post" encType="multipart/form-data" id="imageForm">
 											<div class="brandImg">
 												<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
 												</span>
 														<img width="260px" height="30px" src="[#if sessionUser.imgHead?exists]/${sessionUser.imgHead}[#else]/resource/public/images/bg.png[/#if]" name="img"/>
-														<input type="button" value="上传" style="width:60px;">
 											</div>
 											<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;checkChange=1;loadImgFast(this,0)">
 											<input type="hidden" id="filename0" name="filename0">
 										</form>	
 									</td>
+									<td>
+										<input type="button" value="上传" id="submitImg" style="width:60px;">
+									</td>
 								</tr>
 							</table>
-							</form>
+							
 						</div>
 					</div>
 					
