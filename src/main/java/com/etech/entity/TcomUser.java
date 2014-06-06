@@ -2,12 +2,10 @@ package com.etech.entity;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.validator.constraints.Length;
@@ -25,7 +23,7 @@ public class TcomUser extends TbaseUser implements Serializable{
 	private static final long serialVersionUID = 5791526164788361621L;
 	
 	/**二进制头像*/
-	private byte[] imgHead;
+	private String imgHead;
 	/**性别*/
 	private String sex;
 	/**身高*/
@@ -117,11 +115,11 @@ public class TcomUser extends TbaseUser implements Serializable{
 		this.freeIntro = freeIntro;
 	}
    
-	@Lob
-	public byte[] getImgHead() {
+	
+	public String getImgHead() {
 		return imgHead;
 	}
-	public void setImgHead(byte[] imgHead) {
+	public void setImgHead(String imgHead) {
 		this.imgHead = imgHead;
 	}
 	@Length(max =10)

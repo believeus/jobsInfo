@@ -1,11 +1,15 @@
 package com.etech.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -41,7 +45,9 @@ public class TbaseUser extends TbaseEntity implements Serializable{
 	private String idcard;
 	/** 公司地址 */
 	private String address;
+	/**用户属于哪个角色*/
 	
+	private Set<Trole> roles=new HashSet<Trole>();
 	
 	@NotEmpty
 	@Length(max = 25)
@@ -130,6 +136,14 @@ public class TbaseUser extends TbaseEntity implements Serializable{
 	}
 	public void setComfirmPwd(String comfirmPwd) {
 		this.comfirmPwd = comfirmPwd;
+	}
+	@OneToMany
+	@JoinColumn(name="fk_userId",referencedColumnName="id")
+	public Set<Trole> getRoles() {
+		return roles;
+	}
+	public void setRoles(Set<Trole> roles) {
+		this.roles = roles;
 	}
 	
 	

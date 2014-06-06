@@ -79,7 +79,8 @@
 		<mapping class="com.etech.entity.TbaseUser"/>
 		<mapping class="com.etech.entity.TcomUser" />
 		<mapping class="com.etech.entity.TentUser"/>
-		
+		<mapping class="com.etech.entity.Trole"/>
+		<mapping class="com.etech.entity.Tauthority"/>
 		
 	</session-factory>
 
