@@ -80,7 +80,7 @@ $(function(){
 		  	<h1>资讯中心</h1>
     		<ul style="display: block;" class="MM">
 				<li>
-					<a target="main" href="../product_category/list.jhtml">新闻动态</a>
+					<a target="main" href="/admin/news/newsList.jhtml">新闻动态</a>
 				</li>
 				<li>
 					<a target="main" href="../parameter_group/list.jhtml">工作动态</a>
