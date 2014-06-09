@@ -297,7 +297,7 @@
 			<div class="j_main_3_1" style="display:block;">
 				<table style="padding: 6px 19px 19px;">
 					<tr>
-						<td colspan="2" align="center" style="background:#EE981F;color:#FFFFFF;border-radius:4px;">用户登录</td>
+						<td colspan="2" align="center" style="background:url(/resource/public/images/beijingse.png);color:#FFFFFF;border-radius:4px;">用户登录</td>
 					</tr>
 					<tr>
 						<td colspan="2"><font color="red" size="2">${sessionUser.loginName}</font>，欢迎您登录！</td>
@@ -324,7 +324,7 @@
 			<div class="j_main_3_1" style="display:block;">
 				<table style="padding: 6px 19px 19px;">
 					<tr>
-						<td colspan="2" align="center" style="background:#EE981F;color:#FFFFFF;border-radius:4px;">用户登录</td>
+						<td colspan="2" align="center" style="background:url(/resource/public/images/beijingse.png);color:#FFFFFF;border-radius:4px;">用户登录</td>
 					</tr>
 					<tr>
 						<td>用户名:</td>
@@ -336,8 +336,8 @@
 					</tr>
 					<tr>
 						<td align="center" colspan="2">
-							<input type="radio" name="userType" checked="ture" value="commonUser">个人用户
-							<input type="radio" name="userType" value="enterpriseUser">企业用户
+							<label><input type="radio" name="userType" checked="ture" value="commonUser">个人用户</label>
+							<label><input type="radio" name="userType" value="enterpriseUser">企业用户</label>
 						</td>
 					</tr>
 					<tr>
@@ -384,7 +384,7 @@
 				</div>
 			</div>
 			<div class="j_main_3_3">
-				<p style="background:#EE981F">招聘会</p>
+				<p style="background:url(/resource/public/images/beijingse.png)">招聘会</p>
 				<ul style="padding-left:15px;margin:0;">
 					<li><a href="/zhaopinhui.jhtml">人才招聘会春季第二期.....</a><span>05月21日</span></li>
 					<li><a href="/zhaopinhui.jhtml">人才招聘会春季第二期.....</a><span>05月21日</span></li>

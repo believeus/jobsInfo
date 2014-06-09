@@ -39,32 +39,24 @@
 			float:left;
     		width:730px;
     		height:auto;
-			overflow:hidden;
 			margin-bottom:10px;
 		}
 		.j_main_right_1{
-    		width:730px;
-			height:29px;
-		}
-		.j_main_right_1 p{
-			margin:0;
-			padding: 5px;
-			background: #FFCC00;
-		    border: 1px solid;
-		    font-size:13px;
+    		width:728px;
+			height:auto;
 		}
 		.j_main_right_2{
 			width:727px;
-			height:290px;
-			margin-bottom:10px;
+			height:auto;
+			margin-top:10px;
 			border:1px solid #E4E4E4;
 		}
 		.j_main_right_2_1{
-			float:left;
-			width:350px;
-			height:290px;
-			margin-right:9px;
-			padding:5px;
+			width:660px;
+			height:auto;
+			margin-left:auto;
+			margin-right:auto;
+			margin-bottom:20px;
 		}
 		.j_main_right_2_1 p a{
 			color: #3586F2;
@@ -80,10 +72,11 @@
 		    float: right;
 		}
 		.j_main_right_3{
-			border: 1px solid #E4E4E4;
-		    height: auto;
-		    margin-top: 10px;
-		    width: 727px;
+			height: auto;
+		    margin-bottom: 20px;
+		    margin-left: auto;
+		    margin-right: auto;
+		    width: 660px;
 		}
 		.j_main_right_3 td{
 			padding:0 20px;
@@ -92,6 +85,10 @@
 		}
 		.j_main_right_3 a{
 			font-size:13px;
+		}
+		.j_main_right_3 p {
+		    line-height: 16px;
+		    margin: 5px 0;
 		}
 		.gonggao{
     		width:255px;
@@ -163,7 +160,80 @@
 			</div>
 		</div>
 		<div class="j_main_right">
-			
+			<div class="j_main_right_1">
+				<p style="background: url(/resource/public/images/background_b.png);border: 1px solid #E4E4E4;font-size: 13px;line-height: 28px;margin: 5px 0;">
+					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-left: 2px; margin-top: 2px; margin-right: 5px;">
+					所在位置 > 全文检索
+				</p>
+				<div class="j_main_right_2">
+					<div class="j_main_right_2_1">
+						<h2 style="margin-top: 10px; margin-bottom: 0px; font-weight: normal;">全文检索</h2>
+						<img style="width: 660px;" src="/resource/public/images/line.png">
+						
+						<div class="j_main_right_3">
+							<p><a href="#" style="color:#0017ff;text-decoration:underline;">河北网上为毕业生提供就业指导服务</a></p>
+							<p><a href="" style="color:#008e1f;">http://www.ppsells.com</a></p>
+							<p>对专家情况进行详细介绍。毕业生在择业、<font color="red">就业</font>、创业过程中遇到问题时，可随时上网登录该栏目，选择相应的咨询专家提出问题。咨询专家看到问题后，会及时进行有针对性解答，反馈给提问学生。热点新闻</p>
+						</div>
+						<div class="j_main_right_3">
+							<p><a href="#" style="color:#0017ff;text-decoration:underline;">河北网上为毕业生提供就业指导服务</a></p>
+							<p><a href="" style="color:#008e1f;">http://www.ppsells.com</a></p>
+							<p>对专家情况进行详细介绍。毕业生在择业、<font color="red">就业</font>、创业过程中遇到问题时，可随时上网登录该栏目，选择相应的咨询专家提出问题。咨询专家看到问题后，会及时进行有针对性解答，反馈给提问学生。热点新闻</p>
+						</div>
+						<div class="j_main_right_3">
+							<p><a href="#" style="color:#0017ff;text-decoration:underline;">河北网上为毕业生提供就业指导服务</a></p>
+							<p><a href="" style="color:#008e1f;">http://www.ppsells.com</a></p>
+							<p>对专家情况进行详细介绍。毕业生在择业、<font color="red">就业</font>、创业过程中遇到问题时，可随时上网登录该栏目，选择相应的咨询专家提出问题。咨询专家看到问题后，会及时进行有针对性解答，反馈给提问学生。热点新闻</p>
+						</div>
+						<div class="j_main_right_3">
+							<p><a href="#" style="color:#0017ff;text-decoration:underline;">河北网上为毕业生提供就业指导服务</a></p>
+							<p><a href="" style="color:#008e1f;">http://www.ppsells.com</a></p>
+							<p>对专家情况进行详细介绍。毕业生在择业、<font color="red">就业</font>、创业过程中遇到问题时，可随时上网登录该栏目，选择相应的咨询专家提出问题。咨询专家看到问题后，会及时进行有针对性解答，反馈给提问学生。热点新闻</p>
+						</div>
+						<div class="j_main_right_3">
+							<p><a href="#" style="color:#0017ff;text-decoration:underline;">河北网上为毕业生提供就业指导服务</a></p>
+							<p><a href="" style="color:#008e1f;">http://www.ppsells.com</a></p>
+							<p>对专家情况进行详细介绍。毕业生在择业、<font color="red">就业</font>、创业过程中遇到问题时，可随时上网登录该栏目，选择相应的咨询专家提出问题。咨询专家看到问题后，会及时进行有针对性解答，反馈给提问学生。热点新闻</p>
+						</div>
+						<div class="j_main_right_3">
+							<p><a href="#" style="color:#0017ff;text-decoration:underline;">河北网上为毕业生提供就业指导服务</a></p>
+							<p><a href="" style="color:#008e1f;">http://www.ppsells.com</a></p>
+							<p>对专家情况进行详细介绍。毕业生在择业、<font color="red">就业</font>、创业过程中遇到问题时，可随时上网登录该栏目，选择相应的咨询专家提出问题。咨询专家看到问题后，会及时进行有针对性解答，反馈给提问学生。热点新闻</p>
+						</div>
+						<div class="j_main_right_3">
+							<p><a href="#" style="color:#0017ff;text-decoration:underline;">河北网上为毕业生提供就业指导服务</a></p>
+							<p><a href="" style="color:#008e1f;">http://www.ppsells.com</a></p>
+							<p>对专家情况进行详细介绍。毕业生在择业、<font color="red">就业</font>、创业过程中遇到问题时，可随时上网登录该栏目，选择相应的咨询专家提出问题。咨询专家看到问题后，会及时进行有针对性解答，反馈给提问学生。热点新闻</p>
+						</div>
+						<div class="j_main_right_3">
+							<p><a href="#" style="color:#0017ff;text-decoration:underline;">河北网上为毕业生提供就业指导服务</a></p>
+							<p><a href="" style="color:#008e1f;">http://www.ppsells.com</a></p>
+							<p>对专家情况进行详细介绍。毕业生在择业、<font color="red">就业</font>、创业过程中遇到问题时，可随时上网登录该栏目，选择相应的咨询专家提出问题。咨询专家看到问题后，会及时进行有针对性解答，反馈给提问学生。热点新闻</p>
+						</div>
+						<div class="j_main_right_3">
+							<p><a href="#" style="color:#0017ff;text-decoration:underline;">河北网上为毕业生提供就业指导服务</a></p>
+							<p><a href="" style="color:#008e1f;">http://www.ppsells.com</a></p>
+							<p>对专家情况进行详细介绍。毕业生在择业、<font color="red">就业</font>、创业过程中遇到问题时，可随时上网登录该栏目，选择相应的咨询专家提出问题。咨询专家看到问题后，会及时进行有针对性解答，反馈给提问学生。热点新闻</p>
+						</div>
+						
+						<img style="width: 660px;" src="/resource/public/images/line.png">
+						<p style="padding-left:25px;">
+							<a href="">首页</a>
+							<a href="">上一页</a>
+							<a href="">下一页</a>
+							<a href="">末页</a>
+							<select name="">
+								<option value="">1</option>
+								<option value="">2</option>
+								<option value="">3</option>
+								<option value="">4</option>
+								<option value="">5</option>
+							</select>
+							共<font color="red">5</font>页<font color="red">51</font>条
+						</p>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	[#include "/include/footer.ftl" /]

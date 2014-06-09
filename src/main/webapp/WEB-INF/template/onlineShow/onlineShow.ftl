@@ -182,54 +182,54 @@ a:link{
         	<table id="tab_2">
               <tr>
                 <td>
-                	<p><img src="/resource/public/images/news_image.jpg" /></p>
-                    <p>人社部副部长何鲜来鄂调研普查</p>
+                	<p><a href="/imgShow.jhtml"><img src="/resource/public/images/news_image.jpg" /></a></p>
+                    <p><a href="/imgShow.jhtml">人社部副部长何鲜来鄂调研普查</a></p>
                 </td>
                 <td>
-                	<p><img src="/resource/public/images/news_image.jpg" /></p>
-                    <p>人社部副部长何鲜来鄂调研普查</p>
+                	<p><a href="/imgShow.jhtml"><img src="/resource/public/images/news_image.jpg" /></a></p>
+                    <p><a href="/imgShow.jhtml">人社部副部长何鲜来鄂调研普查</a></p>
                 </td>
                 <td>
-                	<p><img src="/resource/public/images/news_image.jpg" /></p>
-                    <p>人社部副部长何鲜来鄂调研普查</p>
+                	<p><a href="/imgShow.jhtml"><img src="/resource/public/images/news_image.jpg" /></a></p>
+                    <p><a href="/imgShow.jhtml">人社部副部长何鲜来鄂调研普查</a></p>
                 </td>
                 <td>
-                	<p><img src="/resource/public/images/news_image.jpg" /></p>
-                    <p>人社部副部长何鲜来鄂调研普查</p>
+                	<p><a href="/imgShow.jhtml"><img src="/resource/public/images/news_image.jpg" /></a></p>
+                    <p><a href="/imgShow.jhtml">人社部副部长何鲜来鄂调研普查</a></p>
                 </td>
                 <td>
-                	<p><img src="/resource/public/images/news_image.jpg" /></p>
-                    <p>人社部副部长何鲜来鄂调研普查</p>
+                	<p><a href="/imgShow.jhtml"><img src="/resource/public/images/news_image.jpg" /></a></p>
+                    <p><a href="/imgShow.jhtml">人社部副部长何鲜来鄂调研普查</a></p>
                 </td>
                 <td>
-                	<p><img src="/resource/public/images/news_image.jpg" /></p>
-                    <p>人社部副部长何鲜来鄂调研普查</p>
+                	<p><a href="/imgShow.jhtml"><img src="/resource/public/images/news_image.jpg" /></a></p>
+                    <p><a href="/imgShow.jhtml">人社部副部长何鲜来鄂调研普查</a></p>
                 </td>
               </tr>
               <tr>
                 <td>
-                	<p><img src="/resource/public/images/news_image2.jpg" /></p>
-                    <p>人社部副部长何鲜来鄂调研普查</p>
+                	<p><a href="/imgShow.jhtml"><img src="/resource/public/images/news_image2.jpg" /></a></p>
+                    <p><a href="/imgShow.jhtml">人社部副部长何鲜来鄂调研普查</a></p>
                 </td>
                 <td>
-                	<p><img src="/resource/public/images/news_image2.jpg" /></p>
-                    <p>人社部副部长何鲜来鄂调研普查</p>
+                	<p><a href="/imgShow.jhtml"><img src="/resource/public/images/news_image2.jpg" /></a></p>
+                    <p><a href="/imgShow.jhtml">人社部副部长何鲜来鄂调研普查</a></p>
                 </td>
                 <td>
-                	<p><img src="/resource/public/images/news_image2.jpg" /></p>
-                    <p>人社部副部长何鲜来鄂调研普查</p>
+                	<p><a href="/imgShow.jhtml"><img src="/resource/public/images/news_image2.jpg" /></a></p>
+                    <p><a href="/imgShow.jhtml">人社部副部长何鲜来鄂调研普查</a></p>
                 </td>
                 <td>
-                	<p><img src="/resource/public/images/news_image2.jpg" /></p>
-                    <p>人社部副部长何鲜来鄂调研普查</p>
+                	<p><a href="/imgShow.jhtml"><img src="/resource/public/images/news_image2.jpg" /></a></p>
+                    <p><a href="/imgShow.jhtml">人社部副部长何鲜来鄂调研普查</a></p>
                 </td>
                 <td>
-                	<p><img src="/resource/public/images/news_image2.jpg" /></p>
-                    <p>人社部副部长何鲜来鄂调研普查</p>
+                	<p><a href="/imgShow.jhtml"><img src="/resource/public/images/news_image2.jpg" /></a></p>
+                    <p><a href="/imgShow.jhtml">人社部副部长何鲜来鄂调研普查</a></p>
                 </td>
                 <td>
-                	<p><img src="/resource/public/images/news_image2.jpg" /></p>
-                    <p>人社部副部长何鲜来鄂调研普查</p>
+                	<p><a href="/imgShow.jhtml"><img src="/resource/public/images/news_image2.jpg" /></a></p>
+                    <p><a href="/imgShow.jhtml">人社部副部长何鲜来鄂调研普查</a></p>
                 </td>
               </tr>
             </table>

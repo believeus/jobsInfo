@@ -65,7 +65,7 @@
 					<form action="">
 						<span style="color:#FFFFFF;">全文检索：</span>
 						<input type="test" style="width:160px">
-						<input type="button" value="检索" style="background:#FDFBC8;;border-radius:4px;border:1px solid #909090;">
+						<input type="button" value="检索" onclick="javascript:window.location.href='/search.jhtml'" style="background:#FDFBC8;;border-radius:4px;border:1px solid #909090;">
 					</form>
 				</div>
 			</div>

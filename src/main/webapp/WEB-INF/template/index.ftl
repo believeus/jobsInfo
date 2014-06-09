@@ -389,8 +389,8 @@
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
-							<input type="radio" name="userType" checked="ture" value="commonUser">个人用户
-							<input type="radio" name="userType" value="enterpriseUser">企业用户
+							<label><input type="radio" name="userType" checked="ture" value="commonUser">个人用户</label>
+							<label><input type="radio" name="userType" value="enterpriseUser">企业用户</label>
 						</td>
 					</tr>
 					<tr>

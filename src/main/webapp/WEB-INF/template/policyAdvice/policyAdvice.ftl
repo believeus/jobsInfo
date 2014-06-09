@@ -180,8 +180,8 @@
 								<option value="">月</option>
 							</select>
 						</td>
-						<td rowspan="2" style="background:#FFFBDE;border: 1px solid #000000;border-radius:4px;">
-							<input type="button" value="查询" name="" onclick="javascript:window.location.href='/policyAdviceSearch.jhtml'" style="background:none;border:0;font-size:18px;cursor:pointer;">
+						<td rowspan="2" style="background: url(/resource/public/images/chaxun.png); border-radius: 4px;">
+							<input type="button" value="" name="" onclick="javascript:window.location.href='/policyAdviceSearch.jhtml'" style="border: 0px none; font-size: 18px; cursor: pointer; height: 61px; width: 60px; background: none;">
 						</td>
 					</tr>
 					<tr>

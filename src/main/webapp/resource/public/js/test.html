@@ -1,0 +1,342 @@
+<html>
+<head>
+<title>test</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<link href="sitemap.css" rel="Stylesheet" type="text/css">
+<style type="text/css">
+a {
+	cursor: pointer;
+}
+</style>
+<script src="jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="axutils.js" type="text/javascript"></script>
+<script src="axprototype.js" type="text/javascript"></script>
+</head>
+<body>
+
+	<div id="interfaceControlFrameContainer" style="height: 357px;">
+		<div id="sitemapHost">
+			<div id="sitemapTreeContainer">
+				<div class="sitemapToolbar">
+					<a class="sitemapToolbarButton" id="sitemapToggleLinks">Show
+						Links and Options</a>
+					<div id="sitemapLinksAndOptionsContainer" style="display: none;">
+						<div id="sitemapLinksContainer">
+							<span id="sitemapLinksPageName">Links to 权限分组</span>
+							<div class="sitemapLinkContainer">
+								<span class="sitemapLinkLabel">with sitemap</span><input
+									type="text" class="sitemapLinkField" id="sitemapLinkWithPlayer">
+							</div>
+							<div class="sitemapLinkContainer">
+								<span class="sitemapLinkLabel">without sitemap - </span><a
+									id="sitemapClosePlayer">link</a><input type="text"
+									class="sitemapLinkField" id="sitemapLinkWithoutPlayer">
+							</div>
+						</div>
+						<div id="sitemapOptionsContainer">
+							<span id="sitemapOptionsHeader">Variable Options</span>
+							<div class="sitemapOptionContainer">
+								<input type="checkbox" value="checkbox"
+									id="sitemapVariableOption"><label
+									for="sitemapVariableOption" id="sitemapVariableOptionLabel"><span
+									class="optionLabel">Sitemap links clear variables</span></label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<ul class="sitemapTree">
+					<li class="sitemapNode sitemapExpandableNode"><div>
+							<a class="sitemapPlusMinusLink"><span class="sitemapMinus"></span></a><a
+								nodeurl="主页.html" class="sitemapPageLink"><span
+								class="sitemapPageIcon"></span><span class="sitemapPageName">主页</span></a>
+						</div>
+						<ul style="display: block;">
+							<li class="sitemapNode sitemapExpandableNode"><div>
+									<a class="sitemapPlusMinusLink"><span class="sitemapMinus"></span></a><a
+										nodeurl="网站内容管理.html" class="sitemapPageLink"><span
+										class="sitemapPageIcon"></span><span class="sitemapPageName">网站内容管理</span></a>
+								</div>
+								<ul>
+									<li class="sitemapNode sitemapExpandableNode"><div>
+											<a class="sitemapPlusMinusLink"><span class="sitemapPlus"></span></a><a
+												nodeurl="资讯中心.html" class="sitemapPageLink"><span
+												class="sitemapPageIcon"></span><span class="sitemapPageName">资讯中心</span></a>
+										</div>
+										<ul style="display: none;">
+											<li class="sitemapNode sitemapExpandableNode"><div>
+													<a class="sitemapPlusMinusLink"><span
+														class="sitemapPlus"></span></a><a nodeurl="新闻动态.html"
+														class="sitemapPageLink"><span class="sitemapPageIcon"></span><span
+														class="sitemapPageName">新闻动态</span></a>
+												</div>
+												<ul style="display: none;">
+													<li class="sitemapNode sitemapLeafNode"><div>
+															<a nodeurl="添加_修改.html" class="sitemapPageLink"><span
+																class="sitemapPageIcon"></span><span
+																class="sitemapPageName">添加 修改</span></a>
+														</div></li>
+												</ul></li>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="工作动态.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">工作动态</span></a>
+												</div></li>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="公告公示.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">公告公示</span></a>
+												</div></li>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="图片新闻.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">图片新闻</span></a>
+												</div></li>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="视频新闻.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">视频新闻</span></a>
+												</div></li>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="专题报道.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">专题报道</span></a>
+												</div></li>
+										</ul></li>
+									<li class="sitemapNode sitemapExpandableNode"><div>
+											<a class="sitemapPlusMinusLink"><span class="sitemapPlus"></span></a><a
+												nodeurl="工作指南.html" class="sitemapPageLink"><span
+												class="sitemapPageIcon"></span><span class="sitemapPageName">工作指南</span></a>
+										</div>
+										<ul style="display: none;">
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="机构简介.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">机构简介</span></a>
+												</div></li>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="主要职能.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">主要职能</span></a>
+												</div></li>
+											<li class="sitemapNode sitemapExpandableNode"><div>
+													<a class="sitemapPlusMinusLink"><span
+														class="sitemapMinus"></span></a><a nodeurl="局领导.html"
+														class="sitemapPageLink"><span class="sitemapPageIcon"></span><span
+														class="sitemapPageName">局领导</span></a>
+												</div>
+												<ul>
+													<li class="sitemapNode sitemapLeafNode"><div>
+															<a nodeurl="添加__修改.html" class="sitemapPageLink"><span
+																class="sitemapPageIcon"></span><span
+																class="sitemapPageName">添加 修改</span></a>
+														</div></li>
+												</ul></li>
+										</ul></li>
+									<li class="sitemapNode sitemapLeafNode"><div>
+											<a nodeurl="就业服务.html" class="sitemapPageLink"><span
+												class="sitemapPageIcon"></span><span class="sitemapPageName">就业服务</span></a>
+										</div></li>
+									<li class="sitemapNode sitemapExpandableNode"><div>
+											<a class="sitemapPlusMinusLink"><span class="sitemapPlus"></span></a><a
+												nodeurl="政策咨询.html" class="sitemapPageLink"><span
+												class="sitemapPageIcon"></span><span class="sitemapPageName">政策咨询</span></a>
+										</div>
+										<ul style="display: none;">
+											<li class="sitemapNode sitemapExpandableNode"><div>
+													<a class="sitemapPlusMinusLink"><span
+														class="sitemapPlus"></span></a><a nodeurl="国家法律法规.html"
+														class="sitemapPageLink"><span class="sitemapPageIcon"></span><span
+														class="sitemapPageName">国家法律法规</span></a>
+												</div>
+												<ul style="display: none;">
+													<li class="sitemapNode sitemapLeafNode"><div>
+															<a nodeurl="添加_修改_1.html" class="sitemapPageLink"><span
+																class="sitemapPageIcon"></span><span
+																class="sitemapPageName">添加 修改</span></a>
+														</div></li>
+												</ul></li>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="地方法律法规.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">地方法律法规</span></a>
+												</div></li>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="国家相关文件.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">国家相关文件</span></a>
+												</div></li>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="地方相关文件.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">地方相关文件</span></a>
+												</div></li>
+										</ul></li>
+									<li class="sitemapNode sitemapExpandableNode"><div>
+											<a class="sitemapPlusMinusLink"><span
+												class="sitemapMinus"></span></a><a nodeurl="数据频道.html"
+												class="sitemapPageLink"><span class="sitemapPageIcon"></span><span
+												class="sitemapPageName">数据频道</span></a>
+										</div>
+										<ul>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="供求分析报告.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">供求分析报告</span></a>
+												</div></li>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="工资指导价位.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">工资指导价位</span></a>
+												</div></li>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="本月需求排行.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">本月需求排行</span></a>
+												</div></li>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="本月供给排行.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">本月供给排行</span></a>
+												</div></li>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="下载专区.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">下载专区</span></a>
+												</div></li>
+										</ul></li>
+									<li class="sitemapNode sitemapExpandableNode"><div>
+											<a class="sitemapPlusMinusLink"><span
+												class="sitemapMinus"></span></a><a nodeurl="网上展示厅.html"
+												class="sitemapPageLink"><span class="sitemapPageIcon"></span><span
+												class="sitemapPageName">网上展示厅</span></a>
+										</div>
+										<ul>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="视频新闻_1.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">视频新闻</span></a>
+												</div></li>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="图片新闻_1.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">图片新闻</span></a>
+												</div></li>
+										</ul></li>
+									<li class="sitemapNode sitemapExpandableNode"><div>
+											<a class="sitemapPlusMinusLink"><span
+												class="sitemapMinus"></span></a><a nodeurl="幻灯片.html"
+												class="sitemapPageLink"><span class="sitemapPageIcon"></span><span
+												class="sitemapPageName">幻灯片</span></a>
+										</div>
+										<ul>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="添加_修改_2.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">添加 修改</span></a>
+												</div></li>
+										</ul></li>
+									<li class="sitemapNode sitemapExpandableNode"><div>
+											<a class="sitemapPlusMinusLink"><span
+												class="sitemapMinus"></span></a><a nodeurl="基本信息.html"
+												class="sitemapPageLink"><span class="sitemapPageIcon"></span><span
+												class="sitemapPageName">基本信息</span></a>
+										</div>
+										<ul>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="版权_修改.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">版权 修改</span></a>
+												</div></li>
+										</ul></li>
+									<li class="sitemapNode sitemapExpandableNode"><div>
+											<a class="sitemapPlusMinusLink"><span
+												class="sitemapMinus"></span></a><a nodeurl="服务功能.html"
+												class="sitemapPageLink"><span class="sitemapPageIcon"></span><span
+												class="sitemapPageName">服务功能</span></a>
+										</div>
+										<ul>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="业务办理.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">业务办理</span></a>
+												</div></li>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="局长信箱.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">局长信箱</span></a>
+												</div></li>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="网站论坛.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">网站论坛</span></a>
+												</div></li>
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="友情链接.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">友情链接</span></a>
+												</div></li>
+										</ul></li>
+								</ul></li>
+							<li class="sitemapNode sitemapLeafNode"><div>
+									<a nodeurl="人力资源业务管理_.html" class="sitemapPageLink"><span
+										class="sitemapPageIcon"></span><span class="sitemapPageName">人力资源业务管理?</span></a>
+								</div></li>
+							<li class="sitemapNode sitemapExpandableNode"><div>
+									<a class="sitemapPlusMinusLink"><span class="sitemapMinus"></span></a><a
+										nodeurl="系统管理.html" class="sitemapPageLink"><span
+										class="sitemapPageIcon"></span><span class="sitemapPageName">系统管理</span></a>
+								</div>
+								<ul>
+									<li class="sitemapNode sitemapLeafNode"><div>
+											<a nodeurl="系统信息.html" class="sitemapPageLink"><span
+												class="sitemapPageIcon"></span><span class="sitemapPageName">系统信息</span></a>
+										</div></li>
+									<li class="sitemapNode sitemapLeafNode"><div>
+											<a nodeurl="后台登录记录.html" class="sitemapPageLink"><span
+												class="sitemapPageIcon"></span><span class="sitemapPageName">后台登录记录</span></a>
+										</div></li>
+									<li class="sitemapNode sitemapLeafNode"><div>
+											<a nodeurl="管理员管理.html" class="sitemapPageLink"><span
+												class="sitemapPageIcon"></span><span class="sitemapPageName">管理员管理</span></a>
+										</div></li>
+									<li class="sitemapNode sitemapExpandableNode"><div>
+											<a class="sitemapPlusMinusLink"><span class="sitemapPlus"></span></a><a
+												nodeurl="权限分组.html" class="sitemapPageLink sitemapHighlight"><span
+												class="sitemapPageIcon"></span><span class="sitemapPageName">权限分组</span></a>
+										</div>
+										<ul style="display: none;">
+											<li class="sitemapNode sitemapLeafNode"><div>
+													<a nodeurl="权限编辑.html" class="sitemapPageLink"><span
+														class="sitemapPageIcon"></span><span
+														class="sitemapPageName">权限编辑</span></a>
+												</div></li>
+										</ul></li>
+									<li class="sitemapNode sitemapLeafNode"><div>
+											<a nodeurl="备份数据.html" class="sitemapPageLink"><span
+												class="sitemapPageIcon"></span><span class="sitemapPageName">备份数据</span></a>
+										</div></li>
+									<li class="sitemapNode sitemapLeafNode"><div>
+											<a nodeurl="上传文件管理.html" class="sitemapPageLink"><span
+												class="sitemapPageIcon"></span><span class="sitemapPageName">上传文件管理</span></a>
+										</div></li>
+									<li class="sitemapNode sitemapLeafNode"><div>
+											<a nodeurl="静态化.html" class="sitemapPageLink"><span
+												class="sitemapPageIcon"></span><span class="sitemapPageName">静态化</span></a>
+										</div></li>
+								</ul></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+		<div id="pageNotesHost" style="display: none;">
+			<div id="pageNotesScrollContainer">
+				<div id="pageNotesContainer">
+					<div id="pageNameHeader">权限分组</div>
+					<span id="pageNotesContent"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
