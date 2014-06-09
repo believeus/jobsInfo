@@ -88,7 +88,7 @@ public class ControllerCenter {
 	
 	/**提交普通用户的编辑信息*/
 	@RequestMapping(value="/common-user/center/submit-comInfo")
-	public void submitComInfo(TcomInfo comInfo,HttpServletResponse response,HttpSession session){
+	public void submitComInfo(TcomInfo comInfo,Long workTypeId,Long majorTypeId,HttpServletResponse response,HttpSession session){
 		Map<String, Object> map=new HashMap<String, Object>();
 		try{
 			TcomUser sessionUser = (TcomUser)session.getAttribute("sessionUser");
