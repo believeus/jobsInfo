@@ -3,16 +3,15 @@ package com.etech.entity;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -21,7 +20,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 /*使用继承关系创建子类表*/
 @Inheritance(strategy=InheritanceType.JOINED)
 public class TbaseUser extends TbaseEntity implements Serializable{
-	
 	private static final long serialVersionUID = -6040207682160417660L;
 	/** 登录名 */
 	private String loginName;
@@ -137,8 +135,9 @@ public class TbaseUser extends TbaseEntity implements Serializable{
 	public void setComfirmPwd(String comfirmPwd) {
 		this.comfirmPwd = comfirmPwd;
 	}
-	@OneToMany
-	@JoinColumn(name="fk_userId",referencedColumnName="id")
+	@ManyToMany
+	@JoinTable(name = "t_user_role",
+	joinColumns = {@JoinColumn(name="fk_roleId")}, inverseJoinColumns = {@JoinColumn(name = "fk_userId") })
 	public Set<Trole> getRoles() {
 		return roles;
 	}

@@ -4,7 +4,6 @@ import java.beans.PropertyEditorSupport;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +20,6 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -32,8 +30,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
-
 import com.etech.entity.TcomInfo;
 import com.etech.entity.TcomUser;
 import com.etech.entity.TentUser;
@@ -53,14 +49,14 @@ public class ControllerCenter {
 	@Resource
 	private MydfsTrackerServer mydfsTrackerServer;
 	
-	/**个人中心*/
+	/**个人中心:该用户需要有personalRole角色才能访问*/
 	@RequestMapping(value = "/common-user/center", method = RequestMethod.GET)
 	public String personalCenter() {
 		log.debug("current controller is personalCenter !");
 		return "center/personalCenter";
 	}
 	
-	/**进入企业中心*/
+	/**进入企业中心:该用户需要有enterpriseRole角色才能访问*/
 	@RequestMapping(value = "/enterprise-user/center", method = RequestMethod.GET)
 	public String enterpriseCenter() {
 		log.debug("current controller is enterpriseCenter !");
@@ -153,5 +149,19 @@ public class ControllerCenter {
 		}
 		return storepath;
 	}
-
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) throws ServletException {
+		
+		binder.registerCustomEditor(Date.class, new PropertyEditorSupport(){
+			@Override
+			public void setAsText(String text) throws IllegalArgumentException {
+				if(StringUtils.isEmpty(text))return;
+				
+			}
+			@Override
+			public String getAsText() {
+				return super.getAsText();
+			}
+		});
+	}
 }

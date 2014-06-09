@@ -37,7 +37,9 @@ public class TokenAuthentication extends UsernamePasswordToken {
 		this.captchaId = captchaId;
 		this.captcha = captcha;
 	}
-
+   public TokenAuthentication(String username,String password){
+	   super(username, password);
+   }
 	/**
 	 * 获取验证码ID
 	 * 

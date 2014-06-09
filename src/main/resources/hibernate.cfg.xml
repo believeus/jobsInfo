@@ -12,7 +12,7 @@
 	    <property name="hibernate.connection.username">root</property>
 	    <property name="hibernate.connection.password">root</property> 
 		<property name="hbm2ddl.auto">update</property>
-		<property name="show_sql">true</property>
+		<property name="show_sql">false</property>
 		<property name="format_sql">true</property>
 		<!--统计Hibernate中的相关信息包括二级缓存命中率 -->
 		<property name="hibernate.generate_statistics">true</property>

@@ -2,10 +2,9 @@ package com.etech.entity;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,7 +24,7 @@ public class Trole extends TbaseEntity{
 	
 	/**该角色属于哪个用户*/
 	
-	private TbaseUser user;
+	private Set<TbaseUser> users;
 	
 	public String getRoleName() {
 		return roleName;
@@ -42,14 +41,15 @@ public class Trole extends TbaseEntity{
 	public void setAuthorities(Set<Tauthority> authorities) {
 		this.authorities = authorities;
 	}
-	@ManyToOne
-	@JoinColumn(name="fk_userId",referencedColumnName="id")
-	public TbaseUser getUser() {
-		return user;
+	
+	@ManyToMany(mappedBy = "roles")
+	public Set<TbaseUser> getUsers() {
+		return users;
 	}
-	public void setUser(TbaseUser user) {
-		this.user = user;
+	public void setUsers(Set<TbaseUser> users) {
+		this.users = users;
 	}
+	
 	
 	
 }

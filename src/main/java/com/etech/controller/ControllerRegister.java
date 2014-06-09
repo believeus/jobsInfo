@@ -1,7 +1,9 @@
 package com.etech.controller;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.etech.entity.TentUser;
 import com.etech.entity.TcomUser;
 import com.etech.entity.TbaseUser;
+import com.etech.entity.Trole;
 import com.etech.service.EtechService;
 import com.etech.util.EtechGobal;
 import com.etech.util.JsonOutToBrower;
@@ -27,7 +30,7 @@ import com.etech.util.JsonOutToBrower;
 public class ControllerRegister {
 	private static final Log log = LogFactory.getLog(ControllerRegister.class);
 	@Resource
-	private EtechService userService;
+	private EtechService etechService;
 	/** Begin Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:企业用户注册页面*/
 	@RequestMapping(value = "/personalReg")
 	public String personalRegister() {
@@ -90,7 +93,7 @@ public class ControllerRegister {
 			}
 			if(StringUtils.isEmpty(sessionUser)){
 				//验证身份证号是否存在过
-				TbaseUser user = (TbaseUser) userService.findObjectByProperty(TcomUser.class, EtechGobal.Idcard, regUser.getIdcard());
+				TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TcomUser.class, EtechGobal.Idcard, regUser.getIdcard());
 				log.debug("idcard:"+regUser.getIdcard());
 				log.debug("current user:"+user);
 				if (!StringUtils.isEmpty(user)) {
@@ -115,7 +118,7 @@ public class ControllerRegister {
 		}
 		//用户注册
 		if(StringUtils.isEmpty(sessionUser)){
-			TbaseUser user = (TbaseUser) userService.findObjectByProperty(TcomUser.class, EtechGobal.LoginName, regUser.getLoginName());
+			TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TcomUser.class, EtechGobal.LoginName, regUser.getLoginName());
 			if (!StringUtils.isEmpty(user)) {
 				message.put("property","loginName");
 				message.put("message","用户名已存在");
@@ -124,10 +127,10 @@ public class ControllerRegister {
 			}
 		// 用户编辑
 		}else{
-			TbaseUser user = (TbaseUser) userService.findObjectByProperty(TcomUser.class, "id", regUser.getId());
+			TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TcomUser.class, "id", regUser.getId());
 			// 编辑用户名和原用户名不等
 			if(!user.getLoginName().equals(regUser.getLoginName())){
-				user = (TbaseUser) userService.findObjectByProperty(TcomUser.class, EtechGobal.LoginName, regUser.getLoginName());
+				user = (TbaseUser) etechService.findObjectByProperty(TcomUser.class, EtechGobal.LoginName, regUser.getLoginName());
 				if (!StringUtils.isEmpty(user)) {
 					message.put("property","loginName");
 					message.put("message","用户名已存在");
@@ -159,16 +162,21 @@ public class ControllerRegister {
 			regUser.setLastLoginData(System.currentTimeMillis());
 			// 用户注册
 			if(StringUtils.isEmpty(sessionUser)){
-				userService.saveOrUpdate(regUser);
+				// 设置用户权限默认为一般用户权限
+				Trole role = (Trole)etechService.findObjectByProperty(Trole.class, "roleName", "personalRole");
+				Set<Trole> roles=new HashSet<Trole>();
+				roles.add(role);
+				regUser.setRoles(roles);
+				etechService.saveOrUpdate(regUser);
 				session.setAttribute("sessionUser", regUser);
 			// 用户编辑信息
 			}else{
 				// 只有从sessionFactory中获取的对象才能updata
-				TcomUser comUser = (TcomUser)userService.findObjectById(TcomUser.class, regUser.getId());
+				TcomUser comUser = (TcomUser)etechService.findObjectById(TcomUser.class, regUser.getId());
 				BeanUtils.copyProperties(regUser, comUser);
 				System.out.println(comUser.getTrueName());
 				session.setAttribute("sessionUser", comUser);
-				userService.saveOrUpdate(comUser);
+				etechService.saveOrUpdate(comUser);
 			}
 			message.put("message","success");
 			JsonOutToBrower.out(message, response);
@@ -210,7 +218,7 @@ public class ControllerRegister {
 			JsonOutToBrower.out(message, response);
 			return;
 		}
-		TbaseUser user = (TbaseUser) userService.findObjectByProperty(TentUser.class, EtechGobal.LoginName, regUser.getLoginName());
+		TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TentUser.class, EtechGobal.LoginName, regUser.getLoginName());
 		if (!StringUtils.isEmpty(user)) {
 			message.put("property","loginName");
 			message.put("message","用户名已存在");
@@ -223,9 +231,15 @@ public class ControllerRegister {
 			regUser.setEditDate(System.currentTimeMillis());
 			regUser.setLastLoginData(System.currentTimeMillis());
 			regUser.setPassword(password);
+			//企业用户必须为审核状态才能提交信息
 			String mustVilid="0";
 			regUser.setStatus(mustVilid);
-			userService.saveOrUpdate(regUser);
+			// 设置企业的默认权限
+			Trole role = (Trole)etechService.findObjectByProperty(Trole.class, "roleName", "enterpriseRole");
+			Set<Trole> roles=new HashSet<Trole>();
+			roles.add(role);
+			regUser.setRoles(roles);
+			etechService.saveOrUpdate(regUser);
 			session.setAttribute("sessionUser", regUser);
 			session.setAttribute("clazz",regUser.getClass().getName());
 			message.put("message","success");

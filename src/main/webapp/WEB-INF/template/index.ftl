@@ -185,7 +185,7 @@
 											return false;
 										}else{
 											// 刷新页面
-											window.location.replace(location.href);
+											$("#loginForm").submit();
 										}
 									}else{
 										if(data.message == "请输入密码"){
@@ -202,7 +202,7 @@
 					}
 		    	// 用户名验证。
 				$("#username,input:radio[name='userType']").change(function(){
-					submitF("no","true");
+					//submitF("no","true");
 				});
 				
 				// 登录。
@@ -377,7 +377,7 @@
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
 					会员登录
 				</p>
-				<form id="loginForm" action="/ajaxLoginValid.jhtml" method="post">
+				<form id="loginForm" action="/" method="post">
 				<table style="padding:19px;">
 					<tr>
 						<td>用户名:</td>

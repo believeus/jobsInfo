@@ -23,13 +23,10 @@
 		<property name="arguments" ref="securityManager" />
 	</bean>
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-		<property name="securityManager" ref="securityManager" />
-			<!--用户未被验证都要跳转到该页面  -->
-			<property name="loginUrl" value="/admin.html" /> 
-			 <!-- 登陆成功后要跳转的连接 -->
-			<property name="successUrl" value="/adminManage.html" /> 
-		 	<!-- 未授权时要跳转的连接 -->
-			<property name="unauthorizedUrl" value="/admin.html" />
+			<property name="securityManager" ref="securityManager" />
+			<!--访问网站的任意页面会重定向到该loginUrl配置页面,如果是/代表可以访问任何一个页面-->
+			<!--如果用户访问一个需要授权的页面,该用户没有被授权,则跳转到该页面-->
+			<property name="loginUrl" value="/" /> 
 		 	<property name="filters">
 			 <map>
 				<entry key="authc" value-ref="authenticationFilter" />
@@ -37,35 +34,10 @@
 			</property>
 		    <property name="filterChainDefinitions">
 			<value>
-			<!--每个URL配置，表示匹配该URL的应用程序请求将由对应的过滤器进行验证。
-				URL可使用通配符，**代表任意子目录 -->
-				<!--访问/admin* 需要验证,需要有创建token加会进行身份认证，认证通过就是shiro的user  -->
-				/admin* = authc
-				<!--访问/adminManage.html 需要授权 当前用户已经验证并且需要有admin:member权限才能访问该页面  -->
-				/adminManage.html = perms["admin:member"]
-				<!-- 
-				          定义授权参数
-				1，数据库里存储了对admin这个用户的授权信息，可以从数据库中动态获取授权信息。
-				2，如果配置文件配置了授权信息，但是数据库没有对应的授权信息，则出现未授权错误。
-				3，配置文件可以不用进行配置，否则是起到显示作用，在与数据库对应的情况下。
-				4，在不操作数据库的情况下，要添加新增的授权信息，可在授权方法中进行添加。
-				   //动态获取所有授权信息。
-			       List<String> authorities = adminService.findAuthorities(principal.getId());
-			       authorities.add("admin:members"); //新增自定义授权信息。
-			       SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-				   authorizationInfo.addStringPermissions(authorities);
-				5，在页面中的使用如下：
-				   <shiro:hasPermission name="admin:member">
-						<a href="#"> 通过授权的一个连接。</a>
-  				   </shiro:hasPermission>
-  				6，授权信息可以自定义。
-  				   首先是配置文件的授权信息进行授权，验证配置文件的授权信息是否正确。
-  				   不正确则跳转未授权页面，这个时候可以理解为授权信息填写错误。
-  				   正确时把授权信息放到缓存。
-  				7，当在页面上使用授权标签时，也会进行验证授权信息，如果缓存中有了这个
-  				   授权信息，则可以直接使用，不再进行验证授权的操作，减少对数据库的访问。
-				 -->
-				
+				/=authc
+				<!--当前用户需要enterpriseRole才能访问才能访问该链接 -->
+				/enterprise-user/center.jhtml=roles[enterpriseRole]
+				/common-user/center.jhtml=roles[personalRole]
 			</value>
 		</property>
 	</bean>
