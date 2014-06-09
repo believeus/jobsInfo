@@ -213,8 +213,8 @@
 										if(or=="no"){
 											return false;
 										}else{
-											// 刷新页面
-											window.location.replace(location.href);
+											// 提交信息到shiro验证，刷新页面
+											$("#loginForm").submit();
 										}
 									}else{
 										if(data.message == "请输入密码"){
@@ -322,6 +322,7 @@
 			<!--登录后的界面end-->
 		[#else]
 			<div class="j_main_3_1" style="display:block;">
+				<form id="loginForm" action="/" method="post">
 				<table style="padding: 6px 19px 19px;">
 					<tr>
 						<td colspan="2" align="center" style="background:url(/resource/public/images/beijingse.png);color:#FFFFFF;border-radius:4px;">用户登录</td>
@@ -347,6 +348,7 @@
 						</td>
 					</tr>
 				</table>
+				</form>
 			</div>
 			
 		[/#if]

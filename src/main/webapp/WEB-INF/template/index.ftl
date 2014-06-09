@@ -184,7 +184,7 @@
 										if(or=="no"){
 											return false;
 										}else{
-											// 刷新页面
+											// 提交信息到shiro验证，刷新页面
 											$("#loginForm").submit();
 										}
 									}else{
@@ -202,7 +202,7 @@
 					}
 		    	// 用户名验证。
 				$("#username,input:radio[name='userType']").change(function(){
-					//submitF("no","true");
+					submitF("no","true");
 				});
 				
 				// 登录。
