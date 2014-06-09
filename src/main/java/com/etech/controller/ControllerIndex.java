@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ControllerIndex {
 	private static Log log = LogFactory.getLog(ControllerIndex.class);
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/index")
 	public String defaultIndex() {
 		log.debug("current controller is defaultIndex !");
 		return "index";

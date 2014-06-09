@@ -49,21 +49,7 @@
 			<param-value>AUTO</param-value>
 		</init-param>
 	</filter>
-<<<<<<< Updated upstream
 	<!--end: 这个过滤器是用在一个页面请求时，打来Session，生成完页面生关闭Session，这样就可以解决lazy -->
-	<filter>
-		<filter-name>accessFilter</filter-name>
-		<filter-class>com.etech.filter.URLAccessFilter</filter-class>
-		<init-param>
-			<param-name>denyurl</param-name>
-			<param-value>
-			 /common-user/center.jhtml,/enterprise-user/center.jhtml,/admin/common/main.jhtml
-			</param-value>
-		</init-param>
-	</filter>
-
-=======
->>>>>>> Stashed changes
 
 	<!-- 经测试filter的执行过程是按照filter-mapping的顺序决定的 ,比如说来了一个.html的请求 -->
 	<!-- 会先被SessionUserCheckUpdate拦截,之后才会被UrlRewriteFilter拦截UrlRewriteFilter被拦截到请求 -->
