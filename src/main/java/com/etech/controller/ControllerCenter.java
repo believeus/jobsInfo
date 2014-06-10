@@ -20,6 +20,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.etech.entity.TcomInfo;
 import com.etech.entity.TcomUser;
 import com.etech.entity.TentUser;
@@ -57,6 +59,7 @@ public class ControllerCenter {
 	}
 	
 	/**进入企业中心:该用户需要有enterpriseRole角色才能访问*/
+	@RequiresRoles("enterpriseRole")
 	@RequestMapping(value = "/enterprise-user/center", method = RequestMethod.GET)
 	public String enterpriseCenter() {
 		log.debug("current controller is enterpriseCenter !");

@@ -13,6 +13,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -25,6 +26,7 @@ import com.etech.service.EtechService;
 
 
 public class AuthenticationFilter extends FormAuthenticationFilter {
+	private static final ServletRequest HttpServletRequest = null;
 	@Resource
 	private EtechService etechService;
 	private static Log log = LogFactory.getLog(AuthenticationFilter.class);
@@ -37,12 +39,6 @@ public class AuthenticationFilter extends FormAuthenticationFilter {
 		try {
 			HttpServletRequest request = (HttpServletRequest) servletRequest;
 			HttpServletResponse response = (HttpServletResponse) servletResponse;
-			String requestType = request.getHeader("X-Requested-With");
-			if (requestType != null && requestType.equalsIgnoreCase("XMLHttpRequest")) {
-				response.addHeader("loginStatus", "accessDenied");
-				response.sendError(HttpServletResponse.SC_FORBIDDEN);
-				return false;
-			}
 			return super.onAccessDenied(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -55,7 +51,11 @@ public class AuthenticationFilter extends FormAuthenticationFilter {
 	@Override
 	protected AuthenticationToken createToken(ServletRequest request,
 			ServletResponse response) {
-		return new TokenAuthentication("wuqiwei", "believeus",true);
+		HttpServletRequest httpRequest=(HttpServletRequest)request;
+		String username=httpRequest.getParameter("username");
+		String password=httpRequest.getParameter("password");
+		password=DigestUtils.md5Hex(password);
+		return new TokenAuthentication(username, password,true);
 	}
 
 	@Override

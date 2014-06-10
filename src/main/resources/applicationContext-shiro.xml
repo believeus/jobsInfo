@@ -26,8 +26,6 @@
 			<value>
 				/=authc
 				<!-- 此时这里的/代表主页面 -->
-				<!--当前用户需要enterpriseRole才能访问才能访问该链接 -->
-				/enterprise-user/center.jhtml=authc,perms["admin:check"]
 			</value>
 		</property>
 	</bean>
