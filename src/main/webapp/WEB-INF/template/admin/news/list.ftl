@@ -156,11 +156,6 @@ $().ready(function() {
 			</tr>
 			
 		</table>
-		<!--
-			[@pagination pageNumber = page.pageNumber totalPages = page.totalPages]
-				[#include "/admin/include/pagination.ftl"]
-			[/@pagination]
-		-->
 	</form>
 </body>
 </html>

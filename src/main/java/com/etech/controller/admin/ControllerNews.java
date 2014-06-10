@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * 新闻列表
+ * 新闻动态
  * */
 @Controller("controllerAdminNews")
 @RequestMapping("/admin/news")
@@ -32,5 +32,33 @@ public class ControllerNews {
 	public String addNewsView() {
 		log.debug("current controller is newsListView !");
 		return "admin/news/add";
+	}
+	/**
+	 * 编辑新闻
+	 * @return
+	 */
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public String editNewsView() {
+		log.debug("current controller is newsListView !");
+		return "admin/news/edit";
+	}
+	
+	/**
+	 * 保存新闻
+	 * @return
+	 */
+	@RequestMapping(value = "/save", method = RequestMethod.GET)
+	public String saveNewsView(){
+		
+		return "redirect:list.jhtml";
+	}
+	/**
+	 * 修改新闻
+	 * @return
+	 */
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public String updateNewsView(){
+		
+		return "redirect:list.jhtml";
 	}
 }

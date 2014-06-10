@@ -27,7 +27,7 @@ body {
     line-height: 36px;
     padding-left: 10px;
     margin:0px;
-  	padding-left:55px;
+  	padding-left:35px;
   }
 .content{
 	width: 182px;
@@ -39,7 +39,7 @@ body {
     border-bottom: 1px solid #D0D0D0;
     font-size: 13px;
     margin:0px;
-    width:182px;
+    width:196px;
     padding:0px;
 }
 
@@ -189,6 +189,24 @@ $(function(){
 					</li>
 					<li>
 						<a target="main" href="/admin/balance.jhtml">友情链接</a>
+					</li>
+      			</ul>
+			<h1>人力资源业务管理</h1>
+        		<ul style="display: none;" class="MM">
+					<li>
+						<a target="main" href="/admin/draw/member.jhtml">企业审核列表</a>
+					</li>
+					<li>
+						<a target="main" href="/admin/balance.jhtml">招聘岗位审核列表</a>
+					</li>
+					<li>
+						<a target="main" href="/admin/draw/member.jhtml">企业列表</a>
+					</li>
+					<li>
+						<a target="main" href="/admin/balance.jhtml">求职者列表</a>
+					</li>
+					<li>
+						<a target="main" href="/admin/balance.jhtml">招聘岗位列表</a>
 					</li>
       			</ul>
   			<h1>系统设置</h1>

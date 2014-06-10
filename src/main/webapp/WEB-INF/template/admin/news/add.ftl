@@ -2,16 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>${message("admin.ad.add")} - Powered By e3dmall</title>
+<title>添加新闻 - Powered By e3dmall</title>
 <meta name="author" content="e3dmall Team" />
 <meta name="copyright" content="e3dmall" />
-<link href="${base}/resources/admin/css/common.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${base}/resources/admin/js/jquery.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/js/jquery.validate.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/editor/kindeditor.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/js/common.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/js/input.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/datePicker/WdatePicker.js"></script>
+<link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
+<link href="/resource/public/js/admin/themes/default/default.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/resource/public/js/admin/jquery.js"></script>
+<script type="text/javascript" src="/resource/public/js/admin/jquery.validate.js"></script>
+<script type="text/javascript" src="/resource/public/js/admin/kindeditor.js"></script>
+<script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
+<script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
 <script type="text/javascript">
 $().ready(function() {
 
@@ -22,7 +22,7 @@ $().ready(function() {
 	var $path = $("#path");
 	var $browserButton = $("#browserButton");
 	
-	[@flash_message /]
+	
 	
 	// "类型"修改
 	$type.change(function() {
@@ -55,13 +55,19 @@ $().ready(function() {
 </head>
 <body>
 	<div class="path">
-		<a href="${base}/admin/common/index.jhtml">${message("admin.path.index")}</a> &raquo; ${message("admin.ad.add")}
+		<a href="/admin/common/main.jhtml">首页</a> &raquo; 添加内容
 	</div>
 	<form id="inputForm" action="save.jhtml" method="post" enctype="multipart/form-data">
 		<table class="input">
 			<tr>
 				<th>
-					<span class="requiredField">*</span>${message("Ad.title")}:
+					<span class="requiredField">*</span>新闻标题:
+				</th>
+				<td>
+					<input type="text" name="title" class="text" maxlength="200" />
+				</td>
+				<th>
+					<span class="requiredField">*</span>作者:
 				</th>
 				<td>
 					<input type="text" name="title" class="text" maxlength="200" />
@@ -69,47 +75,30 @@ $().ready(function() {
 			</tr>
 			<tr>
 				<th>
-					${message("Ad.type")}:
+					所属分类:
 				</th>
 				<td>
 					<select id="type" name="type">
-						[#list types as type]
-							<option value="${type}">${message("Ad.Type." + type)}</option>
-						[/#list]
+						<option value="1">新闻动态</option>
+						<option value="2">工作动态</option>
+						<option value="3">公告公示</option>
+						<option value="4">图片新闻</option>
+						<option value="5">视频新闻</option>
+						<option value="6">专题报道</option>
 					</select>
 				</td>
-			</tr>
-			<tr>
 				<th>
-					${message("Ad.adPosition")}:
+					是否置顶:
 				</th>
 				<td>
-					<select name="adPositionId">
-						[#list adPositions as adPosition]
-							<option value="${adPosition.id}">${adPosition.name} [${adPosition.width} × ${adPosition.height}]</option>
-						[/#list]
-					</select>
+					<input type="checkbox" name="">
 				</td>
 			</tr>
-			<tr id="contentTr">
+			<tr id="pathTr">
 				<th>
-					${message("Article.content")}:
+					<span class="requiredField">*</span>相关图片:
 				</th>
-				<td>
-					<textarea id="editor" name="content" class="editor"></textarea>
-				</td>
-			</tr>
-			<tr id="pathTr" class="hidden">
-				<th>
-					<span class="requiredField">*</span>${message("Ad.path")}:
-				</th>
-				<td>
-					<!--
-						<span class="fieldSet">
-							<input type="text" id="path" name="path" class="text" maxlength="200" disabled="disabled" />
-							<input type="button" id="browserButton" class="button" value="${message("admin.browser.select")}" />
-						</span>
-					-->
+				<td colspan="3">
 					<script type="text/javascript">
 					function loadImgFast(img,i){
 							if (img.files && img.files[0]){
@@ -175,35 +164,19 @@ $().ready(function() {
 					</style>
 				</td>
 			</tr>
-			<tr>
+			<tr id="contentTr">
 				<th>
-					${message("Ad.beginDate")}:
+					内容:
 				</th>
-				<td>
-					<input type="text" id="beginDate" name="beginDate" class="text Wdate" onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss', maxDate: '#F{$dp.$D(\'endDate\')}'});" />
+				<td colspan="3">
+					<textarea id="editor" name="content" class="editor"></textarea>
 				</td>
 			</tr>
 			<tr>
 				<th>
-					${message("Ad.endDate")}:
+					排序编号:
 				</th>
-				<td>
-					<input type="text" id="endDate" name="endDate" class="text Wdate" onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss', minDate: '#F{$dp.$D(\'beginDate\')}'});" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					${message("Ad.url")}:
-				</th>
-				<td>
-					<input type="text" name="url" class="text" maxlength="200" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					${message("admin.common.order")}:
-				</th>
-				<td>
+				<td colspan="3">
 					<input type="text" name="order" class="text" maxlength="9" />
 				</td>
 			</tr>
@@ -211,9 +184,9 @@ $().ready(function() {
 				<th>
 					&nbsp;
 				</th>
-				<td>
-					<input type="submit" class="button" value="${message("admin.common.submit")}" />
-					<input type="button" id="backButton" class="button" value="${message("admin.common.back")}" />
+				<td colspan="3">
+					<input type="submit" class="button" value="确定" />
+					<input type="button" id="backButton" class="button" value="返回" />
 				</td>
 			</tr>
 		</table>

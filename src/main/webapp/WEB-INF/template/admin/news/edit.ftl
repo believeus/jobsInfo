@@ -2,16 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>${message("admin.ad.edit")} - Powered By e3dmall</title>
+<title>添加新闻 - Powered By e3dmall</title>
 <meta name="author" content="e3dmall Team" />
 <meta name="copyright" content="e3dmall" />
-<link href="${base}/resources/admin/css/common.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${base}/resources/admin/js/jquery.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/js/jquery.validate.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/editor/kindeditor.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/js/common.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/js/input.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/datePicker/WdatePicker.js"></script>
+<link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
+<link href="/resource/public/js/admin/themes/default/default.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/resource/public/js/admin/jquery.js"></script>
+<script type="text/javascript" src="/resource/public/js/admin/jquery.validate.js"></script>
+<script type="text/javascript" src="/resource/public/js/admin/kindeditor.js"></script>
+<script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
+<script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
 <script type="text/javascript">
 $().ready(function() {
 
@@ -22,15 +22,9 @@ $().ready(function() {
 	var $path = $("#path");
 	var $browserButton = $("#browserButton");
 	
-	[@flash_message /]
 	
-	[#if ad.type != "text"]
-		$browserButton.browser({
-			type: "${ad.type}"
-		});
-	[/#if]
 	
-	// “类型”修改
+	// "类型"修改
 	$type.change(function() {
 		if ($type.val() == "text") {
 			$contentTr.show();
@@ -58,170 +52,141 @@ $().ready(function() {
 	
 });
 </script>
-<script type="text/javascript">
-function loadImgFast(img,i){
-		if (img.files && img.files[0]){
-			var reader = new FileReader();
-			reader.onload = function(evt){$(".brandImg:eq("+i+") img")[0].src = evt.target.result;}
-            reader.readAsDataURL(img.files[0]);	
-		}else if(window.navigator.userAgent.indexOf("MSIE")>=1){
-		   	file.select(); 
-   			path = document.selection.createRange().text;
-   			$(".brandImg:eq("+i+") img")[0].src = path;
-   		} 
-	}
-</script>
-<style type="text/css">
-.brandImg span{
-	display:block;
-	position:absolute;
-	top:0px;left:0px;
-	width:200px;
-	height:130px;
-}
-
-.brandImg{
-	border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
-    border-radius: 2px 2px 2px 2px;
-    border-style: solid;
-    border-width: 1px;
-    background-color: #666666;
-    width:192px;height:122px;
-    position:relative;
-}
-
-.brandImg span:hover{
-	background-color:#FFFFFF;
-    opacity: 0.7;
-    filter:alpha(opacity=50);
-    -moz-opacity:0.5;
-    -khtml-opacity: 0.5;
-}
-
-.brandImg span a{
-	display:block;
-	position:absolute;
-	top:50px;left:50px;
-}
-
-.deleteProductImage:hover{
-	color:#C9033B !important;
-}
-</style>
 </head>
 <body>
 	<div class="path">
-		<a href="${base}/admin/common/index.jhtml">${message("admin.path.index")}</a> &raquo; ${message("admin.ad.edit")}
+		<a href="/admin/common/main.jhtml">首页</a> &raquo; 编辑内容
 	</div>
 	<form id="inputForm" action="update.jhtml" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="id" value="${ad.id}" />
 		<table class="input">
 			<tr>
 				<th>
-					<span class="requiredField">*</span>${message("Ad.title")}:
+					<span class="requiredField">*</span>新闻标题:
 				</th>
 				<td>
-					<input type="text" name="title" class="text" value="${ad.title}" maxlength="200" />
+					<input type="text" name="title" class="text" maxlength="200" />
+				</td>
+				<th>
+					<span class="requiredField">*</span>作者:
+				</th>
+				<td>
+					<input type="text" name="title" class="text" maxlength="200" />
 				</td>
 			</tr>
 			<tr>
 				<th>
-					${message("Ad.type")}:
+					所属分类:
 				</th>
 				<td>
 					<select id="type" name="type">
-						[#list types as type]
-							<option value="${type}"[#if type == ad.type] selected="selected"[/#if]>${message("Ad.Type." + type)}</option>
-						[/#list]
+						<option value="1">新闻动态</option>
+						<option value="2">工作动态</option>
+						<option value="3">公告公示</option>
+						<option value="4">图片新闻</option>
+						<option value="5">视频新闻</option>
+						<option value="6">专题报道</option>
 					</select>
 				</td>
-			</tr>
-			<tr>
 				<th>
-					${message("Ad.adPosition")}:
+					是否置顶:
 				</th>
 				<td>
-					<select name="adPositionId">
-						[#list adPositions as adPosition]
-							<option value="${adPosition.id}"[#if adPosition == ad.adPosition] selected="selected"[/#if]>${adPosition.name} [${adPosition.width} × ${adPosition.height}]</option>
-						[/#list]
-					</select>
+					<input type="checkbox" name="">
 				</td>
 			</tr>
-			<tr id="contentTr"[#if ad.type != "text"] class="hidden"[/#if]>
+			<tr id="pathTr">
 				<th>
-					${message("Article.content")}:
+					<span class="requiredField">*</span>相关图片:
 				</th>
-				<td>
-					<textarea id="editor" name="content" class="editor" style="width: 100%;">${ad.content?html}</textarea>
-				</td>
-			</tr>
-			<tr id="pathTr"[#if ad.type == "text"] class="hidden"[/#if]>
-				<th>
-					<span class="requiredField">*</span>${message("Ad.path")}:
-				</th>
-				<td>
-					<!--
-						<span class="fieldSet">
-							<input type="text" id="path" name="path" class="text" value="${ad.path}" maxlength="200"[#if ad.type == "text"] disabled="disabled"[/#if] />
-							<input type="button" id="browserButton" class="button" value="${message("admin.browser.select")}" />
-						</span>
-					-->
+				<td colspan="3">
+					<script type="text/javascript">
+					function loadImgFast(img,i){
+							if (img.files && img.files[0]){
+								var reader = new FileReader();
+								reader.onload = function(evt){$(".brandImg:eq("+i+") img")[0].src = evt.target.result;}
+					            reader.readAsDataURL(img.files[0]);	
+							}else if(window.navigator.userAgent.indexOf("MSIE")>=1){
+							   	file.select(); 
+					   			path = document.selection.createRange().text;
+					   			$(".brandImg:eq("+i+") img")[0].src = path;
+					   		} 
+						}
+					</script>
 					
 					<div>
 						<span style="float:left">
-							<div class="brandImg" name="brandImg" value="0">
+							<div class="brandImg">
 								<span>
 									<a onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
 								</span>
-									<img style="width:190px;height:120px" src="${ad.path}" name="img"/>
+								<img style="width:190px;height:120px" src="" name="img"/>
 							</div>
 							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
-							<input type="hidden" id="filename0" name="filename0" value="${ad.path}">
+							<input type="hidden" id="filename0" name="filename0">
 						</span>
 					</div>
-					
+					<style type="text/css">
+						.brandImg span{
+							display:block;
+							position:absolute;
+							top:0px;left:0px;
+							width:200px;
+							height:130px;
+						}
+						
+						.brandImg{
+							border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
+						    border-radius: 2px 2px 2px 2px;
+						    border-style: solid;
+						    border-width: 1px;
+						    background-color: #666666;
+						    width:192px;height:122px;
+						    position:relative;
+						}
+						
+						.brandImg span:hover{
+							background-color:#FFFFFF;
+						    opacity: 0.7;
+						    filter:alpha(opacity=50);
+						    -moz-opacity:0.5;
+						    -khtml-opacity: 0.5;
+						}
+						
+						.brandImg span a{
+							display:block;
+							position:absolute;
+							top:50px;left:50px;
+						}
+						
+						.deleteProductImage:hover{
+							color:#C9033B !important;
+						}
+					</style>
+				</td>
+			</tr>
+			<tr id="contentTr">
+				<th>
+					内容:
+				</th>
+				<td colspan="3">
+					<textarea id="editor" name="content" class="editor"></textarea>
 				</td>
 			</tr>
 			<tr>
 				<th>
-					${message("Ad.beginDate")}:
+					排序编号:
 				</th>
-				<td>
-					<input type="text" id="beginDate" name="beginDate" class="text Wdate" value="[#if ad.beginDate??]${ad.beginDate?string("yyyy-MM-dd HH:mm:ss")}[/#if]" onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss', maxDate: '#F{$dp.$D(\'endDate\')}'});" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					${message("Ad.endDate")}:
-				</th>
-				<td>
-					<input type="text" id="endDate" name="endDate" class="text Wdate" value="[#if ad.endDate??]${ad.endDate?string("yyyy-MM-dd HH:mm:ss")}[/#if]" onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss', minDate: '#F{$dp.$D(\'beginDate\')}'});" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					${message("Ad.url")}:
-				</th>
-				<td>
-					<input type="text" name="url" class="text" value="${ad.url}" maxlength="200" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					${message("admin.common.order")}:
-				</th>
-				<td>
-					<input type="text" name="order" class="text" value="${ad.order}" maxlength="9" />
+				<td colspan="3">
+					<input type="text" name="order" class="text" maxlength="9" />
 				</td>
 			</tr>
 			<tr>
 				<th>
 					&nbsp;
 				</th>
-				<td>
-					<input type="submit" class="button" value="${message("admin.common.submit")}" />
-					<input type="button" id="backButton" class="button" value="${message("admin.common.back")}" />
+				<td colspan="3">
+					<input type="submit" class="button" value="确定" />
+					<input type="button" id="backButton" class="button" value="返回" />
 				</td>
 			</tr>
 		</table>
