@@ -7,24 +7,17 @@
 <base target="main">
 </head>
 <body leftmargin="0" topmargin="0">
-<table width="100%" height="130" border="0" cellpadding="0" cellspacing="0" class="admin_topbg" style="background:url(/resource/public/images/1.png);">
+<table width="100%" height="130" border="0" cellpadding="0" cellspacing="0" class="admin_topbg" style="background:url(/resource/public/images/back_pic.png);">
   <tr>
-    <td width="61%" height="64"></td>
+    <td width="61%" height="64" style="vertical-align:top;">
+    	<span style="font-size: 25px; color: #E3E3E3; margin-left: 25px;">潜江公共就业服务网后台管理</spans>
+	</td>
     <td width="39%" valign="top">
-    	<table width="100%" border="0" cellspacing="0" cellpadding="0">
-      		<tr>
-      			<td width="74%" height="38" class="admin_txt" style="text-align:right">
-       				<strong>admin</strong>
-					你好
-					<a href="../profile/edit.jhtml" target="main" style="color:#000">[帐号设置]</a>
-				</td>
-		        <td width="22%"><a href="/logout_back.jhtml" target="_top">退出</a></td>
-		        <td width="4%">&nbsp;</td>
-     		</tr>
-      		<tr>
-	        	<td height="19" colspan="3">&nbsp;</td>
-	        </tr>
-    	</table>
+    	<div class="back_xinxi" style="width: 300px; height: 100px; text-align: right; float: right; padding: 15px;">
+    		<span style="color:#E3E3E3;">admin</span>
+	    	<span style="color:#E3E3E3;">,你好!</span>
+	    	<span><a style="color:#E3E3E3;" href="">[退出]</a></span>
+    	</div>
 	</td>
   </tr>
 </table>

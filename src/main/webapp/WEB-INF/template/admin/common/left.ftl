@@ -8,7 +8,6 @@
 body {
 	font:12px Arial, Helvetica, sans-serif;
 	color: #000;
-	background-color: #EEF2FB;
 	margin: 0px;
 }
 #container
@@ -16,18 +15,15 @@ body {
 	padding:0px;
 }
 #container h1 {
-	//background: url(/resources/shop/images/bg_1126.png) no-repeat scroll 0 -40px ;
-    border-bottom: 1px solid #D8D8D8;
-    border-top: 1px solid #FFFFFF;
-    color: #3586F2;
+    color: #555555;
     cursor: pointer;
     font-size: 15px;
-    font-weight: bold;
-    height: 36px;
-    line-height: 36px;
+    font-weight: normal;
+    height: 30px;
+    line-height: 30px;
     padding-left: 10px;
     margin:0px;
-  	padding-left:35px;
+  	padding-left:50px;
   }
 .content{
 	width: 182px;
@@ -35,18 +31,16 @@ body {
 	
 }
  ul {
-	 background-color: #F1F1F1;
-    border-bottom: 1px solid #D0D0D0;
+	background-color: #F8F8F8;
     font-size: 13px;
     margin:0px;
-    width:196px;
+    width:178px;
     padding:0px;
 }
 
 ul li {
 	list-style-type:none;
-    border-bottom: 1px solid #EBEBEB;
-    line-height: 36px;
+    line-height: 25px;
     margin-left:50px;
 }
 li a {
@@ -60,10 +54,10 @@ a
 </style>
 <script type="text/javaScript">
 $(function(){
-	$("#container>h1").click(function(){
+	$("#container h1").click(function(){
 		if($(this).next("ul").is(":hidden"))
 		{
-			$("#container>ul").slideUp(400);
+			$("#container ul").slideUp(400);
 		}
 		$(this).next().slideToggle(500);
 	});
@@ -72,13 +66,15 @@ $(function(){
 </script>
 </head>
 
-<body>
-<table width="100%" height="280" border="0" cellpadding="0" cellspacing="0" bgcolor="#EEF2FB">
+<body style="overflow-y:scroll;">
+<table width="100%" height="280" border="0" cellpadding="0" cellspacing="0" bgcolor="#f2f2f2">
   <tr>
     <td width="182" valign="top">
 	   	<div id="container">
+	   		<div style="height:auto;width:180px;">
+	   		<p style="background: #D7D7D7;font-size: 16px;margin: 0;padding: 10px;text-align: center;">网站内容管理</p>
 		  	<h1>资讯中心</h1>
-    		<ul style="display: block;" class="MM">
+    		<ul style="display: none;" class="MM">
 				<li>
 					<a target="main" href="/admin/news/newsList.jhtml">新闻动态</a>
 				</li>
@@ -191,7 +187,10 @@ $(function(){
 						<a target="main" href="/admin/balance.jhtml">友情链接</a>
 					</li>
       			</ul>
-			<h1>人力资源业务管理</h1>
+  			</div>
+  			<div style="height:auto;width:180px;">
+	   		<p style="background: #D7D7D7;font-size: 16px;margin: 0;padding: 10px;text-align: center;">网站内容管理</p>
+			<h1>内容审核</h1>
         		<ul style="display: none;" class="MM">
 					<li>
 						<a target="main" href="/admin/draw/member.jhtml">企业审核列表</a>
@@ -199,6 +198,9 @@ $(function(){
 					<li>
 						<a target="main" href="/admin/balance.jhtml">招聘岗位审核列表</a>
 					</li>
+      			</ul>
+			<h1>资源审核</h1>
+        		<ul style="display: none;" class="MM">
 					<li>
 						<a target="main" href="/admin/draw/member.jhtml">企业列表</a>
 					</li>
@@ -209,6 +211,9 @@ $(function(){
 						<a target="main" href="/admin/balance.jhtml">招聘岗位列表</a>
 					</li>
       			</ul>
+  			</div>
+  			<div style="height:auto;width:180px;">
+	   		<p style="background: #D7D7D7;font-size: 16px;margin: 0;padding: 10px;text-align: center;">网站内容管理</p>
   			<h1>系统设置</h1>
        			 <ul style="display: none;" class="MM">
 						<li>
@@ -233,6 +238,7 @@ $(function(){
 							<a target="main" href="../storage_plugin/list.jhtml">静态化</a>
 						</li>
        			 </ul>
+			</div>
 		</div>
     </td>
   </tr>
