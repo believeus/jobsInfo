@@ -1,3 +1,5 @@
+[#assign shiro=JspTaglibs["/WEB-INF/tld/shiro.tld"] /]
+
 <!DOCTYPE html>
 <html>
 <head>

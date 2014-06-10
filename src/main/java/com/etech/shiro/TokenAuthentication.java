@@ -40,6 +40,9 @@ public class TokenAuthentication extends UsernamePasswordToken {
    public TokenAuthentication(String username,String password){
 	   super(username, password);
    }
+   public TokenAuthentication(String username,String password,boolean rememberMe){
+	   super(username, password,rememberMe);
+   }
 	/**
 	 * 获取验证码ID
 	 * 

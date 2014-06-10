@@ -37,12 +37,14 @@ public class InitRole implements ApplicationListener<ApplicationEvent>,
 	@Override
 	public void onApplicationEvent(ApplicationEvent event) {
 		Trole role = (Trole)etechService.findObjectByProperty(Trole.class, "roleName", "personalRole");
+		//创建个人用户角色
 		if(StringUtils.isEmpty(role)){
 			Trole personalRole=new Trole();
 			personalRole.setRoleName("personalRole");
 			etechService.saveOrUpdate(personalRole);
 			log.debug("init personalRole");
 		}
+		// 创建企业用户角色
 		role = (Trole)etechService.findObjectByProperty(Trole.class, "roleName", "enterpriseRole");
 		if(StringUtils.isEmpty(role)){
 			Trole enterpriseRole=new Trole();
@@ -50,12 +52,21 @@ public class InitRole implements ApplicationListener<ApplicationEvent>,
 			etechService.saveOrUpdate(enterpriseRole);
 			log.debug("init enterpriseRole");
 		}
+		// 创建匿名用户角色
 		role = (Trole)etechService.findObjectByProperty(Trole.class, "roleName", "anonymousRole");
 		if(StringUtils.isEmpty(role)){
 			Trole anonymousRole=new Trole();
 			anonymousRole.setRoleName("anonymousRole");
 			etechService.saveOrUpdate(anonymousRole);
 			log.debug("init anonymousRole");
+		}
+		// 创建超级管理员角色
+		role = (Trole)etechService.findObjectByProperty(Trole.class, "roleName", "superAdminRole");
+		if(StringUtils.isEmpty(role)){
+			Trole superAdminRole=new Trole();
+			superAdminRole.setRoleName("superAdminRole");
+			etechService.saveOrUpdate(superAdminRole);
+			log.debug("init superAdminRole");
 		}
 		
 	

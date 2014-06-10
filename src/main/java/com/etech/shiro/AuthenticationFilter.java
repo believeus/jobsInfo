@@ -2,41 +2,69 @@ package com.etech.shiro;
 
 
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
-import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;;
+import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
+
+import com.etech.entity.TbaseUser;
+import com.etech.service.EtechService;
+
 
 public class AuthenticationFilter extends FormAuthenticationFilter {
+	@Resource
+	private EtechService etechService;
 	private static Log log = LogFactory.getLog(AuthenticationFilter.class);
 	public AuthenticationFilter() {
 	}
 
 	// 判断请求是否被拒绝
 	@Override
-	protected boolean onAccessDenied(ServletRequest request,
-			ServletResponse response) throws Exception {
-		log.debug("AuthenticationFilter onAccessDenied()");
-		return super.onAccessDenied(request, response);
+	protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) {
+		try {
+			HttpServletRequest request = (HttpServletRequest) servletRequest;
+			HttpServletResponse response = (HttpServletResponse) servletResponse;
+			String requestType = request.getHeader("X-Requested-With");
+			if (requestType != null && requestType.equalsIgnoreCase("XMLHttpRequest")) {
+				response.addHeader("loginStatus", "accessDenied");
+				response.sendError(HttpServletResponse.SC_FORBIDDEN);
+				return false;
+			}
+			return super.onAccessDenied(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
+
 
 	// 提交表单的时候如果没有被拒绝创建调用
 	@Override
 	protected AuthenticationToken createToken(ServletRequest request,
 			ServletResponse response) {
-		log.debug("AuthenticationFilter createToken()");
-		return super.createToken(request, response);
+		return new TokenAuthentication("wuqiwei", "believeus",true);
 	}
 
 	@Override
-	protected boolean onLoginSuccess(AuthenticationToken token,
-			Subject subject, ServletRequest request, ServletResponse response)
-			throws Exception {
+	protected boolean onLoginSuccess(org.apache.shiro.authc.AuthenticationToken token, Subject subject, ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
 		Session session = subject.getSession();
-		return super.onLoginSuccess(token, subject, request, response);
+		TokenAuthentication authenticationToken = (TokenAuthentication) token;
+		String username = authenticationToken.getUsername();
+		TbaseUser sessionUser = (TbaseUser)etechService.findObjectByProperty(TbaseUser.class, "loginName", username);
+		session.setAttribute("sessionUser",sessionUser);
+		return super.onLoginSuccess(token, subject, servletRequest, servletResponse);
 	}
 }
