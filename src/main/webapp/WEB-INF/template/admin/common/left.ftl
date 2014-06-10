@@ -51,6 +51,9 @@ a
 {
 	text-decoration: none;
 }
+.current{
+	color:#0000FF;
+}
 </style>
 <script type="text/javaScript">
 $(function(){
@@ -61,13 +64,22 @@ $(function(){
 		}
 		$(this).next().slideToggle(500);
 	});
+	
+	//alert($(".MM a").length);
+	var alist = $(".MM a");
+	alist.each(function(){
+		$(this).click(function(){
+			$(".MM a").removeClass("current");
+			$(this).addClass("current");
+		});
+	});
 })
 	
 </script>
 </head>
 
 <body style="overflow-y:scroll;">
-<table width="100%" height="280" border="0" cellpadding="0" cellspacing="0" bgcolor="#f2f2f2">
+<table width="100%" height="280" border="0" cellpadding="0" cellspacing="0" bgcolor="#E6E6E6">
   <tr>
     <td width="182" valign="top">
 	   	<div id="container">
@@ -96,7 +108,7 @@ $(function(){
         	</ul>
      
 		   <h1>工作指南</h1>
-        		<ul style="display: none;">
+        		<ul class="MM" style="display: none;">
 					<li>
 						<a target="main" href="../order/list.jhtml">机构简介</a>
 					</li>
@@ -163,7 +175,7 @@ $(function(){
 			<h1>幻灯片</h1>
         		<ul style="display: none;" class="MM">
 					<li>
-						<a target="main" href="../statistics/view.jhtml">幻灯片</a>
+						<a target="main" href="/admin/slide/slideList.jhtml">幻灯片</a>
 					</li>
    			 	</ul>
 			<h1>基本信息</h1>
@@ -189,7 +201,7 @@ $(function(){
       			</ul>
   			</div>
   			<div style="height:auto;width:180px;">
-	   		<p style="background: #D7D7D7;font-size: 16px;margin: 0;padding: 10px;text-align: center;">网站内容管理</p>
+	   		<p style="background: #D7D7D7;font-size: 16px;margin: 0;padding: 10px;text-align: center;">人力资源业务管理</p>
 			<h1>内容审核</h1>
         		<ul style="display: none;" class="MM">
 					<li>
@@ -213,7 +225,7 @@ $(function(){
       			</ul>
   			</div>
   			<div style="height:auto;width:180px;">
-	   		<p style="background: #D7D7D7;font-size: 16px;margin: 0;padding: 10px;text-align: center;">网站内容管理</p>
+	   		<p style="background: #D7D7D7;font-size: 16px;margin: 0;padding: 10px;text-align: center;">系统管理</p>
   			<h1>系统设置</h1>
        			 <ul style="display: none;" class="MM">
 						<li>

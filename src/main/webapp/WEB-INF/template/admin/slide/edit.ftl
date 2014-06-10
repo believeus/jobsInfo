@@ -61,24 +61,11 @@ $().ready(function() {
 		<table class="input">
 			<tr>
 				<th>
-					<span class="requiredField">*</span>新闻标题:
-				</th>
-				<td>
-					<input type="text" name="title" class="text" maxlength="200" />
-				</td>
-				<th>
-					<span class="requiredField">*</span>作者:
-				</th>
-				<td>
-					<input type="text" name="title" class="text" maxlength="200" />
-				</td>
-			</tr>
-			<tr>
-				<th>
 					所属分类:
 				</th>
 				<td>
 					<select id="" name="type">
+						<option value="0">幻灯片</option>
 						<option value="1">新闻动态</option>
 						<option value="2">工作动态</option>
 						<option value="3">公告公示</option>
@@ -87,18 +74,20 @@ $().ready(function() {
 						<option value="6">专题报道</option>
 					</select>
 				</td>
+			</tr>
+			<tr>
 				<th>
-					是否置顶:
+					<span class="requiredField">*</span>标题:
 				</th>
 				<td>
-					<input type="checkbox" name="">
+					<input type="text" name="title" class="text" maxlength="200" />
 				</td>
 			</tr>
 			<tr id="pathTr">
 				<th>
 					<span class="requiredField">*</span>相关图片:
 				</th>
-				<td colspan="3">
+				<td>
 					<script type="text/javascript">
 					function loadImgFast(img,i){
 							if (img.files && img.files[0]){
@@ -164,20 +153,12 @@ $().ready(function() {
 					</style>
 				</td>
 			</tr>
-			<tr id="contentTr">
-				<th>
-					内容:
-				</th>
-				<td colspan="3">
-					<textarea id="editor" name="content" class="editor"></textarea>
-				</td>
-			</tr>
 			<tr>
 				<th>
-					排序编号:
+					<span class="requiredField">*</span>外链接:
 				</th>
-				<td colspan="3">
-					<input type="text" name="order" class="text" maxlength="9" />
+				<td>
+					<input type="text" name="alink" class="text" maxlength="200" />
 				</td>
 			</tr>
 			<tr>
