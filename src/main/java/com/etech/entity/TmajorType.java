@@ -1,12 +1,10 @@
 package com.etech.entity;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -61,6 +59,7 @@ public class TmajorType extends TbaseEntity implements Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY,mappedBy="workType")
+	
 	public Set<TcomInfo> getComInfoWork() {
 		return comInfoWork;
 	}

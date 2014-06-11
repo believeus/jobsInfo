@@ -718,9 +718,11 @@
     			function sumitValidLIist(){
     				  alert("xxxxx具备技能xxxxxxxxxx");
     				  $("div.jineng_div").each(function(index){
-				 			/*$("#SkillForm"+index).ajaxSubmit(function (data) {
+    				  		index++;
+    				  		alert(index);
+				 			$("#SkillForm"+index).ajaxSubmit(function (data) {
 				            	return false;
-			        		});*/	
+			        		});	
     				  })
     				  alert("xxxxx学习经历xxxxxxxxxx");
     				  $("div.xuexi_div").each(function(index){
@@ -736,9 +738,9 @@
 	    					$("input[name='beginData']").val(beginDate);
 	    					$("input[name='endData']").val(endDate);
 	    					
-	    					/*$("#LearningForm"+index).ajaxSubmit(function (data) {
+	    					$("#LearningForm"+index).ajaxSubmit(function (data) {
 				            	return false;
-			        		});*/	
+			        		});	
 	    					
 	    				 })
     				  alert("xxxxxxxx工作经验xxxxxxx");
@@ -755,9 +757,9 @@
 	    					$("input[name='beginData']").val(beginDate);
 	    					$("input[name='endData']").val(endDate);
 	    					
-	    					/*$("#WorkForm"+index).ajaxSubmit(function (data) {
+	    					$("#WorkForm"+index).ajaxSubmit(function (data) {
 				            	return false;
-			        		});*/
+			        		});
 			        		
     				  })
     				  
@@ -800,6 +802,7 @@
 	        				if(data.message == "success" && $("#submit").val() == "submit"){
 								alert("要提交其他信息了。");
 								sumitValidLIist();
+								alert("都提交成功了拉。");
 							}else{
 								alert(data.message);								
 							}
@@ -1067,7 +1070,11 @@
 					</div>
 					
 					<div style="height: 30px; width: 728px;">
-						<span style="float:left;">具备技能</span>
+						<span style="float:left;">具备技能
+						[#list sessionUser.comInfo as comInfo]
+							xxxx----
+						[/#list]
+						</span>
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 						<div style="float: left; width: 50px; margin-left: 20px;">
 							<input id="add_jineng" type="button" value="添加" style="cursor:pointer;width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">

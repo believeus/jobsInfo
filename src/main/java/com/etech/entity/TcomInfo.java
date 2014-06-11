@@ -129,8 +129,8 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 		this.expectArea = expectArea;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY,optional=false)//多对一的时候可以获取admin对象
-	@JoinColumn(name="fk_workTypeId",referencedColumnName="id")
+	@ManyToOne(fetch = FetchType.LAZY)//多对一的时候可以获取admin对象
+	@JoinColumn(name="fk_workTypeId",referencedColumnName="id",nullable=true)
 	public TmajorType getWorkType() {
 		return workType;
 	}
@@ -138,8 +138,8 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 		this.workType = workType;
 	}
 	
-	@ManyToOne(fetch = FetchType.LAZY,optional=false)
-	@JoinColumn(name="fk_majorTypeId",referencedColumnName="id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="fk_majorTypeId",referencedColumnName="id",nullable=true)
 	public TmajorType getMajorType() {
 		return majorType;
 	}

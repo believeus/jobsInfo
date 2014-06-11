@@ -9,7 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.Length;
 
 
@@ -213,7 +218,7 @@ public class TcomUser extends TbaseUser implements Serializable{
 	public void setHealth(String health) {
 		this.health = health;
 	}
-	@OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="comUser")
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="comUser")
 	public List<TcomInfo> getComInfo() {
 		return comInfo;
 	}

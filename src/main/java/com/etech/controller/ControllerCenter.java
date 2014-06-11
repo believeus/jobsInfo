@@ -51,7 +51,10 @@ public class ControllerCenter {
 
 	/** 个人中心:该用户需要有personalRole角色才能访问 */
 	@RequestMapping(value = "/common-user/center", method = RequestMethod.GET)
-	public String personalCenter() {
+	public String personalCenter(HttpSession session) {
+		TcomUser sessionUser = (TcomUser) session.getAttribute("sessionUser");
+		List<TcomInfo> comInfo = sessionUser.getComInfo();
+		System.out.println(comInfo.size());
 		log.debug("current controller is personalCenter !");
 		return "center/personalCenter";
 	}
@@ -90,15 +93,16 @@ public class ControllerCenter {
 			Integer majorTypeId, HttpServletResponse response,
 			HttpSession session) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println(workTypeId+"----"+majorTypeId);
 		try {
 			TcomUser sessionUser = (TcomUser) session.getAttribute("sessionUser");
 			comInfo.setComUser(sessionUser);
 			if (workTypeId != null) {
-				TmajorType workType = (TmajorType) etechService.findObjectById(TmajorType.class, workTypeId);
+				TmajorType workType = (TmajorType) etechService.findObjectById(TmajorType.class, 1);
 				comInfo.setWorkType(workType);
 			}
 			if (majorTypeId != null) {
-				TmajorType majorType = (TmajorType) etechService.findObjectById(TmajorType.class, majorTypeId);
+				TmajorType majorType = (TmajorType) etechService.findObjectById(TmajorType.class, 2);
 				comInfo.setMajorType(majorType);
 			}
 			etechService.saveOrUpdate(comInfo);

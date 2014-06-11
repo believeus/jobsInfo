@@ -347,6 +347,14 @@
 	[/@compress]
 	
     $().ready(function(){
+    
+    	// 初始化一些值。设置value为用户填写过的项选中。
+    	alert(${sessionUser.unitType});
+    	alert(${sessionUser.relationship});
+    	alert(${sessionUser.economicType});
+    	$("#unitType").val("${sessionUser.unitType}");
+    	$("#relationship").val("${sessionUser.relationship}");
+    	$("#economicType").val("${sessionUser.economicType}");
     	// 为所有插件使用相同的模板。
     	var html ='<div id="xmenuSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'+
 				  '<div id="xmenuJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>';
@@ -606,14 +614,16 @@
     				
 		    	// ajax 提交验证和保存。
 				function submitValid(){
-						$("#InfoForm").ajaxSubmit(function (data) {
-							alert(data);								
-			        	});	
-			        	/*$("#imageForm").ajaxSubmit(function (data) {
+						/*$("#imageForm").ajaxSubmit(function (data) {
 				            //$("#imgHead").val(data);
 				            alert(data);
 				            return false;
-				    	});*/	
+				    	});*/
+				    	
+						$("#InfoForm").ajaxSubmit(function (data) {
+							alert(data);								
+			        	});	
+			        	
 					}
 					//封装ajax信息提交
 				function submitJobs(){
@@ -793,12 +803,12 @@
 					</div>
 					<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<div class="" style="height: auto; overflow: hidden; float: left; width: 660px; margin-left: 30px; margin-top: 10px;margin-right:10px;">
+						<table>
 						<form novalidate="novalidate"  action="/enterprise/submit-account-Info.jhtml" method="post" id="InfoForm">
 							<input type="hidden" name="id" value="${sessionUser.id}">
 							<input type="hidden" name="status" value="${sessionUser.status}">
 							<input type="hidden" name="loginName" value="${sessionUser.loginName}">
 							<input type="hidden" name="password" value="">
-							<table>
 								<tr>
 									<td>单位全称:</td>
 									<td style="padding-right: 80px;"><input type="text" value="${sessionUser.fullName}" id="fullName" name="fullName"></td>
