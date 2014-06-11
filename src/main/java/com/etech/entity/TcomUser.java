@@ -2,12 +2,14 @@ package com.etech.entity;
 
 import java.io.Serializable;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import org.hibernate.validator.constraints.Length;
 
 
@@ -211,8 +213,7 @@ public class TcomUser extends TbaseUser implements Serializable{
 	public void setHealth(String health) {
 		this.health = health;
 	}
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "fk_comUserId", referencedColumnName = "id")
+	@OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="comUser")
 	public List<TcomInfo> getComInfo() {
 		return comInfo;
 	}

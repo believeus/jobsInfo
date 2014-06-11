@@ -1,8 +1,15 @@
 package com.etech.entity;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -20,6 +27,10 @@ public class TmajorType extends TbaseEntity implements Serializable {
 	private int codeId;
 	/**专业或工种属于哪个子类*/
 	private int parent;
+	/** 工种信息*/
+	private Set<TcomInfo> comInfoWork;
+	/** 专业信息*/
+	private Set<TcomInfo> comInfoMajor;
 	
 	/**专业或工种名*/
 	@NotEmpty
@@ -48,6 +59,22 @@ public class TmajorType extends TbaseEntity implements Serializable {
 	public void setParent(int parent) {
 		this.parent = parent;
 	}
-	
-	
+
+	@OneToMany(fetch = FetchType.LAZY,mappedBy="workType")
+	public Set<TcomInfo> getComInfoWork() {
+		return comInfoWork;
+	}
+
+	public void setComInfoWork(Set<TcomInfo> comInfoWork) {
+		this.comInfoWork = comInfoWork;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY,mappedBy="majorType")
+	public Set<TcomInfo> getComInfoMajor() {
+		return comInfoMajor;
+	}
+
+	public void setComInfoMajor(Set<TcomInfo> comInfoMajor) {
+		this.comInfoMajor = comInfoMajor;
+	}
 }

@@ -1,8 +1,11 @@
 package com.etech.entity;
 
 import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -41,19 +44,12 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 	private TmajorType workType;
 	/**专业*/
 	private TmajorType majorType;
+	
 	/**该信息属于哪个用户*/
-	
 	private TcomUser comUser;
-	@ManyToOne//多对一的时候可以获取admin对象
-	@JoinColumn(name="fk_workTypeId",referencedColumnName="id")
-	public TmajorType getWorkType() {
-		return workType;
-	}
-	public void setWorkType(TmajorType workType) {
-		this.workType = workType;
-	}
 	
-	@ManyToOne//多对一的时候可以获取admin对象
+	
+	@ManyToOne(cascade=CascadeType.ALL,optional = false)//多对一的时候可以获取admin对象
 	@JoinColumn(name="fk_comUserId",referencedColumnName="id")
 	public TcomUser getComUser() {
 		return comUser;
@@ -132,7 +128,17 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 	public void setExpectArea(String expectArea) {
 		this.expectArea = expectArea;
 	}
-	@ManyToOne//多对一的时候可以获取admin对象
+
+	@ManyToOne(fetch = FetchType.LAZY,optional=false)//多对一的时候可以获取admin对象
+	@JoinColumn(name="fk_workTypeId",referencedColumnName="id")
+	public TmajorType getWorkType() {
+		return workType;
+	}
+	public void setWorkType(TmajorType workType) {
+		this.workType = workType;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY,optional=false)
 	@JoinColumn(name="fk_majorTypeId",referencedColumnName="id")
 	public TmajorType getMajorType() {
 		return majorType;
