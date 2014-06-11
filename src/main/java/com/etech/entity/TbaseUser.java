@@ -137,7 +137,8 @@ public class TbaseUser extends TbaseEntity implements Serializable{
 	}
 	@ManyToMany
 	@JoinTable(name = "t_user_role",
-	joinColumns = {@JoinColumn(name="fk_roleId")}, inverseJoinColumns = {@JoinColumn(name = "fk_userId") })
+    joinColumns = { @JoinColumn(name = "fk_userId", referencedColumnName = "id") }, 
+    inverseJoinColumns = { @JoinColumn(name = "fk_roleId", referencedColumnName = "id") })
 	public Set<Trole> getRoles() {
 		return roles;
 	}

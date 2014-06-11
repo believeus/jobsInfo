@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -14,6 +15,9 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.util.StringUtils;
+
+import com.etech.entity.Tauthority;
 import com.etech.entity.TbaseUser;
 import com.etech.entity.Trole;
 import com.etech.service.EtechService;
@@ -54,14 +58,22 @@ public class AuthenticationRealm extends AuthorizingRealm{
 		log.debug("doGetAuthorizationInfo:"+principal.getUsername());
 		TbaseUser user = (TbaseUser)etechService.findObjectByProperty(TbaseUser.class,"loginName",username);
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+		// 当前系统一个用户一个角色
 		Set<Trole> roles = user.getRoles();
 		Iterator<Trole> it = roles.iterator();  
-		while (it.hasNext()) {  
-		  Trole role = it.next(); 
-		  String roleName = role.getRoleName();
-		  log.debug("roleName:"+roleName);
-		  authorizationInfo.addRole(roleName);
-		}  
+		Trole role = it.next();
+		//当前用户不为空
+		if(!StringUtils.isEmpty(role)){
+			String roleName = role.getRoleName();
+			// 设置用户角色
+			authorizationInfo.addRole(roleName);
+			Set<Tauthority> authorities = role.getAuthorities();
+			for (Iterator<Tauthority> iter = authorities.iterator(); iter.hasNext();) {
+	           Tauthority authory = iter.next();
+	           // 设置用户权限
+	           authorizationInfo.addStringPermission(authory.getAuthName());
+	        }
+		}
 		return authorizationInfo;
 	}
 

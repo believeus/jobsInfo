@@ -1,5 +1,6 @@
 package com.etech.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,8 +23,8 @@ public class Tauthority extends TbaseEntity {
 	public void setAuthName(String authName) {
 		this.authName = authName;
 	}
-	@ManyToOne
-	@JoinColumn(name="fk_authId",referencedColumnName="id")
+	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE})
+	@JoinColumn(name="fk_roleId",referencedColumnName="id")
 	public Trole getRole() {
 		return role;
 	}

@@ -2,6 +2,8 @@ package com.etech.entity;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -24,7 +26,7 @@ public class Trole extends TbaseEntity{
 	
 	/**该角色属于哪个用户*/
 	
-	private Set<TbaseUser> users;
+	private Set<TbaseUser> users=new HashSet<TbaseUser>();
 	
 	public String getRoleName() {
 		return roleName;
@@ -33,8 +35,8 @@ public class Trole extends TbaseEntity{
 		this.roleName = roleName;
 	}
 	
-	@OneToMany
-	@JoinColumn(name="fk_authId",referencedColumnName="id")
+	@OneToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE})
+	@JoinColumn(name="fk_roleId",referencedColumnName="id")
 	public Set<Tauthority> getAuthorities() {
 		return authorities;
 	}
