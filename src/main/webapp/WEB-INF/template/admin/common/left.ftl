@@ -238,7 +238,7 @@ $(function(){
 							<a target="main" href="../payment_method/list.jhtml">管理员管理</a>
 						</li>
 						<li>
-							<a target="main" href="../shipping_method/list.jhtml">权限分组</a>
+							<a target="main" href="/admin/power/powerList.jhtml">权限分组</a>
 						</li>
 						<li>
 							<a target="main" href="../delivery_corp/list.jhtml">备份数据</a>
