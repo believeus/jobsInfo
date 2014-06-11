@@ -91,84 +91,84 @@ $(function(){
 					<a target="main" href="/admin/news/newsList.jhtml">新闻动态</a>
 				</li>
 				<li>
-					<a target="main" href="../parameter_group/list.jhtml">工作动态</a>
+					<a target="main" href="/admin/work/list.jhtml">工作动态</a>
 				</li>
 				<li>
-					<a target="main" href="../specification/list.jhtml">公告公示</a>
+					<a target="main" href="/admin/publicity/list.jhtml">公告公示</a>
 				</li>
 				<li>
-					<a target="main" href="../product/list.jhtml">图片新闻</a>
+					<a target="main" href="/admin/imagesNews/list.jhtml">图片新闻</a>
 				</li>
 				<li>
-					<a target="main" href="../condition/list.jhtml">视频新闻</a>
+					<a target="main" href="/admin/vedioNews/list.jhtml">视频新闻</a>
 			    </li>
 				<li>
-					<a target="main" href="../condition/list.jhtml">专题报道</a>
+					<a target="main" href="/admin/specialReport/list.jhtml">专题报道</a>
 			    </li>
         	</ul>
      
 		   <h1>工作指南</h1>
         		<ul class="MM" style="display: none;">
 					<li>
-						<a target="main" href="../order/list.jhtml">机构简介</a>
+						<a target="main" href="/admin/introduction/list.jhtml">机构简介</a>
 					</li>
 					<li>
-						<a target="main" href="../payment/list.jhtml">主要职能</a>
+						<a target="main" href="/admin/mainFunction/list.jhtml">主要职能</a>
 					</li>
 					<li>
-						<a target="main" href="../refunds/list.jhtml">局领导</a>
+						<a target="main" href="/admin/leader/list.jhtml">局领导</a>
 					</li>
         		</ul>
     
 			 <h1>就业服务</h1>
        			 <ul style="display: none;" class="MM">
 					<li>
-						<a target="main" href="../member/list.jhtml">就业服务</a>
+						<a target="main" href="/admin/jiuyeService/list.jhtml">就业服务</a>
 					</li>
       			</ul>
      
 			 <h1>政策咨询</h1>
         		<ul style="display: none;" class="MM">
 					<li>
-						<a target="main" href="../serviceFeeInfo/list.jhtml">国家法律法规</a>
+						<a target="main" href="/admin/countryLaw/list.jhtml">国家法律法规</a>
 					</li>
 					<li>
-						<a target="main" href="../serviceFeeInfo/list.jhtml">地方法律法规</a>
+						<a target="main" href="/admin/cityLaw/list.jhtml">地方法律法规</a>
 					</li>
 					<li>
-						<a target="main" href="../serviceFeeInfo/list.jhtml">国家相关文件</a>
+						<a target="main" href="/admin/countryFile/list.jhtml">国家相关文件</a>
 					</li>
 					<li>
-						<a target="main" href="../serviceFeeInfo/list.jhtml">地方相关问题</a>
+						<a target="main" href="/admin/cityFile/list.jhtml">地方相关文件</a>
 					</li>
        			</ul>
    
 		    <h1>数据频道</h1>
         		<ul style="display: none;" class="MM">
 					<li>
-						<a target="main" href="../navigation/list.jhtml">供求分析报告</a>
+						<a target="main" href="/admin/analysisreport/list.jhtml">供求分析报告</a>
 					</li>
 					<li>
-						<a target="main" href="../article/list.jhtml">工资指导价位</a>
+						<a target="main" href="/admin/wagePriceGuide/list.jhtml">工资指导价位</a>
 					</li>
 					<li>
-						<a target="main" href="../article_category/list.jhtml">本月需求排行</a>
+						<a target="main" href="/admin/monthlyDemandList/list.jhtml">本月需求排行</a>
 					</li>
 					<li>
-						<a target="main" href="../tag/list.jhtml">本月供给排行</a>
+						<a target="main" href="/admin/monthSupplyList/list.jhtml">本月供给排行</a>
 					</li>
 					<li>
-						<a target="main" href="../friend_link/list.jhtml">下载专区</a>
+						<a target="main" href="/admin/downLoad/list.jhtml">下载专区</a>
 					</li>
        			 </ul>
     
 			 <h1>网上展示厅</h1>
        			 <ul style="display: none;" class="MM">
 					<li>
-						<a target="main" href="../promotion/list.jhtml">视频新闻</a>
+						<a target="main" href="/admin/vedioNews/list.jhtml">视频新闻</a>
 					</li>
 					<li>
-						<a target="main" href="../coupon/list.jhtml">图片新闻</a>
+						<a target="main" href="/admin/imagesNews/list.jhtml">图片新闻</a>
 					</li>
         		</ul>
   
@@ -181,22 +181,22 @@ $(function(){
 			<h1>基本信息</h1>
     			<ul style="display: none;" class="MM">
 					<li>
-						<a target="main" href="/admin/asset/bonuspond.jhtml">基本信息</a>
+						<a target="main" href="/admin/baseMessage/list.jhtml">基本信息</a>
 					</li>
 				</ul>
 			<h1>服务功能</h1>
         		<ul style="display: none;" class="MM">
 					<li>
-						<a target="main" href="/admin/draw/member.jhtml">业务办理</a>
+						<a target="main" href="/admin/busHandle/list.jhtml">业务办理</a>
 					</li>
 					<li>
-						<a target="main" href="/admin/balance.jhtml">局长信箱</a>
+						<a target="main" href="/admin/mailBox/list.jhtml">局长信箱</a>
 					</li>
 					<li>
-						<a target="main" href="/admin/draw/member.jhtml">网站论坛</a>
+						<a target="main" href="/admin/forum/list.jhtml">网站论坛</a>
 					</li>
 					<li>
-						<a target="main" href="/admin/balance.jhtml">友情链接</a>
+						<a target="main" href="/admin/links/list.jhtml">友情链接</a>
 					</li>
       			</ul>
   			</div>
@@ -205,22 +205,22 @@ $(function(){
 			<h1>内容审核</h1>
         		<ul style="display: none;" class="MM">
 					<li>
-						<a target="main" href="/admin/draw/member.jhtml">企业审核列表</a>
+						<a target="main" href="/admin/enterpriseAudit/list.jhtml">企业审核列表</a>
 					</li>
 					<li>
-						<a target="main" href="/admin/balance.jhtml">招聘岗位审核列表</a>
+						<a target="main" href="/admin/stationAudit/list.jhtml">招聘岗位审核列表</a>
 					</li>
       			</ul>
 			<h1>资源审核</h1>
         		<ul style="display: none;" class="MM">
 					<li>
-						<a target="main" href="/admin/draw/member.jhtml">企业列表</a>
+						<a target="main" href="/admin/enterpriseList/list.jhtml">企业列表</a>
 					</li>
 					<li>
-						<a target="main" href="/admin/balance.jhtml">求职者列表</a>
+						<a target="main" href="/admin/jobSeekersList/list.jhtml">求职者列表</a>
 					</li>
 					<li>
-						<a target="main" href="/admin/balance.jhtml">招聘岗位列表</a>
+						<a target="main" href="/admin/stationList/list.jhtml">招聘岗位列表</a>
 					</li>
       			</ul>
   			</div>
@@ -232,10 +232,10 @@ $(function(){
 							<a target="main" href="../setting/edit.jhtml">系统信息</a>
 						</li>
 						<li>
-							<a target="main" href="../area/list.jhtml">后台登录记录</a>
+							<a target="main" href="/admin/loginRecord/list.jhtml">后台登录记录</a>
 						</li>
 						<li>
-							<a target="main" href="../payment_method/list.jhtml">管理员管理</a>
+							<a target="main" href="/admin/admin/list.jhtml">管理员管理</a>
 						</li>
 						<li>
 							<a target="main" href="/admin/power/powerList.jhtml">权限分组</a>
@@ -244,7 +244,7 @@ $(function(){
 							<a target="main" href="../delivery_corp/list.jhtml">备份数据</a>
 						</li>
 						<li>
-							<a target="main" href="../payment_plugin/list.jhtml">支上传文件管理</a>
+							<a target="main" href="/admin/uploadFile/list.jhtml">上传文件管理</a>
 						</li>
 						<li>
 							<a target="main" href="../storage_plugin/list.jhtml">静态化</a>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>新闻列表 - Powered By e3dmall</title>
+<title>管理员列表 - Powered By e3dmall</title>
 <meta name="author" content="e3dmall Team" />
 <meta name="copyright" content="e3dmall" />
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
@@ -12,13 +12,14 @@
 <script type="text/javascript">
 $().ready(function() {
 
+	
 
 });
 </script>
 </head>
 <body>
 	<div class="path">
-		<a href="/admin/common/main.jhtml">首页</a> &raquo; 内容列表 <span>共99条记录</span>
+		<a href="/admin/common/main.jhtml">首页</a> &raquo; 管理员列表 <span>共99条记录</span>
 	</div>
 	<form id="listForm" action="list.jhtml" method="get">
 		<div class="bar">
@@ -57,13 +58,19 @@ $().ready(function() {
 			<div class="menuWrap">
 				<div class="search">
 					<span id="searchPropertySelect" class="arrow">&nbsp;</span>
-					<input type="text" id="searchValue" name="searchValue" value="${page.searchValue}" maxlength="200" />
+					<input type="text" id="searchValue" name="searchValue" value="" maxlength="200" />
 					<button type="submit">&nbsp;</button>
 				</div>
 				<div class="popupMenu">
 					<ul id="searchPropertyOption">
 						<li>
-							<a href="javascript:;"[#if page.searchProperty == "title"] class="current"[/#if] val="title">标题</a>
+							<a href="javascript:;"[#if page.searchProperty == "username"] class="current"[/#if] val="username">用户名</a>
+						</li>
+						<li>
+							<a href="javascript:;"[#if page.searchProperty == "email"] class="current"[/#if] val="email">电子邮件</a>
+						</li>
+						<li>
+							<a href="javascript:;"[#if page.searchProperty == "name"] class="current"[/#if] val="name">姓名</a>
 						</li>
 					</ul>
 				</div>
@@ -75,86 +82,47 @@ $().ready(function() {
 					<input type="checkbox" id="selectAll" />
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="title">排序编号</a>
+					<a href="javascript:;" class="sort" name="username">用户名</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="adPosition">内容标题</a>
+					<a href="javascript:;" class="sort" name="email">电子邮件</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="type">置顶</a>
+					<a href="javascript:;" class="sort" name="loginDate">最后登录日期</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="endDate">排序</a>
+					<a href="javascript:;" class="sort" name="loginIp">最后登录IP</a>
 				</th>
 				<th>
-					<a href="#"  class="sort">操作</a>
+					<a href="javascript:;" class="sort" name="createDate">创建日期</a>
+				</th>
+				<th>
+					<span>操作</span>
 				</th>
 			</tr>
-			
-			<tr>
-				<td>
-					<input type="checkbox" name="ids" value="1" />
-				</td>
-				<td>
-					<span title="1">1</span>
-				</td>
-				<td>
-					新闻标题
-				</td>
-				<td>
-					<input type="checkbox" id="" />
-				</td>
-				<td>
-					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
-					<a href="" style="text-decoration:underline;">降</a>
-				</td>
-				<td>
-					<a href="edit.jhtml?id=1">[修改]</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" name="ids" value="1" />
-				</td>
-				<td>
-					<span title="2">2</span>
-				</td>
-				<td>
-					新闻标题
-				</td>
-				<td>
-					<input type="checkbox" id="" />
-				</td>
-				<td>
-					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
-					<a href="" style="text-decoration:underline;">降</a>
-				</td>
-				<td>
-					<a href="edit.jhtml?id=1">[修改]</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" name="ids" value="1" />
-				</td>
-				<td>
-					<span title="3">3</span>
-				</td>
-				<td>
-					新闻标题
-				</td>
-				<td>
-					<input type="checkbox" id="" />
-				</td>
-				<td>
-					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
-					<a href="" style="text-decoration:underline;">降</a>
-				</td>
-				<td>
-					<a href="edit.jhtml?id=1">[修改]</a>
-				</td>
-			</tr>
-			
+				<tr>
+					<td>
+						<input type="checkbox" name="ids" value="1" />
+					</td>
+					<td>
+						fz123456
+					</td>
+					<td>
+						123456@qq.com
+					</td>
+					<td>
+						2014-01-01
+					</td>
+					<td>
+						127.0.0.1
+					</td>
+					<td>
+						<span title="2013-05-04">2013-05-04</span>
+					</td>
+					<td>
+						<a href="edit.jhtml?id=1">[编辑]</a>
+					</td>
+				</tr>
 		</table>
 	</form>
 </body>
