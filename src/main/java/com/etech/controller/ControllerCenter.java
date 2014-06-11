@@ -98,11 +98,11 @@ public class ControllerCenter {
 			TcomUser sessionUser = (TcomUser) session.getAttribute("sessionUser");
 			comInfo.setComUser(sessionUser);
 			if (workTypeId != null) {
-				TmajorType workType = (TmajorType) etechService.findObjectById(TmajorType.class, 1);
+				TmajorType workType = (TmajorType) etechService.findObjectById(TmajorType.class, workTypeId);
 				comInfo.setWorkType(workType);
 			}
 			if (majorTypeId != null) {
-				TmajorType majorType = (TmajorType) etechService.findObjectById(TmajorType.class, 2);
+				TmajorType majorType = (TmajorType) etechService.findObjectById(TmajorType.class, majorTypeId);
 				comInfo.setMajorType(majorType);
 			}
 			etechService.saveOrUpdate(comInfo);
