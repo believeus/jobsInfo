@@ -13,6 +13,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+
+import com.etech.entity.Tadmin;
 import com.etech.entity.Tauthority;
 import com.etech.entity.TbaseUser;
 import com.etech.entity.Trole;
@@ -73,14 +75,14 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 				log.debug("init anonymousRole");
 			}
 			// 创建超级管理员角色
-			role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "*");
+			role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "superAdminRole");
 			if (StringUtils.isEmpty(role)) {
 				Trole superAdminRole = new Trole();
-				superAdminRole.setRoleName("*");
+				superAdminRole.setRoleName("superAdminRole");
 				Set<Tauthority> authorities = new HashSet<Tauthority>();
 				// 给管理员设置所有权限
 				Tauthority authority = new Tauthority();
-				authority.setAuthName("*:*");
+				authority.setAuthName("*");
 				etechService.saveOrUpdate(authority);
 				authorities.add(authority);
 				superAdminRole.setAuthorities(authorities);
@@ -88,14 +90,15 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 				log.debug("init superAdminRole");
 			}
 			// 初始化一个后台管理员
-			TbaseUser admin = (TbaseUser) etechService.findObjectByProperty(TbaseUser.class,"loginName", "admin");
+			Tadmin admin = (Tadmin) etechService.findObjectByProperty(Tadmin.class,"loginName", "admin");
 			if(StringUtils.isEmpty(admin)){
-				admin=new TbaseUser();
+				admin=new Tadmin();
 				admin.setLoginName("admin");
 				String password="admin!@#";
 				password=DigestUtils.md5Hex(password);
 				admin.setPassword(password);
-				role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "*");
+				admin.setDescription("最高权限管理员,拥有管理网站的所有权限");
+				role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "superAdminRole");
 				Set<Trole> roles=new HashSet<Trole>();
 				roles.add(role);
 				admin.setRoles(roles);

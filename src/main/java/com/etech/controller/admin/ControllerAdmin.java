@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @version 1.0
  */
 @Controller("controllerAdminAdmin")
-@RequestMapping("/admin/admin")
+@RequestMapping("/admin")
 public class ControllerAdmin{
 
-	@RequestMapping(value = "/admin/admin", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String admin(){
 		return "admin/login";
 	}

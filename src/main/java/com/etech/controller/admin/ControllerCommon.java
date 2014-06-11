@@ -1,4 +1,4 @@
-package com.etech.controller;
+package com.etech.controller.admin;
 
 import java.io.IOException;
 
