@@ -21,6 +21,7 @@
 	.j_head_pic{
 		width:100%;
 		height:132px;
+		background:url(/resource/public/images/head_pic.gif);
 	}
 	.j_head_nav{
 		width:100%;

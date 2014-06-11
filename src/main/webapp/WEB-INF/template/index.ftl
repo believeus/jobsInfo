@@ -160,6 +160,46 @@
     		margin-right:10px;
     	}
     </style>
+    <style type="text/css">
+		#banner {position:relative; width:314px; height:286px; overflow:hidden;}
+		#banner_list img {border:0px;}
+		#banner_bg {position:absolute; bottom:0;background-color:none;height:50px;filter: Alpha(Opacity=30);opacity:0.3;z-index:1000;
+		cursor:pointer; width:314px; }
+		#banner_info{position:absolute; bottom:23px; left:5px;height:22px;color:#555;z-index:1001;cursor:pointer}
+		#banner_text {position:absolute;width:120px;z-index:1002; right:3px; bottom:3px;}
+		#banner ul {position:absolute;list-style-type:none;filter: Alpha(Opacity=80);opacity:0.8; border:1px solid #fff;z-index:1002;
+		margin:0; padding:0; bottom:3px; right:5px;}
+		#banner ul li { padding:0px 8px;float:left;display:block;color:#FFF;border:#e5eaff 1px solid;background:#6f4f67;cursor:pointer}
+		#banner ul li.on { background:#900}
+		#banner_list a{position:absolute;} 
+	</style>
+	<script type="text/javascript">
+		var t = n = 0, count;
+		$(document).ready(function(){
+		count=$("#banner_list a").length;
+		$("#banner_list a:not(:first-child)").hide();
+		$("#banner_info").html($("#banner_list a:first-child").find("img").attr('alt'));
+		$("#banner_info").click(function(){window.open($("#banner_list a:first-child").attr('href'), "_blank")});
+		$("#banner li").click(function() {
+		var i = $(this).text() - 1;
+		n = i;
+		if (i >= count) return;
+		$("#banner_info").html($("#banner_list a").eq(i).find("img").attr('alt'));
+		$("#banner_info").unbind().click(function(){window.open($("#banner_list a").eq(i).attr('href'), "_blank")})
+		$("#banner_list a").filter(":visible").fadeOut(500).parent().children().eq(i).fadeIn(1000);
+		document.getElementById("banner").style.background="";
+		$(this).toggleClass("on");
+		$(this).siblings().removeAttr("class");
+		});
+		t = setInterval("showAuto()", 4000);
+		$("#banner").hover(function(){clearInterval(t)}, function(){t = setInterval("showAuto()", 4000);});
+		})
+		
+		function showAuto(){
+			n = n >=(count - 1) ? 0 : ++n;
+			$("#banner li").eq(n).trigger('click');
+		}
+	</script>
 </head>
 <body>
 	[#include "/include/header.ftl" /]
@@ -238,8 +278,25 @@
 	<div class="j_mian w">
 		<div class="j_mian_left">
 			<div class="picshow">
-				<img src="/resource/public/images/u6_normal_03.gif">
-				第一届潜江创业培训研讨会召开
+				<!--图片轮播***************************************************************-->
+				<div id="banner">
+					<div id="banner_bg"></div> 
+					<div id="banner_info"></div> 
+					<ul>
+						<li class="on">1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+					</ul>
+					<div id="banner_list">
+						<a href="/newsInfo.jhtml" target="_blank"><img src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第一届潜江创业培训研讨会召开" /></a>
+						<a href="/newsInfo.jhtml" target="_blank"><img src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第二届潜江创业培训研讨会召开" /></a>
+						<a href="/newsInfo.jhtml" target="_blank"><img src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第三届潜江创业培训研讨会召开" /></a>
+						<a href="/newsInfo.jhtml" target="_blank"><img src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第四届潜江创业培训研讨会召开" /></a>
+					</div>
+				</div>
+				<!--***************************************************************-->
+				
 			</div>
 			<div class="xinwen">
 				<div style="padding-left: 20px;margin-bottom:20px;">
@@ -351,7 +408,7 @@
 				<div class="denglu" id="denglu2">
 				<table style="padding:19px;">
 					<tr>
-						<td colspan="2" align="center" style="background:#EE981F;color:#FFFFFF;border-radius:4px;">用户登录</td>
+						<td colspan="2" align="center" style="background:url(/resource/public/images/beijingse.png);line-height:28px;color:#FFFFFF;border-radius:4px;">用户登录</td>
 					</tr>
 					<tr>
 						<td colspan="2"><font color="red" size="2">${sessionUser.loginName}</font>，欢迎您登录！</td>

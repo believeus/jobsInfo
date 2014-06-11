@@ -17,7 +17,7 @@ body{ background:url("/resource/public/images/adminbg.gif") top center no-repeat
 	 <div>
 		<div style="position: fixed; top: 100px; left:180px; "><label><font style="color: Green;font-size: 30px; font-family: cursive;">Admin</font></label></div>
 	   	<div style="position: fixed; top: 150px; left:300px; "><label><font style="color: Green;font-size: 30px; font-family: cursive;">后台管理</font></label></div>
-	    <form action="/" method="post">
+	    <form action="/admin/common/main.jhtml" method="get">
 	      <label>用户名：</label><input type="text" class="logintxt" name="username"/><br/>
 		  <label>密<font style="margin-left:1em"> </font>码：</label><input type="password" name="password" class="logintxt"/><br/>
 		  <c:out value="${LoginError }" escapeXml="false"/>
