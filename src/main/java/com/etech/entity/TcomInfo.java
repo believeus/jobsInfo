@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -48,6 +49,8 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 	/**该信息属于哪个用户*/
 	private TcomUser comUser;
 	
+	/**该信息属于哪个类型 1：表示具备技能，2：表示学习经历，3：表示工作经验，4：表示选择志愿 */
+	private Integer infoType; 
 	
 	@ManyToOne(cascade=CascadeType.ALL,optional = false)
 	@JoinColumn(name="fk_comUserId",referencedColumnName="id")
@@ -129,8 +132,8 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 		this.expectArea = expectArea;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)//多对一的时候可以获取admin对象
-	@JoinColumn(name="fk_workTypeId",referencedColumnName="id",nullable=true)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="fk_workTypeId",referencedColumnName="id")
 	public TmajorType getWorkType() {
 		return workType;
 	}
@@ -139,11 +142,18 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 	}
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="fk_majorTypeId",referencedColumnName="id",nullable=true)
+	@JoinColumn(name="fk_majorTypeId",referencedColumnName="id")
 	public TmajorType getMajorType() {
 		return majorType;
 	}
 	public void setMajorType(TmajorType majorType) {
 		this.majorType = majorType;
+	}
+	@NotNull
+	public Integer getInfoType() {
+		return infoType;
+	}
+	public void setInfoType(Integer infoType) {
+		this.infoType = infoType;
 	}
 }

@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -53,12 +54,22 @@ public class ControllerCenter {
 	private MydfsTrackerServer mydfsTrackerServer;
 
 	/** 个人中心:该用户需要有personalRole角色才能访问 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/common-user/center", method = RequestMethod.GET)
 	public String personalCenter(HttpSession session) {
 		TcomUser sessionUser = (TcomUser) session.getAttribute("sessionUser");
-		String hql="From TcomUser user left join fetch user.comInfo where user.id='"+sessionUser.getId()+"'";
-		TcomUser user=(TcomUser)etechService.findObjectByHql(hql);
-		sessionUser.setComInfo(user.getComInfo());
+		String hql="From TcomInfo comInfo left join fetch comInfo.comUser  as user where comInfo.infoType='1' and user.id='"+sessionUser.getId()+"'";
+		List<TcomUser> skills = (List<TcomUser>)etechService.findObjectByList(hql);
+		hql="From TcomInfo comInfo left join fetch comInfo.comUser  as user where comInfo.infoType='2' and user.id='"+sessionUser.getId()+"'";;
+		List<TcomUser> learnings = (List<TcomUser>)etechService.findObjectByList(hql);
+		hql="From TcomInfo comInfo left join fetch comInfo.comUser  as user where comInfo.infoType='3' and user.id='"+sessionUser.getId()+"'";;
+		List<TcomUser> works = (List<TcomUser>)etechService.findObjectByList(hql);
+		hql="From TcomInfo comInfo left join fetch comInfo.comUser  as user where comInfo.infoType='4' and user.id='"+sessionUser.getId()+"'";;
+		List<TcomUser> volunteers = (List<TcomUser>)etechService.findObjectByList(hql);
+		session.setAttribute("skills", skills);// 具备技能
+		session.setAttribute("learnings", learnings);// 学习经历
+		session.setAttribute("works", works);// 工作经验
+		session.setAttribute("volunteers", volunteers);// 选择志愿
 		return "center/personalCenter";
 	}
 
@@ -93,10 +104,11 @@ public class ControllerCenter {
 	/** 提交普通用户的编辑信息 */
 	@RequestMapping(value = "/common-user/center/submit-comInfo")
 	public void submitComInfo(TcomInfo comInfo, Integer workTypeId,
-			Integer majorTypeId, HttpServletResponse response,
+			Integer majorTypeId,HttpServletResponse response,
 			HttpSession session) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		System.out.println(workTypeId+"----"+majorTypeId);
+		System.out.println(comInfo.getInfoType());
 		try {
 			TcomUser sessionUser = (TcomUser) session.getAttribute("sessionUser");
 			comInfo.setComUser(sessionUser);

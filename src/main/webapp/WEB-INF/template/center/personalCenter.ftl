@@ -233,10 +233,10 @@
 					<dt class="open">管理员</dt>
 					<dd>
 						<ul>
-							<li rel="12">
+							<li rel="1">
 									管理员1
 							</li>
-							<li rel="22">
+							<li rel="2">
 									管理员2
 							</li>
 						</ul>   
@@ -283,12 +283,34 @@
 						
     	
     	$().ready(function() {
+    		var a;
+    		var b;
+    		var c;
+    		var d;
+    		[#if learnings?size>0]
+    			a = ${learnings?size}+1;
+    		[#else]
+    			a = 2;
+    		[/#if]
     		
+    		[#if skills?size>0]
+    			b = ${skills?size}+1;
+    		[#else]
+    			b = 2;
+    		[/#if]
     		
-    		var a = 2;
-    		var b = 2;
-    		var c = 2;
-    		var d = 2;
+    		[#if works?size>0]
+    			c = ${works?size}+1;
+    		[#else]
+    			c = 2;
+    		[/#if]
+    		
+    		[#if volunteers?size>0]
+    			d = ${volunteers?size}+1;
+    		[#else]
+    			d = 2;
+    		[/#if]
+    		
     		
     		$("#personal_xinxi").click(function(){
     			$("#personal_xinxi").removeClass("currentSwich");
@@ -336,6 +358,7 @@
 								<td>专业:</td>
 								<td colspan="3">
 									<input type="hidden" value="" id="selectLearningSpecialtyhidden'+a+'" name="majorTypeId" value=""/>
+									<input type="hidden" value="2" name="infoType">
 									<input type="hidden" value="" id="LearningId'+a+'"/>
 									<div class="topnav">
 										<a id="selectLearningSpecialty'+a+'" href="javascript:void(0);" class="as">
@@ -397,6 +420,7 @@
 								<td>专业：</td>
 								<td>
 									<input type="hidden" id="selectSkillSpecialtyhidden'+b+'" value="" name="majorTypeId">
+									
 									<div class="topnav">
 										<a href="javascript:void(0);" id="selectSkillSpecialty'+b+'" class="as">
 											<span>选择专业</span>		
@@ -419,6 +443,7 @@
 								<td>工种:</td>
 								<td>
 									<input type="hidden" id="selectSkillJobshidden'+b+'" value="" name="workTypeId">
+									<input type="hidden" value="1" name="infoType">
 									<div class="topnav">
 										<a class="as" href="javascript:void(0);" id="selectSkillJobs'+b+'">
 											<span>选择工种</span>		
@@ -505,6 +530,7 @@
 								<td>工种:</td>
 								<td>
 									<input type="hidden" value="" id="selectWorkJobhidden'+c+'" name="workTypeId"/>
+									<input type="hidden" value="3" name="infoType">
 									<div class="topnav">
 										<a id="selectWorkJob'+c+'" href="javascript:void(0);" class="as">
 											<span >
@@ -562,6 +588,7 @@
 								<td>专业:</td>
 								<td>
 									<input type="hidden" value="" id="selectVolunteerSpecialtyhidden'+d+'" name="majorTypeId"/>
+									<input type="hidden" value="4" name="infoType">
 									<div class="topnav">
 										<a id="selectVolunteerSpecialty'+d+'" href="javascript:void(0);" class="as">
 											<span >
@@ -654,23 +681,42 @@
 		    	$("#health").val("${sessionUser.health}");
 		    	$("#sex").val("${sessionUser.sex}");
 		    	
-		    	// 为所有插件使用相同的模板。
-		    	var html ='<div id="xmenuSkillSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'+
-						  '<div id="xmenuSkillJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>'+
-						  '<div id="xmenuLearningSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'+
-						  '<div id="xmenuWorkJob1" class="xmenu" style="display: none;">'+Jobs +'</div>'+
-						  '<div id="xmenuVolunteerSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'+
-						  '<div id="xmenuVolunteerJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>';
-				$("#conentDiv").parent().append(html);
-		    	
-		    	//技能专业
+		    	[#if skills?size>0]
+		    		[#list skills as skill]
+		    			var html='<div id="xmenuSkillSpecialty'+${skill_index+1}+'" class="xmenu" style="display: none;">'+Specialty +'</div>'
+								+'<div id="xmenuSkillJobs'+${skill_index+1}+'" class="xmenu" style="display: none;">'+Jobs +'</div>';
+						$("#conentDiv").parent().append(html);
+		    			//技能专业
+						$("#selectSkillSpecialty"+${skill_index+1}).xMenu({	
+							width :600,	
+							eventType: "click", //事件类型 支持focus click hover
+							dropmenu:"#xmenuSkillSpecialty"+${skill_index+1},//弹出层
+							emptytext:"选择专业",
+							hiddenID : "selectSkillSpecialtyhidden"+${skill_index+1},//隐藏域ID	
+							value :"${skill.majorType.id}"  // 设置已经保存过的值。
+						});
+						// 技能工种
+						$("#selectSkillJobs"+${skill_index+1}).xMenu({	
+							width :600,	
+							eventType: "click", //事件类型 支持focus click hover
+							dropmenu:"#xmenuSkillJobs"+${skill_index+1},//弹出层
+							emptytext:"选择工种",
+							hiddenID : "selectSkillJobshidden"+${skill_index+1},//隐藏域ID	
+							value : "${skill.workType.id}"
+						});
+						$("#skillLevel"+${skill_index+1}).val("${skill.skillLevel}");
+		    		[/#list]
+		    	[#else]
+		    	var html='<div id="xmenuSkillSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'
+						+'<div id="xmenuSkillJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>';
+						$("#conentDiv").parent().append(html);
+		    		//技能专业
 				$("#selectSkillSpecialty1").xMenu({	
 					width :600,	
 					eventType: "click", //事件类型 支持focus click hover
 					dropmenu:"#xmenuSkillSpecialty1",//弹出层
 					emptytext:"选择专业",
 					hiddenID : "selectSkillSpecialtyhidden1",//隐藏域ID	
-					value : ""  // 设置已经保存过的值。
 				});
 				// 技能工种
 				$("#selectSkillJobs1").xMenu({	
@@ -680,39 +726,110 @@
 					emptytext:"选择工种",
 					hiddenID : "selectSkillJobshidden1"//隐藏域ID	
 				});
-				// 学习经历专业
-				$("#selectLearningSpecialty1").xMenu({	
-					width :600,	
-					eventType: "click", //事件类型 支持focus click hover
-					dropmenu:"#xmenuLearningSpecialty1",//弹出层
-					emptytext:"选择工种",
-					hiddenID : "selectLearningSpecialtyhidden1"//隐藏域ID	
-				});
-				// 工作经历工种
-				$("#selectWorkJob1").xMenu({	
-					width :600,	
-					eventType: "click", //事件类型 支持focus click hover
-					dropmenu:"#xmenuWorkJob1",//弹出层
-					emptytext:"选择工种",
-					hiddenID : "selectWorkJobhidden1"//隐藏域ID	
-				});
+		    	[/#if]
+		    	
+		    	[#if learnings?size>0]
+		    		[#list learnings as learning]
+		    		var html ='<div id="xmenuLearningSpecialty'+${learning_index+1}+'" class="xmenu" style="display: none;">'+Specialty +'</div>';
+						$("#conentDiv").parent().append(html);
+		    		// 学习经历专业
+					$("#selectLearningSpecialty"+${learning_index+1}).xMenu({	
+						width :600,	
+						eventType: "click", //事件类型 支持focus click hover
+						dropmenu:"#xmenuLearningSpecialty"+${learning_index+1},//弹出层
+						emptytext:"选择专业",
+						hiddenID : "selectLearningSpecialtyhidden"+${learning_index+1},//隐藏域ID
+						value : "${learning.majorType.id}"
+					});
+		    		[/#list]
+		    	[#else]
+		    		var html ='<div id="xmenuLearningSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>';
+					$("#conentDiv").parent().append(html);
+			    	// 学习经历专业
+					$("#selectLearningSpecialty1").xMenu({	
+						width :600,	
+						eventType: "click", //事件类型 支持focus click hover
+						dropmenu:"#xmenuLearningSpecialty1",//弹出层
+						emptytext:"选择专业",
+						hiddenID : "selectLearningSpecialtyhidden1"//隐藏域ID	
+					});
+		    	[/#if]	
+		    	
+		    	[#if works?size>0]
+		    		[#list works as work]
+		    			var html ='<div id="xmenuWorkJob'+${work_index+1}+'" class="xmenu" style="display: none;">'+Jobs +'</div>';
+						$("#conentDiv").parent().append(html);
+		    			// 工作经历工种
+						$("#selectWorkJob"+${work_index+1}).xMenu({	
+							width :600,	
+							eventType: "click", //事件类型 支持focus click hover
+							dropmenu:"#xmenuWorkJob"+${work_index+1},//弹出层
+							emptytext:"选择工种",
+							hiddenID : "selectWorkJobhidden"+${work_index+1},//隐藏域ID
+							value : "${work.workType.id}"	
+						});
+		    		[/#list]
+		    	[#else]
+		    		var html ='<div id="xmenuWorkJob1" class="xmenu" style="display: none;">'+Jobs +'</div>';
+						$("#conentDiv").parent().append(html);
+		    		// 工作经历工种
+					$("#selectWorkJob1").xMenu({	
+						width :600,	
+						eventType: "click", //事件类型 支持focus click hover
+						dropmenu:"#xmenuWorkJob1",//弹出层
+						emptytext:"选择工种",
+						hiddenID : "selectWorkJobhidden1"//隐藏域ID	
+					});
+		    	[/#if]	
+				
+				[#if volunteers?size>0]
+		    		[#list volunteers as volunteer]
+		    			var html ='<div id="xmenuVolunteerSpecialty'+${volunteer_index+1}+'" class="xmenu" style="display: none;">'+Specialty +'</div>'+
+						  '<div id="xmenuVolunteerJobs'+${volunteer_index+1}+'" class="xmenu" style="display: none;">'+Jobs +'</div>';
+						$("#conentDiv").parent().append(html);
+		    			//志愿专业
+						$("#selectVolunteerSpecialty"+${volunteer_index+1}).xMenu({	
+							width :600,	
+							eventType: "click", //事件类型 支持focus click hover
+							dropmenu:"#xmenuVolunteerSpecialty"+${volunteer_index+1},//弹出层
+							emptytext:"选择专业",
+							hiddenID : "selectVolunteerSpecialtyhidden"+${volunteer_index+1},//隐藏域ID
+							value : "${volunteer.majorType.id}"	
+						});
+						// 志愿工种
+						$("#selectVolunteerJobs"+${volunteer_index+1}).xMenu({	
+							width :600,	
+							eventType: "click", //事件类型 支持focus click hover
+							dropmenu:"#xmenuVolunteerJobs"+${volunteer_index+1},//弹出层
+							emptytext:"选择工种",
+							hiddenID : "selectVolunteerJobshidden"+${volunteer_index+1},//隐藏域ID	
+							value : "${volunteer.workType.id}"
+						});
+		    		[/#list]
+		    	[#else]
+		    		var html ='<div id="xmenuVolunteerSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'+
+						  '<div id="xmenuVolunteerJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>';
+						$("#conentDiv").parent().append(html);
+		    		//志愿专业
+					$("#selectVolunteerSpecialty1").xMenu({	
+						width :600,	
+						eventType: "click", //事件类型 支持focus click hover
+						dropmenu:"#xmenuVolunteerSpecialty1",//弹出层
+						emptytext:"选择专业",
+						hiddenID : "selectVolunteerSpecialtyhidden1"//隐藏域ID	
+					});
+					// 志愿工种
+					$("#selectVolunteerJobs1").xMenu({	
+						width :600,	
+						eventType: "click", //事件类型 支持focus click hover
+						dropmenu:"#xmenuVolunteerJobs1",//弹出层
+						emptytext:"选择工种",
+						hiddenID : "selectVolunteerJobshidden1"//隐藏域ID	
+					});
+		    	[/#if]	
+				
     	
-    			//志愿专业
-				$("#selectVolunteerSpecialty1").xMenu({	
-					width :600,	
-					eventType: "click", //事件类型 支持focus click hover
-					dropmenu:"#xmenuVolunteerSpecialty1",//弹出层
-					emptytext:"选择专业",
-					hiddenID : "selectVolunteerSpecialtyhidden1"//隐藏域ID	
-				});
-				// 志愿工种
-				$("#selectVolunteerJobs1").xMenu({	
-					width :600,	
-					eventType: "click", //事件类型 支持focus click hover
-					dropmenu:"#xmenuVolunteerJobs1",//弹出层
-					emptytext:"选择工种",
-					hiddenID : "selectVolunteerJobshidden1"//隐藏域ID	
-				});
+    			
 				
     			// 提交信息列表
     			function sumitValidLIist(){
@@ -738,9 +855,9 @@
 	    					$("input[name='beginData']").val(beginDate);
 	    					$("input[name='endData']").val(endDate);
 	    					
-	    					$("#LearningForm"+index).ajaxSubmit(function (data) {
+	    					/*$("#LearningForm"+index).ajaxSubmit(function (data) {
 				            	return false;
-			        		});	
+			        		});*/	
 	    					
 	    				 })
     				  alert("xxxxxxxx工作经验xxxxxxx");
@@ -757,9 +874,9 @@
 	    					$("input[name='beginData']").val(beginDate);
 	    					$("input[name='endData']").val(endDate);
 	    					
-	    					$("#WorkForm"+index).ajaxSubmit(function (data) {
+	    					/*$("#WorkForm"+index).ajaxSubmit(function (data) {
 				            	return false;
-			        		});
+			        		});*/
 			        		
     				  })
     				  
@@ -1071,9 +1188,6 @@
 					
 					<div style="height: 30px; width: 728px;">
 						<span style="float:left;">具备技能
-						[#list sessionUser.comInfo as comInfo]
-							${comInfo.id}
-						[/#list]
 						</span>
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 						<div style="float: left; width: 50px; margin-left: 20px;">
@@ -1081,10 +1195,85 @@
 						</div>
 					</div>
 					<div class="jineng">
+					[#if skills?size>0]
+					[#list skills as skill]
+						<div class="jineng_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+						
+						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="SkillForm${skill_index+1}">						
+						<table>
+						
+							<tr>
+								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">${skill_index+1}</td>
+							</tr>
+							<tr>
+								<td>专业：</td>
+								<td>
+									<input type="hidden" id="selectSkillSpecialtyhidden${skill_index+1}" name="majorTypeId" value="${skill.majorType.id}"/>
+									<input type="hidden" value="1" name="infoType">
+									<input type="hidden" value="${skill.id}" name="id">
+									<div class="topnav">
+										<a id="selectSkillSpecialty${skill_index+1}" href="javascript:void(0);" class="as">
+											<span >
+												[#assign name=skill.majorType.name+"(点击即可取消选择)"]
+												[#if name?length > 15]
+													${name?string?substring(0,15)}...
+												[#else]
+													${name}
+												[/#if]
+											</span>		
+										</a>	
+									</div>
+								</td>
+								<td>技能等级:</td>
+								<td style="padding-right:70px;">
+									<select id="skillLevel${skill_index+1}" name="skillLevel" style="width:158px;">
+										<option value="">请选择..</option>
+										<option value="职业资格一级（高级技师）">职业资格一级（高级技师）</option>
+										<option value="职业资格二级（技师）">职业资格二级（技师）</option>
+										<option value="职业资格三级（高级）">职业资格三级（高级）</option>
+										<option value="职业资格四级（中级）">职业资格四级（中级）</option>
+										<option value="职业资格五级（初级）">职业资格五级（初级）</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>工种:</td>
+								<td>
+									<input type="hidden" value="${skill.workType.id}" id="selectSkillJobshidden${skill_index+1}" name="workTypeId"/>
+									<div class="topnav">
+										<a id="selectSkillJobs${skill_index+1}" href="javascript:void(0);" class="as">
+											<span >
+												[#assign name=skill.workType.name+"(点击即可取消选择)"]
+												[#if name?length > 15]
+													${name?string?substring(0,15)}...
+												[#else]
+													${name}
+												[/#if]
+											</span>		
+										</a>	
+									</div>
+								</td>
+								<td>从事年限:</td>
+								<td><input type="text" id="workingLifeSkill1" name="workingLife" value="${skill.workingLife}">
+								</td>
+							</tr>
+							<tr>
+								<td>说明:</td>
+								<td colspan="3"><textArea cols="50" style="resize:none;" name="note"  id="noteSkill1">${skill.note}</textArea></td>
+								<td rowspan="3"><a class="delete_jineng" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
+							</tr>
+						</table>
+						</form>
+					</div>
+							
+						[/#list]
+					[#else]
+						
 					<div class="jineng_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="SkillForm1">						
 						<table>
+						
 							<tr>
 								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">1</td>
 							</tr>
@@ -1092,6 +1281,7 @@
 								<td>专业：</td>
 								<td>
 									<input type="hidden" value="" id="selectSkillSpecialtyhidden1" name="majorTypeId"/>
+										<input type="hidden" value="1" name="infoType">
 									<div class="topnav">
 										<a id="selectSkillSpecialty1" href="javascript:void(0);" class="as">
 											<span >
@@ -1136,8 +1326,8 @@
 						</table>
 						</form>
 					</div>
+					[/#if]
 					</div>
-					
 					
 					<div style="height: 30px; width: 728px;">
 						<span style="float:left;">学习经历</span>
@@ -1147,6 +1337,58 @@
 						</div>
 					</div>
 					<div class="xuexi">
+					
+					[#if learnings?size>0]
+					[#list learnings as learning]
+						<div class="xuexi_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="LearningForm${learning_index+1}">	
+						<table>
+							<tr>
+								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">${learning_index+1}</td>
+							</tr>
+							<tr>
+								<td>起始时间:</td>
+								<td colspan="3">
+								<input type="text" name="beginDate" id="beginDate"  eidLearning="beginDateLearning1" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
+								结束时间: <input type="text"  name="endDate" id="endDate" eidLearning="endDateLearning1" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
+								<input type="hidden" name="beginData" value=""/>
+								<input type="hidden" name="endData" value=""/>
+								</td>
+								
+							</tr>
+							<tr>
+								<td>学校名称:</td>
+								<td style="padding-right:100px;">
+								<input type="text" id="schoolLearning1" name="workspace"  value="${learning.workspace}"></td>
+								<td>系别:</td>
+								<td><input type="text" id="deptLearning1" name="dept" value="${learning.dept}"></td>
+							</tr>
+							<tr>
+								<td>专业:</td>
+								<td colspan="3">
+									<input type="hidden" value="${learning.majorType.id}" id="selectLearningSpecialtyhidden${learning_index+1}" name="majorTypeId"/>
+									<input type="hidden" value="2" name="infoType">
+									<input type="hidden" value="${learning.id}" name="id">
+									<div class="topnav">
+										<a id="selectLearningSpecialty${learning_index+1}" href="javascript:void(0);" class="as">
+											<span >
+												[#assign name=learning.majorType.name+"(点击即可取消选择)"]
+												[#if name?length > 15]
+													${name?string?substring(0,15)}...
+												[#else]
+													${name}
+												[/#if]
+											</span>		
+										</a>	
+									</div>
+								</td>
+								<td rowspan="3"><a class="delete_xuexi" href="javascript:void(0);">删除</a></td>
+							</tr>
+						</table>
+						</form>
+					</div>
+					[/#list]
+					[#else]
 					<div class="xuexi_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="LearningForm1">	
 						<table>
@@ -1168,12 +1410,13 @@
 								<td style="padding-right:100px;">
 								<input type="text" id="schoolLearning1" name="workspace"></td>
 								<td>系别:</td>
-								<td><input type="text" id="deptLearning1" name="dept"></td>
+								<td><input type="text" id="deptLearning1" name="dept" ></td>
 							</tr>
 							<tr>
 								<td>专业:</td>
 								<td colspan="3">
 									<input type="hidden" value="" id="selectLearningSpecialtyhidden1" name="majorTypeId"/>
+									<input type="hidden" value="2" name="infoType">
 									<div class="topnav">
 										<a id="selectLearningSpecialty1" href="javascript:void(0);" class="as">
 											<span >
@@ -1187,6 +1430,9 @@
 						</table>
 						</form>
 					</div>
+					
+					[/#if]
+					
 					</div>
 					
 					<div style="height: 30px; width: 728px;">
@@ -1197,7 +1443,57 @@
 						</div>
 					</div>
 					<div class="gongzuo">
-					<div class="gongzuo_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+					[#if works?size>0]
+						[#list works as work]
+						<div class="gongzuo_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="WorkForm${work_index+1}">	
+						<table>
+							<tr>
+								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">${work_index+1}</td>
+							</tr>
+							<tr>
+								<td>起始时间:</td>
+								<td colspan="3">
+								<input type="text" eidWork="beginDateWork1" id="beginDate" name="beginDate" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
+								结束时间: <input type="text" eidWork="endDateWork1" id="endDate" name="endDate" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
+								<input type="hidden" name="beginData" value=""/>
+								<input type="hidden" name="endData" value=""/>
+								</td>
+							</tr>
+							<tr>
+								<td>工作单位:</td>
+								<td style="padding-right:100px;"><input type="text" id="workspaceWork1" name="workspace" value="${work.workspace}"></td>
+								<td>职务:</td>
+								<td><input type="text" id="dutyWork1" name="duty" value="${work.duty}"></td>
+							</tr>
+							<tr>
+								<td>工种:</td>
+								<td>
+									<input type="hidden" value="${work.workType.id}" id="selectWorkJobhidden${work_index+1}" name="workTypeId"/>
+									<input type="hidden" value="3" name="infoType">
+									<div class="topnav">
+										<a id="selectWorkJob${work_index+1}" href="javascript:void(0);" class="as">
+											<span >
+												[#assign name=work.workType.name+"(点击即可取消选择)"]
+												[#if name?length > 15]
+													${name?string?substring(0,15)}...
+												[#else]
+													${name}
+												[/#if]
+											</span>		
+										</a>	
+									</div>
+								</td>
+								<td>工作内容:</td>
+								<td ><input type="text" id="noteWork1" name="note"></td>
+								<td rowspan="3"><a class="delete_gongzuo" href="javascript:void(0);">删除</a></td>
+							</tr>
+						</table>
+						</form>
+					</div>
+						[/#list]
+						[#else]
+						<div class="gongzuo_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="WorkForm1">	
 						<table>
 							<tr>
@@ -1222,6 +1518,7 @@
 								<td>工种:</td>
 								<td>
 									<input type="hidden" value="" id="selectWorkJobhidden1" name="workTypeId"/>
+									<input type="hidden" value="3" name="infoType">
 									<div class="topnav">
 										<a id="selectWorkJob1" href="javascript:void(0);" class="as">
 											<span >
@@ -1237,6 +1534,8 @@
 						</table>
 						</form>
 					</div>
+					[/#if]
+					
 					</div>
 					
 					<div style="height: 30px; width: 728px;">
@@ -1265,6 +1564,8 @@
 						<input type="reset" value="重写">
 					</p>
 				</div>
+				</div>
+				
 				<div id="select_zhuti" style="width:728px;height:auto;;overflow:hidden;display:none;">
 					<div style="height: 30px; width: 728px;">
 						<span style="float:left;">选择志愿</span>
@@ -1274,7 +1575,67 @@
 						</div>
 					</div>
 					<div class="zhiyuan">
-					<div class="zhiyuan_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+					[#if volunteers?size>0]
+					[#list volunteers as volunteer]
+						<div class="zhiyuan_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="VolunteerForm${volunteer_index+1}">	
+						<table>
+							<tr>
+								<td rowspan="3" style="background:#DCDCDC;color:#FE7200;">${volunteer_index+1}</td>
+								<td>专业:</td>
+								<td>
+									<input type="hidden" value="${volunteer.majorType.id}" id="selectVolunteerSpecialtyhidden${volunteer_index+1}" name="majorTypeId"/>
+									<input type="hidden" value="4" name="infoType">
+									<div class="topnav">
+										<a id="selectVolunteerSpecialty${volunteer_index+1}" href="javascript:void(0);" class="as">
+											<span >
+												[#assign name=volunteer.majorType.name+"(点击即可取消选择)"]
+												[#if name?length > 15]
+													${name?string?substring(0,15)}...
+												[#else]
+													${name}
+												[/#if]
+											</span>		
+										</a>	
+									</div>
+								</td>
+								<td>择业地区:</td>
+								<td><input type="text" id="expectAreaVolunteer1" name="expectArea" value="${volunteer.expectArea}"></td>
+							</tr>
+							<tr>
+								
+								<td>工种:</td>
+								<td>
+									<input type="hidden" value="${volunteer.workType.id}" id="selectVolunteerJobshidden${volunteer_index+1}" name="workTypeId"/>
+									<div class="topnav">
+										<a id="selectVolunteerJobs${volunteer_index+1}" href="javascript:void(0);" class="as">
+											<span >
+												[#assign name=volunteer.workType.name+"(点击即可取消选择)"]
+												[#if name?length > 15]
+													${name?string?substring(0,15)}...
+												[#else]
+													${name}
+												[/#if]
+											</span>		
+										</a>	
+									</div>
+								</td>
+								<td>月薪要求:</td>
+								<td style="padding-right:70px;">
+									<input type="text" id="expectSalaryVolunteer1" name="expectSalary" value="${volunteer.expectSalary}">
+								</td>
+							</tr>
+							<tr>
+								<td>其他要求:</td>
+								<td colspan="3"><textArea cols="50" name="note" id="noteVolunteer1" value="${volunteer.note}" style="resize:none;"></textArea></td>
+								<td rowspan="3"><a class="delete_zhiyuan" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
+							</tr>
+						</table>
+						</form>
+					</div>
+					[/#list]
+					[#else]
+						<div class="zhiyuan_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="VolunteerForm1">	
 						<table>
 							<tr>
@@ -1282,6 +1643,7 @@
 								<td>专业:</td>
 								<td>
 									<input type="hidden" value="" id="selectVolunteerSpecialtyhidden1" name="majorTypeId"/>
+									<input type="hidden" value="4" name="infoType">
 									<div class="topnav">
 										<a id="selectVolunteerSpecialty1" href="javascript:void(0);" class="as">
 											<span >
@@ -1319,6 +1681,8 @@
 						</table>
 						</form>
 					</div>
+					[/#if]
+					
 					</div>
 					<p style="text-align:center;">
 						<input type="button" id="saveVolunteer" value="保存">
