@@ -5,6 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script src="/resource/public/resources/scripts/jquery-1.10.2.min.js"></script>
     <style type="text/css">
    		.j_main{
     		width:1000px;
@@ -133,6 +134,46 @@
     		overflow:hidden;
     	}
     </style>
+    <style type="text/css">
+		#banner {position:relative; width:314px; height:286px; overflow:hidden;}
+		#banner_list img {border:0px;}
+		#banner_bg {position:absolute; bottom:0;background-color:none;height:50px;filter: Alpha(Opacity=30);opacity:0.3;z-index:1000;
+		cursor:pointer; width:314px; }
+		#banner_info{position:absolute; bottom:23px; left:5px;height:22px;color:#555;z-index:1001;cursor:pointer}
+		#banner_text {position:absolute;width:120px;z-index:1002; right:3px; bottom:3px;}
+		#banner ul {position:absolute;list-style-type:none;filter: Alpha(Opacity=80);opacity:0.8; border:1px solid #fff;z-index:1002;
+		margin:0; padding:0; bottom:3px; right:5px;}
+		#banner ul li { padding:0px 8px;float:left;display:block;color:#FFF;border:#e5eaff 1px solid;background:#6f4f67;cursor:pointer}
+		#banner ul li.on { background:#900}
+		#banner_list a{position:absolute;} 
+	</style>
+	<script type="text/javascript">
+		var t = n = 0, count;
+		$(document).ready(function(){
+		count=$("#banner_list a").length;
+		$("#banner_list a:not(:first-child)").hide();
+		$("#banner_info").html($("#banner_list a:first-child").find("img").attr('alt'));
+		$("#banner_info").click(function(){window.open($("#banner_list a:first-child").attr('href'), "_blank")});
+		$("#banner li").click(function() {
+		var i = $(this).text() - 1;
+		n = i;
+		if (i >= count) return;
+		$("#banner_info").html($("#banner_list a").eq(i).find("img").attr('alt'));
+		$("#banner_info").unbind().click(function(){window.open($("#banner_list a").eq(i).attr('href'), "_blank")})
+		$("#banner_list a").filter(":visible").fadeOut(500).parent().children().eq(i).fadeIn(1000);
+		document.getElementById("banner").style.background="";
+		$(this).toggleClass("on");
+		$(this).siblings().removeAttr("class");
+		});
+		t = setInterval("showAuto()", 4000);
+		$("#banner").hover(function(){clearInterval(t)}, function(){t = setInterval("showAuto()", 4000);});
+		})
+		
+		function showAuto(){
+			n = n >=(count - 1) ? 0 : ++n;
+			$("#banner li").eq(n).trigger('click');
+		}
+	</script>
 </head>
 <body>
 	[#include "/include/header.ftl" /]
@@ -166,27 +207,43 @@
 		<div class="j_main_right">
 			<div class="j_main_right_2" style="border:1px solid #E4E4E4;">
 				<div class="picshow">
-				<img src="/resource/public/images/u6_normal_03.gif" style="padding:5px;">
-				<span style="padding-left:5px;">第一届潜江创业培训研讨会召开</span>
-			</div>
-			<div class="xinwen">
-				<div style="padding-left: 20px;margin-bottom:20px;">
-					<h2 style="margin: 0px; font-size: 21px; font-weight: normal;"><a href="/newsInfo.jhtml">表彰全市创业就业先进个人</a></h2>
-					<p style="color:#2B8BDF;margin:0;font-size:12px;">xx市人力资源和社会保障局关于表彰全市创业就业先进个人的决定</p>
+					<!--图片轮播***************************************************************-->
+					<div id="banner">
+						<div id="banner_bg"></div> 
+						<div id="banner_info"></div> 
+						<ul>
+							<li class="on">1</li>
+							<li>2</li>
+							<li>3</li>
+							<li>4</li>
+						</ul>
+						<div id="banner_list">
+							<a href="/newsInfo.jhtml" target="_blank"><img src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第一届潜江创业培训研讨会召开" /></a>
+							<a href="/newsInfo.jhtml" target="_blank"><img src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第二届潜江创业培训研讨会召开" /></a>
+							<a href="/newsInfo.jhtml" target="_blank"><img src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第三届潜江创业培训研讨会召开" /></a>
+							<a href="/newsInfo.jhtml" target="_blank"><img src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第四届潜江创业培训研讨会召开" /></a>
+						</div>
+					</div>
+					<!--***************************************************************-->
 				</div>
-				<div style="padding-left: 20px;">
-					<h2 style="margin: 0px; font-size: 21px; font-weight: normal;"><a href="/newsInfo.jhtml">国务院六大举措力促高校毕业生就业</a></h2>
-					<p style="color:#2B8BDF;margin:0;font-size:12px;">昨日，国务院总理李克强主持召开国务院常务会议，对于如何做..</p>
+				<div class="xinwen">
+					<div style="padding-left: 20px;margin-bottom:20px;">
+						<h2 style="margin: 0px; font-size: 21px; font-weight: normal;"><a href="/newsInfo.jhtml">表彰全市创业就业先进个人</a></h2>
+						<p style="color:#2B8BDF;margin:0;font-size:12px;">xx市人力资源和社会保障局关于表彰全市创业就业先进个人的决定</p>
+					</div>
+					<div style="padding-left: 20px;">
+						<h2 style="margin: 0px; font-size: 21px; font-weight: normal;"><a href="/newsInfo.jhtml">国务院六大举措力促高校毕业生就业</a></h2>
+						<p style="color:#2B8BDF;margin:0;font-size:12px;">昨日，国务院总理李克强主持召开国务院常务会议，对于如何做..</p>
+					</div>
+					<hr style="margin-left: 10px; margin-right: 10px; border: 1px dashed #e4e4e4;">
+					<ul class="xinwen_ul" style="padding-left: 25px;">
+						<li><a href="/newsInfo.jhtml">推陈出新的巧克力蛋糕店创业计划书</a></li>
+						<li><a href="/newsInfo.jhtml">创业计划书的六个概念</a></li>
+						<li><a href="/newsInfo.jhtml">赢动运城创业大赛报名表</a></li>
+						<li><a href="/newsInfo.jhtml">毕业季里的创业课</a></li>
+						<li><a href="/newsInfo.jhtml">运城启动SIYB免费创业培训</a></li>
+					</ul>
 				</div>
-				<hr style="margin-left: 10px; margin-right: 10px; border: 1px dashed #e4e4e4;">
-				<ul class="xinwen_ul" style="padding-left: 25px;">
-					<li><a href="/newsInfo.jhtml">推陈出新的巧克力蛋糕店创业计划书</a></li>
-					<li><a href="/newsInfo.jhtml">创业计划书的六个概念</a></li>
-					<li><a href="/newsInfo.jhtml">赢动运城创业大赛报名表</a></li>
-					<li><a href="/newsInfo.jhtml">毕业季里的创业课</a></li>
-					<li><a href="/newsInfo.jhtml">运城启动SIYB免费创业培训</a></li>
-				</ul>
-			</div>
 				
 			</div>
 			<div class="j_main_right_2" style="width:727px;">

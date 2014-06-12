@@ -7,7 +7,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
-   <script src="/resource/public/resources/scripts/jquery-1.10.2.min.js"></script>
+    <script src="/resource/public/resources/scripts/jquery-1.10.2.min.js"></script>
  <script type="text/javascript" src="/resource/public/resources/scripts/jquery.validate.js"></script>
  <script type="text/javascript" src="/resource/public/js/Etech.js"></script>
     
@@ -387,12 +387,12 @@
 			</div>
 		</div>
 		<div class="j_mian_right">
-			<div class="gonggao">
+			<div id="demo" class="gonggao">
 				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);">
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
 					公告公示<span style="float:right;"><a href="/publicityList.jhtml">更多</a></span>
 				</p>
-				<ul style="padding-left:25px;">
+				<ul id="demo1" style="padding-left:25px;">
 					<li><a href="/publicityInfo.jhtml">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
 					<li><a href="/publicityInfo.jhtml">社会保障费申请缴纳管理规定..</a><span>10-15</span></li>
 					<li><a href="/publicityInfo.jhtml">人力资源社会保障部关于印发..</a><span>10-15</span></li>
@@ -402,6 +402,7 @@
 					<li><a href="/publicityInfo.jhtml">人力资源社会保障部关于印发..</a><span>10-15</span></li>
 					<li><a href="/publicityInfo.jhtml">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
 				</ul>
+				<div id="demo2" class="gonggao"></div>
 			</div>
 			
 			[#if sessionUser?exists]
@@ -525,5 +526,22 @@
 		</div>
 	</div>
 	[#include "/include/footer.ftl" /]
+	<script type="text/javascript"> 
+		var speed=80;
+		var demo=document.getElementById("demo"); 
+		var demo2=document.getElementById("demo2"); 
+		var demo1=document.getElementById("demo1"); 
+		demo2.innerHTML=demo1.innerHTML;
+		function Marquee(){ 
+			if(demo2.offsetTop-demo.scrollTop<=0) 
+				demo.scrollTop-=demo1.offsetHeight; 
+			else{ 
+			  	demo.scrollTop++;
+			} 
+		} 
+		var MyMar=setInterval(Marquee,speed); 
+		demo.onmouseover=function() {clearInterval(MyMar)} 
+		demo.onmouseout=function() {MyMar=setInterval(Marquee,speed)} 
+	</script>
 </body>
 </html>
