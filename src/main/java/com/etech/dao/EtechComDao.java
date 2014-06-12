@@ -149,37 +149,25 @@ public class EtechComDao extends HibernateDaoSupport {
 		});
 	}
 	
-	// 分页查询  
-	//  第一个参数：当前页数 
-	//  第二个参数：每页显示多少条数据
-	//  第三个参数：共有多少条数据
-	// 算法分析 如果总共有n条数据  每页perPageCount条数据 则可以分((n/c)+(n%c))页 所以
-	/*		  x				y			        					z                   
-	 *       页          开始行           					结束行                结束行-开始行(注意该值是每页显示的行数，所以是一个固定值)
-	 *       1			     0		 		  				perPageCount-1           perPageCount-1  行 (注意第0行也算一行)
-	 *       2			 perPageCount		            2perPageCount-1          perPageCount-1  行
-	 *       3			 2perPageCount				    3perPageCount-1          perPageCount-1  行
-	 *       
-	 *       得出页x和开始行y之间的关系式        y=perPageCount(x-1);
-	 *       得出开始行x和结束行y之间的关系式  z=y+9  又因为 y=perPageCount(x-1)  所以z=perPageCount*x-1;
-	 * */
-	public List<?> getPageDateList(final String hql,final Integer currentPage,final Integer perPageCount,final Integer totalCount){
-		
-	/*	return (List<?>)super.execute(new BelieveusCallBack<List<?>>() {
+	public List<?> getPageDateList(final String hql,final Integer currentPage,final Integer perPageCount,Class<?> clazz){
+		String hqlCount="select count (*) from "+clazz.getName();
+		final Long totalCount =(Long) getObjectByHQL(hqlCount);
+		if(totalCount==null) {return null;}
+		return (List<?>) getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
 			@Override
-			public List<?> callBack(Session session) {
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
 				Query query = session.createQuery(hql);
 				// 该方法是设置从哪一行开始
 				Integer pageIndex=currentPage;
 				Integer perCount=perPageCount;
-				Integer allCount=totalCount;
-				if ((pageIndex!=null&&currentPage!=0)||(perCount!=null&&perPageCount!=0)||(allCount!=null&&totalCount!=0)) {
+				if ((pageIndex!=null&&currentPage!=0)||(perCount!=null&&perPageCount!=0)) {
 					// 如果当前页大于最大页,则当前页等于最大页
 					//使用ceil的时候注意：一定要把参数转换为float类型。
 					if (currentPage>((int)Math.ceil((float)totalCount/perCount))) {
 						pageIndex=(int)Math.ceil((float)totalCount/perCount);
 					}
-					
 					// 如果当前页小于第一页则等于第一页
 					if (pageIndex<1) {
 						pageIndex=1;
@@ -192,8 +180,7 @@ public class EtechComDao extends HibernateDaoSupport {
 				}
 				return query.list();
 			}
-		});*/
-		return null;
+		});
 	}
 	/*Begin Name:wuqiwei Date:2013-11-5 07:24:40 AddReason:返回一定数量的行数*/
 	public List<?> getPageDateList(final String hql,final Integer num){

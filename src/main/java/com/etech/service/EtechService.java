@@ -1,5 +1,7 @@
 package com.etech.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import com.etech.dao.EtechComDao;
@@ -27,7 +29,11 @@ public class EtechService {
 	public void deleteObjectById(Class<?> clazz, Integer id) {
 		etechComDao.delete(clazz, id);
 	}
-	public Object findObjectByHql(String hql){
-		return etechComDao.getObjectByHQL(hql);
+	public List<?> findObjectList(String hql,int currentPage,int perPageCount,Class<?> clazz){
+		return (List<?>) etechComDao.getPageDateList(hql, currentPage, perPageCount, clazz);
+	}
+	
+	public List<?> findObjectByList(String hql){
+		return (List<?>)etechComDao.getObjecListByHQL(hql);
 	}
 }
