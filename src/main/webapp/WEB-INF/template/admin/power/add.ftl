@@ -57,19 +57,27 @@ $().ready(function() {
 	<div class="path">
 		<a href="/admin/common/main.jhtml">首页</a> &raquo; 添加内容
 	</div>
-	<form id="inputForm" action="save.jhtml" method="post" enctype="multipart/form-data">
+	<form id="inputForm" action="/admin/power/save.jhtml" method="post">
 		<table class="input">
 			<tr>
 				<th colspan="2" style="text-align: left; font-size: 15px; padding-left: 120px;">
-					新建管理员分组
+					新建管理员角色
 				</th>
 			</tr>
 			<tr>
 				<th>
-					<span class="requiredField">*</span>分组:
+					<span class="requiredField">*</span>角色:
 				</th>
 				<td>
-					<input type="text" name="title" class="text" maxlength="200" />
+					<input type="text" name="roleName" class="text" maxlength="200" />
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<span class="requiredField">*</span>角色描述:
+				</th>
+				<td>
+					<input type="text" name="description" class="text" maxlength="200" />
 				</td>
 			</tr>
 			<tr>
@@ -77,7 +85,7 @@ $().ready(function() {
 					&nbsp;
 				</th>
 				<td colspan="3">
-					<input type="submit" class="button" value="添加分组" />
+					<input type="submit" class="button" value="创建角色" />
 					<input type="button" id="backButton" class="button" value="返回" />
 				</td>
 			</tr>

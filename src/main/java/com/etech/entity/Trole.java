@@ -19,6 +19,8 @@ public class Trole extends TbaseEntity{
 	private static final long serialVersionUID = -4218776314250203152L;
 	/**角色名*/
 	private String roleName;
+	//角色描述
+	private String description;
 	
 	/**角色拥有哪些权限*/
 	
@@ -35,7 +37,14 @@ public class Trole extends TbaseEntity{
 		this.roleName = roleName;
 	}
 	
-	@OneToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE})
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	@OneToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH})
 	@JoinColumn(name="fk_roleId",referencedColumnName="id")
 	public Set<Tauthority> getAuthorities() {
 		return authorities;

@@ -229,25 +229,13 @@ $(function(){
   			<h1>系统设置</h1>
        			 <ul style="display: none;" class="MM">
 						<li>
-							<a target="main" href="../setting/edit.jhtml">系统信息</a>
+							<a target="main" href="/admin/list.jhtml">管理员管理</a>
 						</li>
 						<li>
-							<a target="main" href="/admin/loginRecord/list.jhtml">后台登录记录</a>
-						</li>
-						<li>
-							<a target="main" href="/admin/admin/list.jhtml">管理员管理</a>
-						</li>
-						<li>
-							<a target="main" href="/admin/power/powerList.jhtml">权限分组</a>
-						</li>
-						<li>
-							<a target="main" href="../delivery_corp/list.jhtml">备份数据</a>
+							<a target="main" href="/admin/power/list.jhtml">权限分组</a>
 						</li>
 						<li>
 							<a target="main" href="/admin/uploadFile/list.jhtml">上传文件管理</a>
-						</li>
-						<li>
-							<a target="main" href="../storage_plugin/list.jhtml">静态化</a>
 						</li>
        			 </ul>
 			</div>

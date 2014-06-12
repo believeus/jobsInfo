@@ -3,7 +3,9 @@ package com.etech.service;
 import java.util.List;
 
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
+
 import com.etech.dao.EtechComDao;
 
 @Service
@@ -28,6 +30,9 @@ public class EtechService {
 	/** 根据id删除对象 */
 	public void deleteObjectById(Class<?> clazz, Integer id) {
 		etechComDao.delete(clazz, id);
+	}
+	public void delete(Class<?> clazz,String property,final Object value){
+		etechComDao.delete(clazz, property, value);
 	}
 	public List<?> findObjectList(String hql,int currentPage,int perPageCount,Class<?> clazz){
 		return (List<?>) etechComDao.getPageDateList(hql, currentPage, perPageCount, clazz);

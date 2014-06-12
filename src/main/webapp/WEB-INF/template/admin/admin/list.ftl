@@ -91,38 +91,34 @@ $().ready(function() {
 					<a href="javascript:;" class="sort" name="loginDate">最后登录日期</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="loginIp">最后登录IP</a>
-				</th>
-				<th>
 					<a href="javascript:;" class="sort" name="createDate">创建日期</a>
 				</th>
 				<th>
 					<span>操作</span>
 				</th>
 			</tr>
+			[#list admins as admin]
 				<tr>
 					<td>
-						<input type="checkbox" name="ids" value="1" />
+						<input type="checkbox" name="id" value="${admin.id}" />
 					</td>
 					<td>
-						fz123456
+						${admin.loginName}
 					</td>
 					<td>
-						123456@qq.com
+						${admin.email}
 					</td>
 					<td>
-						2014-01-01
+						${admin.lastLoginData?number_to_date}&nbsp${admin.lastLoginData?number_to_time}
 					</td>
 					<td>
-						127.0.0.1
+						<span>${admin.createDate?number_to_date}</span>
 					</td>
 					<td>
-						<span title="2013-05-04">2013-05-04</span>
-					</td>
-					<td>
-						<a href="edit.jhtml?id=1">[编辑]</a>
+						<a href="edit.jhtml?id=${admin.id}">[编辑]</a>
 					</td>
 				</tr>
+			[/#list]
 		</table>
 	</form>
 </body>

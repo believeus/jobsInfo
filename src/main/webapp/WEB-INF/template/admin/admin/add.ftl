@@ -57,7 +57,7 @@ $().ready(function() {
 	<div class="path">
 		<a href="/admin/common/main.jhtml">首页</a> &raquo; 添加内容
 	</div>
-	<form id="inputForm" action="save.jhtml" method="post" enctype="multipart/form-data">
+	<form id="inputForm" action="save.jhtml" method="post">
 		<table class="input">
 			<tr>
 				<th colspan="2" style="text-align: left; font-size: 15px; padding-left: 120px;">
@@ -69,7 +69,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>用户名:
 				</th>
 				<td>
-					<input type="text" name="username" class="text" maxlength="200" />
+					<input type="text" name="loginName" class="text" maxlength="200" />
 				</td>
 			</tr>
 			<tr>
@@ -82,13 +82,13 @@ $().ready(function() {
 			</tr>
 			<tr>
 				<th>
-					<span class="requiredField">*</span>分组:
+					<span class="requiredField">*</span>角色权限:
 				</th>
 				<td>
-					<select name="">
-						<option value="">超级管理员</option>
-						<option value="">管理员1</option>
-						<option value="">管理员2</option>
+					<select name="roleId">
+						[#list roles as role]
+						<option value="${role.id}">${role.roleName}</option>
+						[/#list]
 					</select>
 				</td>
 			</tr>

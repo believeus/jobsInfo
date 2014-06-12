@@ -81,40 +81,28 @@ $().ready(function() {
 					<a href="#"  class="sort">操作</a>
 				</th>
 			</tr>
+			[#list roles as role]
+				<tr>
+				<td>
+					<input type="checkbox" name="ids" value="${role.id}" />
+				</td>
+				<td>
+					${role.roleName}
+				</td>
+				<td>${role.description}</td>
+				<td>
+					[#if role.roleName == "personal-role"]
+					[#elseif role.roleName == "enterprise-role"]
+					[#elseif role.roleName == "anonymous-role"]
+					[#elseif role.roleName == "super-role"]
+					[#else]
+						<a href="edit.jhtml?id=${role.id}">[修改]</a>
+					[/#if]
+				</td>
+			</tr>
+			[/#list]
 			
-			<tr>
-				<td>
-					<input type="checkbox" name="ids" value="1" />
-				</td>
-				<td>
-					超级管理员
-				</td>
-				<td>
-					<a href="edit.jhtml?id=1">[修改]</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" name="ids" value="1" />
-				</td>
-				<td>
-					管理员1
-				</td>
-				<td>
-					<a href="edit.jhtml?id=1">[修改]</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" name="ids" value="1" />
-				</td>
-				<td>
-					管理员2
-				</td>
-				<td>
-					<a href="edit.jhtml?id=1">[修改]</a>
-				</td>
-			</tr>
+			
 			
 		</table>
 	</form>

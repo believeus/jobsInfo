@@ -1,10 +1,22 @@
 package com.etech.controller.admin;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.codec.digest.DigestUtils;
+import org.junit.Assert;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.etech.entity.Tadmin;
+import com.etech.entity.Trole;
+import com.etech.service.EtechService;
 
 /**
  * Controller - 管理员
@@ -12,10 +24,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author e3dmall Team
  * @version 1.0
  */
-@Controller("controllerAdminAdmin")
+@Controller
 @RequestMapping("/admin")
 public class ControllerAdmin{
-
+	@Resource
+	private EtechService etechService;
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String admin(){
 		return "admin/login";
@@ -34,7 +47,12 @@ public class ControllerAdmin{
 	 * 添加
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String add(ModelMap model) {
+	public String add(HttpServletRequest request) {
+		String hql="from Trole";
+		// 查询有哪些角色
+		@SuppressWarnings("unchecked")
+		List<?> roles = (List<Trole>)etechService.findObjectByList(hql);
+		request.setAttribute("roles", roles);
 		return "/admin/admin/add";
 	}
 
@@ -42,7 +60,17 @@ public class ControllerAdmin{
 	 * 保存
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save() {
+	public String save(Tadmin admin,int roleId) {
+		Assert.assertNotSame("用户名不能为空", "", admin.getLoginName().trim());
+		Trole role=(Trole)etechService.findObjectById(Trole.class, roleId);
+		Set<Trole> roles=new HashSet<Trole>();
+		roles.add(role);
+		String password=DigestUtils.md5Hex(admin.getPassword());
+		admin.setPassword(password);
+		admin.setRoles(roles);
+		admin.setCreateDate(System.currentTimeMillis());
+		admin.setLastLoginData(System.currentTimeMillis());
+		etechService.saveOrUpdate(admin);
 		return "redirect:list.jhtml";
 	}
 
@@ -50,7 +78,14 @@ public class ControllerAdmin{
 	 * 编辑
 	 */
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public String edit() {
+	public String edit(int id,HttpServletRequest request) {
+		String hql="from Trole";
+		// 查询有哪些角色
+		@SuppressWarnings("unchecked")
+		List<?> roles = (List<Trole>)etechService.findObjectByList(hql);
+		request.setAttribute("roles", roles);
+		Tadmin admin=(Tadmin)etechService.findObjectById(Tadmin.class, id);
+		request.setAttribute("admin", admin);
 		return "/admin/admin/edit";
 	}
 
@@ -66,7 +101,10 @@ public class ControllerAdmin{
 	 * 列表
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list() {
+	public String list(HttpServletRequest request) {
+		@SuppressWarnings("unchecked")
+		List<Tadmin> admins = (List<Tadmin>)etechService.findObjectList("From Tadmin", 1, 15, Tadmin.class);
+		request.setAttribute("admins", admins);
 		return "/admin/admin/list";
 	}
 	

@@ -69,7 +69,11 @@ $().ready(function() {
 					<span class="requiredField">*</span>用户名:
 				</th>
 				<td>
-					<input type="text" name="username" class="text" maxlength="200" />
+					[#if admin.loginName="admin"]
+						<input type="text" name="username" readonly="true" class="text" maxlength="200" value="${admin.loginName}" />
+					[#else]
+						<input type="text" name="username"  class="text" maxlength="200" value="${admin.loginName}" />
+					[/#if]
 				</td>
 			</tr>
 			<tr>
@@ -77,27 +81,29 @@ $().ready(function() {
 					<span class="requiredField">*</span>电子邮件:
 				</th>
 				<td>
-					<input type="text" name="email" class="text" maxlength="200" />
+					<input type="text" name="email" class="text" maxlength="200" value="${admin.email}" />
 				</td>
 			</tr>
+			[#if admin.loginName !="admin"]
 			<tr>
 				<th>
-					<span class="requiredField">*</span>分组:
+					<span class="requiredField">*</span>请选择角色:
 				</th>
 				<td>
-					<select name="">
-						<option value="">超级管理员</option>
-						<option value="">管理员1</option>
-						<option value="">管理员2</option>
-					</select>
+				<select name="">
+					[#list roles as role]
+						<option value="${role.id}">${role.roleName}</option>
+					[/#list]
+				</select>
 				</td>
 			</tr>
+			[/#if]
 			<tr>
 				<th>
 					<span class="requiredField">*</span>密码:
 				</th>
 				<td>
-					<input type="password" name="password" class="text" maxlength="200" />
+					<input type="password" name="password" class="text" maxlength="200"/>
 				</td>
 			</tr>
 			<tr>

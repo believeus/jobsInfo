@@ -83,13 +83,27 @@ public class EtechComDao extends HibernateDaoSupport {
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
 				Query query = session.createQuery(hql);
-				query.setInteger("id", id);
+				query.setParameter("id", id);
 				query.executeUpdate();
 				return null;
 			}
 		});
 	}
 	/**End Author:wuqiwei Data:2014-05-22 AddReason:根据id的方式删除对象*/
+	public void delete(Class<?> clazz,String property,final Object value){
+		final String hql="delete from "+clazz.getName()+" as entity where entity."+property+" =:value";
+		this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				Query query = session.createQuery(hql);
+				query.setParameter("value", value);
+				query.executeUpdate();
+				return null;
+			}
+		});
+	}
 	// 获取单一对象
 	public Object getObjectByHQL(final String hql) {
 		return this.getHibernateTemplate().execute(new HibernateCallback<Object>() {

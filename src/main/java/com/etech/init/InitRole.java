@@ -16,7 +16,6 @@ import org.springframework.util.StringUtils;
 
 import com.etech.entity.Tadmin;
 import com.etech.entity.Tauthority;
-import com.etech.entity.TbaseUser;
 import com.etech.entity.Trole;
 import com.etech.service.EtechService;
 
@@ -43,50 +42,53 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 	public void onApplicationEvent(ApplicationEvent event) {
 		//监听程序启动事件
 		if(event instanceof ContextRefreshedEvent){
-			Trole role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "personalRole");
+			Trole role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "personal-role");
 			// 创建个人用户角色
 			if (StringUtils.isEmpty(role)) {
-				Trole personalRole = new Trole();
-				personalRole.setRoleName("personalRole");
+				role = new Trole();
+				role.setRoleName("personal-role");
+				role.setDescription("该角色可以访问个人相关信息");
 				//给该用户初始化相关默认权限
-				initAuthority(personalRole);
-				etechService.saveOrUpdate(personalRole);
+				initAuthority(role);
+				etechService.saveOrUpdate(role);
 				log.debug("init personalRole");
 			}
 			// 创建企业用户角色
-			role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "enterpriseRole");
+			role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "enterprise-role");
 			if (StringUtils.isEmpty(role)) {
-				Trole enterpriseRole = new Trole();
-				enterpriseRole.setRoleName("enterpriseRole");
+				role = new Trole();
+				role.setRoleName("enterprise-role");
+				role.setDescription("该角色可以访问企业相关信息");
 				//给该用户初始化相关默认权限
-				initAuthority(enterpriseRole);
-				etechService.saveOrUpdate(enterpriseRole);
-	
+				initAuthority(role);
+				etechService.saveOrUpdate(role);
 				log.debug("init enterpriseRole");
 			}
 			// 创建匿名用户角色
-			role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "anonymousRole");
+			role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "anonymous-role");
 			if (StringUtils.isEmpty(role)) {
-				Trole anonymousRole = new Trole();
-				anonymousRole.setRoleName("anonymousRole");
+				role = new Trole();
+				role.setRoleName("anonymous-role");
+				role.setDescription("该角色没有任何权限");
 				//给该用户初始化相关默认权限
-				initAuthority(anonymousRole);
-				etechService.saveOrUpdate(anonymousRole);
+				initAuthority(role);
+				etechService.saveOrUpdate(role);
 				log.debug("init anonymousRole");
 			}
 			// 创建超级管理员角色
-			role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "superAdminRole");
+			role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "super-role");
 			if (StringUtils.isEmpty(role)) {
-				Trole superAdminRole = new Trole();
-				superAdminRole.setRoleName("superAdminRole");
+				role = new Trole();
+				role.setRoleName("super-role");
+				role.setDescription("该角色拥有所有权限");
 				Set<Tauthority> authorities = new HashSet<Tauthority>();
 				// 给管理员设置所有权限
 				Tauthority authority = new Tauthority();
 				authority.setAuthName("*");
 				etechService.saveOrUpdate(authority);
 				authorities.add(authority);
-				superAdminRole.setAuthorities(authorities);
-				etechService.saveOrUpdate(superAdminRole);
+				role.setAuthorities(authorities);
+				etechService.saveOrUpdate(role);
 				log.debug("init superAdminRole");
 			}
 			// 初始化一个后台管理员
@@ -97,8 +99,9 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 				String password="admin!@#";
 				password=DigestUtils.md5Hex(password);
 				admin.setPassword(password);
+				admin.setCreateDate(System.currentTimeMillis());
 				admin.setDescription("最高权限管理员,拥有管理网站的所有权限");
-				role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "superAdminRole");
+				role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "super-role");
 				Set<Trole> roles=new HashSet<Trole>();
 				roles.add(role);
 				admin.setRoles(roles);

@@ -27,7 +27,7 @@ public class ControllerIndex {
 		TbaseUser sessionUser = (TbaseUser)session.getAttribute("sessionUser");
 		if(!StringUtils.isEmpty(sessionUser)){
 			if(sessionUser instanceof Tadmin){
-				if(refer.contains("/admin/login.jhtml")){
+				if(!StringUtils.isEmpty(refer)&&refer.contains("/admin/login.jhtml")){
 					return "redirect:/admin/common/main.jhtml";
 				}
 			}

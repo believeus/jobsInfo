@@ -54,6 +54,9 @@ public class AuthenticationFilter extends FormAuthenticationFilter {
 		TokenAuthentication authenticationToken = (TokenAuthentication) token;
 		String username = authenticationToken.getUsername();
 		TbaseUser sessionUser = (TbaseUser)etechService.findObjectByProperty(TbaseUser.class, "loginName", username);
+		// 更新登录时间
+		sessionUser.setLastLoginData(System.currentTimeMillis());
+		etechService.saveOrUpdate(sessionUser);
 		session.setAttribute("sessionUser",sessionUser);
 		return super.onLoginSuccess(token, subject, servletRequest, servletResponse);
 	}
