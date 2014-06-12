@@ -1072,7 +1072,7 @@
 					<div style="height: 30px; width: 728px;">
 						<span style="float:left;">具备技能
 						[#list sessionUser.comInfo as comInfo]
-							xxxx----
+							${comInfo.id}
 						[/#list]
 						</span>
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>

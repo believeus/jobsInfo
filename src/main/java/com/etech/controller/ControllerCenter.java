@@ -7,12 +7,15 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import mydfs.storage.server.MydfsTrackerServer;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
@@ -53,9 +56,9 @@ public class ControllerCenter {
 	@RequestMapping(value = "/common-user/center", method = RequestMethod.GET)
 	public String personalCenter(HttpSession session) {
 		TcomUser sessionUser = (TcomUser) session.getAttribute("sessionUser");
-		List<TcomInfo> comInfo = sessionUser.getComInfo();
-		System.out.println(comInfo.size());
-		log.debug("current controller is personalCenter !");
+		String hql="From TcomUser user left join fetch user.comInfo where user.id='"+sessionUser.getId()+"'";
+		TcomUser user=(TcomUser)etechService.findObjectByHql(hql);
+		sessionUser.setComInfo(user.getComInfo());
 		return "center/personalCenter";
 	}
 

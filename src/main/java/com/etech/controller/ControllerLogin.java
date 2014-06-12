@@ -59,7 +59,6 @@ public class ControllerLogin {
 				log.debug("db user password:"+sessionUser.getPassword()+" form password:"+password);
 				if (sessionUser.getPassword().equals(password)) {
 					message.put("message","success");
-					session.setAttribute("sessionUser",sessionUser);
 					log.debug("login success");
 					JsonOutToBrower.out(message, response);
 				/*用户名正确密码不正确*/

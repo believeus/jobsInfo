@@ -1,6 +1,5 @@
 package com.etech.shiro;
 
-import java.util.Properties;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
@@ -13,9 +12,7 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
-import org.springframework.core.io.support.PropertiesLoaderUtils;
 
-import com.etech.entity.Tadmin;
 import com.etech.entity.TbaseUser;
 import com.etech.service.EtechService;
 
@@ -58,11 +55,6 @@ public class AuthenticationFilter extends FormAuthenticationFilter {
 		String username = authenticationToken.getUsername();
 		TbaseUser sessionUser = (TbaseUser)etechService.findObjectByProperty(TbaseUser.class, "loginName", username);
 		session.setAttribute("sessionUser",sessionUser);
-		if(sessionUser instanceof Tadmin){
-			Properties props = PropertiesLoaderUtils.loadAllProperties("jobs.properties");
-			System.out.println(props.get("shiro.successUrl"));
-			props.setProperty("shiro.successUrl", "/common-user/cente.jhtml");
-		}
 		return super.onLoginSuccess(token, subject, servletRequest, servletResponse);
 	}
 }

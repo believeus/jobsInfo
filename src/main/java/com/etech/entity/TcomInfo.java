@@ -49,7 +49,7 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 	private TcomUser comUser;
 	
 	
-	@ManyToOne(cascade=CascadeType.ALL,optional = false)//多对一的时候可以获取admin对象
+	@ManyToOne(cascade=CascadeType.ALL,optional = false)
 	@JoinColumn(name="fk_comUserId",referencedColumnName="id")
 	public TcomUser getComUser() {
 		return comUser;

@@ -27,4 +27,7 @@ public class EtechService {
 	public void deleteObjectById(Class<?> clazz, Integer id) {
 		etechComDao.delete(clazz, id);
 	}
+	public Object findObjectByHql(String hql){
+		return etechComDao.getObjectByHQL(hql);
+	}
 }
