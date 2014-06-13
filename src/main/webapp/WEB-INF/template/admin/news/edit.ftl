@@ -106,7 +106,7 @@ $().ready(function() {
 								<span>
 									<a onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
 								</span>
-								<input type="hidden" name="imgPath" value="${dataCenter.imgpath}"/>
+								<input type="hidden" name="imgpath" value="${dataCenter.imgpath}"/>
 								<img style="width:190px;height:120px" src="/${dataCenter.imgpath}" name="img"/>
 							</div>
 							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
@@ -157,7 +157,7 @@ $().ready(function() {
 					内容:
 				</th>
 				<td colspan="3">
-					<textarea id="editor" name="content" class="editor" value="${dataCenter.content}"></textarea>
+					<textarea id="editor" name="content" class="editor" style="width: 100%;">${dataCenter.content}</textarea>
 				</td>
 			</tr>
 			<tr>

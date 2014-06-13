@@ -73,6 +73,7 @@ public class ControllerNews {
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
+		System.out.println(dataCenter.getContent());
 		request.setAttribute("dataCenter", dataCenter);
 		return "admin/news/edit";
 	}
@@ -129,11 +130,13 @@ public class ControllerNews {
 			InputStream inputStream;
 			try {
 				inputStream = file.getInputStream();
+				if(inputStream.available()==0)break;
 				Assert.assertNotNull("upload file InputStream is null", inputStream);
 				String fileName = file.getName();
 				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
 				log.debug("upload file stuffix"+extention);
 				storepath = mydfsTrackerServer.upload(inputStream, extention);
+				editDataCenter.setImgpath(storepath);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -141,7 +144,7 @@ public class ControllerNews {
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, editDataCenter.getId());
 		
 		BeanUtils.copyProperties(editDataCenter, dataCenter);
-		System.err.println(editDataCenter.getId());
+		etechService.saveOrUpdate(dataCenter);
 		return "redirect:/admin/news/newsList.jhtml";
 	}
 }
