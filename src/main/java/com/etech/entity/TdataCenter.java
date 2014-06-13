@@ -12,6 +12,8 @@ public class TdataCenter extends TbaseEntity{
 	private int type;
 	private String imgpath;
 	private String content;
+	private long createTime;
+	private long editTime;
 	public String getTitle() {
 		return title;
 	}
@@ -41,6 +43,18 @@ public class TdataCenter extends TbaseEntity{
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public long getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(long createTime) {
+		this.createTime = createTime;
+	}
+	public long getEditTime() {
+		return editTime;
+	}
+	public void setEditTime(long editTime) {
+		this.editTime = editTime;
 	}
 	
 

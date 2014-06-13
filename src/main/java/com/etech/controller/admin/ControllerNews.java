@@ -13,7 +13,9 @@ import mydfs.storage.server.MydfsTrackerServer;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -68,8 +70,10 @@ public class ControllerNews {
 	 * @return
 	 */
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public String editNewsView() {
-		log.debug("current controller is newsListView !");
+	public String editNewsView(HttpServletRequest request) {
+		int id=Integer.parseInt(request.getParameter("id"));
+		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
+		request.setAttribute("dataCenter", dataCenter);
 		return "admin/news/edit";
 	}
 
@@ -106,6 +110,7 @@ public class ControllerNews {
 		center.setAuthor(author);
 		center.setContent(content);
 		center.setImgpath(storepath);
+		center.setCreateTime(System.currentTimeMillis());
 		etechService.saveOrUpdate(center);
 		return "redirect:/admin/news/newsList.jhtml";
 	}
@@ -115,9 +120,28 @@ public class ControllerNews {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String updateNewsView() {
-
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request) {
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		String storepath = "";
+		Map<String, MultipartFile> files = multipartRequest.getFileMap();
+		for (MultipartFile file : files.values()) {
+			InputStream inputStream;
+			try {
+				inputStream = file.getInputStream();
+				Assert.assertNotNull("upload file InputStream is null", inputStream);
+				String fileName = file.getName();
+				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
+				log.debug("upload file stuffix"+extention);
+				storepath = mydfsTrackerServer.upload(inputStream, extention);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, editDataCenter.getId());
+		
+		BeanUtils.copyProperties(editDataCenter, dataCenter);
+		System.err.println(editDataCenter.getId());
 		return "redirect:/admin/news/newsList.jhtml";
 	}
 }
