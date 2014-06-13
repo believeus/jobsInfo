@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu.js"></script> 
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>
 	<script type="text/javascript" src="/resource/public/js/datePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="/resource/public/js/waitamoment.js"></script>
 	
 	<style type="text/css">
 	.brandImg{
@@ -161,7 +162,41 @@
 	</script>
 	
     <script type="text/javascript">
-    	
+    
+    		// 删除信息
+	    	function deleteDiv(object){
+	    				// 得到最外层的div
+	    				var div=$(object).parent().parent().parent().parent().parent().parent().parent();
+	    				var clazz=div.attr("class");
+	    				
+	    				if ($("."+clazz).find("div."+clazz+"_div").size() <= 1) {
+							alert("必须至少保留一个参数");
+						} else {
+							// 获取需要删除的id
+							var id=$(object).parent().parent().parent().find("input[name='id']");
+							
+							if(id.length > 0){
+								id=id.val();
+								var deleteids = $("#deleteids");
+								
+								if (deleteids.length > 0) { 
+							     	//对象存在的处理逻辑
+						            $("#deleteids").val(deleteids.val()+","+id);
+							    } else {
+							      	//对象不存在的处理逻辑
+							      	var html='<input id="deleteids" type="hidden" name="ids" value="'+id+'"/>';
+									$("#InfoForm").append(html);
+							   }
+							   
+							}
+							
+							// 删除。
+						   $(object).closest("div").remove();
+						}
+					
+	    	};
+	    	
+    		
     	[@compress single_line = true]
     		var Specialty='<div class="select-info">	
 						<label class="top-label">已选项：</label>
@@ -283,6 +318,7 @@
 						
     	
     	$().ready(function() {
+				
     		var a;
     		var b;
     		var c;
@@ -368,7 +404,7 @@
 										</a>	
 									</div>
 								</td>
-								<td rowspan="3"><a class="delete_xuexi" href="javascript:void(0);">删除</a></td>
+								<td rowspan="3"><a class="delete_xuexi"  onclick="deleteDiv(this)" href="javascript:void(0);">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -383,15 +419,6 @@
 				}else{
 					alert("最多添加6条数据");
 				}
-				
-				//删除学习经历
-				$("a.delete_xuexi").on("click",function(){
-					if ($(".xuexi").find("div.xuexi_div").size() <= 1) {
-						alert("必须至少保留一个参数");
-					} else {
-						$(this).closest("div").remove();
-					}
-				});
 				
 				// 为新增的标签添加弹窗控件
 				$("#selectLearningSpecialty"+a).xMenu({	
@@ -456,7 +483,7 @@
 							<tr>
 								<td>说明:</td>
 								<td colspan="3"><textArea name="note" id="noteSkill'+b+'" cols="50" style="resize:none;"></textArea></td>
-								<td rowspan="3"><a class="delete_jineng" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
+								<td rowspan="3"><a class="delete_jineng"  onclick="deleteDiv(this)" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -474,14 +501,6 @@
 					alert("最多添加6条数据");
 				}
 				
-				//删除具备技能
-				$("a.delete_jineng").on("click",function(){
-					if ($(".jineng").find("div.jineng_div").size() <= 1) {
-						alert("必须至少保留一个参数");
-					} else {
-						$(this).closest("div").remove();
-					}
-				});
 				// 为新增的标签添加弹窗控件
 				$("#selectSkillSpecialty"+b).xMenu({	
 							width :600,	
@@ -541,7 +560,7 @@
 								</td>
 								<td>工作内容:</td>
 								<td ><input type="text" id="noteWork'+c+'" name="note"></td>
-								<td rowspan="3"><a class="delete_gongzuo" href="javascript:void(0);">删除</a></td>
+								<td rowspan="3"><a class="delete_gongzuo"  onclick="deleteDiv(this)" href="javascript:void(0);">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -554,15 +573,6 @@
 				}else{
 					alert("最多添加6条数据");
 				}
-				
-				//删除工作经历
-				$("a.delete_gongzuo").on("click",function(){
-					if ($(".gongzuo").find("div.gongzuo_div").size() <= 1) {
-						alert("必须至少保留一个参数");
-					} else {
-						$(this).closest("div").remove();
-					}
-				});
 				
 				// 为新增的标签添加弹窗控件
 				$("#selectWorkJob"+c).xMenu({	
@@ -621,7 +631,7 @@
 							<tr>
 								<td>其他要求:</td>
 								<td colspan="3"><textArea cols="50" name="note" id="noteVolunteer'+d+'" style="resize:none;"></textArea></td>
-								<td rowspan="3"><a class="delete_zhiyuan" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
+								<td rowspan="3"><a class="delete_zhiyuan"  onclick="deleteDiv(this)" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -637,16 +647,6 @@
 				}else{
 					alert("最多添加6条数据");
 				}
-				
-				//删除选择志愿
-				$("a.delete_zhiyuan").on("click",function(){
-					if ($(".zhiyuan").find("div.zhiyuan_div").size() <= 1) {
-						alert("必须至少保留一个参数");
-					} else {
-						if(d!=2) d-- ;
-						$(this).closest("div").remove();
-					}
-				});
 				
 				// 为新增的标签添加弹窗控件
 				$("#selectVolunteerSpecialty"+d).xMenu({	
@@ -728,6 +728,20 @@
 				});
 		    	[/#if]
 		    	
+		    	// long 类型转时间类型
+		    	function long_to_date(time){
+				    var datetime = new Date();
+				    datetime.setTime(time);
+				    var year = datetime.getFullYear();
+				    var month = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+				    var date = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+				    var hour = datetime.getHours()< 10 ? "0" + datetime.getHours() : datetime.getHours();
+				    var minute = datetime.getMinutes()< 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+				    var second = datetime.getSeconds()< 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+				    return year + "-" + month + "-" + date;
+				}
+				
+		    	//学习经历
 		    	[#if learnings?size>0]
 		    		[#list learnings as learning]
 		    		var html ='<div id="xmenuLearningSpecialty'+${learning_index+1}+'" class="xmenu" style="display: none;">'+Specialty +'</div>';
@@ -741,6 +755,12 @@
 						hiddenID : "selectLearningSpecialtyhidden"+${learning_index+1},//隐藏域ID
 						value : "${learning.majorType.id}"
 					});
+					var beginDate=$("input[eidLearning='beginDateLearning"+${learning_index+1}+"']").val();
+					var endDate=$("input[eidLearning='endDateLearning"+${learning_index+1}+"']").val();
+					if(beginDate!=""||endDate!=""){
+    					$("input[eidLearning='beginDateLearning"+${learning_index+1}+"']").val(long_to_date(${learning.beginData}));
+						$("input[eidLearning='endDateLearning"+${learning_index+1}+"']").val(long_to_date(${learning.endData}));		
+					}
 		    		[/#list]
 		    	[#else]
 		    		var html ='<div id="xmenuLearningSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>';
@@ -755,6 +775,7 @@
 					});
 		    	[/#if]	
 		    	
+		    	// 工作经验
 		    	[#if works?size>0]
 		    		[#list works as work]
 		    			var html ='<div id="xmenuWorkJob'+${work_index+1}+'" class="xmenu" style="display: none;">'+Jobs +'</div>';
@@ -768,6 +789,13 @@
 							hiddenID : "selectWorkJobhidden"+${work_index+1},//隐藏域ID
 							value : "${work.workType.id}"	
 						});
+						// long 类型转日期类型
+						var beginDate=$("input[eidWork='beginDateWork"+${work_index+1}+"']").val();
+						var endDate=$("input[eidWork='endDateWork"+${work_index+1}+"']").val();
+						if(beginDate!=""||endDate!=""){
+							$("input[eidWork='beginDateWork"+${work_index+1}+"']").val(long_to_date(${work.beginData}));
+							$("input[eidWork='endDateWork"+${work_index+1}+"']").val(long_to_date(${work.endData}));
+						}
 		    		[/#list]
 		    	[#else]
 		    		var html ='<div id="xmenuWorkJob1" class="xmenu" style="display: none;">'+Jobs +'</div>';
@@ -830,21 +858,11 @@
 				
     	
     			
-				
-    			// 提交信息列表
-    			function sumitValidLIist(){
-    				  alert("xxxxx具备技能xxxxxxxxxx");
-    				  $("div.jineng_div").each(function(index){
-    				  		index++;
-    				  		alert(index);
-				 			$("#SkillForm"+index).ajaxSubmit(function (data) {
-				            	return false;
-			        		});	
-    				  })
-    				  alert("xxxxx学习经历xxxxxxxxxx");
+    			function submitLearnging(){
+    				 //alert("xxxxx学习经历xxxxxxxxxx");
+    				  var num=0;
     				  $("div.xuexi_div").each(function(index){
     				  		index++;
-    				  		alert(index);
     				  		// 转换时间类型为long类型。
     				  		var beginDate=$("input[eidLearning='beginDateLearning"+index+"']").val();
 							var endDate=$("input[eidLearning='endDateLearning"+index+"']").val();
@@ -855,15 +873,26 @@
 	    					$("input[name='beginData']").val(beginDate);
 	    					$("input[name='endData']").val(endDate);
 	    					
-	    					/*$("#LearningForm"+index).ajaxSubmit(function (data) {
-				            	return false;
-			        		});*/	
+	    					$("#LearningForm"+index).ajaxSubmit({
+				            	 type: "post",
+							     url: "/common-user/center/submit-comInfo.jhtml",
+							     dataType: "json",
+							     success: function(result){
+							     	num=num+1;
+							     	if(num==index){
+				 		   				submitWorks();    				 						     	
+							     	}
+							     }
+			        		});	
 	    					
 	    				 })
-    				  alert("xxxxxxxx工作经验xxxxxxx");
+    			}
+    			
+    			function submitWorks(){
+    				//alert("xxxxxxxx工作经验xxxxxxx");
+    				  var num=0;
     				  $("div.gongzuo_div").each(function(index){
     				  		index++;
-    				  		alert(index);
     				  		
     				  		var beginDate=$("input[eidWork='beginDateWork"+index+"']").val();
 							var endDate=$("input[eidWork='endDateWork"+index+"']").val();
@@ -874,32 +903,95 @@
 	    					$("input[name='beginData']").val(beginDate);
 	    					$("input[name='endData']").val(endDate);
 	    					
-	    					/*$("#WorkForm"+index).ajaxSubmit(function (data) {
-				            	return false;
-			        		});*/
+	    					$("#WorkForm"+index).ajaxSubmit({
+				            	type: "post",
+							     url: "/common-user/center/submit-comInfo.jhtml",
+							     dataType: "json",
+							     success: function(result){
+							     	num=num+1;
+							     	if(num==index){
+				 		   				deleteIds();    				 						     	
+							     	}
+							     }
+			        		});
 			        		
     				  })
-    				  
     			}
-    			function submitVolunteer(submitx){
-    				  alert("xxxxxxxx选择志愿xxxxxxx");
-    				  $("div.zhiyuan_div").each(function(index){
+    			// 提交信息列表
+    			function submitSkill(){
+    				  //alert("xxxxx具备技能xxxxxxxxxx");
+    				  var num=0;
+    				  $("div.jineng_div").each(function(index){
     				  		index++;
-    				  		alert(index);
-    				  		
-    				  		$("#VolunteerForm"+index).ajaxSubmit(function (data) {
-				            	return false;
-			        		});
+				 			$("#SkillForm"+index).ajaxSubmit({
+				            	 type: "post",
+							     url: "/common-user/center/submit-comInfo.jhtml",
+							     dataType: "json",
+							     success: function(result){
+							     	num=num+1;
+							     	if(num==index){
+				 		   				submitLearnging();    				 						     	
+							     	}
+							     }
+			        		});	
     				  })
     			}
+    			function submitVolunteer(){
+    				  //alert("xxxxxxxx选择志愿xxxxxxx");
+    				  var num=0;
+    				  $("div.zhiyuan_div").each(function(index){
+    				  		index++;
+    				  		$("#VolunteerForm"+index).ajaxSubmit({
+    				  			 type: "post",
+							     url: "/common-user/center/submit-comInfo.jhtml",
+							     dataType: "json",
+							     success: function(result){
+							     	num=num+1;
+							     	if(num==index){
+				 		   				deleteIds();    				 						     	
+							     	}
+							     }
+			        		});
+    				  })
+    				 
+    			}
     			
+    			// ajax 提交验证和登录。
+		    	function deleteIds(){
+		    			if($("#deleteids").length>0){
+			    			var ids=$("#deleteids").val();
+							$.ajax({
+								url: "/common-user/submit-deleteids.jhtml",
+								type: "POST",
+								data: {ids:ids},
+								dataType: "json",
+								cache: false,
+								success: function(data) {
+									location.reload(true);
+								}
+							})
+		    			}else{
+							location.reload(true);
+						}				
+					}
+					
+  			
 				// ajax 提交验证和保存，先提交图片再提交个人信息。
 				function submitValid(submitx){
-				
+						showdiv();
 						// 上传图片，并且得到图片路径返回值。
 						if(checkChange==1){
 							$("#imageForm").ajaxSubmit(function (data) {
-					            $("#imgHead").val(data);
+								var imgHead = $("#imgHead");
+								 //如果大于0 标识 id 为imgHead的对象存在，否则不存在
+								 if (imgHead.length > 0) { 
+							     	//对象存在的处理逻辑
+						            $("#imgHead").val(data);
+							    } else {
+							      	//对象不存在的处理逻辑
+							      	var html='<input id="imgHead" type="hidden" name="imgHead" value="'+data+'">';
+									$("#InfoForm").append(html);
+							   }
 					            submitInfo(submitx);
 					            return false;
 				        	});	
@@ -917,9 +1009,8 @@
 			        	$("#InfoForm").ajaxSubmit(function (data) {
 							data = JSON.parse(data);
 	        				if(data.message == "success" && $("#submit").val() == "submit"){
-								alert("要提交其他信息了。");
-								sumitValidLIist();
-								alert("都提交成功了拉。");
+								submitSkill();
+								deleteIds();
 							}else{
 								alert(data.message);								
 							}
@@ -941,7 +1032,8 @@
 				});
 				//保存志愿。
 				$("#saveVolunteer").click(function() {
-						submitVolunteer("no");
+						showdiv();
+						submitVolunteer();
 				});
 			
 			})
@@ -1031,7 +1123,9 @@
 							<input type="hidden" name="submit" value="nosubmit" id="submit">
 							<input type="hidden" name="freeTrain" value="${sessionUser.freeTrain}" id="freeTrain">
 							<input type="hidden" name="freeIntro" value="${sessionUser.freeIntro}" id="freeIntro">
-							<input type="hidden" name="imgHead" value="${sessionUser.imgHead}" id="imgHead">
+							[#if sessionUser.imgHead?exists]
+								<input type="hidden" name="imgHead" value="${sessionUser.imgHead}" id="imgHead">
+							[/#if]
 						
 							<table>
 								<tr>
@@ -1260,7 +1354,7 @@
 							<tr>
 								<td>说明:</td>
 								<td colspan="3"><textArea cols="50" style="resize:none;" name="note"  id="noteSkill1">${skill.note}</textArea></td>
-								<td rowspan="3"><a class="delete_jineng" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
+								<td rowspan="3"><a class="delete_jineng" onclick="deleteDiv(this)"  href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -1321,7 +1415,7 @@
 							<tr>
 								<td>说明:</td>
 								<td colspan="3"><textArea cols="50" style="resize:none;" name="note" id="noteSkill1"></textArea></td>
-								<td rowspan="3"><a class="delete_jineng" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
+								<td rowspan="3"><a class="delete_jineng"  onclick="deleteDiv(this)" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -1348,9 +1442,9 @@
 							</tr>
 							<tr>
 								<td>起始时间:</td>
-								<td colspan="3">
-								<input type="text" name="beginDate" id="beginDate"  eidLearning="beginDateLearning1" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
-								结束时间: <input type="text"  name="endDate" id="endDate" eidLearning="endDateLearning1" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
+								<td colspan="3"><!--${(beginDate?string('yyyy-MM-dd'))!} ${(endDate?string('yyyy-MM-dd'))!}-->
+								<input type="text" name="beginDate" id="beginDate"  eidLearning="beginDateLearning${learning_index+1}" style="width:100px;height:25px" class="text Wdate" value="2012-01-23" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
+								结束时间: <input type="text"  name="endDate" id="endDate" eidLearning="endDateLearning${learning_index+1}" style="width:100px;height:25px" class="text Wdate" value="2120-05-21" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
 								<input type="hidden" name="beginData" value=""/>
 								<input type="hidden" name="endData" value=""/>
 								</td>
@@ -1382,7 +1476,7 @@
 										</a>	
 									</div>
 								</td>
-								<td rowspan="3"><a class="delete_xuexi" href="javascript:void(0);">删除</a></td>
+								<td rowspan="3"><a class="delete_xuexi" onclick="deleteDiv(this)" href="javascript:void(0);">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -1425,7 +1519,7 @@
 										</a>	
 									</div>
 								</td>
-								<td rowspan="3"><a class="delete_xuexi" href="javascript:void(0);">删除</a></td>
+								<td rowspan="3"><a class="delete_xuexi"  onclick="deleteDiv(this)"  href="javascript:void(0);">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -1454,8 +1548,8 @@
 							<tr>
 								<td>起始时间:</td>
 								<td colspan="3">
-								<input type="text" eidWork="beginDateWork1" id="beginDate" name="beginDate" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
-								结束时间: <input type="text" eidWork="endDateWork1" id="endDate" name="endDate" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
+								<input type="text" eidWork="beginDateWork${work_index+1}" id="beginDate" name="beginDate" style="width:100px;height:25px" class="text Wdate" value="1990-01-01" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
+								结束时间: <input type="text" eidWork="endDateWork${work_index+1}" id="endDate" name="endDate" style="width:100px;height:25px" class="text Wdate" value="1990-01-01" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
 								<input type="hidden" name="beginData" value=""/>
 								<input type="hidden" name="endData" value=""/>
 								</td>
@@ -1471,6 +1565,7 @@
 								<td>
 									<input type="hidden" value="${work.workType.id}" id="selectWorkJobhidden${work_index+1}" name="workTypeId"/>
 									<input type="hidden" value="3" name="infoType">
+									<input type="hidden" value="${work.id}" name="id">
 									<div class="topnav">
 										<a id="selectWorkJob${work_index+1}" href="javascript:void(0);" class="as">
 											<span >
@@ -1485,8 +1580,8 @@
 									</div>
 								</td>
 								<td>工作内容:</td>
-								<td ><input type="text" id="noteWork1" name="note"></td>
-								<td rowspan="3"><a class="delete_gongzuo" href="javascript:void(0);">删除</a></td>
+								<td ><input type="text" id="noteWork1" name="note" value="${work.note}"></td>
+								<td rowspan="3"><a class="delete_gongzuo" href="javascript:void(0);" onclick="deleteDiv(this)">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -1529,7 +1624,7 @@
 								</td>
 								<td>工作内容:</td>
 								<td ><input type="text" id="noteWork1" name="note"></td>
-								<td rowspan="3"><a class="delete_gongzuo" href="javascript:void(0);">删除</a></td>
+								<td rowspan="3"><a class="delete_gongzuo"  onclick="deleteDiv(this)" href="javascript:void(0);">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -1586,6 +1681,7 @@
 								<td>
 									<input type="hidden" value="${volunteer.majorType.id}" id="selectVolunteerSpecialtyhidden${volunteer_index+1}" name="majorTypeId"/>
 									<input type="hidden" value="4" name="infoType">
+									<input type="hidden" value="${volunteer.id}" name="id">
 									<div class="topnav">
 										<a id="selectVolunteerSpecialty${volunteer_index+1}" href="javascript:void(0);" class="as">
 											<span >
@@ -1627,8 +1723,8 @@
 							</tr>
 							<tr>
 								<td>其他要求:</td>
-								<td colspan="3"><textArea cols="50" name="note" id="noteVolunteer1" value="${volunteer.note}" style="resize:none;"></textArea></td>
-								<td rowspan="3"><a class="delete_zhiyuan" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
+								<td colspan="3"><textArea cols="50" name="note" id="noteVolunteer1"  style="resize:none;">${volunteer.note}</textArea></td>
+								<td rowspan="3"><a class="delete_zhiyuan" href="javascript:void(0);" onclick="deleteDiv(this)" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -1676,7 +1772,7 @@
 							<tr>
 								<td>其他要求:</td>
 								<td colspan="3"><textArea cols="50" name="note" id="noteVolunteer1" style="resize:none;"></textArea></td>
-								<td rowspan="3"><a class="delete_zhiyuan" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
+								<td rowspan="3"><a class="delete_zhiyuan" href="javascript:void(0);"  onclick="deleteDiv(this)" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
 						</form>

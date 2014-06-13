@@ -107,8 +107,6 @@ public class ControllerCenter {
 			Integer majorTypeId,HttpServletResponse response,
 			HttpSession session) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		System.out.println(workTypeId+"----"+majorTypeId);
-		System.out.println(comInfo.getInfoType());
 		try {
 			TcomUser sessionUser = (TcomUser) session.getAttribute("sessionUser");
 			comInfo.setComUser(sessionUser);
@@ -125,6 +123,23 @@ public class ControllerCenter {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			map.put("message", "error");
+		}
+	}
+	
+	/** 一般用户信息删除 */
+	@RequestMapping(value = "/common-user/submit-deleteids")
+	public void submitDeleteIds(String ids, HttpServletResponse response) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			String[]  splitIds= ids.split(",");
+			for (String id : splitIds) {
+				etechService.deleteObjectById(TcomInfo.class, Integer.valueOf(id));
+			}
+			map.put("message", "success");
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			map.put("message", "error");
+			JsonOutToBrower.out(map, response);
 		}
 	}
 
