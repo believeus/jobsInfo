@@ -2,6 +2,7 @@ package com.etech.controller.admin;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -40,8 +41,12 @@ public class ControllerNews {
 	 * @return
 	 */
 	@RequestMapping(value = "/newsList", method = RequestMethod.GET)
-	public String newsListView() {
-		
+	public String newsListView(HttpServletRequest request) {
+		// 查询新闻动态
+		String hql="From TdataCenter center where center.type='"+EtechGobal.newsDinamic+"'";
+		@SuppressWarnings("unchecked")
+		List<?> dataCenters = (List<TdataCenter>)etechService.findObjectList(hql, 1, 15, TdataCenter.class);
+		request.setAttribute("dataCenters",dataCenters);
 		return "admin/news/list";
 	}
 

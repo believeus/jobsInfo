@@ -82,7 +82,7 @@
 		<mapping class="com.etech.entity.Tauthority"/>
 		<mapping class="com.etech.entity.TentImgVedio"/>
 		<mapping class="com.etech.entity.Tadmin"/>
-		
+		<mapping class="com.etech.entity.TdataCenter"/>
 	</session-factory>
 
 </hibernate-configuration>
