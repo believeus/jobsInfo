@@ -81,12 +81,6 @@ public class ControllerCenter {
 		return "center/enterpriseCenter";
 	}
 
-	/** 信息中心 */
-	@RequestMapping(value = "/infoCenter", method = RequestMethod.GET)
-	public String infoCenter() {
-		log.debug("current controller is infoCenterView !");
-		return "infoCenter/infoCenter";
-	}
 
 	/** 一般用户信息提交 */
 	@RequestMapping(value = "/common-user/submit-account-Info")

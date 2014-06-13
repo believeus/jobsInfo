@@ -259,10 +259,9 @@
 					</div>
 					<div style="width: 320px; height: 0px; margin-left: auto; margin-right: auto; border: 1px dashed #E4E4E4;margin-bottom:15px;"></div>
 					<ul style="margin: 0px; padding: 0px 15px;">
-						<li><a href="/newsInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-						<li><a href="/newsInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-						<li><a href="/newsInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-						<li><a href="/newsInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+						[#list news as new]
+						<li><a href="/newsInfo.jhtml">${new.title}</a><span>${new.createTime?number_to_datetime}</span></li>
+						[/#list]
 					</ul>
 				</div>
 				<div style="float: left; border: 1px dashed #e4e4e4; width: 0px; margin-top: 6px; height: 273px;"></div>
