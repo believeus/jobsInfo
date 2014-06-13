@@ -42,10 +42,10 @@ public class ControllerLogin {
 			log.debug("current loginName:"+user.getLoginName());
 			// 一般用户登录
 			if (userType.equals("commonUser")) {
-				sessionUser = (TcomUser) userService.findObjectByProperty(TcomUser.class, EtechGobal.LoginName, user.getLoginName());
+				sessionUser = (TcomUser) userService.findObjectByProperty(TcomUser.class, EtechGobal.loginName, user.getLoginName());
 			// 企业级用户
 			} else {
-				sessionUser = (TentUser) userService.findObjectByProperty(TentUser.class, EtechGobal.LoginName,user.getLoginName());
+				sessionUser = (TentUser) userService.findObjectByProperty(TentUser.class, EtechGobal.loginName,user.getLoginName());
 			}
 			if (StringUtils.isEmpty(sessionUser)) {
 				message.put("message", "用户不存在，请注册");

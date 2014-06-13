@@ -57,7 +57,8 @@ $().ready(function() {
 	<div class="path">
 		<a href="/admin/common/main.jhtml">首页</a> &raquo; 添加内容
 	</div>
-	<form id="inputForm" action="save.jhtml" method="post" enctype="multipart/form-data">
+	<form id="inputForm" action="/admin/news/save.jhtml" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="type" value="${type}"/>
 		<table class="input">
 			<tr>
 				<th>
@@ -70,23 +71,10 @@ $().ready(function() {
 					<span class="requiredField">*</span>作者:
 				</th>
 				<td>
-					<input type="text" name="title" class="text" maxlength="200" />
+					<input type="text" name="author" class="text" maxlength="200" />
 				</td>
 			</tr>
 			<tr>
-				<th>
-					所属分类:
-				</th>
-				<td>
-					<select id="" name="type">
-						<option value="1">新闻动态</option>
-						<option value="2">工作动态</option>
-						<option value="3">公告公示</option>
-						<option value="4">图片新闻</option>
-						<option value="5">视频新闻</option>
-						<option value="6">专题报道</option>
-					</select>
-				</td>
 				<th>
 					是否置顶:
 				</th>

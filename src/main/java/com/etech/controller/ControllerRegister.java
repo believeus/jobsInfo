@@ -93,7 +93,7 @@ public class ControllerRegister {
 			}
 			if(StringUtils.isEmpty(sessionUser)){
 				//验证身份证号是否存在过
-				TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TcomUser.class, EtechGobal.Idcard, regUser.getIdcard());
+				TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TcomUser.class, EtechGobal.idcard, regUser.getIdcard());
 				log.debug("idcard:"+regUser.getIdcard());
 				log.debug("current user:"+user);
 				if (!StringUtils.isEmpty(user)) {
@@ -118,7 +118,7 @@ public class ControllerRegister {
 		}
 		//用户注册
 		if(StringUtils.isEmpty(sessionUser)){
-			TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TcomUser.class, EtechGobal.LoginName, regUser.getLoginName());
+			TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TcomUser.class, EtechGobal.loginName, regUser.getLoginName());
 			if (!StringUtils.isEmpty(user)) {
 				message.put("property","loginName");
 				message.put("message","用户名已存在");
@@ -130,7 +130,7 @@ public class ControllerRegister {
 			TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TcomUser.class, "id", regUser.getId());
 			// 编辑用户名和原用户名不等
 			if(!user.getLoginName().equals(regUser.getLoginName())){
-				user = (TbaseUser) etechService.findObjectByProperty(TcomUser.class, EtechGobal.LoginName, regUser.getLoginName());
+				user = (TbaseUser) etechService.findObjectByProperty(TcomUser.class, EtechGobal.loginName, regUser.getLoginName());
 				if (!StringUtils.isEmpty(user)) {
 					message.put("property","loginName");
 					message.put("message","用户名已存在");
@@ -218,7 +218,7 @@ public class ControllerRegister {
 			JsonOutToBrower.out(message, response);
 			return;
 		}
-		TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TentUser.class, EtechGobal.LoginName, regUser.getLoginName());
+		TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TentUser.class, EtechGobal.loginName, regUser.getLoginName());
 		if (!StringUtils.isEmpty(user)) {
 			message.put("property","loginName");
 			message.put("message","用户名已存在");
