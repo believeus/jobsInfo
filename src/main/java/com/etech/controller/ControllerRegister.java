@@ -163,7 +163,7 @@ public class ControllerRegister {
 			// 用户注册
 			if(StringUtils.isEmpty(sessionUser)){
 				// 设置用户权限默认为一般用户权限
-				Trole role = (Trole)etechService.findObjectByProperty(Trole.class, "roleName", "personalRole");
+				Trole role = (Trole)etechService.findObjectByProperty(Trole.class, "roleName", EtechGobal.personal_role);
 				Set<Trole> roles=new HashSet<Trole>();
 				roles.add(role);
 				regUser.setRoles(roles);
@@ -235,7 +235,7 @@ public class ControllerRegister {
 			String mustVilid="0";
 			regUser.setStatus(mustVilid);
 			// 设置企业的默认权限
-			Trole role = (Trole)etechService.findObjectByProperty(Trole.class, "roleName", "enterpriseRole");
+			Trole role = (Trole)etechService.findObjectByProperty(Trole.class, "roleName", EtechGobal.enterprise_role);
 			Set<Trole> roles=new HashSet<Trole>();
 			roles.add(role);
 			regUser.setRoles(roles);

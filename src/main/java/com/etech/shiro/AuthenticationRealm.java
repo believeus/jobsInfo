@@ -39,15 +39,16 @@ public class AuthenticationRealm extends AuthorizingRealm{
 			log.debug("current uername:"+username);
 			String password = new String(authenticationToken.getPassword());
 			TbaseUser user = (TbaseUser)etechService.findObjectByProperty(TbaseUser.class,"loginName",username);
+			log.debug("user.password:"+user.getPassword()+" token.password:"+password);
 			if(password.equals(user.getPassword())){
 				log.debug(user.getLoginName() +" 验证通过验证success!");
-				log.debug(user.getPassword()+"  ：密碼");
 				//该验证信息必须和AuthenticationFilter中的TokenAuthentication用户名和密码一致
 				return new SimpleAuthenticationInfo(new Principal((long)user.getId(), username), user.getPassword(), getName());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		log.debug("管理员密码不匹配");
 		throw new UnknownAccountException();
 	}
 	//shiro授权
@@ -70,6 +71,7 @@ public class AuthenticationRealm extends AuthorizingRealm{
 			Set<Tauthority> authorities = role.getAuthorities();
 			for (Iterator<Tauthority> iter = authorities.iterator(); iter.hasNext();) {
 	           Tauthority authory = iter.next();
+	           log.debug(authory.getAuthName());
 	           // 设置用户权限
 	           authorizationInfo.addStringPermission(authory.getAuthName());
 	        }

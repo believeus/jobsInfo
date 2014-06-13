@@ -57,7 +57,8 @@ $().ready(function() {
 	<div class="path">
 		<a href="/admin/common/main.jhtml">首页</a> &raquo; 修改管理员
 	</div>
-	<form id="inputForm" action="save.jhtml" method="post" enctype="multipart/form-data">
+	<form id="inputForm" action="/admin/update.jhtml" method="post">
+		<input type="hidden" name="id" value="${admin.id}"/>
 		<table class="input">
 			<tr>
 				<th colspan="2" style="text-align: left; font-size: 15px; padding-left: 120px;">
@@ -70,9 +71,9 @@ $().ready(function() {
 				</th>
 				<td>
 					[#if admin.loginName="admin"]
-						<input type="text" name="username" readonly="true" class="text" maxlength="200" value="${admin.loginName}" />
+						<input type="text" name="loginName" readonly="true" class="text" maxlength="200" value="${admin.loginName}" />
 					[#else]
-						<input type="text" name="username"  class="text" maxlength="200" value="${admin.loginName}" />
+						<input type="text" name="loginName"  class="text" maxlength="200" value="${admin.loginName}" />
 					[/#if]
 				</td>
 			</tr>
@@ -90,7 +91,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>请选择角色:
 				</th>
 				<td>
-				<select name="">
+				<select name="roleId">
 					[#list roles as role]
 						<option value="${role.id}">${role.roleName}</option>
 					[/#list]

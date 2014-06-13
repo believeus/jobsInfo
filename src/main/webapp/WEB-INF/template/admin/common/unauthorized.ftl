@@ -2,19 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>${message("admin.unauthorized.title")} - Powered By e3dmall</title>
+<title>无权访问</title>
 <meta name="author" content="e3dmall Team" />
 <meta name="copyright" content="e3dmall" />
-<link href="${base}/resources/admin/css/common.css" rel="stylesheet" type="text/css" />
-<link href="${base}/resources/admin/css/error.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<div class="wrap">
 		<div class="error">
 			<dl>
-				<dt>${message("admin.unauthorized.message")}</dt>
+				<dt>对不起你无权访问</dt>
 				<dd>
-					<a href="javascript:;" onclick="window.history.back(); return false;">${message("admin.unauthorized.back")}</a>
+					<a href="javascript:;" onclick="window.history.back(); return false;">返回</a>
 				</dd>
 			</dl>
 		</div>

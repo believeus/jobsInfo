@@ -85,44 +85,19 @@ $().ready(function() {
 		<table class="input">
 			<tr>
 				<td>
-					<p>资讯中心</p>
-					<p>
-						<input type="checkbox" name="ids" value="infocenter:create"/>增加
-						<input type="checkbox" name="ids" value="infocenter:modify"/>修改
-						<input type="checkbox" name="ids" value="infocenter:delete"/>删除
-					</p>
+					<p>资讯中心<input type="checkbox" name="ids" value="infocenter:view"/>查看</p>
 				</td>
 				<td>
-					<p>工作指南</p>
-					<p>
-					   <input type="checkbox" name="ids" value="workguide:create"/>增加
-					   <input type="checkbox" name="ids" value="workguide:modify"/>修改
-					   <input type="checkbox" name="ids" value="workguide:delete"/>删除
-					 </p>
+					<p>工作指南 <input type="checkbox" name="ids" value="workguide:view"/>查看</p>
 				</td>
 				<td>
-					<p>就业服务</p>
-					<p>
-					  <input type="checkbox" name="ids" value="jobserver:create"/>增加
-					  <input type="checkbox" name="ids" value="jobserver:modify"/>修改
-					  <input type="checkbox" name="ids" value="jobserver:delete"/>删除
-					 </p>
+					<p>就业服务 <input type="checkbox" name="ids" value="jobserver:view"/>查看</p>
 				</td>
 				<td>
-					<p>政策咨询</p>
-					<p>
-						<input type="checkbox" name="ids" value="policy:create"/>增加
-						<input type="checkbox" name="ids" value="policy:modify"/>修改
-						<input type="checkbox" name="ids" value="policy:delete"/>删除
-					</p>
+					<p>政策咨询<input type="checkbox" name="ids" value="policy:view"/>查看</p>
 				</td>
 				<td>
-					<p>数据频道</p>
-					<p>
-						<input type="checkbox" name="ids" value="datachannel:create"/>增加
-						<input type="checkbox" name="ids" value="datachannel:modify"/>修改
-						<input type="checkbox" name="ids" value="datachannel:delete"/>删除
-					</p>
+					<p>数据频道	<input type="checkbox" name="ids" value="datachannel:view"/>查看</p>
 				</td>
 			</tr>
 			<tr class="liebiao">
@@ -413,7 +388,7 @@ $().ready(function() {
 			<tr>
 				<td colspan="5">
 					<input type="checkbox" name="ids" value="adminList:view">管理员列表
-					<input type="checkbox" name="ids" value="adminList:group">管理员分组
+					<input type="checkbox" name="ids" value="admin:group">管理员分组
 					<input type="checkbox" name="ids" value="admin:create">添加管理员
 					<input type="checkbox" name="ids" value="admin:modify">修改管理员
 					<input type="checkbox" name="ids" value="admin:delete">删除管理员

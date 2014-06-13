@@ -85,6 +85,8 @@ $(function(){
 	   	<div id="container">
 	   		<div style="height:auto;width:180px;">
 	   		<p style="background: #D7D7D7;font-size: 16px;margin: 0;padding: 10px;text-align: center;">网站内容管理</p>
+	   		
+	   		​[@shiro.hasPermission name="infocenter:view"]
 		  	<h1>资讯中心</h1>
     		<ul style="display: none;" class="MM">
 				<li>
@@ -106,7 +108,8 @@ $(function(){
 					<a target="main" href="/admin/specialReport/list.jhtml">专题报道</a>
 			    </li>
         	</ul>
-     
+     	   [/@shiro.hasPermission]
+     	   ​[@shiro.hasPermission name="workguide:view"]
 		   <h1>工作指南</h1>
         		<ul class="MM" style="display: none;">
 					<li>
@@ -119,14 +122,17 @@ $(function(){
 						<a target="main" href="/admin/leader/list.jhtml">局领导</a>
 					</li>
         		</ul>
-    
+    		[/@shiro.hasPermission]
+    		[@shiro.hasPermission name="jobserver:view"]
 			 <h1>就业服务</h1>
        			 <ul style="display: none;" class="MM">
 					<li>
 						<a target="main" href="/admin/jiuyeService/list.jhtml">就业服务</a>
 					</li>
       			</ul>
-     
+     		[/@shiro.hasPermission]
+     		
+     		[@shiro.hasPermission name="policy:view"]
 			 <h1>政策咨询</h1>
         		<ul style="display: none;" class="MM">
 					<li>
@@ -142,7 +148,9 @@ $(function(){
 						<a target="main" href="/admin/cityFile/list.jhtml">地方相关文件</a>
 					</li>
        			</ul>
-   
+   			[/@shiro.hasPermission]
+   			
+   			[@shiro.hasPermission name="datachannel:view"]
 		    <h1>数据频道</h1>
         		<ul style="display: none;" class="MM">
 					<li>
@@ -161,7 +169,7 @@ $(function(){
 						<a target="main" href="/admin/downLoad/list.jhtml">下载专区</a>
 					</li>
        			 </ul>
-    
+    		[/@shiro.hasPermission]
 			 <h1>网上展示厅</h1>
        			 <ul style="display: none;" class="MM">
 					<li>
@@ -228,12 +236,16 @@ $(function(){
 	   		<p style="background: #D7D7D7;font-size: 16px;margin: 0;padding: 10px;text-align: center;">系统管理</p>
   			<h1>系统设置</h1>
        			 <ul style="display: none;" class="MM">
+       			 	[@shiro.hasPermission name="adminList:view"]
 						<li>
 							<a target="main" href="/admin/list.jhtml">管理员管理</a>
 						</li>
+					[/@shiro.hasPermission]
+					[@shiro.hasPermission name="admin:group"]
 						<li>
 							<a target="main" href="/admin/power/list.jhtml">权限分组</a>
 						</li>
+					[/@shiro.hasPermission]
 						<li>
 							<a target="main" href="/admin/uploadFile/list.jhtml">上传文件管理</a>
 						</li>

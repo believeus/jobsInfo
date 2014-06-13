@@ -21,7 +21,7 @@ public class ControllerSpecialReport {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView() {
 		log.debug("current controller is newsListView !");
-		return "admin/news/list";
+		return "admin/specialReport/list";
 	}
 	
 	/**

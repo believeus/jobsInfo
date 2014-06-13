@@ -21,7 +21,7 @@ public class ControllerPublicity {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView() {
 		log.debug("current controller is newsListView !");
-		return "admin/news/list";
+		return "admin/publicity/list";
 	}
 	
 	/**

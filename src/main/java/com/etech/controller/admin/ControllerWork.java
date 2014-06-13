@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * 工作动态
  * */
-@Controller("controllerAdminWork")
+@Controller
 @RequestMapping("/admin/work")
 public class ControllerWork {
 	private static Log log = LogFactory.getLog(ControllerWork.class);
@@ -21,7 +21,7 @@ public class ControllerWork {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView() {
 		log.debug("current controller is newsListView !");
-		return "admin/news/list";
+		return "admin/work/list";
 	}
 	
 	/**
@@ -31,7 +31,7 @@ public class ControllerWork {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView() {
 		log.debug("current controller is newsListView !");
-		return "admin/news/add";
+		return "admin/work/add";
 	}
 	/**
 	 * 编辑工作
@@ -40,7 +40,7 @@ public class ControllerWork {
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView() {
 		log.debug("current controller is newsListView !");
-		return "admin/news/edit";
+		return "admin/work/edit";
 	}
 	
 	/**

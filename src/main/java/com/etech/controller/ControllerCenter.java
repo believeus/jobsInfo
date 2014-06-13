@@ -187,22 +187,4 @@ public class ControllerCenter {
 		}
 		return storepath;
 	}
-
-	@InitBinder
-	protected void initBinder(WebDataBinder binder) throws ServletException {
-
-		binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
-			@Override
-			public void setAsText(String text) throws IllegalArgumentException {
-				if (StringUtils.isEmpty(text))
-					return;
-
-			}
-
-			@Override
-			public String getAsText() {
-				return super.getAsText();
-			}
-		});
-	}
 }

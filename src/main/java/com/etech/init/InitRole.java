@@ -18,6 +18,7 @@ import com.etech.entity.Tadmin;
 import com.etech.entity.Tauthority;
 import com.etech.entity.Trole;
 import com.etech.service.EtechService;
+import com.etech.util.EtechGobal;
 
 /**
  * @author wuqiwei 当程序启动时调用onApplicationEvent方法并且注入servletContext对象
@@ -42,7 +43,7 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 	public void onApplicationEvent(ApplicationEvent event) {
 		//监听程序启动事件
 		if(event instanceof ContextRefreshedEvent){
-			Trole role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "personal-role");
+			Trole role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", EtechGobal.personal_role);
 			// 创建个人用户角色
 			if (StringUtils.isEmpty(role)) {
 				role = new Trole();
@@ -54,7 +55,7 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 				log.debug("init personalRole");
 			}
 			// 创建企业用户角色
-			role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "enterprise-role");
+			role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", EtechGobal.enterprise_role);
 			if (StringUtils.isEmpty(role)) {
 				role = new Trole();
 				role.setRoleName("enterprise-role");
@@ -65,7 +66,7 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 				log.debug("init enterpriseRole");
 			}
 			// 创建匿名用户角色
-			role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "anonymous-role");
+			role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", EtechGobal.anonymous_role);
 			if (StringUtils.isEmpty(role)) {
 				role = new Trole();
 				role.setRoleName("anonymous-role");
@@ -76,7 +77,7 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 				log.debug("init anonymousRole");
 			}
 			// 创建超级管理员角色
-			role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "super-role");
+			role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", EtechGobal.super_role);
 			if (StringUtils.isEmpty(role)) {
 				role = new Trole();
 				role.setRoleName("super-role");

@@ -8,13 +8,18 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.etech.entity.Tadmin;
+import com.etech.entity.Tauthority;
 import com.etech.entity.Trole;
 import com.etech.service.EtechService;
 
@@ -27,6 +32,7 @@ import com.etech.service.EtechService;
 @Controller
 @RequestMapping("/admin")
 public class ControllerAdmin{
+	private static final Log log=LogFactory.getLog(ControllerAdmin.class);
 	@Resource
 	private EtechService etechService;
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -93,7 +99,27 @@ public class ControllerAdmin{
 	 * 更新
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update() {
+	public String update(Tadmin editAdmin,int roleId) {
+		log.debug("roleId:"+roleId);
+		log.debug("loginName:"+editAdmin.getLoginName());
+		Trole role=(Trole)etechService.findObjectById(Trole.class, roleId);
+		log.debug("role.name:"+role.getRoleName());
+		Tadmin dbAdmin =(Tadmin) etechService.findObjectById(Tadmin.class, editAdmin.getId());
+		Set<Trole> roles = new HashSet<Trole>();
+		roles.add(role);
+		log.debug("editAdmin.getPassword():"+editAdmin.getPassword());
+		if(StringUtils.isEmpty(editAdmin.getPassword()))
+			editAdmin.setPassword(dbAdmin.getPassword());
+		else{
+			String password=DigestUtils.md5Hex(editAdmin.getPassword());
+			editAdmin.setPassword(password);
+		}
+		
+		dbAdmin.setLoginName(editAdmin.getLoginName());
+		dbAdmin.setPassword(editAdmin.getPassword());
+		dbAdmin.setEmail(editAdmin.getEmail());
+		dbAdmin.setRoles(roles);
+		etechService.saveOrUpdate(dbAdmin);
 		return "redirect:list.jhtml";
 	}
 

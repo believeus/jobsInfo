@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * 图片新闻
  * */
-@Controller("controllerAdminImagesNews")
+@Controller
 @RequestMapping("/admin/imagesNews")
 public class ControllerImagesNews {
 	private static Log log = LogFactory.getLog(ControllerImagesNews.class);
@@ -21,7 +21,7 @@ public class ControllerImagesNews {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView() {
 		log.debug("current controller is newsListView !");
-		return "admin/news/list";
+		return "admin/imagesNews/list";
 	}
 	
 	/**

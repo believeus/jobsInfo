@@ -124,4 +124,9 @@
 		<url-pattern>/group/M00/*</url-pattern>
 	</servlet-mapping>
 	<!-- End Author:wuqiwei:Data:2014-06-05 AddReason:内嵌式小型分布式文件系统集成 -->
+	<error-page>
+		<error-code>500</error-code>
+		<exception-type>org.apache.shiro.authz.UnauthorizedException</exception-type>
+		<location>/admin/common/unauthorized.jhtml</location>
+	</error-page>
 </web-app>

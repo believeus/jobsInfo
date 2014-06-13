@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * 机构简介
  * */
-@Controller("controllerAdminIntroduction")
+@Controller
 @RequestMapping("/admin/introduction")
 public class ControllerIntroduction {
 	private static Log log = LogFactory.getLog(ControllerIntroduction.class);
