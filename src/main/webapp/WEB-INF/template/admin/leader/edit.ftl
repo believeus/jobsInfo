@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>修改新闻 - Powered By e3dmall</title>
+<title>修改 - Powered By e3dmall</title>
 <meta name="author" content="e3dmall Team" />
 <meta name="copyright" content="e3dmall" />
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
@@ -58,19 +58,20 @@ $().ready(function() {
 		<a href="/admin/common/main.jhtml">首页</a> &raquo; 编辑内容
 	</div>
 	<form id="inputForm" action="update.jhtml" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="id" value="${dataCenter.id}">
 		<table class="input">
 			<tr>
 				<th>
-					<span class="requiredField">*</span>新闻标题:
+					<span class="requiredField">*</span>标题:
 				</th>
 				<td>
-					<input type="text" name="title" class="text" maxlength="200" />
+					<input type="text" name="title" class="text" maxlength="200" value="${dataCenter.title}"/>
 				</td>
 				<th>
 					<span class="requiredField">*</span>作者:
 				</th>
 				<td>
-					<input type="text" name="title" class="text" maxlength="200" />
+					<input type="text" name="title" class="text" maxlength="200" value="${dataCenter.author}" />
 				</td>
 			</tr>
 			<tr>
@@ -119,7 +120,8 @@ $().ready(function() {
 								<span>
 									<a onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
 								</span>
-								<img style="width:190px;height:120px" src="" name="img"/>
+								<input type="hidden" name="imgpath" value="${dataCenter.imgpath}">
+								<img style="width:190px;height:120px" src="/${dataCenter.imgpath}" name="img"/>
 							</div>
 							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
 							<input type="hidden" id="filename0" name="filename0">
@@ -169,7 +171,7 @@ $().ready(function() {
 					内容:
 				</th>
 				<td colspan="3">
-					<textarea id="editor" name="content" class="editor"></textarea>
+					<textarea id="editor" name="content" class="editor">${dataCenter.content}</textarea>
 				</td>
 			</tr>
 			<tr>
@@ -177,7 +179,7 @@ $().ready(function() {
 					排序编号:
 				</th>
 				<td colspan="3">
-					<input type="text" name="order" class="text" maxlength="9" />
+					<input type="text" name="order" class="text" maxlength="9" ${dataCenter.id} />
 				</td>
 			</tr>
 			<tr>

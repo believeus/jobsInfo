@@ -182,7 +182,7 @@ $(function(){
 			<h1>幻灯片</h1>
         		<ul style="display: none;" class="MM">
 					<li>
-						<a target="main" href="/admin/slide/slideList.jhtml">幻灯片</a>
+						<a target="main" href="/admin/slide/list.jhtml">幻灯片</a>
 					</li>
    			 	</ul>
 			<h1>基本信息</h1>

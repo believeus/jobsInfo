@@ -58,6 +58,7 @@ $().ready(function() {
 		<a href="/admin/common/main.jhtml">首页</a> &raquo; 编辑内容
 	</div>
 	<form id="inputForm" action="update.jhtml" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="id" value="${dataCenter.id}"/>
 		<table class="input">
 			<tr>
 				<th>

@@ -83,77 +83,37 @@ $().ready(function() {
 				<th>
 					<a href="javascript:;" class="sort" name="type">置顶</a>
 				</th>
-				<th>
+				<!--<th>
 					<a href="javascript:;" class="sort" name="endDate">排序</a>
-				</th>
+				</th>-->
 				<th>
 					<a href="#"  class="sort">操作</a>
 				</th>
 			</tr>
 			
+			[#list dataCenters as center]
 			<tr>
 				<td>
-					<input type="checkbox" name="ids" value="1" />
+					<input type="checkbox" name="ids" value="${center.id}" />
 				</td>
 				<td>
-					<span title="1">1</span>
+					<span title="${center.id}">${center.id}</span>
 				</td>
 				<td>
-					新闻标题
+					${center.title}
 				</td>
 				<td>
 					<input type="checkbox" id="" />
 				</td>
-				<td>
+				<!--<td>
 					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
 					<a href="" style="text-decoration:underline;">降</a>
-				</td>
+				</td>-->
 				<td>
-					<a href="edit.jhtml?id=1">[修改]</a>
+					<a href="edit.jhtml?id=${center.id}">[修改]</a>
 				</td>
 			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" name="ids" value="1" />
-				</td>
-				<td>
-					<span title="2">2</span>
-				</td>
-				<td>
-					新闻标题
-				</td>
-				<td>
-					<input type="checkbox" id="" />
-				</td>
-				<td>
-					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
-					<a href="" style="text-decoration:underline;">降</a>
-				</td>
-				<td>
-					<a href="edit.jhtml?id=1">[修改]</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" name="ids" value="1" />
-				</td>
-				<td>
-					<span title="3">3</span>
-				</td>
-				<td>
-					新闻标题
-				</td>
-				<td>
-					<input type="checkbox" id="" />
-				</td>
-				<td>
-					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
-					<a href="" style="text-decoration:underline;">降</a>
-				</td>
-				<td>
-					<a href="edit.jhtml?id=1">[修改]</a>
-				</td>
-			</tr>
+			[/#list]
 			
 		</table>
 	</form>

@@ -9,6 +9,10 @@ public class EtechGobal {
 	public static final String anonymous_role="匿名用户权限";
 	public static final String super_role="超级管理员权限";
 	
+	/**
+	 * 内容分类
+	 */
+	
 	//新闻动态
 	public static final int newsDinamic=0;
 	//工作动态
@@ -21,5 +25,57 @@ public class EtechGobal {
 	public static final int newsVideo=4;
 	// 专题报道
 	public static final int subjectReport=5;
+	
+	
+	// 机构简介
+	public static final int introduction=6;
+	// 主要职能
+	public static final int mainFunction=7;
+	// 局领导
+	public static final int leader=8;
+	
+	
+	// 就业服务
+	public static final int jiuyeService=9;
+	
+	
+	// 国家法规
+	public static final int countryLaw=10;
+	// 国家文件
+	public static final int countryFile=11;
+	// 地方法规
+	public static final int cityLaw=12;
+	// 地方文件
+	public static final int cityFile=13;
+	
+	
+	// 供求分析报告
+	public static final int analysisreport=14;
+	// 工资指导价位
+	public static final int wagePriceGuide=15;
+	// 本月需求排行
+	public static final int monthlyDemandList=16;
+	// 本月供给排行
+	public static final int monthSupplyList=17;
+	// 下载
+	public static final int downLoad=18;
+	
+	
+	// 幻灯片
+	public static final int slide=19;
+	
+	
+	// 基本信息
+	public static final int baseMessage=20;
+	
+	
+	// 业务办理
+	public static final int busHandle=21;
+	// 局长信箱
+	public static final int mailBox=22;
+	// 网站论坛
+	public static final int forum=23;
+	// 友情链接
+	public static final int links=24;
 	
 }
