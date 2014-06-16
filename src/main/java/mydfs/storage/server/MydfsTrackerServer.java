@@ -65,6 +65,11 @@ public class MydfsTrackerServer {
 	 * @param fileSuffix  文件的后缀名
 	 * */ 
 	public String upload(final InputStream inputStream,String fileSuffix) {
+		try {
+			System.out.println("client:size:"+inputStream.available());
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		if("".equals(fileSuffix)||fileSuffix==null){
 			throw new RuntimeException("第二个参数必须指定");
 		}
@@ -92,12 +97,13 @@ public class MydfsTrackerServer {
 				e.printStackTrace();
 			}
 			InputStream in = socket.getInputStream();
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
-			storepath = br.readLine();
+			DataInputStream socketIn=new DataInputStream(in);
+			storepath=socketIn.readUTF();
 			System.out.println("file store path:" + storepath);
 			socket.close();
 			bos.close();
 			ps.close();
+			socketIn.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

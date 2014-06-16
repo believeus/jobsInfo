@@ -175,7 +175,7 @@ public class MydfsStorageServer {
 										BufferedOutputStream bos = new BufferedOutputStream(out);
 										// 获取文件流的大小
 										int size = in.available();
-										System.out.println("file size:" + size);
+										System.out.println("server file size:" + size);
 										// InputStreamReader将字节流转化为字符流
 										BufferedInputStream br = new BufferedInputStream(in);
 										// 读取客户端数据
@@ -203,12 +203,12 @@ public class MydfsStorageServer {
 										storepath=storepath.replaceAll(basepath, pathPrefix);
 										System.out.println("access path:"+storepath);
 										out = socket.getOutputStream();
-										BufferedWriter pw = new BufferedWriter(new OutputStreamWriter(out));
-										pw.write(storepath);
-										pw.flush();
+										DataOutputStream socketOut=new DataOutputStream(out);
+										socketOut.writeUTF(storepath);
+										bos.flush();
 										bos.close();
 										br.close();
-										pw.close();
+										socketOut.close();
 										return;
 									}
 									// 删除StoreServer中的数据
