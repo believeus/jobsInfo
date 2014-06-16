@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>添加新闻 - Powered By e3dmall</title>
+<title>添加图片新闻 - Powered By e3dmall</title>
 <meta name="author" content="e3dmall Team" />
 <meta name="copyright" content="e3dmall" />
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
@@ -58,6 +58,7 @@ $().ready(function() {
 		<a href="/admin/common/main.jhtml">首页</a> &raquo; 添加内容
 	</div>
 	<form id="inputForm" action="save.jhtml" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="type" value="${type}"/>
 		<table class="input">
 			<tr>
 				<th>

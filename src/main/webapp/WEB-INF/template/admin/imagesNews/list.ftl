@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>新闻列表 - Powered By e3dmall</title>
+<title>图片新闻列表 - Powered By e3dmall</title>
 <meta name="author" content="e3dmall Team" />
 <meta name="copyright" content="e3dmall" />
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
@@ -88,38 +88,38 @@ $().ready(function() {
 				<th>
 					<a href="javascript:;" class="sort" name="type">置顶</a>
 				</th>
-				<th>
+				<!--<th>
 					<a href="javascript:;" class="sort" name="endDate">排序</a>
-				</th>
+				</th>-->
 				<th>
 					<a href="#"  class="sort">操作</a>
 				</th>
 			</tr>
-			
+			[#list dataCenters as center]
 			<tr>
 				<td>
-					<input type="checkbox" name="ids" value="1" />
+					<input type="checkbox" name="ids" value="${center.id}" />
 				</td>
 				<td>
-					<span title="1">1</span>
+					<span title="${center.id}">${center.id}</span>
 				</td>
 				<td>
-					新闻标题
+					${center.title}
 				</td>
 				<td>
 					<input type="checkbox" id="" />
 				</td>
-				<td>
+				<!--<td>
 					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
 					<a href="" style="text-decoration:underline;">降</a>
-				</td>
+				</td>-->
 				[@shiro.hasPermission name="newsImg:modify"]
 				<td>
-					<a href="edit.jhtml?id=1">[修改]</a>
+					<a href="edit.jhtml?id=${center.id}">[修改]</a>
 				</td>
 				[/@shiro.hasPermission]
 			</tr>
-			
+			[/#list]
 		</table>
 	</form>
 </body>
