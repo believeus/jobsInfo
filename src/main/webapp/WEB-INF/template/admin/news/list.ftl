@@ -79,7 +79,7 @@ $().ready(function() {
 					<a href="javascript:;" class="sort" name="title">排序编号</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="adPosition">内容标题</a>
+					<a href="javascript:;" class="sort" name="adPosition">标题</a>
 				</th>
 				<th>
 					<a href="javascript:;" class="sort" name="type">置顶</a>
@@ -95,10 +95,10 @@ $().ready(function() {
 			[#list dataCenters as center]
 			<tr>
 				<td>
-					<input type="checkbox" name="id" value="${center.id}" />
+					<input type="checkbox" name="ids" value="${center.id}" />
 				</td>
 				<td>
-					<span title="1">1</span>
+					<span title="${center.id}">${center.id}</span>
 				</td>
 				<td>
 					${center.title}

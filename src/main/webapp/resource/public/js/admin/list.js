@@ -1,6 +1,6 @@
 $().ready( function() {
 	var $listForm = $("#listForm");
-	var $pageTotal = $("#pageTotal");
+	//var $pageTotal = $("#pageTotal");
 	var $deleteButton = $("#deleteButton");
 	var $refreshButton = $("#refreshButton");
 	var $pageSizeSelect = $("#pageSizeSelect");
@@ -12,7 +12,7 @@ $().ready( function() {
 	var $searchPropertySelect = $("#searchPropertySelect");
 	var $searchPropertyOption = $("#searchPropertyOption a");
 	var $searchValue = $("#searchValue");
-	var $listTable = $("#listTable");
+	//var $listTable = $("#listTable");
 	var $selectAll = $("#selectAll");
 	var $ids = $("#listTable input[name='ids']");
 	var $contentRow = $("#listTable tr:gt(0)");
@@ -45,13 +45,7 @@ $().ready( function() {
 					success: function(message) {
 						$.message(message);
 						if (message.type == "success") {
-							$pageTotal.text(parseInt($pageTotal.text()) - $checkedIds.size());
-							$checkedIds.closest("tr").remove();
-							if ($listTable.find("tr").size() <= 1) {
-								setTimeout(function() {
-									location.reload(true);
-								}, 3000);
-							}
+							location.reload(true);
 						}
 						$deleteButton.addClass("disabled");
 						$selectAll.prop("checked", false);

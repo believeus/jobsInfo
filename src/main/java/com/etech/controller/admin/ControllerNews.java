@@ -3,6 +3,8 @@ package com.etech.controller.admin;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import mydfs.storage.server.MydfsTrackerServer;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +31,7 @@ public class ControllerNews extends ControllerCRUD{
 	 */
 	@RequestMapping(value = "/newsList", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
-		List<?> dataCenters = super.listDataInfo(request);
+		List<?> dataCenters = super.listDataInfo(request,0);
 		request.setAttribute("dataCenters",dataCenters);
 		return "admin/news/list";
 	}
@@ -37,8 +39,8 @@ public class ControllerNews extends ControllerCRUD{
 
 	//删除新闻
 	@RequestMapping("/delete")
-	public String removeNews(HttpServletRequest request){
-		super.deleteDataInfo(request);
+	public String removeNews(HttpServletRequest request,HttpServletResponse response){
+		super.deleteDataInfo(request,response);
 		return "redirect:/admin/news/newsList.jhtml";
 	}
 

@@ -3,11 +3,13 @@ package com.etech.controller.admin;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import mydfs.storage.server.MydfsTrackerServer;
 
@@ -22,6 +24,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.etech.entity.TdataCenter;
 import com.etech.service.EtechService;
+import com.etech.util.JsonOutToBrower;
 
 @Component
 public class ControllerCRUD {
@@ -90,8 +93,8 @@ public class ControllerCRUD {
 		etechService.merge(dataCenter);
 	}
 	//删除信息
-	public void deleteDataInfo(HttpServletRequest request) {
-		String[] ids = request.getParameterValues("id");
+	public void deleteDataInfo(HttpServletRequest request,HttpServletResponse response) {
+		String[] ids = request.getParameterValues("ids");
 		if(!StringUtils.isEmpty(ids)){
 			List<String> idList=new ArrayList<String>();
 			for(String id : ids){
@@ -101,10 +104,13 @@ public class ControllerCRUD {
 			String hql="delete from TdataCenter where id in "+values;
 			etechService.delete(hql);
 		}
+		//删除后页面刷新
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("type", "success");
+		JsonOutToBrower.out(map, response);
 	}
 	// 信息列表
-	public List<?> listDataInfo(HttpServletRequest request) {
-		String type=request.getParameter("type");
+	public List<?> listDataInfo(HttpServletRequest request,int type) {
 		// 查询新闻动态
 		String hql="From TdataCenter center where center.type='"+type+"'";
 		@SuppressWarnings("unchecked")

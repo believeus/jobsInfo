@@ -85,7 +85,6 @@ $(function(){
 	   	<div id="container">
 	   		<div style="height:auto;width:180px;">
 	   		<p style="background: #D7D7D7;font-size: 16px;margin: 0;padding: 10px;text-align: center;">网站内容管理</p>
-	   		
 	   		​[@shiro.hasPermission name="infocenter:view"]
 		  	<h1>资讯中心</h1>
     		<ul style="display: none;" class="MM">
