@@ -1,27 +1,12 @@
 package com.etech.controller.admin;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-
 import mydfs.storage.server.MydfsTrackerServer;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.junit.Assert;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import com.etech.entity.TdataCenter;
 import com.etech.service.EtechService;
 import com.etech.util.EtechGobal;
@@ -31,8 +16,7 @@ import com.etech.util.EtechGobal;
  * */
 @Controller
 @RequestMapping("/admin/news")
-public class ControllerNews {
-	private static Log log = LogFactory.getLog(ControllerNews.class);
+public class ControllerNews extends ControllerCRUD{
 	@Resource
 	private EtechService etechService;
 	@Resource
@@ -45,29 +29,19 @@ public class ControllerNews {
 	 */
 	@RequestMapping(value = "/newsList", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
-		// 查询新闻动态
-		String hql="From TdataCenter center where center.type='"+EtechGobal.newsDinamic+"'";
-		@SuppressWarnings("unchecked")
-		List<?> dataCenters = (List<TdataCenter>)etechService.findObjectList(hql, 1, 15, TdataCenter.class);
+		List<?> dataCenters = super.listDataInfo(request);
 		request.setAttribute("dataCenters",dataCenters);
 		return "admin/news/list";
 	}
 
+
 	//删除新闻
 	@RequestMapping("/delete")
 	public String removeNews(HttpServletRequest request){
-		String[] ids = request.getParameterValues("id");
-		if(!StringUtils.isEmpty(ids)){
-			List<String> idList=new ArrayList<String>();
-			for(String id : ids){
-				idList.add(id);
-			}
-			String values=idList.toString().replace("[","(").replace("]", ")");
-			String hql="delete from TdataCenter where id in "+values;
-			etechService.delete(hql);
-		}
+		super.editDataInfo(request);
 		return "redirect:/admin/news/newsList.jhtml";
 	}
+
 	/**
 	 * 添加新闻
 	 * 
@@ -100,39 +74,10 @@ public class ControllerNews {
 	 */
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request) {
-		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		String storepath = "";
-		Map<String, MultipartFile> files = multipartRequest.getFileMap();
-		for (MultipartFile file : files.values()) {
-			InputStream inputStream;
-			try {
-				inputStream = file.getInputStream();
-				if(inputStream.available()==0)break;
-				Assert.assertNotNull("upload file InputStream is null", inputStream);
-				String fileName = file.getName();
-				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
-				log.debug("upload file stuffix"+extention);
-				storepath = mydfsTrackerServer.upload(inputStream, extention);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		TdataCenter center=new TdataCenter();
-		int type=Integer.parseInt(request.getParameter("type"));
-		String title=request.getParameter("title");
-		String author=request.getParameter("author");
-		String content=request.getParameter("content");
-		center.setType(type);
-		center.setTitle(title);
-		center.setAuthor(author);
-		center.setContent(content);
-		if(!StringUtils.isEmpty(storepath)){
-			center.setImgpath(storepath);
-		}
-		center.setCreateTime(System.currentTimeMillis());
-		etechService.merge(center);
+		super.savaDataInfo(request);
 		return "redirect:/admin/news/newsList.jhtml";
 	}
+
 
 	/**
 	 * 修改新闻
@@ -141,28 +86,9 @@ public class ControllerNews {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request) {
-		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		String storepath = "";
-		Map<String, MultipartFile> files = multipartRequest.getFileMap();
-		for (MultipartFile file : files.values()) {
-			InputStream inputStream;
-			try {
-				inputStream = file.getInputStream();
-				if(inputStream.available()==0)break;
-				Assert.assertNotNull("upload file InputStream is null", inputStream);
-				String fileName = file.getName();
-				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
-				log.debug("upload file stuffix"+extention);
-				storepath = mydfsTrackerServer.upload(inputStream, extention);
-				editDataCenter.setImgpath(storepath);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, editDataCenter.getId());
-		
-		BeanUtils.copyProperties(editDataCenter, dataCenter);
-		etechService.merge(dataCenter);
+		super.updataDataInfo(editDataCenter, request);
 		return "redirect:/admin/news/newsList.jhtml";
 	}
+
+	
 }
