@@ -47,4 +47,7 @@ public class EtechService {
 	public void delete(String hql){
 		etechComDao.delete(hql);
 	}
+	public List<?> search(Class<?> clazz,String key,String[] fields,int currentPage,int perCount){
+		return etechComDao.getListByHSearch(clazz, key, fields,currentPage,perCount);
+	}
 }

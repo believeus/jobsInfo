@@ -1,11 +1,20 @@
 package com.etech.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.Table;
+
+import org.hibernate.search.annotations.Analyzer;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
+import org.wltea.analyzer.lucene.IKAnalyzer;
 
 @Entity
 @Table
-public class TdataCenter extends TbaseEntity{
+@Indexed(index = "com.etech.entity.TdataCenter")  
+public class TdataCenter extends TbaseEntity implements Cloneable{
 	private static final long serialVersionUID = 346855620951185851L;
 	private String title;
 	private String author;
@@ -14,6 +23,7 @@ public class TdataCenter extends TbaseEntity{
 	private String content;
 	private long createTime;
 	private long editTime;
+	@Field(store=Store.YES,index = Index.TOKENIZED, analyzer = @Analyzer(impl =IKAnalyzer.class ))
 	public String getTitle() {
 		return title;
 	}
@@ -38,6 +48,8 @@ public class TdataCenter extends TbaseEntity{
 	public void setImgpath(String imgpath) {
 		this.imgpath = imgpath;
 	}
+	@Lob
+	@Field(store=Store.YES,index = Index.TOKENIZED, analyzer = @Analyzer(impl =IKAnalyzer.class ))
 	public String getContent() {
 		return content;
 	}
@@ -56,6 +68,9 @@ public class TdataCenter extends TbaseEntity{
 	public void setEditTime(long editTime) {
 		this.editTime = editTime;
 	}
-	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 
 }

@@ -169,53 +169,12 @@
 					<div class="j_main_right_2_1">
 						<h2 style="margin-top: 10px; margin-bottom: 0px; font-weight: normal;">全文检索</h2>
 						<img style="width: 660px;" src="/resource/public/images/line.png">
-						
+						[#list tdataCenterList as datacenter]
 						<div class="j_main_right_3">
-							<p><a href="#" style="color:#0017ff;text-decoration:underline;">河北网上为毕业生提供就业指导服务</a></p>
-							<p><a href="" style="color:#008e1f;">http://www.ppsells.com</a></p>
-							<p>对专家情况进行详细介绍。毕业生在择业、<font color="red">就业</font>、创业过程中遇到问题时，可随时上网登录该栏目，选择相应的咨询专家提出问题。咨询专家看到问题后，会及时进行有针对性解答，反馈给提问学生。热点新闻</p>
+							<p><a href="#" style="color:#0017ff;text-decoration:underline;">${datacenter.title}</a></p>
+							<p>${datacenter.content}</p>
 						</div>
-						<div class="j_main_right_3">
-							<p><a href="#" style="color:#0017ff;text-decoration:underline;">河北网上为毕业生提供就业指导服务</a></p>
-							<p><a href="" style="color:#008e1f;">http://www.ppsells.com</a></p>
-							<p>对专家情况进行详细介绍。毕业生在择业、<font color="red">就业</font>、创业过程中遇到问题时，可随时上网登录该栏目，选择相应的咨询专家提出问题。咨询专家看到问题后，会及时进行有针对性解答，反馈给提问学生。热点新闻</p>
-						</div>
-						<div class="j_main_right_3">
-							<p><a href="#" style="color:#0017ff;text-decoration:underline;">河北网上为毕业生提供就业指导服务</a></p>
-							<p><a href="" style="color:#008e1f;">http://www.ppsells.com</a></p>
-							<p>对专家情况进行详细介绍。毕业生在择业、<font color="red">就业</font>、创业过程中遇到问题时，可随时上网登录该栏目，选择相应的咨询专家提出问题。咨询专家看到问题后，会及时进行有针对性解答，反馈给提问学生。热点新闻</p>
-						</div>
-						<div class="j_main_right_3">
-							<p><a href="#" style="color:#0017ff;text-decoration:underline;">河北网上为毕业生提供就业指导服务</a></p>
-							<p><a href="" style="color:#008e1f;">http://www.ppsells.com</a></p>
-							<p>对专家情况进行详细介绍。毕业生在择业、<font color="red">就业</font>、创业过程中遇到问题时，可随时上网登录该栏目，选择相应的咨询专家提出问题。咨询专家看到问题后，会及时进行有针对性解答，反馈给提问学生。热点新闻</p>
-						</div>
-						<div class="j_main_right_3">
-							<p><a href="#" style="color:#0017ff;text-decoration:underline;">河北网上为毕业生提供就业指导服务</a></p>
-							<p><a href="" style="color:#008e1f;">http://www.ppsells.com</a></p>
-							<p>对专家情况进行详细介绍。毕业生在择业、<font color="red">就业</font>、创业过程中遇到问题时，可随时上网登录该栏目，选择相应的咨询专家提出问题。咨询专家看到问题后，会及时进行有针对性解答，反馈给提问学生。热点新闻</p>
-						</div>
-						<div class="j_main_right_3">
-							<p><a href="#" style="color:#0017ff;text-decoration:underline;">河北网上为毕业生提供就业指导服务</a></p>
-							<p><a href="" style="color:#008e1f;">http://www.ppsells.com</a></p>
-							<p>对专家情况进行详细介绍。毕业生在择业、<font color="red">就业</font>、创业过程中遇到问题时，可随时上网登录该栏目，选择相应的咨询专家提出问题。咨询专家看到问题后，会及时进行有针对性解答，反馈给提问学生。热点新闻</p>
-						</div>
-						<div class="j_main_right_3">
-							<p><a href="#" style="color:#0017ff;text-decoration:underline;">河北网上为毕业生提供就业指导服务</a></p>
-							<p><a href="" style="color:#008e1f;">http://www.ppsells.com</a></p>
-							<p>对专家情况进行详细介绍。毕业生在择业、<font color="red">就业</font>、创业过程中遇到问题时，可随时上网登录该栏目，选择相应的咨询专家提出问题。咨询专家看到问题后，会及时进行有针对性解答，反馈给提问学生。热点新闻</p>
-						</div>
-						<div class="j_main_right_3">
-							<p><a href="#" style="color:#0017ff;text-decoration:underline;">河北网上为毕业生提供就业指导服务</a></p>
-							<p><a href="" style="color:#008e1f;">http://www.ppsells.com</a></p>
-							<p>对专家情况进行详细介绍。毕业生在择业、<font color="red">就业</font>、创业过程中遇到问题时，可随时上网登录该栏目，选择相应的咨询专家提出问题。咨询专家看到问题后，会及时进行有针对性解答，反馈给提问学生。热点新闻</p>
-						</div>
-						<div class="j_main_right_3">
-							<p><a href="#" style="color:#0017ff;text-decoration:underline;">河北网上为毕业生提供就业指导服务</a></p>
-							<p><a href="" style="color:#008e1f;">http://www.ppsells.com</a></p>
-							<p>对专家情况进行详细介绍。毕业生在择业、<font color="red">就业</font>、创业过程中遇到问题时，可随时上网登录该栏目，选择相应的咨询专家提出问题。咨询专家看到问题后，会及时进行有针对性解答，反馈给提问学生。热点新闻</p>
-						</div>
-						
+						[/#list]
 						<img style="width: 660px;" src="/resource/public/images/line.png">
 						<p style="padding-left:25px;">
 							<a href="">首页</a>

@@ -63,10 +63,12 @@
 				<a href="/dataChannel.jhtml" title="">数据频道</a>
 				<a href="/onlineShow.jhtml" title="">网上展示厅</a>
 				<div style="float: right; width: 300px; margin-top: 10px;text-align:right;">
-					<form action="">
+					<form action="/search.jhtml" method="post">
 						<span style="color:#FFFFFF;">全文检索：</span>
-						<input type="test" style="width:160px">
-						<input type="button" value="检索" onclick="javascript:window.location.href='/search.jhtml'" style="background:#FDFBC8;;border-radius:4px;border:1px solid #909090;">
+						<input type="hidden" name="currentpage" value="0"/>
+						<input type="hidden" name="perCount" value="15"/>
+						<input type="text" style="width:160px" name="key">
+						<input type="submit" value="检索"  style="background:#FDFBC8;;border-radius:4px;border:1px solid #909090;">
 					</form>
 				</div>
 			</div>

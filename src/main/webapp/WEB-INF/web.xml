@@ -32,25 +32,6 @@
 	</filter>
 	<!--End 这是Spring中的一个编码过滤器 设置每次请求的request请求解码的类型为UTF-8 -->
 
-	<!--begin: 这个过滤器是用在一个页面请求时，打来Session，生成完页面生关闭Session，这样就可以解决lazy -->
-	<filter>
-		<filter-name>hibernateFilter</filter-name>
-		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
-		<init-param>
-			<param-name>sessionFactoryBeanName</param-name>
-			<param-value>sessionFactory</param-value>
-		</init-param>
-		<init-param>
-			<param-name>singleSession</param-name>
-			<param-value>true</param-value>
-		</init-param>
-		<init-param>
-			<param-name>flushMode</param-name>
-			<param-value>AUTO</param-value>
-		</init-param>
-	</filter>
-	<!--end: 这个过滤器是用在一个页面请求时，打来Session，生成完页面生关闭Session，这样就可以解决lazy -->
-
 	<!-- 经测试filter的执行过程是按照filter-mapping的顺序决定的 ,比如说来了一个.html的请求 -->
 	<!-- 会先被SessionUserCheckUpdate拦截,之后才会被UrlRewriteFilter拦截UrlRewriteFilter被拦截到请求 -->
 	<!-- 是不会传递到下一个filter的，这是UrlRewriteFilter重写URL导致的 -->
@@ -65,12 +46,6 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<!-- Begin Name:wuqiwei Date:2013-10-4 08:39:02 AddReason:访问一个页面直到页面完全打开之后session才关闭,解决懒加载问题 -->
-	<filter-mapping>
-		<filter-name>hibernateFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	<!-- Begin Name:wuqiwei Date:2013-10-4 08:39:02 AddReason:访问一个页面直到页面完全打开之后session才关闭,解决懒加载问题 -->
 
 	<!-- Begin Name:wuqiwei Date:2013-10-2 AddReason:在url重写之前缓存页面,避免Encached不缓存浏览器的链接地址 -->
 	<!-- <filter-mapping> <filter-name>indexPageCacheFilter</filter-name> <url-pattern>/index.html</url-pattern> 
