@@ -23,7 +23,7 @@ public class Tauthority extends TbaseEntity {
 	public void setAuthName(String authName) {
 		this.authName = authName;
 	}
-	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE})
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="fk_roleId",referencedColumnName="id")
 	public Trole getRole() {
 		return role;

@@ -2,6 +2,6 @@
 var Etech={
   "current": encodeURIComponent(window.location),
   "logout":function(){
-			window.location = "/logout.jhtml?return="+this.current;
+			window.location = "/logout.jhtml";
 	}
-}
+};

@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -43,9 +44,7 @@ public class Trole extends TbaseEntity{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	@OneToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH})
-	@JoinColumn(name="fk_roleId",referencedColumnName="id")
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="role")
 	public Set<Tauthority> getAuthorities() {
 		return authorities;
 	}
@@ -53,7 +52,7 @@ public class Trole extends TbaseEntity{
 		this.authorities = authorities;
 	}
 	
-	@ManyToMany(mappedBy = "roles")
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE },mappedBy="roles")
 	public Set<TbaseUser> getUsers() {
 		return users;
 	}

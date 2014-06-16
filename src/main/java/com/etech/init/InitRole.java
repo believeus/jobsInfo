@@ -47,49 +47,48 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 			// 创建个人用户角色
 			if (StringUtils.isEmpty(role)) {
 				role = new Trole();
-				role.setRoleName("personal-role");
+				role.setRoleName(EtechGobal.personal_role);
 				role.setDescription("该角色可以访问个人相关信息");
 				//给该用户初始化相关默认权限
 				initAuthority(role);
-				etechService.saveOrUpdate(role);
+				etechService.merge(role);
 				log.debug("init personalRole");
 			}
 			// 创建企业用户角色
 			role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", EtechGobal.enterprise_role);
 			if (StringUtils.isEmpty(role)) {
 				role = new Trole();
-				role.setRoleName("enterprise-role");
+				role.setRoleName(EtechGobal.enterprise_role);
 				role.setDescription("该角色可以访问企业相关信息");
 				//给该用户初始化相关默认权限
 				initAuthority(role);
-				etechService.saveOrUpdate(role);
+				etechService.merge(role);
 				log.debug("init enterpriseRole");
 			}
 			// 创建匿名用户角色
 			role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", EtechGobal.anonymous_role);
 			if (StringUtils.isEmpty(role)) {
 				role = new Trole();
-				role.setRoleName("anonymous-role");
+				role.setRoleName(EtechGobal.anonymous_role);
 				role.setDescription("该角色没有任何权限");
 				//给该用户初始化相关默认权限
 				initAuthority(role);
-				etechService.saveOrUpdate(role);
+				etechService.merge(role);
 				log.debug("init anonymousRole");
 			}
 			// 创建超级管理员角色
 			role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", EtechGobal.super_role);
 			if (StringUtils.isEmpty(role)) {
 				role = new Trole();
-				role.setRoleName("super-role");
+				role.setRoleName(EtechGobal.super_role);
 				role.setDescription("该角色拥有所有权限");
 				Set<Tauthority> authorities = new HashSet<Tauthority>();
 				// 给管理员设置所有权限
 				Tauthority authority = new Tauthority();
 				authority.setAuthName("*");
-				etechService.saveOrUpdate(authority);
 				authorities.add(authority);
 				role.setAuthorities(authorities);
-				etechService.saveOrUpdate(role);
+				etechService.merge(role);
 				log.debug("init superAdminRole");
 			}
 			// 初始化一个后台管理员
@@ -102,11 +101,11 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 				admin.setPassword(password);
 				admin.setCreateDate(System.currentTimeMillis());
 				admin.setDescription("最高权限管理员,拥有管理网站的所有权限");
-				role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", "super-role");
+				role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", EtechGobal.super_role);
 				Set<Trole> roles=new HashSet<Trole>();
 				roles.add(role);
 				admin.setRoles(roles);
-				etechService.saveOrUpdate(admin);
+				etechService.merge(admin);
 			}
 		}
 
@@ -118,27 +117,21 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 		// 该企业用户具有查看信息中心的权限
 		Tauthority infocenter = new Tauthority();
 		infocenter.setAuthName("infocenter:view");
-		etechService.saveOrUpdate(infocenter);
 		// 该用户具有查看工作指南的查看权限
 		Tauthority workguide = new Tauthority();
 		workguide.setAuthName("workguide:view");
-		etechService.saveOrUpdate(workguide);
 		// 该用户具有查看就业服务的查看权限
 		Tauthority workservice = new Tauthority();
 		workservice.setAuthName("workservice:view");
-		etechService.saveOrUpdate(workservice);
 		// 该用户具有政策咨询的查看权限
 		Tauthority policyAdvice = new Tauthority();
 		policyAdvice.setAuthName("policyAdvice:view");
-		etechService.saveOrUpdate(policyAdvice);
 		// 该用户具有查看数据频道的权限
 		Tauthority dataChannel = new Tauthority();
 		dataChannel.setAuthName("dataChannel:view");
-		etechService.saveOrUpdate(dataChannel);
 		// 该用户具有网上展示厅的权限
 		Tauthority networkShow = new Tauthority();
 		networkShow.setAuthName("networkShow:view");
-		etechService.saveOrUpdate(networkShow);
 
 		authorities.add(networkShow);
 		authorities.add(dataChannel);

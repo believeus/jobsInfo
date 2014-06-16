@@ -23,17 +23,13 @@ $().ready(function() {
 	</div>
 	<form id="listForm" action="list.jhtml" method="get">
 		<div class="bar">
-		 ​[@shiro.hasPermission name="newsDinamic:create"]
 			<a href="add.jhtml" class="iconButton">
 				<span class="addIcon">&nbsp;</span>添加
 			</a>
-		[/@shiro.hasPermission]
 		<div class="buttonWrap">
-			[@shiro.hasPermission name="newsDinamic:delete"]
 			<a href="javascript:;" id="deleteButton" class="iconButton disabled">
 				<span class="deleteIcon">&nbsp;</span>删除
 			</a>
-			[/@shiro.hasPermission]
 				<a href="javascript:;" id="refreshButton" class="iconButton">
 					<span class="refreshIcon">&nbsp;</span>刷新
 				</a>
@@ -114,11 +110,9 @@ $().ready(function() {
 					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
 					<a href="" style="text-decoration:underline;">降</a>
 				</td>-->
-				[@shiro.hasPermission name="newsDinamic:modify"]
 				<td>
 					<a href="edit.jhtml?id=${center.id}">[修改]</a>
 				</td>
-				[/@shiro.hasPermission]
 			</tr>
 			[/#list]
 		</table>

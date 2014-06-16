@@ -177,26 +177,60 @@
 			color:#FFFFFF;
 		}
     </style>
+    
     <style type="text/css">
-	.brandImg{
+	
+.brandImg {
+    background-color: #666666;
+    border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 1px;
+    height: 145px;
+    position: relative;
+    width: 160px;
+}
+.brandImg span {
+    display: block;
+    height: 145px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 140px;
+}
+.brandImg span:hover {
+    background-color: #FFFFFF;
+    opacity: 0.7;
+}
+.brandImg span a {
+    display: block;
+    left: 38px;
+    position: absolute;
+    top: 72px;
+}
+	
+	</style>
+	
+    <style type="text/css">
+	#Img{
 		border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
 	    border-radius: 2px 2px 2px 2px;
 	    border-style: solid;
 	    border-width: 1px;
 	    background-color: #666666;
-	    width:260px;height:30px;
+	    width:260px !important;height:30px !important;
 	    position:relative;
 	}
 	
-	.brandImg span{
+	#Img span{
 		display:block;
 		position:absolute;
 		top:0px;left:0px;
-		width:240px;
-		height:30px;
+		width:240px !important;
+		height:30px !important;
 	}
 	
-	.brandImg span:hover{
+	#Img span:hover{
 		background-color:#FFFFFF;
 	    opacity: 0.7;
 	    filter:alpha(opacity=50);
@@ -204,13 +238,16 @@
 	    -khtml-opacity: 0.5;
 	}
 	
-	.brandImg span a{
+	#Img span a{
 		display:block;
 		position:absolute;
-		left:90px;
+		top:0px !important;
+		left:90px !important;
 	}
 	
 	</style>
+	
+	
      <script type="text/javascript">
      	// 图片上传
 		function loadImgFast(img,i){
@@ -224,9 +261,11 @@
 		   			$(".brandImg:eq("+i+") img")[0].src = path;
 		   		} 
 			}
+		
 	</script>
 	
     <script text="text/javascript">
+    	
     [@compress single_line = true]
     		var Specialty='<div class="select-info">	
 						<label class="top-label">已选项：</label>
@@ -346,12 +385,18 @@
 				</div>';
 	[/@compress]
 	
+		//删除企业图片
+		function delete_pic(object){		
+				if ($(".qiyepic").size() <= 1) {
+					alert("必须至少保留一个参数");
+				} else {
+					$(object).closest("div").parent().remove();
+				}
+		}
+		
     $().ready(function(){
     
     	// 初始化一些值。设置value为用户填写过的项选中。
-    	alert(${sessionUser.unitType});
-    	alert(${sessionUser.relationship});
-    	alert(${sessionUser.economicType});
     	$("#unitType").val("${sessionUser.unitType}");
     	$("#relationship").val("${sessionUser.relationship}");
     	$("#economicType").val("${sessionUser.economicType}");
@@ -375,18 +420,28 @@
 						emptytext:"选择工种",
 						hiddenID : "selectJobshidden1"//隐藏域ID	
 			});
+			
+		
 		
     	var a = 2;
     	var b = 2;
+    	var c = 2;
     	//添加企业图片
     	$("#add_pic").click(function(){
     		[@compress single_line = true]
-    		var html = 
-    			'<div class="qiyepic">
-					<p><img src="" /></p>
-					<p><textArea placeholder="添加描述（20字以内）" maxlength="20"></textArea></p>
-					<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a class="delete_pic" href="javascript:void(0);">删除</a></div>
-				</div>';
+    		var html = '<div class="qiyepic">
+							<p>
+								<div class="brandImg">
+									<span><a onclick="file'+c+'.click()" href="javascript:void(0);">点击上传图片</a></span>
+									<img style="width:160px;height:145px" src="/resource/public/images/bg.png" name="img"/>
+								</div>
+								<input type="file" style="display:none" id="file'+c+'" name="file'+c+'" onchange="filename'+c+'.value=this.value;loadImgFast(this,'+c+')">
+								<input type="hidden" id="filename'+c+'" name="filename'+c+'">
+							</p>
+							<p><textArea placeholder="添加描述（20字以内）" maxlength="20"></textArea></p>
+							<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this);" href="javascript:void(0);">删除</a></div>
+						</div>
+    					';
 			[/@compress]
 			if($(".qiyepic").size() <8){
 				$(".qiyepic").parent().append(html);
@@ -399,17 +454,11 @@
 			}else{
 				alert("最多添加8条数据");
 			}
-			
-			//删除企业图片
-			$("a.delete_pic").on("click",function(){
-				if ($(".qiyepic").size() <= 1) {
-					alert("必须至少保留一个参数");
-				} else {
-					$(this).closest("div").parent().remove();
-				}
-			});
+			c++;
     	});
     	
+    	
+			
     	//添加企业视频
     	$("#add_vedio").click(function(){
     		[@compress single_line = true]
@@ -804,7 +853,7 @@
 					<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<div class="" style="height: auto; overflow: hidden; float: left; width: 660px; margin-left: 30px; margin-top: 10px;margin-right:10px;">
 						<table>
-						<form novalidate="novalidate"  action="/enterprise/submit-account-Info.jhtml" method="post" id="InfoForm">
+						<form novalidate="novalidate"  action="/enterprise/submit-account-Info.jhtml" encType="multipart/form-data"  method="post" id="InfoForm">
 							<input type="hidden" name="id" value="${sessionUser.id}">
 							<input type="hidden" name="status" value="${sessionUser.status}">
 							<input type="hidden" name="loginName" value="${sessionUser.loginName}">
@@ -891,27 +940,25 @@
 								</tr>
 								<tr>
 									<td style="vertical-align: top;">单位简介:</td>
-									<td colspan="3"><textArea cols="50" rows="5"  value="${sessionUser.introduce}" name="introduce" id="introduce" style="resize:none;"></textArea></td>
+									<td colspan="3"><textArea cols="50" rows="5"  name="introduce" id="introduce" style="resize:none;">${sessionUser.introduce}</textArea></td>
 								</tr>
-								</form>
 								<tr>
 									<td style="vertical-align: top;">企业电子图:</td>
 									<td colspan="2">
-										<form novalidate="novalidate"  action="/upload.jhtml" method="post" encType="multipart/form-data" id="imageForm">
-											<div class="brandImg">
-												<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
-												</span>
-														<img width="260px" height="30px" src="[#if sessionUser.imgHead?exists]/${sessionUser.imgHead}[#else]/resource/public/images/bg.png[/#if]" name="img"/>
-											</div>
-											<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;checkChange=1;loadImgFast(this,0)">
-											<input type="hidden" id="filename0" name="filename0">
-										</form>	
+										<div class="brandImg" id="Img">
+											<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
+											</span>
+													<img width="260px" height="30px" src="/resource/public/images/bg.png" name="img"/>
+										</div>
+										<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
+										<input type="hidden" id="filename0" name="filename0">
 									</td>
 									<td>
 										<input type="button" value="上传" id="submitImg" style="width:60px;">
 									</td>
 								</tr>
 							</table>
+						</form>
 							
 						</div>
 					</div>
@@ -925,9 +972,16 @@
 					</div>
 					<div style="width:670px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;padding:10px;">
 						<div class="qiyepic">
-							<p><img src="" /></p>
+							<p>
+								<div class="brandImg">
+									<span><a onclick="file1.click()" href="javascript:void(0);">点击上传图片</a></span>
+									<img style="width:160px;height:145px" src="/resource/public/images/bg.png" name="img"/>
+								</div>
+								<input type="file" style="display:none" id="file1" name="file1" onchange="filename1.value=this.value;loadImgFast(this,1)">
+								<input type="hidden" id="filename1" name="filename1">
+							</p>
 							<p><textArea placeholder="添加描述（20字以内）" maxlength="20"></textArea></p>
-							<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a class="delete_pic" href="javascript:void(0);">删除</a></div>
+							<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this)" href="javascript:void(0);">删除</a></div>
 						</div>
 					</div>
 					

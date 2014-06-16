@@ -3,6 +3,8 @@ package com.etech.entity;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -12,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -135,7 +138,8 @@ public class TbaseUser extends TbaseEntity implements Serializable{
 	public void setComfirmPwd(String comfirmPwd) {
 		this.comfirmPwd = comfirmPwd;
 	}
-	@ManyToMany
+	
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "t_user_role",
     joinColumns = { @JoinColumn(name = "fk_userId", referencedColumnName = "id") }, 
     inverseJoinColumns = { @JoinColumn(name = "fk_roleId", referencedColumnName = "id") })

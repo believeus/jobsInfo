@@ -10,16 +10,15 @@ import mydfs.storage.server.MydfsTrackerServer;
 import org.junit.Test;
 
 public class StorageServerTest {
-	
-	@Test
-	public void startStorageServer() throws IOException{
-		MydfsStorageServer storageServer=new MydfsStorageServer(9999,"/data/mydfs/store",4,"192.168.1.110");
+	/*
+	public static void main(String[] args) throws IOException{
+		MydfsStorageServer storageServer=new MydfsStorageServer(9999,"/data/mydfs/store",4,"localhost");
 		storageServer.startServer();
-	}
+	}*/
 	@Test
 	public void upload() throws IOException{
-		MydfsTrackerServer client=new MydfsTrackerServer("127.0.0.1", 9999);
-		InputStream inputStream = new FileInputStream("/home/wuqiwei/QQ图片20140523145054.jpg");
+		MydfsTrackerServer client=new MydfsTrackerServer("localhost", 9999);
+		InputStream inputStream = new FileInputStream("/home/wuqiwei/dengni37.jpg");
 		String storepath = client.upload(inputStream,"jpg");
 		System.out.println(storepath);
 	}

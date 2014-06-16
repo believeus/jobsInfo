@@ -99,7 +99,8 @@ body {
 							success: function(data) {
 									// 如果注册成功，则进行跳转
 									if(data.message=="success"){
-										window.location.href="/";
+										$("#registerForm").attr("action","/");
+										$("#registerForm").submit();
 									}else{
 										// 先删除上一个错误
 										$("#Error").remove();
@@ -144,11 +145,11 @@ body {
    	  		<p style="color: rgb(211, 54, 49); font-size: 20px; margin-bottom: 20px; margin-top: 0px; text-align: left;">欢迎企业用户注册</p>
             <div>
             	<span><font color="red">*</font>用户名：</span>
-                <span><input id="loginName" /></span>
+                <span><input id="loginName" name="loginName"/></span>
             </div>
             <div>
             	<span><font color="red">*</font>密码：</span>
-                <span><input id="password" type="password" /></span>
+                <span><input id="password" type="password" name="password"/></span>
             </div>
             <div>
             	<span><font color="red">*</font>重复密码：</span>

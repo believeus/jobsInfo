@@ -14,8 +14,8 @@ public class EtechService {
 	private EtechComDao etechComDao;
 
 	/** 以对象方式保存 */
-	public void saveOrUpdate(Object object) {
-		etechComDao.saveOrUpdateByObject(object);
+	public void merge(Object object) {
+		etechComDao.merge(object);
 	}
 
 	/** 根据id获取对象 */
@@ -40,5 +40,11 @@ public class EtechService {
 	
 	public List<?> findObjectByList(String hql){
 		return (List<?>)etechComDao.getObjecListByHQL(hql);
+	}
+	public void saveOrUpdata(Object object){
+		etechComDao.saveOrUpdata(object);
+	}
+	public void delete(String hql){
+		etechComDao.delete(hql);
 	}
 }

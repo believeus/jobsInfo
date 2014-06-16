@@ -2,6 +2,7 @@ package com.etech.controller.admin;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +53,21 @@ public class ControllerNews {
 		return "admin/news/list";
 	}
 
+	//删除新闻
+	@RequestMapping("/delete")
+	public String removeNews(HttpServletRequest request){
+		String[] ids = request.getParameterValues("id");
+		if(!StringUtils.isEmpty(ids)){
+			List<String> idList=new ArrayList<String>();
+			for(String id : ids){
+				idList.add(id);
+			}
+			String values=idList.toString().replace("[","(").replace("]", ")");
+			String hql="delete from TdataCenter where id in "+values;
+			etechService.delete(hql);
+		}
+		return "redirect:/admin/news/newsList.jhtml";
+	}
 	/**
 	 * 添加新闻
 	 * 
@@ -73,7 +89,6 @@ public class ControllerNews {
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
-		System.out.println(dataCenter.getContent());
 		request.setAttribute("dataCenter", dataCenter);
 		return "admin/news/edit";
 	}
@@ -92,6 +107,7 @@ public class ControllerNews {
 			InputStream inputStream;
 			try {
 				inputStream = file.getInputStream();
+				if(inputStream.available()==0)break;
 				Assert.assertNotNull("upload file InputStream is null", inputStream);
 				String fileName = file.getName();
 				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
@@ -110,9 +126,11 @@ public class ControllerNews {
 		center.setTitle(title);
 		center.setAuthor(author);
 		center.setContent(content);
-		center.setImgpath(storepath);
+		if(!StringUtils.isEmpty(storepath)){
+			center.setImgpath(storepath);
+		}
 		center.setCreateTime(System.currentTimeMillis());
-		etechService.saveOrUpdate(center);
+		etechService.merge(center);
 		return "redirect:/admin/news/newsList.jhtml";
 	}
 
@@ -144,7 +162,7 @@ public class ControllerNews {
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, editDataCenter.getId());
 		
 		BeanUtils.copyProperties(editDataCenter, dataCenter);
-		etechService.saveOrUpdate(dataCenter);
+		etechService.merge(dataCenter);
 		return "redirect:/admin/news/newsList.jhtml";
 	}
 }

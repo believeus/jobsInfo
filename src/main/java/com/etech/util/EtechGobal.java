@@ -4,10 +4,10 @@ public class EtechGobal {
 	public static final String loginName="loginName";
 	public static final String idcard="idcard";
 	/**初始化默认权限*/
-	public static	final String personal_role="personal-role";
-	public static final String enterprise_role="enterprise-role";
-	public static final String anonymous_role="anonymous-role";
-	public static final String super_role="super-role";
+	public static	final String personal_role="个人用户权限";
+	public static final String enterprise_role="企业用户权限";
+	public static final String anonymous_role="匿名用户权限";
+	public static final String super_role="超级管理员权限";
 	
 	//新闻动态
 	public static final int newsDinamic=0;

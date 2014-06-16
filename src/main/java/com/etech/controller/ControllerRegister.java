@@ -167,7 +167,7 @@ public class ControllerRegister {
 				Set<Trole> roles=new HashSet<Trole>();
 				roles.add(role);
 				regUser.setRoles(roles);
-				etechService.saveOrUpdate(regUser);
+				etechService.merge(regUser);
 				session.setAttribute("sessionUser", regUser);
 			// 用户编辑信息
 			}else{
@@ -176,7 +176,7 @@ public class ControllerRegister {
 				BeanUtils.copyProperties(regUser, comUser);
 				System.out.println(comUser.getTrueName());
 				session.setAttribute("sessionUser", comUser);
-				etechService.saveOrUpdate(comUser);
+				etechService.merge(comUser);
 			}
 			message.put("message","success");
 			JsonOutToBrower.out(message, response);
@@ -239,9 +239,7 @@ public class ControllerRegister {
 			Set<Trole> roles=new HashSet<Trole>();
 			roles.add(role);
 			regUser.setRoles(roles);
-			etechService.saveOrUpdate(regUser);
-			session.setAttribute("sessionUser", regUser);
-			session.setAttribute("clazz",regUser.getClass().getName());
+			etechService.merge(regUser);
 			message.put("message","success");
 			JsonOutToBrower.out(message, response);
 		}else {

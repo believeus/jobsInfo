@@ -1,16 +1,13 @@
 package com.etech.controller;
 
-import java.beans.PropertyEditorSupport;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,8 +22,6 @@ import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -74,7 +69,6 @@ public class ControllerCenter {
 	}
 
 	/** 进入企业中心:该用户需要有enterpriseRole角色才能访问 */
-	@RequiresRoles("enterpriseRole")
 	@RequestMapping(value = "/enterprise-user/center", method = RequestMethod.GET)
 	public String enterpriseCenter() {
 		log.debug("current controller is enterpriseCenter !");
@@ -87,7 +81,7 @@ public class ControllerCenter {
 	public void submitComUserInfo(TcomUser comUser, HttpServletResponse response) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
-			etechService.saveOrUpdate(comUser);
+			etechService.merge(comUser);
 			map.put("message", "success");
 		} catch (Exception ex) {
 			map.put("message", "error");
@@ -112,7 +106,7 @@ public class ControllerCenter {
 				TmajorType majorType = (TmajorType) etechService.findObjectById(TmajorType.class, 2);
 				comInfo.setMajorType(majorType);
 			}
-			etechService.saveOrUpdate(comInfo);
+			etechService.merge(comInfo);
 			map.put("message", "success");
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -139,7 +133,27 @@ public class ControllerCenter {
 
 	/** 企业用户信息提交 */
 	@RequestMapping(value = "/enterprise/submit-account-Info")
-	public void submitEntUserInfo(TentUser entUser, HttpSession session) {
+	public void submitEntUserInfo(TentUser entUser, HttpServletRequest request,HttpSession session) {
+		// 遍历图片
+		String storepath = "xxxx";
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		Map<String, MultipartFile> files = multipartRequest.getFileMap();
+		for (MultipartFile file : files.values()) {
+			InputStream inputStream;
+			try {
+				inputStream = file.getInputStream();
+				if(inputStream.available()==0)break;
+				org.junit.Assert.assertNotNull("upload file InputStream is null", inputStream);
+				String fileName = file.getName();
+				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
+				log.debug("upload file stuffix"+extention);
+				//storepath = mydfsTrackerServer.upload(inputStream, extention);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("     finish!");
+		
 		TentUser sessionUser = null;
 		try {
 			// 如果为空就报错
@@ -159,7 +173,7 @@ public class ControllerCenter {
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
-		etechService.saveOrUpdate(sessionUser);
+		etechService.merge(sessionUser);
 		session.setAttribute("sessionUser", sessionUser);
 	}
 
@@ -168,7 +182,7 @@ public class ControllerCenter {
 	public void submitRecruit(Trecruit recruit) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
-			etechService.saveOrUpdate(recruit);
+			etechService.merge(recruit);
 			map.put("message", "success");
 		} catch (Exception ex) {
 			map.put("message", "error");

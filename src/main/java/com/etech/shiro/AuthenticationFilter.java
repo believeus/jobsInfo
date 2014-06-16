@@ -42,7 +42,7 @@ public class AuthenticationFilter extends FormAuthenticationFilter {
 	protected AuthenticationToken createToken(ServletRequest request,
 			ServletResponse response) {
 		HttpServletRequest httpRequest=(HttpServletRequest)request;
-		String username=httpRequest.getParameter("username");
+		String username=httpRequest.getParameter("loginName");
 		String password=httpRequest.getParameter("password");
 		password=DigestUtils.md5Hex(password);
 		return new TokenAuthentication(username, password,true);
@@ -56,7 +56,7 @@ public class AuthenticationFilter extends FormAuthenticationFilter {
 		TbaseUser sessionUser = (TbaseUser)etechService.findObjectByProperty(TbaseUser.class, "loginName", username);
 		// 更新登录时间
 		sessionUser.setLastLoginData(System.currentTimeMillis());
-		etechService.saveOrUpdate(sessionUser);
+		etechService.merge(sessionUser);
 		session.setAttribute("sessionUser",sessionUser);
 		return super.onLoginSuccess(token, subject, servletRequest, servletResponse);
 	}

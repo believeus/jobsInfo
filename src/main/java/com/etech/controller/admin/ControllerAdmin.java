@@ -76,7 +76,7 @@ public class ControllerAdmin{
 		admin.setRoles(roles);
 		admin.setCreateDate(System.currentTimeMillis());
 		admin.setLastLoginData(System.currentTimeMillis());
-		etechService.saveOrUpdate(admin);
+		etechService.merge(admin);
 		return "redirect:list.jhtml";
 	}
 
@@ -119,7 +119,7 @@ public class ControllerAdmin{
 		dbAdmin.setPassword(editAdmin.getPassword());
 		dbAdmin.setEmail(editAdmin.getEmail());
 		dbAdmin.setRoles(roles);
-		etechService.saveOrUpdate(dbAdmin);
+		etechService.merge(dbAdmin);
 		return "redirect:list.jhtml";
 	}
 

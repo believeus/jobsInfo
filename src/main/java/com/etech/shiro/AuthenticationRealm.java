@@ -66,6 +66,7 @@ public class AuthenticationRealm extends AuthorizingRealm{
 		//当前用户不为空
 		if(!StringUtils.isEmpty(role)){
 			String roleName = role.getRoleName();
+			log.debug("roleName:"+roleName);
 			// 设置用户角色
 			authorizationInfo.addRole(roleName);
 			Set<Tauthority> authorities = role.getAuthorities();

@@ -1,12 +1,9 @@
 package com.etech.controller.admin;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
@@ -14,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.etech.entity.Tauthority;
 import com.etech.entity.Trole;
 import com.etech.service.EtechService;
@@ -70,7 +66,7 @@ public class ControllerPower {
 	public String saveNewsView(Trole role){
 		Assert.assertNotSame("角色名必须填写","", role.getRoleName().trim());
 		Assert.assertNotSame("角色描述名必须填写","", role.getDescription().trim());
-		etechService.saveOrUpdate(role);
+		etechService.merge(role);
 		return "redirect:list.jhtml";
 	}
 	/**
@@ -79,24 +75,24 @@ public class ControllerPower {
 	 */
 	@RequestMapping(value = "/update")
 	public String updateNewsView(HttpServletRequest request){
-		String roleId = request.getParameter("roleId");
-		
-		Trole role=(Trole)etechService.findObjectById(Trole.class, Integer.parseInt(roleId));
+		String roleId = request.getParameter("roleId");	
 		log.debug("roleId:"+roleId);
-		String[] authoritys = request.getParameterValues("ids");
-		System.out.println(authoritys);
+		Trole role=(Trole)etechService.findObjectById(Trole.class, Integer.parseInt(roleId));
+		Assert.assertNotNull(role);
+		etechService.delete(Tauthority.class, "role.id", Integer.parseInt(roleId));
+		Set<Tauthority> authorities = role.getAuthorities();
+		String[] authoritys = request.getParameterValues("authority");
 		if(!StringUtils.isEmpty(authoritys)){
-			etechService.delete(Tauthority.class, "role.id", Integer.parseInt(roleId));
-			Set<Tauthority> authorities=new HashSet<Tauthority>();
 			for(String authName : authoritys){
 				Tauthority auth=new Tauthority();
 				log.debug("Tauthority:"+authName);
 				auth.setAuthName(authName);
-				etechService.saveOrUpdate(auth);
+				// 保存关联关系
+				auth.setRole(role);
 				authorities.add(auth);
 			}
 			role.setAuthorities(authorities);
-			etechService.saveOrUpdate(role);
+			etechService.saveOrUpdata(role);
 		}
 		
 		return "redirect:list.jhtml";

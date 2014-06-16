@@ -32,10 +32,16 @@ public class EtechComDao extends HibernateDaoSupport {
 	private static final Log log=LogFactory.getLog(EtechComDao.class);
 	@Resource
 	private SessionFactory sessionFactory;
-	// 以对象的方式保存对象
-	public void saveOrUpdateByObject(final Object object){
+	// 当对象和他的级联对象都没有id的时候,可以一起级联保存
+	public void merge(Object object){
 		HibernateTemplate ht = super.getHibernateTemplate();
 		ht.merge(object);
+		ht.flush();
+	}
+	// 当对象有id，他的级联对象都没有id的时候,可以一起级联保存
+	public void saveOrUpdata(Object object){
+		HibernateTemplate ht = getHibernateTemplate();
+		ht.saveOrUpdate(object);
 		ht.flush();
 	}
 
@@ -147,20 +153,8 @@ public class EtechComDao extends HibernateDaoSupport {
 		});
 	}
 	//以对象的方式获取对象。
-	public Object getObjecById(Class<?> clazz, final Integer id) {
-		final String clazzName = clazz.getName();
-		final String hql="from "+clazzName+" as model where model.id =:id";
-		log.debug("current hql:"+hql);
-		return  this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
-
-			@Override
-			public Object doInHibernate(Session session)
-					throws HibernateException, SQLException {
-				Query query = session.createQuery(hql);
-				query.setInteger("id", id);
-				return query.uniqueResult();
-			}
-		});
+	public Object getObjecById(Class<?> clazz, Integer id) {
+		return  getHibernateTemplate().get(clazz, id);
 	}
 	
 	public List<?> getPageDateList(final String hql,final Integer currentPage,final Integer perPageCount,Class<?> clazz){

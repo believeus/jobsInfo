@@ -26,6 +26,17 @@
 		    <property name="filterChainDefinitions">
 			<value>
 				/=authc
+				/admin/login.jhtml=anon
+				/admin/**=authc
+				<!--添加新闻-->
+				/admin/news/add.jhtml=perms["newsDinamic:create"]|["authc"]
+				<!-- 编辑新闻 -->
+				/admin/news/edit.jhtml=perms["newsDinamic:modify"]
+				<!-- 删除新闻 -->
+				/admin/news/delete.jhtml=perms["newsDinamic:delete"]
+				<!--添加工作动态-->
+				/admin/work/add.jhtml=perms["workDinamic:create"]
+				/admin/work/edit.jhtml=perms["workDinamic:modify"]
 				<!-- 此时这里的/代表主页面 -->
 			</value>
 		</property>

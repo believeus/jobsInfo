@@ -207,14 +207,14 @@
 		    $().ready(function() {
 		    	// ajax 提交验证和登录。
 		    	function submitF(or,flag){
-					 	if($("#username").val()==""){
+					 	if($("#loginName").val()==""){
 					 	  return false;
 					 	}
 						$.ajax({
 							url: "/ajaxLoginValid.jhtml",
 							type: "POST",
 							data: {
-								loginName: $("#username").val(),
+								loginName: $("#loginName").val(),
 								password:$("#password").val(),
 								userType: $('input:radio[name="userType"]:checked').val()
 									},
@@ -243,13 +243,13 @@
 							});
 					}
 		    	// 用户名验证。
-				$("#username,input:radio[name='userType']").change(function(){
+				$("#loginName,input:radio[name='userType']").change(function(){
 					submitF("no","true");
 				});
 				
 				// 登录。
 				$("#login").click(function() {
-					var loginName=$("#username").val();
+					var loginName=$("#loginName").val();
 					var password=$("#password").val();
 					if(loginName==""&&password==""){
 						alert("用户名和密码不能为空！");
@@ -441,7 +441,7 @@
 				<table style="padding:19px;">
 					<tr>
 						<td>用户名:</td>
-						<td><input id="username" type="text" name="username"  autocomplete="off" style="width:150px"></td>
+						<td><input id="loginName" type="text" name="loginName"  autocomplete="off" style="width:150px"></td>
 					</tr>
 					<tr>
 						<td>密&nbsp;&nbsp;&nbsp;码:</td>

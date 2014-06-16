@@ -3,7 +3,7 @@
 <title>后台管理系统</title>
 <meta http-equiv=Content-Type content=text/html;charset=gb2312>
 <meta http-equiv="refresh" content="60">
-
+<script type="text/javascript" src="/resource/public/js/Etech.js"></script>
 <base target="main">
 </head>
 <body leftmargin="0" topmargin="0">
@@ -14,9 +14,9 @@
 	</td>
     <td width="39%" valign="top">
     	<div class="back_xinxi" style="width: 300px; height: 100px; text-align: right; float: right; padding: 15px;">
-    		<span style="color:#E3E3E3;">admin</span>
+    		<span style="color:#E3E3E3;">${sessionUser.loginName}</span>
 	    	<span style="color:#E3E3E3;">,你好!</span>
-	    	<span><a style="color:#E3E3E3;" href="">[退出]</a></span>
+	    	<span><a style="color:#E3E3E3;" href="/logout.jhtml">[退出]</a></span>
     	</div>
 	</td>
   </tr>

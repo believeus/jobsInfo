@@ -1,10 +1,14 @@
 package com.etech.controller.admin;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.etech.service.EtechService;
 
 /**
  * 工作动态
@@ -13,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/admin/work")
 public class ControllerWork {
 	private static Log log = LogFactory.getLog(ControllerWork.class);
+	@Resource
+	private EtechService etechService;
 
 	/**
 	 * 工作列表
