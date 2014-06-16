@@ -90,7 +90,7 @@ public class ControllerCRUD {
 		etechService.merge(dataCenter);
 	}
 	//删除信息
-	public void editDataInfo(HttpServletRequest request) {
+	public void deleteDataInfo(HttpServletRequest request) {
 		String[] ids = request.getParameterValues("id");
 		if(!StringUtils.isEmpty(ids)){
 			List<String> idList=new ArrayList<String>();

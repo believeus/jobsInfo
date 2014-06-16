@@ -373,12 +373,12 @@
 							<div class="xinxi_1">
 								<p><span style="margin-left:30px;float:none;">工作动态</span></p>
 								<ul style="padding-left:25px;">
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									<li><a href="/workList.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									<li><a href="/workList.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									<li><a href="/workList.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									<li><a href="/workList.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									<li><a href="/workList.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									<li><a href="/workList.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
 								</ul>
 							</div>
 						</td>
@@ -387,12 +387,12 @@
 			</div>
 		</div>
 		<div class="j_mian_right">
-			<div id="demo" class="gonggao">
+			<div id="" class="gonggao">
 				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);">
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
 					公告公示<span style="float:right;"><a href="/publicityList.jhtml">更多</a></span>
 				</p>
-				<ul id="demo1" style="padding-left:25px;">
+				<ul id="" style="padding-left:25px;">
 					<li><a href="/publicityInfo.jhtml">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
 					<li><a href="/publicityInfo.jhtml">社会保障费申请缴纳管理规定..</a><span>10-15</span></li>
 					<li><a href="/publicityInfo.jhtml">人力资源社会保障部关于印发..</a><span>10-15</span></li>
@@ -402,7 +402,6 @@
 					<li><a href="/publicityInfo.jhtml">人力资源社会保障部关于印发..</a><span>10-15</span></li>
 					<li><a href="/publicityInfo.jhtml">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
 				</ul>
-				<div id="demo2" class="gonggao"></div>
 			</div>
 			
 			[#if sessionUser?exists]
@@ -492,6 +491,8 @@
 				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 808px;"><hr style="border:1px dashed #e4e4e4;"></div>
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml">更多>></a></div>
+				<!--
+				
 				<div id="zhuanti_pic" style="display:inline-block;">
 					<div style="width:225px;height:70px;float:left;margin-left:30px;border:1px solid;">
 						<a href="/special.jhtml"><img src="/resource/public/images/01.png" style="width: 225px; height: 70px;"></a>
@@ -508,6 +509,102 @@
 					<a href="/" style="background: url(/resource/public/images/u6_normal_33.gif); height: 62px; width: 14px; position: absolute;left:150px;margin-top:3px;"></a>
 					<a href="/" style="background: url(/resource/public/images/222.png); height: 62px; width: 13px; position: absolute;right:150px;margin-top:3px;"></a>
 				</div>
+				
+				-->
+				<style type="text/css">
+					.box{ width:980px;position:relative; overflow:hidden; _height:100%;right:988px;}
+					.picbox{ width:980px; height:115px; overflow:hidden; position:relative;}
+					.picbox li{list-style:none;}
+					.piclist{ height:115px;position:absolute; left:0px; top:0px;padding:0;margin:43px 0 0;}
+					.piclist li{ background:#eee; margin-right:20px; padding:5px; float:left;}
+					.swaplist{ position:absolute; left:-3000px; top:0px}
+					.og_prev,.og_next{ width:30px; height:50px; background:url(http://www.codefans.net/jscss/demoimg/201401/icon.png) no-repeat; background:url(http://www.codefans.net/jscss/demoimg/201401/icon_ie6.png) no-repeat\9; position:absolute; top:55px; z-index:99; cursor:pointer;filter:alpha(opacity=70); opacity:0.7;}
+					.og_prev{ background-position:0 -60px; left:4px;}
+					.og_next{ background-position:0 0; right:4px;}
+				</style>
+				<script type="text/javascript">
+					$(document).ready(function(e) {
+						/***不需要自动滚动，去掉即可***/
+						time = window.setInterval(function(){
+							$('.og_next').click();
+						},5000);
+						/***不需要自动滚动，去掉即可***/
+						linum = $('.mainlist li').length;//图片数量
+						w = linum * 250;//ul宽度
+						$('.piclist').css('width', w + 'px');//ul宽度
+						$('.swaplist').html($('.mainlist').html());//复制内容
+						$('.og_next').click(function(){
+							if($('.swaplist,.mainlist').is(':animated')){
+								$('.swaplist,.mainlist').stop(true,true);
+							}
+							if($('.mainlist li').length>4){//多于4张图片
+								ml = parseInt($('.mainlist').css('left'));//默认图片ul位置
+								sl = parseInt($('.swaplist').css('left'));//交换图片ul位置
+								if(ml<=0 && ml>w*-1){//默认图片显示时
+									$('.swaplist').css({left: '1000px'});//交换图片放在显示区域右侧
+									$('.mainlist').animate({left: ml - 1000 + 'px'},'slow');//默认图片滚动
+									if(ml==(w-1000)*-1){//默认图片最后一屏时
+										$('.swaplist').animate({left: '0px'},'slow');//交换图片滚动
+									}
+								}else{//交换图片显示时
+									$('.mainlist').css({left: '1000px'})//默认图片放在显示区域右
+									$('.swaplist').animate({left: sl - 1000 + 'px'},'slow');//交换图片滚动
+									if(sl==(w-1000)*-1){//交换图片最后一屏时
+										$('.mainlist').animate({left: '0px'},'slow');//默认图片滚动
+									}
+								}
+							}
+						})
+						$('.og_prev').click(function(){
+					
+							if($('.swaplist,.mainlist').is(':animated')){
+								$('.swaplist,.mainlist').stop(true,true);
+							}
+							if($('.mainlist li').length>4){
+								ml = parseInt($('.mainlist').css('left'));
+								sl = parseInt($('.swaplist').css('left'));
+								if(ml<=0 && ml>w*-1){
+									$('.swaplist').css({left: w * -1 + 'px'});
+									$('.mainlist').animate({left: ml + 1000 + 'px'},'slow');
+									if(ml==0){
+										$('.swaplist').animate({left: (w - 1000) * -1 + 'px'},'slow');
+									}
+								}else{
+									$('.mainlist').css({left: (w - 1000) * -1 + 'px'});
+									$('.swaplist').animate({left: sl + 1000 + 'px'},'slow');
+									if(sl==0){
+										$('.mainlist').animate({left: '0px'},'slow');
+									}
+								}
+							}
+						})
+					});
+					$(document).ready(function(){
+						$('.og_prev,.og_next').hover(function(){
+								$(this).fadeTo('fast',1);
+							},function(){
+								$(this).fadeTo('fast',0.7);
+						})
+					})
+					</script>
+				<div class="box">
+					<div class="picbox">
+						<ul class="piclist mainlist">
+							<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/1.jpg" width="220" height="62" /></a></li>
+							<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/2.jpg" width="220" height="62" /></a></li>
+							<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/3.jpg" width="220" height="62" /></a></li>
+							<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/4.jpg" width="220" height="62" /></a></li>
+							<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/1.jpg" /></a></li>
+			    			<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/2.jpg" width="220" height="62" /></a></li>
+							<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/3.jpg" width="220" height="62" /></a></li>
+							<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/4.jpg" width="220" height="62" /></a></li>
+						</ul>
+				        <ul class="piclist swaplist"></ul>
+					</div>
+					<div class="og_prev"></div>
+					<div class="og_next"></div>
+				</div>
+				
 			</div>
 		</div>
 		<div class="tupian">
@@ -526,22 +623,5 @@
 		</div>
 	</div>
 	[#include "/include/footer.ftl" /]
-	<script type="text/javascript"> 
-		var speed=80;
-		var demo=document.getElementById("demo"); 
-		var demo2=document.getElementById("demo2"); 
-		var demo1=document.getElementById("demo1"); 
-		demo2.innerHTML=demo1.innerHTML;
-		function Marquee(){ 
-			if(demo2.offsetTop-demo.scrollTop<=0) 
-				demo.scrollTop-=demo1.offsetHeight; 
-			else{ 
-			  	demo.scrollTop++;
-			} 
-		} 
-		var MyMar=setInterval(Marquee,speed); 
-		demo.onmouseover=function() {clearInterval(MyMar)} 
-		demo.onmouseout=function() {MyMar=setInterval(Marquee,speed)} 
-	</script>
 </body>
 </html>

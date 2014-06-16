@@ -38,7 +38,7 @@ public class ControllerNews extends ControllerCRUD{
 	//删除新闻
 	@RequestMapping("/delete")
 	public String removeNews(HttpServletRequest request){
-		super.editDataInfo(request);
+		super.deleteDataInfo(request);
 		return "redirect:/admin/news/newsList.jhtml";
 	}
 

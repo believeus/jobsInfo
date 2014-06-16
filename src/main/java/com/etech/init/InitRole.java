@@ -16,6 +16,7 @@ import org.springframework.util.StringUtils;
 
 import com.etech.entity.Tadmin;
 import com.etech.entity.Tauthority;
+import com.etech.entity.TbaseUser;
 import com.etech.entity.Trole;
 import com.etech.service.EtechService;
 import com.etech.util.EtechGobal;
@@ -86,6 +87,7 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 				// 给管理员设置所有权限
 				Tauthority authority = new Tauthority();
 				authority.setAuthName("*");
+				authority.setRole(role);
 				authorities.add(authority);
 				role.setAuthorities(authorities);
 				etechService.merge(role);
@@ -104,6 +106,9 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 				role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", EtechGobal.super_role);
 				Set<Trole> roles=new HashSet<Trole>();
 				roles.add(role);
+				Set<TbaseUser> users=new HashSet<TbaseUser>();
+				users.add(admin);
+				role.setUsers(users);
 				admin.setRoles(roles);
 				etechService.merge(admin);
 			}
@@ -117,22 +122,28 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 		// 该企业用户具有查看信息中心的权限
 		Tauthority infocenter = new Tauthority();
 		infocenter.setAuthName("infocenter:view");
+		infocenter.setRole(role);
 		// 该用户具有查看工作指南的查看权限
 		Tauthority workguide = new Tauthority();
 		workguide.setAuthName("workguide:view");
+		workguide.setRole(role);
 		// 该用户具有查看就业服务的查看权限
 		Tauthority workservice = new Tauthority();
 		workservice.setAuthName("workservice:view");
+		workservice.setRole(role);
 		// 该用户具有政策咨询的查看权限
 		Tauthority policyAdvice = new Tauthority();
 		policyAdvice.setAuthName("policyAdvice:view");
+		policyAdvice.setRole(role);
 		// 该用户具有查看数据频道的权限
 		Tauthority dataChannel = new Tauthority();
 		dataChannel.setAuthName("dataChannel:view");
+		dataChannel.setRole(role);
 		// 该用户具有网上展示厅的权限
 		Tauthority networkShow = new Tauthority();
 		networkShow.setAuthName("networkShow:view");
-
+		networkShow.setRole(role);
+		
 		authorities.add(networkShow);
 		authorities.add(dataChannel);
 		authorities.add(policyAdvice);
