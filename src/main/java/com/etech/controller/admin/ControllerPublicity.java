@@ -30,7 +30,7 @@ public class ControllerPublicity extends ControllerCRUD {
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
-		List<?> dataCenters = super.listDataInfo(request,2);
+		List<?> dataCenters = super.listDataInfo(request,EtechGobal.infoCenterNotice);
 		request.setAttribute("dataCenters",dataCenters);
 		return "admin/publicity/list";
 	}
@@ -64,6 +64,7 @@ public class ControllerPublicity extends ControllerCRUD {
 		int id=Integer.parseInt(request.getParameter("id"));
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
+		request.setAttribute("type",EtechGobal.infoCenterNotice);
 		return "admin/publicity/edit";
 	}
 	

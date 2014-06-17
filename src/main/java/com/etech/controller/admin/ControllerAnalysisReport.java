@@ -32,7 +32,7 @@ public class ControllerAnalysisReport extends ControllerCRUD{
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
-		List<?> dataCenters = super.listDataInfo(request,14);
+		List<?> dataCenters = super.listDataInfo(request,EtechGobal.analysisreport);
 		request.setAttribute("dataCenters",dataCenters);
 		return "admin/dataChannel/list";
 	}
@@ -66,6 +66,7 @@ public class ControllerAnalysisReport extends ControllerCRUD{
 		int id=Integer.parseInt(request.getParameter("id"));
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
+		request.setAttribute("type",EtechGobal.analysisreport);
 		return "admin/dataChannel/edit";
 	}
 	

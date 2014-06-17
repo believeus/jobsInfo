@@ -29,7 +29,7 @@ public class ControllerBusHandle extends ControllerCRUD{
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
-		List<?> dataCenters = super.listDataInfo(request,21);
+		List<?> dataCenters = super.listDataInfo(request,EtechGobal.busHandle);
 		request.setAttribute("dataCenters",dataCenters);
 		return "admin/service/list";
 	}
@@ -63,6 +63,7 @@ public class ControllerBusHandle extends ControllerCRUD{
 		int id=Integer.parseInt(request.getParameter("id"));
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
+		request.setAttribute("type",EtechGobal.busHandle);
 		return "admin/service/edit";
 	}
 	

@@ -59,6 +59,7 @@ $().ready(function() {
 	</div>
 	<form id="inputForm" action="update.jhtml" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="${dataCenter.id}"/>
+		<input type="hidden" name="type" value="${type}"/>
 		<table class="input">
 			<tr>
 				<th>
@@ -78,7 +79,7 @@ $().ready(function() {
 					是否置顶:
 				</th>
 				<td>
-					<input type="checkbox" name="">
+					<input type="checkbox" name="top" value="1">
 				</td>
 			</tr>
 			<tr id="pathTr">

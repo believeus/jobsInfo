@@ -29,7 +29,7 @@ public class ControllerMonthSupplyList extends ControllerCRUD{
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
-		List<?> dataCenters = super.listDataInfo(request,17);
+		List<?> dataCenters = super.listDataInfo(request,EtechGobal.monthSupplyList);
 		request.setAttribute("dataCenters",dataCenters);
 		return "admin/dataChannel/list";
 	}
@@ -63,6 +63,7 @@ public class ControllerMonthSupplyList extends ControllerCRUD{
 		int id=Integer.parseInt(request.getParameter("id"));
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
+		request.setAttribute("type",EtechGobal.monthSupplyList);
 		return "admin/dataChannel/edit";
 	}
 	

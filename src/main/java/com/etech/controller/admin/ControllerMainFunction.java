@@ -27,7 +27,7 @@ public class ControllerMainFunction extends ControllerCRUD{
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
-		List<?> dataCenters = super.listDataInfo(request,7);
+		List<?> dataCenters = super.listDataInfo(request,EtechGobal.mainFunction);
 		request.setAttribute("dataCenters",dataCenters);
 		return "admin/leader/list";
 	}
@@ -61,6 +61,7 @@ public class ControllerMainFunction extends ControllerCRUD{
 		int id=Integer.parseInt(request.getParameter("id"));
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
+		request.setAttribute("type",EtechGobal.mainFunction);
 		return "admin/leader/edit";
 	}
 	

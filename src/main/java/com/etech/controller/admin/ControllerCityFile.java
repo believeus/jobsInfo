@@ -29,7 +29,7 @@ public class ControllerCityFile extends ControllerCRUD{
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
-		List<?> dataCenters = super.listDataInfo(request,13);
+		List<?> dataCenters = super.listDataInfo(request,EtechGobal.cityFile);
 		request.setAttribute("dataCenters",dataCenters);
 		return "admin/policyAdvice/list";
 	}
@@ -63,6 +63,7 @@ public class ControllerCityFile extends ControllerCRUD{
 		int id=Integer.parseInt(request.getParameter("id"));
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
+		request.setAttribute("type",EtechGobal.cityFile);
 		return "admin/policyAdvice/edit";
 	}
 	

@@ -59,6 +59,7 @@ $().ready(function() {
 	</div>
 	<form id="inputForm" action="save.jhtml" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="${dataCenter.id}">
+		<input type="hidden" name="type" value="${type}"/>
 		<table class="input">
 			<tr>
 				<th>
