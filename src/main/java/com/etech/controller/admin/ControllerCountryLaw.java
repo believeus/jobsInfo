@@ -17,7 +17,7 @@ import com.etech.util.EtechGobal;
 /**
  * "国家法律法规"
  * */
-@Controller("controllerAdminCountryLaw")
+@Controller
 @RequestMapping("/admin/countryLaw")
 public class ControllerCountryLaw extends ControllerCRUD{
 
@@ -31,7 +31,7 @@ public class ControllerCountryLaw extends ControllerCRUD{
 	public String newsListView(HttpServletRequest request) {
 		List<?> dataCenters = super.listDataInfo(request,EtechGobal.countryLaw);
 		request.setAttribute("dataCenters",dataCenters);
-		return "admin/policyAdvice/list";
+		return "redirect:/admin/countryLaw/list.jhtml";
 	}
 	
 	/**
@@ -42,7 +42,7 @@ public class ControllerCountryLaw extends ControllerCRUD{
 	@RequestMapping("/delete")
 	public String removeNews(HttpServletRequest request,HttpServletResponse response){
 		super.deleteDataInfo(request,response);
-		return "redirect:/admin/policyAdvice/list.jhtml";
+		return "redirect:/admin/countryLaw/list.jhtml";
 	}
 	
 	/**
@@ -74,7 +74,7 @@ public class ControllerCountryLaw extends ControllerCRUD{
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
-		return "redirect:/admin/policyAdvice/list.jhtml";
+		return "redirect:/admin/countryLaw/list.jhtml";
 	}
 	/**
 	 * 修改"国家法律法规"
@@ -83,6 +83,6 @@ public class ControllerCountryLaw extends ControllerCRUD{
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);
-		return "redirect:/admin/policyAdvice/list.jhtml";
+		return "redirect:/admin/countryLaw/list.jhtml";
 	}
 }
