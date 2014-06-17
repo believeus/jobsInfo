@@ -135,85 +135,19 @@
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<div class="j_main_right_2_1">
-					<div class="j_main_right_2_1_1">
-						<h2 style="text-align:center;font-weight:normal;color:#EF3816;">局领导</h2>
-						<p style="text-align:center;">来源：人力资源和社会保障厅政府信息公开网 发布时间：2014-04-14 00:40 【打印】</p>
-						<hr color="#EF3816" style="margin:0 30px;">
-						<div class="" style="height: 130px; float: left; margin-left: 25px; width: 100px; margin-top: 10px;">
-							<img src="/resource/public/images/meinv.png" width="95" height="130">
-						</div>
-						<div class="" style="height: 130px; float: left; margin-left: 10px; width: 585px; margin-top: 10px;">
-							<p>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：李妹</p>
-							<p>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务：局长，党组书记</p>
-							<p>分管范围：主持局全局工作，分管局综合处、省职业介绍中心、省就业训练中心。</p>
-						</div>
-						<img style="padding: 0px 20px; width: 675px;" src="/resource/public/images/line.png">
-					</div>
-					<div class="j_main_right_2_1_1">
-						<div class="" style="height: 130px; float: left; margin-left: 25px; width: 100px; margin-top: 10px;">
-							<img src="/resource/public/images/meinv.png" width="95" height="130">
-						</div>
-						<div class="" style="height: 130px; float: left; margin-left: 10px; width: 585px; margin-top: 10px;">
-							<p>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：李妹</p>
-							<p>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务：局长，党组书记</p>
-							<p>分管范围：主持局全局工作，分管局综合处、省职业介绍中心、省就业训练中心。</p>
-						</div>
-						<img style="padding: 0px 20px; width: 675px;" src="/resource/public/images/line.png">
-					</div>
-					<div class="j_main_right_2_1_1">
-						<div class="" style="height: 130px; float: left; margin-left: 25px; width: 100px; margin-top: 10px;">
-							<img src="/resource/public/images/meinv.png" width="95" height="130">
-						</div>
-						<div class="" style="height: 130px; float: left; margin-left: 10px; width: 585px; margin-top: 10px;">
-							<p>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：李妹</p>
-							<p>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务：局长，党组书记</p>
-							<p>分管范围：主持局全局工作，分管局综合处、省职业介绍中心、省就业训练中心。</p>
-						</div>
-						<img style="padding: 0px 20px; width: 675px;" src="/resource/public/images/line.png">
-					</div>
-					<div class="j_main_right_2_1_1" style="">
-						<div class="" style="height: 130px; float: left; margin-left: 25px; width: 100px; margin-top: 10px;">
-							<img src="/resource/public/images/meinv.png" width="95" height="130">
-						</div>
-						<div class="" style="height: 130px; float: left; margin-left: 10px; width: 585px; margin-top: 10px;">
-							<p>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：李妹</p>
-							<p>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务：局长，党组书记</p>
-							<p>分管范围：主持局全局工作，分管局综合处、省职业介绍中心、省就业训练中心。</p>
-						</div>
-						<img style="padding: 0px 20px; width: 675px;" src="/resource/public/images/line.png">
-					</div>
-					<div class="j_main_right_2_1_1" style="">
-						<div class="" style="height: 130px; float: left; margin-left: 25px; width: 100px; margin-top: 10px;">
-							<img src="/resource/public/images/meinv.png" width="95" height="130">
-						</div>
-						<div class="" style="height: 130px; float: left; margin-left: 10px; width: 585px; margin-top: 10px;">
-							<p>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：李妹</p>
-							<p>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务：局长，党组书记</p>
-							<p>分管范围：主持局全局工作，分管局综合处、省职业介绍中心、省就业训练中心。</p>
-						</div>
-						<img style="padding: 0px 20px; width: 675px;" src="/resource/public/images/line.png">
-					</div>
-					<div class="j_main_right_2_1_1" style="">
-						<div class="" style="height: 130px; float: left; margin-left: 25px; width: 100px; margin-top: 10px;">
-							<img src="/resource/public/images/meinv.png" width="95" height="130">
-						</div>
-						<div class="" style="height: 130px; float: left; margin-left: 10px; width: 585px; margin-top: 10px;">
-							<p>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：李妹</p>
-							<p>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务：局长，党组书记</p>
-							<p>分管范围：主持局全局工作，分管局综合处、省职业介绍中心、省就业训练中心。</p>
-						</div>
-						<img style="padding: 0px 20px; width: 675px;" src="/resource/public/images/line.png">
-					</div>
+				
+					[#list datas as data]
 					<div class="j_main_right_2_1_1" style="margin-bottom:10px;">
 						<div class="" style="height: 130px; float: left; margin-left: 25px; width: 100px; margin-top: 10px;">
 							<img src="/resource/public/images/meinv.png" width="95" height="130">
 						</div>
 						<div class="" style="height: 130px; float: left; margin-left: 10px; width: 585px; margin-top: 10px;">
-							<p>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：李妹</p>
+							<p>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：${data.author}</p>
 							<p>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务：局长，党组书记</p>
 							<p>分管范围：主持局全局工作，分管局综合处、省职业介绍中心、省就业训练中心。</p>
 						</div>
 					</div>
+					[/#list]
 				</div>
 			</div>
 		</div>
