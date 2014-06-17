@@ -9,7 +9,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -62,8 +61,6 @@ public class TentUser extends TbaseUser implements Serializable {
 	private Set<TentImgVedio> imgVedios=new HashSet<TentImgVedio>();
 	/**用户信息中心*/
 	private List<Trecruit> recruit;
-	
-	
 	@Length(max=25)
 	@Column(nullable=true)
 	public String getContacts() {
@@ -177,8 +174,8 @@ public class TentUser extends TbaseUser implements Serializable {
 	public void setRelationship(String relationship) {
 		this.relationship = relationship;
 	}
-	@OneToMany
-	@JoinColumn(columnDefinition="fk_ImgVedioId",referencedColumnName="id")
+	
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="entUser")
 	public Set<TentImgVedio> getImgVedios() {
 		return imgVedios;
 	}

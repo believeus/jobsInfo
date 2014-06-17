@@ -3,9 +3,12 @@ package com.etech.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -18,10 +21,10 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,9 +33,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.etech.entity.TcomInfo;
 import com.etech.entity.TcomUser;
+import com.etech.entity.TentImgVedio;
 import com.etech.entity.TentUser;
 import com.etech.entity.TmajorType;
 import com.etech.entity.Trecruit;
+import com.etech.entity.Trole;
 import com.etech.service.EtechService;
 import com.etech.util.JsonOutToBrower;
 
@@ -69,9 +74,24 @@ public class ControllerCenter {
 	}
 
 	/** 进入企业中心:该用户需要有enterpriseRole角色才能访问 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/enterprise-user/center", method = RequestMethod.GET)
-	public String enterpriseCenter() {
-		log.debug("current controller is enterpriseCenter !");
+	public String enterpriseCenter(HttpSession session) {
+		TentUser entUser=(TentUser)session.getAttribute("sessionUser");
+		System.out.println(entUser); 
+		String hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+entUser.getId()+"  and info.type='0'";
+		List<TentImgVedio> Imgs=(List<TentImgVedio>)etechService.findObjectByList(hql);
+		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+entUser.getId()+"  and info.type='1'";
+		List<TentImgVedio> Vedios=(List<TentImgVedio>)etechService.findObjectByList(hql);
+		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+entUser.getId()+"  and info.type='2'";
+		List<TentImgVedio> Maps=(List<TentImgVedio>)etechService.findObjectByList(hql);
+		
+		System.out.println(Imgs.size());
+		System.out.println(Vedios.size());
+		System.out.println(Maps.size());
+		session.setAttribute("Imgs", Imgs);
+		session.setAttribute("Vedios", Vedios);
+		session.setAttribute("Maps", Maps);
 		return "center/enterpriseCenter";
 	}
 
@@ -133,9 +153,53 @@ public class ControllerCenter {
 
 	/** 企业用户信息提交 */
 	@RequestMapping(value = "/enterprise/submit-account-Info")
-	public void submitEntUserInfo(TentUser entUser, HttpServletRequest request,HttpSession session) {
+	public void submitEntUserInfo(TentUser entUser,String ids, HttpServletRequest request,HttpSession session,HttpServletResponse response) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		TentUser sessionUser = null;
+		try {
+			// 如果为空就报错
+			Assert.notNull(entUser.getId(), "user.id is not null");
+			sessionUser = (TentUser) etechService.findObjectById(
+					TentUser.class, entUser.getId());
+			String password = entUser.getPassword();
+			// 如果没有输入密码,使用原密码
+			password = StringUtils.isEmpty(password) ? sessionUser
+					.getPassword() : DigestUtils.md5Hex(password);
+			entUser.setPassword(password);
+			// 得到原来的数据。
+			entUser.setRoles(sessionUser.getRoles()); 
+			// 将注编辑的数据复制给sessionUser
+			BeanUtils.copyProperties(sessionUser, entUser);
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+		
+		// 删除图片
+		if (ids!=null&&!ids.equals("")) {
+			String[] split = ids.split(",");
+			for (String id : split) {
+				etechService.deleteObjectById(TentImgVedio.class, Integer.valueOf(id));
+			}
+		}
+		
+		etechService.saveOrUpdata(sessionUser);
+		session.setAttribute("sessionUser", sessionUser);
+		map.put("message", "success");
+		JsonOutToBrower.out(map, response);
+	}
+
+	@RequestMapping(value="/enterprise-user/center/upload.jhtml")
+	public void submitImgVedio(HttpSession session,HttpServletRequest request,HttpServletResponse response,TentImgVedio imgVedio){
+		Map<String, Object> map = new HashMap<String, Object>();
+		// 获取用户
+		TentUser entUser=(TentUser)session.getAttribute("sessionUser");
+		entUser=(TentUser) etechService.findObjectById(TentUser.class, entUser.getId());
 		// 遍历图片
-		String storepath = "xxxx";
+		String storepath = "";
+		Set<TentImgVedio> imgVedios=new HashSet<TentImgVedio>();
+		imgVedio.setEntUser(entUser);
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> files = multipartRequest.getFileMap();
 		for (MultipartFile file : files.values()) {
@@ -147,36 +211,21 @@ public class ControllerCenter {
 				String fileName = file.getName();
 				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
 				log.debug("upload file stuffix"+extention);
-				//storepath = mydfsTrackerServer.upload(inputStream, extention);
+				storepath = mydfsTrackerServer.upload(inputStream, extention);
+				imgVedio.setUrl(storepath);
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("     finish!");
+		imgVedios.add(imgVedio); 
+		entUser.setImgVedios(imgVedios); 
+		etechService.saveOrUpdata(entUser);
+		map.put("message", "success");
+		JsonOutToBrower.out(map, response);
 		
-		TentUser sessionUser = null;
-		try {
-			// 如果为空就报错
-			Assert.notNull(entUser.getId(), "user.id is not null");
-			sessionUser = (TentUser) etechService.findObjectById(
-					TentUser.class, entUser.getId());
-			String password = entUser.getPassword();
-			// 如果没有输入密码,使用原密码
-			password = StringUtils.isEmpty(password) ? sessionUser
-					.getPassword() : DigestUtils.md5Hex(password);
-			System.out.println(password);
-			entUser.setPassword(password);
-			// 将注编辑的数据复制给sessionUser
-			BeanUtils.copyProperties(sessionUser, entUser);
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		}
-		etechService.merge(sessionUser);
-		session.setAttribute("sessionUser", sessionUser);
 	}
-
+	
 	/** 提交招聘信息 */
 	@RequestMapping(value = "/enterprise-user/center/submit-recruit")
 	public void submitRecruit(Trecruit recruit,Integer workTypeId,

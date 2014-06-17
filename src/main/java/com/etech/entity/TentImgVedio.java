@@ -1,6 +1,9 @@
 package com.etech.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /** 企业存放图片和视频的路径 */
@@ -14,6 +17,7 @@ public class TentImgVedio extends TbaseEntity {
 	private String url;
 	private String descption;
 	private int type;
+	private TentUser entUser; 
 
 	public String getUrl() {
 		return url;
@@ -49,6 +53,16 @@ public class TentImgVedio extends TbaseEntity {
 
 	public static int getTypemap() {
 		return typeMap;
+	}
+
+	@ManyToOne(cascade=CascadeType.ALL,optional = false)
+	@JoinColumn(name="fk_entUserId",referencedColumnName="id")
+	public TentUser getEntUser() {
+		return entUser;
+	}
+
+	public void setEntUser(TentUser entUser) {
+		this.entUser = entUser;
 	}
 
 }

@@ -163,6 +163,35 @@
 	
     <script type="text/javascript">
     
+    		var a;
+    		var b;
+    		var c;
+    		var d;
+    		[#if learnings?size>0]
+    			a = ${learnings?size}+1;
+    		[#else]
+    			a = 2;
+    		[/#if]
+    		
+    		[#if skills?size>0]
+    			b = ${skills?size}+1;
+    		[#else]
+    			b = 2;
+    		[/#if]
+    		
+    		[#if works?size>0]
+    			c = ${works?size}+1;
+    		[#else]
+    			c = 2;
+    		[/#if]
+    		
+    		[#if volunteers?size>0]
+    			d = ${volunteers?size}+1;
+    		[#else]
+    			d = 2;
+    		[/#if]
+    		
+    		
     		// 删除信息
 	    	function deleteDiv(object){
 	    				// 得到最外层的div
@@ -319,33 +348,6 @@
     	
     	$().ready(function() {
 				
-    		var a;
-    		var b;
-    		var c;
-    		var d;
-    		[#if learnings?size>0]
-    			a = ${learnings?size}+1;
-    		[#else]
-    			a = 2;
-    		[/#if]
-    		
-    		[#if skills?size>0]
-    			b = ${skills?size}+1;
-    		[#else]
-    			b = 2;
-    		[/#if]
-    		
-    		[#if works?size>0]
-    			c = ${works?size}+1;
-    		[#else]
-    			c = 2;
-    		[/#if]
-    		
-    		[#if volunteers?size>0]
-    			d = ${volunteers?size}+1;
-    		[#else]
-    			d = 2;
-    		[/#if]
     		
     		
     		$("#personal_xinxi").click(function(){
@@ -413,12 +415,7 @@
 						'<div id="xmenuLearningSpecialty'+a+'" class="xmenu" style="display: none;">'+Specialty +'</div>
 						';
 				[/@compress]
-				if($(".xuexi").find("div.xuexi_div").size() <6){
-					$(".xuexi").append(trHtml);
-					$("#conentDiv").parent().append(html);
-				}else{
-					alert("最多添加6条数据");
-				}
+				
 				
 				// 为新增的标签添加弹窗控件
 				$("#selectLearningSpecialty"+a).xMenu({	
@@ -429,7 +426,14 @@
 							hiddenID : "selectLearningSpecialtyhidden"+a//隐藏域ID	
 				});
 				
-				a ++;
+				if($(".xuexi").find("div.xuexi_div").size() <6){
+					a ++;
+					$(".xuexi").append(trHtml);
+					$("#conentDiv").parent().append(html);
+				}else{
+					alert("最多添加6条数据");
+				}
+				
 				
     		});
     		
@@ -494,12 +498,7 @@
 						<div id="xmenuSkillJobs'+b+'" class="xmenu" style="display: none;">'+Jobs +'</div>
 						';
 				[/@compress]
-				if($(".jineng").find("div.jineng_div").size() <6){
-					$(".jineng").append(trHtml);
-					$("#conentDiv").parent().append(html);
-				}else{
-					alert("最多添加6条数据");
-				}
+				
 				
 				// 为新增的标签添加弹窗控件
 				$("#selectSkillSpecialty"+b).xMenu({	
@@ -517,7 +516,14 @@
 							hiddenID : "selectSkillJobshidden"+b//隐藏域ID	
 				});
 				
-				b ++;
+				if($(".jineng").find("div.jineng_div").size() <6){
+					b ++;
+					$(".jineng").append(trHtml);
+					$("#conentDiv").parent().append(html);
+				}else{
+					alert("最多添加6条数据");
+				}
+				
     		});
     		
     		//添加工作经历
@@ -567,12 +573,7 @@
 					</div>';
 					var html ='<div id="xmenuWorkJob'+c+'" class="xmenu" style="display: none;">'+Jobs +'</div>';
 				[/@compress]
-				if($(".gongzuo").find("div.gongzuo_div").size() <6){
-					$(".gongzuo").append(trHtml);
-					$("#conentDiv").parent().append(html);
-				}else{
-					alert("最多添加6条数据");
-				}
+				
 				
 				// 为新增的标签添加弹窗控件
 				$("#selectWorkJob"+c).xMenu({	
@@ -583,7 +584,13 @@
 							hiddenID : "selectWorkJobhidden"+b//隐藏域ID	
 				});
 				
-				c ++;
+				if($(".gongzuo").find("div.gongzuo_div").size() <6){
+					c ++;
+					$(".gongzuo").append(trHtml);
+					$("#conentDiv").parent().append(html);
+				}else{
+					alert("最多添加6条数据");
+				}
     		});
     		
     		//添加选择志愿
@@ -641,12 +648,6 @@
 						<div id="xmenuVolunteerJobs'+d+'" class="xmenu" style="display: none;">'+Jobs +'</div>
 						';
 				[/@compress]
-				if($(".zhiyuan").find("div.zhiyuan_div").size() <6){
-					$(".zhiyuan").append(trHtml);
-					$("#conentDiv").parent().append(html);
-				}else{
-					alert("最多添加6条数据");
-				}
 				
 				// 为新增的标签添加弹窗控件
 				$("#selectVolunteerSpecialty"+d).xMenu({	
@@ -664,7 +665,14 @@
 							hiddenID : "selectVolunteerJobshidden"+d//隐藏域ID	
 				});
 				
-				d ++;
+				if($(".zhiyuan").find("div.zhiyuan_div").size() <6){
+					d ++;
+					$(".zhiyuan").append(trHtml);
+					$("#conentDiv").parent().append(html);
+				}else{
+					alert("最多添加6条数据");
+				}
+				
     		});
     		
     	});
@@ -857,6 +865,25 @@
 		    	[/#if]	
 				
     	
+    			// 提交信息列表
+    			function submitSkill(){
+    				  //alert("xxxxx具备技能xxxxxxxxxx");
+    				  var num=0;
+    				  $("div.jineng_div").each(function(index){
+    				  		index++;
+				 			$("#SkillForm"+index).ajaxSubmit({
+				            	 type: "post",
+							     url: "/common-user/center/submit-comInfo.jhtml",
+							     dataType: "json",
+							     success: function(result){
+							     	num=num+1;
+							     	if(num==index){
+				 		   				submitLearnging();    				 						     	
+							     	}
+							     }
+			        		});	
+    				  })
+    			}
     			
     			function submitLearnging(){
     				 //alert("xxxxx学习经历xxxxxxxxxx");
@@ -917,25 +944,7 @@
 			        		
     				  })
     			}
-    			// 提交信息列表
-    			function submitSkill(){
-    				  //alert("xxxxx具备技能xxxxxxxxxx");
-    				  var num=0;
-    				  $("div.jineng_div").each(function(index){
-    				  		index++;
-				 			$("#SkillForm"+index).ajaxSubmit({
-				            	 type: "post",
-							     url: "/common-user/center/submit-comInfo.jhtml",
-							     dataType: "json",
-							     success: function(result){
-							     	num=num+1;
-							     	if(num==index){
-				 		   				submitLearnging();    				 						     	
-							     	}
-							     }
-			        		});	
-    				  })
-    			}
+    			
     			function submitVolunteer(){
     				  //alert("xxxxxxxx选择志愿xxxxxxx");
     				  var num=0;
@@ -1006,15 +1015,19 @@
 						$("#freeTrain").val($('input:radio[name="freeTrain"]:checked').val());
 						$("#freeIntro").val($('input:radio[name="freeIntro"]:checked').val());
 						$("#submit").val(submitx);
-			        	$("#InfoForm").ajaxSubmit(function (data) {
-							data = JSON.parse(data);
-	        				if(data.message == "success" && $("#submit").val() == "submit"){
-								submitSkill();
-								deleteIds();
-							}else{
-								alert(data.message);								
-							}
-			        	});	
+						
+						$("#InfoForm").ajaxSubmit({
+				  			 type: "post",
+						     url: "/ajaxComValidReg.jhtml",
+						     dataType: "json",
+						     success: function(data){
+		        				if(data.message == "success" && $("#submit").val() == "submit"){
+									submitSkill();
+								}else if(data.message!="finish"){
+									alert(data.message);								
+								}
+						     }
+			        	});
 				}
 		    	// 用户名验证。
 				$("#loginName,#idcard").change(function(){

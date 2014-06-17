@@ -261,6 +261,18 @@
 		   			$(".brandImg:eq("+i+") img")[0].src = path;
 		   		} 
 			}
+		function deleteImg(id){
+			var deleteImgs = $("#deleteImgs");
+								
+			if (deleteImgs.length > 0) { 
+		     	//对象存在的处理逻辑
+	            $("#deleteImgs").val(deleteImgs.val()+","+id);
+		    } else {
+		      	//对象不存在的处理逻辑
+		      	var html='<input id="deleteImgs" type="hidden" name="ids" value="'+id+'"/>';
+				$("#InfoForm").append(html);
+		   }
+		}
 		
 	</script>
 	
@@ -384,18 +396,30 @@
 					</dl>			
 				</div>';
 	[/@compress]
-	
+
 		//删除企业图片
-		function delete_pic(object){		
+		[#if Imgs?size>0]
+			var c = ${Imgs?size}+1;
+		[#else]
+			var c = 2;
+		[/#if]
+		function delete_pic(object,id){		
 				if ($(".qiyepic").size() <= 1) {
 					alert("必须至少保留一个参数");
 				} else {
+					if(id!=0){
+						deleteImg(id);					
+					}
+					c--;
 					$(object).closest("div").parent().remove();
 				}
 		}
 		
+		
+		var a = 2;
+    	var b = 2;
+    	
     $().ready(function(){
-    
     	// 初始化一些值。设置value为用户填写过的项选中。
     	$("#unitType").val("${sessionUser.unitType}");
     	$("#relationship").val("${sessionUser.relationship}");
@@ -423,27 +447,29 @@
 			
 		
 		
-    	var a = 2;
-    	var b = 2;
-    	var c = 2;
     	//添加企业图片
     	$("#add_pic").click(function(){
+    		
     		[@compress single_line = true]
-    		var html = '<div class="qiyepic">
+    		var html = '<form novalidate="novalidate"  action="/enterprise-user/center/upload.jhtml" encType="multipart/form-data"  method="post" id="ImgForm'+c+'">
+						<input type="hidden" name="type" value="0">
+    					<div class="qiyepic">
 							<p>
 								<div class="brandImg">
 									<span><a onclick="file'+c+'.click()" href="javascript:void(0);">点击上传图片</a></span>
-									<img style="width:160px;height:145px" src="/resource/public/images/bg.png" name="img"/>
+									<img style="width:160px;height:145px" src="/resource/public/images/bg.png" name="img" id="0"/>
 								</div>
 								<input type="file" style="display:none" id="file'+c+'" name="file'+c+'" onchange="filename'+c+'.value=this.value;loadImgFast(this,'+c+')">
 								<input type="hidden" id="filename'+c+'" name="filename'+c+'">
 							</p>
-							<p><textArea placeholder="添加描述（20字以内）" maxlength="20"></textArea></p>
-							<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this);" href="javascript:void(0);">删除</a></div>
+							<p><textArea placeholder="添加描述（20字以内）" maxlength="20" name="fileDes'+c+'"></textArea></p>
+							<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this,0);" href="javascript:void(0);">删除</a></div>
 						</div>
+						</form>
     					';
 			[/@compress]
 			if($(".qiyepic").size() <8){
+				c++;
 				$(".qiyepic").parent().append(html);
 				var pics = $(".qiyepic");
 		    	pics.each(function(){
@@ -454,7 +480,6 @@
 			}else{
 				alert("最多添加8条数据");
 			}
-			c++;
     	});
     	
     	
@@ -627,12 +652,7 @@
 				  '<div id="xmenuJobs'+b+'" class="xmenu" style="display: none;">'+Jobs +'</div>';
 		
 			[/@compress]
-			if($(".zhaopinxinxi").size() <5){
-				$(".zhaopinxinxi").parent().append(html);
-				$("#bianji_xinxi").parent().append(divhtml);
-			}else{
-				alert("最多添加5条数据");
-			}
+			
 			
 			//删除招聘信息
 			$("a.delete_zhaopin").on("click",function(){
@@ -658,23 +678,63 @@
 						hiddenID : "selectJobshidden"+b//隐藏域ID	
 			});
 			
-			b++;
+			if($(".zhaopinxinxi").size() <5){
+				b++;
+				$(".zhaopinxinxi").parent().append(html);
+				$("#bianji_xinxi").parent().append(divhtml);
+			}else{
+				alert("最多添加5条数据");
+			}
 		});
-    				
-		    	// ajax 提交验证和保存。
-				function submitValid(){
-						/*$("#imageForm").ajaxSubmit(function (data) {
-				            //$("#imgHead").val(data);
-				            alert(data);
-				            return false;
-				    	});*/
-				    	
-						$("#InfoForm").ajaxSubmit(function (data) {
-							alert(data);								
-			        	});	
-			        	
-					}
-					//封装ajax信息提交
+    			
+		// ajax 提交验证和保存。
+		function submitInfo(){
+				$("#InfoForm").ajaxSubmit({
+		            	 type: "post",
+					     url: "/enterprise/submit-account-Info.jhtml",
+					     dataType: "json",
+					     success: function(data){
+					     	//submitMap();
+					     	submitImgs();
+					     }
+	        		});	
+			}
+		// 上传电子图片
+		function submitMap(){
+			$("#MapForm").ajaxSubmit({
+            	 type: "post",
+			     url: "/enterprise-user/center/upload.jhtml",
+			     dataType: "json",
+			     success: function(data){
+			     	submitImgs();
+			     }
+    		});	
+		}
+		
+		// 上传企业图片
+		function submitImgs(){
+			
+			for(var i=1;i<c;i++){
+				alert(i);
+				$("#ImgForm"+i).ajaxSubmit({
+	            	 type: "post",
+				     url: "/enterprise-user/center/upload.jhtml",
+				     dataType: "json",
+				     success: function(data){
+				     	alert(data.message);
+						//submitVedio();
+				     }
+	    		});	
+    		}
+		}
+		
+		// 上传视频
+		function submitVedio(){
+		
+		
+		}
+		
+			//封装ajax信息提交
 				function submitJobs(){
 					alert("提交招聘信息");
 					$("#jobsForm1").ajaxSubmit({
@@ -770,7 +830,7 @@
 					}
     	// 保存信息。
     	$("#savaAll").click(function() {
-				submitValid();
+				submitInfo();
 		});
 		
 		// 保存招聘信息。
@@ -954,23 +1014,38 @@
 									<td colspan="3"><textArea cols="50" rows="5"  name="introduce" id="introduce" style="resize:none;">${sessionUser.introduce}</textArea></td>
 								</tr>
 								<tr>
+							</form>
 									<td style="vertical-align: top;">企业电子图:</td>
 									<td colspan="2">
+									<form novalidate="novalidate"  action="/enterprise-user/center/upload.jhtml" encType="multipart/form-data"  method="post" id="MapForm">
+									<input type="hidden" name="type" value="2">
+										[#if Maps?size>0]
+											[#list Maps as map]
+											<div class="brandImg" id="Img">
+												<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
+												</span>
+													<img width="260px" height="30px" src="/${map.url}" name="url" id="${map.id}"/>
+													<input type="hidden" name="id" value="${map.id}">
+											</div>
+											<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
+											<input type="hidden" id="filename0" name="filename0">
+											[/#list]
+										[#else]
 										<div class="brandImg" id="Img">
 											<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
 											</span>
-													<img width="260px" height="30px" src="/resource/public/images/bg.png" name="img"/>
+												<img width="260px" height="30px" src="/resource/public/images/bg.png" name="url" id="0"/>
 										</div>
 										<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
 										<input type="hidden" id="filename0" name="filename0">
+										[/#if]
+									</form>
 									</td>
 									<td>
 										<input type="button" value="上传" id="submitImg" style="width:60px;">
 									</td>
 								</tr>
 							</table>
-						</form>
-							
 						</div>
 					</div>
 					
@@ -982,18 +1057,45 @@
 						</div>
 					</div>
 					<div style="width:670px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;padding:10px;">
+						
+						[#if Imgs?size>0]
+						[#list Imgs as img]
+						<form novalidate="novalidate"  action="/enterprise-user/center/upload.jhtml" encType="multipart/form-data"  method="post" id="ImgForm${img_index+1}">
+						<input type="hidden" name="type" value="0">
+						<input type="hidden" name="id" value="${img.id}">
+						<input type="hidden" name="url" value=${img.url}"">
 						<div class="qiyepic">
 							<p>
 								<div class="brandImg">
-									<span><a onclick="file1.click()" href="javascript:void(0);">点击上传图片</a></span>
-									<img style="width:160px;height:145px" src="/resource/public/images/bg.png" name="img"/>
+									<span><a onclick="file${img_index+1}.click()" href="javascript:void(0);">点击上传图片</a></span>
+									<img style="width:160px;height:145px" src="/${img.url}"/>
 								</div>
-								<input type="file" style="display:none" id="file1" name="file1" onchange="filename1.value=this.value;loadImgFast(this,1)">
-								<input type="hidden" id="filename1" name="filename1">
+								<input type="file" style="display:none" id="file${img_index+1}" name="file${img_index+1}" onchange="filename${img_index+1}.value=this.value;loadImgFast(this,${img_index+1})">
+								<input type="hidden" id="filename${img_index+1}" name="filename${img_index+1}">
 							</p>
-							<p><textArea placeholder="添加描述（20字以内）" maxlength="20"></textArea></p>
-							<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this)" href="javascript:void(0);">删除</a></div>
+							<p><textArea placeholder="添加描述（20字以内）" maxlength="20" name="descption">${img.descption}</textArea></p>
+							<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this,${img.id})" href="javascript:void(0);">删除</a></div>
 						</div>
+						</form>
+						[/#list]
+						[#else]
+						<form novalidate="novalidate"  action="/enterprise-user/center/upload.jhtml" encType="multipart/form-data"  method="post" id="ImgForm1">
+						<input type="hidden" name="type" value="0">
+							<div class="qiyepic">
+								<p>
+									<div class="brandImg">
+										<span><a onclick="file1.click()" href="javascript:void(0);">点击上传图片</a></span>
+										<img style="width:160px;height:145px" src="/resource/public/images/bg.png" />
+									</div>
+									<input type="file" style="display:none" id="file1" name="file1" onchange="filename1.value=this.value;loadImgFast(this,1)">
+									<input type="hidden" id="filename1" name="filename1">
+								</p>
+								<p><textArea placeholder="添加描述（20字以内）" maxlength="20" name="descption"></textArea></p>
+								<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this,0)" href="javascript:void(0);">删除</a></div>
+							</div>
+						</form>
+						[/#if]
+						
 					</div>
 					
 					<div style="height: 30px; width: 728px;">
@@ -1023,8 +1125,8 @@
 								</tr>
 							</table>
 						</div>
+					</form>
 					</div>
-					
 					<p style="text-align:center;">
 						<input type="button" id="savaAll" value="保存">
 						<input type="reset" value="重写">

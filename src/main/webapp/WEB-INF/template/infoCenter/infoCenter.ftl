@@ -213,7 +213,9 @@
 							<li>4</li>
 						</ul>
 						<div id="banner_list">
-							<a href="/newsInfo.jhtml" target="_blank"><img src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第一届潜江创业培训研讨会召开" /></a>
+							[#list imgs as img]
+								<a href="/newsInfo.jhtml" target="_blank"><img src="${img.imgpath}" title="this is a beautiful girl!" alt="${img.title}" /></a>
+							[/#list]
 							<a href="/newsInfo.jhtml" target="_blank"><img src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第二届潜江创业培训研讨会召开" /></a>
 							<a href="/newsInfo.jhtml" target="_blank"><img src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第三届潜江创业培训研讨会召开" /></a>
 							<a href="/newsInfo.jhtml" target="_blank"><img src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第四届潜江创业培训研讨会召开" /></a>
