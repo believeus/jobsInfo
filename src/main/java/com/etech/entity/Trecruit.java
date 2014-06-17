@@ -23,8 +23,6 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	@Column(nullable=false)
 	private String company;
 	/**招收人数*/
-	@Length(max=10)
-	@Column(nullable=true)
 	private int worknum;
 	/**性别*/
 	@Length(max=5)
@@ -39,9 +37,7 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	@Column(nullable=true)
 	private String eduLevel;
 	/**从事年限*/
-	@Column(nullable=true)
 	private int workyear;
-	@Column(nullable=true)
 	private int age;
 	/**视力*/
 	@Length(max=5)

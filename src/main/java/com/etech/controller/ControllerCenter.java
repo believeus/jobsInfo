@@ -240,7 +240,7 @@ public class ControllerCenter {
 		}
 		
 		try {
-			etechService.merge(recruit);
+			etechService.saveOrUpdata(recruit);
 			map.put("message", "success");
 		} catch (Exception ex) {
 			ex.printStackTrace();
