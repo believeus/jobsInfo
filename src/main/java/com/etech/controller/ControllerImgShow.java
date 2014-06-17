@@ -32,7 +32,7 @@ public class ControllerImgShow {
 	@RequestMapping(value = "/imagesList", method = RequestMethod.GET)
 	public String imgsList(HttpSession session) {
 		String hql="From TdataCenter dataCenter where dataCenter.type='3'";
-		List<TdataCenter> imgs = (List<TdataCenter>)etechService.findObjectByList(hql);
+		List<TdataCenter> imgs = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
 		session.setAttribute("imgs", imgs);
 		return "infoCenter/imagesList";
 	}

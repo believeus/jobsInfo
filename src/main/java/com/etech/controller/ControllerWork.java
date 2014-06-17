@@ -32,7 +32,7 @@ public class ControllerWork {
 	@RequestMapping(value = "/workList", method = RequestMethod.GET)
 	public String worksList(HttpSession session) {
 		String hql="From TdataCenter dataCenter where dataCenter.type='1'";
-		List<TdataCenter> works = (List<TdataCenter>)etechService.findObjectByList(hql);
+		List<TdataCenter> works = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
 		session.setAttribute("works", works);
 		return "infoCenter/workList";
 	}

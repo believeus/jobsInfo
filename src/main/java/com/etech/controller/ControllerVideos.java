@@ -32,7 +32,7 @@ public class ControllerVideos {
 	@RequestMapping(value = "/videosList", method = RequestMethod.GET)
 	public String videosList(HttpSession session) {
 		String hql="From TdataCenter dataCenter where dataCenter.type='4'";
-		List<TdataCenter> videos = (List<TdataCenter>)etechService.findObjectByList(hql);
+		List<TdataCenter> videos = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
 		session.setAttribute("videos", videos);
 		return "infoCenter/videosList";
 	}

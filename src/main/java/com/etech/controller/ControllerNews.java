@@ -32,7 +32,7 @@ public class ControllerNews {
 	@RequestMapping(value = "/newsList", method = RequestMethod.GET)
 	public String newsListView(HttpSession session) {
 		String hql="From TdataCenter dataCenter where dataCenter.type='0'";
-		List<TdataCenter> news = (List<TdataCenter>)etechService.findObjectByList(hql);
+		List<TdataCenter> news = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
 		session.setAttribute("notices", news);
 		return "infoCenter/newsList";
 	}
