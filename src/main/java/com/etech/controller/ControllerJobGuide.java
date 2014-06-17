@@ -27,6 +27,7 @@ public class ControllerJobGuide {
 		String hql="From TdataCenter dataCenter where dataCenter.type='6'";
 		List<TdataCenter> datas = (List<TdataCenter>)etechService.findListByHQL(hql, 1);
 		session.setAttribute("datas", datas);
+		getSubjectReport(session); 
 		return "guide/organization";
 	}
 	
@@ -34,8 +35,9 @@ public class ControllerJobGuide {
 	@RequestMapping(value = "/mainFunction", method = RequestMethod.GET)
 	public String mainFunctioView(HttpSession session) {
 		String hql="From TdataCenter dataCenter where dataCenter.type='7'";
-		List<TdataCenter> datas = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
+		List<TdataCenter> datas = (List<TdataCenter>)etechService.findListByHQL(hql, 1);
 		session.setAttribute("datas", datas);
+		getSubjectReport(session);
 		return "guide/mainFunction";
 	}
 	
@@ -45,7 +47,14 @@ public class ControllerJobGuide {
 		String hql="From TdataCenter dataCenter where dataCenter.type='8'";
 		List<TdataCenter> datas = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
 		session.setAttribute("datas", datas);
+		getSubjectReport(session); 
 		return "guide/leader";
 	}
 	
+	@SuppressWarnings("unchecked")
+	private void getSubjectReport(HttpSession session){
+		String hql="From TdataCenter dataCenter where dataCenter.type='5'";
+		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
+		session.setAttribute("subjectReport", subjectReport); // 专题报道
+	}
 }
