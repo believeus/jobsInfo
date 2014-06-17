@@ -31,6 +31,6 @@ public class ControllerUploadFile {
 	@RequestMapping(value = "/save", method = RequestMethod.GET)
 	public String saveNewsView(){
 		
-		return "redirect:list.jhtml";
+		return "redirect:/admin/uploadFile/list.jhtml";
 	}
 }

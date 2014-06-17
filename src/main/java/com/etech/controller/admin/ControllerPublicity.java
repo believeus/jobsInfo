@@ -53,7 +53,7 @@ public class ControllerPublicity extends ControllerCRUD {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
 		request.setAttribute("type",EtechGobal.infoCenterNotice);
-		return "admin/news/add";
+		return "admin/publicity/add";
 	}
 	/**
 	 * 编辑公告公示
@@ -64,7 +64,7 @@ public class ControllerPublicity extends ControllerCRUD {
 		int id=Integer.parseInt(request.getParameter("id"));
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
-		return "admin/news/edit";
+		return "admin/publicity/edit";
 	}
 	
 	/**
@@ -74,7 +74,7 @@ public class ControllerPublicity extends ControllerCRUD {
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
-		return "redirect:list.jhtml";
+		return "redirect:/admin/publicity/list.jhtml";
 	}
 	/**
 	 * 修改公告公示
@@ -83,6 +83,6 @@ public class ControllerPublicity extends ControllerCRUD {
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);
-		return "redirect:list.jhtml";
+		return "redirect:/admin/publicity/list.jhtml";
 	}
 }

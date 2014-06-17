@@ -128,11 +128,20 @@
     	}
     	.tupian{
     		width:998px;
-    		height:167px;
+    		height:200px;
     		border:1px solid #e4e4e4;
     		margin-bottom:6px;
     		overflow:hidden;
     	}
+    	.tupian_1{
+    		float:left;
+    		width:249px;
+    		height:120px;
+    	}
+    	.tupian p {
+		    margin: 10px 15px;
+		    text-align: center;
+		}
     </style>
     <style type="text/css">
 		#banner {position:relative; width:314px; height:286px; overflow:hidden;}
@@ -403,8 +412,20 @@
 			<div style="width:1000px;height:38px;background:url(/resource/public/images/zhizuo-_01.png);">
 				<span style="color: #FFD32A;font-size: 20px;font-weight: bold;line-height: 38px;padding-left: 15px;">图片新闻<span style="float:right;"><a style="color:#FAFAFA;font-size:13px;" href="/imagesList.jhtml">更多>></a></span></span>
 			</div>
-			<a href="/imgShow.jhtml"><img src="/resource/public/images/u6_normal_39.gif" style="width: 998px; margin-top: -4px;"></a>
-			<a href="/imgShow.jhtml"><img src="/resource/public/images/u6_normal_41.gif" style="width: 998px; margin-top: -4px;"></a>
+			<div style="width:1000px;height:170px;">
+				[#list imgs as img]
+					<div class="tupian_1" [#if !img_has_next && img_index= 3] style="margin-top: -3px;"[/#if]>
+						<p>
+							<a href="/imgShow.jhtml" title="${img.title}">
+								<img src="${img.imgpath}" width="220" height="105">
+							</a>
+						</p>
+						<p>
+							<a href="/imgShow.jhtml" title="${img.title}">${img.title}</a>
+						</p>
+					</div>
+				[/#list]
+			</div>
 		</div>
 	</div>
 	[#include "/include/footer.ftl" /]

@@ -15,7 +15,7 @@ body {
 	padding:0px;
 }
 #container h1 {
-    color: #555555;
+    color: #fafafa;
     cursor: pointer;
     font-size: 15px;
     font-weight: normal;
@@ -24,6 +24,7 @@ body {
     padding-left: 10px;
     margin:0px;
   	padding-left:50px;
+  	font-size:16px;
   }
 .content{
 	width: 182px;
@@ -31,7 +32,7 @@ body {
 	
 }
  ul {
-	background-color: #F8F8F8;
+	background-color: #edc9c2;
     font-size: 13px;
     margin:0px;
     width:178px;
@@ -44,7 +45,7 @@ ul li {
     margin-left:50px;
 }
 li a {
-    color: #333333;
+    color: #C3513C;
     padding-left: 5px;
 }
 a
@@ -52,7 +53,8 @@ a
 	text-decoration: none;
 }
 .current{
-	color:#0000FF;
+	color:#e10000;
+	font-weight:bold;
 }
 </style>
 <script type="text/javaScript">
@@ -78,13 +80,15 @@ $(function(){
 </script>
 </head>
 
-<body style="overflow-y:scroll;">
-<table width="100%" height="280" border="0" cellpadding="0" cellspacing="0" bgcolor="#E6E6E6">
+<body style="overflow-y:scroll;" bgcolor="#BD3A21">
+<table width="100%" height="280" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td width="182" valign="top">
 	   	<div id="container">
 	   		<div style="height:auto;width:180px;">
-	   		<p style="background: #D7D7D7;font-size: 16px;margin: 0;padding: 10px;text-align: center;">网站内容管理</p>
+	   		<p style="background: url(/resource/public/images/back-2.png);font-size: 16px;margin: 0;padding: 8px;text-align: center;font-size:19px;color:#FFFFFF;">
+	   			网站内容管理
+   			</p>
 	   		​[@shiro.hasPermission name="infocenter:view"]
 		  	<h1>资讯中心</h1>
     		<ul style="display: none;" class="MM">
@@ -130,7 +134,6 @@ $(function(){
 					</li>
       			</ul>
      		[/@shiro.hasPermission]
-     		
      		[@shiro.hasPermission name="policy:view"]
 			 <h1>政策咨询</h1>
         		<ul style="display: none;" class="MM">
@@ -148,7 +151,6 @@ $(function(){
 					</li>
        			</ul>
    			[/@shiro.hasPermission]
-   			
    			[@shiro.hasPermission name="datachannel:view"]
 		    <h1>数据频道</h1>
         		<ul style="display: none;" class="MM">
@@ -208,7 +210,9 @@ $(function(){
       			</ul>
   			</div>
   			<div style="height:auto;width:180px;">
-	   		<p style="background: #D7D7D7;font-size: 16px;margin: 0;padding: 10px;text-align: center;">人力资源业务管理</p>
+	   		<p style="background: url(/resource/public/images/back-2.png);font-size: 16px;margin: 0;padding: 8px;text-align: center;font-size:19px;color:#FFFFFF;">
+	   			人力资源业务管理
+   			</p>
 			<h1>内容审核</h1>
         		<ul style="display: none;" class="MM">
 					<li>
@@ -232,7 +236,7 @@ $(function(){
       			</ul>
   			</div>
   			<div style="height:auto;width:180px;">
-	   		<p style="background: #D7D7D7;font-size: 16px;margin: 0;padding: 10px;text-align: center;">系统管理</p>
+	   		<p style="background: url(/resource/public/images/back-2.png);font-size: 16px;margin: 0;padding: 8px;text-align: center;font-size:19px;color:#FFFFFF;">系统管理</p>
   			<h1>系统设置</h1>
        			 <ul style="display: none;" class="MM">
        			 	[@shiro.hasPermission name="adminList:view"]

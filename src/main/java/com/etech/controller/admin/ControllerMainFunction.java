@@ -40,7 +40,7 @@ public class ControllerMainFunction extends ControllerCRUD{
 	@RequestMapping("/delete")
 	public String removeNews(HttpServletRequest request,HttpServletResponse response){
 		super.deleteDataInfo(request,response);
-		return "redirect:list.jhtml";
+		return "redirect:/admin/leader/list.jhtml";
 	}
 	
 	/**
@@ -71,7 +71,7 @@ public class ControllerMainFunction extends ControllerCRUD{
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
-		return "redirect:list.jhtml";
+		return "redirect:/admin/leader/list.jhtml";
 	}
 	/**
 	 * 修改主要职能
@@ -80,6 +80,6 @@ public class ControllerMainFunction extends ControllerCRUD{
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);
-		return "redirect:list.jhtml";
+		return "redirect:/admin/leader/list.jhtml";
 	}
 }

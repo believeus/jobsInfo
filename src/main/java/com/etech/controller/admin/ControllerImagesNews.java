@@ -52,7 +52,7 @@ public class ControllerImagesNews extends ControllerCRUD{
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
 		request.setAttribute("type",EtechGobal.newsImg);
-		return "admin/news/add";
+		return "admin/imagesNews/add";
 	}
 	/**
 	 * 编辑图片新闻
@@ -63,25 +63,25 @@ public class ControllerImagesNews extends ControllerCRUD{
 		int id=Integer.parseInt(request.getParameter("id"));
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
-		return "admin/news/edit";
+		return "admin/imagesNews/edit";
 	}
 	
 	/**
 	 * 保存图片新闻
 	 * @return
 	 */
-	@RequestMapping(value = "/save", method = RequestMethod.GET)
+	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
-		return "redirect:list.jhtml";
+		return "redirect:/admin/imagesNews/list.jhtml";
 	}
 	/**
 	 * 修改图片新闻
 	 * @return
 	 */
-	@RequestMapping(value = "/update")
-	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request) {
 		super.updataDataInfo(editDataCenter, request);
-		return "redirect:list.jhtml";
+		return "redirect:/admin/imagesNews/list.jhtml";
 	}
 }

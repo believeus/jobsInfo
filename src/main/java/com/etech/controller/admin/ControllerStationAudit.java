@@ -50,7 +50,7 @@ public class ControllerStationAudit {
 	@RequestMapping(value = "/save", method = RequestMethod.GET)
 	public String saveNewsView(){
 		
-		return "redirect:list.jhtml";
+		return "redirect:/admin/humanResources/list.jhtml";
 	}
 	/**
 	 * 修改岗位审核
@@ -59,6 +59,6 @@ public class ControllerStationAudit {
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String updateNewsView(){
 		
-		return "redirect:list.jhtml";
+		return "redirect:/admin/humanResources/list.jhtml";
 	}
 }

@@ -50,7 +50,7 @@ public class ControllerJobSeekers {
 	@RequestMapping(value = "/save", method = RequestMethod.GET)
 	public String saveNewsView(){
 		
-		return "redirect:list.jhtml";
+		return "redirect:/admin/humanResources/list.jhtml";
 	}
 	/**
 	 * 修改求职者
@@ -59,6 +59,6 @@ public class ControllerJobSeekers {
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String updateNewsView(){
 		
-		return "redirect:list.jhtml";
+		return "redirect:/admin/humanResources/list.jhtml";
 	}
 }
