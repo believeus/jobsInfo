@@ -22,22 +22,22 @@ public class ControllerInfoCenter {
 	@RequestMapping(value = "/infoCenter", method = RequestMethod.GET)
 	public String infoCenter(HttpSession session) {
 		String hql="From TdataCenter dataCenter where dataCenter.type='0'";
-		List<TdataCenter> news = (List<TdataCenter>)etechService.findObjectByList(hql);
+		List<TdataCenter> news = (List<TdataCenter>)etechService.findListByHQL(hql);
 		
 		hql="From TdataCenter dataCenter where dataCenter.type='1'";
-		List<TdataCenter> works = (List<TdataCenter>)etechService.findObjectByList(hql);
+		List<TdataCenter> works = (List<TdataCenter>)etechService.findListByHQL(hql);
 		
 		hql="From TdataCenter dataCenter where dataCenter.type='2'";
-		List<TdataCenter> notices = (List<TdataCenter>)etechService.findObjectByList(hql);
+		List<TdataCenter> notices = (List<TdataCenter>)etechService.findListByHQL(hql);
 		
 		hql="From TdataCenter dataCenter where dataCenter.type='3'";
-		List<TdataCenter> imgs = (List<TdataCenter>)etechService.findObjectByList(hql);
+		List<TdataCenter> imgs = (List<TdataCenter>)etechService.findListByHQL(hql);
 		
 		hql="From TdataCenter dataCenter where dataCenter.type='4'";
-		List<TdataCenter> vedios = (List<TdataCenter>)etechService.findObjectByList(hql);
+		List<TdataCenter> vedios = (List<TdataCenter>)etechService.findListByHQL(hql);
 		
 		hql="From TdataCenter dataCenter where dataCenter.type='5'";
-		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findObjectByList(hql);
+		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
 		
 		session.setAttribute("news", news);// 新闻动态
 		session.setAttribute("works", works);// 工作动态

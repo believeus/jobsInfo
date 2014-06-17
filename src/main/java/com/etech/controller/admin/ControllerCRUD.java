@@ -68,8 +68,7 @@ public class ControllerCRUD {
 		etechService.merge(center);
 	}
 	// 更新信息
-	public void updataDataInfo(TdataCenter editDataCenter,
-			HttpServletRequest request) {
+	public void updataDataInfo(TdataCenter formDataCenter,HttpServletRequest request) {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		String storepath = "";
 		Map<String, MultipartFile> files = multipartRequest.getFileMap();
@@ -83,13 +82,15 @@ public class ControllerCRUD {
 				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
 				log.debug("upload file stuffix"+extention);
 				storepath = mydfsTrackerServer.upload(inputStream, extention);
-				editDataCenter.setImgpath(storepath);
+				formDataCenter.setImgpath(storepath);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, editDataCenter.getId());
-		BeanUtils.copyProperties(editDataCenter, dataCenter);
+		System.out.println("top:"+formDataCenter.getTop());
+		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, formDataCenter.getId());
+		formDataCenter.setEditTime(System.currentTimeMillis());
+		BeanUtils.copyProperties(formDataCenter, dataCenter);
 		etechService.merge(dataCenter);
 	}
 	//删除信息

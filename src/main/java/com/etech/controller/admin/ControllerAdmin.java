@@ -55,7 +55,7 @@ public class ControllerAdmin{
 		String hql="from Trole";
 		// 查询有哪些角色
 		@SuppressWarnings("unchecked")
-		List<?> roles = (List<Trole>)etechService.findObjectByList(hql);
+		List<?> roles = (List<Trole>)etechService.findListByHQL(hql);
 		request.setAttribute("roles", roles);
 		return "/admin/admin/add";
 	}
@@ -86,7 +86,7 @@ public class ControllerAdmin{
 		String hql="from Trole";
 		// 查询有哪些角色
 		@SuppressWarnings("unchecked")
-		List<?> roles = (List<Trole>)etechService.findObjectByList(hql);
+		List<?> roles = (List<Trole>)etechService.findListByHQL(hql);
 		request.setAttribute("roles", roles);
 		Tadmin admin=(Tadmin)etechService.findObjectById(Tadmin.class, id);
 		request.setAttribute("admin", admin);

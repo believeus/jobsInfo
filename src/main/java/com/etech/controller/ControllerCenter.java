@@ -59,13 +59,13 @@ public class ControllerCenter {
 	public String personalCenter(HttpSession session) {
 		TcomUser sessionUser = (TcomUser) session.getAttribute("sessionUser");
 		String hql="From TcomInfo comInfo left join fetch comInfo.comUser  as user where comInfo.infoType='1' and user.id='"+sessionUser.getId()+"'";
-		List<TcomUser> skills = (List<TcomUser>)etechService.findObjectByList(hql);
+		List<TcomUser> skills = (List<TcomUser>)etechService.findListByHQL(hql);
 		hql="From TcomInfo comInfo left join fetch comInfo.comUser  as user where comInfo.infoType='2' and user.id='"+sessionUser.getId()+"'";;
-		List<TcomUser> learnings = (List<TcomUser>)etechService.findObjectByList(hql);
+		List<TcomUser> learnings = (List<TcomUser>)etechService.findListByHQL(hql);
 		hql="From TcomInfo comInfo left join fetch comInfo.comUser  as user where comInfo.infoType='3' and user.id='"+sessionUser.getId()+"'";;
-		List<TcomUser> works = (List<TcomUser>)etechService.findObjectByList(hql);
+		List<TcomUser> works = (List<TcomUser>)etechService.findListByHQL(hql);
 		hql="From TcomInfo comInfo left join fetch comInfo.comUser  as user where comInfo.infoType='4' and user.id='"+sessionUser.getId()+"'";;
-		List<TcomUser> volunteers = (List<TcomUser>)etechService.findObjectByList(hql);
+		List<TcomUser> volunteers = (List<TcomUser>)etechService.findListByHQL(hql);
 		session.setAttribute("skills", skills);// 具备技能
 		session.setAttribute("learnings", learnings);// 学习经历
 		session.setAttribute("works", works);// 工作经验
@@ -80,11 +80,11 @@ public class ControllerCenter {
 		TentUser entUser=(TentUser)session.getAttribute("sessionUser");
 		System.out.println(entUser); 
 		String hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+entUser.getId()+"  and info.type='0'";
-		List<TentImgVedio> Imgs=(List<TentImgVedio>)etechService.findObjectByList(hql);
+		List<TentImgVedio> Imgs=(List<TentImgVedio>)etechService.findListByHQL(hql);
 		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+entUser.getId()+"  and info.type='1'";
-		List<TentImgVedio> Vedios=(List<TentImgVedio>)etechService.findObjectByList(hql);
+		List<TentImgVedio> Vedios=(List<TentImgVedio>)etechService.findListByHQL(hql);
 		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+entUser.getId()+"  and info.type='2'";
-		List<TentImgVedio> Maps=(List<TentImgVedio>)etechService.findObjectByList(hql);
+		List<TentImgVedio> Maps=(List<TentImgVedio>)etechService.findListByHQL(hql);
 		
 		System.out.println(Imgs.size());
 		System.out.println(Vedios.size());

@@ -237,7 +237,20 @@ public class EtechComDao extends HibernateDaoSupport {
 
 	/* Begin Name:wuqiwei Date:2013-11-5 07:24:40 AddReason:返回一定数量的行数 */
 	public List<?> getPageDateList(final String hql, final Integer num) {
-		return null;
+		Assert.assertNotNull(num);
+		return (List<?>) getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				Query query = session.createQuery(hql);
+				query.setFirstResult(0);
+				query.setMaxResults(num);
+				List<?> list = query.list();
+				return list;
+			}
+			
+		});
 	}
 
 	/* End Name:wuqiwei Date:2013-11-5 07:24:40 AddReason:返回一定数量的行数 */

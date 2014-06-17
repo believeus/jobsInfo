@@ -78,4 +78,9 @@ public class EtechGobal {
 	// 友情链接
 	public static final int links=24;
 	
+	// 置顶
+	public static final int top=1;
+	//不置顶
+	public static final int untop=0;
+	
 }

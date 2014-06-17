@@ -23,21 +23,27 @@ public class ControllerPolicyAdvice {
 	private static Log log = LogFactory.getLog(ControllerPolicyAdvice.class);
 	@Resource
 	private EtechService etechService;
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/policyAdvice", method = RequestMethod.GET)
 	public String policyAdviceView(HttpServletRequest request) {
 		//国家法律法规
-		List<TdataCenter> countryLawDataList = (List<TdataCenter>)etechService.getListByProperty(TdataCenter.class,"type", EtechGobal.countryLaw);
+		List<TdataCenter> countryLawDataList =this.findListByHQL(String.valueOf(EtechGobal.countryLaw));
 		request.setAttribute("countryLawDataList",countryLawDataList);
 		//地方法律法规
-		List<TdataCenter> cityLawDataList = (List<TdataCenter>) etechService.getListByProperty(TdataCenter.class,"type", EtechGobal.cityLaw);
+		List<TdataCenter> cityLawDataList =this.findListByHQL(String.valueOf(EtechGobal.cityLaw));
 		request.setAttribute("cityLawDataList", cityLawDataList);
 		//国家相关文件
-		List<TdataCenter> countryFileDataList=(List<TdataCenter>)etechService.getListByProperty(TdataCenter.class,"type", EtechGobal.countryFile);
+		List<TdataCenter> countryFileDataList=this.findListByHQL(String.valueOf(EtechGobal.countryFile));
 		request.setAttribute("countryFileDataList", countryFileDataList);
 		// 地方文件
-		List<TdataCenter> cityFileDataList=(List<TdataCenter>)etechService.getListByProperty(TdataCenter.class, "type", EtechGobal.cityFile);
+		List<TdataCenter> cityFileDataList=this.findListByHQL(String.valueOf(EtechGobal.cityFile));
 		request.setAttribute("cityFileDataList", cityFileDataList);
 		return "policyAdvice/policyAdvice";
+	}
+	private List<TdataCenter> findListByHQL(String type){
+		String hql="From TdataCenter as dataCenter where type='"+type+"' order by dataCenter.top,dataCenter.editTime desc";
+		log.debug(hql);
+		@SuppressWarnings("unchecked")
+		List<TdataCenter> dataCenterList = (List<TdataCenter>)etechService.findListByHQL(hql, 6);
+		return dataCenterList;
 	}
 }

@@ -40,8 +40,11 @@ public class EtechService {
 		return (List<?>) etechComDao.getPageDateList(hql, currentPage, perPageCount, clazz);
 	}
 	
-	public List<?> findObjectByList(String hql){
+	public List<?> findListByHQL(String hql){
 		return (List<?>)etechComDao.getObjecListByHQL(hql);
+	}
+	public List<?> findListByHQL(String hql,Integer num){
+		return etechComDao.getPageDateList(hql, num);
 	}
 	public void saveOrUpdata(Object object){
 		etechComDao.saveOrUpdata(object);
