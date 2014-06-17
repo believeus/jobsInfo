@@ -42,7 +42,7 @@ public class ControllerCountryFile extends ControllerCRUD{
 	@RequestMapping("/delete")
 	public String removeNews(HttpServletRequest request,HttpServletResponse response){
 		super.deleteDataInfo(request,response);
-		return "redirect:/admin/policyAdvice/list.jhtml";
+		return "redirect:/admin/countryFile/list.jhtml";
 	}
 	
 	/**
@@ -74,7 +74,7 @@ public class ControllerCountryFile extends ControllerCRUD{
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
-		return "redirect:/admin/policyAdvice/list.jhtml";
+		return "redirect:/admin/countryFile/list.jhtml";
 	}
 	/**
 	 * 修改国家相关文件
@@ -83,6 +83,6 @@ public class ControllerCountryFile extends ControllerCRUD{
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);
-		return "redirect:/admin/policyAdvice/list.jhtml";
+		return "redirect:/admin/countryFile/list.jhtml";
 	}
 }

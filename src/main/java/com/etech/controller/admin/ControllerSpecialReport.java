@@ -52,7 +52,7 @@ public class ControllerSpecialReport extends ControllerCRUD{
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
 		request.setAttribute("type",EtechGobal.subjectReport);
-		return "admin/news/add";
+		return "admin/specialReport/add";
 	}
 	/**
 	 * 编辑专题
@@ -64,14 +64,14 @@ public class ControllerSpecialReport extends ControllerCRUD{
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
 		request.setAttribute("type",EtechGobal.subjectReport);
-		return "admin/news/edit";
+		return "admin/specialReport/edit";
 	}
 	
 	/**
 	 * 保存专题
 	 * @return
 	 */
-	@RequestMapping(value = "/save", method = RequestMethod.GET)
+	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
 		return "redirect:/admin/specialReport/list.jhtml";

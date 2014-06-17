@@ -1,5 +1,8 @@
 package com.etech.controller;
 
+import java.util.List;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.etech.entity.Tadmin;
 import com.etech.entity.TbaseUser;
+import com.etech.entity.TdataCenter;
+import com.etech.service.EtechService;
 
 /**
  * 首页面
@@ -19,6 +24,10 @@ import com.etech.entity.TbaseUser;
 public class ControllerIndex {
 	private static Log log = LogFactory.getLog(ControllerIndex.class);
 
+	@Resource
+	private EtechService etechService;
+	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/index")
 	public String defaultIndex(HttpServletRequest request) {
 		/*Begin Author:wuqiwei Data:2014-06-11 AddReason:shiro登录成功之后会跳转到主页面,此处控制后台登录后进入后台主页面*/
@@ -32,6 +41,26 @@ public class ControllerIndex {
 				}
 			}
 		}
+		//工作动态
+		String hql="From TdataCenter dataCenter where dataCenter.type='1'";
+		List<TdataCenter> works = (List<TdataCenter>)etechService.findListByHQL(hql);
+		session.setAttribute("works",works ); 
+		
+		// 公告公示
+		hql="From TdataCenter dataCenter where dataCenter.type='2'";
+		List<TdataCenter> notices = (List<TdataCenter>)etechService.findListByHQL(hql);
+		session.setAttribute("notices",notices ); 
+		
+		//国家法律法规
+		hql="From TdataCenter dataCenter where dataCenter.type='10'";
+		List<TdataCenter> countryLawDataList = (List<TdataCenter>)etechService.findListByHQL(hql);
+		session.setAttribute("countryLawDataList",countryLawDataList ); 
+		
+		// 专题报道
+		hql="From TdataCenter dataCenter where dataCenter.type='5'";
+		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
+		session.setAttribute("subjectReport", subjectReport); 
+		
 		/*End Author:wuqiwei Data:2014-06-11 AddReason:shiro登录成功之后会跳转到主页面,此处控制后台登录后进入后台主页面*/
 		log.debug("current controller is defaultIndex !");
 		return "index";

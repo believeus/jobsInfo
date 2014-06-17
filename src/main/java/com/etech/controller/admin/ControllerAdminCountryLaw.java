@@ -31,7 +31,6 @@ public class ControllerAdminCountryLaw extends ControllerCRUD{
 	public String newsListView(HttpServletRequest request) {
 		List<?> dataCenters = super.listDataInfo(request,EtechGobal.countryLaw);
 		request.setAttribute("dataCenters",dataCenters);
-		request.setAttribute("dataCenters",dataCenters);
 		return "admin/policyAdvice/list";
 	}
 	

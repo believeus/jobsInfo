@@ -298,10 +298,17 @@
 						<li>4</li>
 					</ul>
 					<div id="banner_list">
-						<a href="/newsInfo.jhtml" target="_blank"><img src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第一届潜江创业培训研讨会召开" /></a>
-						<a href="/newsInfo.jhtml" target="_blank"><img src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第二届潜江创业培训研讨会召开" /></a>
-						<a href="/newsInfo.jhtml" target="_blank"><img src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第三届潜江创业培训研讨会召开" /></a>
-						<a href="/newsInfo.jhtml" target="_blank"><img src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第四届潜江创业培训研讨会召开" /></a>
+						[#list imgs as img]
+							<a href="/newsInfo.jhtml" target="_blank"><img src="${img.imgpath}" width="314" height="236" title="this is a beautiful girl!" alt="
+							[#if img.title?length > 18]
+								${img.title?string?substring(0,18)}...
+							[#else]
+								${img.title}
+							[/#if]" /></a>
+						[/#list]
+						<a href="/newsInfo.jhtml" target="_blank"><img width="314" height="236" src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第二届潜江创业培训研讨会召开" /></a>
+						<a href="/newsInfo.jhtml" target="_blank"><img width="314" height="236" src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第三届潜江创业培训研讨会召开" /></a>
+						<a href="/newsInfo.jhtml" target="_blank"><img width="314" height="236" src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第四届潜江创业培训研讨会召开" /></a>
 					</div>
 				</div>
 				<!--***************************************************************-->
@@ -309,20 +316,57 @@
 			</div>
 			<div class="xinwen">
 				<div style="padding-left: 20px;margin-bottom:20px;">
-					<h2 style="margin: 0px; font-size: 21px; font-weight: normal;"><a href="/newsInfo.jhtml">表彰全市创业就业先进个人</a></h2>
-					<p style="color:#2B8BDF;margin:0;font-size:12px;">xx市人力资源和社会保障局关于表彰全市创业就业先进个人的决定</p>
+					[#list news as new]
+						[#if new_index==0]
+							<h2 style="margin: 0px; font-size: 21px; font-weight: normal;"><a href="/newsInfo.jhtml?id=${new.id}">
+							[#if new.title?length > 16]
+								${new.title?string?substring(0,16)}...
+							[#else]
+								${new.title}
+							[/#if]
+							</a></h2>
+							<p style="color:#2B8BDF;margin:0;font-size:12px;">
+							[#if new.content?length > 27]
+								${new.content?string?substring(0,27)}...
+							[#else]
+								${new.content}
+							[/#if]
+							</p>
+						[/#if]
+						[/#list]
 				</div>
 				<div style="padding-left: 20px;">
-					<h2 style="margin: 0px; font-size: 21px; font-weight: normal;"><a href="/newsInfo.jhtml">国务院六大举措力促高校毕业生就业</a></h2>
-					<p style="color:#2B8BDF;margin:0;font-size:12px;">昨日，国务院总理李克强主持召开国务院常务会议，对于如何做..</p>
+					[#list news as new]
+						[#if new_index==1]	
+							<h2 style="margin: 0px; font-size: 21px; font-weight: normal;"><a href="/newsInfo.jhtml?id="${new.id}"">
+							[#if new.title?length > 16]
+								${new.title?string?substring(0,16)}...
+							[#else]
+								${new.title}
+							[/#if]</a></h2>
+							<p style="color:#2B8BDF;margin:0;font-size:12px;">
+							[#if new.content?length > 27]
+								${new.content?string?substring(0,27)}...
+							[#else]
+								${new.content}
+							[/#if]
+							</p>
+						[/#if]
+						[/#list]
 				</div>
 				<hr style="margin-left: 10px; margin-right: 10px; border: 1px dashed #e4e4e4;">
 				<ul class="xinwen_ul" style="padding-left: 25px;">
-					<li><a href="/newsInfo.jhtml">推陈出新的巧克力蛋糕店创业计划书</a></li>
-					<li><a href="/newsInfo.jhtml">创业计划书的六个概念</a></li>
-					<li><a href="/newsInfo.jhtml">赢动运城创业大赛报名表</a></li>
-					<li><a href="/newsInfo.jhtml">毕业季里的创业课</a></li>
-					<li><a href="/newsInfo.jhtml">运城启动SIYB免费创业培训</a></li>
+					[#list news as new]
+					[#if new_index > 1]	
+						<li><a href="/newsInfo.jhtml?id="${new.id}"">
+						[#if new.title?length > 16]
+							${new.title?string?substring(0,16)}...
+						[#else]
+							${new.title}
+						[/#if]
+						</a></li>
+					[/#if]
+					[/#list]
 				</ul>
 			</div>
 			<div class="biaoti">
@@ -354,12 +398,9 @@
 							<div class="xinxi_1">
 								<p><span style="margin-left:30px;float:none;">政策信息</span></p>
 								<ul style="padding-left:25px;">
-									<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									[#list countryLawDataList as countryLawData]
+										<li><a href="/countryLaw.jhtml">${countryLawData.title}</a><span style="">${countryLawData.editTime?number_to_datetime}</span></li>
+									[/#list]
 								</ul>
 							</div>
 						</td>
@@ -382,12 +423,9 @@
 							<div class="xinxi_1">
 								<p><span style="margin-left:30px;float:none;">工作动态</span></p>
 								<ul style="padding-left:25px;">
-									<li><a href="/workList.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="/workList.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="/workList.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="/workList.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="/workList.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="/workList.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+								[#list works as work]
+									<li><a href="/workList.jhtml">${work.title}</a><span>${work.editTime?number_to_datetime}</span></li>
+								[/#list]
 								</ul>
 							</div>
 						</td>
@@ -402,14 +440,15 @@
 					公告公示<span style="float:right;"><a href="/publicityList.jhtml">更多</a></span>
 				</p>
 				<ul id="" style="padding-left:25px;">
-					<li><a href="/publicityInfo.jhtml">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
-					<li><a href="/publicityInfo.jhtml">社会保障费申请缴纳管理规定..</a><span>10-15</span></li>
-					<li><a href="/publicityInfo.jhtml">人力资源社会保障部关于印发..</a><span>10-15</span></li>
-					<li><a href="/publicityInfo.jhtml">社会保障费申请缴纳管理规定..</a><span>10-15</span></li>
-					<li><a href="/publicityInfo.jhtml">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
-					<li><a href="/publicityInfo.jhtml">人力资源社会保障部关于印发..</a><span>10-15</span></li>
-					<li><a href="/publicityInfo.jhtml">人力资源社会保障部关于印发..</a><span>10-15</span></li>
-					<li><a href="/publicityInfo.jhtml">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
+					[#list notices as notice]
+						<li><a href="/publicityInfo.jhtml?id=${notice.id}">
+							[#if notice.title?length > 13]
+								${notice.title?string?substring(0,13)}...
+							[#else]
+								${notice.title}
+							[/#if]
+					</a><span>${notice.createTime?number_to_datetime}</span></li>
+					[/#list]
 				</ul>
 			</div>
 			
@@ -599,14 +638,19 @@
 				<div class="box">
 					<div class="picbox">
 						<ul class="piclist mainlist">
-							<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/1.jpg" width="220" height="62" /></a></li>
-							<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/2.jpg" width="220" height="62" /></a></li>
-							<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/3.jpg" width="220" height="62" /></a></li>
-							<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/4.jpg" width="220" height="62" /></a></li>
-							<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/1.jpg" /></a></li>
-			    			<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/2.jpg" width="220" height="62" /></a></li>
-							<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/3.jpg" width="220" height="62" /></a></li>
-							<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/4.jpg" width="220" height="62" /></a></li>
+							[#list subjectReport as sReport]
+								<li><a href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" width="220" height="62"></a></li>
+							[/#list]
+							<!--
+								<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/1.jpg" width="220" height="62" /></a></li>
+								<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/2.jpg" width="220" height="62" /></a></li>
+								<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/3.jpg" width="220" height="62" /></a></li>
+								<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/4.jpg" width="220" height="62" /></a></li>
+								<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/1.jpg" width="220" height="62" /></a></li>
+				    			<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/2.jpg" width="220" height="62" /></a></li>
+								<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/3.jpg" width="220" height="62" /></a></li>
+								<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/4.jpg" width="220" height="62" /></a></li>
+							-->
 						</ul>
 				        <ul class="piclist swaplist"></ul>
 					</div>
