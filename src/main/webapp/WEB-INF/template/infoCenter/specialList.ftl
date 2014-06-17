@@ -91,90 +91,22 @@
 			所在位置 > 专题报道
 		</div>
 		<div class="j_main_2">
+			[#list spceilas as spceila]
 			<div class="j_main_2_1">
 				<div class="zt" style="">
 					专题
 				</div>
 				<div class="zt_title">
-					<a href="/special.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a>
+					<a href="/special.jhtml?id=${spceila.id}">${spceila.title}</a>
 				</div>
 				<div class="zt_time">
-					[2014-06-01]
+					[${spceila.createTime?number_to_datetime}]
 				</div>
 				<div class="zt_img">
-					<a href="/special.jhtml"><img src="/resource/public/images/zt_img.png" ></a>
+					<a href="/special.jhtml?id=${spceila.id}"><img style="height:66px;width:222px" src="${spceila.imgpath}" ></a>
 				</div>
 			</div>
-			<div class="j_main_2_1">
-				<div class="zt" style="">
-					专题
-				</div>
-				<div class="zt_title">
-					<a href="/special.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a>
-				</div>
-				<div class="zt_time">
-					[2014-06-01]
-				</div>
-				<div class="zt_img">
-					<a href="/special.jhtml"><img src="/resource/public/images/zt_img.png" ></a>
-				</div>
-			</div>
-			<div class="j_main_2_1">
-				<div class="zt" style="">
-					专题
-				</div>
-				<div class="zt_title">
-					<a href="/special.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a>
-				</div>
-				<div class="zt_time">
-					[2014-06-01]
-				</div>
-				<div class="zt_img">
-					<a href="/special.jhtml"><img src="/resource/public/images/zt_img.png" ></a>
-				</div>
-			</div>
-			<div class="j_main_2_1">
-				<div class="zt" style="">
-					专题
-				</div>
-				<div class="zt_title">
-					<a href="/special.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a>
-				</div>
-				<div class="zt_time">
-					[2014-06-01]
-				</div>
-				<div class="zt_img">
-					<a href="/special.jhtml"><img src="/resource/public/images/zt_img.png" ></a>
-				</div>
-			</div>
-			<div class="j_main_2_1">
-				<div class="zt" style="">
-					专题
-				</div>
-				<div class="zt_title">
-					<a href="/special.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a>
-				</div>
-				<div class="zt_time">
-					[2014-06-01]
-				</div>
-				<div class="zt_img">
-					<a href="/special.jhtml"><img src="/resource/public/images/zt_img.png" ></a>
-				</div>
-			</div>
-			<div class="j_main_2_1">
-				<div class="zt" style="">
-					专题
-				</div>
-				<div class="zt_title">
-					<a href="/special.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a>
-				</div>
-				<div class="zt_time">
-					[2014-06-01]
-				</div>
-				<div class="zt_img">
-					<a href="/special.jhtml"><img src="/resource/public/images/zt_img.png" ></a>
-				</div>
-			</div>
+			[/#list]
 			<img style="padding: 0px 20px; width: 920px; margin-left: 15px;" src="/resource/public/images/line.png">
 			<div class="paixu" style="margin-top:30px;">
 				<ul style="float: right; margin: 0px 40px 0px 0px;">
