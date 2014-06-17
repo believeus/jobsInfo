@@ -19,7 +19,7 @@ import com.etech.util.EtechGobal;
  * */
 @Controller
 @RequestMapping("/admin/countryLaw")
-public class ControllerCountryLaw extends ControllerCRUD{
+public class ControllerAdminCountryLaw extends ControllerCRUD{
 
 	@Resource
 	private EtechService etechService;
@@ -30,6 +30,7 @@ public class ControllerCountryLaw extends ControllerCRUD{
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
 		List<?> dataCenters = super.listDataInfo(request,EtechGobal.countryLaw);
+		request.setAttribute("dataCenters",dataCenters);
 		request.setAttribute("dataCenters",dataCenters);
 		return "admin/policyAdvice/list";
 	}
