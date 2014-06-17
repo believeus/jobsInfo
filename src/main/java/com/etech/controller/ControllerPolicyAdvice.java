@@ -36,6 +36,7 @@ public class ControllerPolicyAdvice {
 		request.setAttribute("countryFileDataList", countryFileDataList);
 		// 地方文件
 		List<TdataCenter> cityFileDataList=this.findListByHQL(String.valueOf(EtechGobal.cityFile));
+
 		request.setAttribute("cityFileDataList", cityFileDataList);
 		return "policyAdvice/policyAdvice";
 	}
