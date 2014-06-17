@@ -2,7 +2,6 @@ package mydfs.storage.server;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -11,7 +10,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -92,17 +90,12 @@ public class MydfsStorageServer {
 	}
 
 	public MydfsStorageServer(int port, String basepath, int workers,String host) {
-		try {
 			this.port = port;
 			this.workers = workers;
 			this.basepath = basepath;
+			this.host=host;
 			// 指定前缀方便访问之用
 			this.pathPrefix = "group/M00";
-			SocketAddress endpoint=new InetSocketAddress(host,port);
-			serverSocket.bind(endpoint);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	@SuppressWarnings("resource")
@@ -174,7 +167,7 @@ public class MydfsStorageServer {
 										OutputStream out = new FileOutputStream(file);
 										BufferedOutputStream bos = new BufferedOutputStream(out);
 										// 获取文件流的大小
-										int size = in.available();
+										int size = datais.readInt();
 										System.out.println("server file size:" + size);
 										// InputStreamReader将字节流转化为字符流
 										BufferedInputStream br = new BufferedInputStream(in);
@@ -196,10 +189,8 @@ public class MydfsStorageServer {
 										//如果查询的后缀名不在定义范围内,使用客户端传递过来的后缀名
 										if(fileType==null)fileType=extension;
 										storepath = storepath + "."+fileType ;
-										System.out.println("disk path:"+storepath);
 										// 将文件改名
 										file.renameTo(new File(storepath));
-										System.out.println("pathPrefix:"+pathPrefix);
 										storepath=storepath.replaceAll(basepath, pathPrefix);
 										System.out.println("access path:"+storepath);
 										out = socket.getOutputStream();
@@ -255,6 +246,14 @@ public class MydfsStorageServer {
 			if (executorService != null) {
 				executorService.shutdown();
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public static void main(String[] args) {
+		MydfsStorageServer mydfsStorageServer=new MydfsStorageServer(9999, "/data/mydfs/store/", 4, "192.168.1.120");
+		try {
+			mydfsStorageServer.startServer();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

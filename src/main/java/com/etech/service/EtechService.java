@@ -23,10 +23,12 @@ public class EtechService {
 		return etechComDao.getObjecById(clazz, id);
 	}
 	/** 根据属性获取对象 */
-	public Object findObjectByProperty(Class<?> clazz, Object witchProperty, Object propertyValue) {
-		return etechComDao.getObjectByProperty(clazz, witchProperty, propertyValue);
+	public Object findObjectByProperty(Class<?> clazz, Object property, Object value) {
+		return etechComDao.getObjectByProperty(clazz, property, value);
 	}
-
+	public List<?> getListByProperty(Class<?> clazz, Object property,Object value){
+		return etechComDao.getListByProperty(clazz, property, value);
+	}
 	/** 根据id删除对象 */
 	public void deleteObjectById(Class<?> clazz, Integer id) {
 		etechComDao.delete(clazz, id);

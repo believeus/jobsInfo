@@ -143,11 +143,8 @@ public class EtechComDao extends HibernateDaoSupport {
 	}
 
 	/** Begin Author:wuqiwei Data:2014-05-12 AddReason:根据属性获取对象 */
-	public Object getObjectByProperty(Class<?> clazz,
-			final Object witchProperty, final Object propertyValue) {
-		final String clazzName = clazz.getName();
-		final String hql = "from " + clazzName + " as entity where entity."
-				+ witchProperty + " =:propertyValue";
+	public Object getObjectByProperty(Class<?> clazz,final Object property, final Object value) {
+		final String hql = "from " + clazz.getName() + " as entity where entity."+ property + " =:value";
 		log.debug("current hql:" + hql);
 		return this.getHibernateTemplate().execute(
 				new HibernateCallback<Object>() {
@@ -156,14 +153,28 @@ public class EtechComDao extends HibernateDaoSupport {
 					public Object doInHibernate(Session session)
 							throws HibernateException, SQLException {
 						Query query = session.createQuery(hql);
-						query.setParameter("propertyValue", propertyValue);
+						query.setParameter("value", value);
 						return query.uniqueResult();
 					}
 				});
 	}
 
 	/** End Author:wuqiwei Data:2014-05-12 AddReason:根据属性获取对象 */
+	public List<?> getListByProperty(Class<?> clazz,final Object property, final Object value) {
+		final String hql = "from " + clazz.getName() + " as entity where entity."+ property + " =:value";
+		log.debug("current hql:" + hql);
+		return (List<?>) this.getHibernateTemplate().execute(
+				new HibernateCallback<Object>() {
 
+					@Override
+					public Object doInHibernate(Session session)
+							throws HibernateException, SQLException {
+						Query query = session.createQuery(hql);
+						query.setParameter("value", value);
+						return query.list();
+					}
+				});
+	}
 	// 获取多个对象
 	public List<?> getObjecListByHQL(final String hql) {
 		return (List<?>) this.getHibernateTemplate().execute(

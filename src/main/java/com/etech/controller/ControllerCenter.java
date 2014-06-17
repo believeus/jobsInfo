@@ -179,13 +179,27 @@ public class ControllerCenter {
 
 	/** 提交招聘信息 */
 	@RequestMapping(value = "/enterprise-user/center/submit-recruit")
-	public void submitRecruit(Trecruit recruit) {
+	public void submitRecruit(Trecruit recruit,Integer workTypeId,
+			Integer majorTypeId,HttpSession session,HttpServletResponse response) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		TentUser entUser=(TentUser)session.getAttribute("sessionUser");
+		recruit.setEntUser(entUser); 
+		if (workTypeId != null) {
+			TmajorType workType = (TmajorType) etechService.findObjectById(TmajorType.class, 1);
+			recruit.setWorkType(workType);
+		}
+		if (majorTypeId != null) {
+			TmajorType majorType = (TmajorType) etechService.findObjectById(TmajorType.class, 2);
+			recruit.setMajorType(majorType);
+		}
+		
 		try {
 			etechService.merge(recruit);
 			map.put("message", "success");
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			map.put("message", "error");
+			JsonOutToBrower.out(map, response);
 		}
 	}
 

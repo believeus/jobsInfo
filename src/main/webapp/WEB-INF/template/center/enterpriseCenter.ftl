@@ -677,7 +677,17 @@
 					//封装ajax信息提交
 				function submitJobs(){
 					alert("提交招聘信息");
-					$("div.zhaopinxinxi").each(function(index){
+					$("#jobsForm1").ajaxSubmit({
+				            	 type: "post",
+							     url: "/enterprise-user/center/submit-recruit.jhtml",
+							     dataType: "json",
+							     success: function(data){
+							     	alert(data.message);
+							     }
+			        	});	
+			        	
+					
+					/*$("div.zhaopinxinxi").each(function(index){
 						index++;
 						alert(index);
 						alert("company:"+$("#company"+index).val());
@@ -718,6 +728,7 @@
 						
 						ajax(company,worknum,sex,eteLevel,workyear,eduLevel,workspace,age,height,eyesight,salary,workWay,worklimit,viewData,note,majorType,workType,"yes");
 						})
+						*/
 					}
 				// ajax 提交招聘信息验证和保存。
 				function ajax(company,worknum,sex,eteLevel,workyear,eduLevel,workspace,age,height,eyesight,salary,workWay,worklimit,viewData,note,majorType,workType,submitx){
@@ -1073,19 +1084,20 @@
 						</div>
 					</div>
 					<div>
+					<form novalidate="novalidate"  action="/enterprise-user/center/submit-recruit.jhtml"  method="post" id="jobsForm1">
 						<div class="zhaopinxinxi" style="padding:10px 30px;width:650px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 							<table>
 								<tr>
 									<td rowspan="9" style="color:#E2652E;">1</td>
 									<td>招聘单位:</td>
-									<td style="padding-right:80px;"><input type="text" id="company1" ></td>
+									<td style="padding-right:80px;"><input type="text" id="company1" name="company"></td>
 									<td>人数:</td>
-									<td><input type="text" id="worknum1"></td>
+									<td><input type="text" id="worknum1" name="worknum"></td>
 								</tr>
 								<tr>
 									<td>工种:</td>
 									<td>
-									<input type="hidden" value="" id="selectJobshidden1"/>
+									<input type="hidden" value="" id="selectJobshidden1" name="workTypeId"/>
 									<div class="topnav">
 										<a id="selectJobs1" href="javascript:void(0);" class="as">
 											<span >
@@ -1096,7 +1108,7 @@
 									</td>
 									<td>性别:</td>
 									<td>
-										<select id="sex1" style="width: 183px;">
+										<select id="sex1" name="sex" style="width: 183px;">
 											<option value="">请选择..</option>
 											<option value="woman">男</option>
 											<option value="man">女</option>
@@ -1106,7 +1118,7 @@
 								<tr>
 									<td>专业:</td>
 									<td>
-									<input type="hidden" value="" id="selectSpecialtyhidden1"/>
+									<input type="hidden" value="" id="selectSpecialtyhidden1" name="majorTypeId"/>
 									<div class="topnav">
 										<a id="selectSpecialty1" href="javascript:void(0);" class="as">
 											<span >
@@ -1116,14 +1128,14 @@
 									</div>
 								</td>
 									<td>技术等级:</td>
-									<td><input type="text" id="eteLevel1"></td>
+									<td><input type="text" id="eteLevel1" name="eteLevel"></td>
 								</tr>
 								<tr>
 									<td>从事年限:</td>
-									<td><input type="text" id="workyear1"></td>
+									<td><input type="text" id="workyear1" name="workyear"></td>
 									<td>文化程度:</td>
 									<td>
-										<select id="eduLevel1" style="width: 183px;">
+										<select id="eduLevel1" name="eduLevel" style="width: 183px;">
 											<option value="">请选择..</option>
 											<option value="研究生以上">研究生以上</option>
 											<option value="博士研究生">博士研究生</option>
@@ -1143,22 +1155,22 @@
 								</tr>
 								<tr>
 									<td>工作地点:</td>
-									<td><input type="text" id="workspace1"></td>
+									<td><input type="text" id="workspace1" name="workspace"></td>
 									<td>年龄:</td>
-									<td><input type="text" id="age1"></td>
+									<td><input type="text" id="age1" name="age"></td>
 								</tr>
 								<tr>
 									<td>身高:</td>
-									<td><input type="text" id="height1"></td>
+									<td><input type="text" id="height1" name="height"></td>
 									<td>视力:</td>
-									<td><input type="text" id="eyesight1"></td>
+									<td><input type="text" id="eyesight1" name="eyesight"></td>
 								</tr>
 								<tr>
 									<td>薪资待遇:</td>
-									<td><input type="text" id="salary1"></td>
+									<td><input type="text" id="salary1" name="salary"></td>
 									<td>用工形式:</td>
 									<td>
-										<select id="workWay1" style="width: 183px;">
+										<select id="workWay1" name="workWay" style="width: 183px;">
 											<option value="">请选择..</option>
 											<option value="兼职">兼职</option>
 											<option value="全职">全职</option>
@@ -1170,7 +1182,7 @@
 								<tr>
 									<td>招聘期限:</td>
 									<td>
-										<select id="worklimit1" style="width: 183px;">
+										<select id="worklimit1" name="worklimit" style="width: 183px;">
 											<option value="">请选择..</option>
 											<option value="1年">1年</option>
 											<option value="3年">3年</option>
@@ -1179,12 +1191,12 @@
 										</select>
 									</td>
 									<td>面试时间:</td>
-									<td><input type="text" id="viewData1"></td>
+									<td><input type="text" id="viewData1" name="viewData"></td>
 								</tr>
 								<tr>
 									<td style="vertical-align:top;">其他说明:</td>
 									<td colspan="2">
-										<textArea cols="30" style="resize:none;" id="note1"></textArea>
+										<textArea cols="30" style="resize:none;" id="note1" name="note"></textArea>
 									</td>
 									<td style="vertical-align: bottom; text-align: right;">
 										<a class="delete_zhaopin" href="javascript:void(0);">删除</a>
@@ -1192,6 +1204,7 @@
 								</tr>
 							</table>
 						</div>
+						</form>
 					</div>
 					<p style="text-align:center;">
 						<input type="button" id="savaJobs" value="保存">

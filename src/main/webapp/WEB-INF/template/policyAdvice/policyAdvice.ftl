@@ -210,13 +210,9 @@
 									国家法律法规<span><a href="/countryLaw.jhtml">更多</a></span></p>
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
-										<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/countryLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										[#list countryLawDataList as countryLawData]
+										<li><a href="/countryLaw.jhtml">${countryLawData.title}</a><span style="">${countryLawData.editTime?number_to_datetime}</span></li>
+										[/#list]
 									</ul>
 								</div>
 							</div>
@@ -229,13 +225,9 @@
 								</p>
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
-										<li><a href="/cityLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/cityLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/cityLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/cityLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/cityLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/cityLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/cityLaw.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										[#list cityLawDataList as cityLawData]
+										<li><a href="/countryLaw.jhtml">${cityLawData.title}</a><span style="">${cityLawData.editTime?number_to_datetime}</span></li>
+										[/#list]
 									</ul>
 								</div>
 							</div>
@@ -250,13 +242,10 @@
 								</p>
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
-										<li><a href="/countryFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/countryFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/countryFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/countryFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/countryFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/countryFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/countryFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										[#list countryFileDataList as countryFileData]
+										 <li><a href="/countryLaw.jhtml">${countryFileData.title}</a><span style="">
+										  	${countryFileData.editTime?number_to_datetime}</span></li>
+										[/#list]
 									</ul>
 								</div>
 							</div>
@@ -269,13 +258,9 @@
 								</p>
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
-										<li><a href="/cityFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/cityFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/cityFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/cityFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/cityFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/cityFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
-										<li><a href="/cityFile.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a><span style="">04-19</span></li>
+										[#list cityFileDataList as cityFileData]
+										<li><a href="/countryLaw.jhtml">${cityFileData.title}</a><span style="">${cityFileData.editTime?number_to_datetime}</span></li>
+										[/#list]
 									</ul>
 								</div>
 							</div>

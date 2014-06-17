@@ -2,10 +2,13 @@ package com.etech.entity;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -57,6 +60,10 @@ public class TentUser extends TbaseUser implements Serializable {
 	private String relationship;
 	/**企业图片信息*/
 	private Set<TentImgVedio> imgVedios=new HashSet<TentImgVedio>();
+	/**用户信息中心*/
+	private List<Trecruit> recruit;
+	
+	
 	@Length(max=25)
 	@Column(nullable=true)
 	public String getContacts() {
@@ -177,6 +184,14 @@ public class TentUser extends TbaseUser implements Serializable {
 	}
 	public void setImgVedios(Set<TentImgVedio> imgVedios) {
 		this.imgVedios = imgVedios;
+	}
+	
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="entUser")
+	public List<Trecruit> getRecruit() {
+		return recruit;
+	}
+	public void setRecruit(List<Trecruit> recruit) {
+		this.recruit = recruit;
 	}
 	
 }

@@ -25,10 +25,14 @@ public class TmajorType extends TbaseEntity implements Serializable {
 	private int codeId;
 	/**专业或工种属于哪个子类*/
 	private int parent;
-	/** 工种信息*/
+	/** 个人用户工种信息*/
 	private Set<TcomInfo> comInfoWork;
-	/** 专业信息*/
+	/** 个人用户专业信息*/
 	private Set<TcomInfo> comInfoMajor;
+	/** 企业用户工种信息*/
+	private Set<Trecruit> recruitWork;
+	/** 企业用户专业信息*/
+	private Set<Trecruit> recruitMajor;
 	
 	/**专业或工种名*/
 	@NotEmpty
@@ -59,7 +63,6 @@ public class TmajorType extends TbaseEntity implements Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY,mappedBy="workType")
-	
 	public Set<TcomInfo> getComInfoWork() {
 		return comInfoWork;
 	}
@@ -73,7 +76,26 @@ public class TmajorType extends TbaseEntity implements Serializable {
 		return comInfoMajor;
 	}
 
+	@OneToMany(fetch = FetchType.LAZY,mappedBy="workType")
 	public void setComInfoMajor(Set<TcomInfo> comInfoMajor) {
 		this.comInfoMajor = comInfoMajor;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY,mappedBy="majorType")
+	public Set<Trecruit> getRecruitMajor() {
+		return recruitMajor;
+	}
+
+	public void setRecruitMajor(Set<Trecruit> recruitMajor) {
+		this.recruitMajor = recruitMajor;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY,mappedBy="workType")
+	public Set<Trecruit> getRecruitWork() {
+		return recruitWork;
+	}
+
+	public void setRecruitWork(Set<Trecruit> recruitWork) {
+		this.recruitWork = recruitWork;
 	}
 }

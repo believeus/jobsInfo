@@ -2,8 +2,10 @@ package com.etech.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -66,15 +68,14 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	private String note;
 	
 	/**专业类型*/
-	@ManyToOne
-	@JoinColumn(name="fk_majorType_Id",referencedColumnName="id")
 	private TmajorType majorType;
 	
 	/**工种类型*/
-	@ManyToOne
-	@JoinColumn(name="fk_workType_Id",referencedColumnName="id")
 	private TmajorType workType;
-
+	
+	/** 该信息属于那个用户 */
+	private TentUser entUser;
+	
 	public String getCompany() {
 		return company;
 	}
@@ -195,21 +196,33 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	public void setNote(String note) {
 		this.note = note;
 	}
-
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="fk_workTypeId",referencedColumnName="id")
+	public TmajorType getWorkType() {
+		return workType;
+	}
+	public void setWorkType(TmajorType workType) {
+		this.workType = workType;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="fk_majorTypeId",referencedColumnName="id")
 	public TmajorType getMajorType() {
 		return majorType;
 	}
-
 	public void setMajorType(TmajorType majorType) {
 		this.majorType = majorType;
 	}
 
-	public TmajorType getWorkType() {
-		return workType;
+	@ManyToOne(cascade=CascadeType.ALL,optional = false)
+	@JoinColumn(name="fk_entuUserId",referencedColumnName="id")
+	public TentUser getEntUser() {
+		return entUser;
 	}
 
-	public void setWorkType(TmajorType workType) {
-		this.workType = workType;
+	public void setEntUser(TentUser entUser) {
+		this.entUser = entUser;
 	}
 	
 	

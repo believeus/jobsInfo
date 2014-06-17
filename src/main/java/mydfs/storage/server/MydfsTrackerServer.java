@@ -2,12 +2,13 @@ package mydfs.storage.server;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
 
@@ -79,11 +80,13 @@ public class MydfsTrackerServer {
 			socket = new Socket(host, port);
 			// 得到socket发送数据的输出流
 			OutputStream out = socket.getOutputStream();
-			DataOutputStream ps = new DataOutputStream(out);
+			DataOutputStream socketOut = new DataOutputStream(out);
 			//通知服务器,将要上传数据
-			ps.writeUTF("upload");
+			socketOut.writeUTF("upload");
 			//将文件的后缀发送个服务器
-			ps.writeUTF(fileSuffix);
+			socketOut.writeUTF(fileSuffix);
+			int size=inputStream.available();
+			socketOut.writeInt(size);
 			final BufferedOutputStream bos = new BufferedOutputStream(out);
 			try {
 				byte[] buf = new byte[1024];
@@ -102,7 +105,7 @@ public class MydfsTrackerServer {
 			System.out.println("file store path:" + storepath);
 			socket.close();
 			bos.close();
-			ps.close();
+			socketOut.close();
 			socketIn.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -164,5 +167,10 @@ public class MydfsTrackerServer {
 			}
 		}
 		return success;
+	}
+	public static void main(String[] args) throws FileNotFoundException {
+		MydfsTrackerServer mydfsTrackerServer=new MydfsTrackerServer("192.168.1.120", 9999);
+		InputStream inputStream=new FileInputStream(new File("/home/wuqiwei/dengni37.jpg"));
+		mydfsTrackerServer.upload(inputStream, "jpg");
 	}
 }
