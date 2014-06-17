@@ -27,10 +27,29 @@ public class ControllerInfoCenter {
 	public String infoCenter(HttpSession session) {
 		String hql="From TdataCenter dataCenter where dataCenter.type='0'";
 		List<TdataCenter> news = (List<TdataCenter>)etechService.findObjectByList(hql);
-		for (TdataCenter tdataCenter : news) {
-			System.out.println(tdataCenter.getId());
-		}
+		
+		hql="From TdataCenter dataCenter where dataCenter.type='1'";
+		List<TdataCenter> works = (List<TdataCenter>)etechService.findObjectByList(hql);
+		
+		hql="From TdataCenter dataCenter where dataCenter.type='2'";
+		List<TdataCenter> notices = (List<TdataCenter>)etechService.findObjectByList(hql);
+		
+		hql="From TdataCenter dataCenter where dataCenter.type='3'";
+		List<TdataCenter> imgs = (List<TdataCenter>)etechService.findObjectByList(hql);
+		
+		hql="From TdataCenter dataCenter where dataCenter.type='4'";
+		List<TdataCenter> vedios = (List<TdataCenter>)etechService.findObjectByList(hql);
+		
+		hql="From TdataCenter dataCenter where dataCenter.type='5'";
+		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findObjectByList(hql);
+		
 		session.setAttribute("news", news);// 新闻动态
-		return "infoCenter/infoCenter";
+		session.setAttribute("works", works);// 工作动态
+		session.setAttribute("notices",notices ); // 公告公示
+		session.setAttribute("imgs", imgs); // 图片新闻
+		session.setAttribute("vedios", vedios);  // 视频新闻
+		session.setAttribute("subjectReport", subjectReport); // 专题报道
+		return "infoCenter/infoCenter"; 
 	}
+	
 }
