@@ -13,27 +13,27 @@ import com.etech.entity.TdataCenter;
 import com.etech.service.EtechService;
 
 /**
- * 图片展示详情
+ * 工作动态详情
  * */
 @Controller
-public class ControllerImgShow {
+public class ControllerWork {
 
 	@Resource
 	private EtechService etechService;
 	
-	@RequestMapping(value = "/imgShow", method = RequestMethod.GET)
-	public String imgShow(HttpSession session,Integer id) {
+	@RequestMapping(value = "/workInfo", method = RequestMethod.GET)
+	public String workInfoView(HttpSession session,Integer id) {
 		TdataCenter dataCenter = (TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		session.setAttribute("data", dataCenter);
-		return "infoCenter/imageInfo";
+		return "infoCenter/workInfo";
 	}
 	
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/imagesList", method = RequestMethod.GET)
-	public String imgsList(HttpSession session) {
-		String hql="From TdataCenter dataCenter where dataCenter.type='3'";
-		List<TdataCenter> imgs = (List<TdataCenter>)etechService.findObjectByList(hql);
-		session.setAttribute("imgs", imgs);
-		return "infoCenter/imagesList";
+	@RequestMapping(value = "/workList", method = RequestMethod.GET)
+	public String worksList(HttpSession session) {
+		String hql="From TdataCenter dataCenter where dataCenter.type='1'";
+		List<TdataCenter> works = (List<TdataCenter>)etechService.findObjectByList(hql);
+		session.setAttribute("works", works);
+		return "infoCenter/workList";
 	}
 }

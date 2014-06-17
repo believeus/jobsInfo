@@ -17,7 +17,7 @@ import com.etech.util.EtechGobal;
 /**
  * 工作动态
  * */
-@Controller
+@Controller("adminControllerWroks")
 @RequestMapping("/admin/work")
 public class ControllerWork extends ControllerCRUD {
 	@Resource

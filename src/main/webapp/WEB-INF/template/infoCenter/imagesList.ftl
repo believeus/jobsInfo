@@ -125,73 +125,21 @@
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<table>
 					<tr>
+						[#list imgs as img]
 						<td>
 							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
-								<p><a href="/imgShow.jhtml"><img src="/resource/public/images/tupxinwen.png" width="170" height="110"></a></p>
-								<p style="padding:0 5px;text-align:left;color:#3A71AA;font-size:14px;margin-bottom:0;"><a href="/imgShow.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
-								<p style="margin-top:0;">[2014-04-19]</p>
+								<p><a href="/imgShow.jhtml?id=${img.id}"><img src="${img.imgpath}" width="170" height="110"></a></p>
+								<p style="padding:0 5px;text-align:left;color:#3A71AA;font-size:14px;margin-bottom:0;"><a href="/imgShow.jhtml?id=${img.id}">
+								[#if img.title?length > 27]
+									${img.title?string?substring(0,27)}...
+								[#else]
+									${img.title}
+								[/#if]
+								</a></p>
+								<p style="margin-top:0;">[${img.createTime?number_to_datetime}]</p>
 							</div>
 						</td>
-						<td>
-							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
-								<p><a href="/imgShow.jhtml"><img src="/resource/public/images/tupxinwen.png" width="170" height="110"></a></p>
-								<p style="padding:0 5px;text-align:left;color:#3A71AA;font-size:14px;margin-bottom:0;"><a href="/imgShow.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
-								<p style="margin-top:0;">[2014-04-19]</p>
-							</div>
-						</td>
-						<td>
-							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
-								<p><a href="/imgShow.jhtml"><img src="/resource/public/images/tupxinwen.png" width="170" height="110"></a></p>
-								<p style="padding:0 5px;text-align:left;color:#3A71AA;font-size:14px;margin-bottom:0;"><a href="/imgShow.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
-								<p style="margin-top:0;">[2014-04-19]</p>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
-								<p><a href="/imgShow.jhtml"><img src="/resource/public/images/tupxinwen.png" width="170" height="110"></a></p>
-								<p style="padding:0 5px;text-align:left;color:#3A71AA;font-size:14px;margin-bottom:0;"><a href="/imgShow.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
-								<p style="margin-top:0;">[2014-04-19]</p>
-							</div>
-						</td>
-						<td>
-							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
-								<p><a href="/imgShow.jhtml"><img src="/resource/public/images/tupxinwen.png" width="170" height="110"></a></p>
-								<p style="padding:0 5px;text-align:left;color:#3A71AA;font-size:14px;margin-bottom:0;"><a href="/imgShow.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
-								<p style="margin-top:0;">[2014-04-19]</p>
-							</div>
-						</td>
-						<td>
-							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
-								<p><a href="/imgShow.jhtml"><img src="/resource/public/images/tupxinwen.png" width="170" height="110"></a></p>
-								<p style="padding:0 5px;text-align:left;color:#3A71AA;font-size:14px;margin-bottom:0;"><a href="/imgShow.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
-								<p style="margin-top:0;">[2014-04-19]</p>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
-								<p><a href="/imgShow.jhtml"><img src="/resource/public/images/tupxinwen.png" width="170" height="110"></a></p>
-								<p style="padding:0 5px;text-align:left;color:#3A71AA;font-size:14px;margin-bottom:0;"><a href="/imgShow.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
-								<p style="margin-top:0;">[2014-04-19]</p>
-							</div>
-						</td>
-						<td>
-							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
-								<p><a href="/imgShow.jhtml"><img src="/resource/public/images/tupxinwen.png" width="170" height="110"></a></p>
-								<p style="padding:0 5px;text-align:left;color:#3A71AA;font-size:14px;margin-bottom:0;"><a href="/imgShow.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
-								<p style="margin-top:0;">[2014-04-19]</p>
-							</div>
-						</td>
-						<td>
-							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
-								<p><a href="/imgShow.jhtml"><img src="/resource/public/images/tupxinwen.png" width="170" height="110"></a></p>
-								<p style="padding:0 5px;text-align:left;color:#3A71AA;font-size:14px;margin-bottom:0;"><a href="/imgShow.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
-								<p style="margin-top:0;">[2014-04-19]</p>
-							</div>
-						</td>
+						[/#list]
 					</tr>
 				</table>
 				<p style="padding-left:25px;">

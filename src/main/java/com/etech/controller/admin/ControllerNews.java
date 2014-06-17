@@ -16,7 +16,7 @@ import com.etech.util.EtechGobal;
 /**
  * 新闻动态
  * */
-@Controller
+@Controller("admimControllerNews")
 @RequestMapping("/admin/news")
 public class ControllerNews extends ControllerCRUD{
 	@Resource

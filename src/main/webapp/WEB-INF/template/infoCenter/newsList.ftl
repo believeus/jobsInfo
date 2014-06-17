@@ -122,54 +122,11 @@
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<ul>
+					[#list news as new]
 					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/newsInfo.jhtml?id=${new.id}">${new.title}</a><span>${new.createTime?number_to_datetime}</span>
 					</li>
-					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/newsInfo.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
+					[/#list]
 				</ul>
 				<p style="padding-left:25px;">
 					<a href="">首页</a>
