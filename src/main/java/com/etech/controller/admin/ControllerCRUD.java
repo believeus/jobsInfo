@@ -57,10 +57,13 @@ public class ControllerCRUD {
 		String title=request.getParameter("title");
 		String author=request.getParameter("author");
 		String content=request.getParameter("content");
+		String top=request.getParameter("top");
 		center.setType(type);
 		center.setTitle(title);
 		center.setAuthor(author);
 		center.setContent(content);
+		center.setEditTime(System.currentTimeMillis());
+		center.setTop(Integer.valueOf(top));
 		if(!StringUtils.isEmpty(storepath)){
 			center.setImgpath(storepath);
 		}

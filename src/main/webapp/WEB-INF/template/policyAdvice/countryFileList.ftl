@@ -117,54 +117,11 @@
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<ul>
+				[#list dataCenterList as dataCenter]
 					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/cityLaw.jhtml">${dataCenter.title}</a><span>${dataCenter.editTime?number_to_datetime}</span>
 					</li>
-					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/countryFile.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
+				[/#list]	
 				</ul>
 				<p style="padding-left:25px;">
 					<a href="">首页</a>
