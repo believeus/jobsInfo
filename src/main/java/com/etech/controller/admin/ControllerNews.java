@@ -66,7 +66,6 @@ public class ControllerNews extends ControllerCRUD{
 		int id=Integer.parseInt(request.getParameter("id"));
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
-		request.setAttribute("type", EtechGobal.newsDinamic);
 		request.setAttribute("type",EtechGobal.newsDinamic);
 		return "admin/news/edit";
 	}
