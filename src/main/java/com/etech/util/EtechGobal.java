@@ -35,10 +35,13 @@ public class EtechGobal {
 	public static final int leader=8;
 	
 	
-	// 就业服务
+	// 招聘会
 	public static final int zhaopinhuiService=9;
+	// 面试宝典
 	public static final int mianshibaodianService=25;
+	// 求职指导
 	public static final int qiuzhizhidaoService=26;
+	// 简历指南
 	public static final int jianlizhinanService=27;
 	
 	

@@ -180,28 +180,12 @@ $(function(){
 					</li>
        			 </ul>
     		[/@shiro.hasPermission]
-			 <h1>网上展示厅</h1>
-       			 <ul style="display: none;" class="MM">
-					<li>
-						<a target="main" href="/admin/vedioNews/list.jhtml">视频新闻</a>
-					</li>
-					<li>
-						<a target="main" href="/admin/imagesNews/list.jhtml">图片新闻</a>
-					</li>
-        		</ul>
-  
 			<h1>幻灯片</h1>
         		<ul style="display: none;" class="MM">
 					<li>
 						<a target="main" href="/admin/slide/list.jhtml">幻灯片</a>
 					</li>
    			 	</ul>
-			<h1>基本信息</h1>
-    			<ul style="display: none;" class="MM">
-					<li>
-						<a target="main" href="/admin/baseMessage/list.jhtml">基本信息</a>
-					</li>
-				</ul>
 			<h1>服务功能</h1>
         		<ul style="display: none;" class="MM">
 					<li>

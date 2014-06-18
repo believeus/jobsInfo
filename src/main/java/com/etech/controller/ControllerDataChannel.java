@@ -38,6 +38,16 @@ public class ControllerDataChannel {
 		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("subjectReport", subjectReport);
 		
+		//供求分析报告
+		hql="From TdataCenter dataCenter where dataCenter.type='14'";
+		List<TdataCenter> analysisreport = (List<TdataCenter>)etechService.findListByHQL(hql);
+		session.setAttribute("analysisreport", analysisreport);
+		
+		//工资指导价位
+		hql="From TdataCenter dataCenter where dataCenter.type='15'";
+		List<TdataCenter> wagePriceGuide = (List<TdataCenter>)etechService.findListByHQL(hql);
+		session.setAttribute("wagePriceGuide", wagePriceGuide);
+		
 		log.debug("current controller is dataChanelView !");
 		return "dataChannel/dataChannel";
 	}
