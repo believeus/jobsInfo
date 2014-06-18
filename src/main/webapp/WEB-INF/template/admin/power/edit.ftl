@@ -262,12 +262,7 @@ $().ready(function() {
 						</tr>
 						<tr>
 							<td>
-								<p>高校专题</p>
-								<p>
-									<input type="checkbox" name="authority" value="collegeSubject:create">增加
-									<input type="checkbox" name="authority" value="collegeSubject:modify">修改
-									<input type="checkbox" name="authority" value="collegeSubject:delete">删除
-								</p>
+								&nbsp;
 							</td>
 						</tr>
 					</table>
@@ -382,6 +377,167 @@ $().ready(function() {
 					</table>
 				</td>
 			</tr>
+			<tr>
+				<td>
+					<p>幻灯片<input type="checkbox" name="authority" value="slide:view"/>查看</p>
+				</td>
+				<td>
+					<p>服务功能<input type="checkbox" name="authority" value="service:view"/>查看</p>
+				</td>
+				<td>
+					<p>内容审核<input type="checkbox" name="authority" value="content:view"/>查看</p>
+				</td>
+				<td>
+					<p>资源审核<input type="checkbox" name="authority" value="resource:view"/>查看</p>
+				</td>
+			</tr>
+			
+			<tr class="liebiao">
+				<td>
+					<table>
+						<tr>
+							<td style="vertical-align:top;">
+								<p>幻灯片</p>
+								<p>
+									<input type="checkbox" name="authority" value="slide:create">增加
+									<input type="checkbox" name="authority" value="slide:modify">修改
+									<input type="checkbox" name="authority" value="slide:delete">删除
+								</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td style="vertical-align:top;">
+					<table>
+						<tr>
+							<td>
+								<p>业务办理</p>
+								<p>
+									<input type="checkbox" name="authority" value="busHandle:create">增加
+									<input type="checkbox" name="authority" value="busHandle:modify">修改
+									<input type="checkbox" name="authority" value="busHandle:delete">删除
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>局长信箱</p>
+								<p>
+									<input type="checkbox" name="authority" value="mailBox:create">增加
+									<input type="checkbox" name="authority" value="mailBox:modify">修改
+									<input type="checkbox" name="authority" value="mailBox:delete">删除
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>网站论坛</p>
+								<p>
+									<input type="checkbox" name="authority" value="forum:create">增加
+									<input type="checkbox" name="authority" value="forum:modify">修改
+									<input type="checkbox" name="authority" value="forum:delete">删除
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>友情链接</p>
+								<p>
+									<input type="checkbox" name="authority" value="links:create">增加
+									<input type="checkbox" name="authority" value="links:modify">修改
+									<input type="checkbox" name="authority" value="links:delete">删除
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table>
+						<tr>
+							<td>
+								<p>企业审核</p>
+								<p>
+									<input type="checkbox" name="authority" value="enterpriseAudit:create">增加
+									<input type="checkbox" name="authority" value="enterpriseAudit:modify">修改
+									<input type="checkbox" name="authority" value="enterpriseAudit:delete">删除
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>招聘岗位审核</p>
+								<p>
+									<input type="checkbox" name="authority" value="stationAudit:create">增加
+									<input type="checkbox" name="authority" value="stationAudit:modify">修改
+									<input type="checkbox" name="authority" value="stationAudit:delete">删除
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+					</table>
+				</td>
+				<td style="vertical-align:top;">
+					<table>
+						<tr>
+							<td>
+								<p>企业</p>
+								<p>
+									<input type="checkbox" name="authority" value="enterpriseList:create">增加
+									<input type="checkbox" name="authority" value="enterpriseList:modify">修改
+									<input type="checkbox" name="authority" value="enterpriseList:delete">删除
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>求职者</p>
+								<p>
+									<input type="checkbox" name="authority" value="jobSeekersList:create">增加
+									<input type="checkbox" name="authority" value="jobSeekersList:modify">修改
+									<input type="checkbox" name="authority" value="jobSeekersList:delete">删除
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>招聘岗位</p>
+								<p>
+									<input type="checkbox" name="authority" value="stationList:create">增加
+									<input type="checkbox" name="authority" value="stationList:modify">修改
+									<input type="checkbox" name="authority" value="stationList:delete">删除
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			
 			<tr>
 				<td colspan="5">系统管理设置</td>
 			</tr>
