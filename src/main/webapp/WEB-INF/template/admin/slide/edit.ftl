@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>添加新闻 - Powered By e3dmall</title>
+<title>编辑幻灯片 - Powered By e3dmall</title>
 <meta name="author" content="e3dmall Team" />
 <meta name="copyright" content="e3dmall" />
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
@@ -46,7 +46,8 @@ $().ready(function() {
 			title: "required",
 			adPositionId: "required",
 			path: "required",
-			order: "digits"
+			order: "digits",
+			alink: "required"
 		}
 	});
 	
@@ -57,7 +58,7 @@ $().ready(function() {
 	<div class="path">
 		<a href="/admin/common/main.jhtml">首页</a> &raquo; 添加内容
 	</div>
-	<form id="inputForm" action="save.jhtml" method="post" enctype="multipart/form-data">
+	<form id="inputForm" action="update.jhtml" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="${dataCenter.id}">
 		<input type="hidden" name="type" value="${type}"/>
 		<table class="input">
@@ -145,7 +146,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>外链接:
 				</th>
 				<td>
-					<input type="text" name="alink" class="text" maxlength="200" value="www.ppsells.com"/>
+					<input type="text" name="alink" class="text" maxlength="200" value="${dataCenter.alink}"/>
 				</td>
 			</tr>
 			<tr>

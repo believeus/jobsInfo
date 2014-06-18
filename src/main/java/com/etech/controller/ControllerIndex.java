@@ -61,6 +61,11 @@ public class ControllerIndex {
 		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("subjectReport", subjectReport); 
 		
+		// 幻灯片
+		hql="From TdataCenter dataCenter where dataCenter.type='19'";
+		List<TdataCenter> slide = (List<TdataCenter>)etechService.findListByHQL(hql);
+		session.setAttribute("slide", slide); 
+		
 		/*End Author:wuqiwei Data:2014-06-11 AddReason:shiro登录成功之后会跳转到主页面,此处控制后台登录后进入后台主页面*/
 		log.debug("current controller is defaultIndex !");
 		return "index";

@@ -61,6 +61,7 @@ public class ControllerCRUD {
 		String author=request.getParameter("author");
 		String content=request.getParameter("content");
 		String top=request.getParameter("top");
+		String alink=request.getParameter("alink");
 		if (top == null) {
 			top = "1";
 		}
@@ -70,6 +71,7 @@ public class ControllerCRUD {
 		center.setContent(content);
 		center.setEditTime(System.currentTimeMillis());
 		center.setTop(Integer.valueOf(top));
+		center.setAlink(alink);
 		if(!StringUtils.isEmpty(storepath)){
 			center.setImgpath(storepath);
 		}

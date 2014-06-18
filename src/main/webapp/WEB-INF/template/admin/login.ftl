@@ -1,3 +1,68 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>潜江就业服务网后台管理系统</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link href="Untitled-2.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+body p {
+	text-align: left;
+	font-weight: bold;
+}
+body {
+	background-image: url(/resource/public/images/1111.jpg);
+	background-repeat: repeat-x;
+	text-align: left;
+}
+-->
+</style>
+</head>
+
+<body>
+<!--Begin Name:wuqiwei Date:2013-12-17 AddReason:shiro登录之后就不能再次登录除非logout,所以如果验证之后，直接登到管理界面  -->
+	<!--End  Name:wuqiwei Date:2013-12-17 AddReason:shiro登录之后就不能再次登录除非logout,所以如果验证之后，直接登到管理界面  -->
+	<shiro:guest>
+<table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="419" height="500" align="right"><img src="/resource/public/images/2222.png" width="352" height="54" /></td>
+    <td width="50" align="center" valign="middle"><img src="/resource/public/images/3333.png" width="13" height="116" /></td>
+    <td width="429" align="left" valign="middle"><form id="form1" name="form1" method="post" action="/">
+      <p>
+        <label>用户名：
+          <input type="text" name="loginName" id="loginName" />
+        </label>
+      </p>
+      <p>
+        <label>密&nbsp;&nbsp; 码：
+          <input type="password" name="password" id="textfield2" />
+        </label>
+      </p>
+      <c:out value="${LoginError }" escapeXml="false"/>
+      <p>
+        <label for="button"></label>
+        &nbsp; 
+        &nbsp; 
+        &nbsp; 
+        &nbsp;&nbsp;
+        <input type="submit" name="button" id="button" value="确定" />
+     &nbsp; &nbsp;
+     <label for="button2"></label>
+      <input type="reset" name="button2" id="button2" value="重置" />
+      </p>
+    </form></td>
+  </tr>
+</table>
+</shiro:guest>
+</body>
+</html>
+
+<!--
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,8 +76,6 @@ body{ background:url("/resource/public/images/adminbg.gif") top center no-repeat
 </head>
 <body>
 <div class="loginbox">
-	<!--Begin Name:wuqiwei Date:2013-12-17 AddReason:shiro登录之后就不能再次登录除非logout,所以如果验证之后，直接登到管理界面  -->
-	<!--End  Name:wuqiwei Date:2013-12-17 AddReason:shiro登录之后就不能再次登录除非logout,所以如果验证之后，直接登到管理界面  -->
 	<shiro:guest>
 	 <div>
 		<div style="position: fixed; top: 100px; left:180px; "><label><font style="color: Green;font-size: 30px; font-family: cursive;">Admin</font></label></div>
@@ -28,3 +91,14 @@ body{ background:url("/resource/public/images/adminbg.gif") top center no-repeat
 </div>
 </body>
 </html>
+
+
+
+-->
+
+
+
+
+
+
+

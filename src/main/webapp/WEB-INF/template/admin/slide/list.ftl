@@ -78,10 +78,7 @@ $().ready(function() {
 					<a href="javascript:;" class="sort" name="title">排序编号</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="adPosition">内容标题</a>
-				</th>
-				<th>
-					<a href="javascript:;" class="sort" name="type">置顶</a>
+					<a href="javascript:;" class="sort" name="adPosition">幻灯片标题</a>
 				</th>
 				<!--<th>
 					<a href="javascript:;" class="sort" name="endDate">排序</a>
@@ -101,9 +98,6 @@ $().ready(function() {
 				</td>
 				<td>
 					${center.title}
-				</td>
-				<td>
-					<input type="checkbox" id="" />
 				</td>
 				<!--<td>
 					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>

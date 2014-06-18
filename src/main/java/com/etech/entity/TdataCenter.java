@@ -24,6 +24,7 @@ public class TdataCenter extends TbaseEntity implements Cloneable{
 	private long createTime;
 	private long editTime;
 	private int top;
+	private String alink;
 	@Field(store=Store.YES,index = Index.TOKENIZED, analyzer = @Analyzer(impl =IKAnalyzer.class ))
 	public String getTitle() {
 		return title;
@@ -74,6 +75,12 @@ public class TdataCenter extends TbaseEntity implements Cloneable{
 	}
 	public void setTop(int top) {
 		this.top = top;
+	}
+	public String getAlink() {
+		return alink;
+	}
+	public void setAlink(String alink) {
+		this.alink = alink;
 	}
 	@Override
 	public Object clone() throws CloneNotSupportedException {

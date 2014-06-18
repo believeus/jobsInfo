@@ -46,7 +46,8 @@ $().ready(function() {
 			title: "required",
 			adPositionId: "required",
 			path: "required",
-			order: "digits"
+			order: "digits",
+			alink:"required"
 		}
 	});
 	

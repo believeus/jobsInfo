@@ -370,8 +370,13 @@
 				</ul>
 			</div>
 			<div class="biaoti">
-				<a href="/specialList.jhtml"><img src="/resource/public/images/u6_normal_15.gif" style="width: 550px;"></a>
-				<a href="/jobIntroduce.jhtml"><img src="/resource/public/images/u6_normal_17.gif"></a>
+				[#list slide as slide]
+					[#if slide_index<2]
+					<a href="${slide.alink}" title="${slide.title}">
+						<img src="${slide.imgpath}" [#if slide_index=0] style="width: 550px;height:85px;"[#elseif slide_index=1]style="width: 165px;height:85px;"[/#if]>
+					</a>
+					[/#if]
+				[/#list]
 			</div>
 			<div class="ad">
 				<a href="/mailBox.jhtml" title="局长信箱"><div class=""></div></a>
@@ -560,13 +565,13 @@
 				
 				-->
 				<style type="text/css">
-					.box{ width:980px;position:relative; overflow:hidden; _height:100%;right:988px;}
-					.picbox{ width:980px; height:115px; overflow:hidden; position:relative;}
+					.box{ width:980px;position:relative; overflow:hidden; _height:100%;right:988px;top:50px;}
+					.picbox{ width:980px; height:70px; overflow:hidden; position:relative;}
 					.picbox li{list-style:none;}
-					.piclist{ height:115px;position:absolute; left:0px; top:0px;padding:0;margin:43px 0 0;}
+					.piclist{ height:70px;position:absolute; left:0px; top:0px;padding:0;margin:0;}
 					.piclist li{ background:#eee; margin-right:20px; padding:5px; float:left;}
 					.swaplist{ position:absolute; left:-3000px; top:0px}
-					.og_prev,.og_next{ width:30px; height:50px; background:url(http://www.codefans.net/jscss/demoimg/201401/icon.png) no-repeat; background:url(http://www.codefans.net/jscss/demoimg/201401/icon_ie6.png) no-repeat\9; position:absolute; top:55px; z-index:99; cursor:pointer;filter:alpha(opacity=70); opacity:0.7;}
+					.og_prev,.og_next{ width:30px; height:50px; background:url(http://www.codefans.net/jscss/demoimg/201401/icon.png) no-repeat; background:url(http://www.codefans.net/jscss/demoimg/201401/icon_ie6.png) no-repeat\9; position:absolute; top:10px; z-index:99; cursor:pointer;filter:alpha(opacity=70); opacity:0.7;}
 					.og_prev{ background-position:0 -60px; left:4px;}
 					.og_next{ background-position:0 0; right:4px;}
 				</style>
