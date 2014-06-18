@@ -32,6 +32,7 @@ public class ControllerIntroduction extends ControllerCRUD{
 	public String newsListView(HttpServletRequest request) {
 		List<?> dataCenters = super.listDataInfo(request,EtechGobal.introduction);
 		request.setAttribute("dataCenters",dataCenters);
+		request.setAttribute("size",dataCenters.size());
 		return "admin/leader/list";
 	}
 	

@@ -6,7 +6,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,24 +15,23 @@ import com.etech.service.EtechService;
 import com.etech.util.EtechGobal;
 
 /**
- * 主要职能
+ * 求职指导
  * */
-@Controller("controllerAdminMainFunction")
-@RequestMapping("/admin/mainFunction")
-public class ControllerMainFunction extends ControllerCRUD{
+@Controller
+@RequestMapping("/admin/qiuzhizhidaoService")
+public class ControllerQiuzhizhidaoService extends ControllerCRUD{
 
 	@Resource
 	private EtechService etechService;
 	/**
-	 * 主要职能列表
+	 * 求职指导列表
 	 * @return
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
-		List<?> dataCenters = super.listDataInfo(request,EtechGobal.mainFunction);
+		List<?> dataCenters = super.listDataInfo(request,EtechGobal.qiuzhizhidaoService);
 		request.setAttribute("dataCenters",dataCenters);
-		request.setAttribute("size",dataCenters.size());
-		return "admin/leader/list";
+		return "admin/service/list";
 	}
 	
 	/**
@@ -41,53 +39,50 @@ public class ControllerMainFunction extends ControllerCRUD{
 	 * @param request response
 	 * @return
 	 */
-	@RequiresPermissions("mainDuty:delete")
 	@RequestMapping("/delete")
 	public String removeNews(HttpServletRequest request,HttpServletResponse response){
 		super.deleteDataInfo(request,response);
-		return "redirect:/admin/leader/list.jhtml";
+		return "redirect:/admin/qiuzhizhidaoService/list.jhtml";
 	}
 	
 	/**
-	 * 添加主要职能
+	 * 添加求职指导
 	 * @return
 	 */
-	@RequiresPermissions("mainDuty:create")
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
-		request.setAttribute("type",EtechGobal.mainFunction);
-		return "admin/leader/add";
+		request.setAttribute("type",EtechGobal.qiuzhizhidaoService);
+		return "admin/service/add";
 	}
 	/**
-	 * 编辑主要职能
+	 * 编辑求职指导
 	 * @return
 	 */
-	@RequiresPermissions("mainDuty:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
-		request.setAttribute("type",EtechGobal.mainFunction);
-		return "admin/leader/edit";
+		request.setAttribute("type",EtechGobal.qiuzhizhidaoService);
+		return "admin/service/edit";
 	}
 	
 	/**
-	 * 保存主要职能
+	 * 保存求职指导
 	 * @return
 	 */
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
-		return "redirect:/admin/leader/list.jhtml";
+		return "redirect:/admin/qiuzhizhidaoService/list.jhtml";
 	}
 	/**
-	 * 修改主要职能
+	 * 修改求职指导
 	 * @return
 	 */
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);
-		return "redirect:/admin/leader/list.jhtml";
+		return "redirect:/admin/qiuzhizhidaoService/list.jhtml";
 	}
 }

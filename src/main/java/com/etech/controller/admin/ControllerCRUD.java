@@ -61,6 +61,9 @@ public class ControllerCRUD {
 		String author=request.getParameter("author");
 		String content=request.getParameter("content");
 		String top=request.getParameter("top");
+		if (top == null) {
+			top = "1";
+		}
 		center.setType(type);
 		center.setTitle(title);
 		center.setAuthor(author);

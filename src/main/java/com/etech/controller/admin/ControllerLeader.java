@@ -2,6 +2,7 @@ package com.etech.controller.admin;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,6 +22,7 @@ import com.etech.util.EtechGobal;
 @RequestMapping("/admin/leader")
 public class ControllerLeader extends ControllerCRUD{
 
+	@Resource
 	private EtechService etechService;
 	/**
 	 * 局领导列表

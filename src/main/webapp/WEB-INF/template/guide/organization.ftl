@@ -94,6 +94,9 @@
 		.current_li a{
 			color:#FFFFFF;
 		}
+		.zhuanti_list a {
+		    margin-left: 0;
+		}
     </style>
 </head>
 <body>
@@ -112,9 +115,11 @@
 				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml" style="margin-left:0;">更多>></a></div>
+				<div class="zhuanti_list">
 				[#list subjectReport as sReport]
-					<a href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:222px;height:66px;margin-top:7px;"></a>
+					<a href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:186px;height:58px;margin-top:7px;"></a>
 				[/#list]
+				</div>
 			</div>
 		</div>
 		<div class="j_main_right">

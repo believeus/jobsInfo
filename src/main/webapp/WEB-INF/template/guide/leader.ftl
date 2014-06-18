@@ -105,6 +105,9 @@
 		.current_li a{
 			color:#FFFFFF;
 		}
+		.zhuanti_list a {
+		    margin-left: 0;
+		}
     </style>
 </head>
 <body>
@@ -123,9 +126,11 @@
 				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml" style="margin-left:0;">更多>></a></div>
+				<div class="zhuanti_list">
 				[#list subjectReport as sReport]
-					<a href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:222px;height:66px;margin-top:7px;"></a>
+					<a href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:186px;height:58px;margin-top:7px;"></a>
 				[/#list]
+				</div>
 			</div>
 		</div>
 		<div class="j_main_right">
@@ -141,12 +146,12 @@
 					[#list datas as data]
 					<div class="j_main_right_2_1_1" style="margin-bottom:10px;">
 						<div class="" style="height: 130px; float: left; margin-left: 25px; width: 100px; margin-top: 10px;">
-							<img src="/resource/public/images/meinv.png" width="95" height="130">
+							<img src="${data.imgpath}" width="95" height="130">
 						</div>
 						<div class="" style="height: 130px; float: left; margin-left: 10px; width: 585px; margin-top: 10px;">
 							<p>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：${data.author}</p>
-							<p>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务：局长，党组书记</p>
-							<p>分管范围：主持局全局工作，分管局综合处、省职业介绍中心、省就业训练中心。</p>
+							<p>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务：${data.title}</p>
+							<p>分管范围：${data.content}</p>
 						</div>
 					</div>
 					[/#list]

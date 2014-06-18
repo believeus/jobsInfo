@@ -130,7 +130,16 @@ $(function(){
 			 <h1>就业服务</h1>
        			 <ul style="display: none;" class="MM">
 					<li>
-						<a target="main" href="/admin/jiuyeService/list.jhtml">就业服务</a>
+						<a target="main" href="/admin/zhaopinhuiService/list.jhtml">招聘会</a>
+					</li>
+					<li>
+						<a target="main" href="/admin/mianshibaodianService/list.jhtml">面试宝典</a>
+					</li>
+					<li>
+						<a target="main" href="/admin/qiuzhizhidaoService/list.jhtml">求职指导</a>
+					</li>
+					<li>
+						<a target="main" href="/admin/jianlizhinanService/list.jhtml">简历指南</a>
 					</li>
       			</ul>
      		[/@shiro.hasPermission]

@@ -36,7 +36,10 @@ public class EtechGobal {
 	
 	
 	// 就业服务
-	public static final int jiuyeService=9;
+	public static final int zhaopinhuiService=9;
+	public static final int mianshibaodianService=25;
+	public static final int qiuzhizhidaoService=26;
+	public static final int jianlizhinanService=27;
 	
 	
 	// 国家法规

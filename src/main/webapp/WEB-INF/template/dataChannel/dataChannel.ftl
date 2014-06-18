@@ -14,7 +14,10 @@ a:link{
 	color:#000;
 	padding-left:30px;
 	margin-top:10px;
-	letter-spacing:2px;	
+}
+.gg span {
+    float: right;
+    margin-right: 10px;
 }
 .left_{
 	width:240px; 
@@ -58,43 +61,35 @@ a:link{
         <div class="left_">  
             <div class="left_top">
             	<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-top: 7px; margin-left: 10px;">
-                <div style="margin:8px 10px; width:160px; display:inline-block">公告公示</div>
+                <div style="margin:8px 10px; width:160px; display:inline-block;font-weight:bold;">公告公示</div>
                 <a href="/publicityList.jhtml" style="vertical-align:middle; font-size:13px;">更多</a>
             </div>
             <div class="gg" style="font-size:12px; font-weight:100;">
               <ul>
-                <li>
-                   <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
-                </li>
-                <li>
-                   <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
-                </li>
-                <li>
-                   <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
-                </li>
-                <li>
-                   <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
-                </li>
-                <li>
-                   <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
-                </li>
-                <li>
-                   <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
-                </li>
-                <li>
-                   <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
-                </li>
-                <li>
-                   <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
-                </li>
+           		[#list notices as notice]
+					<li>
+						<a href="/publicityInfo.jhtml?id=${notice.id}">
+						[#if notice.title?length > 13]
+							${notice.title?string?substring(0,13)}...
+						[#else]
+							${notice.title}
+						[/#if]
+						</a>
+						<span>${notice.createTime?number_to_datetime}</span>
+					</li>
+				[/#list]
               </ul>
             </div>
         </div>
-       <div class="j_main_left_1" style="margin-top:10px;height:400px;text-align:center;">
+       <div class="j_main_left_1" style="margin-top:10px;height:425px;text-align:center;">
 			<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 			<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 45px;"><hr style="border:1px dashed #e4e4e4;"></div>
 			<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml" style="margin-left:0;">更多>></a></div>
-			<img src="/resource/public/images/zhuanti.png" style="margin-top:7px;">
+			[#list subjectReport as sReport]
+				[#if sReport_index <5]
+					<a href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:222px;height:66px;margin-top:7px;"></a>
+				[/#if]
+			[/#list]
 		</div>
     </div>
     <div style="width:750px; float:left; margin-left:10px;">

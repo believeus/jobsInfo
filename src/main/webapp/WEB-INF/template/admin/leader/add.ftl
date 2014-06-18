@@ -62,26 +62,26 @@ $().ready(function() {
 		<table class="input">
 			<tr>
 				<th>
-					<span class="requiredField">*</span>新闻标题:
+					<span class="requiredField">*</span>职务:
 				</th>
 				<td>
 					<input type="text" name="title" class="text" maxlength="200" />
 				</td>
 				<th>
-					<span class="requiredField">*</span>作者:
+					<span class="requiredField">*</span>姓名:
 				</th>
 				<td>
 					<input type="text" name="author" class="text" maxlength="200" />
 				</td>
 			</tr>
-			<tr>
+			<!--<tr>
 				<th>
 					是否置顶:
 				</th>
 				<td colspan="3">
 					<input type="checkbox" name="top" value="1">
 				</td>
-			</tr>
+			</tr>-->
 			<tr id="pathTr">
 				<th>
 					<span class="requiredField">*</span>相关图片:
@@ -154,7 +154,7 @@ $().ready(function() {
 			</tr>
 			<tr id="contentTr">
 				<th>
-					内容:
+					分管范围:
 				</th>
 				<td colspan="3">
 					<textarea id="editor" name="content" class="editor"></textarea>

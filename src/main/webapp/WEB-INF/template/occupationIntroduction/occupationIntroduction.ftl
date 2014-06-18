@@ -183,6 +183,9 @@
 		.zuixinjianli a:hover{
 			text-decoration:underline;
 		}
+		.j_main_5 img{
+			width:194px;
+		}
     </style>
 </head>
 <body>
@@ -421,7 +424,7 @@
 			</div>
 		-->
 		<div class="j_main_5">
-			<img src="/resource/public/images/zhaopin.png">
+			<img src="/resource/public/images/zhaopin.png" style="width:998px;">
 			
 			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad05.png"></a>
 			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad01.png"></a>
