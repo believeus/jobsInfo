@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.junit.Assert;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -29,6 +30,7 @@ public class ControllerPower {
 	 * 权限列表
 	 * @return
 	 */
+	@RequiresPermissions("admin:group")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
 		@SuppressWarnings("unchecked")

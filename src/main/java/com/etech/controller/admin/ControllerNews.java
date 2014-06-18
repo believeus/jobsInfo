@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import mydfs.storage.server.MydfsTrackerServer;
+
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,6 +40,7 @@ public class ControllerNews extends ControllerCRUD{
 
 
 	//删除新闻
+	@RequiresPermissions("newsDinamic:delete")
 	@RequestMapping("/delete")
 	public String removeNews(HttpServletRequest request,HttpServletResponse response){
 		super.deleteDataInfo(request,response);
@@ -49,6 +52,7 @@ public class ControllerNews extends ControllerCRUD{
 	 * 
 	 * @return
 	 */
+	@RequiresPermissions("newsDinamic:create")
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
 		//新闻动态
@@ -61,6 +65,7 @@ public class ControllerNews extends ControllerCRUD{
 	 * 
 	 * @return
 	 */
+	@RequiresPermissions("newsDinamic:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));

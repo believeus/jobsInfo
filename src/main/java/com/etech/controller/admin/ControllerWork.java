@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,6 +40,7 @@ public class ControllerWork extends ControllerCRUD {
 	 * @param request
 	 * @return
 	 */
+	@RequiresPermissions("workDinamic:delete")
 	@RequestMapping("/delete")
 	public String removeNews(HttpServletRequest request,HttpServletResponse response){
 		super.deleteDataInfo(request,response);
@@ -49,6 +51,7 @@ public class ControllerWork extends ControllerCRUD {
 	 * 添加工作
 	 * @return
 	 */
+	@RequiresPermissions("workDinamic:create")
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
 		request.setAttribute("type",EtechGobal.workDinamic);
@@ -58,6 +61,7 @@ public class ControllerWork extends ControllerCRUD {
 	 * 编辑工作
 	 * @return
 	 */
+	@RequiresPermissions("workDinamic:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -80,6 +84,7 @@ public class ControllerWork extends ControllerCRUD {
 	 * 修改工作
 	 * @return
 	 */
+	
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);

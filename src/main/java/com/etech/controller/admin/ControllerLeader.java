@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,6 +38,7 @@ public class ControllerLeader extends ControllerCRUD{
 	 * @param request response
 	 * @return
 	 */
+	@RequiresPermissions("lead:delete")
 	@RequestMapping("/delete")
 	public String removeNews(HttpServletRequest request,HttpServletResponse response){
 		super.deleteDataInfo(request,response);
@@ -47,6 +49,7 @@ public class ControllerLeader extends ControllerCRUD{
 	 * 添加局领导
 	 * @return
 	 */
+	@RequiresPermissions("lead:create")
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
 		request.setAttribute("type",EtechGobal.leader);
@@ -56,6 +59,7 @@ public class ControllerLeader extends ControllerCRUD{
 	 * 编辑局领导
 	 * @return
 	 */
+	@RequiresPermissions("lead:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
