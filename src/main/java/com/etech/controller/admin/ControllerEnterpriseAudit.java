@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * 企业审核
  * */
-@Controller("controllerAdminEnterpriseAudit")
+@Controller
 @RequestMapping("/admin/enterpriseAudit")
 public class ControllerEnterpriseAudit {
 	private static Log log = LogFactory.getLog(ControllerEnterpriseAudit.class);
@@ -22,7 +22,7 @@ public class ControllerEnterpriseAudit {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView() {
 		log.debug("current controller is newsListView !");
-		return "admin/humanResources/list";
+		return "admin/enterpriseAudit/list";
 	}
 	
 	@RequiresPermissions("enterpriseAudit:delete")
@@ -38,27 +38,27 @@ public class ControllerEnterpriseAudit {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView() {
 		log.debug("current controller is newsListView !");
-		return "admin/humanResources/add";
+		return "admin/enterpriseAudit/add";
 	}
 	/**
 	 * 编辑企业审核
 	 * @return
 	 */
-	@RequiresPermissions("enterpriseAudit:modify")
+	//@RequiresPermissions("enterpriseAudit:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView() {
 		log.debug("current controller is newsListView !");
-		return "admin/humanResources/edit";
+		return "admin/enterpriseAudit/edit";
 	}
 	
 	/**
 	 * 保存企业审核
 	 * @return
 	 */
-	@RequestMapping(value = "/save", method = RequestMethod.GET)
+	@RequestMapping(value = "/save")
 	public String saveNewsView(){
 		
-		return "redirect:/admin/humanResources/list.jhtml";
+		return "redirect:/admin/enterpriseAudit/list.jhtml";
 	}
 	/**
 	 * 修改企业审核
@@ -67,6 +67,6 @@ public class ControllerEnterpriseAudit {
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String updateNewsView(){
 		
-		return "redirect:/admin/humanResources/list.jhtml";
+		return "redirect:/admin/enterpriseAudit/list.jhtml";
 	}
 }

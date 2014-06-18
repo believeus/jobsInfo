@@ -44,7 +44,7 @@ public class ControllerMonthlyDemandList extends ControllerCRUD{
 	@RequestMapping("/delete")
 	public String removeNews(HttpServletRequest request,HttpServletResponse response){
 		super.deleteDataInfo(request,response);
-		return "redirect:/admin/dataChannel/list.jhtml";
+		return "redirect:/admin/monthlyDemandList/list.jhtml";
 	}
 	
 	/**
@@ -78,7 +78,7 @@ public class ControllerMonthlyDemandList extends ControllerCRUD{
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
-		return "redirect:/admin/dataChannel/list.jhtml";
+		return "redirect:/admin/monthlyDemandList/list.jhtml";
 	}
 	/**
 	 * 修改月需求排行
@@ -87,6 +87,6 @@ public class ControllerMonthlyDemandList extends ControllerCRUD{
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);
-		return "redirect:/admin/dataChannel/list.jhtml";
+		return "redirect:/admin/monthlyDemandList/list.jhtml";
 	}
 }

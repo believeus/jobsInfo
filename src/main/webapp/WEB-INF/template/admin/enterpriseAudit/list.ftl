@@ -81,35 +81,37 @@ $().ready(function() {
 					<a href="javascript:;" class="sort" name="adPosition">内容标题</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="type">置顶</a>
+					<a href="javascript:;" class="sort" name="type">工作地点</a>
 				</th>
-				<!--<th>
+				<th>
 					<a href="javascript:;" class="sort" name="endDate">排序</a>
-				</th>-->
+				</th>
 				<th>
 					<a href="#"  class="sort">操作</a>
 				</th>
 			</tr>
-			[#list dataCenters as center]
+			
 			<tr>
+			[#list recruitList as recruit]
 				<td>
-					<input type="checkbox" name="ids" value="${center.id}" />
+					<input type="checkbox" name="ids" value="${recruit.id}" />
 				</td>
 				<td>
-					<span title="${center.id}">${center.id}</span>
+					<span>${recruit.id}</span>
 				</td>
 				<td>
-					${center.title}
+					${recruit.company}
 				</td>
 				<td>
-					<input type="checkbox" id="" />
+					${recruit.workspace}
 				</td>
-				<!--<td>
+				<td>
 					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
 					<a href="" style="text-decoration:underline;">降</a>
-				</td>-->
+				</td>
 				<td>
-					<a href="edit.jhtml?id=${center.id}">[修改]</a>
+					<a href="edit.jhtml?id=${recruit.id}">[修改]</a>
+					<a href="review.jhtml?id=${recruit.id}">[审核通过]</a>
 				</td>
 			</tr>
 			[/#list]

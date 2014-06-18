@@ -115,54 +115,12 @@
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<ul>
-					<li>
-						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/guidance.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
+					[#list wagePriceGuide as wagePriceGuide]
+						<li>
+							<a href="/guidance.jhtml?id=${wagePriceGuide.id}">${wagePriceGuide.title}</a>
+							<span>${wagePriceGuide.createTime?number_to_datetime}</span>
+						</li>
+					[/#list]
 				</ul>
 				<p style="padding-left:25px;">
 					<a href="">首页</a>

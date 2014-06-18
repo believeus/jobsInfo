@@ -109,34 +109,12 @@ a:link{
                     </div>
                     <div class="gg">
                       <ul style="font-size:13px; letter-spacing:0px;">
+                      [#list analysisreport as aReport]
                         <li>
-                          <div style="width:375px; display:inline-block;"><a href="/report.jhtml">人力资源供求市场供求分析报告</a></div>
-                          <span>2014/04/24</span>
+                          <div style="width:375px; display:inline-block;"><a href="/report.jhtml?id=${aReport.id}">${aReport.title}</a></div>
+                          <span>${aReport.createTime?number_to_datetime}</span>
                         </li>
-                        <li>
-                          <div style="width:375px; display:inline-block;"><a href="/report.jhtml">人力资源供求市场供求分析报告</a></div>
-                          <span>2014/04/24</span>
-                        </li>
-                        <li>
-                          <div style="width:375px; display:inline-block;"><a href="/report.jhtml">人力资源供求市场供求分析报告</a></div>
-                          <span>2014/04/24</span>
-                        </li>
-                        <li>
-                          <div style="width:375px; display:inline-block;"><a href="/report.jhtml">人力资源供求市场供求分析报告</a></div>
-                          <span>2014/04/24</span>
-                        </li>
-                        <li>
-                          <div style="width:375px; display:inline-block;"><a href="/report.jhtml">人力资源供求市场供求分析报告</a></div>
-                          <span>2014/04/24</span>
-                        </li>
-                        <li>
-                          <div style="width:375px; display:inline-block;"><a href="/report.jhtml">人力资源供求市场供求分析报告</a></div>
-                          <span>2014/04/24</span>
-                        </li>
-                        <li>
-                          <div style="width:375px; display:inline-block;"><a href="/report.jhtml">人力资源供求市场供求分析报告</a></div>
-                          <span>2014/04/24</span>
-                        </li>
+                      [/#list]
                       </ul>
                     </div>	
                 </div>
@@ -148,34 +126,12 @@ a:link{
                     </div>
                      <div class="gg">
                       <ul style="font-size:13px; letter-spacing:0px;">
+                      [#list wagePriceGuide as wagePriceGuide]
                         <li>
-                          <div style="width:375px; display:inline-block;"><a href="/guidance.jhtml">全市工资指导价位报告</a></div>
-                          <span>2014/04/22</span>
+                          <div style="width:375px; display:inline-block;"><a href="/guidance.jhtml?id=${wagePriceGuide.id}">${wagePriceGuide.title}</a></div>
+                          <span>${wagePriceGuide.createTime?number_to_datetime}</span>
                         </li>
-                        <li>
-                          <div style="width:375px; display:inline-block;"><a href="/guidance.jhtml">全市工资指导价位报告</a></div>
-                          <span>2014/04/22</span>
-                        </li>
-                        <li>
-                          <div style="width:375px; display:inline-block;"><a href="/guidance.jhtml">全市工资指导价位报告</a></div>
-                          <span>2014/04/22</span>
-                        </li>
-                        <li>
-                          <div style="width:375px; display:inline-block;"><a href="/guidance.jhtml">全市工资指导价位报告</a></div>
-                          <span>2014/04/22</span>
-                        </li>
-                        <li>
-                          <div style="width:375px; display:inline-block;"><a href="/guidance.jhtml">全市工资指导价位报告</a></div>
-                          <span>2014/04/22</span>
-                        </li>
-                        <li>
-                          <div style="width:375px; display:inline-block;"><a href="/guidance.jhtml">全市工资指导价位报告</a></div>
-                          <span>2014/04/22</span>
-                        </li>
-                        <li>
-                          <div style="width:375px; display:inline-block;"><a href="/guidance.jhtml">全市工资指导价位报告</a></div>
-                          <span>2014/04/22</span>
-                        </li>
+                      [/#list]
                       </ul>
                     </div>   
                 </div>
@@ -188,13 +144,13 @@ a:link{
                      <div class="gg">
                       <ul style="font-size:13px; letter-spacing:0px;">
                         <li>
-                          <div style="width:395px; display:inline-block;"><a href="/ziliao.jhtml">资料下载</a></div>
+                          <div style="width:395px; display:inline-block;"><a href="/ziliaoList.jhtml">资料下载</a></div>
                         </li>	
                         <li>
-                          <div style="width:395px; display:inline-block;"><a href="/biaoge.jhtml">表格下载</a></div>
+                          <div style="width:395px; display:inline-block;"><a href="/biaogeList.jhtml">表格下载</a></div>
                         </li>
                         <li>
-                          <div style="width:395px; display:inline-block;"><a href="/ruanjian.jhtml">软件下载</a></div>
+                          <div style="width:395px; display:inline-block;"><a href="/ruanjianList.jhtml">软件下载</a></div>
                         </li>
                       </ul>
                     </div>   
@@ -206,36 +162,18 @@ a:link{
                 </div>
                 <div class="gg" style="">
                   <ul class="gongji" style="font-size:13px; letter-spacing:0px; list-style-type:none;margin:0;padding-left:15px;padding-right:15px;">
-                    <li>
-                      <div><a style="color:#fe0002;" href="/supply.jhtml">1、教师</a><span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span></div>
-                    </li>
-                    <li>
-                      <div><a style="color:#fe0002;" href="/supply.jhtml">2、教师</a><span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span></div>
-                    </li>
-                    <li>
-                      <div><a style="color:#2ccd0f;" href="/supply.jhtml">3、教师</a><span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span></div>
-                    </li>
-                    <li>
-                      <div style=""><a href="/supply.jhtml">4、教师</a></div>
-                    </li>
-                    <li>
-                      <div style=""><a href="/supply.jhtml">5、教师</a></div>
-                    </li>
-                    <li>
-                      <div style=""><a href="/supply.jhtml">6、教师</a></div>
-                    </li>
-                    <li>
-                      <div style=""><a href="/supply.jhtml">7、教师</a></div>
-                    </li>
-                    <li>
-                      <div style=""><a href="/supply.jhtml">8、教师</a></div>
-                    </li>
-                    <li>
-                      <div style=""><a href="/supply.jhtml">9、教师</a></div>
-                    </li>
-                    <li style="border-bottom:0;">
-                      <div style=""><a href="/supply.jhtml">10、教师</a></div>
-                    </li>
+                    [#assign x = 0]
+                    [#list supply as supply]
+                    [#assign x = x+1]
+	                    <li>
+	                      	<div>
+		                      	<a [#if supply_index<2] style="color:#fe0002;" [#elseif supply_index = 2]style="color:#2ccd0f;"[/#if]  href="/supply.jhtml?id=${supply.id}">${x}、${supply.author}</a>
+		                      	[#if supply_index<3]
+		                      		<span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span>
+	                      		[/#if]
+                      		</div>
+	                    </li>
+                    [/#list]
                   </ul>
                 </div>     
              </div>
@@ -245,36 +183,18 @@ a:link{
                 </div>
                 <div class="gg">
                   <ul class="gongji" style="font-size:13px; letter-spacing:0px; list-style-type:none;margin:0;padding-left:15px;padding-right:15px;">
-                    <li>
-                      <div><a style="color:#fe0002;" href="/demand.jhtml">1、教师</a><span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span></div>
-                    </li>
-                    <li>
-                      <div><a style="color:#fe0002;" href="/demand.jhtml">2、教师</a><span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span></div>
-                    </li>
-                    <li>
-                      <div><a style="color:#2ccd0f;" href="/demand.jhtml">3、教师</a><span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span></div>
-                    </li>
-                    <li>
-                      <div style=""><a href="/demand.jhtml">4、教师</a></div>
-                    </li>
-                    <li>
-                      <div style=""><a href="/demand.jhtml">5、教师</a></div>
-                    </li>
-                    <li>
-                      <div style=""><a href="/demand.jhtml">6、教师</a></div>
-                    </li>
-                    <li>
-                      <div style=""><a href="/demand.jhtml">7、教师</a></div>
-                    </li>
-                    <li>
-                      <div style=""><a href="/demand.jhtml">8、教师</a></div>
-                    </li>
-                    <li>
-                      <div style="">9、教师</div>
-                    </li>
-                    <li style="border-bottom:0;">
-                      <div style=""><a href="/demand.jhtml">10、教师</a></div>
-                    </li>
+               		[#assign y = 0]
+                    [#list demand as demand]
+                    [#assign y = y+1]
+	                    <li>
+	                      	<div>
+		                      	<a [#if demand_index<2] style="color:#fe0002;" [#elseif demand_index = 2]style="color:#2ccd0f;"[/#if]  href="/demand.jhtml?id=${demand.id}">${y}、${demand.author}</a>
+		                      	[#if demand_index<3]
+		                      		<span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span>
+	                      		[/#if]
+                      		</div>
+	                    </li>
+                    [/#list]
                   </ul>
                 </div>     
              </div>
