@@ -44,7 +44,7 @@ public class ControllerEnterpriseAudit {
 	 * 编辑企业审核
 	 * @return
 	 */
-	//@RequiresPermissions("enterpriseAudit:modify")
+	@RequiresPermissions("enterpriseAudit:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView() {
 		log.debug("current controller is newsListView !");

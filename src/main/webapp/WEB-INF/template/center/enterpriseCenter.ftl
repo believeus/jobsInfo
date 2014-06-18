@@ -497,6 +497,7 @@
 				c++;
 				$(".qiyepic").parent().append(html);
 				var pics = $(".qiyepic");
+				alert(pics.length);
 		    	pics.each(function(){
 		    		if(($(this).index()+1)%4==0){
 		    			$(this).css("margin-right","0px");

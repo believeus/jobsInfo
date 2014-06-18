@@ -1269,15 +1269,15 @@
 									</td>
 								</tr>
 								<tr>
-									<td>家庭详细地址:</td>
+									<td>家庭地址:</td>
 									<td><input type="text" id="address" name="address" value="${sessionUser.address}"></td>
 								</tr>
 								<tr>
-									<td>原工作单位:</td>
+									<td style="font-size: 12px;">原工作单位:</td>
 									<td><input type="text"  id="workspace" name="workspace" value="${sessionUser.workspace}"></td>
 								</tr>
 								<tr>
-									<td>《就失业证》号:</td>
+									<td style="font-size: 12px;">就失业证号:</td>
 									<td><input type="text" id="jobId" name="jobId" value="${sessionUser.jobId}"></td>
 								</tr>
 								<tr>

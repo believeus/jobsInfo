@@ -175,10 +175,13 @@
 		.zuixinjianli li {
 		    line-height: 35px;
 		}
-		.zuixinjianli span {
+		.jianli_name span {
 		    color: #FF7800;
 		    font-size: 16px;
 		    margin-right: 15px;
+		}
+		.jianli_xinxi{
+			color:#003872;
 		}
 		.zuixinjianli a:hover{
 			text-decoration:underline;
@@ -186,6 +189,7 @@
 		.j_main_5 img{
 			width:194px;
 		}
+		
     </style>
 </head>
 <body>
@@ -388,12 +392,9 @@
 			<div class="j_main_3_3">
 				<p style="background:url(/resource/public/images/beijingse.png)">招聘会</p>
 				<ul style="padding-left:15px;margin:0;">
-					<li><a href="/zhaopinhui.jhtml">人才招聘会春季第二期.....</a><span>05月21日</span></li>
-					<li><a href="/zhaopinhui.jhtml">人才招聘会春季第二期.....</a><span>05月21日</span></li>
-					<li><a href="/zhaopinhui.jhtml">人才招聘会春季第二期.....</a><span>05月21日</span></li>
-					<li><a href="/zhaopinhui.jhtml">人才招聘会春季第二期.....</a><span>05月21日</span></li>
-					<li><a href="/zhaopinhui.jhtml">人才招聘会春季第二期.....</a><span>05月21日</span></li>
-					<li><a href="/zhaopinhui.jhtml">人才招聘会春季第二期.....</a><span>05月21日</span></li>
+					[#list zhaopinhuiService as zph]
+						<li><a href="/zhaopinhui.jhtml?id=${zph.id}">${zph.title}</a><span>${zph.createTime?number_to_datetime}</span></li>
+					[/#list]
 				</ul>
 			</div>
 		</div>
@@ -600,44 +601,44 @@
 				<tr>
 					<td>
 						<ul>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
 						</ul>
 					</td>
 					<td>
 						<ul>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
 						</ul>
 					</td>
 					<td>
 						<ul>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
-							<li><span><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span>&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
 						</ul>
 					</td>
 				</tr>
@@ -655,13 +656,11 @@
 				</div>
 				<div style="width: 320px; height: 150px;border:1px solid #e4e4e4;margin-top:-5px;">
 					<img style="float: left; margin-top: 2px;" src="/resource/public/images/meinv.png">
-					<ul  style="float: left; padding-left: 10px; margin: 5px;">
-						<li><a href="/qiuzhizhidao.jhtml">人才招聘会春季第二期.....</a></li>
-						<li><a href="/qiuzhizhidao.jhtml">人才招聘会春季第二期.....</a></li>
-						<li><a href="/qiuzhizhidao.jhtml">人才招聘会春季第二期.....</a></li>
-						<li><a href="/qiuzhizhidao.jhtml">人才招聘会春季第二期.....</a></li>
-						<li><a href="/qiuzhizhidao.jhtml">人才招聘会春季第二期.....</a></li>
-						<li><a href="/qiuzhizhidao.jhtml">人才招聘会春季第二期.....</a></li>
+					<ul  style="float: left; padding-left: 10px; margin: 5px;width:175px;">
+						[#list qiuzhizhidaoService as qzzd]
+							<li><a href="/qiuzhizhidao.jhtml?id=${qzzd.id}">${qzzd.title}</a>
+							<span style="float:right;">${qzzd.createTime?number_to_datetime}</span></li>
+						[/#list]
 					</ul>
 				</div>
 			</div>
@@ -675,13 +674,11 @@
 				</div>
 				<div style="width: 320px; height: 150px;border:1px solid #e4e4e4;margin-top:-5px;">
 					<img style="float: left; margin-top: 2px;" src="/resource/public/images/meinv.png">
-					<ul  style="float: left; padding-left: 10px; margin: 5px;">
-						<li><a href="/jianlizhinan.jhtml">人才招聘会春季第二期.....</a></li>
-						<li><a href="/jianlizhinan.jhtml">人才招聘会春季第二期.....</a></li>
-						<li><a href="/jianlizhinan.jhtml">人才招聘会春季第二期.....</a></li>
-						<li><a href="/jianlizhinan.jhtml">人才招聘会春季第二期.....</a></li>
-						<li><a href="/jianlizhinan.jhtml">人才招聘会春季第二期.....</a></li>
-						<li><a href="/jianlizhinan.jhtml">人才招聘会春季第二期.....</a></li>
+					<ul  style="float: left; padding-left: 10px; margin: 5px;width:175px;">
+						[#list jianlizhinanService as jlzn]
+							<li><a href="/jianlizhinan.jhtml?id=${jlzn.id}">${jlzn.title}</a>
+							<span style="float:right;">${jlzn.createTime?number_to_datetime}</span></li>
+						[/#list]
 					</ul>
 				</div>
 			</div>
@@ -695,13 +692,11 @@
 				</div>
 				<div style="width: 320px; height: 150px;border:1px solid #e4e4e4;margin-top:-5px;">
 					<img style="float: left; margin-top: 2px;" src="/resource/public/images/meinv.png">
-					<ul  style="float: left; padding-left: 10px; margin: 5px;">
-						<li><a href="/mianshibaodian.jhtml">人才招聘会春季第二期.....</a></li>
-						<li><a href="/mianshibaodian.jhtml">人才招聘会春季第二期.....</a></li>
-						<li><a href="/mianshibaodian.jhtml">人才招聘会春季第二期.....</a></li>
-						<li><a href="/mianshibaodian.jhtml">人才招聘会春季第二期.....</a></li>
-						<li><a href="/mianshibaodian.jhtml">人才招聘会春季第二期.....</a></li>
-						<li><a href="/mianshibaodian.jhtml">人才招聘会春季第二期.....</a></li>
+					<ul  style="float: left; padding-left: 10px; margin: 5px;width:175px;">
+						[#list mianshibaodianService as msbd]
+							<li><a href="/mianshibaodian.jhtml?id=${msbd.id}">${msbd.title}</a>
+							<span style="float:right;">${msbd.createTime?number_to_datetime}</span></li>
+						[/#list]
 					</ul>
 				</div>
 			</div>
