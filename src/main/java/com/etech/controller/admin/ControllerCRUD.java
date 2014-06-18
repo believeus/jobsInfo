@@ -53,7 +53,10 @@ public class ControllerCRUD {
 			}
 		}
 		TdataCenter center=new TdataCenter();
-		int type=Integer.parseInt(request.getParameter("type"));
+		int type=0;
+		if(!StringUtils.isEmpty(request.getParameter("type"))){
+			type=Integer.parseInt(request.getParameter("type"));
+		}
 		String title=request.getParameter("title");
 		String author=request.getParameter("author");
 		String content=request.getParameter("content");

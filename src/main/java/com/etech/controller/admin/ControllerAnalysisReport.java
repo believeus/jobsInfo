@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,6 +43,7 @@ public class ControllerAnalysisReport extends ControllerCRUD{
 	 * @param request response
 	 * @return
 	 */
+	@RequiresPermissions("requireAnalyseReport:delete")
 	@RequestMapping("/delete")
 	public String removeNews(HttpServletRequest request,HttpServletResponse response){
 		super.deleteDataInfo(request,response);
@@ -52,6 +54,7 @@ public class ControllerAnalysisReport extends ControllerCRUD{
 	 * 添加供求分析报告
 	 * @return
 	 */
+	@RequiresPermissions("requireAnalyseReport:create")
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
 		request.setAttribute("type",EtechGobal.analysisreport);
@@ -61,6 +64,7 @@ public class ControllerAnalysisReport extends ControllerCRUD{
 	 * 编辑供求分析报告
 	 * @return
 	 */
+	@RequiresPermissions("requireAnalyseReport:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));

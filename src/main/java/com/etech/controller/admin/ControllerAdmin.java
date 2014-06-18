@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.junit.Assert;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -50,6 +51,7 @@ public class ControllerAdmin{
 	/**
 	 * 添加
 	 */
+	@RequiresPermissions("admin:create")
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(HttpServletRequest request) {
 		String hql="from Trole";
@@ -81,6 +83,7 @@ public class ControllerAdmin{
 	/**
 	 * 编辑
 	 */
+	@RequiresPermissions("admin:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String edit(int id,HttpServletRequest request) {
 		String hql="from Trole";
@@ -124,6 +127,7 @@ public class ControllerAdmin{
 	/**
 	 * 列表
 	 */
+	@RequiresPermissions("adminList:view")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(HttpServletRequest request) {
 		@SuppressWarnings("unchecked")
@@ -131,5 +135,9 @@ public class ControllerAdmin{
 		request.setAttribute("admins", admins);
 		return "/admin/admin/list";
 	}
-	
+	@RequiresPermissions("admin:delete")
+	@RequestMapping("/delete")
+	public String delete(){
+		return "";
+	}
 }
