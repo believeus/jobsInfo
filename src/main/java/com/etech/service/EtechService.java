@@ -58,4 +58,7 @@ public class EtechService {
 	public void updata(Class<?> clazz,String property,Object value,String updateProperty,Object updateValue){
 		etechComDao.update(clazz, property, value, updateProperty, updateValue);
 	}
+	public void deleteBySQL(String sql){
+		etechComDao.deleteBySQL(sql);
+	}
 }

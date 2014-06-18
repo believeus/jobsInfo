@@ -23,8 +23,6 @@ public class TmajorType extends TbaseEntity implements Serializable {
 	private String name;
 	/**专业或工种编码*/
 	private int codeId;
-	/**专业或工种属于哪个子类*/
-	private int parent;
 	/** 个人用户工种信息*/
 	private Set<TcomInfo> comInfoWork;
 	/** 个人用户专业信息*/
@@ -53,15 +51,6 @@ public class TmajorType extends TbaseEntity implements Serializable {
 		this.codeId = codeId;
 	}
 	
-	@NotEmpty
-	public int getParent() {
-		return parent;
-	}
-
-	public void setParent(int parent) {
-		this.parent = parent;
-	}
-
 	@OneToMany(fetch = FetchType.LAZY,mappedBy="workType")
 	public Set<TcomInfo> getComInfoWork() {
 		return comInfoWork;

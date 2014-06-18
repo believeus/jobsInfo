@@ -143,7 +143,18 @@ public class EtechComDao extends HibernateDaoSupport {
 			}
 		});
 	}
+	public void deleteBySQL(final String sql){
+		this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
 
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				Query query = session.createSQLQuery(sql);
+				query.executeUpdate();
+				return null;
+			}
+		});
+	}
 	// 获取单一对象
 	public Object getObjectByHQL(final String hql) {
 		return this.getHibernateTemplate().execute(
@@ -268,7 +279,7 @@ public class EtechComDao extends HibernateDaoSupport {
 			
 		});
 	}
-
+	
 	/* End Name:wuqiwei Date:2013-11-5 07:24:40 AddReason:返回一定数量的行数 */
 
 	/* Begin Author:wuqiwei Date:2013-04-06 AddReason:使用hibernatesearch完成全文搜索 */
