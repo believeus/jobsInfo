@@ -192,8 +192,8 @@
     		[/#if]
     		
     		
-    		// 删除信息
-	    	function deleteDiv(object){
+	    		// 删除信息
+		    	function deleteDiv(object){
 	    				// 得到最外层的div
 	    				var div=$(object).parent().parent().parent().parent().parent().parent().parent();
 	    				var clazz=div.attr("class");
@@ -416,6 +416,12 @@
 						';
 				[/@compress]
 				
+				if($(".xuexi").find("div.xuexi_div").size() <6){
+					$(".xuexi").append(trHtml);
+					$("#conentDiv").parent().append(html);
+				}else{
+					alert("最多添加6条数据");
+				}
 				
 				// 为新增的标签添加弹窗控件
 				$("#selectLearningSpecialty"+a).xMenu({	
@@ -426,14 +432,10 @@
 							hiddenID : "selectLearningSpecialtyhidden"+a//隐藏域ID	
 				});
 				
+				
 				if($(".xuexi").find("div.xuexi_div").size() <6){
 					a ++;
-					$(".xuexi").append(trHtml);
-					$("#conentDiv").parent().append(html);
-				}else{
-					alert("最多添加6条数据");
 				}
-				
 				
     		});
     		
@@ -499,6 +501,12 @@
 						';
 				[/@compress]
 				
+				if($(".jineng").find("div.jineng_div").size() <6){
+					$(".jineng").append(trHtml);
+					$("#conentDiv").parent().append(html);
+				}else{
+					alert("最多添加6条数据");
+				}
 				
 				// 为新增的标签添加弹窗控件
 				$("#selectSkillSpecialty"+b).xMenu({	
@@ -516,12 +524,9 @@
 							hiddenID : "selectSkillJobshidden"+b//隐藏域ID	
 				});
 				
+				
 				if($(".jineng").find("div.jineng_div").size() <6){
 					b ++;
-					$(".jineng").append(trHtml);
-					$("#conentDiv").parent().append(html);
-				}else{
-					alert("最多添加6条数据");
 				}
 				
     		});
@@ -574,6 +579,12 @@
 					var html ='<div id="xmenuWorkJob'+c+'" class="xmenu" style="display: none;">'+Jobs +'</div>';
 				[/@compress]
 				
+				if($(".gongzuo").find("div.gongzuo_div").size() <6){
+					$(".gongzuo").append(trHtml);
+					$("#conentDiv").parent().append(html);
+				}else{
+					alert("最多添加6条数据");
+				}
 				
 				// 为新增的标签添加弹窗控件
 				$("#selectWorkJob"+c).xMenu({	
@@ -586,10 +597,6 @@
 				
 				if($(".gongzuo").find("div.gongzuo_div").size() <6){
 					c ++;
-					$(".gongzuo").append(trHtml);
-					$("#conentDiv").parent().append(html);
-				}else{
-					alert("最多添加6条数据");
 				}
     		});
     		
@@ -649,6 +656,13 @@
 						';
 				[/@compress]
 				
+				if($(".zhiyuan").find("div.zhiyuan_div").size() <6){
+					$(".zhiyuan").append(trHtml);
+					$("#conentDiv").parent().append(html);
+				}else{
+					alert("最多添加6条数据");
+				}
+				
 				// 为新增的标签添加弹窗控件
 				$("#selectVolunteerSpecialty"+d).xMenu({	
 							width :600,	
@@ -665,14 +679,10 @@
 							hiddenID : "selectVolunteerJobshidden"+d//隐藏域ID	
 				});
 				
+				
 				if($(".zhiyuan").find("div.zhiyuan_div").size() <6){
 					d ++;
-					$(".zhiyuan").append(trHtml);
-					$("#conentDiv").parent().append(html);
-				}else{
-					alert("最多添加6条数据");
 				}
-				
     		});
     		
     	});

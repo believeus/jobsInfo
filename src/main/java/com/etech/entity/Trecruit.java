@@ -63,6 +63,10 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	@Column(nullable=true)
 	private String note;
 	
+	/**是否审核通过 0:审核中 1:审核通过*/
+	@Column(nullable=true)
+	private String status;
+	
 	/**专业类型*/
 	private TmajorType majorType;
 	
@@ -219,6 +223,14 @@ public class Trecruit extends TbaseEntity implements Serializable {
 
 	public void setEntUser(TentUser entUser) {
 		this.entUser = entUser;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	

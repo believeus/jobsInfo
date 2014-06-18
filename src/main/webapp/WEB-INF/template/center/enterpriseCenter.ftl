@@ -415,7 +415,32 @@
 				}
 		}
 		
+		//删除招聘信息
+    	function delete_zhaopin(object){
+    		if ($(".zhaopinxinxi").size() <= 1) {
+				alert("必须至少保留一个参数");
+			} else {
+				$(object).closest("div").remove();
+			}
+    	}
 		
+		// 删除招聘信息
+		function delete_ids(){
+			var id=$(object).parent().parent().parent().find("input[name='id']");
+			if(id.length > 0){
+				id=id.val();
+				var deleteids = $("#deleteids");
+				
+				if (deleteids.length > 0) { 
+			     	//对象存在的处理逻辑
+		            $("#deleteids").val(deleteids.val()+","+id);
+			    } else {
+			      	//对象不存在的处理逻辑
+			      	var html='<input id="deleteids" type="hidden" name="ids" value="'+id+'"/>';
+					$("#JobsForm1").append(html);
+			   }
+			}
+		}
 		var a = 2;
     	var b = 2;
     	
@@ -529,19 +554,20 @@
     	$("#add_zhaopin").click(function(){
     		[@compress single_line = true]
     		var html = 
-    			'<div class="zhaopinxinxi" style="padding:10px 30px;width:650px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+    			'<form novalidate="novalidate"  action="/enterprise-user/center/submit-recruit.jhtml"  method="post" id="jobsForm'+b+'">
+    			<div class="zhaopinxinxi" style="padding:10px 30px;width:650px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 					<table>
 						<tr>
 							<td rowspan="9" style="color:#E2652E;">'+b+'</td>
 							<td>招聘单位:</td>
-							<td style="padding-right:80px;"><input type="text" id="company'+b+'" ></td>
+							<td style="padding-right:80px;"><input type="text" name="company" ></td>
 							<td>人数:</td>
-							<td><input type="text" id="worknum'+b+'"></td>
+							<td><input type="text" name="worknum"></td>
 						</tr>
 						<tr>
 							<td>工种:</td>
 							<td>
-									<input type="hidden" value="" id="selectJobshidden'+b+'"/>
+									<input type="hidden" value="" id="selectJobshidden'+b+'" name="workTypeId"/>
 									<div class="topnav">
 										<a id="selectJobs'+b+'" href="javascript:void(0);" class="as">
 											<span >
@@ -552,7 +578,7 @@
 									</td>
 							<td>性别:</td>
 							<td>
-								<select id="sex'+b+'" style="width: 183px;">
+								<select name="sex" style="width: 183px;">
 									<option value="">请选择..</option>
 									<option value="woman">男</option>
 									<option value="man">女</option>
@@ -562,7 +588,7 @@
 						<tr>
 							<td>专业:</td>
 							<td>
-								<input type="hidden" value="" id="selectSpecialtyhidden'+b+'"/>
+								<input type="hidden" value="" id="selectSpecialtyhidden'+b+'" name="majorTypeId"/>
 								<div class="topnav">
 									<a id="selectSpecialty'+b+'" href="javascript:void(0);" class="as">
 										<span >
@@ -572,14 +598,14 @@
 								</div>
 							</td>
 							<td>技术等级:</td>
-							<td><input type="text" id="eteLevel'+b+'"></td>
+							<td><input type="text" name="eteLevel"></td>
 						</tr>
 						<tr>
 							<td>从事年限:</td>
-							<td><input type="text" id="workyear'+b+'"></td>
+							<td><input type="text" name="workyear"></td>
 							<td>文化程度:</td>
 							<td>
-								<select id="eduLevel'+b+'" style="width: 183px;">
+								<select name="eduLevel" style="width: 183px;">
 									<option value="">请选择..</option>
 									<option value="研究生以上">研究生以上</option>
 									<option value="博士研究生">博士研究生</option>
@@ -599,22 +625,22 @@
 						</tr>
 						<tr>
 							<td>工作地点:</td>
-							<td><input type="text" id="workspace'+b+'"></td>
+							<td><input type="text" name="workspace"></td>
 							<td>年龄:</td>
-							<td><input type="text" id="age'+b+'"></td>
+							<td><input type="text" name="age"></td>
 						</tr>
 						<tr>
 							<td>身高:</td>
-							<td><input type="text" id="height'+b+'"></td>
+							<td><input type="text" name="height"></td>
 							<td>视力:</td>
-							<td><input type="text" id="eyesight'+b+'"></td>
+							<td><input type="text" name="eyesight"></td>
 						</tr>
 						<tr>
 							<td>薪资待遇:</td>
-							<td><input type="text" id="salary'+b+'"></td>
+							<td><input type="text" name="salary"></td>
 							<td>用工形式:</td>
 							<td>
-								<select id="workWay'+b+'" style="width: 183px;">
+								<select name="workWay" style="width: 183px;">
 									<option value="">请选择..</option>
 									<option value="兼职">兼职</option>
 									<option value="全职">全职</option>
@@ -626,7 +652,7 @@
 						<tr>
 							<td>招聘期限:</td>
 							<td>
-								<select id="worklimit'+b+'" style="width: 183px;">
+								<select name="worklimit" style="width: 183px;">
 									<option value="">请选择..</option>
 									<option value="1年">1年</option>
 									<option value="3年">3年</option>
@@ -635,33 +661,32 @@
 								</select>
 							</td>
 							<td>面试时间:</td>
-							<td><input type="text" id="viewData'+b+'"></td>
+							<td><input type="text" name="viewData"></td>
 						</tr>
 						<tr>
 							<td style="vertical-align:top;">其他说明:</td>
 							<td colspan="2">
-								<textArea cols="30" style="resize:none;" id="note'+b+'"></textArea>
+								<textArea cols="30" style="resize:none;" name="note"></textArea>
 							</td>
 							<td style="vertical-align: bottom; text-align: right;">
-								<a class="delete_zhaopin" href="javascript:void(0);">删除</a>
+								<a onclick="delete_zhaopin(this)" href="javascript:void(0);">删除</a>
 							</td>
 						</tr>
 					</table>
-				</div>';
+				</div>
+				</form>';
 				var divhtml ='<div id="xmenuSpecialty'+b+'" class="xmenu" style="display: none;">'+Specialty +'</div>'+
 				  '<div id="xmenuJobs'+b+'" class="xmenu" style="display: none;">'+Jobs +'</div>';
 		
 			[/@compress]
 			
+			if($(".zhaopinxinxi").size() <5){
+				$(".zhaopinxinxi").parent().append(html);
+				$("#bianji_xinxi").parent().append(divhtml);
+			}else{
+				alert("最多添加5条数据");
+			}
 			
-			//删除招聘信息
-			$("a.delete_zhaopin").on("click",function(){
-				if ($(".zhaopinxinxi").size() <= 1) {
-					alert("必须至少保留一个参数");
-				} else {
-					$(this).closest("div").remove();
-				}
-			});
 			// 为新增的标签添加弹窗控件
 			$("#selectSpecialty"+b).xMenu({	
 						width :600,	
@@ -680,13 +705,10 @@
 			
 			if($(".zhaopinxinxi").size() <5){
 				b++;
-				$(".zhaopinxinxi").parent().append(html);
-				$("#bianji_xinxi").parent().append(divhtml);
-			}else{
-				alert("最多添加5条数据");
 			}
+			
 		});
-    			
+		
 		// ajax 提交验证和保存。
 		function submitInfo(){
 				$("#InfoForm").ajaxSubmit({
@@ -694,8 +716,7 @@
 					     url: "/enterprise/submit-account-Info.jhtml",
 					     dataType: "json",
 					     success: function(data){
-					     	//submitMap();
-					     	submitImgs();
+					     	submitMap();
 					     }
 	        		});	
 			}
@@ -735,99 +756,24 @@
 		}
 		
 			//封装ajax信息提交
-				function submitJobs(){
-					alert("提交招聘信息");
-					$("#jobsForm1").ajaxSubmit({
-				            	 type: "post",
-							     url: "/enterprise-user/center/submit-recruit.jhtml",
-							     dataType: "json",
-							     success: function(data){
-							     	alert(data.message);
-							     }
-			        	});	
-			        	
-					
-					/*$("div.zhaopinxinxi").each(function(index){
-						index++;
-						alert(index);
-						alert("company:"+$("#company"+index).val());
-						alert("worknum:"+$("#worknum"+index).val());
-						alert("sex:"+$("#sex"+index).val());
-						alert("eteLevel:"+$("#eteLevel"+index).val());
-						alert("workyear:"+$("#workyear"+index).val());
-						alert("eduLevel:"+$("#eduLevel"+index).val());
-						alert("workspace:"+$("#workspace"+index).val());
-						alert("age:"+$("#age"+index).val());
-						alert("height:"+$("#height"+index).val());
-						alert("eyesight:"+$("#eyesight"+index).val());
-						alert("salary:"+$("#salary"+index).val());
-						alert("workWay:"+$("#workWay"+index).val());
-						alert("worklimit:"+$("#worklimit"+index).val());
-						alert("viewData:"+$("#viewData"+index).val());
-						alert("note:"+$("#note"+index).val());
-						alert("majorType:"+$("#selectSpecialtyhidden"+index).val());
-						alert("workType:"+$("#selectJobshidden"+index).val());
-						
-						var company=$("#company"+index).val();
-						var worknum=$("#worknum"+index).val();
-						var sex=$("#sex"+index).val();
-						var eteLevel=$("#eteLevel"+index).val();
-						var workyear=$("#workyear"+index).val();
-						var eduLevel=$("#eduLevel"+index).val();
-						var workspace=$("#workspace"+index).val();
-						var age=$("#age"+index).val();
-						var height=$("#height"+index).val();
-						var eyesight=$("#eyesight"+index).val();
-						var salary=$("#salary"+index).val();
-						var workWay=$("#workWay"+index).val();
-						var worklimit=$("#worklimit"+index).val();
-						var viewData=$("#viewData"+index).val();
-						var note=$("#note"+index).val();
-						var majorType=$("#selectSpecialtyhidden"+index).val();
-						var workType=$("#selectJobshidden"+index).val();
-						
-						ajax(company,worknum,sex,eteLevel,workyear,eduLevel,workspace,age,height,eyesight,salary,workWay,worklimit,viewData,note,majorType,workType,"yes");
-						})
-						*/
-					}
-				// ajax 提交招聘信息验证和保存。
-				function ajax(company,worknum,sex,eteLevel,workyear,eduLevel,workspace,age,height,eyesight,salary,workWay,worklimit,viewData,note,majorType,workType,submitx){
-						$.ajax({
-							url: "/enterprise-user/center/submit-recruit.jhtml",
-							type: "POST",
-							data: {
-								uid:${sessionUser.id},
-								company: company,
-								worknum:worknum,
-								sex:sex,
-								eteLevel:eteLevel,
-								workyear:workyear,
-								eduLevel:eduLevel,
-								workspace:workspace,
-								age:age,
-								height:height,
-								eyesight:eyesight,
-								salary:salary,
-								workWay:workWay,
-								worklimit:worklimit,
-								viewData:viewData,
-								note:note,
-								majorType:majorType,
-								workType:workType,
-								submit:submitx
-								},
-							dataType: "json",
-							cache: false,
-							success: function(data) {
-									if(data.message == "success" && submitx == "submit"){
-										alert("要提交其他信息了。");
-									}else{
-										
-									}
-									alert(data.message);
-								}
-							});
-					}
+		function submitJobs(){
+			alert("提交招聘信息");
+			$("div.zhaopinxinxi").each(function(index){
+				index=index+1;
+				alert(index);
+				$("#jobsForm1").ajaxSubmit({
+		            	 type: "post",
+					     url: "/enterprise-user/center/submit-recruit.jhtml",
+					     dataType: "json",
+					     success: function(data){
+					     	if(data.message=="success"){
+						     	alert("提交成功");				     		
+					     	}
+					     }
+	        	});	
+	        });	
+			
+		}
     	// 保存信息。
     	$("#savaAll").click(function() {
 				submitInfo();
@@ -1146,36 +1092,24 @@
 								<th>状况</th>
 								<th>操作</th>
 							</tr>
-							<tr>
+							[#if recruits?size>0]
+							[#list recruits as recruit]
+								<tr>
 								<td>招聘专业</td>
 								<td>工种描述</td>
-								<td>性别</td>
-								<td>文化程度</td>
-								<td>年龄</td>
-								<td>审核情况</td>
+								<td>
+								[#if recruit.sex=="man"&&recruit.sex!="woman"]男[#elseif recruit.sex=="woman"]女[/#if]
+								</td>
+								<td>${recruit.eduLevel}</td>
+								<td>${recruit.age}</td>
+								<td>
+								[#if recruit.status=="0"&&recruit.status!="1"]审核中[#elseif recruit.status=="1"]已通过审核[/#if]
+								</td>
 								<td>状况</td>
 								<td><a href="" style="margin-right: 5px;">编辑</a><a href="">删除</a></td>
 							</tr>
-							<tr>
-								<td>招聘专业</td>
-								<td>工种描述</td>
-								<td>性别</td>
-								<td>文化程度</td>
-								<td>年龄</td>
-								<td>审核情况</td>
-								<td>状况</td>
-								<td><a href="" style="margin-right: 5px;">编辑</a><a href="">删除</a></td>
-							</tr>
-							<tr>
-								<td>招聘专业</td>
-								<td>工种描述</td>
-								<td>性别</td>
-								<td>文化程度</td>
-								<td>年龄</td>
-								<td>审核情况</td>
-								<td>状况</td>
-								<td><a href="" style="margin-right: 5px;">编辑</a><a href="">删除</a></td>
-							</tr>
+							[/#list]
+							[/#if]
 						</table>
 					</div>
 					<div style="height: 30px; width: 728px;">
@@ -1186,8 +1120,9 @@
 						</div>
 					</div>
 					<div>
+				<div class="zhaopinxinxi" style="padding:10px 30px;width:650px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 					<form novalidate="novalidate"  action="/enterprise-user/center/submit-recruit.jhtml"  method="post" id="jobsForm1">
-						<div class="zhaopinxinxi" style="padding:10px 30px;width:650px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+						<input type="hidden" name="status" value="0">
 							<table>
 								<tr>
 									<td rowspan="9" style="color:#E2652E;">1</td>
@@ -1301,12 +1236,12 @@
 										<textArea cols="30" style="resize:none;" id="note1" name="note"></textArea>
 									</td>
 									<td style="vertical-align: bottom; text-align: right;">
-										<a class="delete_zhaopin" href="javascript:void(0);">删除</a>
+										<a onclick="delete_zhaopin(this)" href="javascript:void(0);">删除</a>
 									</td>
 								</tr>
 							</table>
-						</div>
 						</form>
+						</div>
 					</div>
 					<p style="text-align:center;">
 						<input type="button" id="savaJobs" value="保存">

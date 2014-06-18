@@ -82,13 +82,12 @@ public class ControllerCenter {
 		List<TentImgVedio> Vedios=(List<TentImgVedio>)etechService.findListByHQL(hql);
 		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+entUser.getId()+"  and info.type='2'";
 		List<TentImgVedio> Maps=(List<TentImgVedio>)etechService.findListByHQL(hql);
-		
-		System.out.println(Imgs.size());
-		System.out.println(Vedios.size());
-		System.out.println(Maps.size());
+		hql="From Trecruit recruit left join fetch recruit.entUser  as user where  user.id='"+entUser.getId()+"'";
+		List<Trecruit> recruits = (List<Trecruit>)etechService.findListByHQL(hql);
 		session.setAttribute("Imgs", Imgs);
 		session.setAttribute("Vedios", Vedios);
 		session.setAttribute("Maps", Maps);
+		session.setAttribute("recruits", recruits);
 		return "center/enterpriseCenter";
 	}
 
@@ -245,8 +244,8 @@ public class ControllerCenter {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			map.put("message", "error");
-			JsonOutToBrower.out(map, response);
 		}
+		JsonOutToBrower.out(map, response);
 	}
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")

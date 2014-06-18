@@ -191,19 +191,16 @@
 		    $().ready(function() {
 		    	// ajax 提交验证和登录。
 		    	function submitF(or,flag){
-						var loginName=$("#username").val();
-						var password=$("#password").val();						
-						var userType=$('input:radio[name="userType"]:checked').val();
-					 	if(loginName==""){
+					 	if($("#loginName").val()==""){
 					 	  return false;
 					 	}
 						$.ajax({
 							url: "/ajaxLoginValid.jhtml",
 							type: "POST",
 							data: {
-								loginName: loginName,
-								password:password,
-								userType: userType
+								loginName: $("#loginName").val(),
+								password:$("#password").val(),
+								userType: $('input:radio[name="userType"]:checked').val()
 									},
 							dataType: "json",
 							cache: false,
@@ -230,13 +227,13 @@
 							});
 					}
 		    	// 用户名验证。
-				$("#username,input:radio[name='userType']").change(function(){
+				$("#loginName,input:radio[name='userType']").change(function(){
 					submitF("no","true");
 				});
 				
 				// 登录。
 				$("#login").click(function() {
-					var loginName=$("#username").val();
+					var loginName=$("#loginName").val();
 					var password=$("#password").val();
 					if(loginName==""&&password==""){
 						alert("用户名和密码不能为空！");
@@ -329,7 +326,7 @@
 					</tr>
 					<tr>
 						<td>用户名:</td>
-						<td><input id="username" type="text" autocomplete="off" style="width:150px" name="username"></td>
+						<td><input id="loginName" type="text" autocomplete="off" style="width:150px" name="loginName"></td>
 					</tr>
 					<tr>
 						<td>密&nbsp;&nbsp;&nbsp;码:</td>
