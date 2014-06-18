@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.etech.entity.TdataCenter;
 import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
 
@@ -69,8 +70,7 @@ public class ControllerStationAudit {
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.GET)
 	public String saveNewsView(){
-		
-		return "redirect:/admin/humanResources/list.jhtml";
+		return "redirect:/admin/stationAudit/list.jhtml";
 	}
 	/**
 	 * 修改岗位审核
@@ -78,7 +78,13 @@ public class ControllerStationAudit {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String updateNewsView(){
-		
-		return "redirect:/admin/humanResources/list.jhtml";
+		return "redirect:/admin/stationAudit/list.jhtml";
+	}
+	@RequestMapping(value = "/review", method = RequestMethod.GET)
+	public String review(HttpServletRequest request){
+		String id=request.getParameter("id");
+		int review=1;
+		etechService.updata(TdataCenter.class, "id", Integer.parseInt(id), "status", review);
+		return "redirect:/admin/stationAudit/list.jhtml";
 	}
 }

@@ -55,4 +55,7 @@ public class EtechService {
 	public List<?> search(Class<?> clazz,String key,String[] fields,int currentPage,int perCount){
 		return etechComDao.getListByHSearch(clazz, key, fields,currentPage,perCount);
 	}
+	public void updata(Class<?> clazz,String property,Object value,String updateProperty,Object updateValue){
+		etechComDao.update(clazz, property, value, updateProperty, updateValue);
+	}
 }

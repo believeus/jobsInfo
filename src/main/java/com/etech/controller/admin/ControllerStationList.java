@@ -68,7 +68,6 @@ public class ControllerStationList {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String updateNewsView(){
-		
 		return "redirect:/admin/humanResources/list.jhtml";
 	}
 }

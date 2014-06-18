@@ -73,7 +73,22 @@ public class EtechComDao extends HibernateDaoSupport {
 		});
 		return 0;
 	}
+	public void update(Class<?> clazz,String property,final Object value,final String updateProperty,Object updateValue){
+		final String hql="update from "+clazz.getName()+" as entity set entity."+updateProperty+" =:updateProperty where entity."+property+" =:value";
+		getHibernateTemplate().execute(new HibernateCallback<Object>() {
 
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				Query query = session.createQuery(hql);
+				query.setParameter("updateProperty",updateProperty);
+				query.setParameter("value", value);
+				query.executeUpdate();
+				return null;
+			}
+			
+		});
+	}
 	// 以对象的方式删除对象
 	public void delete(Object object) {
 		this.getHibernateTemplate().delete(object);

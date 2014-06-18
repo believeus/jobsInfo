@@ -111,7 +111,7 @@ $().ready(function() {
 				</td>
 				<td>
 					<a href="edit.jhtml?id=${recruit.id}">[修改]</a>
-					<a href="edit.jhtml?id=${recruit.id}">[审核通过]</a>
+					<a href="review.jhtml?id=${recruit.id}">[审核通过]</a>
 				</td>
 			</tr>
 			[/#list]
