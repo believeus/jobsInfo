@@ -122,7 +122,7 @@
 				<ul>
 				[#list dataCenterList as dataCenter]
 					<li>
-						<a href="/countryLaw.jhtml">${dataCenter.title}</a><span>${dataCenter.editTime?number_to_datetime}</span>
+						<a href="/countryLaw.jhtml?id=${dataCenter.id}">${dataCenter.title}</a><span>${dataCenter.editTime?number_to_datetime}</span>
 					</li>
 				[/#list]
 				</ul>

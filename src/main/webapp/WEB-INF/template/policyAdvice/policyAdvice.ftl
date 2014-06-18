@@ -133,11 +133,15 @@
 					<li><a href="/cityFileList.jhtml">地方相关文件</a></li>
 				</ul>
 			</div>
-			<div class="j_main_left_1" style="margin-top:10px;height:400px;text-align:center;">
+			<div class="j_main_left_1" style="margin-top:10px;height:425px;text-align:center;">
 				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml" style="margin-left:0;">更多>></a></div>
-				<img src="/resource/public/images/zhuanti.png" style="margin-top:7px;">
+				[#list subjectReport as sReport]
+					[#if sReport_index <5]
+						<a style="margin-left:0;" href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:222px;height:62px;margin-top:7px;"></a>
+					[/#if]
+				[/#list]
 			</div>
 		</div>
 		<div class="j_main_right">
@@ -207,11 +211,11 @@
 							<div class="j_main_right_3">
 								<p>
 									<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-									国家法律法规<span><a href="/countryLaw.jhtml">更多</a></span></p>
+									国家法律法规<span><a href="/countryLawList.jhtml">更多</a></span></p>
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
 										[#list countryLawDataList as countryLawData]
-										<li><a href="/countryLaw.jhtml">${countryLawData.title}</a><span style="">${countryLawData.editTime?number_to_datetime}</span></li>
+										<li><a href="/countryLaw.jhtml?id=${countryLawData.id}">${countryLawData.title}</a><span style="">${countryLawData.editTime?number_to_datetime}</span></li>
 										[/#list]
 									</ul>
 								</div>
@@ -221,12 +225,12 @@
 							<div class="j_main_right_3">
 								<p>
 									<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-									地方法律法规<span><a href="/cityLaw.jhtml">更多</a></span>
+									地方法律法规<span><a href="/cityLawList.jhtml">更多</a></span>
 								</p>
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
 										[#list cityLawDataList as cityLawData]
-										<li><a href="/countryLaw.jhtml">${cityLawData.title}</a><span style="">${cityLawData.editTime?number_to_datetime}</span></li>
+										<li><a href="/countryLaw.jhtml?id=${cityLawData.id}">${cityLawData.title}</a><span style="">${cityLawData.editTime?number_to_datetime}</span></li>
 										[/#list]
 									</ul>
 								</div>
@@ -238,12 +242,12 @@
 							<div class="j_main_right_3">
 								<p>
 									<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-									国家相关文件<span><a href="">更多</a></span>
+									国家相关文件<span><a href="/countryFileList.jhtml">更多</a></span>
 								</p>
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
 										[#list countryFileDataList as countryFileData]
-										 <li><a href="/countryLaw.jhtml">${countryFileData.title}</a><span style="">
+										 <li><a href="/countryLaw.jhtml?id=${countryFileData.id}">${countryFileData.title}</a><span style="">
 										  	${countryFileData.editTime?number_to_datetime}</span></li>
 										[/#list]
 									</ul>
@@ -254,12 +258,12 @@
 							<div class="j_main_right_3">
 								<p>
 									<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-									地方相关文件<span><a href="">更多</a></span>
+									地方相关文件<span><a href="cityFileList.jhtml">更多</a></span>
 								</p>
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
 										[#list cityFileDataList as cityFileData]
-										<li><a href="/countryLaw.jhtml">${cityFileData.title}</a><span style="">${cityFileData.editTime?number_to_datetime}</span></li>
+										<li><a href="/countryLaw.jhtml?id=${cityFileData.id}">${cityFileData.title}</a><span style="">${cityFileData.editTime?number_to_datetime}</span></li>
 										[/#list]
 									</ul>
 								</div>
