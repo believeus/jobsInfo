@@ -19,19 +19,38 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class TmajorType extends TbaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 265386274128991391L;
-	/**专业或工种名*/
-	private String name;
 	/**专业或工种编码*/
 	private int codeId;
-	/** 个人用户工种信息*/
-	private Set<TcomInfo> comInfoWork;
 	/** 个人用户专业信息*/
 	private Set<TcomInfo> comInfoMajor;
-	/** 企业用户工种信息*/
-	private Set<Trecruit> recruitWork;
+	/** 个人用户工种信息*/
+	private Set<TcomInfo> comInfoWork;
+	/**专业或工种名*/
+	private String name;
+
 	/** 企业用户专业信息*/
 	private Set<Trecruit> recruitMajor;
+	/** 企业用户工种信息*/
+	private Set<Trecruit> recruitWork;
+	@OneToMany(fetch = FetchType.LAZY,mappedBy="majorType")
+	public Set<TcomInfo> getComInfoMajor() {
+		return comInfoMajor;
+	}
+
 	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy="workType")
+	public Set<TcomInfo> getComInfoWork() {
+		return comInfoWork;
+	}
+	public int getCodeId() {
+		return codeId;
+	}
+
+	public void setCodeId(int codeId) {
+		this.codeId = codeId;
+	}
+
+
 	/**专业或工种名*/
 	@NotEmpty
 	@Length(max = 25)
@@ -39,30 +58,14 @@ public class TmajorType extends TbaseEntity implements Serializable {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	public int getCodeId() {
-		return codeId;
-	}
-	
-	@NotEmpty
-	public void setCodeId(int codeId) {
-		this.codeId = codeId;
-	}
-	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy="workType")
-	public Set<TcomInfo> getComInfoWork() {
-		return comInfoWork;
-	}
-
-	public void setComInfoWork(Set<TcomInfo> comInfoWork) {
-		this.comInfoWork = comInfoWork;
-	}
-
 	@OneToMany(fetch = FetchType.LAZY,mappedBy="majorType")
-	public Set<TcomInfo> getComInfoMajor() {
-		return comInfoMajor;
+	public Set<Trecruit> getRecruitMajor() {
+		return recruitMajor;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY,mappedBy="workType")
+	public Set<Trecruit> getRecruitWork() {
+		return recruitWork;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY,mappedBy="workType")
@@ -70,18 +73,16 @@ public class TmajorType extends TbaseEntity implements Serializable {
 		this.comInfoMajor = comInfoMajor;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY,mappedBy="majorType")
-	public Set<Trecruit> getRecruitMajor() {
-		return recruitMajor;
+	public void setComInfoWork(Set<TcomInfo> comInfoWork) {
+		this.comInfoWork = comInfoWork;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public void setRecruitMajor(Set<Trecruit> recruitMajor) {
 		this.recruitMajor = recruitMajor;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY,mappedBy="workType")
-	public Set<Trecruit> getRecruitWork() {
-		return recruitWork;
 	}
 
 	public void setRecruitWork(Set<Trecruit> recruitWork) {
