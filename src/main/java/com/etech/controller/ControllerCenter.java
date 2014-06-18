@@ -70,6 +70,7 @@ public class ControllerCenter {
 		session.setAttribute("works", works);// 工作经验
 		session.setAttribute("volunteers", volunteers);// 选择志愿
 		/*Begin Author:wuqiwei Data:2014-06-18 AddReason:根据填写的志愿信息获取推荐企业*/
+		@SuppressWarnings("unused")
 		List<?> findListByHQL = etechService.findListByHQL(hql);
 		return "center/personalCenter";
 	}
@@ -87,12 +88,13 @@ public class ControllerCenter {
 		List<TentImgVedio> Vedios=(List<TentImgVedio>)etechService.findListByHQL(hql);
 		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+entUser.getId()+"  and info.type='2'";
 		List<TentImgVedio> Maps=(List<TentImgVedio>)etechService.findListByHQL(hql);
-		hql="From Trecruit recruit left join fetch recruit.entUser  as user where  user.id='"+entUser.getId()+"'";
+		hql="From Trecruit recruit left join fetch recruit.entUser as user where  user.id='"+entUser.getId()+"'";
 		List<Trecruit> recruits = (List<Trecruit>)etechService.findListByHQL(hql);
 		session.setAttribute("Imgs", Imgs);
 		session.setAttribute("Vedios", Vedios);
 		session.setAttribute("Maps", Maps);
-		session.setAttribute("recruits", recruits);
+		session.setAttribute("recruits",recruits);
+		
 		return "center/enterpriseCenter";
 	}
 

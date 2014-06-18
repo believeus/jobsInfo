@@ -84,7 +84,7 @@ $().ready(function() {
 					<a href="javascript:;" class="sort" name="type">工作地点</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="endDate">排序</a>
+					<a href="javascript:;" class="sort" name="endDate">面试时间</a>
 				</th>
 				<th>
 					<a href="#"  class="sort">操作</a>
@@ -106,12 +106,15 @@ $().ready(function() {
 					${recruit.workspace}
 				</td>
 				<td>
-					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
-					<a href="" style="text-decoration:underline;">降</a>
+					${recruit.viewData?number_to_date} ${recruit.viewData?number_to_time}
 				</td>
 				<td>
 					<a href="edit.jhtml?id=${recruit.id}">[修改]</a>
-					<a href="review.jhtml?id=${recruit.id}">[审核通过]</a>
+					[#if recruit.status ==0 ]
+					 <a href="review.jhtml?id=${recruit.id}"><font color="red">[未审核]</font></a>
+					[#else]
+					  <font color="green">[审核通过]</font>
+					[/#if]
 				</td>
 			</tr>
 			[/#list]

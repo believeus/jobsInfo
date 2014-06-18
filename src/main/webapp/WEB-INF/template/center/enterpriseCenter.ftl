@@ -1089,14 +1089,13 @@
 								<th>文化程度</th>
 								<th>年龄</th>
 								<th>审核情况</th>
-								<th>状况</th>
 								<th>操作</th>
 							</tr>
 							[#if recruits?size>0]
 							[#list recruits as recruit]
 								<tr>
-								<td>招聘专业</td>
-								<td>工种描述</td>
+								<td>${recruit.majorType.name}</td>
+								<td>${recruit.note}</td>
 								<td>
 								[#if recruit.sex=="man"&&recruit.sex!="woman"]男[#elseif recruit.sex=="woman"]女[/#if]
 								</td>
@@ -1105,7 +1104,6 @@
 								<td>
 								[#if recruit.status=="0"&&recruit.status!="1"]审核中[#elseif recruit.status=="1"]已通过审核[/#if]
 								</td>
-								<td>状况</td>
 								<td><a href="" style="margin-right: 5px;">编辑</a><a href="">删除</a></td>
 							</tr>
 							[/#list]

@@ -73,16 +73,17 @@ public class EtechComDao extends HibernateDaoSupport {
 		});
 		return 0;
 	}
-	public void update(Class<?> clazz,String property,final Object value,final String updateProperty,Object updateValue){
-		final String hql="update from "+clazz.getName()+" as entity set entity."+updateProperty+" =:updateProperty where entity."+property+" =:value";
+	public void update(Class<?> clazz,String property,final Object value,String updateProperty,final Object updateValue){
+		final String hql="update from "+clazz.getName()+" as entity set entity."+updateProperty+" =:updateValue where entity."+property+" =:value";
 		getHibernateTemplate().execute(new HibernateCallback<Object>() {
 
 			@Override
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
 				Query query = session.createQuery(hql);
-				query.setParameter("updateProperty",updateProperty);
+				query.setParameter("updateValue",updateValue);
 				query.setParameter("value", value);
+				log.debug(query.getQueryString());
 				query.executeUpdate();
 				return null;
 			}

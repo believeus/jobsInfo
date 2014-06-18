@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.etech.entity.TdataCenter;
 import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
 
@@ -33,6 +32,7 @@ public class ControllerStationAudit {
 	public String newsListView(HttpServletRequest request) {
 		log.debug("current controller is newsListView !");
 		String hql="From Trecruit";
+		@SuppressWarnings("unchecked")
 		List<Trecruit> recruitList=(List<Trecruit>)etechService.findListByHQL(hql, 20);
 		request.setAttribute("recruitList", recruitList);
 		return "admin/humanResources/list";
@@ -84,7 +84,7 @@ public class ControllerStationAudit {
 	public String review(HttpServletRequest request){
 		String id=request.getParameter("id");
 		int review=1;
-		etechService.updata(TdataCenter.class, "id", Integer.parseInt(id), "status", review);
+		etechService.updata(Trecruit.class, "id", Integer.parseInt(id), "status", review);
 		return "redirect:/admin/stationAudit/list.jhtml";
 	}
 }
