@@ -81,7 +81,7 @@ $().ready(function() {
 					<a href="javascript:;" class="sort" name="adPosition">内容标题</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="type">置顶</a>
+					<a href="javascript:;" class="sort" name="type">工作地点</a>
 				</th>
 				<th>
 					<a href="javascript:;" class="sort" name="endDate">排序</a>
@@ -92,69 +92,29 @@ $().ready(function() {
 			</tr>
 			
 			<tr>
+			[#list recruitList as recruit]
 				<td>
-					<input type="checkbox" name="ids" value="1" />
+					<input type="checkbox" name="ids" value="${recruit.id}" />
 				</td>
 				<td>
-					<span title="1">1</span>
+					<span>${recruit.id}</span>
 				</td>
 				<td>
-					新闻标题
+					${recruit.company}
 				</td>
 				<td>
-					<input type="checkbox" id="" />
-				</td>
-				<td>
-					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
-					<a href="" style="text-decoration:underline;">降</a>
-				</td>
-				<td>
-					<a href="edit.jhtml?id=1">[修改]</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" name="ids" value="1" />
-				</td>
-				<td>
-					<span title="2">2</span>
-				</td>
-				<td>
-					新闻标题
-				</td>
-				<td>
-					<input type="checkbox" id="" />
+					${recruit.workspace}
 				</td>
 				<td>
 					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
 					<a href="" style="text-decoration:underline;">降</a>
 				</td>
 				<td>
-					<a href="edit.jhtml?id=1">[修改]</a>
+					<a href="edit.jhtml?id=${recruit.id}">[修改]</a>
+					<a href="edit.jhtml?id=${recruit.id}">[审核通过]</a>
 				</td>
 			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" name="ids" value="1" />
-				</td>
-				<td>
-					<span title="3">3</span>
-				</td>
-				<td>
-					新闻标题
-				</td>
-				<td>
-					<input type="checkbox" id="" />
-				</td>
-				<td>
-					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
-					<a href="" style="text-decoration:underline;">降</a>
-				</td>
-				<td>
-					<a href="edit.jhtml?id=1">[修改]</a>
-				</td>
-			</tr>
-			
+			[/#list]
 		</table>
 	</form>
 </body>

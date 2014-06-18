@@ -1,10 +1,19 @@
 package com.etech.controller.admin;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.etech.entity.Trecruit;
+import com.etech.service.EtechService;
 
 /**
  * 岗位审核
@@ -13,21 +22,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/admin/stationAudit")
 public class ControllerStationAudit {
 	private static Log log = LogFactory.getLog(ControllerStationAudit.class);
-
+	@Resource
+	private EtechService etechService;
 	/**
 	 * 岗位审核列表
 	 * @return
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String newsListView() {
+	public String newsListView(HttpServletRequest request) {
 		log.debug("current controller is newsListView !");
+		String hql="From Trecruit";
+		List<Trecruit> recruitList=(List<Trecruit>)etechService.findListByHQL(hql, 20);
+		request.setAttribute("recruitList", recruitList);
 		return "admin/humanResources/list";
 	}
 	
+	@RequiresPermissions("stationAudit:delete")
+	@RequestMapping("/delete")
+	public String delete(){
+		return "";
+	}
 	/**
 	 * 添加岗位审核
 	 * @return
 	 */
+	@RequiresPermissions("stationAudit:create")
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView() {
 		log.debug("current controller is newsListView !");
@@ -37,6 +56,7 @@ public class ControllerStationAudit {
 	 * 编辑岗位审核
 	 * @return
 	 */
+	@RequiresPermissions("stationAudit:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView() {
 		log.debug("current controller is newsListView !");

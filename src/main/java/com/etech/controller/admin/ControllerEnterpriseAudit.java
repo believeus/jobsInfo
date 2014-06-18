@@ -2,6 +2,7 @@ package com.etech.controller.admin;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,10 +25,16 @@ public class ControllerEnterpriseAudit {
 		return "admin/humanResources/list";
 	}
 	
+	@RequiresPermissions("enterpriseAudit:delete")
+	@RequestMapping("/delete")
+	public String delete(){
+		return "";
+	}
 	/**
 	 * 添加企业审核
 	 * @return
 	 */
+	@RequiresPermissions("enterpriseAudit:create")
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView() {
 		log.debug("current controller is newsListView !");
@@ -37,6 +44,7 @@ public class ControllerEnterpriseAudit {
 	 * 编辑企业审核
 	 * @return
 	 */
+	@RequiresPermissions("enterpriseAudit:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView() {
 		log.debug("current controller is newsListView !");

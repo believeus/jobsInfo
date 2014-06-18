@@ -20,6 +20,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -52,6 +53,7 @@ public class ControllerCenter {
 
 	/** 个人中心:该用户需要有personalRole角色才能访问 */
 	@SuppressWarnings("unchecked")
+	@RequiresRoles("个人用户权限")
 	@RequestMapping(value = "/common-user/center", method = RequestMethod.GET)
 	public String personalCenter(HttpSession session) {
 		TcomUser sessionUser = (TcomUser) session.getAttribute("sessionUser");
@@ -67,11 +69,14 @@ public class ControllerCenter {
 		session.setAttribute("learnings", learnings);// 学习经历
 		session.setAttribute("works", works);// 工作经验
 		session.setAttribute("volunteers", volunteers);// 选择志愿
+		/*Begin Author:wuqiwei Data:2014-06-18 AddReason:根据填写的志愿信息获取推荐企业*/
+		List<?> findListByHQL = etechService.findListByHQL(hql);
 		return "center/personalCenter";
 	}
 
 	/** 进入企业中心:该用户需要有enterpriseRole角色才能访问 */
 	@SuppressWarnings("unchecked")
+	@RequiresRoles("企业用户权限")
 	@RequestMapping(value = "/enterprise-user/center", method = RequestMethod.GET)
 	public String enterpriseCenter(HttpSession session) {
 		TentUser entUser=(TentUser)session.getAttribute("sessionUser");
