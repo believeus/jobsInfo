@@ -36,6 +36,7 @@ import com.etech.entity.TentImgVedio;
 import com.etech.entity.TentUser;
 import com.etech.entity.TmajorType;
 import com.etech.entity.Trecruit;
+import com.etech.service.CommonUserService;
 import com.etech.service.EtechService;
 import com.etech.util.JsonOutToBrower;
 
@@ -49,29 +50,36 @@ public class ControllerCenter {
 	@Resource
 	private EtechService etechService;
 	@Resource
+	private CommonUserService commonUserService;
+	@Resource
 	private MydfsTrackerServer mydfsTrackerServer;
 
 	/** 个人中心:该用户需要有personalRole角色才能访问 */
 	@SuppressWarnings("unchecked")
 	@RequiresRoles("个人用户权限")
 	@RequestMapping(value = "/common-user/center", method = RequestMethod.GET)
-	public String personalCenter(HttpSession session) {
+	public String personalCenter(HttpSession session,HttpServletRequest request) {
 		TcomUser sessionUser = (TcomUser) session.getAttribute("sessionUser");
+		// 1：查询具备技能
 		String hql="From TcomInfo comInfo left join fetch comInfo.comUser  as user where comInfo.infoType='1' and user.id='"+sessionUser.getId()+"'";
-		List<TcomUser> skills = (List<TcomUser>)etechService.findListByHQL(hql);
+		List<TcomInfo> skills = (List<TcomInfo>)etechService.findListByHQL(hql);
+		//2：查询学习经历
 		hql="From TcomInfo comInfo left join fetch comInfo.comUser  as user where comInfo.infoType='2' and user.id='"+sessionUser.getId()+"'";;
-		List<TcomUser> learnings = (List<TcomUser>)etechService.findListByHQL(hql);
+		List<TcomInfo> learnings = (List<TcomInfo>)etechService.findListByHQL(hql);
+		//3 查询工作经验
 		hql="From TcomInfo comInfo left join fetch comInfo.comUser  as user where comInfo.infoType='3' and user.id='"+sessionUser.getId()+"'";;
-		List<TcomUser> works = (List<TcomUser>)etechService.findListByHQL(hql);
+		List<TcomInfo> works = (List<TcomInfo>)etechService.findListByHQL(hql);
+		//4 查询志愿
 		hql="From TcomInfo comInfo left join fetch comInfo.comUser  as user where comInfo.infoType='4' and user.id='"+sessionUser.getId()+"'";;
-		List<TcomUser> volunteers = (List<TcomUser>)etechService.findListByHQL(hql);
-		session.setAttribute("skills", skills);// 具备技能
-		session.setAttribute("learnings", learnings);// 学习经历
-		session.setAttribute("works", works);// 工作经验
-		session.setAttribute("volunteers", volunteers);// 选择志愿
+		List<TcomInfo> volunteers = (List<TcomInfo>)etechService.findListByHQL(hql);
+		request.setAttribute("skills", skills);// 具备技能
+		request.setAttribute("learnings", learnings);// 学习经历
+		request.setAttribute("works", works);// 工作经验
+		request.setAttribute("volunteers", volunteers);// 选择志愿
 		/*Begin Author:wuqiwei Data:2014-06-18 AddReason:根据填写的志愿信息获取推荐企业*/
-		@SuppressWarnings("unused")
-		List<?> findListByHQL = etechService.findListByHQL(hql);
+		List<Trecruit> recommendTrecruit = commonUserService.enterpriseRecommend(volunteers);
+		request.setAttribute("recommendTrecruit", recommendTrecruit);
+		/*End Author:wuqiwei Data:2014-06-18 AddReason:根据填写的志愿信息获取推荐企业*/
 		return "center/personalCenter";
 	}
 

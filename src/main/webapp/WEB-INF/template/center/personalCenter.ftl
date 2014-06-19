@@ -1091,27 +1091,15 @@
 			</div>
 			<div class="j_main_left_1" style="margin-top:10px;height:auto;text-align:center;border:1px solid #E4630F;border-radius:4px;">
 				<p style="background: #EE981F; text-align: center; margin: 5px; padding: 5px; border-radius: 5px; border: 0px none; color: #FFFFFF;">职位推荐</p>
+				[#list recommendTrecruit as recruit]
 				<div class="j_main_left_1_1">
-					<p style="color: blue;font-weight:bold;">室内设计师</p>
-					<p style="color: blue;">中南集团营销公司</p>
-					<p>薪资待遇：面议</p>
-					<p>招聘人数：若干人</p>
-					<p>学历要求：中专</p>
+					<p style="color: blue;font-weight:bold;">${recruit.workType.getName}</p>
+					<p style="color: blue;">${recruit.company}</p>
+					<p>薪资待遇:${recruit.salary}</p>
+					<p>招聘人数：${recruit.worknum}</p>
+					<p>学历要求：${recruit.eduLevel}</p>
 				</div>
-				<div class="j_main_left_1_1">
-					<p style="color: blue;font-weight:bold;">室内设计师</p>
-					<p style="color: blue;">中南集团营销公司</p>
-					<p>薪资待遇：面议</p>
-					<p>招聘人数：若干人</p>
-					<p>学历要求：中专</p>
-				</div>
-				<div class="j_main_left_1_1" style="border-bottom:0;">
-					<p style="color: blue;font-weight:bold;">室内设计师</p>
-					<p style="color: blue;">中南集团营销公司</p>
-					<p>薪资待遇：面议</p>
-					<p>招聘人数：若干人</p>
-					<p>学历要求：中专</p>
-				</div>
+				[/#list]
 			</div>
 		</div>
 		<div class="j_main_right" id="conentDiv">
