@@ -78,6 +78,9 @@ $().ready(function() {
 					<a href="javascript:;" class="sort" name="adPosition">管理员分组</a>
 				</th>
 				<th>
+					<a href="javascript:;" class="sort" name="adPosition">角色说明</a>
+				</th>
+				<th>
 					<a href="#"  class="sort">操作</a>
 				</th>
 			</tr>

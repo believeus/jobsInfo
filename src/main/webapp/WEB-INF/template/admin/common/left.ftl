@@ -15,16 +15,18 @@ body {
 	padding:0px;
 }
 #container h1 {
-    color: #fafafa;
+    color: #233C6F;
     cursor: pointer;
     font-size: 15px;
     font-weight: normal;
-    height: 30px;
+    height: 32px;
     line-height: 30px;
     padding-left: 10px;
     margin:0px;
   	padding-left:50px;
   	font-size:16px;
+  	background:#dcecf5;
+  	border: 1px solid #bdccd4;
   }
 .content{
 	width: 182px;
@@ -32,7 +34,7 @@ body {
 	
 }
  ul {
-	background-color: #edc9c2;
+	background-color: #f0f9fe;
     font-size: 13px;
     margin:0px;
     width:178px;
@@ -42,10 +44,10 @@ body {
 ul li {
 	list-style-type:none;
     line-height: 25px;
-    margin-left:50px;
+    text-align:center;
 }
 li a {
-    color: #C3513C;
+    color: #233C6F;
     padding-left: 5px;
 }
 a
@@ -53,8 +55,9 @@ a
 	text-decoration: none;
 }
 .current{
-	color:#e10000;
+	color:#233c6f;
 	font-weight:bold;
+	background:url(/resource/public/images/back_current.png);
 }
 </style>
 <script type="text/javaScript">
@@ -71,8 +74,8 @@ $(function(){
 	var alist = $(".MM a");
 	alist.each(function(){
 		$(this).click(function(){
-			$(".MM a").removeClass("current");
-			$(this).addClass("current");
+			$(".MM a").parent().removeClass("current");
+			$(this).parent().addClass("current");
 		});
 	});
 })
@@ -80,18 +83,18 @@ $(function(){
 </script>
 </head>
 
-<body style="overflow-y:scroll;" bgcolor="#BD3A21">
+<body style="overflow-y:scroll;" bgcolor="#F0F9FE">
 <table width="100%" height="280" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td width="182" valign="top">
 	   	<div id="container">
 	   		<div style="height:auto;width:180px;">
-	   		<p style="background: url(/resource/public/images/back-2.png);font-size: 16px;margin: 0;padding: 8px;text-align: center;font-size:19px;color:#FFFFFF;">
+	   		<p style="height:20px;background: #3f97c9;font-size: 16px;margin: 0;padding: 8px;text-align: center;font-size:19px;color:#ffffff;">
 	   			网站内容管理
    			</p>
-	   		​[@shiro.hasPermission name="infocenter:view"]
-		  	<h1>资讯中心</h1>
-    		<ul style="display: none;" class="MM">
+   			​[@shiro.hasPermission name="infocenter:view"]
+		  	<h1 id="h1_1" style="margin-top: -16px; margin-bottom: -15px;">资讯中心</h1>
+    		<ul id="ul_1" style="display: none;margin-top:15px;" class="MM">
 				<li>
 					<a target="main" href="/admin/news/newsList.jhtml">新闻动态</a>
 				</li>
@@ -214,7 +217,7 @@ $(function(){
       			</ul>
   			</div>
   			<div style="height:auto;width:180px;">
-	   		<p style="background: url(/resource/public/images/back-2.png);font-size: 16px;margin: 0;padding: 8px;text-align: center;font-size:19px;color:#FFFFFF;">
+	   		<p style="height:17px;background: #3f97c9;font-size: 16px;margin: 0;padding: 8px;text-align: center;font-size:19px;color:#ffffff;">
 	   			人力资源业务管理
    			</p>
 			<h1>内容审核</h1>
@@ -240,7 +243,7 @@ $(function(){
       			</ul>
   			</div>
   			<div style="height:auto;width:180px;">
-	   		<p style="background: url(/resource/public/images/back-2.png);font-size: 16px;margin: 0;padding: 8px;text-align: center;font-size:19px;color:#FFFFFF;">系统管理</p>
+	   		<p style="height:17px;background: #3f97c9;font-size: 16px;margin: 0;padding: 8px;text-align: center;font-size:19px;color:#ffffff;">系统管理</p>
   			<h1>系统设置</h1>
        			 <ul style="display: none;" class="MM">
        			 	[@shiro.hasPermission name="adminList:view"]
