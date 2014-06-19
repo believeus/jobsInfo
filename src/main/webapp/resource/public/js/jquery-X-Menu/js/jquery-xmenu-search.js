@@ -77,7 +77,7 @@
 				
 				if(name.length>10){
 					$span.attr({"title":name});
-					name =name.substring(0,15)+"...";
+					name =name.substring(0,10)+"...";
 				}
 				
 				$span.text(name);
@@ -163,7 +163,7 @@
 					for(var i=0;i<array.length;i++){
 						var $cli = $mli.filter("li[rel='"+array[i]+"']");
 						$cli.addClass("current");
-						$("<li rel='"+array[i]+"' class='current'>"+$cli.text()+"(点击即可取消选择)</li>").appendTo($selectUl);
+						$("<li rel='"+array[i]+"' class='current'>"+$cli.text()+"</li>").appendTo($selectUl);
 					}					
 				}else if($selectUl.children("li").length > 0){
 					$selectinfo.show();

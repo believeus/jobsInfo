@@ -242,6 +242,7 @@
 			
 		$().ready(function(){
 			
+			// 条件组合显示
 			var strdata="${data}";
 			strdata=strdata.split("-");
 			for(var i=0;i<strdata.length;i++){
@@ -258,11 +259,26 @@
 				}
 				
 			}
+			// 关键字显示
+			$("#keyword").val("${keyword}");
+			
 			var html ='<div id="xmenuSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'+
 				  '<div id="xmenuJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>';
 			$("#tag").parent().append(html);
 			
-			// 添加弹窗控件。
+			// 判断是否有值存在。
+			[#if majorTypeId!=""]
+				// 添加弹窗控件。
+			$("#selectSpecialty1").xMenu({	
+						width :600,	
+						eventType: "click", //事件类型 支持focus click hover
+						dropmenu:"#xmenuSpecialty1",//弹出层
+						emptytext:"选择专业",
+						hiddenID : "selectSpecialtyhidden1",//隐藏域ID
+						value : "${majorTypeId}"	
+			});
+			[#else]
+				// 添加弹窗控件。
 			$("#selectSpecialty1").xMenu({	
 						width :600,	
 						eventType: "click", //事件类型 支持focus click hover
@@ -270,14 +286,25 @@
 						emptytext:"选择专业",
 						hiddenID : "selectSpecialtyhidden1"//隐藏域ID	
 			});
-			$("#selectJobs1").xMenu({	
+			[/#if]
+			[#if workTypeId!=""]
+				$("#selectJobs1").xMenu({	
+						width :600,	
+						eventType: "click", //事件类型 支持focus click hover
+						dropmenu:"#xmenuJobs1",//弹出层
+						emptytext:"选择工种",
+						hiddenID : "selectJobshidden1",//隐藏域ID
+						value : "${workTypeId}"	
+			});
+			[#else]
+				$("#selectJobs1").xMenu({	
 						width :600,	
 						eventType: "click", //事件类型 支持focus click hover
 						dropmenu:"#xmenuJobs1",//弹出层
 						emptytext:"选择工种",
 						hiddenID : "selectJobshidden1"//隐藏域ID	
 			});
-		
+			[/#if]
 		
 		})
 	</script>
@@ -309,13 +336,21 @@
 								<option value="company">公司搜索</option>
 							</select>
 						</td>
-						<td><input type="text" placeholder="请输入关键字.." name="keyword"></td>
+						<td><input type="text" placeholder="请输入关键字.." name="keyword" id="keyword"></td>
 						<td>
 							<input type="hidden" value="" id="selectSpecialtyhidden1" name="majorTypeId"/>
 							<div class="topnav">
 								<a id="selectSpecialty1" href="javascript:void(0);" class="as">
 									<span >
-										选择专业
+									[#if majorTypeId!=""]
+										[#if majorValue?length > 10]
+											${majorValue?string?substring(0,10)}...
+										[#else]
+											${majorValue}
+										[/#if]
+									[#else]
+										选择专业										
+									[/#if]
 									</span>		
 								</a>	
 							</div>
@@ -325,7 +360,15 @@
 							<div class="topnav">
 								<a id="selectJobs1" href="javascript:void(0);" class="as">
 									<span >
-										选择工种
+									[#if workTypeId!=""]
+										[#if workValue?length > 10]
+											${workValue?string?substring(0,10)}...
+										[#else]
+											${workValue}
+										[/#if]
+									[#else]
+										选择工种										
+									[/#if]
 									</span>		
 								</a>	
 							</div>

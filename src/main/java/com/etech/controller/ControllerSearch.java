@@ -38,8 +38,8 @@ public class ControllerSearch {
 	}
 	/**高级搜索*/
 	@RequestMapping(value = "/advancedSearch")
-	public String advancedSearchView(String data,String keyword,Integer majorTypeId,Integer workTypeId,
-			Integer area,String type,HttpSession session) {
+	public String advancedSearchView(String data,String keyword,String majorTypeId,String workTypeId,
+			Integer area,String type,HttpServletRequest request,HttpSession session) {
 		
 		System.out.println(data);
 		System.out.println(keyword);
@@ -55,8 +55,34 @@ public class ControllerSearch {
 				System.out.println(str[0]);
 			}
 		}
-		session.setAttribute("data", data);
+		if (majorTypeId!=null) {
+			// 获取对象
+			// 获取字符串
+			request.setAttribute("majorValue","" );
+		}
+		if (workTypeId!=null) {
+			// 获取对象
+			// 获取字符串
+			request.setAttribute("workValue","" );
+		}
+		if (area!=null) {
+			
+		}
+		if (type=="position") {
+			System.out.println("职位搜索");
+			
+		}else if (type=="resume") {
+			System.out.println("简历搜索");
+		
+		}else {
+			System.out.println("公司搜索");
+		}
+		request.setAttribute("data", data);
+		request.setAttribute("keyword", keyword);
+		request.setAttribute("majorTypeId", majorTypeId);
+		request.setAttribute("workTypeId", workTypeId);
 		return "occupationIntroduction/advancedSearch";			
 	}
+	
 	
 }
