@@ -304,6 +304,7 @@ public class ControllerCenter {
 		}
 		
 		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("error", 0);
 		map.put("url", "/"+storepath);
 		response.setContentType("text/html; charset=UTF-8");
 		JsonOutToBrower.out(map, response);

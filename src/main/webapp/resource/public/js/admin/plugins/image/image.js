@@ -47,7 +47,8 @@ KindEditor.plugin('image', function(K) {
 			'<label for="remoteUrl" style="width:60px;">' + lang.remoteUrl + '</label>',
 			'<input type="text" id="remoteUrl" class="ke-input-text" name="url" value="" style="width:200px;" /> &nbsp;',
 			'<span class="ke-button-common ke-button-outer">',
-			'<input type="button" class="ke-button-common ke-button" name="viewServer" value="' + lang.viewServer + '" />',
+			 /** name:wuhuanrong email:569009496@qq.com   data:2014-06-19  原因：需求所需，button类型修改为了hidden，不需要时可以删除。*/
+			'<input type="hidden" class="ke-button-common ke-button" name="viewServer" value="' + lang.viewServer + '" />',
 			'</span>',
 			'</div>',
 			//size
