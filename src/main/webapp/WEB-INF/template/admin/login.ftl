@@ -1,65 +1,109 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- TemplateBeginEditable name="doctitle" -->
-<title>潜江就业服务网后台管理系统</title>
-<!-- TemplateEndEditable -->
-<!-- TemplateBeginEditable name="head" -->
-<!-- TemplateEndEditable -->
-<link href="Untitled-2.css" rel="stylesheet" type="text/css" />
-<style type="text/css">
-<!--
-body p {
-	text-align: left;
-	font-weight: bold;
+<title>后台登陆页面</title>
+
+<style>
+body{
+	margin:0px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;	
 }
-body {
-	background-image: url(/resource/public/images/1111.jpg);
-	background-repeat: repeat-x;
-	text-align: left;
+#_back{
+	background-image:url(/resource/public/images/bage.jpg);
+	height:409px;
+	padding-top:110px;
 }
--->
+#midd {
+	height:245px;
+	width:640px;
+	margin-left:auto;
+	margin-right:auto;
+	background-image:url(/resource/public/images/midd.png);
+	border:1px solid #ccc;
+}
+.putuser{
+	margin:70px auto auto 305px; 
+	border:1px solid #CCC; 
+	height:30px; 
+	width:280px;
+	background-color:#EEF4FE;
+}
+#midd img {
+	height:18px; 
+	width:20px; 
+	margin:5px;
+	float:left;
+}
+.userabout {
+	vertical-align:top;
+	height:28px;
+	width:245px;
+	border:0px none;
+	padding:0px;
+	font-size:16px;
+	font-weight:bold;
+	background-color:#EEF4FE;
+}
+#butt {
+	display:inline-block;
+	background-color:#3C96CB;
+	width:75px;
+	height:28px;
+	font-size:14px;
+	color:#fff;
+	letter-spacing:8px;
+	padding:0px 0px 0px 12px;
+}
 </style>
+
 </head>
 
 <body>
-<!--Begin Name:wuqiwei Date:2013-12-17 AddReason:shiro登录之后就不能再次登录除非logout,所以如果验证之后，直接登到管理界面  -->
-	<!--End  Name:wuqiwei Date:2013-12-17 AddReason:shiro登录之后就不能再次登录除非logout,所以如果验证之后，直接登到管理界面  -->
-	<shiro:guest>
-<table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td width="419" height="500" align="right"><img src="/resource/public/images/2222.png" width="352" height="54" /></td>
-    <td width="50" align="center" valign="middle"><img src="/resource/public/images/3333.png" width="13" height="116" /></td>
-    <td width="429" align="left" valign="middle"><form id="form1" name="form1" method="post" action="/">
-      <p>
-        <label>用户名：
-          <input type="text" name="loginName" id="loginName" />
-        </label>
-      </p>
-      <p>
-        <label>密&nbsp;&nbsp; 码：
-          <input type="password" name="password" id="textfield2" />
-        </label>
-      </p>
-      <c:out value="${LoginError }" escapeXml="false"/>
-      <p>
-        <label for="button"></label>
-        &nbsp; 
-        &nbsp; 
-        &nbsp; 
-        &nbsp;&nbsp;
-        <input type="submit" name="button" id="button" value="确定" />
-     &nbsp; &nbsp;
-     <label for="button2"></label>
-      <input type="reset" name="button2" id="button2" value="重置" />
-      </p>
-    </form></td>
-  </tr>
-</table>
-</shiro:guest>
+<div>
+	<div style="height:35px; background-color:#4577BE; color:#fff;">
+    	<span style="margin:7px 30px; display:inline-block;">
+        	潜江公共就业服务网站后台管理系统登录界面
+        </span>
+        <div style="float:right; margin:7px 30px;">
+        	<a>回首页</a>
+            <a>关于</a>
+        </div>
+    </div>
+    <div id="_back">
+    	<div>
+        	<div style="margin-left:auto; margin-right:auto; width:470px;">
+            	<img src="/resource/public/images/title.png" />
+            </div>
+            <shiro:guest>
+            <div id="midd">
+            	<form action="/" method="post">
+	            	<div class="putuser">
+	                	<img src="/resource/public/images/user.png" />
+	                    <input class="userabout" type="text" name="loginName" />
+	                </div>
+	                <div class="putuser" style="margin-top:27px;">
+	                	<img src="/resource/public/images/password.png" />
+	                    <input class="userabout" type="password" name="password" style="font-weight:100; font-size:inherit;"/>
+	                </div>
+                	<c:out value="${LoginError }" escapeXml="false"/>
+	                <div style="margin:27px auto auto 305px;">
+	                	<input id="butt" type="submit" value="登录" style="cursor:pointer;"/>
+	                    <input type="checkbox" style="margin-left:28px;">记住账号</input>
+	                    <a style="display:inline-block;margin-left:30px;">忘记密码？</a>
+	                </div>
+                </form>
+            </div>
+            </shiro:guest>
+        </div>
+    </div>
+</div>
 </body>
 </html>
+
+
+
 
 <!--
 

@@ -87,7 +87,6 @@
 			font-size:14px;
 		}
 		.j_main_right_3{
-			border: 1px solid #e4e4e4;
 		    margin: 10px 10px;
 		    width: 336px;
 		    height:262px;

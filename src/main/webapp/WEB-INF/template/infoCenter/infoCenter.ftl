@@ -97,7 +97,7 @@
 		}
 		.gonggao{
     		width:255px;
-    		height:350px;
+    		height:290px;
     		border:1px solid #EED9C8;
     		margin-bottom:5px;
     	}
@@ -205,7 +205,7 @@
 					[/#list]
 				</ul>
 			</div>
-			<div class="j_main_left_1" style="margin-top:10px;height:405px;text-align:center;border:1px solid #E4E4E4;">
+			<div class="j_main_left_1" style="margin-top:10px;height:450px;text-align:center;border:1px solid #E4E4E4;">
 				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml">更多>></a></div>
@@ -349,19 +349,19 @@
 					[#list works as work]
 					[#if work_index==0]					
 					<div style="height: 100px; padding: 9px; width: 341px;">
-						<img src="${work.imgpath}" style="float:left;width:120px;">
+						<img src="${work.imgpath}" style="float:left;width:120px;height:100px;">
 						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;font-size:16px;color:#C42D3E;"><a style="color:#C42D3E;" href="/workInfo.jhtml">
-						[#if new.title?length > 22]
-								${new.title?string?substring(0,22)}...
+						[#if work.title?length > 22]
+								${work.title?string?substring(0,22)}...
 							[#else]
-								${new.title}
+								${work.title}
 							[/#if]
 							</a></p>
 						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;">
-						[#if new.content?length > 22]
-								${new.content?string?substring(0,22)}...
+						[#if work.content?length > 22]
+								${work.content?string?substring(0,22)}...
 							[#else]
-								${new.content}
+								${work.content}
 							[/#if]
 						<span style="text-align: right;float:right;"><a href="/workInfo.jhtml">[详细]</a></span></p>
 					</div>

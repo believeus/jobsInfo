@@ -137,7 +137,6 @@
 		    width: 720px;
     	}
     	.xinxi_1{
-    		border: 1px solid #EED9C8;
 		    height: 180px;
 		    margin-left: 7px;
 		    margin-top: 5px;
@@ -299,16 +298,13 @@
 					</ul>
 					<div id="banner_list">
 						[#list imgs as img]
-							<a href="/newsInfo.jhtml" target="_blank"><img src="${img.imgpath}" width="314" height="236" title="this is a beautiful girl!" alt="
+							<a href="/newsInfo.jhtml" target="_blank"><img src="${img.imgpath}" width="314" height="236" title="${img.title}" alt="
 							[#if img.title?length > 18]
 								${img.title?string?substring(0,18)}...
 							[#else]
 								${img.title}
 							[/#if]" /></a>
 						[/#list]
-						<a href="/newsInfo.jhtml" target="_blank"><img width="314" height="236" src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第二届潜江创业培训研讨会召开" /></a>
-						<a href="/newsInfo.jhtml" target="_blank"><img width="314" height="236" src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第三届潜江创业培训研讨会召开" /></a>
-						<a href="/newsInfo.jhtml" target="_blank"><img width="314" height="236" src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第四届潜江创业培训研讨会召开" /></a>
 					</div>
 				</div>
 				<!--***************************************************************-->

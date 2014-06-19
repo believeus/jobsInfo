@@ -26,7 +26,7 @@ a:link{
 }
 .left_top{
 	height:29px; 
-	border-bottom: 1px solid #999; 
+	border-bottom: 1px solid #e4e4e4; 
 	background:url(/resource/public/images/111.png);
 }
 .zti_im{
@@ -36,7 +36,7 @@ a:link{
 }
 .middle_{
 	height:30px; 
-	border-bottom: 1px solid #999; 
+	border-bottom: 1px solid #e4e4e4; 
 	background: url(/resource/public/images/background.png) repeat scroll 0 0 rgba(0, 0, 0, 0);
 	font-size:12px;
 	font-weight:bold;
@@ -81,7 +81,7 @@ a:link{
               </ul>
             </div>
         </div>
-       <div class="j_main_left_1" style="margin-top:10px;height:425px;text-align:center;">
+       <div class="j_main_left_1" style="margin-top:10px;height:508px;text-align:center;">
 			<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 			<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 45px;"><hr style="border:1px dashed #e4e4e4;"></div>
 			<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml" style="margin-left:0;">更多>></a></div>
@@ -99,9 +99,9 @@ a:link{
             <span>></span>
 			<span>数据频道</span>
         </div>
-        <div style="width:748px; height:765px; border:1px solid #999; margin-top:10px;">
+        <div style="width:748px; height:765px; border:1px solid #e4e4e4; margin-top:10px;">
         	<div style="float:left;">
-                <div style="width:505px; border:1px solid #999; height:290px; margin:10px;">
+                <div style="width:505px; height:290px; margin:10px;">
                     <div class="middle_">
                     	<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-top: 7px; margin-left: 10px;">
                         <div style="margin:8px; width:405px; display:inline-block">人力资源供求市场供求分析报告</div>
@@ -118,7 +118,7 @@ a:link{
                       </ul>
                     </div>	
                 </div>
-                <div style="width:505px; border:1px solid #999; height:295px; margin:10px;">
+                <div style="width:505px; height:295px; margin:10px;">
                     <div class="middle_">
                     	<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-top: 7px; margin-left: 10px;">
                         <div style="margin:8px; width:405px; display:inline-block">全市工资指导价位</div>
@@ -135,7 +135,7 @@ a:link{
                       </ul>
                     </div>   
                 </div>
-                <div style="width:505px; border:1px solid #999; height:130px; margin:10px;">
+                <div style="width:505px; height:130px; margin:10px;">
                     <div class="middle_">
                     	<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-top: 7px; margin-left: 10px;">
                         <div style="margin:8px; width:405px; display:inline-block">相关下载</div>
@@ -156,7 +156,7 @@ a:link{
                     </div>   
                 </div>
              </div>
-             <div style="width:215px; float:left; border:1px solid #999; height:357px; margin-top:10px;background:#FFF6E5;">
+             <div style="width:215px; float:left; border:1px solid #e4e4e4; height:357px; margin-top:10px;background:#FFF6E5;">
                 <div class="middle_" style="text-align:center; padding-top:8px; height:22px;"> 
                     <div>每月职业供给排行榜<span style="float:right;"><a href="/gongjipaihangList.jhtml">更多</a></span></div>
                 </div>
@@ -177,7 +177,7 @@ a:link{
                   </ul>
                 </div>     
              </div>
-             <div style="width:215px; float:left; border:1px solid #999; height:370px; margin-top:10px;background:#FFF6E5;">
+             <div style="width:215px; float:left; border:1px solid #e4e4e4; height:370px; margin-top:10px;background:#FFF6E5;">
                 <div class="middle_" style="text-align:center; padding-top:8px; height:22px;"> 
                     <div>每月职业需求排行榜<span style="float:right;"><a href="/xuqiupaihangList.jhtml">更多</a></span></div>
                 </div>
