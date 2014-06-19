@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.util.HtmlUtils;
 
 import com.etech.entity.TdataCenter;
 import com.etech.service.EtechService;
@@ -59,7 +60,9 @@ public class ControllerCRUD {
 		}
 		String title=request.getParameter("title");
 		String author=request.getParameter("author");
-		String content=request.getParameter("content");
+		/**Begin Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
+		String content=HtmlUtils.htmlEscape(request.getParameter("content"));
+		/**End Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
 		String top=request.getParameter("top");
 		String alink=request.getParameter("alink");
 		if (top == null) {
@@ -98,7 +101,11 @@ public class ControllerCRUD {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("top:"+formDataCenter.getTop());
+		log.debug("是否置顶top:"+formDataCenter.getTop());
+		/**Begin Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
+		String content=HtmlUtils.htmlEscape(formDataCenter.getContent());
+		formDataCenter.setContent(content);
+		/**End Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, formDataCenter.getId());
 		formDataCenter.setEditTime(System.currentTimeMillis());
 		BeanUtils.copyProperties(formDataCenter, dataCenter);
@@ -129,4 +136,4 @@ public class ControllerCRUD {
 		List<?> dataCenters = (List<TdataCenter>)etechService.findObjectList(hql, 1, 15, TdataCenter.class);
 		return dataCenters;
 	}
-	}
+}
