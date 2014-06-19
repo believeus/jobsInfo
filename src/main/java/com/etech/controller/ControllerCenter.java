@@ -96,7 +96,7 @@ public class ControllerCenter {
 		List<TentImgVedio> Vedios=(List<TentImgVedio>)etechService.findListByHQL(hql);
 		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+entUser.getId()+"  and info.type='2'";
 		List<TentImgVedio> Maps=(List<TentImgVedio>)etechService.findListByHQL(hql);
-		hql="From Trecruit recruit left join fetch recruit.entUser as user where  user.id='"+entUser.getId()+"'";
+		hql="From Trecruit recruit left join fetch recruit.entUser as user where  user.id='"+entUser.getId()+"' and recruit.status=1";
 		List<Trecruit> recruits = (List<Trecruit>)etechService.findListByHQL(hql);
 		session.setAttribute("Imgs", Imgs);
 		session.setAttribute("Vedios", Vedios);
