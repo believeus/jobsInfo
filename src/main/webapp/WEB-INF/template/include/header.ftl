@@ -48,7 +48,6 @@
 		background:url(/resource/public/images/zhuye-img_07.png);
 	}
 </style>
-<script src="/resource/public/resources/scripts/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
 	$().ready(function(){
 		$("body").css("background","#FFFBF6");

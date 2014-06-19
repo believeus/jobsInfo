@@ -286,8 +286,6 @@
 						
     	
     	$().ready(function() {
-				
-    		
     		
     		$("#personal_xinxi").click(function(){
     			$("#personal_xinxi").removeClass("currentSwich");
@@ -673,7 +671,7 @@
 					eventType: "click", //事件类型 支持focus click hover
 					dropmenu:"#xmenuSkillSpecialty1",//弹出层
 					emptytext:"选择专业",
-					hiddenID : "selectSkillSpecialtyhidden1",//隐藏域ID	
+					hiddenID : "selectSkillSpecialtyhidden1"//隐藏域ID	
 				});
 				// 技能工种
 				$("#selectSkillJobs1").xMenu({	
