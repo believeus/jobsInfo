@@ -63,8 +63,12 @@ public class EtechGobal {
 	public static final int monthlyDemandList=16;
 	// 本月供给排行
 	public static final int monthSupplyList=17;
-	// 下载
-	public static final int downLoad=18;
+	// 资料下载
+	public static final int ziliao=18;
+	// 表格下载
+	public static final int biaoge=28;
+	// 软件下载
+	public static final int ruanjian=29;
 	
 	
 	// 幻灯片

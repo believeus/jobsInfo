@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>下载中心列表</title>
+    <title>资料下载列表</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -130,54 +130,12 @@
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<ul>
+					[#list ziliaoList as ziliao]
 					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
+						<a href="/ziliao.jhtml?id=${ziliao.id}">${ziliao.title}</a>
+						<span>${ziliao.createTime?number_to_datetime}</span>
 					</li>
-					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
-					<li>
-						<a href="/ziliao.jhtml">人力资源供求市场供求分析报告</a><span>2014/04/24</span>
-					</li>
+					[/#list]
 				</ul>
 				<p style="padding-left:25px;">
 					<a href="">首页</a>

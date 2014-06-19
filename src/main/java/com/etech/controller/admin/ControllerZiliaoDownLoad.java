@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,21 +18,22 @@ import com.etech.service.EtechService;
 import com.etech.util.EtechGobal;
 
 /**
- * 下载
+ * 资料下载
  * */
-@Controller("controllerAdminDownLoad")
-@RequestMapping("/admin/downLoad")
-public class ControllerDownLoad extends ControllerCRUD{
+@Controller
+@RequestMapping("/admin/ziliaoDownLoad")
+public class ControllerZiliaoDownLoad extends ControllerCRUD{
+	private static Log log = LogFactory.getLog(ControllerZiliaoDownLoad.class);
 
 	@Resource
 	private EtechService etechService;
 	/**
-	 * 下载列表
+	 * 资料下载列表
 	 * @return
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
-		List<?> dataCenters = super.listDataInfo(request,EtechGobal.downLoad);
+		List<?> dataCenters = super.listDataInfo(request,EtechGobal.ziliao);
 		request.setAttribute("dataCenters",dataCenters);
 		return "admin/dataChannel/list";
 	}
@@ -40,53 +43,53 @@ public class ControllerDownLoad extends ControllerCRUD{
 	 * @param request response
 	 * @return
 	 */
-	@RequiresPermissions("downloadZone:delete")
+	@RequiresPermissions("requireAnalyseReport:delete")
 	@RequestMapping("/delete")
 	public String removeNews(HttpServletRequest request,HttpServletResponse response){
 		super.deleteDataInfo(request,response);
-		return "redirect:/admin/downLoad/list.jhtml";
+		return "redirect:/admin/ziliaoDownLoad/list.jhtml";
 	}
 	
 	/**
-	 * 添加下载
+	 * 添加资料下载
 	 * @return
 	 */
-	@RequiresPermissions("downloadZone:create")
+	@RequiresPermissions("requireAnalyseReport:create")
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
-		request.setAttribute("type",EtechGobal.downLoad);
+		request.setAttribute("type",EtechGobal.ziliao);
 		return "admin/dataChannel/add";
 	}
 	/**
-	 * 编辑下载
+	 * 编辑资料下载
 	 * @return
 	 */
-	@RequiresPermissions("downloadZone:modify")
+	@RequiresPermissions("requireAnalyseReport:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
-		request.setAttribute("type",EtechGobal.downLoad);
+		request.setAttribute("type",EtechGobal.ziliao);
 		return "admin/dataChannel/edit";
 	}
 	
 	/**
-	 * 保存下载
+	 * 保存资料下载
 	 * @return
 	 */
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
-		return "redirect:/admin/downLoad/list.jhtml";
+		return "redirect:/admin/ziliaoDownLoad/list.jhtml";
 	}
 	/**
-	 * 修改下载
+	 * 修改资料下载
 	 * @return
 	 */
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);
-		return "redirect:/admin/downLoad/list.jhtml";
+		return "redirect:/admin/ziliaoDownLoad/list.jhtml";
 	}
 }

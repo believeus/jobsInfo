@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>下载中心</title>
+    <title>资料下载</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -133,11 +133,11 @@
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
-				<h2 style="text-align:center;font-weight:normal;">面试环节中的薪资问题</h2>
-				<p>来源：人力资源和社会保障厅政府信息公开网 发布时间：2014-04-14 00:40 浏览次数： 147次 【打印文章】</p>
+				<h2 style="text-align:center;font-weight:normal;">${data.author}</h2>
+				<p>来源：人力资源和社会保障厅政府信息公开网 发布时间：${data.createTime?number_to_datetime} 浏览次数： 147次 【打印文章】</p>
 				<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">
 				<p style="text-align: center;">
-					<img src="/resource/public/images/news01.png">
+					${data.content}
 				</p>
 				<p><a href="#" title="点击下载">附件：2014年湖北省人力资源和社会保障统计报表制度</a></p>
 			</div>

@@ -175,11 +175,22 @@ $(function(){
 					<li>
 						<a target="main" href="/admin/monthSupplyList/list.jhtml">本月供给排行</a>
 					</li>
-					<li>
-						<a target="main" href="/admin/downLoad/list.jhtml">下载专区</a>
-					</li>
        			 </ul>
     		[/@shiro.hasPermission]
+    		[@shiro.hasPermission name="datachannel:view"]
+    		<h1>下载专区</h1>
+    		<ul style="display: none;" class="MM">
+					<li>
+						<a target="main" href="/admin/ziliaoDownLoad/list.jhtml">资料下载</a>
+					</li>
+					<li>
+						<a target="main" href="/admin/biaogeDownLoad/list.jhtml">表格下载</a>
+					</li>
+					<li>
+						<a target="main" href="/admin/ruanjianDownLoad/list.jhtml">软件下载</a>
+					</li>
+       			 </ul>
+   			 [/@shiro.hasPermission]
 			<h1>幻灯片</h1>
         		<ul style="display: none;" class="MM">
 					<li>
