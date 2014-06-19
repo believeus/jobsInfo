@@ -12,7 +12,7 @@ public class TmajorService {
 	private EtechComDao etechComDao;
 	//查询专业的父级别
 	public List<TmajorType> getParentMajorList(){
-		String hql="from TmajorType major where (major.codeId%10000)=0";
+		String hql="from TmajorType major where (major.codeId%10000)=0 and major.codeId>=10000 and major.codeId<=999999";
 		@SuppressWarnings("unchecked")
 		List<TmajorType> majors = (List<TmajorType>) etechComDao.getObjecListByHQL(hql);
 		return majors;
@@ -26,7 +26,7 @@ public class TmajorService {
 	}
 	//查询工种的父级
 	public List<TmajorType> getParentWorkTypeList(){
-		String hql="from TmajorType major where (major.codeId%100000)=0";
+		String hql="from TmajorType major where (major.codeId%100000)=0 and major.codeId >=1000000 and major.codeId<=9999999";
 		@SuppressWarnings("unchecked")
 		List<TmajorType> majors = (List<TmajorType>) etechComDao.getObjecListByHQL(hql);
 		return majors;

@@ -681,8 +681,8 @@
 					<deployer>
 						<deployables>
 							<deployable>
-								<groupId>cn.believeus</groupId>
-								<artifactId>open-freemdom</artifactId>
+								<groupId>com.etech.jobinfo</groupId>
+								<artifactId>jobinfo</artifactId>
 								<type>war</type>
 								<properties>
 									<!-- deployer是部署时的相关配置，这个context是用来声明工程部署后的上下文，也就是 主机地址后面的一级目录位置。这个设置在maven构建中还是很必要的。因为maven默认打出 

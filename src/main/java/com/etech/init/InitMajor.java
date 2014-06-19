@@ -17,6 +17,7 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import com.etech.entity.TmajorType;
 import com.etech.service.EtechService;
@@ -34,19 +35,21 @@ public class InitMajor implements ApplicationListener<ApplicationEvent> {
 				String result = props.getProperty("isInitmajor");
 				System.out.println(result);
 				if(result.equals("true")){
-					String hql="DELETE FROM TmajorType";
-					etechService.delete(hql);
 					Set<Entry<Object,Object>> entrySet = props.entrySet();
 					Iterator<Entry<Object, Object>> iterator = entrySet.iterator();
 					while (iterator.hasNext()) {
 						Map.Entry<Object,Object> entry = (Map.Entry<Object,Object>) iterator.next();
 						String key = (String)entry.getKey();
+						if(key.equals("isInitmajor")){
+							continue;
+						}
 						String value=(String)entry.getValue();
-						if(key.equals("isInitmajor"))continue;
-						TmajorType tmajorType=new TmajorType();
-						tmajorType.setCodeId(Integer.parseInt(key));
-						tmajorType.setName(value);
-						etechService.saveOrUpdata(tmajorType);
+						if(StringUtils.isEmpty(etechService.findObjectByProperty(TmajorType.class, "codeId", Integer.parseInt(key)))){
+							TmajorType tmajorType=new TmajorType();
+							tmajorType.setCodeId(Integer.parseInt(key));
+							tmajorType.setName(value);
+							etechService.saveOrUpdata(tmajorType);
+						};
 					}
 					props.setProperty("isInitmajor", "false");
 					// 文件输出流
