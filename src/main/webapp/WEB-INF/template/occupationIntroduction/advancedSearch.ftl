@@ -139,12 +139,12 @@
 							[@majorParentList]		
 							<dl>
 							[#list MajorParentList as majorParent]
-							<dt class="open" id="${majorParent.codeId}">${majorParent.name}</dt>
+							<dt class="open" id="${majorParent.id}">${majorParent.name}</dt>
 							<dd>
 								<ul>
 								[@majorChildrenList parentCodeId = majorParent.codeId]
 								[#list MajorChildrenList as majorChildren]
-									<li rel="${majorChildren.codeId}">
+									<li rel="${majorChildren.id}">
 											${majorChildren.name}
 									</li>
 								[/#list]
@@ -167,12 +167,12 @@
 					[@workParentList]		
 							<dl>
 							[#list WorkParentList as workParent]
-							<dt class="open" id="${workParent.codeId}">${workParent.name}</dt>
+							<dt class="open" id="${workParent.id}">${workParent.name}</dt>
 							<dd>
 								<ul>
 								[@workChildrenList parentCodeId = workParent.codeId]
 								[#list WorkChildrenList as workChildren]
-									<li rel="${workChildren.codeId}">
+									<li rel="${workChildren.id}">
 											${workChildren.name}
 									</li>
 								[/#list]
@@ -252,7 +252,7 @@
 					// 添加class 为当前所选的。
 					$("#"+strdata[i]).attr("class","current");
 					var html='<span><a href="javascript:void(0);" onclick="javascript:Aclick(this);" class="current" >'
-					+$("#"+strdata[i]).text()+
+					+str+
 					'<span style="color: #E4925A;font-size: 17px;margin-left: 10px;">&times;</span></a></span>	';
 					$(".selected").append(html);
 				}
@@ -409,7 +409,7 @@
 						<ul>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="在读学生_4" name="在读学生_4">在读学生</a></li>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="应届毕业生_4" name="应届毕业生_4">应届毕业生</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="1-2年_4" name="1-2年_4">1~2年</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="1-2年_4" name="1~2年_4">1~2年</a></li>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="2-3年_4" name="2~3年_4">2~3年</a></li>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="3-5年_4" name="3~5年_4">3~5年</a></li>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="5-8年_4" name="5~8年_4">5~8年</a></li>

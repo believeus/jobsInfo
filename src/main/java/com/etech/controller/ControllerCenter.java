@@ -245,11 +245,11 @@ public class ControllerCenter {
 		TentUser entUser=(TentUser)session.getAttribute("sessionUser");
 		recruit.setEntUser(entUser); 
 		if (workTypeId != null) {
-			TmajorType workType = (TmajorType) etechService.findObjectById(TmajorType.class, 1);
+			TmajorType workType = (TmajorType) etechService.findObjectById(TmajorType.class, workTypeId);
 			recruit.setWorkType(workType);
 		}
 		if (majorTypeId != null) {
-			TmajorType majorType = (TmajorType) etechService.findObjectById(TmajorType.class, 2);
+			TmajorType majorType = (TmajorType) etechService.findObjectById(TmajorType.class, majorTypeId);
 			recruit.setMajorType(majorType);
 		}
 		

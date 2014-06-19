@@ -290,12 +290,12 @@
 							[@majorParentList]		
 							<dl>
 							[#list MajorParentList as majorParent]
-							<dt class="open" id="${majorParent.codeId}">${majorParent.name}</dt>
+							<dt class="open" id="${majorParent.id}">${majorParent.name}</dt>
 							<dd>
 								<ul>
 								[@majorChildrenList parentCodeId = majorParent.codeId]
 								[#list MajorChildrenList as majorChildren]
-									<li rel="${majorChildren.codeId}">
+									<li rel="${majorChildren.id}">
 											${majorChildren.name}
 									</li>
 								[/#list]
@@ -318,12 +318,12 @@
 					[@workParentList]		
 							<dl>
 							[#list WorkParentList as workParent]
-							<dt class="open" id="${workParent.codeId}">${workParent.name}</dt>
+							<dt class="open" id="${workParent.id}">${workParent.name}</dt>
 							<dd>
 								<ul>
 								[@workChildrenList parentCodeId = workParent.codeId]
 								[#list WorkChildrenList as workChildren]
-									<li rel="${workChildren.codeId}">
+									<li rel="${workChildren.id}">
 											${workChildren.name}
 									</li>
 								[/#list]
