@@ -127,7 +127,7 @@
 </head>
 <body>
 	<script type="text/javascript">
-		[@compress single_line = true]
+		    	[@compress single_line = true]
     		var Specialty='<div class="select-info">	
 						<label class="top-label">已选项：</label>
 								<ul>		
@@ -135,56 +135,26 @@
 								<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
 									<span class="a-btn-text">确定</span>
 								</a> 
-							</div>			
+							</div>	
+							[@majorParentList]		
 							<dl>
-							<dt class="open">工程师</dt>
+							[#list MajorParentList as majorParent]
+							<dt class="open" id="${majorParent.codeId}">${majorParent.name}</dt>
 							<dd>
 								<ul>
-									<li rel="1">
-											工程师1
+								[@majorChildrenList parentCodeId = majorParent.codeId]
+								[#list MajorChildrenList as majorChildren]
+									<li rel="${majorChildren.codeId}">
+											${majorChildren.name}
 									</li>
-									<li rel="2">
-											工程师2
-									</li>
+								[/#list]
+								[/@majorChildrenList]
 								</ul>   
-								<ul>
-									<li rel="3">
-											工程师3
-									</li>
-									<li rel="4">
-											工程师4
-									</li>
-								</ul>    
 							</dd>
-							<dt class="open">设计师</dt>
-							<dd>
-								<ul>
-									<li rel="5">
-											设计师设计师设计师你
-									</li>
-									<li rel="6">
-											设计师设计师设计师你
-									</li>
-									<li rel="7">
-											设计师设计师设计师你
-									</li>
-									<li rel="8">
-											设计师2
-									</li>
-									<li rel="56">
-											设计师2
-									</li>
-								</ul>   
-								<ul>
-									<li rel="9">
-											设计师3
-									</li>
-									<li rel="0">
-											设计师4
-									</li>
-								</ul>    
-							</dd>
-							</dl>	';
+							[/#list]
+							</dl>	
+							[/@majorParentList]
+							';
 							
 			var Jobs='<div class="select-info">	
 						<label class="top-label">已选项：</label>
@@ -194,57 +164,27 @@
 							<span class="a-btn-text">确定</span>
 						</a> 
 					</div>			
-					<dl>
-					<dt class="open">管理员</dt>
-					<dd>
-						<ul>
-							<li rel="12">
-									管理员1
-							</li>
-							<li rel="22">
-									管理员2
-							</li>
-						</ul>   
-						<ul>
-							<li rel="32">
-									管理员3
-							</li>
-							<li rel="42">
-									管理员4
-							</li>
-						</ul>    
-					</dd>
-					<dt class="open">技术人员</dt>
-					<dd>
-						<ul>
-							<li rel="52">
-									技术人员
-							</li>
-							<li rel="62">
-									技术人员
-							</li>
-							<li rel="72">
-									技术人员
-							</li>
-							<li rel="82">
-									技术人员2
-							</li>
-							<li rel="52">
-									技术人员2
-							</li>
-						</ul>   
-						<ul>
-							<li rel="92">
-									技术人员3
-							</li>
-							<li rel="02">
-									技术人员4
-							</li>
-						</ul>    
-					</dd>
-					</dl>			
+					[@workParentList]		
+							<dl>
+							[#list WorkParentList as workParent]
+							<dt class="open" id="${workParent.codeId}">${workParent.name}</dt>
+							<dd>
+								<ul>
+								[@workChildrenList parentCodeId = workParent.codeId]
+								[#list WorkChildrenList as workChildren]
+									<li rel="${workChildren.codeId}">
+											${workChildren.name}
+									</li>
+								[/#list]
+								[/@workChildrenList]
+								</ul>   
+							</dd>
+							[/#list]
+							</dl>	
+							[/@workParentList]			
 				</div>';
 	[/@compress]
+
 	
 		//  条件组合和切换。
 		function Aclick(obj){

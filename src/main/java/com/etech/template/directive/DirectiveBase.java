@@ -3,7 +3,9 @@ package com.etech.template.directive;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 import com.etech.util.UtilsFreemarker;
+
 import freemarker.core.Environment;
 import freemarker.template.TemplateDirectiveBody;
 import freemarker.template.TemplateDirectiveModel;
@@ -67,6 +69,25 @@ public abstract class DirectiveBase implements TemplateDirectiveModel {
 		UtilsFreemarker.setVariables(variables, env);
 		body.render(env.getOut());
 		UtilsFreemarker.setVariables(sourceVariables, env);
+	}
+	
+	/**
+	 * 设置局部变量
+	 * 
+	 * @param name
+	 *            名称
+	 * @param value
+	 *            变量值
+	 * @param env
+	 *            Environment
+	 * @param body
+	 *            TemplateDirectiveBody
+	 */
+	protected void setLocalVariable(String name, Object value, Environment env, TemplateDirectiveBody body) throws TemplateException, IOException {
+		TemplateModel sourceVariable = UtilsFreemarker.getVariable(name, env);
+		UtilsFreemarker.setVariable(name, value, env);
+		body.render(env.getOut());
+		UtilsFreemarker.setVariable(name, sourceVariable, env);
 	}
 	
 }

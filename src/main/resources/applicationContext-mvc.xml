@@ -58,6 +58,10 @@
 		<property name="freemarkerVariables">
 			<map>
 				<entry key="pagination" value-ref="directivePagination" />
+				<entry key="majorParentList" value-ref="directiveMajorParentList" />
+				<entry key="majorChildrenList" value-ref="directiveMajorChildrenList" />
+				<entry key="workParentList" value-ref="directiveWorkParentList" />
+				<entry key="workChildrenList" value-ref="directiveWorkChildrenList" />
 			</map>
 		</property>
 	</bean>

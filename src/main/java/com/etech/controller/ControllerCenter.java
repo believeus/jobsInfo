@@ -130,11 +130,11 @@ public class ControllerCenter {
 			TcomUser sessionUser = (TcomUser) session.getAttribute("sessionUser");
 			comInfo.setComUser(sessionUser);
 			if (workTypeId != null) {
-				TmajorType workType = (TmajorType) etechService.findObjectById(TmajorType.class, 1);
+				TmajorType workType = (TmajorType) etechService.findObjectById(TmajorType.class, workTypeId);
 				comInfo.setWorkType(workType);
 			}
 			if (majorTypeId != null) {
-				TmajorType majorType = (TmajorType) etechService.findObjectById(TmajorType.class, 2);
+				TmajorType majorType = (TmajorType) etechService.findObjectById(TmajorType.class, majorTypeId);
 				comInfo.setMajorType(majorType);
 			}
 			etechService.merge(comInfo);
@@ -283,5 +283,29 @@ public class ControllerCenter {
 			}
 		}
 		return storepath;
+	}
+	@RequestMapping(value = "/EUpload", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+	public  void eUpload(HttpServletRequest request,HttpServletResponse response) {
+		// 遍历有二进制文件的form表单
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		String storepath = "";
+		Map<String, MultipartFile> files = multipartRequest.getFileMap();
+		for (MultipartFile file : files.values()) {
+			InputStream inputStream;
+			try {
+				inputStream = file.getInputStream();
+				String fileName = file.getName();
+				String fileSuffix = fileName.substring(fileName
+						.lastIndexOf(".") + 1);
+				storepath = mydfsTrackerServer.upload(inputStream, fileSuffix);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("url", "/"+storepath);
+		response.setContentType("text/html; charset=UTF-8");
+		JsonOutToBrower.out(map, response);
 	}
 }
