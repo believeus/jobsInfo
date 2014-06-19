@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * 岗位
  * */
-@Controller("controllerAdminStationList")
+@Controller
 @RequestMapping("/admin/stationList")
 public class ControllerStationList {
 	private static Log log = LogFactory.getLog(ControllerStationList.class);
@@ -25,12 +25,12 @@ public class ControllerStationList {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView() {
 		log.debug("current controller is newsListView !");
-		return "admin/humanResources/list";
+		return "admin/stations/list";
 	}
 	@RequiresPermissions("stationList:delete")
 	@RequestMapping("/delete")
 	public String removeNews(HttpServletRequest request,HttpServletResponse response){
-		return "redirect:/admin/jianlizhinanService/list.jhtml";
+		return "redirect:/admin/stationList/list.jhtml";
 	}
 	/**
 	 * 添加岗位
@@ -40,7 +40,7 @@ public class ControllerStationList {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView() {
 		log.debug("current controller is newsListView !");
-		return "admin/humanResources/add";
+		return "admin/stations/add";
 	}
 	/**
 	 * 编辑岗位
@@ -50,17 +50,17 @@ public class ControllerStationList {
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView() {
 		log.debug("current controller is newsListView !");
-		return "admin/humanResources/edit";
+		return "admin/stations/edit";
 	}
 	
 	/**
 	 * 保存岗位
 	 * @return
 	 */
-	@RequestMapping(value = "/save", method = RequestMethod.GET)
+	@RequestMapping(value = "/save")
 	public String saveNewsView(){
 		
-		return "redirect:/admin/humanResources/list.jhtml";
+		return "redirect:/admin/stationList/list.jhtml";
 	}
 	/**
 	 * 修改岗位
@@ -68,6 +68,6 @@ public class ControllerStationList {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String updateNewsView(){
-		return "redirect:/admin/humanResources/list.jhtml";
+		return "redirect:/admin/stationList/list.jhtml";
 	}
 }

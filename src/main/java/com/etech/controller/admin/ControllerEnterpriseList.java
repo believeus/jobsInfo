@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * 企业列表
  * */
-@Controller("controllerAdminEnterpriseList")
+@Controller
 @RequestMapping("/admin/enterpriseList")
 public class ControllerEnterpriseList {
 	private static Log log = LogFactory.getLog(ControllerEnterpriseList.class);
@@ -27,10 +27,16 @@ public class ControllerEnterpriseList {
 		log.debug("current controller is newsListView !");
 		return "admin/humanResources/list";
 	}
+	/**
+	 * 删除 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequiresPermissions("enterpriseList:delete")
 	@RequestMapping("/delete")
 	public String removeNews(HttpServletRequest request,HttpServletResponse response){
-		return "redirect:/admin/dataChannel/list.jhtml";
+		return "redirect:/admin/enterpriseList/list.jhtml";
 	}
 	/**
 	 * 添加企业
@@ -57,10 +63,10 @@ public class ControllerEnterpriseList {
 	 * 保存企业
 	 * @return
 	 */
-	@RequestMapping(value = "/save", method = RequestMethod.GET)
+	@RequestMapping(value = "/save")
 	public String saveNewsView(){
 		
-		return "redirect:/admin/humanResources/list.jhtml";
+		return "redirect:/admin/enterpriseList/list.jhtml";
 	}
 	/**
 	 * 修改企业
@@ -69,6 +75,6 @@ public class ControllerEnterpriseList {
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String updateNewsView(){
 		
-		return "redirect:/admin/humanResources/list.jhtml";
+		return "redirect:/admin/enterpriseList/list.jhtml";
 	}
 }

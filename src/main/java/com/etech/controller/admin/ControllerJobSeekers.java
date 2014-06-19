@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * 求职者
  * */
-@Controller("controllerAdminJobSeekersList")
+@Controller
 @RequestMapping("/admin/jobSeekersList")
 public class ControllerJobSeekers {
 	private static Log log = LogFactory.getLog(ControllerJobSeekers.class);
@@ -25,12 +25,19 @@ public class ControllerJobSeekers {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView() {
 		log.debug("current controller is newsListView !");
-		return "admin/humanResources/list";
+		return "admin/JobSeekers/list";
 	}
+	
+	/**
+	 * 删除
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequiresPermissions("jobSeekersList:delete")
 	@RequestMapping("/delete")
 	public String removeNews(HttpServletRequest request,HttpServletResponse response){
-		return "redirect:/admin/jianlizhinanService/list.jhtml";
+		return "redirect:/admin/jobSeekersList/list.jhtml";
 	}
 	/**
 	 * 添加求职者
@@ -40,7 +47,7 @@ public class ControllerJobSeekers {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView() {
 		log.debug("current controller is newsListView !");
-		return "admin/humanResources/add";
+		return "admin/JobSeekers/add";
 	}
 	/**
 	 * 编辑求职者
@@ -50,7 +57,7 @@ public class ControllerJobSeekers {
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView() {
 		log.debug("current controller is newsListView !");
-		return "admin/humanResources/edit";
+		return "admin/JobSeekers/edit";
 	}
 	
 	/**
@@ -60,7 +67,7 @@ public class ControllerJobSeekers {
 	@RequestMapping(value = "/save", method = RequestMethod.GET)
 	public String saveNewsView(){
 		
-		return "redirect:/admin/humanResources/list.jhtml";
+		return "redirect:/admin/jobSeekersList/list.jhtml";
 	}
 	/**
 	 * 修改求职者
@@ -69,6 +76,6 @@ public class ControllerJobSeekers {
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String updateNewsView(){
 		
-		return "redirect:/admin/humanResources/list.jhtml";
+		return "redirect:/admin/jobSeekersList/list.jhtml";
 	}
 }
