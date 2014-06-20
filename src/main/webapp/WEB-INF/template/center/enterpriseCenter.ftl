@@ -761,27 +761,14 @@
 			</div>
 			<div class="j_main_left_1" style="margin-top:10px;height:auto;text-align:center;border:1px solid #E4630F;border-radius:4px;">
 				<p style="background: #EE981F; text-align: center; margin: 5px; padding: 5px; border-radius: 5px; border: 0px none; color: #FFFFFF;">人才推荐</p>
+				[#list talentRecommend as user]
 				<div class="j_main_left_1_1">
-					<p style="color: blue;">王小利</p>
-					<p style="color: blue;font-weight:bold;">室内设计师</p>
+					<p style="color: blue;">${user.loginName}</p>
+					<p style="color: blue;font-weight:bold;">${user.comInfo[0].workType.name}</p>
 					<p>薪资待遇：面议</p>
-					<p>招聘人数：若干人</p>
-					<p>学历要求：中专</p>
+					<p>学历：${user.eduLevel}</p>
 				</div>
-				<div class="j_main_left_1_1">
-					<p style="color: blue;">王小利</p>
-					<p style="color: blue;font-weight:bold;">室内设计师</p>
-					<p>薪资待遇：面议</p>
-					<p>招聘人数：若干人</p>
-					<p>学历要求：中专</p>
-				</div>
-				<div class="j_main_left_1_1" style="border-bottom:0;">
-					<p style="color: blue;">王小利</p>
-					<p style="color: blue;font-weight:bold;">室内设计师</p>
-					<p>薪资待遇：面议</p>
-					<p>招聘人数：若干人</p>
-					<p>学历要求：中专</p>
-				</div>
+				[/#list]
 			</div>
 		</div>
 		<div class="j_main_right">
@@ -1027,18 +1014,19 @@
 						<table cellspacing="0">
 							<tr style="background:#F0F0F0;">
 								<th>招聘专业</th>
-								<th>工种描述</th>
+								<th>招聘工种</th>
 								<th>性别</th>
 								<th>文化程度</th>
 								<th>年龄</th>
 								<th>审核情况</th>
+								<th>状况</th>
 								<th>操作</th>
 							</tr>
 							[#if recruits?size>0]
 							[#list recruits as recruit]
 								<tr>
 								<td>${recruit.majorType.name}</td>
-								<td>${recruit.note}</td>
+								<td>${recruit.workType.name}</td>
 								<td>
 								[#if recruit.sex=="man"&&recruit.sex!="woman"]男[#elseif recruit.sex=="woman"]女[/#if]
 								</td>
@@ -1047,6 +1035,7 @@
 								<td>
 								[#if recruit.status=="0"&&recruit.status!="1"]审核中[#elseif recruit.status=="1"]已通过审核[/#if]
 								</td>
+								<td>再看</td>
 								<td><a href="" style="margin-right: 5px;">编辑</a><a href="">删除</a></td>
 							</tr>
 							[/#list]

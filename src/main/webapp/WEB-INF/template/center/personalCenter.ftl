@@ -1045,7 +1045,7 @@
 				<p style="background: #EE981F; text-align: center; margin: 5px; padding: 5px; border-radius: 5px; border: 0px none; color: #FFFFFF;">职位推荐</p>
 				[#list recommendTrecruit as recruit]
 				<div class="j_main_left_1_1">
-					<p style="color: blue;font-weight:bold;">${recruit.workType.getName}</p>
+					<p style="color: blue;font-weight:bold;">${recruit.workType.name}</p>
 					<p style="color: blue;">${recruit.company}</p>
 					<p>薪资待遇:${recruit.salary}</p>
 					<p>招聘人数：${recruit.worknum}</p>

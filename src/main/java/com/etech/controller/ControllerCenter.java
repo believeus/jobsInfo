@@ -20,6 +20,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -37,6 +38,7 @@ import com.etech.entity.TentUser;
 import com.etech.entity.TmajorType;
 import com.etech.entity.Trecruit;
 import com.etech.service.CommonUserService;
+import com.etech.service.EnterpriseUserService;
 import com.etech.service.EtechService;
 import com.etech.util.JsonOutToBrower;
 
@@ -52,10 +54,13 @@ public class ControllerCenter {
 	@Resource
 	private CommonUserService commonUserService;
 	@Resource
+	private EnterpriseUserService enterpriseUserService;
+	@Resource
 	private MydfsTrackerServer mydfsTrackerServer;
 
 	/** 个人中心:该用户需要有personalRole角色才能访问 */
 	@SuppressWarnings("unchecked")
+	@RequiresAuthentication
 	@RequiresRoles("个人用户权限")
 	@RequestMapping(value = "/common-user/center", method = RequestMethod.GET)
 	public String personalCenter(HttpSession session,HttpServletRequest request) {
@@ -85,9 +90,11 @@ public class ControllerCenter {
 
 	/** 进入企业中心:该用户需要有enterpriseRole角色才能访问 */
 	@SuppressWarnings("unchecked")
+	@RequiresAuthentication
 	@RequiresRoles("企业用户权限")
 	@RequestMapping(value = "/enterprise-user/center", method = RequestMethod.GET)
-	public String enterpriseCenter(HttpSession session) {
+	public String enterpriseCenter(HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		TentUser entUser=(TentUser)session.getAttribute("sessionUser");
 		System.out.println(entUser); 
 		String hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+entUser.getId()+"  and info.type='0'";
@@ -96,13 +103,16 @@ public class ControllerCenter {
 		List<TentImgVedio> Vedios=(List<TentImgVedio>)etechService.findListByHQL(hql);
 		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+entUser.getId()+"  and info.type='2'";
 		List<TentImgVedio> Maps=(List<TentImgVedio>)etechService.findListByHQL(hql);
-		hql="From Trecruit recruit left join fetch recruit.entUser as user where  user.id='"+entUser.getId()+"' and recruit.status=1";
+		hql="From Trecruit recruit left join fetch recruit.entUser as user where  user.id='"+entUser.getId()+"'";
 		List<Trecruit> recruits = (List<Trecruit>)etechService.findListByHQL(hql);
-		session.setAttribute("Imgs", Imgs);
-		session.setAttribute("Vedios", Vedios);
-		session.setAttribute("Maps", Maps);
-		session.setAttribute("recruits",recruits);
-		
+		request.setAttribute("Imgs", Imgs);
+		request.setAttribute("Vedios", Vedios);
+		request.setAttribute("Maps", Maps);
+		request.setAttribute("recruits",recruits);
+		/*Begin Author:wuqiwei Data:2014-06-18 AddReason:根据填写的求职信息获取推荐人才*/
+		List<TcomUser> talentRecommend =(List<TcomUser>)enterpriseUserService.talentRecommend(recruits);
+		request.setAttribute("talentRecommend", talentRecommend);
+		/*End Author:wuqiwei Data:2014-06-18 AddReason:根据填写的求职信息获取推荐人才*/
 		return "center/enterpriseCenter";
 	}
 
