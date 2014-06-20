@@ -59,7 +59,7 @@ $().ready(function() {
 		<a href="/admin/common/main.jhtml">首页</a> &raquo; 编辑内容
 	</div>			
 		<table class="input">
-			<form id="inputForm" novalidate="novalidate"  action="/admin/enterpriseAudit.update.jhtml" encType="multipart/form-data"  method="post">
+			<form id="inputForm" novalidate="novalidate"  action="/admin/enterpriseAudit/update.jhtml"   method="post">
 				<input type="hidden" name="id" value="${tentUsers.id}">
 				<input type="hidden" name="status" value="${tentUsers.status}">
 				<input type="hidden" name="loginName" value="${tentUsers.loginName}">

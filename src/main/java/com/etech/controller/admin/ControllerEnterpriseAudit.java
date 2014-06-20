@@ -1,17 +1,14 @@
 package com.etech.controller.admin;
 
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.etech.entity.TentUser;
 import com.etech.service.EtechService;
 
@@ -83,7 +80,7 @@ public class ControllerEnterpriseAudit {
 	 */
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TentUser formUer){
-		log.debug("nimei");
+		etechService.saveOrUpdata(formUer);
 		return "redirect:/admin/enterpriseAudit/list.jhtml";
 	}
 }
