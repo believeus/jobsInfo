@@ -27,6 +27,9 @@
 		    width: 998px;
 		    color:#BA2534;
     	}
+    	.j_main_2 a{
+    		color:#ba2534;
+    	}
     	.j_main_2 td{
     		padding-right: 20px; 
     		padding-left: 10px;
@@ -54,6 +57,8 @@
     	}
     	.j_main_3_2 .current{
     		 background:#FFF1DA;
+    		 border:1px solid #E45900;
+    		 border-bottom:0 !important;
     	}
     	.j_main_3_2 span{
     		font-size:13px;
@@ -146,11 +151,13 @@
     	.j_main_6 td{
     		text-align: center;
     		width: 260px;
-    		padding-bottom:20px;
 		}
     	.j_main_6 span{
     		color:#FF7800;
     	}
+    	.j_main_6 a {
+		    color: #003872;
+		}
     	.j_main_7{
     		width:998px;
     		height:auto;
@@ -204,6 +211,17 @@
 	[#include "/include/header.ftl" /]
 	<script style="text/javascript">
 		    $().ready(function() {
+		    
+		    	$("#gangwei").click(function(){
+		    		$("#gongsi").removeClass("current");
+		    		$("#gangwei").addClass("current");
+		    	});
+		    	$("#gongsi").click(function(){
+		    		$("#gangwei").removeClass("current");
+		    		$("#gongsi").addClass("current");
+		    	});
+		    	
+		    
 		    	// ajax 提交验证和登录。
 		    	function submitF(or,flag){
 					 	if($("#loginName").val()==""){
@@ -275,16 +293,16 @@
 			})
 	</script>
 	<div class="j_main w">
-		<div class="j_main_1">
+		<div class="j_main_1" >
 			<table align="left"  style="font-size: 13px; padding: 4px;">
 				<tr>
 					<td style="padding-right: 20px; padding-left: 10px;">最新消息：</td>
-					<td style="padding-right: 20px;">05月21日</td>
-					<td style="padding-right: 40px;">潜江人才招聘会第二期.....</td>
-					<td style="padding-right: 20px;">05月21日</td>
-					<td style="padding-right: 40px;">潜江人才招聘会第二期.....</td>
-					<td style="padding-right: 20px;">05月21日</td>
-					<td style="padding-right: 40px;">潜江人才招聘会第二期.....</td>
+					[#list notices as notices]
+						<td style="padding-right: 20px;">${notices.createTime?number_to_datetime}</td>
+						<td style="padding-right: 40px;">
+							<a href="/publicityInfo.jhtml?id=8">${notices.title}</a>
+						</td>
+					[/#list]
 				</tr>
 			</table>
 		</div>
@@ -292,14 +310,14 @@
 			<table align="left"  style="font-size: 13px; padding: 4px;">
 				<tr>
 					<td style="padding-right: 10px;">地区频道：</td>
-					<td style="">湖北</td>
-					<td style="">武汉</td>
-					<td style="">潜江</td>
-					<td style="">荆州</td>
-					<td style="">天门</td>
-					<td style="">十堰</td>
-					<td style="">黄石</td>
-					<td style="">襄阳</td>
+					<td style=""><a href="/advancedSearch.jhtml?id=">湖北</a></td>
+					<td style=""><a href="/advancedSearch.jhtml?id=">武汉</a></td>
+					<td style=""><a href="/advancedSearch.jhtml?id=">潜江</a></td>
+					<td style=""><a href="/advancedSearch.jhtml?id=">荆州</a></td>
+					<td style=""><a href="/advancedSearch.jhtml?id=">天门</a></td>
+					<td style=""><a href="/advancedSearch.jhtml?id=">十堰</a></td>
+					<td style=""><a href="/advancedSearch.jhtml?id=">黄石</a></td>
+					<td style=""><a href="/advancedSearch.jhtml?id=">襄阳</a></td>
 				</tr>
 			</table>	
 		</div>
@@ -369,10 +387,10 @@
 			
 			<div class="j_main_3_2">
 				<div style="width:460px;height:42px;">
-					<div id="" class="current" style="border:1px solid #E45900;border-bottom:0;cursor:pointer;height: 42px; float: left; text-align: center; line-height: 42px; font-size: 20px;width: 228px;color:#E45900;cursor:point;">岗位搜索</div>
-					<div id="" class="" style="border-bottom:1px solid #E45900;cursor:pointer;height: 42px; float: left; text-align: center; line-height: 42px; font-size: 20px;width: 229px;color:#E45900;cursor:point;">公司搜索</div>
+					<div id="gangwei" class="current" style="border-bottom:1px solid #E45900;cursor:pointer;height: 42px; float: left; text-align: center; line-height: 42px; font-size: 20px;width: 228px;color:#E45900;cursor:point;">岗位搜索</div>
+					<div id="gongsi" class="" style="border-bottom:1px solid #E45900;cursor:pointer;height: 42px; float: left; text-align: center; line-height: 42px; font-size: 20px;width: 229px;color:#E45900;cursor:point;">公司搜索</div>
 				</div>
-				<div style="width:460px;height:156px;background:#FFF1DA;border:1px solid #E45900;">
+				<div style="width:457px;height:156px;background:#FFF1DA;border:1px solid #E45900;">
 					<form action="">
 						<div style="width: 380px; margin-left: auto; margin-right: auto; margin-top: 20px;">
 							<input type="text" value="" placeholder="请输入查询内容..." style="width: 360px;">

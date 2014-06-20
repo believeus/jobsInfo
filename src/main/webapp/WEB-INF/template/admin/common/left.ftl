@@ -229,7 +229,7 @@ $(function(){
 						<a target="main" href="/admin/stationAudit/list.jhtml">招聘岗位审核列表</a>
 					</li>
       			</ul>
-			<h1>资源审核</h1>
+			<h1>资源管理</h1>
         		<ul style="display: none;" class="MM">
 					<li>
 						<a target="main" href="/admin/enterpriseList/list.jhtml">企业列表</a>

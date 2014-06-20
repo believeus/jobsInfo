@@ -794,7 +794,7 @@
 						<span style="float:left;">基本信息</span>
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 525px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 						<div style="float: left; width: 50px; margin-left: 20px;">
-							<input id="update_mima" type="button" value="修改密码" style="cursor:pointer;width: 80px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
+							<input id="update_mima" type="button" value="修改密码" onClick="alert_win.style.display='block';" style="cursor:pointer;width: 80px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
 						</div>
 					</div>
 					<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
@@ -1181,6 +1181,33 @@
 			</div>
 		</div>
 	</div>
+	
+	<!--修改密码弹出层********************************************-->
+	<style type="text/css">
+		.bg{position:absolute;z-index:999;filter:alpha(opacity=50);background:#666;opacity: 0.5;-moz-opacity: 0.5;left:0;top:0;height:100%;width:100%;min-height:1370px;}
+		.beian_winBG {MARGIN-TOP: -100px; LEFT: 50%; MARGIN-LEFT: -190px; WIDTH: 376px; POSITION: absolute; TOP: 50%; HEIGHT:200px;border:#666666 1px solid;z-index: 1000;}
+		#divOneStep{background-color: #fbfbfb; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 0 1px #fff inset; margin: 0 auto; padding: 20px 75px; position: relative;text-align: left;width: 240px;}
+		.pass_text{border: 1px solid #e3e3e3; border-radius: 3px;height: 30px; margin-bottom: 20px;padding-left: 10px;width: 210px;}
+		.btn_submit{background-color: #ff6c1e; border: 1px solid #ef5f06; border-radius: 3px;color: #fff;cursor: pointer;font-size: 14px;font-weight: bold;margin-bottom: 35px; margin-top: 1px;padding: 8px 22px;text-align: left;}
+	</style>
+	<div id="alert_win" style="display:none;">
+		<div id="mask" style="top:0;left:0;position: absolute;z-index:1000;" class="bg"></div>
+		<DIV class=beian_winBG id=beian_popup><!--弹出框-->
+			<div id="divOneStep" style="z-index:1002;height:200px;">
+				<div style="width:100%;height:30px;light-height:30px;text-align:right;">
+					<a style="font-size: 20px; position: relative; top: -15px; padding: 6px; left: 70px;" href="javascript:;" onClick="alert_win.style.display='none';">&times;</a>
+				</div>
+				<div>
+					<form action="" method="post">
+						<input class="pass_text" type="password" name="pass" placeholder="密码"><br/>
+						<input class="pass_text" type="password" name="repass" placeholder="新密码"><br/>
+						<input class="btn_submit" type="button" value="确定">
+					</form>
+				</div>
+			</div>
+		</DIV>
+	</div>
+	<!--********************************************-->
 	[#include "/include/footer.ftl" /]
 </body>
 </html>

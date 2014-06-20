@@ -89,7 +89,7 @@
 		.j_main_right_3{
 		    margin: 10px 10px;
 		    width: 336px;
-		    height:262px;
+		    height:230px;
 		}
 		.j_main_right_3 p{
 			background:url(/resource/public/images/background.png);
@@ -102,7 +102,7 @@
 		}
 		.j_main_right_3_1{
 			width:336px;
-			height:231px;
+			height:215px;
 			background:#FFFFFF;
 		}
 		.j_main_right_3_1 li{
@@ -155,11 +155,13 @@
 					<tr>
 						<td>
 							<select name="">
-								<option value="">标题</option>
+								<option value="标题">标题</option>
+								<option value="关键字">关键字</option>
+								<option value="文号">文号</option>
 							</select>
 						</td>
 						<td>
-							<input type="text" name="" placeholder="输入文本..">
+							<input type="text" name="text" placeholder="输入文本..">
 						</td>
 						<td>
 							发布日期：
@@ -184,14 +186,20 @@
 							</select>
 						</td>
 						<td rowspan="2" style="background: url(/resource/public/images/chaxun.png); border-radius: 4px;">
-							<input type="button" value="" name="" onclick="javascript:window.location.href='/policyAdviceSearch.jhtml'" style="border: 0px none; font-size: 18px; cursor: pointer; height: 61px; width: 60px; background: none;">
+							<input type="button" value="" name="" onclick="javascript:window.location.href='/policyAdviceSearch.jhtml'" style="border: 0px none; font-size: 18px; cursor: pointer; height: 61px; width: 61px; background: none;">
 						</td>
 					</tr>
 					<tr>
 						<td>效力等级：</td>
 						<td>
 							<select name="" style="width: 235px;">
-								<option value="">全部</option>
+								<option value="全部">全部</option>
+								<option value="法律">法律</option>
+								<option value="行政法规">行政法规</option>
+								<option value="地方法规">地方法规</option>
+								<option value="规章">规章</option>
+								<option value="规范性文件">规范性文件</option>
+								<option value="省厅文件">省厅文件</option>
 							</select>
 						</td>
 						<td>
@@ -199,7 +207,10 @@
 						</td>
 						<td colspan="3">
 							<select name="" style="width: 217px;">
-								<option value="">全部</option>
+								<option value="全部">全部</option>
+								<option value="有效">有效</option>
+								<option value="失效">失效</option>
+								<option value="废止">废止</option>
 							</select>
 						<td>
 					</tr>

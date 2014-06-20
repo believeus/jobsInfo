@@ -121,7 +121,7 @@ $().ready(function() {
 								<span>
 									<a onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
 								</span>
-								<img style="width:190px;height:120px" src="" name="img"/>
+								<img style="width:190px;height:120px" [#if dataCenter.imgpath?exists] src="/${dataCenter.imgpath}" [#else]src="/resource/public/images/bg.png"[/#if] name="img"/>
 							</div>
 							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
 							<input type="hidden" id="filename0" name="filename0">

@@ -32,6 +32,11 @@ public class ControllerJobIntroduce {
 		List<TdataCenter> zhaopinhuiService = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("zhaopinhuiService", zhaopinhuiService);
 		
+		// 公告公示
+		hql="From TdataCenter dataCenter where dataCenter.type='2'";
+		List<TdataCenter> notices = (List<TdataCenter>)etechService.findListByHQL(hql);
+		session.setAttribute("notices",notices ); 
+		
 		//面试宝典
 		hql="From TdataCenter dataCenter where dataCenter.type='25'";
 		List<TdataCenter> mianshibaodianService = (List<TdataCenter>)etechService.findListByHQL(hql);

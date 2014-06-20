@@ -45,21 +45,18 @@
 	    line-height:37px;
 	}
 	.nav_current{
-		background:url(/resource/public/images/zhuye-img_07.png);
+		background:url("/resource/public/images/zhuye-img_07.png") repeat-y scroll center 0 rgba(0, 0, 0, 0);
 		width:58px;
 		height:35px;
 	}
 </style>
+<script src="/resource/public/resources/scripts/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
 	$().ready(function(){
 		$("body").css("background","#FFFBF6");
-		if(window.location.pathname == "/" || window.location.pathname == "/infoCenter.jhtml"){
-			$("body").css("background","none");
-		}
 		
 		//alert(window.location.pathname);
 		$(".nav a").each(function(){
-			//alert($(this).attr("href") == window.location.pathname);
 			if($(this).attr("href") == window.location.pathname){
 				$(this).addClass("nav_current");
 			}
