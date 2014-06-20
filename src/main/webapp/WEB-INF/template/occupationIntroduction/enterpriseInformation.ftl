@@ -438,9 +438,13 @@
 						<div class="shipin" style="width:690px;height:auto;overflow:hidden;margin:0 20px;margin-bottom:15px;">
 							<table>
 								<tr>
+									[#list vedios as vedio]
 									<td>
-										<a href=""><img src="/resource/public/images/shipin.jpg" width="100" height="70"></a>
+										<a href="/videosInfo.jhtml?id=${vedio.id}">
+											<img src="${vedio.url}" width="100" height="70">
+										</a>
 									</td>
+									[/#list]
 									<td>
 										<a href=""><img src="/resource/public/images/shipin.jpg" width="100" height="70"></a>
 									</td>

@@ -161,30 +161,6 @@ $().ready(function() {
 						</td>
 					</tr>
 				</form>
-				</table>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+			</table>
 </body>
 </html>

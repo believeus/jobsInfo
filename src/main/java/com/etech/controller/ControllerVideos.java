@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.etech.entity.TdataCenter;
+import com.etech.entity.TentImgVedio;
 import com.etech.service.EtechService;
 
 /**
@@ -22,9 +23,9 @@ public class ControllerVideos {
 	private EtechService etechService;
 	
 	@RequestMapping(value = "/videosInfo", method = RequestMethod.GET)
-	public String videoList(HttpSession session/*,Integer id*/) {
-		//TdataCenter dataCenter = (TdataCenter)etechService.findObjectById(TdataCenter.class, id);
-		//session.setAttribute("data", dataCenter);
+	public String videoList(HttpSession session,Integer id) {
+		TentImgVedio imgVedio = (TentImgVedio)etechService.findObjectById(TentImgVedio.class, id);
+		session.setAttribute("imgVedio", imgVedio);
 		return "infoCenter/videosInfo";
 	}
 	

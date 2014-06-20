@@ -332,13 +332,13 @@
 								${new.title}
 							[/#if]
 							</a></h2>
-							<p style="color:#2B8BDF;margin:0;font-size:12px;">
+							<div style="color:#2B8BDF;margin:0;font-size:13px;">
 							[#if new.content?length > 27]
-								${new.content?string?substring(0,27)}...
+									${new.content?string?substring(0,27)}...
 							[#else]
-								${new.content}
+									${new.content}
 							[/#if]
-							</p>
+							</div>
 						[/#if]
 						[/#list]
 				</div>
@@ -399,7 +399,8 @@
 								<ul style="padding-left:25px;">
 									[#list zhaopList as zhaop]
 										<li>
-											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zp">${zhaop.company}&nbsp;&nbsp;${zhaop.workType.name}</a>
+											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zw">${zhaop.company}</a>&nbsp;&nbsp;
+											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}">${zhaop.workType.name}</a>
 											<span>${zhaop.editTime?number_to_datetime}</span>
 										</li>
 									[/#list]
@@ -411,7 +412,16 @@
 								<p><span style="margin-left:30px;float:none;">政策信息</span></p>
 								<ul style="padding-left:25px;">
 									[#list countryLawDataList as countryLawData]
-										<li><a href="/countryLaw.jhtml">${countryLawData.title}</a><span style="">${countryLawData.editTime?number_to_datetime}</span></li>
+										<li>
+											<a href="/countryLaw.jhtml?id=${countryLawData.id}">
+												[#if countryLawData.title?length > 15]
+													${countryLawData.title?string?substring(0,15)}...
+												[#else]
+													${countryLawData.title}
+												[/#if]
+											</a>
+											<span style="">${countryLawData.editTime?number_to_datetime}</span>
+										</li>
 									[/#list]
 								</ul>
 							</div>
@@ -436,7 +446,16 @@
 								<p><span style="margin-left:30px;float:none;">工作动态</span></p>
 								<ul style="padding-left:25px;">
 								[#list works as work]
-									<li><a href="/workInfo.jhtml?id=${work.id}">${work.title}</a><span>${work.editTime?number_to_datetime}</span></li>
+									<li>
+										<a href="/workInfo.jhtml?id=${work.id}">
+											[#if work.title?length > 15]
+												${work.title?string?substring(0,15)}...
+											[#else]
+												${work.title}
+											[/#if]
+										</a>
+										<span>${work.editTime?number_to_datetime}</span>
+									</li>
 								[/#list]
 								</ul>
 							</div>

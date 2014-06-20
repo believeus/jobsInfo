@@ -254,13 +254,13 @@
 								${new.title}
 							[/#if]
 							</a></h2>
-							<p style="color:#2B8BDF;margin:0;font-size:12px;">
+							<div style="color:#2B8BDF;margin:0;font-size:13px;">
 							[#if new.content?length > 27]
 								${new.content?string?substring(0,27)}...
 							[#else]
 								${new.content}
 							[/#if]
-							</p>
+							</div>
 						[/#if]
 						[/#list]
 					</div>
@@ -331,9 +331,9 @@
 					<div style="width: 320px; height: 0px; margin-left: auto; margin-right: auto; border: 1px dashed #E4E4E4;margin-bottom:15px;"></div>
 					<ul style="margin: 0px; padding: 0px 15px;">
 						[#list news as new]
-							<li><a href="/newsInfo.jhtml?id=${new.id}">
-							[#if new.title?length > 22]
-								${new.title?string?substring(0,22)}...
+							<li><a href="/newsInfo.jhtml?id=${new.id}" title="${new.title}">
+							[#if new.title?length > 15]
+								${new.title?string?substring(0,15)}...
 							[#else]
 								${new.title}
 							[/#if]
@@ -372,14 +372,14 @@
 					<div style="width: 320px; height: 0px; margin-left: auto; margin-right: auto; border: 1px dashed #E4E4E4;margin-bottom:15px;"></div>
 					<ul style="margin: 0px; padding: 0px 15px;">
 						[#list works as work]
-							<li><a href="/workInfo.jhtml">
-							[#if work.title?length > 22]
-								${work.title?string?substring(0,22)}...
+							<li><a href="/workInfo.jhtml?id=${work.id}" title="${work.title}">
+							[#if work.title?length > 15]
+								${work.title?string?substring(0,15)}...
 							[#else]
 								${work.title}
 							[/#if]
 							
-							</a><span>${work.createTime?number_to_datetime}</span></li>
+							</a><span>${work.editTime?number_to_datetime}</span></li>
 						[/#list]
 					</ul>
 				</div>
@@ -394,9 +394,9 @@
 						[#list vedios as vedio]
 						<td>
 							<p>
-								<a href="/videosInfo.jhtml"><img src="${vedio.imgpath}" width="104"></a>
+								<a href="/videosInfo.jhtml?id=${vedio.id}"><img src="${vedio.imgpath}" width="104"></a>
 							</p>
-							<p><a href="/videosInfo.jhtml">
+							<p><a href="/videosInfo.jhtml?id=${vedio.id}">
 							[#if vedio.title?length > 6]
 								${vedio.title?string?substring(0,6)}...
 							[#else]
