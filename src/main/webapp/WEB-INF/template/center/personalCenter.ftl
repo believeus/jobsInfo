@@ -1798,6 +1798,7 @@
 						<input class="pass_text" type="password" name="pass" placeholder="密码"><br/>
 						<input class="pass_text" type="password" name="repass" placeholder="新密码"><br/>
 						<input class="btn_submit" type="button" value="确定">
+						<input type="reset" value="重置" class="btn_submit" style="margin-left: 50px;">
 					</form>
 				</div>
 			</div>
