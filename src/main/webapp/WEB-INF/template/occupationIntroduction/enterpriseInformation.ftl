@@ -284,7 +284,7 @@
 				
 				<div id="base_xinxi" style="width::728px;height:auto;overflow:hidden;">
 					<p>
-						<span style="font-size:20px;color:#000000;">云科科技</span>
+						<span style="font-size:20px;color:#000000;">${trecruit.company}</span>
 					</p>
 					<div style="height: 30px; width: 728px;">
 						<span style="float:left;">基本信息</span>
@@ -295,62 +295,62 @@
 							<table>
 								<tr>
 									<td>单位全称:</td>
-									<td style="padding-right: 80px;">武汉云科科技有限公司</td>
+									<td style="padding-right: 80px;">${trecruit.entUser.fullName}</td>
 									<td rowspan="2" colspan="2">
 										<img src="/resource/public/images/zt_topImg.png" width="260px" height="30px"/>
 									</td>
 								</tr>
 								<tr>
 									<td>单位性质:</td>
-									<td>企业</td>
+									<td>${trecruit.entUser.unitType}</td>
 								</tr>
 								<tr>
 									<td>单位简称:</td>
-									<td>云科科技</td>
+									<td>${trecruit.entUser.shorName}</td>
 									<td>隶属关系:</td>
-									<td>街道</td>
+									<td>${trecruit.entUser.relationship}</td>
 								</tr>
 								<tr>
 									<td>经济类型:</td>
-									<td>私营</td>
+									<td>${trecruit.entUser.economicType}</td>
 									<td>法人代表:</td>
-									<td>张三</td>
+									<td>${trecruit.entUser.legalMan}</td>
 								</tr>
 								<tr>
 									<td>所属地区:</td>
-									<td>武汉</td>
+									<td>${trecruit.entUser.area}</td>
 									<td>行业:</td>
-									<td>IT</td>
+									<td>${trecruit.entUser.trade}</td>
 								</tr>
 								<tr>
 									<td>注册资金:</td>
-									<td>100万</td>
+									<td>${trecruit.entUser.regMoney}</td>
 									<td>详细地址:</td>
-									<td>街道口</td>
+									<td>${trecruit.entUser.detailAddress}</td>
 								</tr>
 								<tr>
 									<td>联系人:</td>
-									<td>张三</td>
+									<td>${trecruit.entUser.contacts}</td>
 									<td>通讯地址:</td>
-									<td>街道口</td>
+									<td>${trecruit.entUser.detailAddress}</td>
 								</tr>
 								<tr>
 									<td>邮编:</td>
-									<td>430061</td>
+									<td>${trecruit.entUser.zip}</td>
 									<td>手机:</td>
-									<td>13112345678</td>
+									<td>${trecruit.entUser.phoneFax}</td>
 								</tr>
 								<tr>
 									<td>电话/传真:</td>
-									<td>87050141</td>
+									<td>${trecruit.entUser.phoneFax}</td>
 									<td>网址:</td>
-									<td>www.ppsells.com</td>
+									<td>${trecruit.entUser.webSite}</td>
 								</tr>
 								<tr>
 									<td style="vertical-align: top;">单位简介:</td>
 									<td colspan="3">
 										<p style="margin: 0px; width: 570px; line-height: 22px;">
-											每一个人工作都是为了获得合理的报酬，所以广大面试者不需要任何心理负担，或者有任何难以启齿的感觉。工资是每一个员工的正常收益，只有在面试的过程中得到恰当的定位，那么让员工在工作中有更好的积极性，也让企业获得最恰当的员工。 
+											${trecruit.entUser.introduce} 
 										</p>
 									</td>
 								</tr>
@@ -363,12 +363,14 @@
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 					</div>
 					<div style="width:670px;height:auto;overflow:hidden;margin:0 20px;margin-bottom:15px;padding:10px;">
+						[#list trecruit.entUser.imgVedios as imgVedio]
 						<div class="qiyepic">
-							<p><img src="/resource/public/images/qiyeshuoming.png" width="160" height="130"/></p>
+							<p><img src="${imgVedio.url}" width="160" height="130"/></p>
 							<p style="margin-top: -5px;background:#EEEEEE;padding:5px;color:#555555;">
-								每一个人工作都是为了获得合理的报酬
+								${imgVedio.descption}
 							</p>
 						</div>
+						[/#list]
 						<div class="qiyepic">
 							<p><img src="/resource/public/images/qiyeshuoming.png" width="160" height="130"/></p>
 							<p style="margin-top: -5px;background:#EEEEEE;padding:5px;color:#555555;">
@@ -426,7 +428,7 @@
 				
 				<div id="bianji_xinxi" style="width:728px;height:auto;;overflow:hidden;display:none;">
 					<p>
-						<span style="font-size:20px;color:#000000;">云科科技</span>
+						<span style="font-size:20px;color:#000000;">${trecruit.company}</span>
 					</p>
 					<div class="zhaopin" style="height: auto; text-align: center; border: 1px solid #e4e4e4; margin: 5px 20px; width: 685px;">
 						<table cellspacing="0">
@@ -438,27 +440,12 @@
 								<th>刷新日期</th>
 								<th>截至日期</th>
 							</tr>
+							
 							<tr>
-								<td>java开发工程师</td>
-								<td>5人</td>
-								<td>青岛</td>
-								<td>高中</td>
-								<td>2天前</td>
-								<td>2014-07-01</td>
-							</tr>
-							<tr>
-								<td>销售代表</td>
-								<td>5人</td>
-								<td>青岛</td>
-								<td>高中</td>
-								<td>2天前</td>
-								<td>2014-07-01</td>
-							</tr>
-							<tr>
-								<td>美工</td>
-								<td>5人</td>
-								<td>青岛</td>
-								<td>高中</td>
+								<td>${trecruit.workType.name}</td>
+								<td>${trecruit.worknum}人</td>
+								<td>${trecruit.workspace}</td>
+								<td>${trecruit.eduLevel}</td>
 								<td>2天前</td>
 								<td>2014-07-01</td>
 							</tr>
@@ -468,71 +455,71 @@
 				
 				<div id="zhiwei_xinxi" style="width:728px;height:auto;;overflow:hidden;display:none;">
 					<p>
-						<span style="font-size:20px;">java 开发工程师</span>
+						<span style="font-size:20px;">${trecruit.workType.name}</span>
 					</p>
 					<div style="width:690px;height:auto;overflow:hidden;margin:0 20px;margin-bottom:15px;">
 						<div class="" style="height: auto; overflow: hidden; float: left; width: 660px; margin-left: 30px; margin-top: 10px;margin-right:10px;">
 							<table>
 								<tr>
 									<td>招聘单位:</td>
-									<td style="padding-right: 80px;">武汉云科科技有限公司</td>
+									<td style="padding-right: 80px;">${trecruit.company}</td>
 									<td>专业:</td>
-									<td>java</td>
+									<td>${trecruit.majorType.name}</td>
 								</tr>
 								<tr>
 									<td>工种:</td>
-									<td>全职</td>
+									<td>${trecruit.workType.name}</td>
 									<td>性别:</td>
-									<td>男女不限</td>
+									<td>${trecruit.sex}</td>
 								</tr>
 								<tr>
 									<td>人数:</td>
-									<td>5</td>
+									<td>${trecruit.worknum}</td>
 									<td>技术等级:</td>
-									<td>一级</td>
+									<td>${trecruit.eteLevel}</td>
 								</tr>
 								<tr>
 									<td>从事年限:</td>
-									<td>1年</td>
+									<td>${trecruit.workyear}</td>
 									<td>文化程度:</td>
-									<td>大学</td>
+									<td>${trecruit.eduLevel}</td>
 								</tr>
 								<tr>
 									<td>工作地点:</td>
-									<td>武汉</td>
+									<td>${trecruit.workspace}</td>
 									<td>年龄:</td>
-									<td>23</td>
+									<td>${trecruit.age}</td>
 								</tr>
 								<tr>
 									<td>身高:</td>
-									<td>170cm</td>
+									<td>${trecruit.height}</td>
 									<td>视力:</td>
-									<td>1.0</td>
+									<td>${trecruit.eyesight}</td>
 								</tr>
 								<tr>
 									<td>薪资待遇:</td>
-									<td>面谈</td>
+									<td>${trecruit.salary}</td>
 									<td>用工形式:</td>
-									<td></td>
+									<td>${trecruit.workWay}</td>
 								</tr>
 								<tr>
 									<td>招聘期限:</td>
-									<td>一周</td>
+									<td>${trecruit.worklimit}</td>
 									<td>面试时间:</td>
-									<td>2014-06-20</td>
+									<td>${trecruit.viewData}</td>
 								</tr>
 							</table>
 							<h4>职位描述：</h4>
 							<p style="margin: 0px; width: 570px; line-height: 22px;">
-								每一个人工作都是为了获得合理的报酬，所以广大面试者不需要任何心理负担，或者有任何难以启齿的感觉。工资是每一个员工的正常收益，只有在面试的过程中得到恰当的定位，那么让员工在工作中有更好的积极性，也让企业获得最恰当的员工。 
+								${trecruit.note} 
 							</p>
 							<h4>联系方式：</h4>
 							<p style="margin: 0px; width: 570px; line-height: 22px;">
-								13112345678 
+								${trecruit.entUser.phoneFax}
 							</p>
 							<h4>公司地点：</h4>
 							<p style="margin: 0px; width: 570px; line-height: 22px;">
-								武汉洪山
+								${trecruit.entUser.detailAddress}
 							</p>
 						</div>
 					</div>

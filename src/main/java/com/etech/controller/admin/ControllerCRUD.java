@@ -61,7 +61,8 @@ public class ControllerCRUD {
 		String title=request.getParameter("title");
 		String author=request.getParameter("author");
 		/**Begin Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
-		String content=HtmlUtils.htmlEscape(request.getParameter("content"));
+//		String content=HtmlUtils.htmlEscape(request.getParameter("content"));
+		String content=request.getParameter("content");
 		System.out.println(content);
 		/**End Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
 		String top=request.getParameter("top");
@@ -104,7 +105,8 @@ public class ControllerCRUD {
 		}
 		log.debug("是否置顶top:"+formDataCenter.getTop());
 		/**Begin Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
-		String content=HtmlUtils.htmlEscape(formDataCenter.getContent());
+//		String content=HtmlUtils.htmlEscape(formDataCenter.getContent());
+		String content=request.getParameter("content");
 		formDataCenter.setContent(content);
 		/**End Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, formDataCenter.getId());

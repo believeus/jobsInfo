@@ -21,10 +21,17 @@ public class ControllerNews {
 	@Resource
 	private EtechService etechService;
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/newsInfo", method = RequestMethod.GET)
 	public String newsInfoView(HttpSession session,Integer id) {
 		TdataCenter dataCenter = (TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		session.setAttribute("data", dataCenter); 
+		
+		// 专题
+		String hql="From TdataCenter dataCenter where dataCenter.type='5'";
+		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
+		session.setAttribute("subjectReport", subjectReport);
+		
 		return "infoCenter/newsInfo";
 	}
 	

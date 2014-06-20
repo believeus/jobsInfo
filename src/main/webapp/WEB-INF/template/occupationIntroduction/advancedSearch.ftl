@@ -123,6 +123,11 @@
 		.t_table a:hover{
 			text-decoration:underline;
 		}
+		.fenye a {
+		    border: 0 none;
+		    color: blue;
+		    text-decoration: underline;
+		}
     </style>
 </head>
 <body>
@@ -500,7 +505,7 @@
 					<a href="">按相关度</a>
 				</div>
 				
-				<ul style="float: right; margin: 0px;">
+				<ul class="fenye" style="float: right; margin: 0px;">
 					<li>
 						<a href="">上一页</a>
 					</li>
@@ -661,7 +666,7 @@
 					</tr>
 				</table>
 				<div class="paixu" style="margin-top:30px;">
-					<ul style="float: right; margin: 0px 40px 0px 0px;">
+					<ul class="fenye" style="float: right; margin: 0px 40px 0px 0px;">
 						<li>
 							<a href="">上一页</a>
 						</li>

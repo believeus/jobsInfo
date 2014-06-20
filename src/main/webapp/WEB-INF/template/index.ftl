@@ -399,8 +399,8 @@
 								<ul style="padding-left:25px;">
 									[#list zhaopList as zhaop]
 										<li>
-											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zp">${zhaop.company}[${zhaop.workType}]</a>
-											<span>${zhaop.createTime?number_to_datetime}</span>
+											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zp">${zhaop.company}&nbsp;&nbsp;${zhaop.workType.name}</a>
+											<span>${zhaop.entUser.createDate?number_to_datetime}</span>
 										</li>
 									[/#list]
 								</ul>
@@ -436,7 +436,7 @@
 								<p><span style="margin-left:30px;float:none;">工作动态</span></p>
 								<ul style="padding-left:25px;">
 								[#list works as work]
-									<li><a href="/workList.jhtml">${work.title}</a><span>${work.editTime?number_to_datetime}</span></li>
+									<li><a href="/workInfo.jhtml?id=${work.id}">${work.title}</a><span>${work.editTime?number_to_datetime}</span></li>
 								[/#list]
 								</ul>
 							</div>

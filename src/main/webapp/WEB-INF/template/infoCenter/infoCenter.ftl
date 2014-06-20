@@ -210,7 +210,7 @@
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml">更多>></a></div>
 				[#list subjectReport as sReport]
-					<a href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:222px;height:66px;margin-top:7px;"></a>
+					<a style="margin-left:0;" href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:222px;height:66px;margin-top:7px;"></a>
 				[/#list]
 			</div>
 		</div>
@@ -229,7 +229,7 @@
 						</ul>
 						<div id="banner_list">
 							[#list imgs as img]
-								<a href="/newsInfo.jhtml" target="_blank"><img src="${img.imgpath}" width="314" height="236" title="this is a beautiful girl!" alt="
+								<a href="/newsInfo.jhtml?id=${img.id}" target="_blank"><img src="${img.imgpath}" width="314" height="236" title="this is a beautiful girl!" alt="
 								[#if img.title?length > 18]
 									${img.title?string?substring(0,18)}...
 								[#else]
@@ -287,7 +287,7 @@
 					<ul class="xinwen_ul" style="padding-left: 25px;">
 						[#list news as new]
 						[#if new_index > 1]	
-							<li><a href="/newsInfo.jhtml?id="${new.id}"">
+							<li><a href="/newsInfo.jhtml?id=${new.id}">
 							[#if new.title?length > 16]
 								${new.title?string?substring(0,16)}...
 							[#else]
@@ -310,7 +310,8 @@
 					[#if new_index==0]
 					<div style="height: 100px; padding: 9px; width: 341px;">
 						<img src="${new.imgpath}" style="float:left;width:120px;height:100px">
-						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;font-size:16px;"><a style="color:#C42D3E;" href="/newsInfo.jhtml">
+						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;font-size:16px;">
+							<a style="color:#C42D3E;" href="/newsInfo.jhtml?id=${new.id}">
 							[#if new.title?length > 22]
 								${new.title?string?substring(0,22)}...
 							[#else]
@@ -323,7 +324,7 @@
 							[#else]
 								${new.content}
 							[/#if]
-						<span style="text-align: right;float:right;"><a href="/newsInfo.jhtml?id="${new.id}"">[详细]</a></span></p>
+						<span style="text-align: right;float:right;"><a href="/newsInfo.jhtml?id=${new.id}">[详细]</a></span></p>
 					</div>
 					[/#if]
 					[/#list]
@@ -350,7 +351,8 @@
 					[#if work_index==0]					
 					<div style="height: 100px; padding: 9px; width: 341px;">
 						<img src="${work.imgpath}" style="float:left;width:120px;height:100px;">
-						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;font-size:16px;color:#C42D3E;"><a style="color:#C42D3E;" href="/workInfo.jhtml">
+						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;font-size:16px;color:#C42D3E;">
+							<a style="color:#C42D3E;" href="/workInfo.jhtml?id=${work.id}">
 						[#if work.title?length > 22]
 								${work.title?string?substring(0,22)}...
 							[#else]
@@ -363,7 +365,7 @@
 							[#else]
 								${work.content}
 							[/#if]
-						<span style="text-align: right;float:right;"><a href="/workInfo.jhtml">[详细]</a></span></p>
+						<span style="text-align: right;float:right;"><a href="/workInfo.jhtml?id=${work.id}">[详细]</a></span></p>
 					</div>
 					[/#if]
 					[/#list]
