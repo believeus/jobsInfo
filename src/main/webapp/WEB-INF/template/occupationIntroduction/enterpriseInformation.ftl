@@ -220,6 +220,7 @@
 	[#include "/include/header.ftl" /]
 	<div class="j_main w">
 		<div class="j_main_left">
+			[#if sessionUser?exists]
 			<div class="j_main_left_1" style="border:0;height:auto;border:1px solid #E4630F;border-radius:4px;">
 				<table style="padding: 6px 19px 19px;">
 					<tr>
@@ -243,6 +244,39 @@
 					</tr>
 				</table>
 			</div>
+			[#else]
+			<div class="j_main_left_1" style="border:0;height:auto;border:1px solid #E4630F;border-radius:4px;">
+				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);">
+					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
+					会员登录
+				</p>
+				<form id="loginForm" action="/" method="post">
+				<table style="padding:19px;">
+					<tr>
+						<td>用户名:</td>
+						<td><input id="loginName" type="text" name="loginName"  autocomplete="off" style="width:150px"></td>
+					</tr>
+					<tr>
+						<td>密&nbsp;&nbsp;&nbsp;码:</td>
+						<td><input id="password" type="password" name="password" autocomplete="off" style="width:150px"></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center">
+							<label><input type="radio" name="userType" checked="ture" value="commonUser">个人用户</label>
+							<label><input type="radio" name="userType" value="enterpriseUser">企业用户</label>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center">
+							<input class="btn_login" type="button" id="login" value="登录" style="margin-right: 10px;">
+							<input class="btn_login" type="button" id="register" value="注册">
+						</td>
+					</tr>
+				</table>
+				</form>
+			</div>
+			
+			[/#if]
 			<div class="j_main_left_1" style="margin-top:10px;height:auto;text-align:center;border:1px solid #E4630F;border-radius:4px;">
 				<p style="background: #EE981F; text-align: center; margin: 5px; padding: 5px; border-radius: 5px; border: 0px none; color: #FFFFFF;">人才推荐</p>
 				<div class="j_main_left_1_1">

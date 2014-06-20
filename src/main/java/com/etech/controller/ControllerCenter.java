@@ -253,7 +253,11 @@ public class ControllerCenter {
 			Integer majorTypeId,HttpSession session,HttpServletResponse response) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		TentUser entUser=(TentUser)session.getAttribute("sessionUser");
-		recruit.setEntUser(entUser); 
+		recruit.setEntUser(entUser);
+		//创建时间
+		recruit.setCreateTime(System.currentTimeMillis());
+		//编辑时间
+		recruit.setEditTime(System.currentTimeMillis());
 		if (workTypeId != null) {
 			TmajorType workType = (TmajorType) etechService.findObjectById(TmajorType.class, workTypeId);
 			recruit.setWorkType(workType);

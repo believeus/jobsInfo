@@ -88,27 +88,26 @@ $().ready(function() {
 				</th>
 			</tr>
 			
-			[#list recruitList as recruit]
+			[#list enterpriseTentUsers as user]
 			<tr>
 				<td>
-					<input type="checkbox" name="ids" value="${recruit.id}" />
+					<input type="checkbox" name="ids" value="${user.id}" />
 				</td>
 				<td>
-					<span>${recruit.id}</span>
+					<span>${user.fullName}</span>
 				</td>
 				<td>
-					${recruit.company}
+					${user.legalMan}
 				</td>
 				<td>
-					${recruit.workspace}
+					${user.regMoney}
 				</td>
 				<td>
-					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
-					<a href="" style="text-decoration:underline;">降</a>
+					${user.unitType}
 				</td>
 				<td>
-					<a href="edit.jhtml?id=${recruit.id}">[修改]</a>
-					<a href="review.jhtml?id=${recruit.id}">[审核通过]</a>
+					<a href="/admin/enterpriseAudit/edit.jhtml?id=${user.id}">[修改]</a>
+					<a href="/admin/enterpriseAudit/review.jhtml?id=${user.id}">[审核通过]</a>
 				</td>
 			</tr>
 			[/#list]

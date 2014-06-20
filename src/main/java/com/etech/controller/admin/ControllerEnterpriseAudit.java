@@ -1,11 +1,19 @@
 package com.etech.controller.admin;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.etech.entity.TentUser;
+import com.etech.service.EtechService;
 
 /**
  * 企业审核
@@ -14,14 +22,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/admin/enterpriseAudit")
 public class ControllerEnterpriseAudit {
 	private static Log log = LogFactory.getLog(ControllerEnterpriseAudit.class);
-
+	@Resource
+	private EtechService etechService;
 	/**
 	 * 企业审核列表
 	 * @return
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String newsListView() {
+	public String newsListView(HttpServletRequest request) {
 		log.debug("current controller is newsListView !");
+		//查询待审核的企业用户
+		@SuppressWarnings("unchecked")
+		List<TentUser> enterpriseTentUsers=(List<TentUser>)etechService.getListByProperty(TentUser.class, "status", "0");
+		request.setAttribute("enterpriseTentUsers", enterpriseTentUsers);
 		return "admin/enterpriseAudit/list";
 	}
 	
@@ -46,8 +59,12 @@ public class ControllerEnterpriseAudit {
 	 */
 	@RequiresPermissions("enterpriseAudit:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public String editNewsView() {
-		log.debug("current controller is newsListView !");
+	public String editNewsView(HttpServletRequest request) {
+		String id=request.getParameter("id");
+		@SuppressWarnings("unchecked")
+		TentUser tentUsers=(TentUser)etechService.findObjectById(TentUser.class, Integer.parseInt(id));
+		request.setAttribute("tentUsers", tentUsers);
+		log.debug("current controller is editNewsView !");
 		return "admin/enterpriseAudit/edit";
 	}
 	
@@ -64,9 +81,9 @@ public class ControllerEnterpriseAudit {
 	 * 修改企业审核
 	 * @return
 	 */
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String updateNewsView(){
-		
+	@RequestMapping(value = "/update")
+	public String updateNewsView(TentUser formUer){
+		log.debug("nimei");
 		return "redirect:/admin/enterpriseAudit/list.jhtml";
 	}
 }

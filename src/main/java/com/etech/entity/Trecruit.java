@@ -32,6 +32,10 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	@Length(max=15)
 	@Column(nullable=true)
 	private String eteLevel;
+	//创建时间
+	private long createTime;
+	//编辑时间
+	private long editTime;
 	/**文化程度*/
 	@Length(max=20)
 	@Column(nullable=true)
@@ -231,6 +235,22 @@ public class Trecruit extends TbaseEntity implements Serializable {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public long getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(long createTime) {
+		this.createTime = createTime;
+	}
+
+	public long getEditTime() {
+		return editTime;
+	}
+
+	public void setEditTime(long editTime) {
+		this.editTime = editTime;
 	}
 
 }

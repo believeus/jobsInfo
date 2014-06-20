@@ -14,7 +14,8 @@
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
 <script type="text/javascript">
 $().ready(function() {
-
+	$("#relationship").val("${tentUsers.relationship}")
+	$("#economicType").val("${tentUsers.economicType}");
 	var $inputForm = $("#inputForm");
 	var $type = $("#type");
 	var $contentTr = $("#contentTr");
@@ -48,7 +49,7 @@ $().ready(function() {
 			path: "required",
 			order: "digits"
 		}
-	});
+	});F
 	
 });
 </script>
@@ -56,17 +57,16 @@ $().ready(function() {
 <body>
 	<div class="path">
 		<a href="/admin/common/main.jhtml">首页</a> &raquo; 编辑内容
-	</div>
-		
+	</div>			
 		<table class="input">
-			<form id="inputForm" novalidate="novalidate"  action="/update.jhtml" encType="multipart/form-data"  method="post">
-				<input type="hidden" name="id" value="">
-				<input type="hidden" name="status" value="">
-				<input type="hidden" name="loginName" value="">
-				<input type="hidden" name="password" value="">
+			<form id="inputForm" novalidate="novalidate"  action="/admin/enterpriseAudit.update.jhtml" encType="multipart/form-data"  method="post">
+				<input type="hidden" name="id" value="${tentUsers.id}">
+				<input type="hidden" name="status" value="${tentUsers.status}">
+				<input type="hidden" name="loginName" value="${tentUsers.loginName}">
+				<input type="hidden" name="password" value="${tentUsers.password}">
 					<tr>
 						<td>单位全称:</td>
-						<td style="padding-right: 80px;"><input type="text" value="" id="fullName" name="fullName"></td>
+						<td style="padding-right: 80px;"><input type="text" value="${tentUsers.fullName}" id="fullName" name="fullName"></td>
 						<td>单位性质:</td>
 						<td>
 							<select id="unitType" name="unitType" style="width: 182px;">
@@ -80,7 +80,7 @@ $().ready(function() {
 					</tr>
 					<tr>
 						<td>单位简称:</td>
-						<td><input type="text" id="shorName" value="" name="shorName"></td>
+						<td><input type="text" id="shorName" value="${tentUsers.shorName}" name="shorName"></td>
 						<td>隶属关系:</td>
 						<td>
 							<select id="relationship" name="relationship" style="width: 182px;">
@@ -112,41 +112,41 @@ $().ready(function() {
 							</select>
 						</td>
 						<td>法人代表:</td>
-						<td><input type="text" value="" id="legalMan" name="legalMan"></td>
+						<td><input type="text" value="${tentUsers.legalMan}" id="legalMan" name="legalMan"></td>
 					</tr>
 					<tr>
 						<td>所属地区:</td>
-						<td><input type="text"  value="" id="area" name="area"></td>
+						<td><input type="text"  value="${tentUsers.area}" id="area" name="area"></td>
 						<td>行业:</td>
-						<td><input type="text"  value="" id="trade" name="trade"></td>
+						<td><input type="text"  value="${tentUsers.trade}" id="trade" name="trade"></td>
 					</tr>
 					<tr>
 						<td>注册资金:</td>
-						<td><input type="text"  value="" id="regMoney" name="regMoney"></td>
+						<td><input type="text"  value="${tentUsers.regMoney}" id="regMoney" name="regMoney"></td>
 						<td>详细地址:</td>
-						<td><input type="text"  value=""id="detailAddress" name="detailAddress"></td>
+						<td><input type="text"  value="${tentUsers.detailAddress}"id="detailAddress" name="detailAddress"></td>
 					</tr>
 					<tr>
 						<td>联系人:</td>
-						<td><input type="text"  value="" id="contacts" name="contacts"></td>
+						<td><input type="text"  value="${tentUsers.contacts}" id="contacts" name="contacts"></td>
 						<td>通讯地址:</td>
-						<td><input type="text"  value="" id="address" name="address"></td>
+						<td><input type="text"  value="${tentUsers.address}" id="address" name="address"></td>
 					</tr>
 					<tr>
 						<td>邮编:</td>
-						<td><input type="text"  value="" id="zip" name="zip"></td>
+						<td><input type="text"  value="${tentUsers.zip}" id="zip" name="zip"></td>
 						<td>手机:</td>
-						<td><input type="text"  value="" id="phoneNum" name="phoneNum"></td>
+						<td><input type="text"  value="${tentUsers.phoneNum}" id="phoneNum" name="phoneNum"></td>
 					</tr>
 					<tr>
 						<td>电话/传真:</td>
-						<td><input type="text"  value="" id="phoneFax" name="phoneFax"></td>
+						<td><input type="text"  value="${tentUsers.phoneFax}" id="phoneFax" name="phoneFax"></td>
 						<td>网址:</td>
-						<td><input type="text"  value="" id="webSite" name="webSite"></td>
+						<td><input type="text"  value="${tentUsers.webSite}" id="webSite" name="webSite"></td>
 					</tr>
 					<tr>
 						<td style="vertical-align: top;">单位简介:</td>
-						<td colspan="3"><textArea cols="50" rows="5"  name="introduce" id="introduce" style="resize:none;">${sessionUser.introduce}</textArea></td>
+						<td colspan="3"><textArea cols="50" rows="5"  name="introduce" id="introduce" style="resize:none;">${tentUsers.introduce}</textArea></td>
 					</tr>
 					<tr>
 						<th>

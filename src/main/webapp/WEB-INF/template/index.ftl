@@ -400,7 +400,7 @@
 									[#list zhaopList as zhaop]
 										<li>
 											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zp">${zhaop.company}&nbsp;&nbsp;${zhaop.workType.name}</a>
-											<span>${zhaop.entUser.createDate?number_to_datetime}</span>
+											<span>${zhaop.editTime?number_to_datetime}</span>
 										</li>
 									[/#list]
 								</ul>

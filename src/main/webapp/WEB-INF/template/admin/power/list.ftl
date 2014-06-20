@@ -94,10 +94,10 @@ $().ready(function() {
 				</td>
 				<td>${role.description}</td>
 				<td>
-					[#if role.roleName == "personal-role"]
-					[#elseif role.roleName == "enterprise-role"]
-					[#elseif role.roleName == "anonymous-role"]
-					[#elseif role.roleName == "super-role"]
+					[#if role.roleName == "个人用户权限"]
+					[#elseif role.roleName == "企业用户权限"]
+					[#elseif role.roleName == "匿名用户权限"]
+					[#elseif role.roleName == "超级管理员权限"]
 					[#else]
 						<a href="edit.jhtml?id=${role.id}">[修改]</a>
 					[/#if]

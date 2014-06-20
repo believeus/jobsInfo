@@ -67,6 +67,7 @@ public class TcomUser extends TbaseUser implements Serializable{
 	@Length(max = 10)
 	@Column(nullable = true)
 	public String getEduLevel() {
+		new NullPointerException();
 		return eduLevel;
 	}
 	/** 教育程度 */
