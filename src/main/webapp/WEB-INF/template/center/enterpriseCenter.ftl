@@ -13,6 +13,11 @@
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu.js"></script> 
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>
 	<script type="text/javascript" src="/resource/public/js/datePicker/WdatePicker.js"></script>
+	
+	<!--  引入文件上传组件-->
+	<link href="/resource/public/js/uploadify3.2.1/uploadify.css" rel="stylesheet"/>
+	<script src="/resource/public/js/uploadify3.2.1/jquery.uploadify.js" charset="utf-8"></script>
+
     <script type="text/javascript">
     	$().ready(function(){
     		$("#qiye_xinxi").click(function(){
@@ -276,6 +281,75 @@
 		
 	</script>
 	
+	<script type="text/javascript" charset="UTF-8">
+				var uploadernum = 0;
+				function uploadInfo(num){
+					var queueID='fileQueue'+num;
+					$("#uploadify"+num).uploadify({  
+			            'swf' : '/resource/public/js/uploadify3.2.1/uploadify.swf',  
+			            'uploader' : '/upload.jhtml',  
+			            'queueID' : queueID,//与div的id对应  
+			            'queueSizeLimit' : 2,  
+			            'fileTypeDesc' : '支持类型:',  
+			            'fileTypeExts' : '*.gif;*.jpg;*.jpeg;*.bmp;*.png;*.swf;*.flv', //控制可上传文件的扩展名，启用本项时需同时声明fileDesc  
+			            'auto' : false,  
+			            'multi' : true,  
+			            'simUploadLimit' : 5,  
+			            'removeCompleted' : false, 
+			            'buttonText' : '选择图片',  
+			            'buttonCursor' : 'hand', 
+			            //返回一个错误，选择文件的时候触发    
+				        'onSelectError':function(file, errorCode, errorMsg){  
+				        },    
+				        //检测FLASH失败调用    
+				        'onFallback':function(){    
+				            alert("您未安装FLASH控件，无法上传图片！请安装FLASH控件后再试。");    
+				        },    
+				        // 选中图片的时候。
+				        'onSelect': function(file){  
+				        	// 累计已经选择的图片数量。
+				        	uploadernum=uploadernum+1;
+				        },  
+				        'onCancel':function(file){  
+				        	// 累计取消的图片数量。
+				        	uploadernum=uploadernum-1;
+				        }, 
+				        //上传到服务器，服务器返回相应信息到data里    
+				        'onUploadSuccess':function(file, data, response){    
+				        	alert(data);
+				        	// 添加数据到form表单。
+				        	var suffix=data.split("\.")[1];
+				        	var info="";
+				        	if(suffix!="swf"||suffix!="flv"){
+					        	info='<input name="url" type="hidden" value="'+data+'">';
+				        	}else{
+				        		info='<input name="vedioUrl" type="hidden" value="'+data+'">';
+				        	}
+							$("#vedioForm"+sum).append(info);
+				            //如需上传后生成预览，可在此操作 。
+				        },  
+				        'onQueueComplete': function(queueData){ 
+				          	//队列里所有的文件处理完成后调用  
+				            $("#vedioForm"+sum).ajaxSubmit({
+				            	 type: "post",
+							     url: "/enterprise-user/center/uploadVedio.jhtml",
+							     dataType: "json",
+							     success: function(data){
+							     	alert(data.message);
+							     	// 成功提交之后继续提交下一个。
+							     	if(sum < v){
+							     		sum++;
+							     		$('#uploadify'+sum).uploadify('upload','*');
+							     	}
+							     }
+			        		});	
+				        }
+			        });  
+				
+				}
+				
+	</script>
+	
     <script text="text/javascript">
     	
         	[@compress single_line = true]
@@ -334,7 +408,7 @@
 							</dl>	
 							[/@workParentList]			
 				</div>';
-	[/@compress]
+		[/@compress]
 
 
 		//删除企业图片
@@ -381,10 +455,11 @@
 			   }
 			}
 		}
-		var a = 2;
     	var b = 2;
-    	
+    	var v=2;
+    	var sum=1;
     $().ready(function(){
+    	uploadInfo(1);
     	// 初始化一些值。设置value为用户填写过的项选中。
     	$("#unitType").val("${sessionUser.unitType}");
     	$("#relationship").val("${sessionUser.relationship}");
@@ -449,37 +524,45 @@
     	});
     	
     	
-			
+		
     	//添加企业视频
     	$("#add_vedio").click(function(){
     		[@compress single_line = true]
     		var html = 
-    			'<div class="shipin" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
-					<table>
+    			'<form novalidate="novalidate"  action="/enterprise-user/center/uploadVedio.jhtml"  method="post" id="vedioForm'+v+'">
+    			<input type="hidden" name="type" value="1">
+    			<div class="shipin" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+					<table width="690">
 						<tr>
-							<td style="color:#E2652E;">'+a+'</td>
-							<td>
-								<img src="" width="100" height="70">
-							</td>
-							<td style="vertical-align: bottom;">
-								视频描述:
-							</td>
-							<td>
-								<textArea style="width:360px;height:60px;resize:none;"></textArea>
-							</td>
-							<td style="vertical-align: bottom;">
-								<a class="delete_vedio" href="javascript:void(0);">删除</a>
+							<td rowspan="3" style="color:#ae3234;">'+v+'</td>
+							<td colspan="2">
+								<div style="color:#000;width:420px;">
+									视频上传说明：如上。</div>
+								<div id="uploader-demo" class="wu-example">
+							    <!--用来存放图片列表-->
+							     <div id="fileQueue'+v+'">
+							   
+							    </div>  
+								    <input type="file" name="uploadify'+v+'" id="uploadify'+v+'" style="height: 30px; width: 120px; float:left !important;"/>  
+								    <p style="width: 100px; float: left; margin: 0px 40px; line-height: 35px;">  
+								        <a style="text-decoration:none;" href="javascript:$(#uploadify'+v+').uploadify(cancel,*)">&nbsp;&nbsp;取消所有上传</a>  
+								    </p>  
 							</td>
 						</tr>
+						<tr>
+							<td colspan="2"><textArea style="width:360px;height:60px;resize:none;" placeholder="视频介绍"></textArea></td>
+							<td style="vertical-align: bottom;"><a class="delete_vedio" href="javascript:void(0);">删除</a></td>
+						</tr>
 					</table>
-				</div>';
+				</div>
+				</form>';
 			[/@compress]
 			if($(".shipin").size() <3){
-				$(".shipin").parent().append(html);
+				$(".shipin_parent").append(html);
 			}else{
 				alert("最多添加3条数据");
 			}
-			
+			uploadInfo(v);
 			//删除企业视频
 			$("a.delete_vedio").on("click",function(){
 				if ($(".shipin").size() <= 1) {
@@ -488,7 +571,7 @@
 					$(this).closest("div").remove();
 				}
 			});
-			a++;
+			v++;
     	});
     	
     	//添加招聘信息
@@ -657,7 +740,8 @@
 					     url: "/enterprise/submit-account-Info.jhtml",
 					     dataType: "json",
 					     success: function(data){
-					     	submitMap();
+					     	//submitMap();
+					     	submitVedio();
 					     }
 	        		});	
 			}
@@ -692,8 +776,8 @@
 		
 		// 上传视频
 		function submitVedio(){
-		
-		
+				alert("上传视频");
+				$('#uploadify1').uploadify('upload','*');
 		}
 		
 			//封装ajax信息提交
@@ -982,26 +1066,45 @@
 						</div>
 					</div>
 					<div class="shipin_parent">
+						<form novalidate="novalidate"  action="/enterprise-user/center/uploadVedio.jhtml"  method="post" id="vedioForm1">
+						<input type="hidden" name="type" value="1">
 						<div class="shipin" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
-							<table>
+							<table width="690">
 								<tr>
-									<td style="color:#E2652E;">1</td>
-									<td>
-										<img src="" width="100" height="70">
+									<td rowspan="3" style="color:#ae3234;">1</td>
+									<td colspan="2">
+										<div style="color:#000;width:420px;">
+											视频上传说明：总上传数量为2。一张视频截图+视频文件。
+										 	<br>支持格式为：gif,jpg,jpeg,bmp,png,swf,flv。</div>
+										<div id="uploader-demo" class="wu-example">
+									    <!--用来存放图片列表-->
+									     <div id="fileQueue1">
+									    <!-- product.extendImage?exists 表示是否存在 
+									    [#if product.extendImage?exists]
+									         <input type="hidden" id="ImgNum" value="${product.extendImage?size}">
+									    [#list product.extendImage as extendImage]
+													<img src="${prefix}${extendImage}" style="width:80px; height:80px;" onclick="javascript:delectdivImg(this);" title="已上传：${extendImage_index+1}">
+									    [/#list]
+									    [/#if]-->
+									    </div>  
+										    <input type="file" name="uploadify1" id="uploadify1" style="height: 30px; width: 120px; float:left !important;"/>  
+										    <p style="width: 100px; float: left; margin: 0px 40px; line-height: 35px;">  
+										        <!-- 上传第一个未上传的文件 -->  
+										        <!--<a href="javascript:$('#uploadify').uploadify('upload')">上传</a>  -->  
+										        <!-- 取消第一个未取消的文件 -->  
+										        <!--<a href="javascript:$('#uploadify').uploadify('cancel')">取消上传</a> --> 
+										        <!--<a href="javascript:$('#uploadify').uploadify('upload','*')">开始上传所有文件</a>&nbsp;  -->
+										        <a style="text-decoration:none;" href="javascript:$('#uploadify1').uploadify('cancel','*')">&nbsp;&nbsp;取消所有上传</a>  
+										    </p>  
 									</td>
-									<td style="vertical-align: bottom;">
-										视频描述:
-									</td>
-									<td>
-										<textArea style="width:360px;height:60px;resize:none;"></textArea>
-									</td>
-									<td style="vertical-align: bottom;">
-										<a class="delete_vedio" href="javascript:void(0);">删除</a>
-									</td>
+								</tr>
+								<tr>
+									<td colspan="2"><textArea style="width:360px;height:60px;resize:none;" placeholder="视频介绍" name="descption"></textArea></td>
+									<td style="vertical-align: bottom;"><a class="delete_vedio" href="javascript:void(0);">删除</a></td>
 								</tr>
 							</table>
 						</div>
-					</form>
+						</form>
 					</div>
 					<p style="text-align:center;">
 						<input type="button" id="savaAll" value="保存">

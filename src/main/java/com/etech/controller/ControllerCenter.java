@@ -212,7 +212,7 @@ public class ControllerCenter {
 	}
 
 	@RequestMapping(value="/enterprise-user/center/upload.jhtml")
-	public void submitImgVedio(HttpSession session,HttpServletRequest request,HttpServletResponse response,TentImgVedio imgVedio){
+	public void submitImg(HttpSession session,HttpServletRequest request,HttpServletResponse response,TentImgVedio imgVedio){
 		Map<String, Object> map = new HashMap<String, Object>();
 		// 获取用户
 		TentUser entUser=(TentUser)session.getAttribute("sessionUser");
@@ -240,6 +240,21 @@ public class ControllerCenter {
 			}
 		}
 		imgVedios.add(imgVedio); 
+		entUser.setImgVedios(imgVedios); 
+		etechService.saveOrUpdata(entUser);
+		map.put("message", "success");
+		JsonOutToBrower.out(map, response);
+		
+	}
+	@RequestMapping(value="/enterprise-user/center/uploadVedio.jhtml")
+	public void submitVedio(HttpSession session,HttpServletRequest request,HttpServletResponse response,TentImgVedio imgVedio){
+		Map<String, Object> map = new HashMap<String, Object>();
+		// 获取用户
+		TentUser entUser=(TentUser)session.getAttribute("sessionUser");
+		entUser=(TentUser) etechService.findObjectById(TentUser.class, entUser.getId());
+		Set<TentImgVedio> imgVedios=new HashSet<TentImgVedio>();
+		imgVedios.add(imgVedio); 
+		imgVedio.setEntUser(entUser);
 		entUser.setImgVedios(imgVedios); 
 		etechService.saveOrUpdata(entUser);
 		map.put("message", "success");

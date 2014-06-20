@@ -15,6 +15,7 @@ public class TentImgVedio extends TbaseEntity {
 	public static final int typeMap = 2;
 	private static final long serialVersionUID = -107563856421078437L;
 	private String url;
+	private String vedioUrl;
 	private String descption;
 	private int type;
 	private TentUser entUser; 
@@ -63,6 +64,14 @@ public class TentImgVedio extends TbaseEntity {
 
 	public void setEntUser(TentUser entUser) {
 		this.entUser = entUser;
+	}
+
+	public String getVedioUrl() {
+		return vedioUrl;
+	}
+
+	public void setVedioUrl(String vedioUrl) {
+		this.vedioUrl = vedioUrl;
 	}
 
 }
