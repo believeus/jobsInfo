@@ -16,6 +16,7 @@
 $().ready(function() {
 	$("#relationship").val("${tentUsers.relationship}")
 	$("#economicType").val("${tentUsers.economicType}");
+	$("#unitType").val("${tentUsers.unitType}")
 	var $inputForm = $("#inputForm");
 	var $type = $("#type");
 	var $contentTr = $("#contentTr");
@@ -64,6 +65,8 @@ $().ready(function() {
 				<input type="hidden" name="status" value="${tentUsers.status}">
 				<input type="hidden" name="loginName" value="${tentUsers.loginName}">
 				<input type="hidden" name="password" value="${tentUsers.password}">
+				<input type="hidden" name="idcard" value="${tentUsers.idcard}"/>
+				<input type="hidden" name="email" value="${tentUsers.email}"/>
 					<tr>
 						<td>单位全称:</td>
 						<td style="padding-right: 80px;"><input type="text" value="${tentUsers.fullName}" id="fullName" name="fullName"></td>

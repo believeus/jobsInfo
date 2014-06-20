@@ -1,14 +1,18 @@
 package com.etech.controller.admin;
 
 import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.etech.entity.TentUser;
 import com.etech.service.EtechService;
 
@@ -58,7 +62,6 @@ public class ControllerEnterpriseAudit {
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		String id=request.getParameter("id");
-		@SuppressWarnings("unchecked")
 		TentUser tentUsers=(TentUser)etechService.findObjectById(TentUser.class, Integer.parseInt(id));
 		request.setAttribute("tentUsers", tentUsers);
 		log.debug("current controller is editNewsView !");
@@ -79,8 +82,14 @@ public class ControllerEnterpriseAudit {
 	 * @return
 	 */
 	@RequestMapping(value = "/update")
-	public String updateNewsView(TentUser formUer){
-		etechService.saveOrUpdata(formUer);
+	public String updateNewsView(TentUser formUser){
+		TentUser entUser=(TentUser) etechService.findObjectById(TentUser.class,formUser.getId());
+		formUser.setEditDate(System.currentTimeMillis());
+		formUser.setRoles(entUser.getRoles());
+		formUser.setRecruit(entUser.getRecruit());
+		formUser.setImgVedios(entUser.getImgVedios());
+		BeanUtils.copyProperties(formUser, entUser);
+		etechService.saveOrUpdata(entUser);
 		return "redirect:/admin/enterpriseAudit/list.jhtml";
 	}
 }

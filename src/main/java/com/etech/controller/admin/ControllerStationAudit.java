@@ -31,9 +31,8 @@ public class ControllerStationAudit {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
 		log.debug("current controller is newsListView !");
-		String hql="From Trecruit";
 		@SuppressWarnings("unchecked")
-		List<Trecruit> recruitList=(List<Trecruit>)etechService.findListByHQL(hql, 20);
+		List<Trecruit> recruitList=(List<Trecruit>)etechService.getListByProperty(Trecruit.class, "status", 0,15);
 		request.setAttribute("recruitList", recruitList);
 		return "admin/humanResources/list";
 	}

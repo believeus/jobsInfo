@@ -38,6 +38,7 @@ import org.springframework.util.ReflectionUtils;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import com.etech.entity.TdataCenter;
+import com.etech.entity.Trecruit;
 
 @Repository
 public class EtechComDao extends HibernateDaoSupport {
@@ -351,4 +352,22 @@ public class EtechComDao extends HibernateDaoSupport {
 		return highlightResult;
 	}
 	/* End Author:wuqiwei Date:2013-04-06 AddReason:使用hibernatesearch完成全文搜索 */
+
+	public List<?> getListByProperty(Class<?> clazz, String property,final Object value, final int num) {
+		final String hql = "from " + clazz.getName() + " as entity where entity."+ property + " =:value";
+		log.debug("current hql:" + hql);
+		return (List<?>) getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				Query query = session.createQuery(hql);
+				query.setParameter("value", value);
+				query.setFirstResult(0);
+				query.setMaxResults(num);
+				List<?> list = query.list();
+				return list;
+			}
+		});
+	}
 }
