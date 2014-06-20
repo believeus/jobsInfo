@@ -48,6 +48,7 @@
 		background:url("/resource/public/images/zhuye-img_07.png") repeat-y scroll center 0 rgba(0, 0, 0, 0);
 		width:58px;
 		height:35px;
+		color:#ededa2 !important;
 	}
 </style>
 <script type="text/javascript">

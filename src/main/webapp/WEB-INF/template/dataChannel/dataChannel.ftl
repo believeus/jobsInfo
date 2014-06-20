@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>数据频道</title>
+<script src="/resource/public/resources/scripts/jquery-1.10.2.min.js"></script>
 <style type="text/css">
 a:link{
 	text-decoration:none;
