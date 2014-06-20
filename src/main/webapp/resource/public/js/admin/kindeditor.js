@@ -242,7 +242,7 @@ K.options = {
 	newlineTag : 'p',
 	resizeType : 2,
 	syncType : 'form',
-	pasteType : 2,
+	pasteType : 1,
 	dialogAlignType : 'page',
 	useContextmenu : true,
 	fullscreenShortcut : false,
