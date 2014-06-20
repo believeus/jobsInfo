@@ -191,7 +191,7 @@
 			<div class="gonggao">
 				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);">
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-					公告公示<span style="float:right;"><a href="/publicityList.jhtml">更多</a></span>
+					<span style="color:#555555;font-weight:bold;float:none;">公告公示</span><span style="float:right;"><a href="/publicityList.jhtml">更多</a></span>
 				</p>
 				<ul style="padding-left:25px;">
 					[#list notices as notice]
@@ -247,7 +247,7 @@
 					<div style="padding-left: 20px;margin-bottom:20px;">
 						[#list news as new]
 						[#if new_index==0]
-							<h2 style="margin: 0px; font-size: 21px; font-weight: normal;"><a href="/newsInfo.jhtml?id=${new.id}">
+							<h2 style="margin: 0px; font-size: 21px; font-weight: bold;"><a href="/newsInfo.jhtml?id=${new.id}">
 							[#if new.title?length > 16]
 								${new.title?string?substring(0,16)}...
 							[#else]
@@ -267,7 +267,7 @@
 					<div style="padding-left: 20px;">
 						[#list news as new]
 						[#if new_index==1]	
-							<h2 style="margin: 0px; font-size: 21px; font-weight: normal;"><a href="/newsInfo.jhtml?id="${new.id}"">
+							<h2 style="margin: 0px; font-size: 21px; font-weight: bold;"><a href="/newsInfo.jhtml?id="${new.id}"">
 							[#if new.title?length > 16]
 								${new.title?string?substring(0,16)}...
 							[#else]
@@ -304,7 +304,7 @@
 				<div class="j_main_right_2_1" style="margin-right:4px;">
 					<p style="margin:0;padding:5px;background:url(/resource/public/images/background.png);border:1px solid #FF7800;">
 						<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-						新闻动态<span><a href="/newsList.jhtml">更多>></a></span>
+						<span style="font-weight:bold;float:none;">新闻动态</span><span><a href="/newsList.jhtml">更多>></a></span>
 					</p>
 					[#list news as new]
 					[#if new_index==0]
@@ -344,7 +344,7 @@
 				<div class="j_main_right_2_1" style="margin-right:0;">
 					<p style="margin:0;padding:5px;background:url(/resource/public/images/background.png);border:1px solid #FF7800;">
 						<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-						工作动态<span><a href="/workList.jhtml">更多>></a></span>
+						<span style="font-weight:bold;float:none;">工作动态</span><span><a href="/workList.jhtml">更多>></a></span>
 					</p>
 					[#list works as work]
 					[#if work_index==0]					
@@ -385,7 +385,7 @@
 			<div class="j_main_right_3">
 				<p style="background:url(/resource/public/images/background.png);margin: 0px; padding: 5px; border: 1px solid #FF7800;">
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-					视频新闻<span style="float:right;"><a href="/videosList.jhtml">更多>></a></span>
+					<span style="font-weight:bold;float:none;color:#555555;">视频新闻</span><span style="float:right;"><a href="/videosList.jhtml">更多>></a></span>
 				</p>
 				<table>
 					<tr>

@@ -189,7 +189,15 @@
 		.j_main_5 img{
 			width:194px;
 		}
-		
+		.btn_login{
+			background:#b2e85c;
+		    border: 1px solid #3eae44;
+		    border-radius: 4px;
+		    color: #fbfbfb;
+		    margin-right: 10px;
+		    width: 60px;
+		    cursor:pointer;
+		}
     </style>
 </head>
 <body>
@@ -347,8 +355,8 @@
 					</tr>
 					<tr>
 						<td align="center" colspan="2">
-							<input type="button" id="login" style="margin-right: 10px;" value="登录">
-							<input type="button" id="register" value="注册">
+							<input class="btn_login" type="button" id="login" style="margin-right: 10px;" value="登录">
+							<input class="btn_login" type="button" id="register" value="注册">
 						</td>
 					</tr>
 				</table>
@@ -601,9 +609,9 @@
 				<tr>
 					<td>
 						<ul>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							[#list qiuzhiList as qiuzhi]
+							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml?id=${qiuzhi.id}">${qiuzhi.trueName}</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;${qiuzhi.sex}&nbsp;&nbsp;&nbsp;${qiuzhi.eduLevel}&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
+							[/#list]
 							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
 							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
 							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>

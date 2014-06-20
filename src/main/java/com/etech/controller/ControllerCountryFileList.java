@@ -22,13 +22,17 @@ public class ControllerCountryFileList {
 	private static Log log = LogFactory.getLog(ControllerCountryFileList.class);
 	@Resource
 	private EtechService etechService;
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/countryFileList", method = RequestMethod.GET)
 	public String policyAdviceView(HttpServletRequest request) {
 		String hql="from TdataCenter as dataCenter where dataCenter.type='"+EtechGobal.countryFile+"' order by dataCenter.editTime desc";
-		@SuppressWarnings("unchecked")
 		List<TdataCenter>  dataCenterList=(List<TdataCenter>) etechService.findListByHQL(hql, 15);
 		request.setAttribute("dataCenterList", dataCenterList);
-		log.debug("current controller is policyAdviceView !");
+		
+		hql="From TdataCenter dataCenter where dataCenter.type='5'";
+		List<TdataCenter> spceilas = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
+		request.setAttribute("spceilas", spceilas);
+		
 		return "policyAdvice/countryFileList";
 	}
 }

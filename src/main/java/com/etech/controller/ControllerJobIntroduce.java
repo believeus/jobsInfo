@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.etech.entity.TcomUser;
 import com.etech.entity.TdataCenter;
+import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
 
 /**
@@ -44,6 +46,16 @@ public class ControllerJobIntroduce {
 		hql="From TdataCenter dataCenter where dataCenter.type='27'";
 		List<TdataCenter> jianlizhinanService = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("jianlizhinanService", jianlizhinanService);
+		
+		//招聘信息
+		hql = "From Trecruit trecruit order by id asc";
+		List<Trecruit> zhaopList = (List<Trecruit>)etechService.findListByHQL(hql);
+		session.setAttribute("zhaopList", zhaopList); 
+		
+		//求职信息
+		hql = "From TcomUser tcomUser order by id asc";
+		List<TcomUser> qiuzhiList = (List<TcomUser>)etechService.findListByHQL(hql);
+		session.setAttribute("qiuzhiList", qiuzhiList); 
 		
 		return "occupationIntroduction/occupationIntroduction";
 	}

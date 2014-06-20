@@ -90,8 +90,7 @@ body{
                 	<c:out value="${LoginError }" escapeXml="false"/>
 	                <div style="margin:27px auto auto 305px;">
 	                	<input id="butt" type="submit" value="登录" style="cursor:pointer;"/>
-	                    <input type="checkbox" style="margin-left:28px;">记住账号</input>
-	                    <a style="display:inline-block;margin-left:30px;">忘记密码？</a>
+	                	<input id="butt" type="reset" value="重置" style="cursor:pointer;margin-left:123px;"/>
 	                </div>
                 </form>
             </div>

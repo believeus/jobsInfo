@@ -33,6 +33,7 @@
     		height:285px;
     		border:1px solid #EED9C8;
     		margin-bottom:5px;
+    		background:#fffbf6;
     	}
 		.gonggao li{
 			margin-right:10px;
@@ -56,6 +57,7 @@
     		height:320px;
     		border:1px solid #EED9C8;
     		margin-bottom:5px;
+    		background:#fffbf6;
     	}
     	.jiuye_1{
     		background:url(/resource/public/images/zhuye-img_12.png);
@@ -166,6 +168,15 @@
     	.tupian p {
 		    margin: 10px 15px;
 		    text-align: center;
+		}
+		.btn_login{
+			background:#b2e85c;
+		    border: 1px solid #3eae44;
+		    border-radius: 4px;
+		    color: #fbfbfb;
+		    margin-right: 10px;
+		    width: 60px;
+		    cursor:pointer;
 		}
     </style>
     <style type="text/css">
@@ -298,7 +309,7 @@
 					</ul>
 					<div id="banner_list">
 						[#list imgs as img]
-							<a href="/newsInfo.jhtml" target="_blank"><img src="${img.imgpath}" width="314" height="236" title="${img.title}" alt="
+							<a href="/newsInfo.jhtml?id=${img.id}}" target="_blank"><img src="${img.imgpath}" width="314" height="236" title="${img.title}" alt="
 							[#if img.title?length > 18]
 								${img.title?string?substring(0,18)}...
 							[#else]
@@ -314,7 +325,7 @@
 				<div style="padding-left: 20px;margin-bottom:20px;">
 					[#list news as new]
 						[#if new_index==0]
-							<h2 style="margin: 0px; font-size: 21px; font-weight: normal;"><a href="/newsInfo.jhtml?id=${new.id}">
+							<h2 style="margin: 0px; font-size: 21px; font-weight: bold;"><a href="/newsInfo.jhtml?id=${new.id}">
 							[#if new.title?length > 16]
 								${new.title?string?substring(0,16)}...
 							[#else]
@@ -334,7 +345,7 @@
 				<div style="padding-left: 20px;">
 					[#list news as new]
 						[#if new_index==1]	
-							<h2 style="margin: 0px; font-size: 21px; font-weight: normal;"><a href="/newsInfo.jhtml?id="${new.id}"">
+							<h2 style="margin: 0px; font-size: 21px; font-weight: bold;"><a href="/newsInfo.jhtml?id=${new.id}">
 							[#if new.title?length > 16]
 								${new.title?string?substring(0,16)}...
 							[#else]
@@ -354,7 +365,7 @@
 				<ul class="xinwen_ul" style="padding-left: 25px;">
 					[#list news as new]
 					[#if new_index > 1]	
-						<li><a href="/newsInfo.jhtml?id="${new.id}"">
+						<li><a href="/newsInfo.jhtml?id=${new.id}">
 						[#if new.title?length > 16]
 							${new.title?string?substring(0,16)}...
 						[#else]
@@ -369,7 +380,7 @@
 				[#list slide as slide]
 					[#if slide_index<2]
 					<a href="${slide.alink}" title="${slide.title}">
-						<img src="${slide.imgpath}" [#if slide_index=0] style="width: 550px;height:85px;"[#elseif slide_index=1]style="width: 165px;height:85px;"[/#if]>
+						<img src="${slide.imgpath}" [#if slide_index=0] style="width: 548px;height:85px;"[#elseif slide_index=1]style="width: 165px;height:85px;"[/#if]>
 					</a>
 					[/#if]
 				[/#list]
@@ -377,7 +388,7 @@
 			<div class="ad">
 				<a href="/mailBox.jhtml" title="局长信箱"><div class=""></div></a>
 				<a href="#" title="网站论坛"><div class=""></div></a>
-				<a href="/xiazai.jhtml" title="相关下载"><div class=""></div></a>
+				<a href="/ziliaoList.jhtml" title="相关下载"><div class=""></div></a>
 			</div>
 			<div class="xinxi">
 				<table>
@@ -386,12 +397,12 @@
 							<div class="xinxi_1">
 								<p><span style="margin-left:30px;float:none;">招聘信息</span></p>
 								<ul style="padding-left:25px;">
-									<li><a href="/enterpriseInformation.jhtml#zp">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="/enterpriseInformation.jhtml#zp">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="/enterpriseInformation.jhtml#zp">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="/enterpriseInformation.jhtml#zp">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="/enterpriseInformation.jhtml#zp">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="/enterpriseInformation.jhtml#zp">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									[#list zhaopList as zhaop]
+										<li>
+											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zp">${zhaop.company}[${zhaop.workType}]</a>
+											<span>${zhaop.createTime?number_to_datetime}</span>
+										</li>
+									[/#list]
 								</ul>
 							</div>
 						</td>
@@ -411,12 +422,12 @@
 							<div class="xinxi_1">
 								<p><span style="margin-left:30px;float:none;">求职信息</span></p>
 								<ul style="padding-left:25px;">
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
-									<li><a href="">2014年医疗、工伤和生育保险工作座谈会召开</a><span>04-19</span></li>
+									[#list qiuzhiList as qiuzhi]
+										<li>
+											<a href="/personalResume.jhtml?id=${qiuzhi.id}">${qiuzhi.trueName}&nbsp;&nbsp;${qiuzhi.sex}&nbsp;&nbsp;${qiuzhi.eduLevel}&nbsp;&nbsp;${qiuzhi.workType}</a>
+											<span>${qiuzhi.createDate?number_to_datetime}</span>
+										</li>
+									[/#list]
 								</ul>
 							</div>
 						</td>
@@ -503,8 +514,8 @@
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
-							<input type="button" id="login" value="登录" style="margin-right: 10px;">
-							<input type="button" id="register" value="注册">
+							<input class="btn_login" type="button" id="login" value="登录" style="margin-right: 10px;">
+							<input class="btn_login" type="button" id="register" value="注册">
 						</td>
 					</tr>
 				</table>
@@ -666,7 +677,7 @@
 				<span style="color: #FFD32A;font-size: 20px;font-weight: bold;line-height: 38px;padding-left: 15px;">图片新闻</span>
 				<span style="float: right; line-height: 35px; margin-right: 10px;"><a style="color:#FFFFFF;" href="/imagesList.jhtml">更多>></a></span>
 			</div>
-			<div style="width:1000px;height:170px;">
+			<div style="width:1000px;height:148px;background:#FFE7DB;">
 				[#list imgs as img]
 					<div class="tupian_1" [#if !img_has_next && img_index= 3] style="margin-top: -3px;"[/#if]>
 						<p>
@@ -684,7 +695,11 @@
 		<div class="youqing">
 			<span style="line-height: 55px; padding-left: 15px;">友情链接</span>
 			<div style="width: 850px; float: right; margin-right: 25px;">
-				<img src="/resource/public/images/u6_normal_43.gif" style="margin-top:5px;">
+				[#list links as links]
+					<span style="float: left; margin-right: 10px; width: 200px; line-height: 55px;">
+						<a href="http://${links.content}" title="${links.title}" target="_blank">${links.title}</a>
+					</span>
+				[/#list]
 			</div>
 		</div>
 	</div>

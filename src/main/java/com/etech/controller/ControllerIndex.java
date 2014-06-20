@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.etech.entity.Tadmin;
 import com.etech.entity.TbaseUser;
+import com.etech.entity.TcomUser;
 import com.etech.entity.TdataCenter;
+import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
 
 /**
@@ -65,6 +67,21 @@ public class ControllerIndex {
 		hql="From TdataCenter dataCenter where dataCenter.type='19'";
 		List<TdataCenter> slide = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("slide", slide); 
+		
+		// 友情链接
+		hql="From TdataCenter dataCenter where dataCenter.type='24'";
+		List<TdataCenter> links = (List<TdataCenter>)etechService.findListByHQL(hql);
+		session.setAttribute("links", links); 
+		
+		//招聘信息
+		hql = "From Trecruit trecruit order by id asc";
+		List<Trecruit> zhaopList = (List<Trecruit>)etechService.findListByHQL(hql);
+		session.setAttribute("zhaopList", zhaopList); 
+		
+		//求职信息
+		hql = "From TcomUser tcomUser order by id asc";
+		List<TcomUser> qiuzhiList = (List<TcomUser>)etechService.findListByHQL(hql);
+		session.setAttribute("qiuzhiList", qiuzhiList); 
 		
 		/*End Author:wuqiwei Data:2014-06-11 AddReason:shiro登录成功之后会跳转到主页面,此处控制后台登录后进入后台主页面*/
 		log.debug("current controller is defaultIndex !");

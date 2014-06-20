@@ -37,15 +37,17 @@
 	.j_head_nav a{
 		color: #FFFFFF;
 	    float: left;
-	    margin-top: 12px;
 	    text-align: center;
 	    text-decoration: none;
 	    vertical-align: top;
 	    width: 90px;
 	    margin-left:7px;
+	    line-height:37px;
 	}
 	.nav_current{
 		background:url(/resource/public/images/zhuye-img_07.png);
+		width:58px;
+		height:35px;
 	}
 </style>
 <script type="text/javascript">
@@ -54,6 +56,15 @@
 		if(window.location.pathname == "/" || window.location.pathname == "/infoCenter.jhtml"){
 			$("body").css("background","none");
 		}
+		
+		//alert(window.location.pathname);
+		$(".nav a").each(function(){
+			//alert($(this).attr("href") == window.location.pathname);
+			if($(this).attr("href") == window.location.pathname){
+				$(this).addClass("nav_current");
+			}
+		});
+		
 	});
 </script>
 <div style="width:100%;margin-bottom:5px;">
@@ -63,7 +74,7 @@
 		</div>
 		<div class="j_head_nav">
 			<div class="nav">
-				<a class="nav_current" href="/" title="">首页</a>
+				<a href="/" title="">首页</a>
 				<a href="/infoCenter.jhtml" title="">资讯中心</a>
 				<a href="/organization.jhtml" title="">工作指南</a>
 				<a href="/jobIntroduce.jhtml" title="">职业介绍</a>

@@ -43,7 +43,7 @@
     		});
     		
     		//点击职位进入企业信息页面
-    		if(window.location.href == "http://www.ppsells.com/enterpriseInformation.jhtml#zw"){
+    		if(window.location.hash == "#zw"){
     			$("#qiye_xinxi").removeClass("currentSwich");
     			$("#zhaopin_xinxi").removeClass("currentSwich");
     			$("#zhiwei").addClass("currentSwich");
@@ -52,7 +52,7 @@
     			$("#zhiwei_xinxi").css("display","block");
     		}
     		//点击招聘信息进入企业信息页面
-    		if(window.location.href == "http://www.ppsells.com/enterpriseInformation.jhtml#zp"){
+    		if(window.location.hash == "#zp"){
     			$("#qiye_xinxi").removeClass("currentSwich");
     			$("#zhiwei").removeClass("currentSwich");
     			$("#zhaopin_xinxi").addClass("currentSwich");

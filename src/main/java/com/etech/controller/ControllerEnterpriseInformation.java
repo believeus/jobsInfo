@@ -1,21 +1,33 @@
 package com.etech.controller;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.etech.entity.Trecruit;
+import com.etech.service.EtechService;
 
 /**
  * 企业信息
  * */
 @Controller
 public class ControllerEnterpriseInformation {
-	private static Log log = LogFactory.getLog(ControllerEnterpriseInformation.class);
 
+	@Resource
+	private EtechService etechService;
+	
 	@RequestMapping(value = "/enterpriseInformation", method = RequestMethod.GET)
-	public String policyAdviceView() {
-		log.debug("current controller is policyAdviceView !");
+	public String policyAdviceView(HttpSession session,Integer id) {
+		
+		//招聘信息
+		Trecruit trecruit = (Trecruit)etechService.findObjectById(Trecruit.class, id);
+		session.setAttribute("trecruit", trecruit);
+		
+		
 		return "occupationIntroduction/enterpriseInformation";
 	}
 }

@@ -233,7 +233,7 @@
 					<div id="personal_xinxi" class="j_main_right_2_1_1 currentSwich" style="cursor:pointer;">个人简历</div>
 				</div>
 				<p>
-					<span style="font-size: 20px;">张三</span>
+					<span style="font-size: 20px;">${tcomUser.trueName}</span>
 				</p>
 				
 				<div id="base_xinxi" style="width::728px;height:auto;overflow:hidden;">
@@ -246,60 +246,60 @@
 							<table cellspacing="0" width="500px">
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;">姓名:</td>
-									<td>张三</td>
+									<td>${tcomUser.trueName}</td>
 									<td style="background: #EEEEEE; text-align: right;">性别:</td>
-									<td>男</td>
+									<td>${tcomUser.sex}</td>
 								</tr>
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;">二女户:</td>
-									<td>否</td>
+									<td>${tcomUser.twoGirl}</td>
 									<td style="background: #EEEEEE; text-align: right;">文化程度:</td>
-									<td>大学</td>
+									<td>${tcomUser.eduLevel}</td>
 								</tr>
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;">年龄:</td>
-									<td>23</td>
+									<td>${tcomUser.age}</td>
 									<td style="background: #EEEEEE; text-align: right;">身高:</td>
-									<td>170cm</td>
+									<td>${tcomUser.height}</td>
 								</tr>
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;">民族:</td>
-									<td>汉族</td>
+									<td>${tcomUser.nation}</td>
 									<td style="background: #EEEEEE; text-align: right;">健康状况:</td>
-									<td>健康</td>
+									<td>${tcomUser.health}</td>
 								</tr>
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;">政治面貌:</td>
-									<td>共青团员</td>
+									<td>${tcomUser.polity}</td>
 									<td style="background: #EEEEEE; text-align: right;">家庭详细地址:</td>
-									<td>街道口</td>
+									<td>${tcomUser.address}</td>
 								</tr>
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;">婚姻状况:</td>
-									<td>未婚</td>
+									<td>${tcomUser.marriage}</td>
 									<td style="background: #EEEEEE; text-align: right;">原工作单位:</td>
-									<td>xxx公司</td>
+									<td>${tcomUser.workspace}</td>
 								</tr>
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;">视力:</td>
-									<td>良好</td>
+									<td>${tcomUser.eyesight}</td>
 									<td style="background: #EEEEEE; text-align: right;">《就失业证》号:</td>
-									<td>123456789</td>
+									<td>${tcomUser.jobId}</td>
 								</tr>
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;">个人特长:</td>
-									<td>个人特长</td>
+									<td>${tcomUser.strongPoint}</td>
 									<td style="background: #EEEEEE; text-align: right;">独生子女:</td>
-									<td>是</td>
+									<td>${tcomUser.singleChild}</td>
 								</tr>
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;">联系电话:</td>
-									<td colspan="3">13112345678</td>
+									<td colspan="3">${tcomUser.phoneNum}</td>
 								</tr>
 							</table>
 						</div>
 						<div style="width: 150px; float: left; margin-left: 15px; height: auto; margin-top: 15px;">
-							<img style="width:122px;height:150px;border:1px solid #e4e4e4;" src="/resource/public/images/bg.png" name="img"/>
+							<img style="width:122px;height:150px;border:1px solid #e4e4e4;" src="${tcomUser.imgHead}" name="img"/>
 						</div>
 					</div>
 					

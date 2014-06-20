@@ -545,7 +545,7 @@
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="VolunteerForm'+d+'">
 						<table>
 							<tr>
-								<td rowspan="3" style="background:#DCDCDC;color:#FE7200;">'+d+'</td>
+								<td rowspan="4" style="background:#DCDCDC;color:#FE7200;">'+d+'</td>
 								<td>专业:</td>
 								<td>
 									<input type="hidden" value="" id="selectVolunteerSpecialtyhidden'+d+'" name="majorTypeId"/>
@@ -577,6 +577,19 @@
 								<td>月薪要求:</td>
 								<td style="padding-right:70px;">
 									<input type="text" id="expectSalaryVolunteer'+d+'" name="expectSalary">
+								</td>
+							</tr>
+							<tr>
+								<td>工作性质</td>
+								<td colspan="3">
+									<select name="">
+										<option value="全职">全职</option>
+										<option value="兼职">兼职</option>
+										<option value="实习">实习</option>
+										<option value="小时工">小时工</option>
+										<option value="全职/兼职/实习即可">全职/兼职/实习即可</option>
+										<option value="就业见习">就业见习</option>
+									</select>
 								</td>
 							</tr>
 							<tr>
@@ -1130,8 +1143,8 @@
 								<tr>
 									<td>二女户:</td>
 									<td>
-										<input type="radio"  name="twoGirl" value="1" [#if sessionUser.twoGirl=="1"]checked="true"[#elseif sessionUser.twoGirl!="0"]checked="true"[/#if] style="width:0">是
-										<input type="radio"  name="twoGirl" value="0" [#if sessionUser.twoGirl=="0"]checked="true"[/#if]style="width:0">否
+										<input type="radio"  name="twoGirl" value="是" [#if sessionUser.twoGirl=="1"]checked="true"[#elseif sessionUser.twoGirl!="0"]checked="true"[/#if] style="width:0">是
+										<input type="radio"  name="twoGirl" value="否" [#if sessionUser.twoGirl=="0"]checked="true"[/#if]style="width:0">否
 									</td>
 								</tr>
 							</table>
@@ -1144,8 +1157,8 @@
 									<td>
 										<select id="sex" name="sex" style="width:158px;">
 											<option value="">请选择..</option>
-											<option value="man">男</option>
-											<option value="woman">女</option>
+											<option value="男">男</option>
+											<option value="女">女</option>
 										</select>
 									</td>
 								</tr>
@@ -1208,8 +1221,8 @@
 								<tr>
 									<td>独生子女:</td>
 									<td>
-										<input type="radio" name="singleChild" value="1" [#if sessionUser.singleChild=="1"]checked="true"[#elseif sessionUser.singleChild!="0"]checked="true"[/#if] style="width:0">是
-										<input type="radio" name="singleChild" value="0" [#if sessionUser.singleChild=="0"]checked="true"[/#if]style="width:0">否
+										<input type="radio" name="singleChild" value="是" [#if sessionUser.singleChild=="1"]checked="true"[#elseif sessionUser.singleChild!="0"]checked="true"[/#if] style="width:0">是
+										<input type="radio" name="singleChild" value="否" [#if sessionUser.singleChild=="0"]checked="true"[/#if]style="width:0">否
 									</td>
 								</tr>
 							</table>
@@ -1670,6 +1683,19 @@
 								</td>
 							</tr>
 							<tr>
+								<td>工作性质</td>
+								<td colspan="3">
+									<select name="">
+										<option value="全职">全职</option>
+										<option value="兼职">兼职</option>
+										<option value="实习">实习</option>
+										<option value="小时工">小时工</option>
+										<option value="全职/兼职/实习即可">全职/兼职/实习即可</option>
+										<option value="就业见习">就业见习</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
 								<td>其他要求:</td>
 								<td colspan="3"><textArea cols="50" name="note" id="noteVolunteer1"  style="resize:none;">${volunteer.note}</textArea></td>
 								<td rowspan="3"><a class="delete_zhiyuan" href="javascript:void(0);" onclick="deleteDiv(this)" style="margin-top:35px;float:right;">删除</a></td>
@@ -1683,7 +1709,7 @@
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="VolunteerForm1">	
 						<table>
 							<tr>
-								<td rowspan="3" style="background:#DCDCDC;color:#FE7200;">1</td>
+								<td rowspan="4" style="background:#DCDCDC;color:#FE7200;">1</td>
 								<td>专业:</td>
 								<td>
 									<input type="hidden" value="" id="selectVolunteerSpecialtyhidden1" name="majorTypeId"/>
@@ -1715,6 +1741,19 @@
 								<td>月薪要求:</td>
 								<td style="padding-right:70px;">
 									<input type="text" id="expectSalaryVolunteer1" name="expectSalary">
+								</td>
+							</tr>
+							<tr>
+								<td>工作性质</td>
+								<td colspan="3">
+									<select name="">
+										<option value="全职">全职</option>
+										<option value="兼职">兼职</option>
+										<option value="实习">实习</option>
+										<option value="小时工">小时工</option>
+										<option value="全职/兼职/实习即可">全职/兼职/实习即可</option>
+										<option value="就业见习">就业见习</option>
+									</select>
 								</td>
 							</tr>
 							<tr>

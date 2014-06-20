@@ -23,13 +23,17 @@ public class ControllerCountryLawList {
 	private static Log log = LogFactory.getLog(ControllerCountryLawList.class);
 	@Resource
 	private EtechService etechService;
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/countryLawList", method = RequestMethod.GET)
 	public String policyAdviceView(HttpServletRequest request) {
 		String hql="From TdataCenter as dataCenter where dataCenter.type='"+EtechGobal.countryLaw+"' order by dataCenter.editTime";
-		 @SuppressWarnings("unchecked")
 		List<TdataCenter> dataCenterList = (List<TdataCenter>)etechService.findListByHQL(hql, 20);
-		 request.setAttribute("dataCenterList", dataCenterList);
-		 log.debug("current controller is policyAdviceView !");
+		request.setAttribute("dataCenterList", dataCenterList);
+		
+		hql="From TdataCenter dataCenter where dataCenter.type='5'";
+		List<TdataCenter> spceilas = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
+		request.setAttribute("spceilas", spceilas);
+		
 		return "policyAdvice/countryLawList";
 	}
 }

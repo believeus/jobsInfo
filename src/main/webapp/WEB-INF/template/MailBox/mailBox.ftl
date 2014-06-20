@@ -21,8 +21,8 @@ a:link{
 	background:url(/resource/public/images/background_b.png);
 }
 .zti_im{
-	margin:3px 25px;
-	width:190px;
+	margin:3px 10px 10px;
+	width:220px;
 	height:60px;	
 }
 .gg ul{	
@@ -32,7 +32,6 @@ a:link{
 	color:#000;
 	padding-left:30px;
 	margin-top:10px;
-	letter-spacing:2px;	
 }
 table {
 	border:solid #DCD1E8; 
@@ -139,30 +138,18 @@ textarea{
             </div>
             <div class="gg" style="font-size:12px; font-weight:100;">
               <ul>
-                <li>
-                  <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
-                </li>
-                <li>
-                  <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
-                </li>
-                <li>
-                  <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
-                </li>
-                <li>
-                  <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
-                </li>
-                <li>
-                  <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
-                </li>
-                <li>
-                  <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
-                </li>
-                <li>
-                  <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
-                </li>
-                <li>
-                  <a href="/publicityInfo.jhtml">就业公告信息提醒</a>
-                </li>
+               	[#list notices as notice]
+					<li>
+						<a href="/publicityInfo.jhtml?id=${notice.id}">
+							[#if notice.title?length > 13]
+								${notice.title?string?substring(0,13)}...
+							[#else]
+								${notice.title}
+							[/#if]
+						</a>
+						<span style="float:right;margin-right:10px;">${notice.createTime?number_to_datetime}</span>
+					</li>
+				[/#list]
               </ul>
             </div>
         </div>
@@ -172,11 +159,15 @@ textarea{
                 <a href="/specialList.jhtml" style="vertical-align:middle; font-size:18px;">更多</a>
             </div>
             <div style="padding:5px 0px;">
-            	<div class="zti_im"><a href="/special.jhtml"><img src="/resource/public/images/zti_im01.jpg" /></a></div>
-                <div class="zti_im"><a href="/special.jhtml"><img src="/resource/public/images/zti_im02.jpg" /></a></div>
-                <div class="zti_im"><a href="/special.jhtml"><img src="/resource/public/images/zti_im03.jpg" /></a></div>
-                <div class="zti_im"><a href="/special.jhtml"><img src="/resource/public/images/zti_im04.jpg" /></a></div>
-                <div class="zti_im"><a href="/special.jhtml"><img src="/resource/public/images/zti_im05.jpg" /></a></div>
+            	[#list subjectReport as sReport]
+					[#if sReport_index <5]
+		            	<div class="zti_im">
+		            		<a href="/special.jhtml?id=${sReport.id}">
+		            			<img src="${sReport.imgpath}" width="222" height="62"/>
+		        			</a>
+		    			</div>
+               		[/#if]
+				[/#list]
             </div>	 
         </div>
     </div>
