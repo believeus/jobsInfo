@@ -289,14 +289,14 @@
 			            'swf' : '/resource/public/js/uploadify3.2.1/uploadify.swf',  
 			            'uploader' : '/upload.jhtml',  
 			            'queueID' : queueID,//与div的id对应  
-			            'queueSizeLimit' : 2,  
+			            'queueSizeLimit' : 1,  
 			            'fileTypeDesc' : '支持类型:',  
 			            'fileTypeExts' : '*.gif;*.jpg;*.jpeg;*.bmp;*.png;*.swf;*.flv', //控制可上传文件的扩展名，启用本项时需同时声明fileDesc  
 			            'auto' : false,  
 			            'multi' : true,  
 			            'simUploadLimit' : 5,  
 			            'removeCompleted' : false, 
-			            'buttonText' : '选择图片',  
+			            'buttonText' : '选择文件',  
 			            'buttonCursor' : 'hand', 
 			            //返回一个错误，选择文件的时候触发    
 				        'onSelectError':function(file, errorCode, errorMsg){  
@@ -307,24 +307,37 @@
 				        },    
 				        // 选中图片的时候。
 				        'onSelect': function(file){  
-				        	// 累计已经选择的图片数量。
-				        	uploadernum=uploadernum+1;
+				        	alert(file.type);
+				        	// 重新设置uploader的上传类型
+				        	if(file.type==".swf"||file.type==".flv"){
+				    	    	$("#uploadify"+sum).uploadify('settings','fileTypeExts','*.gif;*.jpg;*.jpeg;*.bmp;*.png;');	
+		 						$("#uploadify"+sum).uploadify('settings','queueSizeLimit',2);				        	
+				        	}else{
+		 						$("#uploadify"+sum).uploadify('settings','fileTypeExts','*.swf;*.flv');		
+				    	    	$("#uploadify"+sum).uploadify('settings','queueSizeLimit',2);
+				        	}
 				        },  
 				        'onCancel':function(file){  
-				        	// 累计取消的图片数量。
-				        	uploadernum=uploadernum-1;
+				        	// 重新设置uploader的上传类型
+				        	if(file.type==".swf"||file.type==".flv"){
+		 						$("#uploadify"+sum).uploadify('settings','fileTypeExts','*.swf;*.flv');		
+		 						$("#uploadify"+sum).uploadify('settings','queueSizeLimit',2);				        	
+				        	}else{
+				    	    	$("#uploadify"+sum).uploadify('settings','fileTypeExts','*.gif;*.jpg;*.jpeg;*.bmp;*.png;');	
+				    	    	$("#uploadify"+sum).uploadify('settings','queueSizeLimit',2);
+				        	}
 				        }, 
 				        //上传到服务器，服务器返回相应信息到data里    
 				        'onUploadSuccess':function(file, data, response){    
 				        	alert(data);
 				        	// 添加数据到form表单。
-				        	var suffix=data.split("\.")[1];
 				        	var info="";
-				        	if(suffix!="swf"||suffix!="flv"){
-					        	info='<input name="url" type="hidden" value="'+data+'">';
-				        	}else{
+				        	if(file.type==".swf"||file.type==".flv"){
 				        		info='<input name="vedioUrl" type="hidden" value="'+data+'">';
+				        	}else{
+					        	info='<input name="url" type="hidden" value="'+data+'">';
 				        	}
+				        	alert(info);
 							$("#vedioForm"+sum).append(info);
 				            //如需上传后生成预览，可在此操作 。
 				        },  
