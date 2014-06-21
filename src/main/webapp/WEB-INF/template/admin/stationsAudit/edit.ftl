@@ -7,7 +7,7 @@
 <meta name="copyright" content="e3dmall" />
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
 <link href="/resource/public/js/admin/themes/default/default.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/resource/public/js/admin/jquery.js"></script>
+<script type="text/javascript" src="/resource/public/js/jquery.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/jquery.validate.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/kindeditor.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
