@@ -12,7 +12,71 @@
 <script type="text/javascript" src="/resource/public/js/admin/kindeditor.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
+<link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
+<link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />  
+<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu.js"></script> 
+<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>
+
+
 <script type="text/javascript">
+
+	[@compress single_line = true]
+    		var Specialty='<div class="select-info">	
+						<label class="top-label">已选项：</label>
+								<ul>		
+								</ul>
+								<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
+									<span class="a-btn-text">确定</span>
+								</a> 
+							</div>	
+							[@majorParentList]		
+							<dl>
+							[#list MajorParentList as majorParent]
+							<dt class="open" id="${majorParent.id}">${majorParent.name}</dt>
+							<dd>
+								<ul>
+								[@majorChildrenList parentCodeId = majorParent.codeId]
+								[#list MajorChildrenList as majorChildren]
+									<li rel="${majorChildren.id}">
+											${majorChildren.name}
+									</li>
+								[/#list]
+								[/@majorChildrenList]
+								</ul>   
+							</dd>
+							[/#list]
+							</dl>	
+							[/@majorParentList]
+							';
+							
+			var Jobs='<div class="select-info">	
+						<label class="top-label">已选项：</label>
+						<ul>		
+						</ul>
+						<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
+							<span class="a-btn-text">确定</span>
+						</a> 
+					</div>			
+					[@workParentList]		
+							<dl>
+							[#list WorkParentList as workParent]
+							<dt class="open" id="${workParent.id}">${workParent.name}</dt>
+							<dd>
+								<ul>
+								[@workChildrenList parentCodeId = workParent.codeId]
+								[#list WorkChildrenList as workChildren]
+									<li rel="${workChildren.id}">
+											${workChildren.name}
+									</li>
+								[/#list]
+								[/@workChildrenList]
+								</ul>   
+							</dd>
+							[/#list]
+							</dl>	
+							[/@workParentList]			
+				</div>';
+	[/@compress]
 $().ready(function() {
 	$("#sex1").val("${recruit.sex}");
 	$("#eduLevel1").val("${recruit.eduLevel}");
@@ -25,6 +89,27 @@ $().ready(function() {
 	var $path = $("#path");
 	var $browserButton = $("#browserButton");
 	
+	var html='<div id="xmenuSkillSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'
+			+'<div id="xmenuSkillJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>';
+			$("#inputForm").parent().append(html);
+		//技能专业
+	$("#selectSkillSpecialty1").xMenu({	
+		width :600,	
+		eventType: "click", //事件类型 支持focus click hover
+		dropmenu:"#xmenuSkillSpecialty1",//弹出层
+		emptytext:"选择专业",
+		hiddenID : "selectSkillSpecialtyhidden1",//隐藏域ID
+		value:"${recruit.majorType.id}"	
+	});
+	// 技能工种
+	$("#selectSkillJobs1").xMenu({	
+		width :600,	
+		eventType: "click", //事件类型 支持focus click hover
+		dropmenu:"#xmenuSkillJobs1",//弹出层
+		emptytext:"选择工种",
+		hiddenID : "selectSkillJobshidden1",//隐藏域ID	
+		value : "${recruit.workType.id}"
+	});
 	
 	
 	// "类型"修改
@@ -78,7 +163,19 @@ $().ready(function() {
 				<tr>
 					<th>工种:</th>
 					<td>
-						<input type="text" id="selectJobshidden1" name="workTypeId"/>
+						<input type="hidden" id="selectSkillJobshidden1" name="workTypeId" value="${recruit.workType.id}"/>
+						<div class="topnav">
+							<a id="selectSkillJobs1" href="javascript:void(0);" class="as">
+								<span >
+									[#assign name=recruit.workType.name+"(点击即可取消选择)"]
+									[#if name?length > 15]
+										${name?string?substring(0,15)}...
+									[#else]
+										${name}
+									[/#if]
+								</span>		
+							</a>	
+						</div>
 					</td>
 					<th>性别:</th>
 					<td>
@@ -92,8 +189,21 @@ $().ready(function() {
 				<tr>
 					<th>专业:</th>
 					<td>
-					<input type="test" value="计算机系" id="selectSpecialtyhidden1" name="majorTypeId"/>
-				</td>
+						<input type="hidden" id="selectSkillSpecialtyhidden1" name="majorTypeId" value="${recruit.majorType.id}"/>
+							<input type="hidden" value="1" name="infoType">
+						<div class="topnav">
+							<a id="selectSkillSpecialty1" href="javascript:void(0);" class="as">
+								<span >
+									[#assign name=recruit.majorType.name+"(点击即可取消选择)"]
+									[#if name?length > 15]
+										${name?string?substring(0,15)}...
+									[#else]
+										${name}
+									[/#if]
+								</span>		
+							</a>	
+						</div>
+					</td>
 					<th>技术等级:</th>
 					<td><input type="text" id="eteLevel1" name="eteLevel" value="${recruit.eteLevel}"/></td>
 				</tr>

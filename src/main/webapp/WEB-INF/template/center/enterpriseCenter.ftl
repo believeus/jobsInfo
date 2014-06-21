@@ -1092,13 +1092,16 @@
 										<div id="uploader-demo" class="wu-example">
 									    <!--用来存放图片列表-->
 									     <div id="fileQueue1">
-									    <!-- product.extendImage?exists 表示是否存在 
-									    [#if product.extendImage?exists]
-									         <input type="hidden" id="ImgNum" value="${product.extendImage?size}">
-									    [#list product.extendImage as extendImage]
-													<img src="${prefix}${extendImage}" style="width:80px; height:80px;" onclick="javascript:delectdivImg(this);" title="已上传：${extendImage_index+1}">
+									    <!-- product.extendImage?exists 表示是否存在 -->
+									    [#if Vedios?exists]
+									         <input type="hidden" id="ImgNum" value="${Vedios?size}">
+									    [#list Vedios as vedio]
+									    	${vedio.url}</br>${vedio.vedioUrl}</br>
 									    [/#list]
-									    [/#if]-->
+									    
+									    [#else]
+									    
+									    [/#if]
 									    </div>  
 										    <input type="file" name="uploadify1" id="uploadify1" style="height: 30px; width: 120px; float:left !important;"/>  
 										    <p style="width: 100px; float: left; margin: 0px 40px; line-height: 35px;">  
