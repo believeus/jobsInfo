@@ -213,11 +213,103 @@
 			background:#E36510;
 			color:#FFFFFF;
 		}
+		.btn_login {
+		    background: none repeat scroll 0 0 #b2e85c;
+		    border: 1px solid #3eae44;
+		    border-radius: 4px;
+		    color: #fbfbfb;
+		    cursor: pointer;
+		    margin-right: 10px;
+		    width: 60px;
+		}
     </style>
     
 </head>
 <body>
 	[#include "/include/header.ftl" /]
+	<script style="text/javascript">
+		    $().ready(function() {
+		    
+		    	$("#gangwei").click(function(){
+		    		$("#gongsi").removeClass("current");
+		    		$("#gangwei").addClass("current");
+		    	});
+		    	$("#gongsi").click(function(){
+		    		$("#gangwei").removeClass("current");
+		    		$("#gongsi").addClass("current");
+		    	});
+		    	
+		    
+		    	// ajax 提交验证和登录。
+		    	function submitF(or,flag){
+					 	if($("#loginName").val()==""){
+					 	  return false;
+					 	}
+						$.ajax({
+							url: "/ajaxLoginValid.jhtml",
+							type: "POST",
+							data: {
+								loginName: $("#loginName").val(),
+								password:$("#password").val(),
+								userType: $('input:radio[name="userType"]:checked').val()
+									},
+							dataType: "json",
+							cache: false,
+							success: function(data) {
+									// 如果登录成功，则显示成功
+									if(data.message=="success"){
+										if(or=="no"){
+											return false;
+										}else{
+											// 提交信息到shiro验证，刷新页面
+											$("#loginForm").submit();
+										}
+									}else{
+										if(data.message == "请输入密码"){
+											if(flag !="true"){
+												alert(data.message);										
+											}
+										}else{
+											alert(data.message);		
+										}
+										
+									}
+								}
+							});
+					}
+		    	// 用户名验证。
+				$("#loginName,input:radio[name='userType']").change(function(){
+					submitF("no","true");
+				});
+				
+				// 登录。
+				$("#login").click(function() {
+					var loginName=$("#loginName").val();
+					var password=$("#password").val();
+					if(loginName==""&&password==""){
+						alert("用户名和密码不能为空！");
+					}else{
+						submitF("yes","false");
+					}
+				});
+				$("#register").click(function() {
+					var type=$('input:radio[name="userType"]:checked').val();
+					// 需要跳转到注册页面
+					if(type=="commonUser"){
+						window.location.href="/personalReg.jhtml";
+					}else{		
+						window.location.href="/enterpriseReg.jhtml";			
+					}
+				});
+				
+				$("#logout").click(function() {
+					// 需要跳转到注册页面
+					Etech.logout();
+				});
+				
+				
+			})
+	</script>
 	<div class="j_main w">
 		<div class="j_main_left">
 			[#if sessionUser?exists]
@@ -238,7 +330,10 @@
 					</tr>
 					<tr>
 						<td align="center" colspan="2" style="padding-top: 20px;">
-							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 75px;height:27px;" value="个人中心">
+							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 75px;height:27px;" 
+							value="[#if sessionUser.class.name == "com.etech.entity.TcomUser"]个人中心[#elseif sessionUser.class.name == "com.etech.entity.TentUser"]企业中心[#else]管理员后台[/#if]"
+							onclick="javascript:[#if sessionUser.class.name == "com.etech.entity.TcomUser"]window.location.href='/common-user/center.jhtml';[#elseif sessionUser.class.name == "com.etech.entity.TentUser"] window.location.href='/enterprise-user/center.jhtml';[#else]window.location.href='/admin/common/main.jhtml';[/#if]" 
+							>
 							<input type="button" onclick="Etech.logout();" style="background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 75px;height:27px;" value="退出">
 						</td>
 					</tr>
