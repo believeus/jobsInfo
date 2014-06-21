@@ -49,7 +49,7 @@
     	<div style="float:left; margin:10px auto; border-right:1px solid #DCDCDC; width:600px;">
         	<h2 style="margin-left:30px;">中国研制超级磁悬浮列车 速度为飞机的三倍</h2>
             <div style="width:585px; margin:0px auto;">
-            	<embed width="585" height="432" flashvars="pid=1&amp;tid=334&amp;autoLoad=1&amp;as=1&amp;lightBtn=0&amp;popBtn=0&amp;wideBtn=0&amp;tj=1&amp;head=0&amp;pic=&amp;continuePlayer=1&amp;actlogActive=0&amp;realfull=1&amp;oldApi=0&amp;moz=1&amp;playerWidth=460&amp;playerHeight=381&amp;autoPlay=1&amp;tjAD=0&amp;casualPlay=1&amp;logo=0&amp;share=0&amp;thumbUrl=" bgcolor="#000000" quality="high" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" id="myMovie" src="/${imgVedio.vedioUrl}" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
+            	<embed width="585" height="432" flashvars="" bgcolor="#000000" quality="high" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" id="myMovie" src="/${imgVedio.vedioUrl}" type="application/x-shockwave-flash" pluginspage="">
             </div>
             <div style="padding:20px 29px;">
             	<div style="float:left; width:465px;">

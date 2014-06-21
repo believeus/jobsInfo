@@ -47,6 +47,7 @@ public class ControllerCRUD {
 				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
 				log.debug("upload file stuffix"+extention);
 				storepath = mydfsTrackerServer.upload(inputStream, extention);
+				System.out.println(storepath +"<><><>");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

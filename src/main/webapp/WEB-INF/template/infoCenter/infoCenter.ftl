@@ -10,7 +10,6 @@
    		.j_main{
     		width:1000px;
     		height:auto;
-    		//margin-top:-6px;
     	}
 		.j_main_left{
     		float:left;
@@ -418,16 +417,18 @@
 			</div>
 			<div style="width:1000px;height:170px;">
 				[#list imgs as img]
-					<div class="tupian_1" [#if !img_has_next && img_index= 3] style="margin-top: -3px;"[/#if]>
-						<p>
-							<a href="/imgShow.jhtml" title="${img.title}">
-								<img src="${img.imgpath}" width="220" height="105">
-							</a>
-						</p>
-						<p>
-							<a href="/imgShow.jhtml" title="${img.title}">${img.title}</a>
-						</p>
-					</div>
+					[#if img_index <=3]
+						<div class="tupian_1" [#if !img_has_next && img_index= 3] style="margin-top: -3px;"[/#if]>
+							<p>
+								<a href="/imgShow.jhtml" title="${img.title}">
+									<img src="${img.imgpath}" width="220" height="105">
+								</a>
+							</p>
+							<p>
+								<a href="/imgShow.jhtml" title="${img.title}">${img.title}</a>
+							</p>
+						</div>
+					[/#if]
 				[/#list]
 			</div>
 		</div>

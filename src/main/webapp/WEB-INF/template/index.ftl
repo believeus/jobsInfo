@@ -699,16 +699,18 @@
 			</div>
 			<div style="width:1000px;height:148px;background:#FFE7DB;">
 				[#list imgs as img]
+					[#if img_index <=3]
 					<div class="tupian_1" [#if !img_has_next && img_index= 3] style="margin-top: -3px;"[/#if]>
 						<p>
-							<a href="/imgShow.jhtml" title="${img.title}">
+							<a href="/imgShow.jhtml?id=${img.id}" title="${img.title}">
 								<img src="${img.imgpath}" width="220" height="105">
 							</a>
 						</p>
 						<p>
-							<a href="/imgShow.jhtml" title="${img.title}">${img.title}</a>
+							<a href="/imgShow.jhtml?id=${img.id}" title="${img.title}">${img.title}</a>
 						</p>
 					</div>
+					[/#if]
 				[/#list]
 			</div>
 		</div>

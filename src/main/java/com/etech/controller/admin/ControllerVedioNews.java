@@ -18,7 +18,7 @@ import com.etech.util.EtechGobal;
 /**
  * 视频新闻
  * */
-@Controller("controllerAdminVedioNews")
+@Controller
 @RequestMapping("/admin/vedioNews")
 public class ControllerVedioNews extends ControllerCRUD{
 
@@ -55,7 +55,7 @@ public class ControllerVedioNews extends ControllerCRUD{
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
 		request.setAttribute("type",EtechGobal.newsVideo);
-		return "admin/news/add";
+		return "admin/vedioNews/add";
 	}
 	/**
 	 * 编辑视频新闻
@@ -68,7 +68,7 @@ public class ControllerVedioNews extends ControllerCRUD{
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
 		request.setAttribute("type",EtechGobal.newsVideo);
-		return "admin/news/edit";
+		return "admin/vedioNews/edit";
 	}
 	
 	/**

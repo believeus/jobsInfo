@@ -22,9 +22,12 @@ public class ControllerImgShow {
 	private EtechService etechService;
 	
 	@RequestMapping(value = "/imgShow", method = RequestMethod.GET)
-	public String imgShow(HttpSession session/*,Integer id*/) {
-		/*TdataCenter dataCenter = (TdataCenter)etechService.findObjectById(TdataCenter.class, id);
-		session.setAttribute("data", dataCenter);*/
+	public String imgShow(HttpSession session,Integer id) {
+		TdataCenter dataCenter = (TdataCenter)etechService.findObjectById(TdataCenter.class, id);
+		session.setAttribute("data", dataCenter);
+		
+		
+		
 		return "infoCenter/imageInfo";
 	}
 	

@@ -7,12 +7,14 @@
 <meta name="copyright" content="e3dmall" />
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
 <link href="/resource/public/js/admin/themes/default/default.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/resource/public/js/admin/jquery.js"></script>
+<script type="text/javascript" src="/resource/public/js/jquery.js"></script>
+<script type="text/javascript" src="/resource/public/js/jquery.form.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/jquery.validate.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/kindeditor.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
 <script type="text/javascript">
+	
 $().ready(function() {
 
 	var $inputForm = $("#inputForm");
@@ -50,6 +52,56 @@ $().ready(function() {
 		}
 	});
 	
+	var a = 1;
+    function img(){
+    	alert("xxxx---"+a);
+		for(var i=0;i<a;i++){
+				alert(i);
+				$("#ImgForm"+i).ajaxSubmit({
+	            	 type: "post",
+				     url: "/upload.jhtml",
+				     dataType: "json",
+				     success: function(data){
+				     	alert(data);
+				     	var html='<input type="hidden" name="" value="'+data+'">';
+				     	$("#ImgForm"+i).append(html);
+				     }
+	  			});	
+	  		
+	  	}
+   }
+   
+	$("#submit_tijiao").click(function(){
+		img();
+		return false;
+	});
+	
+	$("#add_imgs").click(function(){
+	
+		[@compress single_line = true]
+			var html =
+				'<form novalidate="novalidate"  action="/enterprise-user/center/upload.jhtml" encType="multipart/form-data"  method="post" id="ImgForm'+a+'">
+					<input type="hidden" name="type" value="0">
+					<input type="hidden" name="id" value="">
+					<input type="hidden" name="url" value="">
+					<div class="img_list">
+						<span style="float:left">
+							<div class="brandImg">
+								<span>
+									<a class="click_upimgs" onclick="file'+a+'.click()" href="javascript:return false;">点击上传图片</a>
+								</span>
+								<img style="width:190px;height:120px" src="" name="img"/>
+							</div>
+							<input type="file" style="display:none" id="file'+a+'" name="file'+a+'" onchange="filename'+a+'.value=this.value;loadImgFast(this,'+a+')">
+							<input type="hidden" id="filename'+a+'" name="filename'+a+'">
+						</span>
+					</div>
+				</form>';
+		[/@compress]
+		$(".img_list").parent().append(html);
+		a++;
+	});
+	
 });
 </script>
 </head>
@@ -84,11 +136,12 @@ $().ready(function() {
 			</tr>
 			<tr id="pathTr">
 				<th>
-					<span class="requiredField">*</span>相关图片:
+					<span class="requiredField">*</span>相关图片:<br/>
+					<input id="add_imgs" type="button" value="添加图片" style="font-size: 10px; width: 52px;cursor:pointer;">
 				</th>
 				<td colspan="3">
 					<script type="text/javascript">
-					function loadImgFast(img,i){
+						function loadImgFast(img,i){
 							if (img.files && img.files[0]){
 								var reader = new FileReader();
 								reader.onload = function(evt){$(".brandImg:eq("+i+") img")[0].src = evt.target.result;}
@@ -97,22 +150,26 @@ $().ready(function() {
 							   	file.select(); 
 					   			path = document.selection.createRange().text;
 					   			$(".brandImg:eq("+i+") img")[0].src = path;
+					   			alert(path);
 					   		} 
 						}
 					</script>
-					
-					<div>
-						<span style="float:left">
-							<div class="brandImg">
-								<span>
-									<a onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
-								</span>
-								<img style="width:190px;height:120px" src="" name="img"/>
-							</div>
-							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
-							<input type="hidden" id="filename0" name="filename0">
-						</span>
-					</div>
+					<form novalidate="novalidate"  action="/upload.jhtml" encType="multipart/form-data"  method="post" id="ImgForm0">
+						<input type="hidden" name="type" value="0">
+						<input type="hidden" name="url" value="">
+						<div class="img_list">
+							<span style="float:left">
+								<div class="brandImg">
+									<span>
+										<a class="click_upimgs" onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
+									</span>
+									<img style="width:190px;height:120px" src="" name="img"/>
+								</div>
+								<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
+								<input type="hidden" id="filename0" name="filename0">
+							</span>
+						</div>
+					</form>
 					<style type="text/css">
 						.brandImg span{
 							display:block;
@@ -173,7 +230,7 @@ $().ready(function() {
 					&nbsp;
 				</th>
 				<td colspan="3">
-					<input type="submit" class="button" value="确定" />
+					<input id="submit_tijiao" type="submit" class="button" value="确定" />
 					<input type="button" id="backButton" class="button" value="返回" />
 				</td>
 			</tr>
