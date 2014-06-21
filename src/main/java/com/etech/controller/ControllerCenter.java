@@ -96,7 +96,6 @@ public class ControllerCenter {
 	public String enterpriseCenter(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		TentUser entUser=(TentUser)session.getAttribute("sessionUser");
-		System.out.println(entUser); 
 		String hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+entUser.getId()+"  and info.type='0'";
 		List<TentImgVedio> Imgs=(List<TentImgVedio>)etechService.findListByHQL(hql);
 		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+entUser.getId()+"  and info.type='1'";
@@ -107,6 +106,7 @@ public class ControllerCenter {
 		List<Trecruit> recruits = (List<Trecruit>)etechService.findListByHQL(hql);
 		request.setAttribute("Imgs", Imgs);
 		request.setAttribute("Vedios", Vedios);
+		System.out.println(Vedios.size()); 
 		request.setAttribute("Maps", Maps);
 		request.setAttribute("recruits",recruits);
 		/*Begin Author:wuqiwei Data:2014-06-18 AddReason:根据填写的求职信息获取推荐人才*/
