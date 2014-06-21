@@ -57,7 +57,9 @@ public class ControllerStationAudit {
 	 */
 	@RequiresPermissions("stationAudit:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public String editNewsView() {
+	public String editNewsView(Integer id,HttpServletRequest request) {
+		Trecruit recruit=(Trecruit)etechService.findObjectById(Trecruit.class, id);
+		request.setAttribute("recruit", recruit);
 		log.debug("current controller is newsListView !");
 		return "admin/stationsAudit/edit";
 	}

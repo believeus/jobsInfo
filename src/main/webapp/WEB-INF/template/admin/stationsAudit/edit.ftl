@@ -14,7 +14,10 @@
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
 <script type="text/javascript">
 $().ready(function() {
-
+	$("#sex1").val("${recruit.sex}");
+	$("#eduLevel1").val("${recruit.eduLevel}");
+	$("#workWay1").val("${recruit.workWay}");
+	$("#worklimit1").val("${recruit.worklimit}")
 	var $inputForm = $("#inputForm");
 	var $type = $("#type");
 	var $contentTr = $("#contentTr");
@@ -61,18 +64,21 @@ $().ready(function() {
 	
 	
 	<form id="inputForm" novalidate="novalidate"  action="update.jhtml" method="post">
-		<input type="hidden" name="status" value="0">
+		<input type="hidden" name="id" value="${recruit.id}"/>
+		<input type="hidden" name="status" value="${recruit.status}"/>
 			<table class="input">
 				<tr>
 					<th>招聘单位:</th>
-					<td style="padding-right:80px;"><input type="text" id="company1" name="company"></td>
+					<td style="padding-right:80px;">
+						<input type="text" id="company1" name="company" value="${recruit.company}"/>
+					</td>
 					<th>人数:</th>
-					<td><input type="text" id="worknum1" name="worknum"></td>
+					<td><input type="text" id="worknum1" name="worknum" value="${recruit.worknum}"/></td>
 				</tr>
 				<tr>
 					<th>工种:</th>
 					<td>
-						<input type="text" id="selectJobshidden1" name="workTypeId" value="java"/>
+						<input type="text" id="selectJobshidden1" name="workTypeId"/>
 					</td>
 					<th>性别:</th>
 					<td>
@@ -89,11 +95,11 @@ $().ready(function() {
 					<input type="test" value="计算机系" id="selectSpecialtyhidden1" name="majorTypeId"/>
 				</td>
 					<th>技术等级:</th>
-					<td><input type="text" id="eteLevel1" name="eteLevel"></td>
+					<td><input type="text" id="eteLevel1" name="eteLevel" value="${recruit.eteLevel}"/></td>
 				</tr>
 				<tr>
 					<th>从事年限:</th>
-					<td><input type="text" id="workyear1" name="workyear"></td>
+					<td><input type="text" id="workyear1" name="workyear" value="${recruit.workyear}"/></td>
 					<th>文化程度:</th>
 					<td>
 						<select id="eduLevel1" name="eduLevel" style="width: 183px;">
@@ -116,19 +122,19 @@ $().ready(function() {
 				</tr>
 				<tr>
 					<th>工作地点:</th>
-					<td><input type="text" id="workspace1" name="workspace"></td>
+					<td><input type="text" id="workspace1" name="workspace" value="${recruit.workspace}"/></td>
 					<th>年龄:</th>
-					<td><input type="text" id="age1" name="age"></td>
+					<td><input type="text" id="age1" name="age" value="${recruit.age}"></td>
 				</tr>
 				<tr>
 					<th>身高:</th>
-					<td><input type="text" id="height1" name="height"></td>
+					<td><input type="text" id="height1" name="height" value="${recruit.height}"/></td>
 					<th>视力:</th>
-					<td><input type="text" id="eyesight1" name="eyesight"></td>
+					<td><input type="text" id="eyesight1" name="eyesight" value="${recruit.eyesight}"></td>
 				</tr>
 				<tr>
 					<th>薪资待遇:</th>
-					<td><input type="text" id="salary1" name="salary"></td>
+					<td><input type="text" id="salary1" name="salary" value="${recruit.salary}"></td>
 					<th>用工形式:</th>
 					<td>
 						<select id="workWay1" name="workWay" style="width: 183px;">
@@ -152,7 +158,7 @@ $().ready(function() {
 						</select>
 					</td>
 					<th>面试时间:</th>
-					<td><input type="text" id="viewData1" name="viewData"></td>
+					<td><input type="text" id="viewData1" name="viewData" value="${salary.viewData}"/></td>
 				</tr>
 				<tr>
 					<th style="vertical-align:top;">其他说明:</th>
