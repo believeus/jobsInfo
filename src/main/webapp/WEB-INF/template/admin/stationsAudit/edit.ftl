@@ -148,9 +148,11 @@ $().ready(function() {
 	
 	
 	
-	<form id="inputForm" novalidate="novalidate"  action="update.jhtml" method="post">
+	<form id="inputForm" novalidate="novalidate"  action="/admin/stationAudit/update.jhtml" method="post">
 		<input type="hidden" name="id" value="${recruit.id}"/>
 		<input type="hidden" name="status" value="${recruit.status}"/>
+		<input type="hidden" name="createTime" value="${recruit.createTime}"/>
+		<input type="hidden" name="userId" value="${recruit.entUser.id}"/>
 			<table class="input">
 				<tr>
 					<th>招聘单位:</th>
@@ -268,12 +270,12 @@ $().ready(function() {
 						</select>
 					</td>
 					<th>面试时间:</th>
-					<td><input type="text" id="viewData1" name="viewData" value="${salary.viewData}"/></td>
+					<td><input type="text" id="viewData1" name="viewData" value="${recruit.viewData}"/></td>
 				</tr>
 				<tr>
 					<th style="vertical-align:top;">其他说明:</th>
 					<td colspan="3">
-						<textArea cols="30" style="resize:none;" id="note1" name="note"></textArea>
+						<textArea cols="30" style="resize:none;" id="note1" name="note">${recruit.note}</textArea>
 					</td>
 				</tr>
 				<tr>

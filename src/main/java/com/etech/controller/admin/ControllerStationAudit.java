@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.etech.entity.TentUser;
+import com.etech.entity.TmajorType;
 import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
 
@@ -78,9 +81,20 @@ public class ControllerStationAudit {
 	 * @return
 	 */
 	@RequestMapping(value = "/update")
-	public String updateNewsView(Trecruit formRecruit){
+	public String updateNewsView(Trecruit formRecruit,Integer workTypeId,Integer majorTypeId,Integer userId){
 		Trecruit recruit=(Trecruit) etechService.findObjectById(Trecruit.class, formRecruit.getId());
+		TentUser entUser=(TentUser)etechService.findObjectById(TentUser.class, userId);
+		if (workTypeId != null) {
+			TmajorType workType = (TmajorType) etechService.findObjectById(TmajorType.class, workTypeId);
+			formRecruit.setWorkType(workType);
+		}
+		if (majorTypeId != null) {
+			TmajorType majorType = (TmajorType) etechService.findObjectById(TmajorType.class, majorTypeId);
+			formRecruit.setMajorType(majorType);
+		}
+		formRecruit.setEntUser(entUser);
 		BeanUtils.copyProperties(formRecruit, recruit);
+		etechService.saveOrUpdata(recruit);
 		return "redirect:/admin/stationAudit/list.jhtml";
 	}
 	@RequestMapping(value = "/review", method = RequestMethod.GET)
