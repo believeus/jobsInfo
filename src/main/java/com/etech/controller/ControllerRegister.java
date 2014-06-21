@@ -173,10 +173,10 @@ public class ControllerRegister {
 			}else{
 				// 只有从sessionFactory中获取的对象才能updata
 				TcomUser comUser = (TcomUser)etechService.findObjectById(TcomUser.class, regUser.getId());
-				BeanUtils.copyProperties(regUser, comUser);
-				System.out.println(comUser.getTrueName());
+				log.debug("regUser.id:"+regUser.getId());
+				regUser.setRoles(comUser.getRoles());
 				session.setAttribute("sessionUser", comUser);
-				etechService.merge(comUser);
+				etechService.merge(regUser);
 			}
 			message.put("message","success");
 			JsonOutToBrower.out(message, response);

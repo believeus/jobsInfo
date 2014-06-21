@@ -1,5 +1,8 @@
 package com.etech.controller.admin;
 
+import java.util.List;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,6 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.etech.entity.TentUser;
+import com.etech.entity.Trecruit;
+import com.etech.service.EtechService;
+
 /**
  * 企业列表
  * */
@@ -17,14 +24,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/admin/enterpriseList")
 public class ControllerEnterpriseList {
 	private static Log log = LogFactory.getLog(ControllerEnterpriseList.class);
-
+	@Resource
+	private EtechService etechService;
 	/**
 	 * 企业列表
 	 * @return
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String newsListView() {
+	public String newsListView(HttpServletRequest request) {
 		log.debug("current controller is newsListView !");
+		//查找审核列表
+		List<Trecruit> userList=(List<Trecruit>) etechService.getListByProperty(TentUser.class, "status","1" , 20);
+		request.setAttribute("enterpriseTentUsers",userList);
 		return "admin/humanResources/list";
 	}
 	/**

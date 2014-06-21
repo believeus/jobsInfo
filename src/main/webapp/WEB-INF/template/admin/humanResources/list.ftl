@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>新闻列表 - Powered By e3dmall</title>
+<title>企业审核 - Powered By e3dmall</title>
 <meta name="author" content="e3dmall Team" />
 <meta name="copyright" content="e3dmall" />
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
@@ -22,9 +22,6 @@ $().ready(function() {
 	</div>
 	<form id="listForm" action="list.jhtml" method="get">
 		<div class="bar">
-			<a href="add.jhtml" class="iconButton">
-				<span class="addIcon">&nbsp;</span>添加
-			</a>
 			<div class="buttonWrap">
 				<a href="javascript:;" id="deleteButton" class="iconButton disabled">
 					<span class="deleteIcon">&nbsp;</span>删除
@@ -63,7 +60,7 @@ $().ready(function() {
 				<div class="popupMenu">
 					<ul id="searchPropertyOption">
 						<li>
-							<a href="javascript:;"[#if page.searchProperty == "title"] class="current"[/#if] val="title">标题</a>
+							<a href="javascript:;"[#if page.searchProperty == "title"] class="current"[/#if] val="title">单位全称</a>
 						</li>
 					</ul>
 				</div>
@@ -75,46 +72,41 @@ $().ready(function() {
 					<input type="checkbox" id="selectAll" />
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="title">排序编号</a>
+					<a href="javascript:;" class="sort" name="fullName">单位全称</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="adPosition">内容标题</a>
+					<a href="javascript:;" class="sort" name="legalMan">法人代表</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="type">工作地点</a>
+					<a href="javascript:;" class="sort" name="regMoney">注册资金</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="endDate">面试时间</a>
+					<a href="javascript:;" class="sort" name="unitType">单位性质</a>
 				</th>
 				<th>
 					<a href="#"  class="sort">操作</a>
 				</th>
 			</tr>
 			
+			[#list enterpriseTentUsers as user]
 			<tr>
-			[#list recruitList as recruit]
 				<td>
-					<input type="checkbox" name="ids" value="${recruit.id}" />
+					<input type="checkbox" name="ids" value="${user.id}" />
 				</td>
 				<td>
-					<span>${recruit.id}</span>
+					<span>${user.fullName}</span>
 				</td>
 				<td>
-					${recruit.company}
+					${user.legalMan}
 				</td>
 				<td>
-					${recruit.workspace}
+					${user.regMoney}
 				</td>
 				<td>
-					${recruit.viewData?number_to_date} ${recruit.viewData?number_to_time}
+					${user.unitType}
 				</td>
 				<td>
-					<a href="edit.jhtml?id=${recruit.id}">[修改]</a>
-					[#if recruit.status ==0 ]
-					 <a href="review.jhtml?id=${recruit.id}"><font color="red">[未审核]</font></a>
-					[#else]
-					  <font color="green">[审核通过]</font>
-					[/#if]
+					<a href="/admin/enterpriseAudit/edit.jhtml?id=${user.id}">[修改]</a>
 				</td>
 			</tr>
 			[/#list]

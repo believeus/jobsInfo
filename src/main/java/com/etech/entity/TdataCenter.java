@@ -23,6 +23,7 @@ public class TdataCenter extends TbaseEntity implements Cloneable{
 	private String content;
 	private long createTime;
 	private long editTime;
+	private int clickNum;
 	private int top;
 	private String alink;
 	@Field(store=Store.YES,index = Index.TOKENIZED, analyzer = @Analyzer(impl =IKAnalyzer.class ))
@@ -85,6 +86,12 @@ public class TdataCenter extends TbaseEntity implements Cloneable{
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
+	}
+	public int getClickNum() {
+		return clickNum;
+	}
+	public void setClickNum(int clickNum) {
+		this.clickNum = clickNum;
 	}
 	
 	

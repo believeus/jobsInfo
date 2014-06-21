@@ -108,7 +108,7 @@ $().ready(function() {
 				<td>
 					<a href="edit.jhtml?id=${recruit.id}">[修改]</a>
 					[#if recruit.status ==0 ]
-					 <a href="review.jhtml?id=${recruit.id}"><font color="red">[未审核]</font></a>
+					 <a href="review.jhtml?id=${recruit.id}"><font color="red">[请点击审核通过]</font></a>
 					[#else]
 					  <font color="green">[审核通过]</font>
 					[/#if]

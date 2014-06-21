@@ -107,7 +107,7 @@ $().ready(function() {
 				</td>
 				<td>
 					<a href="/admin/enterpriseAudit/edit.jhtml?id=${user.id}">[修改]</a>
-					<a href="/admin/enterpriseAudit/review.jhtml?id=${user.id}">[审核通过]</a>
+					<a href="/admin/enterpriseAudit/review.jhtml?id=${user.id}"><font color="red">[请点击审核通过]</font></a>
 				</td>
 			</tr>
 			[/#list]

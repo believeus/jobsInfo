@@ -370,4 +370,19 @@ public class EtechComDao extends HibernateDaoSupport {
 			}
 		});
 	}
+
+	public List<?> getListByClass(final Class<?> clazz, final Integer num) {
+		return (List<?>) getHibernateTemplate().execute(new HibernateCallback<Object>() {
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				String hql = "from " + clazz.getName();
+				Query query = session.createQuery(hql);
+				query.setFirstResult(0);
+				query.setMaxResults(num);
+				List<?> list = query.list();
+				return list;
+			}
+		});
+	}
 }

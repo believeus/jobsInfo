@@ -1159,8 +1159,8 @@
 									<td>
 										<select id="sex" name="sex" style="width:158px;">
 											<option value="">请选择..</option>
-											<option value="男">男</option>
-											<option value="女">女</option>
+											<option value="man">男</option>
+											<option value="woman">女</option>
 										</select>
 									</td>
 								</tr>

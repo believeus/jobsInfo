@@ -77,6 +77,15 @@ public class ControllerEnterpriseAudit {
 		
 		return "redirect:/admin/enterpriseAudit/list.jhtml";
 	}
+	@RequestMapping("/review")
+	public String review(int id){
+		TentUser user=(TentUser)etechService.findObjectById(TentUser.class, id);
+		//设置审核通过
+		user.setStatus("1");
+		etechService.saveOrUpdata(user);
+		log.debug("review controller");
+		return "redirect:/admin/enterpriseAudit/list.jhtml";
+	}
 	/**
 	 * 修改企业审核
 	 * @return

@@ -62,8 +62,10 @@ public class EtechService {
 	public void deleteBySQL(String sql){
 		etechComDao.deleteBySQL(sql);
 	}
-
-	public List<Trecruit> getListByProperty(Class<?> clazz,String property, Object value, int num) {
-		return (List<Trecruit>) etechComDao.getListByProperty(clazz, property, value,num);
+	public List<?> getListByProperty(Class<?> clazz,String property, Object value, int num) {
+		return (List<?>) etechComDao.getListByProperty(clazz, property, value,num);
+	}
+	public List<?> getListByClass(Class<?> clazz,Integer num){
+		return etechComDao.getListByClass(clazz,num);
 	}
 }

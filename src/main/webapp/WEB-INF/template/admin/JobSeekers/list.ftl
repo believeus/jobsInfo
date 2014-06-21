@@ -75,13 +75,13 @@ $().ready(function() {
 					<a href="javascript:;" class="sort" name="title">排序编号</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="adPosition">内容标题</a>
+					<a href="javascript:;" class="sort" name="adPosition">求职者登录名</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="type">工作地点</a>
+					<a href="javascript:;" class="sort" name="type">身份证号</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="endDate">面试时间</a>
+					<a href="javascript:;" class="sort" name="endDate">居住地</a>
 				</th>
 				<th>
 					<a href="#"  class="sort">操作</a>
@@ -89,29 +89,24 @@ $().ready(function() {
 			</tr>
 			
 			<tr>
-			[#list recruitList as recruit]
+			[#list userList as user]
 				<td>
-					<input type="checkbox" name="ids" value="${recruit.id}" />
+					<input type="checkbox" name="ids" value="${user.id}" />
 				</td>
 				<td>
-					<span>${recruit.id}</span>
+					<span>${user.id}</span>
 				</td>
 				<td>
-					${recruit.company}
+					${user.loginName}
 				</td>
 				<td>
-					${recruit.workspace}
+					${user.idcard}
 				</td>
 				<td>
-					${recruit.viewData?number_to_date} ${recruit.viewData?number_to_time}
+					${user.address}
 				</td>
 				<td>
-					<a href="edit.jhtml?id=${recruit.id}">[修改]</a>
-					[#if recruit.status ==0 ]
-					 <a href="review.jhtml?id=${recruit.id}"><font color="red">[未审核]</font></a>
-					[#else]
-					  <font color="green">[审核通过]</font>
-					[/#if]
+					<a href="edit.jhtml?id=${user.id}">[修改]</a>
 				</td>
 			</tr>
 			[/#list]
