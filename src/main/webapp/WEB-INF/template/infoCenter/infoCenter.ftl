@@ -267,19 +267,19 @@
 					<div style="padding-left: 20px;">
 						[#list news as new]
 						[#if new_index==1]	
-							<h2 style="margin: 0px; font-size: 21px; font-weight: bold;"><a href="/newsInfo.jhtml?id="${new.id}"">
+							<h2 style="margin: 0px; font-size: 21px; font-weight: bold;"><a href="/newsInfo.jhtml?id=${new.id}">
 							[#if new.title?length > 16]
 								${new.title?string?substring(0,16)}...
 							[#else]
 								${new.title}
 							[/#if]</a></h2>
-							<p style="color:#2B8BDF;margin:0;font-size:12px;">
+							<div style="color:#2B8BDF;margin:0;font-size:12px;">
 							[#if new.content?length > 27]
 								${new.content?string?substring(0,27)}...
 							[#else]
 								${new.content}
 							[/#if]
-							</p>
+							</div>
 						[/#if]
 						[/#list]
 					</div>
@@ -318,13 +318,14 @@
 								${new.title}
 							[/#if]
 						</a></p>
-						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;">
-						[#if new.content?length > 22]
+						<div style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;">
+							[#if new.content?length > 22]
 								${new.content?string?substring(0,22)}...
 							[#else]
 								${new.content}
 							[/#if]
-						<span style="text-align: right;float:right;"><a href="/newsInfo.jhtml?id=${new.id}">[详细]</a></span></p>
+							<span style="text-align: right;float:right;"><a href="/newsInfo.jhtml?id=${new.id}">[详细]</a></span>
+						</div>
 					</div>
 					[/#if]
 					[/#list]
@@ -359,13 +360,14 @@
 								${work.title}
 							[/#if]
 							</a></p>
-						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;">
-						[#if work.content?length > 22]
+						<div style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;">
+							[#if work.content?length > 22]
 								${work.content?string?substring(0,22)}...
 							[#else]
 								${work.content}
 							[/#if]
-						<span style="text-align: right;float:right;"><a href="/workInfo.jhtml?id=${work.id}">[详细]</a></span></p>
+							<span style="text-align: right;float:right;"><a href="/workInfo.jhtml?id=${work.id}">[详细]</a></span>
+						</div>
 					</div>
 					[/#if]
 					[/#list]

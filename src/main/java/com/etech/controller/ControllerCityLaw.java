@@ -1,5 +1,7 @@
 package com.etech.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -22,10 +24,16 @@ public class ControllerCityLaw {
 	@Resource
 	private EtechService etechService;
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/cityLaw", method = RequestMethod.GET)
 	public String policyAdviceView(HttpSession session,Integer id) {
 		TdataCenter dataCenter = (TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		session.setAttribute("data", dataCenter);
+		
+		String hql="From TdataCenter dataCenter where dataCenter.type='5'";
+		List<TdataCenter> spceilas = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
+		session.setAttribute("spceilas", spceilas);
+		
 		return "policyAdvice/cityLaw";
 	}
 }

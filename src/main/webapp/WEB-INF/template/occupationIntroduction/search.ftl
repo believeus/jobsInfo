@@ -140,23 +140,24 @@
 					公告公示<span style="float:right;"><a href="/publicityList.jhtml">更多</a></span>
 				</p>
 				<ul style="padding-left:25px;">
-					<li><a href="/publicityInfo.jhtml">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
-					<li><a href="/publicityInfo.jhtml">社会保障费申请缴纳管理规定..</a><span>10-15</span></li>
-					<li><a href="/publicityInfo.jhtml">人力资源社会保障部关于印发..</a><span>10-15</span></li>
-					<li><a href="/publicityInfo.jhtml">社会保障费申请缴纳管理规定..</a><span>10-15</span></li>
-					<li><a href="/publicityInfo.jhtml">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
-					<li><a href="/publicityInfo.jhtml">人力资源社会保障部关于印发..</a><span>10-15</span></li>
-					<li><a href="/publicityInfo.jhtml">人力资源社会保障部关于印发..</a><span>10-15</span></li>
-					<li><a href="/publicityInfo.jhtml">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
-					<li><a href="/publicityInfo.jhtml">人力资源社会保障部关于印发..</a><span>10-15</span></li>
-					<li><a href="/publicityInfo.jhtml">工伤职工劳动能力鉴定管理办..</a><span>10-15</span></li>
+					[#list notices as notice]
+						<li><a href="/publicityInfo.jhtml?id=${notice.id}">
+							[#if notice.title?length > 13]
+								${notice.title?string?substring(0,13)}...
+							[#else]
+								${notice.title}
+							[/#if]
+					</a><span>${notice.createTime?number_to_datetime}</span></li>
+					[/#list]
 				</ul>
 			</div>
 			<div class="j_main_left_1" style="margin-top:10px;height:405px;text-align:center;border:1px solid #E4E4E4;">
 				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml">更多>></a></div>
-				<a href="/special.jhtml"><img src="/resource/public/images/zhuanti.png" style="margin-top:7px;"></a>
+				[#list spceilas as sReport]
+					<a style="margin-left:0;" href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:222px;height:66px;margin-top:7px;"></a>
+				[/#list]
 			</div>
 		</div>
 		<div class="j_main_right">

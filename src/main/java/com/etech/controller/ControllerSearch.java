@@ -34,6 +34,16 @@ public class ControllerSearch {
 		Assert.assertNotNull(key);
 		List<TdataCenter> tdataCenterList = (List<TdataCenter>) etechService.search(TdataCenter.class, key, new String[]{"title","content"},currentpage,perCount);
 		request.setAttribute("tdataCenterList", tdataCenterList);
+		
+		String hql="From TdataCenter dataCenter where dataCenter.type='5'";
+		List<TdataCenter> spceilas = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
+		request.setAttribute("spceilas", spceilas);
+		
+		// 公告公示
+		hql="From TdataCenter dataCenter where dataCenter.type='2'";
+		List<TdataCenter> notices = (List<TdataCenter>)etechService.findListByHQL(hql);
+		request.setAttribute("notices",notices ); 
+		
 		return "occupationIntroduction/search";
 	}
 	/**高级搜索*/

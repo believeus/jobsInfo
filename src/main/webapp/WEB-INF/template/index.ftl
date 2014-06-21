@@ -351,13 +351,13 @@
 							[#else]
 								${new.title}
 							[/#if]</a></h2>
-							<p style="color:#2B8BDF;margin:0;font-size:12px;">
+							<div style="color:#2B8BDF;margin:0;font-size:12px;">
 							[#if new.content?length > 27]
 								${new.content?string?substring(0,27)}...
 							[#else]
 								${new.content}
 							[/#if]
-							</p>
+							</div>
 						[/#if]
 						[/#list]
 				</div>

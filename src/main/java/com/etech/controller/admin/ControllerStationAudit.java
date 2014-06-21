@@ -18,7 +18,7 @@ import com.etech.service.EtechService;
 /**
  * 岗位审核
  * */
-@Controller("controllerAdminStationAudit")
+@Controller
 @RequestMapping("/admin/stationAudit")
 public class ControllerStationAudit {
 	private static Log log = LogFactory.getLog(ControllerStationAudit.class);
@@ -31,10 +31,9 @@ public class ControllerStationAudit {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
 		log.debug("current controller is newsListView !");
-		@SuppressWarnings("unchecked")
 		List<Trecruit> recruitList=(List<Trecruit>)etechService.getListByProperty(Trecruit.class, "status", 0,15);
 		request.setAttribute("recruitList", recruitList);
-		return "admin/humanResources/list";
+		return "admin/stationsAudit/list";
 	}
 	
 	@RequiresPermissions("stationAudit:delete")
@@ -50,7 +49,7 @@ public class ControllerStationAudit {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView() {
 		log.debug("current controller is newsListView !");
-		return "admin/humanResources/add";
+		return "admin/stationsAudit/add";
 	}
 	/**
 	 * 编辑岗位审核
@@ -60,7 +59,7 @@ public class ControllerStationAudit {
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView() {
 		log.debug("current controller is newsListView !");
-		return "admin/humanResources/edit";
+		return "admin/stationsAudit/edit";
 	}
 	
 	/**

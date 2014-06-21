@@ -1,6 +1,9 @@
 package com.etech.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
@@ -22,10 +25,16 @@ public class ControllerCityFile {
 	@Resource
 	private EtechService etechService;
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/cityFile", method = RequestMethod.GET)
-	public String policyAdviceView(HttpSession session,Integer id) {
+	public String policyAdviceView(HttpServletRequest request,Integer id) {
 		TdataCenter dataCenter = (TdataCenter)etechService.findObjectById(TdataCenter.class, id);
-		session.setAttribute("data", dataCenter);
+		request.setAttribute("data", dataCenter);
+		
+		String hql="From TdataCenter dataCenter where dataCenter.type='5'";
+		List<TdataCenter> spceilas = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
+		request.setAttribute("spceilas", spceilas);
+		
 		return "policyAdvice/cityFile";
 	}
 }
