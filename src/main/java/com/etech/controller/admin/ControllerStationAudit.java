@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -76,8 +77,10 @@ public class ControllerStationAudit {
 	 * 修改岗位审核
 	 * @return
 	 */
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String updateNewsView(){
+	@RequestMapping(value = "/update")
+	public String updateNewsView(Trecruit formRecruit){
+		Trecruit recruit=(Trecruit) etechService.findObjectById(Trecruit.class, formRecruit.getId());
+		BeanUtils.copyProperties(formRecruit, recruit);
 		return "redirect:/admin/stationAudit/list.jhtml";
 	}
 	@RequestMapping(value = "/review", method = RequestMethod.GET)
