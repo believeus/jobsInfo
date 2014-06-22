@@ -75,7 +75,7 @@ public class ControllerVedioNews extends ControllerCRUD{
 	 * 保存视频新闻
 	 * @return
 	 */
-	@RequestMapping(value = "/save", method = RequestMethod.GET)
+	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
 		return "redirect:/admin/vedioNews/list.jhtml";

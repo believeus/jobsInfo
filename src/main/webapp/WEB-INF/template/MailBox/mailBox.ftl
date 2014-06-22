@@ -181,6 +181,7 @@ textarea{
 			<span>局长信箱</span>
         </div>
         <div style="width:750px; padding-bottom:20px; border:1px solid #999; margin-top:10px; background-color:#F7F3FA;">
+        	<form action="" method="post">
         	<div style="width:670px; margin:30px auto;">
 				<table class="tab_1" cellspacing="0"> 
                   <tr style="background:url(/resource/public/images/xiexin.jpg) repeat-x scroll 0 0 #FFFFFF;">
@@ -382,10 +383,11 @@ textarea{
                 </table>
             </div>
             <div style="text-align:center;margin-top:10px;">
-                <input type="button" class="butt_" value="提交" style="width:70px; margin-left:0px;"/>
-                <input type="button" class="butt_" value="重写" style="width:70px; "/>
+                <input type="submit" class="butt_" value="提交" style="width:70px; margin-left:0px;"/>
+                <input type="reset" class="butt_" value="重写" style="width:70px; "/>
             </div>
         </div>
+        </form>
     </div>
 </div>
 [#include "/include/footer.ftl" /]
