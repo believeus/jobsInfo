@@ -75,42 +75,36 @@ $().ready(function() {
 					<input type="checkbox" id="selectAll" />
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="title">排序编号</a>
+					<a href="javascript:;" class="sort" name="title">标题</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="adPosition">内容标题</a>
+					<a href="javascript:;" class="sort" name="adPosition">发信人</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="type">置顶</a>
+					<a href="javascript:;" class="sort" name="type">发布时间</a>
 				</th>
-				<!--<th>
-					<a href="javascript:;" class="sort" name="endDate">排序</a>
-				</th>-->
 				<th>
 					<a href="#"  class="sort">操作</a>
 				</th>
 			</tr>
 			
-			[#list dataCenters as center]
+			[#list mailBoxList as mail]
 			<tr>
 				<td>
-					<input type="checkbox" name="ids" value="${center.id}" />
+					<input type="checkbox" name="ids" value="${mail.id}" />
 				</td>
 				<td>
-					<span title="${center.id}">${center.id}</span>
+					<span title="${center.id}">${mail.title}</span>
 				</td>
 				<td>
-					${center.title}
+					${mail.username}
 				</td>
 				<td>
-					<input type="checkbox" id="" />
+					${mail.editTime?number_to_datetime} ${mail.editTime?number_to_time}
 				</td>
-				<!--<td>
-					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
-					<a href="" style="text-decoration:underline;">降</a>
-				</td>-->
 				<td>
-					<a href="edit.jhtml?id=${center.id}">[修改]</a>
+					<a href="edit.jhtml?id=${center.id}">[查看]</a>
+					<a>审核通过</a>
 				</td>
 			</tr>
 			[/#list]

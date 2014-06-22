@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.etech.entity.TdataCenter;
+import com.etech.entity.TmailBox;
 import com.etech.service.EtechService;
 
 /**
@@ -35,7 +36,13 @@ public class ControllerMailBox {
 		hql="From TdataCenter dataCenter where dataCenter.type='2'";
 		List<TdataCenter> notices = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("notices",notices ); 
-		
 		return "MailBox/mailBox";
+	}
+	@RequestMapping("/savaMailBox")
+	public String submitMailBox(TmailBox mailBox){
+		mailBox.setCreateTime(System.currentTimeMillis());
+		mailBox.setEditTime(System.currentTimeMillis());
+		etechService.merge(mailBox);
+		return "redirect:/mailBox.jhtml";
 	}
 }

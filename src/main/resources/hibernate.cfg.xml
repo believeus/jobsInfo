@@ -83,6 +83,7 @@
 		<mapping class="com.etech.entity.TentImgVedio"/>
 		<mapping class="com.etech.entity.Tadmin"/>
 		<mapping class="com.etech.entity.TdataCenter"/>
+		<mapping class="com.etech.entity.TmailBox"/>
 	</session-factory>
 
 </hibernate-configuration>

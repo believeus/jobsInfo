@@ -181,7 +181,8 @@ textarea{
 			<span>局长信箱</span>
         </div>
         <div style="width:750px; padding-bottom:20px; border:1px solid #999; margin-top:10px; background-color:#F7F3FA;">
-        	<form action="" method="post">
+        <form action="/savaMailBox.jhtml" method="post">
+        	<input type="hidden" name="status" value="0"/>
         	<div style="width:670px; margin:30px auto;">
 				<table class="tab_1" cellspacing="0"> 
                   <tr style="background:url(/resource/public/images/xiexin.jpg) repeat-x scroll 0 0 #FFFFFF;">
@@ -193,7 +194,6 @@ textarea{
                     	<div style="margin-left:20px; ">
                             <span>*</span>
                             <span style="width:200px; display:inline-block;">为必填项目</span>
-                            <span>你的当前IP是：59.280.253.230</span>
                         </div>
                     </th>
                   </tr>
@@ -203,7 +203,7 @@ textarea{
                     	<span>姓名：</span>
                     </th>
                     <td>
-                    	<input type="text" required="required" placeholder="输入姓名..."/>
+                    	<input type="text" name="username" />
                     </td>
                     <th scope="row">
                     	<span>*</span>
@@ -220,14 +220,14 @@ textarea{
                     	<span>手机：</span>
                     </th>
                     <td>
-                    	<input type="text" required="required" placeholder="输入电话号码（含区号）"/>
+                    	<input type="text" name="phoneNum"/>
                     </td>
                     <th scope="row">
                     	<span>*</span>
                     	<span>E-mail：</span>
                     </th>
                     <td>
-                    	<input type="email" required="required" placeholder="请输入您常用的邮箱..."/>
+                    	<input name="email" />
                     </td>
                   </tr>
                   <tr>
@@ -237,21 +237,21 @@ textarea{
                     </th>
                     <td colspan="3" style="height:65px;">
                     	<div style="height:28px; margin-left:20px;">
-                        	<select style="border:1px solid #C0C0C0; font-size:12px;border-radius:2px;">
+                        	<select name="province" style="border:1px solid #C0C0C0; font-size:12px;border-radius:2px;">
                                 <option value="" selected="selected">--请选择省份--</option>
                                 <option value="41">湖北省</option>
                                 <option value="42">湖南省</option>
                                 <option value="43">河南省</option>
                                 <option value="44">河北省</option>
                             </select>
-                            <select style="border:1px solid #C0C0C0; font-size:12px;border-radius:2px;">
+                            <select name="city" style="border:1px solid #C0C0C0; font-size:12px;border-radius:2px;">
                                 <option value="" selected="selected">--请选择城市--</option>
                                 <option value="41">武汉</option>
                                 <option value="42">黄石</option>
                                 <option value="43">石家庄</option>
                                 <option value="44">郑州</option>
                             </select>
-                            <select style="border:1px solid #C0C0C0; font-size:12px;border-radius:2px;">
+                            <select name="county" style="border:1px solid #C0C0C0; font-size:12px;border-radius:2px;">
                                 <option value="" selected="selected">--请选择区域--</option>
                                 <option value="41">洪山区</option>
                                 <option value="42">江夏区</option>
@@ -260,7 +260,7 @@ textarea{
                             </select>
                         </div>
                         <div style="height:22px;">
-                        	<input type="text" name="" style="width:305px;" placeholder="请输入剩余地址..."/>
+                        	<input type="text" name="supplyAddress" style="width:305px;" />
                         </div>
                     </td>
                   </tr>
@@ -271,7 +271,7 @@ textarea{
                     </th>
                     <td>
                     	<select style="border:1px solid #C0C0C0; font-size:12px;border-radius:2px; margin-left:20px">
-                            <option value="" selected="selected">--请选择职员--</option>
+                            <option value="job" selected="selected">--请选择职业--</option>
                             <option value="41">工人</option>
                             <option value="42">农民</option>
                             <option value="43">学生</option>
@@ -283,7 +283,7 @@ textarea{
                     	<span>身份证：</span>
                     </th>
                     <td>
-                    	<input type="text" required="required" placeholder="输入身份证..."/>
+                    	<input type="text" name="idcard" />
                     </td>
                   </tr>
                   <tr>
@@ -292,7 +292,7 @@ textarea{
                     	<span>固定电话：</span>
                     </th>
                     <td colspan="3">
-                    	<input type="text" placeholder="请输入您的座机号码！" />
+                    	<input type="text" name="fixPhone" />
                         <span>（*输入格式：027-89898989）</span>
                     </td>
                   </tr>
@@ -306,7 +306,7 @@ textarea{
                     	<span>信件标题：</span>
                     </th>
                     <td>
-                    	<input type="text" required="required" placeholder="请输入标题..."/>
+                    	<input type="text" name="title"/>
                     </td>
                   </tr>
                   <tr>
@@ -315,7 +315,7 @@ textarea{
                     	<span>发生地区：</span>
                     </th>
                     <td>
-                    	<input type="text" required="required" style="width:300px" placeholder="请输入详细的区域..."/>
+                    	<input type="text" name="happenArea"  style="width:300px" />
                     </td>
                   </tr>
                   <tr>
@@ -324,7 +324,7 @@ textarea{
                     	<span>问题分类：</span>
                     </th>
                     <td>
-                    	<select style="border:1px solid #C0C0C0; font-size:12px;border-radius:2px; margin-left:20px">
+                    	<select name="questionType" style="border:1px solid #C0C0C0; font-size:12px;border-radius:2px; margin-left:20px">
                             <option value="" selected="selected">--请选择类别--</option>
                             <option value="41">类别1</option>
                             <option value="42">类别2</option>
@@ -339,7 +339,7 @@ textarea{
                     	<span>来信人数：</span>
                     </th>
                     <td>
-                    	<input type="text" required="required" style="width:50px;" placeholder="人数..."/>
+                    	<input type="text" name="letterNumber"  style="width:50px;" placeholder="人数..."/>
                     </td>
                   </tr>
                   <tr>
@@ -348,7 +348,7 @@ textarea{
                     	<span>信件内容：</span>
                     </th>
                     <td>
-                    	<textarea cols="60" rows="5" required="required" placeholder="请在这里输入您的信件内容......"></textarea>
+                    	<textarea cols="60" name="content" rows="5"></textarea>
                         <span style="display:inline-block; margin-left:20px;">*如果字数多于1000字，请以附加形式上传，你已经输入了0个字。</span>
                     </td>
                   </tr>
@@ -358,7 +358,7 @@ textarea{
                     	<span>上传附件：</span>
                     </th>
                     <td>
-                    	<input type="button" class="butt_" value="选择文件" style="width:70px;"/>
+                    	<input type="file" file class="butt_" value="选择文件" style="width:70px;"/>
                         <span style="font-size:12px">未选择文件</span>
                         <div>
                             <input type="button" class="butt_" value="增加附件" style="width:70px; "/>
@@ -372,8 +372,8 @@ textarea{
                     	<span>公开意愿：</span>
                     </th>
                     <td>
-                    	<input type="radio" checked="checked" name="ifpass" style="width:auto;"/><span>同意</span>
-                        <input type="radio" name="ifpass" style="width:auto;"/><span>不同意</span>
+                    	<input type="radio" checked="checked" name="agree" style="width:auto;"/><span>同意</span>
+                        <input type="radio" name="agree" style="width:auto;"/><span>不同意</span>
                         <span style="margin-left:20px;">
                         	<span style="color:red;">*</span>
                             <span>如果您选择“同意”，我们可能将对您的写信内容以及办理结果进行公示！</span>

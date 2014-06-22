@@ -6,12 +6,15 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.etech.entity.TdataCenter;
+import com.etech.entity.TmailBox;
 import com.etech.service.EtechService;
 import com.etech.util.EtechGobal;
 
@@ -21,7 +24,7 @@ import com.etech.util.EtechGobal;
 @Controller("controllerAdminMailBox")
 @RequestMapping("/admin/mailBox")
 public class ControllerMailBox extends ControllerCRUD{
-
+	private static final Log log=LogFactory.getLog(ControllerMailBox.class);
 	@Resource
 	private EtechService etechService;
 	/**
@@ -30,8 +33,9 @@ public class ControllerMailBox extends ControllerCRUD{
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
-		List<?> dataCenters = super.listDataInfo(request,EtechGobal.mailBox);
-		request.setAttribute("dataCenters",dataCenters);
+		List<TmailBox> mailBoxList=(List<TmailBox>)etechService.getListByProperty(TmailBox.class, "status", "0", 20);
+		log.debug("time:"+mailBoxList.get(0).getEditTime());
+		request.setAttribute("mailBoxList",mailBoxList);
 		return "admin/service/list";
 	}
 	
