@@ -97,8 +97,10 @@ a:link{
 [#include "/include/header.ftl" /]
 <div style="border:1px solid #DCDCDC; border-top-style:none; width:1000px; margin:auto;">
 	<div style="border-bottom:1px solid #DCDCDC;">
+		[#list vedios as vedio]
+	  	[#if vedio_index==0]
     	<div style="float:left; margin:10px auto; border-right:1px solid #DCDCDC; width:600px;">
-        	<h2 style="margin-left:30px;">中国研制超级磁悬浮列车 速度为飞机的三倍</h2>
+        	<h2 style="margin-left:30px;">${vedio.title}</h2>
             <div style="width:585px; margin:0px auto;">
             	<embed width="585" height="432" bgcolor="#000000" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" src="http://p.you.video.sina.com.cn/swf/bokePlayer20140616_V4_1_42_49.swf"  type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"/>
             </div>
@@ -107,7 +109,7 @@ a:link{
                 	<table id="tab_1" style="width:100%; border-collapse:collapse;">
                       <tr>
                         <td>发布：</td>
-                        <td style="width:235px;">2014-05-18  18:30</td>
+                        <td style="width:235px;">${vedio.createTime?number_to_datetime}</td>
                         <td>标签：</td>
                         <td>磁悬浮列车</td>
                       </tr>
@@ -119,22 +121,29 @@ a:link{
                       </tr>
                       <tr>
                         <td>简介：</td>
-                        <td colspan="3">中国研制的磁悬浮列车，速度为飞机的三倍......</td>
+                        <td colspan="3">
+                        	[#if vedio.content?length >20]
+	                    		${vedio.content?string?substring(0,20)}...
+	                    	[#else]
+	                    		${vedio.content}
+	                    	[/#if]
+                        </td>
                       </tr>
                     </table>
                 </div>
                 <div style="float:left; margin-top:25px; color:#666;">
                 	<p>展开信息<img src="/resource/public/images/jiantou.jpg" /></p>
                 </div>
-                <div style="clear:left;"></div>
             </div>
         </div>
+        [/#if]
+        [/#list]
       	<div style="float:left; margin-top:15px; width:399px;">
         	<h3 style="margin-left:15px;">视频列表</h3>
             <div>
               <ul id="ul_1">
               	[#list vedios as vedio]
-              	[#if vedio_index<=4]
+              	[#if vedio_index<=4 && vedio_index >0]
 	                <li>
 	                  <div class="div1">
 	                  	<a href="/videosInfo.jhtml?id=${vedio.id}">
