@@ -18,6 +18,8 @@ public class TentImgVedio extends TbaseEntity {
 	private String vedioUrl;
 	private String descption;
 	private int type;
+	private String originName;
+	private String vedioName;
 	private TentUser entUser; 
 
 	public String getUrl() {
@@ -72,6 +74,22 @@ public class TentImgVedio extends TbaseEntity {
 
 	public void setVedioUrl(String vedioUrl) {
 		this.vedioUrl = vedioUrl;
+	}
+
+	public String getOriginName() {
+		return originName;
+	}
+
+	public void setOriginName(String originName) {
+		this.originName = originName;
+	}
+
+	public String getVedioName() {
+		return vedioName;
+	}
+
+	public void setVedioName(String vedioName) {
+		this.vedioName = vedioName;
 	}
 
 }
