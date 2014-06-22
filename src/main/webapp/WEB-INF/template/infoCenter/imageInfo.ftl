@@ -46,7 +46,7 @@ $(document).ready(function(){
     </div>
   </div>
   <ul class="filmstrip">
-    <li><img src="${data.imgpath}" alt="${data.title}" title="${data.title}" /></li>
+    <li><img src="${data.imgpath}" width="98" height="98" alt="${data.title}" title="${data.title}" /></li>
   </ul>
 </div>
 [#include "/include/footer.ftl" /]

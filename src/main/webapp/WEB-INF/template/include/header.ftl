@@ -8,6 +8,9 @@
 		text-decoration:none;
 		color:#555555;
 	}
+	input[type="button"]{
+		cursor:pointer;
+	}
 	.w{
 		overflow:hidden;
 		margin-left:auto;

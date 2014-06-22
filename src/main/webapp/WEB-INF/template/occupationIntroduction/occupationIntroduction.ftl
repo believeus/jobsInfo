@@ -139,12 +139,13 @@
     		height:auto;
     		overflow:hidden;
     		margin-top: 10px;
+    		border:1px solid #e4e4e4;
 		}
 		.j_main_6 a:hover{
 			text-decoration:underline;
 		}
     	.j_main_6_1{
-    		width:998px;
+    		width:996px;
     		height:38px;
     		border:1px solid #E4E4E4;
     	}
@@ -189,6 +190,7 @@
 		}
 		.jianli_xinxi{
 			color:#003872;
+			font-size:12px;
 		}
 		.zuixinjianli a:hover{
 			text-decoration:underline;
@@ -204,6 +206,32 @@
 		    margin-right: 10px;
 		    width: 60px;
 		    cursor:pointer;
+		}
+		.new_intro{
+			width:950px;
+			height:auto;
+			overflow:hidden;
+			margin-left:auto;
+			margin-right:auto;
+		}
+		.new_intro_list{
+			float: left;
+		    height: 80px;
+		    padding: 0 15px;
+		    width: 160px;
+		    text-align:center;
+		}
+		.jianli{
+			width:950px;
+			height:auto;
+			overflow:hidden;
+			margin-left:auto;
+			margin-right:auto;
+		}
+		.jianli_list{
+			width:315px;
+			height:35px;
+			float:left;
 		}
     </style>
 </head>
@@ -452,170 +480,82 @@
 			</div>
 		-->
 		<div class="j_main_5">
-			<img src="/resource/public/images/zhaopin.png" style="width:998px;">
+			<div style="width:994px;height:37px; background:url(/resource/public/images/intro.png);border: 1px solid #e4e4e4;">
+				<span style="color: #817f80;font-size: 19px;font-weight: bold;line-height: 38px;margin-left: 10px;">名企招聘</span>
+			</div>
 			
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad05.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad01.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad03.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad04.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad02.png"></a>
+			[#list headImgs as headImg]
+				<a href="/enterpriseInformation.jhtml?id=${headImg.id}">
+					<img src="${headImg.url}" width="195" height="33">
+				</a>
+			[/#list]
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad01.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad03.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad04.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad02.png"></a>
 			
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad01.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad03.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad04.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad02.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad05.png"></a>
 			
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad03.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad01.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad02.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad05.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad04.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad04.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad03.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad05.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad02.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad01.png"></a>
 			
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad04.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad03.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad05.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad02.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad01.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad05.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad01.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad03.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad04.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad02.png"></a>
 			
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad05.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad01.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad03.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad04.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad02.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad01.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad03.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad04.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad02.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad05.png"></a>
 			
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad01.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad03.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad04.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad02.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad05.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad03.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad01.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad02.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad05.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad04.png"></a>
 			
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad03.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad01.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad02.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad05.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad04.png"></a>
-			
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad04.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad03.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad05.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad02.png"></a>
-			<a href="/enterpriseInformation.jhtml"><img src="/resource/public/images/ad01.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad04.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad03.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad05.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad02.png"></a>
+			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad01.png"></a>
 		</div>
 		<div class="j_main_6">
-			<div class="j_main_6_1">
-				<img src="/resource/public/images/jieshao.png">
+			<div class="j_main_6_1" style="background:url(/resource/public/images/intro.png);">
+				<span style="color: #817f80;font-size: 19px;font-weight: bold;line-height: 38px;margin-left: 10px;">最新职业介绍</span>
 			</div>
-			<table style="border:1px solid #e4e4e4;">
-				<tr>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-					<td>
-						<p><a href="/enterpriseInformation.jhtml">云科科技有限公司</a></p>
-						<p style="margin:0">招聘：<span><a style="color:#FF7800;" href="/enterpriseInformation.jhtml#zw">java程序员</a></span></p>
-					</td>
-				</tr>
-			</table>
+			<div class="new_intro">
+				[#list zhaopList as zhaop]
+				<div class="new_intro_list">
+					<p>
+						<a href="/enterpriseInformation.jhtml?id=${zhaop.id}" title="${zhaop.company}">
+							[#if zhaop.company?length > 10]
+								${zhaop.company?string?substring(0,10)}...
+							[#else]
+								${zhaop.company}
+							[/#if]
+						</a>
+					</p>
+					<p style="margin:0">招聘：
+						<span>
+							<a style="color:#FF7800;" href="/enterpriseInformation.jhtml?id=${zhaop.id}#zw" title="${zhaop.workType.name}">
+								[#if zhaop.workType.name?length > 7]
+									${zhaop.workType.name?string?substring(0,7)}...
+								[#else]
+									${zhaop.workType.name}
+								[/#if]
+							</a>
+						</span>
+					</p>		
+				</div>
+				[/#list]
+				
+			</div>
 		</div>
 		
 		<div style="width:998px;height:60px;margin-top:5px;margin-bottom:5px;">
@@ -624,52 +564,76 @@
 		
 		<div class="zuixinjianli" style="width:997px;height:auto;border:1px solid #e4e4e4;">
 			<img src="/resource/public/images/zuixinjianli.png">
-			<table>
-				<tr>
-					<td>
-						<ul>
-							[#list qiuzhiList as qiuzhi]
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml?id=${qiuzhi.id}">${qiuzhi.trueName}</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;${qiuzhi.sex}&nbsp;&nbsp;&nbsp;${qiuzhi.eduLevel}&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							[/#list]
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-						</ul>
-					</td>
-					<td>
-						<ul>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-						</ul>
-					</td>
-					<td>
-						<ul>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-							<li><span class="jianli_name"><a style="color:#FF7800;" href="/personalResume.jhtml">张三</a></span><span class="jianli_xinxi">&nbsp;&nbsp;&nbsp;女&nbsp;&nbsp;&nbsp;本科&nbsp;&nbsp;&nbsp;中学教师，小学教师</span></li>
-						</ul>
-					</td>
-				</tr>
-			</table>
+			<div class="jianli">
+				[#list qiuzhiList as qiuzhi]
+					<div class="jianli_list">
+						<span class="jianli_name">
+							<a style="color:#FF7800;" href="/personalResume.jhtml?id=${qiuzhi.id}">[#if qiuzhi.trueName?exists] ${qiuzhi.trueName} [#else] 隔壁老王 [/#if]</a>
+						</span>
+						<span class="jianli_xinxi">
+							&nbsp;&nbsp;${qiuzhi.sex}
+							&nbsp;&nbsp;
+							[#if qiuzhi.eduLevel?exists]
+								${qiuzhi.eduLevel}
+							[#else]
+								大学
+							[/#if]
+							&nbsp;&nbsp;
+							[#if qiuzhi.comInfo?size != 0]
+								[#list qiuzhi.comInfo as comInfo]
+									${comInfo.workType.name}
+								[/#list]
+							[#else]
+								中学教师，小学教师
+							[/#if]
+						</span>
+					</div>
+					<div class="jianli_list">
+						<span class="jianli_name">
+							<a style="color:#FF7800;" href="/personalResume.jhtml?id=${qiuzhi.id}">[#if qiuzhi.trueName?exists] ${qiuzhi.trueName} [#else] 隔壁老王 [/#if]</a>
+						</span>
+						<span class="jianli_xinxi">
+							&nbsp;&nbsp;${qiuzhi.sex}
+							&nbsp;&nbsp;
+							[#if qiuzhi.eduLevel?exists]
+								${qiuzhi.eduLevel}
+							[#else]
+								大学
+							[/#if]
+							&nbsp;&nbsp;
+							[#if qiuzhi.comInfo?size != 0]
+								[#list qiuzhi.comInfo as comInfo]
+									${comInfo.workType.name}
+								[/#list]
+							[#else]
+								中学教师，小学教师
+							[/#if]
+						</span>
+					</div>
+					<div class="jianli_list">
+						<span class="jianli_name">
+							<a style="color:#FF7800;" href="/personalResume.jhtml?id=${qiuzhi.id}">[#if qiuzhi.trueName?exists] ${qiuzhi.trueName} [#else] 隔壁老王 [/#if]</a>
+						</span>
+						<span class="jianli_xinxi">
+							&nbsp;&nbsp;${qiuzhi.sex}
+							&nbsp;&nbsp;
+							[#if qiuzhi.eduLevel?exists]
+								${qiuzhi.eduLevel}
+							[#else]
+								大学
+							[/#if]
+							&nbsp;&nbsp;
+							[#if qiuzhi.comInfo?size != 0]
+								[#list qiuzhi.comInfo as comInfo]
+									${comInfo.workType.name}
+								[/#list]
+							[#else]
+								中学教师，小学教师
+							[/#if]
+						</span>
+					</div>
+				[/#list]
+			</div>
 		</div>
 		
 		<div class="j_main_7">

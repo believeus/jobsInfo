@@ -330,7 +330,7 @@
 					</tr>
 					<tr>
 						<td align="center" colspan="2" style="padding-top: 20px;">
-							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 75px;height:27px;" 
+							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 85px;height:27px;" 
 							value="[#if sessionUser.class.name == "com.etech.entity.TcomUser"]个人中心[#elseif sessionUser.class.name == "com.etech.entity.TentUser"]企业中心[#else]管理员后台[/#if]"
 							onclick="javascript:[#if sessionUser.class.name == "com.etech.entity.TcomUser"]window.location.href='/common-user/center.jhtml';[#elseif sessionUser.class.name == "com.etech.entity.TentUser"] window.location.href='/enterprise-user/center.jhtml';[#else]window.location.href='/admin/common/main.jhtml';[/#if]" 
 							>
@@ -493,31 +493,13 @@
 					</div>
 					<div style="width:670px;height:auto;overflow:hidden;margin:0 20px;margin-bottom:15px;padding:10px;">
 						[#list trecruit.entUser.imgVedios as imgVedio]
-						<div class="qiyepic">
+						<div class="qiyepic" [#if (imgVedio_index+1)%4==0] style="margin-right:0;"[/#if]>
 							<p><img src="${imgVedio.url}" width="160" height="130"/></p>
 							<p style="margin-top: -5px;background:#EEEEEE;padding:5px;color:#555555;">
 								${imgVedio.descption}
 							</p>
 						</div>
 						[/#list]
-						<div class="qiyepic">
-							<p><img src="/resource/public/images/qiyeshuoming.png" width="160" height="130"/></p>
-							<p style="margin-top: -5px;background:#EEEEEE;padding:5px;color:#555555;">
-								每一个人工作都是为了获得合理的报酬
-							</p>
-						</div>
-						<div class="qiyepic">
-							<p><img src="/resource/public/images/qiyeshuoming.png" width="160" height="130"/></p>
-							<p style="margin-top: -5px;background:#EEEEEE;padding:5px;color:#555555;">
-								每一个人工作都是为了获得合理的报酬
-							</p>
-						</div>
-						<div class="qiyepic" style="margin-right:0;">
-							<p><img src="/resource/public/images/qiyeshuoming.png" width="160" height="130"/></p>
-							<p style="margin-top: -5px;background:#EEEEEE;padding:5px;color:#555555;">
-								每一个人工作都是为了获得合理的报酬
-							</p>
-						</div>
 					</div>
 					
 					<div style="height: 30px; width: 728px;">
@@ -525,33 +507,33 @@
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 					</div>
 					<div class="shipin_parent">
-						<div style="width:600px;height:auto;margin-left:auto;margin-right:auto;">
-							<img src="/resource/public/images/shipin.jpg" width="580" height="430">
-							<p>视频简介：</p>
-							<p>每一个人工作都是为了获得合理的报酬，所以广大面试者不需要任何心理负担，或者有任何难以启齿的感觉。工资是每一个员工的正常收益，只有在面试的过程中得到恰当的定位，那么让员工在工作中有更好的积极性，也让企业获得最恰当的员工。</p>
-						</div>
+						[#list vedios as vedio]
+							[#if vedio_index=0]
+								<div style="width:600px;height:auto;margin-left:auto;margin-right:auto;">
+									<embed width="585" height="432" bgcolor="#000000" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" src="http://p.you.video.sina.com.cn/swf/bokePlayer20140616_V4_1_42_49.swf"  type="application/x-shockwave-flash"/>
+									<p>视频简介：</p>
+									<div>
+										[#if veiod.content?exists]
+											${vedio.content}
+										[#else]	
+											每一个人工作都是为了获得合理的报酬，所以广大面试者不需要任何心理负担，或者有任何难以启齿的感觉。工资是每一个员工的正常收益，只有在面试的过程中得到恰当的定位，那么让员工在工作中有更好的积极性，也让企业获得最恰当的员工。
+										[/#if]
+									</div>
+								</div>
+							[/#if]
+						[/#list]	
 						<div class="shipin" style="width:690px;height:auto;overflow:hidden;margin:0 20px;margin-bottom:15px;">
 							<table>
 								<tr>
 									[#list vedios as vedio]
-									<td>
-										<a href="/videosInfo.jhtml?id=${vedio.id}">
-											<img src="${vedio.url}" width="100" height="70">
-										</a>
-									</td>
+										[#if vedio_index<6 && vedio_index>0]
+										<td>
+											<a href="/videosInfo.jhtml?id=${vedio.id}">
+												<img src="${vedio.url}" width="100" height="70">
+											</a>
+										</td>
+										[/#if]
 									[/#list]
-									<td>
-										<a href=""><img src="/resource/public/images/shipin.jpg" width="100" height="70"></a>
-									</td>
-									<td>
-										<a href=""><img src="/resource/public/images/shipin.jpg" width="100" height="70"></a>
-									</td>
-									<td>
-										<a href=""><img src="/resource/public/images/shipin.jpg" width="100" height="70"></a>
-									</td>
-									<td>
-										<a href=""><img src="/resource/public/images/shipin.jpg" width="100" height="70"></a>
-									</td>
 								</tr>
 							</table>
 						</div>
@@ -580,7 +562,7 @@
 								<td>${trecruit.workspace}</td>
 								<td>${trecruit.eduLevel}</td>
 								<td>2天前</td>
-								<td>2014-07-01</td>
+								<td>${trecruit.editTime?number_to_datetime}</td>
 							</tr>
 						</table>
 					</div>

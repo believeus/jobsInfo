@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.etech.entity.TcomUser;
 import com.etech.entity.TdataCenter;
+import com.etech.entity.TentImgVedio;
 import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
 
@@ -61,6 +62,11 @@ public class ControllerJobIntroduce {
 		hql = "From TcomUser tcomUser order by id asc";
 		List<TcomUser> qiuzhiList = (List<TcomUser>)etechService.findListByHQL(hql);
 		session.setAttribute("qiuzhiList", qiuzhiList); 
+		
+		//企业图片
+		hql = "From TentImgVedio tentImgVedio where tentImgVedio.type = '2' order by id asc";
+		List<TentImgVedio> headImgs = (List<TentImgVedio>)etechService.findListByHQL(hql);
+		session.setAttribute("headImgs", headImgs); 
 		
 		return "occupationIntroduction/occupationIntroduction";
 	}

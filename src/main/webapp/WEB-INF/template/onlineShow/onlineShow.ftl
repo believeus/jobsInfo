@@ -193,27 +193,6 @@ a:link{
 	        	</div>
 	        	[/#if]
         	[/#list]
-        	<div class="tup_list">
-        		<p>
-        			<a href="/imgShow.jhtml">
-        				<img src="/resource/public/images/news_image.jpg" />
-    				</a>
-    			</p>
-                <p>
-                	<a href="/imgShow.jhtml">人社部副部长何鲜来鄂调研普查</a>
-            	</p>
-        	</div>
-        	<div class="tup_list">
-        		<p>
-        			<a href="/imgShow.jhtml">
-        				<img src="/resource/public/images/news_image.jpg" />
-    				</a>
-    			</p>
-                <p>
-                	<a href="/imgShow.jhtml">人社部副部长何鲜来鄂调研普查</a>
-            	</p>
-        	</div>
-        	
         </div>
     </div>
 </div>
