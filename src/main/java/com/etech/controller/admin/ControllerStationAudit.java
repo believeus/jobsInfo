@@ -59,6 +59,7 @@ public class ControllerStationAudit {
 	 * 编辑岗位审核
 	 * @return
 	 */
+	// 待审核列表编辑页
 	@RequiresPermissions("stationAudit:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(Integer id,HttpServletRequest request) {

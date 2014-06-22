@@ -2,19 +2,86 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>岗位 - Powered By e3dmall</title>
+<title>岗位审核 - Powered By e3dmall</title>
 <meta name="author" content="e3dmall Team" />
 <meta name="copyright" content="e3dmall" />
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
 <link href="/resource/public/js/admin/themes/default/default.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/resource/public/js/admin/jquery.js"></script>
+<script type="text/javascript" src="/resource/public/js/jquery.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/jquery.validate.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/kindeditor.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
-<script type="text/javascript">
-$().ready(function() {
+<link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
+<link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />  
+<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu-edit.js"></script> 
+<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>
 
+
+<script type="text/javascript">
+
+	[@compress single_line = true]
+    		var Specialty='<div class="select-info">	
+						<label class="top-label">已选项：</label>
+								<ul>		
+								</ul>
+								<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
+									<span class="a-btn-text">确定</span>
+								</a> 
+							</div>	
+							[@majorParentList]		
+							<dl>
+							[#list MajorParentList as majorParent]
+							<dt class="open" id="${majorParent.id}">${majorParent.name}</dt>
+							<dd>
+								<ul>
+								[@majorChildrenList parentCodeId = majorParent.codeId]
+								[#list MajorChildrenList as majorChildren]
+									<li rel="${majorChildren.id}">
+											${majorChildren.name}
+									</li>
+								[/#list]
+								[/@majorChildrenList]
+								</ul>   
+							</dd>
+							[/#list]
+							</dl>	
+							[/@majorParentList]
+							';
+							
+			var Jobs='<div class="select-info">	
+						<label class="top-label">已选项：</label>
+						<ul>		
+						</ul>
+						<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
+							<span class="a-btn-text">确定</span>
+						</a> 
+					</div>			
+					[@workParentList]		
+							<dl>
+							[#list WorkParentList as workParent]
+							<dt class="open" id="${workParent.id}">${workParent.name}</dt>
+							<dd>
+								<ul>
+								[@workChildrenList parentCodeId = workParent.codeId]
+								[#list WorkChildrenList as workChildren]
+									<li rel="${workChildren.id}">
+											${workChildren.name}
+									</li>
+								[/#list]
+								[/@workChildrenList]
+								</ul>   
+							</dd>
+							[/#list]
+							</dl>	
+							[/@workParentList]			
+				</div>';
+	[/@compress]
+$().ready(function() {
+	$("#sex1").val("${recruit.sex}");
+	$("#eduLevel1").val("${recruit.eduLevel}");
+	$("#workWay1").val("${recruit.workWay}");
+	$("#worklimit1").val("${recruit.worklimit}")
 	var $inputForm = $("#inputForm");
 	var $type = $("#type");
 	var $contentTr = $("#contentTr");
@@ -22,6 +89,27 @@ $().ready(function() {
 	var $path = $("#path");
 	var $browserButton = $("#browserButton");
 	
+	var html='<div id="xmenuSkillSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'
+			+'<div id="xmenuSkillJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>';
+			$("#inputForm").parent().append(html);
+		//技能专业
+	$("#selectSkillSpecialty1").xMenu({	
+		width :600,	
+		eventType: "click", //事件类型 支持focus click hover
+		dropmenu:"#xmenuSkillSpecialty1",//弹出层
+		emptytext:"选择专业",
+		hiddenID : "selectSkillSpecialtyhidden1",//隐藏域ID
+		value:"${recruit.majorType.id}"	
+	});
+	// 技能工种
+	$("#selectSkillJobs1").xMenu({	
+		width :600,	
+		eventType: "click", //事件类型 支持focus click hover
+		dropmenu:"#xmenuSkillJobs1",//弹出层
+		emptytext:"选择工种",
+		hiddenID : "selectSkillJobshidden1",//隐藏域ID	
+		value : "${recruit.workType.id}"
+	});
 	
 	
 	// "类型"修改
@@ -57,160 +145,39 @@ $().ready(function() {
 	<div class="path">
 		<a href="/admin/common/main.jhtml">首页</a> &raquo; 编辑内容
 	</div>
-	<!--
-	<form id="inputForm" action="update.jhtml" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="id" value="${dataCenter.id}"/>
-		<input type="hidden" name="type" value="${type}"/>
-		<table class="input">
-			<tr>
-				<th>
-					<span class="requiredField">*</span>新闻标题:
-				</th>
-				<td>
-					<input type="text" name="title" class="text" maxlength="200" />
-				</td>
-				<th>
-					<span class="requiredField">*</span>作者:
-				</th>
-				<td>
-					<input type="text" name="author" class="text" maxlength="200" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					所属分类:
-				</th>
-				<td>
-					<select id="type" name="type">
-						<option value="1">新闻动态</option>
-						<option value="2">工作动态</option>
-						<option value="3">公告公示</option>
-						<option value="4">图片新闻</option>
-						<option value="5">视频新闻</option>
-						<option value="6">专题报道</option>
-					</select>
-				</td>
-				<th>
-					是否置顶:
-				</th>
-				<td>
-					<input type="checkbox" name="top" value="1">
-				</td>
-			</tr>
-			<tr id="pathTr">
-				<th>
-					<span class="requiredField">*</span>相关图片:
-				</th>
-				<td colspan="3">
-					<script type="text/javascript">
-					function loadImgFast(img,i){
-							if (img.files && img.files[0]){
-								var reader = new FileReader();
-								reader.onload = function(evt){$(".brandImg:eq("+i+") img")[0].src = evt.target.result;}
-					            reader.readAsDataURL(img.files[0]);	
-							}else if(window.navigator.userAgent.indexOf("MSIE")>=1){
-							   	file.select(); 
-					   			path = document.selection.createRange().text;
-					   			$(".brandImg:eq("+i+") img")[0].src = path;
-					   		} 
-						}
-					</script>
-					
-					<div>
-						<span style="float:left">
-							<div class="brandImg">
-								<span>
-									<a onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
-								</span>
-								<img style="width:190px;height:120px" src="" name="img"/>
-							</div>
-							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
-							<input type="hidden" id="filename0" name="filename0">
-						</span>
-					</div>
-					<style type="text/css">
-						.brandImg span{
-							display:block;
-							position:absolute;
-							top:0px;left:0px;
-							width:200px;
-							height:130px;
-						}
-						
-						.brandImg{
-							border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
-						    border-radius: 2px 2px 2px 2px;
-						    border-style: solid;
-						    border-width: 1px;
-						    background-color: #666666;
-						    width:192px;height:122px;
-						    position:relative;
-						}
-						
-						.brandImg span:hover{
-							background-color:#FFFFFF;
-						    opacity: 0.7;
-						    filter:alpha(opacity=50);
-						    -moz-opacity:0.5;
-						    -khtml-opacity: 0.5;
-						}
-						
-						.brandImg span a{
-							display:block;
-							position:absolute;
-							top:50px;left:50px;
-						}
-						
-						.deleteProductImage:hover{
-							color:#C9033B !important;
-						}
-					</style>
-				</td>
-			</tr>
-			<tr id="contentTr">
-				<th>
-					内容:
-				</th>
-				<td colspan="3">
-					<textarea id="editor" name="content" class="editor"></textarea>
-				</td>
-			</tr>
-			<tr>
-				<th>
-					排序编号:
-				</th>
-				<td colspan="3">
-					<input type="text" name="order" class="text" maxlength="9" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					&nbsp;
-				</th>
-				<td colspan="3">
-					<input type="submit" class="button" value="确定" />
-					<input type="button" id="backButton" class="button" value="返回" />
-				</td>
-			</tr>
-		</table>
-	</form>
-	-->
 	
 	
 	
-	<form id="inputForm" novalidate="novalidate"  action="update.jhtml" method="post">
-		<input type="hidden" name="status" value="0">
+	<form id="inputForm" novalidate="novalidate"  action="/admin/stationList/update.jhtml" method="post">
+		<input type="hidden" name="id" value="${recruit.id}"/>
+		<input type="hidden" name="status" value="${recruit.status}"/>
+		<input type="hidden" name="createTime" value="${recruit.createTime}"/>
+		<input type="hidden" name="userId" value="${recruit.entUser.id}"/>
 			<table class="input">
 				<tr>
 					<th>招聘单位:</th>
-					<td style="padding-right:80px;"><input type="text" id="company1" name="company"></td>
+					<td style="padding-right:80px;">
+						<input type="text" id="company1" name="company" value="${recruit.company}"/>
+					</td>
 					<th>人数:</th>
-					<td><input type="text" id="worknum1" name="worknum"></td>
+					<td><input type="text" id="worknum1" name="worknum" value="${recruit.worknum}"/></td>
 				</tr>
 				<tr>
 					<th>工种:</th>
 					<td>
-						<input type="text" id="selectJobshidden1" name="workTypeId" value="java"/>
+						<input type="hidden" id="selectSkillJobshidden1" name="workTypeId" value="${recruit.workType.id}"/>
+						<div class="topnav">
+							<a id="selectSkillJobs1" href="javascript:void(0);" class="as">
+								<span >
+									[#assign name=recruit.workType.name+"(点击即可取消选择)"]
+									[#if name?length > 15]
+										${name?string?substring(0,15)}...
+									[#else]
+										${name}
+									[/#if]
+								</span>		
+							</a>	
+						</div>
 					</td>
 					<th>性别:</th>
 					<td>
@@ -224,14 +191,27 @@ $().ready(function() {
 				<tr>
 					<th>专业:</th>
 					<td>
-					<input type="test" value="计算机系" id="selectSpecialtyhidden1" name="majorTypeId"/>
-				</td>
+						<input type="hidden" id="selectSkillSpecialtyhidden1" name="majorTypeId" value="${recruit.majorType.id}"/>
+							<input type="hidden" value="1" name="infoType">
+						<div class="topnav">
+							<a id="selectSkillSpecialty1" href="javascript:void(0);" class="as">
+								<span >
+									[#assign name=recruit.majorType.name+"(点击即可取消选择)"]
+									[#if name?length > 15]
+										${name?string?substring(0,15)}...
+									[#else]
+										${name}
+									[/#if]
+								</span>		
+							</a>	
+						</div>
+					</td>
 					<th>技术等级:</th>
-					<td><input type="text" id="eteLevel1" name="eteLevel"></td>
+					<td><input type="text" id="eteLevel1" name="eteLevel" value="${recruit.eteLevel}"/></td>
 				</tr>
 				<tr>
 					<th>从事年限:</th>
-					<td><input type="text" id="workyear1" name="workyear"></td>
+					<td><input type="text" id="workyear1" name="workyear" value="${recruit.workyear}"/></td>
 					<th>文化程度:</th>
 					<td>
 						<select id="eduLevel1" name="eduLevel" style="width: 183px;">
@@ -254,19 +234,19 @@ $().ready(function() {
 				</tr>
 				<tr>
 					<th>工作地点:</th>
-					<td><input type="text" id="workspace1" name="workspace"></td>
+					<td><input type="text" id="workspace1" name="workspace" value="${recruit.workspace}"/></td>
 					<th>年龄:</th>
-					<td><input type="text" id="age1" name="age"></td>
+					<td><input type="text" id="age1" name="age" value="${recruit.age}"></td>
 				</tr>
 				<tr>
 					<th>身高:</th>
-					<td><input type="text" id="height1" name="height"></td>
+					<td><input type="text" id="height1" name="height" value="${recruit.height}"/></td>
 					<th>视力:</th>
-					<td><input type="text" id="eyesight1" name="eyesight"></td>
+					<td><input type="text" id="eyesight1" name="eyesight" value="${recruit.eyesight}"></td>
 				</tr>
 				<tr>
 					<th>薪资待遇:</th>
-					<td><input type="text" id="salary1" name="salary"></td>
+					<td><input type="text" id="salary1" name="salary" value="${recruit.salary}"></td>
 					<th>用工形式:</th>
 					<td>
 						<select id="workWay1" name="workWay" style="width: 183px;">
@@ -290,12 +270,12 @@ $().ready(function() {
 						</select>
 					</td>
 					<th>面试时间:</th>
-					<td><input type="text" id="viewData1" name="viewData"></td>
+					<td><input type="text" id="viewData1" name="viewData" value="${recruit.viewData}"/></td>
 				</tr>
 				<tr>
 					<th style="vertical-align:top;">其他说明:</th>
 					<td colspan="3">
-						<textArea cols="30" style="resize:none;" id="note1" name="note"></textArea>
+						<textArea cols="30" style="resize:none;" id="note1" name="note">${recruit.note}</textArea>
 					</td>
 				</tr>
 				<tr>
@@ -309,10 +289,6 @@ $().ready(function() {
 				</tr>
 			</table>
 		</form>
-	
-	
-	
-	
 	
 </body>
 </html>
