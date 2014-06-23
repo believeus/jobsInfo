@@ -47,7 +47,6 @@ public class ControllerCRUD {
 				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
 				log.debug("upload file stuffix"+extention);
 				storepath = mydfsTrackerServer.upload(inputStream, extention);
-				System.out.println(storepath +"<><><>");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -130,5 +129,15 @@ public class ControllerCRUD {
 		@SuppressWarnings("unchecked")
 		List<?> dataCenters = (List<TdataCenter>)etechService.findObjectList(hql, 1, 15, TdataCenter.class);
 		return dataCenters;
+	}
+	// 置顶
+	public boolean top(int id){
+		etechService.updata(TdataCenter.class, "top", 1, "id", id);
+		return true;
+	}
+	// 取消置顶
+	public boolean unTop(int id){
+		etechService.updata(TdataCenter.class, "top", 0, "id", id);
+		return true;
 	}
 }

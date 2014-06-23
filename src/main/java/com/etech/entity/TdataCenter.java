@@ -24,6 +24,7 @@ public class TdataCenter extends TbaseEntity implements Cloneable{
 	private long createTime;
 	private long editTime;
 	private int clickNum;
+	// 1 置顶 0：取消之地
 	private int top;
 	private String alink;
 	@Field(store=Store.YES,index = Index.TOKENIZED, analyzer = @Analyzer(impl =IKAnalyzer.class ))
