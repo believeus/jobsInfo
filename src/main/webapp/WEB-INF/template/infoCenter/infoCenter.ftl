@@ -59,6 +59,7 @@
 			height:290px;
 			margin-bottom:10px;
 			border:1px solid #E4E4E4;
+			background:#FFFFFF;
 		}
 		.j_main_right_2_1{
 			float:left;
@@ -85,6 +86,7 @@
 		    height: auto;
 		    margin-top: 10px;
 		    width: 727px;
+		    background:#FFFFFF;
 		}
 		.j_main_right_3 td{
 			padding:0 20px;
@@ -118,6 +120,7 @@
 			width:396px;
 			height:285px;    		
     		margin-left:5px;
+    		background:#FFFFFF;
     	}
     	.xinwen li{
     		line-height:20px;
@@ -204,7 +207,7 @@
 					[/#list]
 				</ul>
 			</div>
-			<div class="j_main_left_1" style="margin-top:10px;height:450px;text-align:center;border:1px solid #E4E4E4;">
+			<div class="j_main_left_1" style="margin-top:10px;height:503px;text-align:center;border:1px solid #E4E4E4;background:#FFFFFF;">
 				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml">更多>></a></div>
@@ -243,19 +246,19 @@
 					<!--***************************************************************-->
 				</div>
 				<div class="xinwen">
-					<div style="padding-left: 20px;margin-bottom:20px;">
+					<div style="padding-left: 20px;margin-bottom:20px;margin-top:10px;">
 						[#list news as new]
 						[#if new_index==0]
 							<h2 style="margin: 0px; font-size: 21px; font-weight: bold;"><a href="/newsInfo.jhtml?id=${new.id}">
 							[#if new.title?length > 16]
-								${new.title?string?substring(0,16)}...
+								${new.title?string?substring(0,15)}...
 							[#else]
 								${new.title}
 							[/#if]
 							</a></h2>
 							<div style="color:#2B8BDF;margin:0;font-size:13px;">
 							[#if new.content?length > 27]
-								${new.content?string?substring(0,27)}...
+								${new.content?string?substring(0,34)}...
 							[#else]
 								${new.content}
 							[/#if]
@@ -268,13 +271,13 @@
 						[#if new_index==1]	
 							<h2 style="margin: 0px; font-size: 21px; font-weight: bold;"><a href="/newsInfo.jhtml?id=${new.id}">
 							[#if new.title?length > 16]
-								${new.title?string?substring(0,16)}...
+								${new.title?string?substring(0,15)}...
 							[#else]
 								${new.title}
 							[/#if]</a></h2>
 							<div style="color:#2B8BDF;margin:0;font-size:12px;">
 							[#if new.content?length > 27]
-								${new.content?string?substring(0,27)}...
+								${new.content?string?substring(0,34)}...
 							[#else]
 								${new.content}
 							[/#if]
@@ -415,7 +418,7 @@
 			<div style="width:1000px;height:38px;background:url(/resource/public/images/zhizuo-_01.png);">
 				<span style="color: #FFD32A;font-size: 20px;font-weight: bold;line-height: 38px;padding-left: 15px;">图片新闻<span style="float:right;"><a style="color:#FAFAFA;font-size:13px;" href="/imagesList.jhtml">更多>></a></span></span>
 			</div>
-			<div style="width:1000px;height:170px;">
+			<div style="width:1000px;height:162px;background:#FFE7DB;">
 				[#list imgs as img]
 					[#if img_index <=3]
 						<div class="tupian_1" [#if !img_has_next && img_index= 3] style="margin-top: -3px;"[/#if]>

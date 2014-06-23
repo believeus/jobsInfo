@@ -48,6 +48,7 @@
     		height:220px;
     		border:1px solid #EED9C8;
     		margin-bottom:5px;
+    		background:#FFFFFF;
     	}
     	.denglu tr{
     		line-height:35px;
@@ -95,6 +96,7 @@
     		border:1px solid #e4e4e4;
     		overflow:hidden;
     		margin-bottom:6px;
+    		background:#FFFFFF;
     	}
     	.tupian{
     		width:998px;
@@ -106,6 +108,7 @@
     		width:998px;
     		height:55px;
     		border:1px solid #e4e4e4;
+    		background:#FFFFFF;
     	}
     	.picshow{
     		width:314px;
@@ -118,6 +121,7 @@
 			width:396px;
 			height:285px;    		
     		margin-left:5px;
+    		background:#FFFFFF;
     	}
     	.xinwen li{
     		line-height:20px;
@@ -137,6 +141,7 @@
     		border: 1px solid #E4E4E4;
 		    height: 392px;
 		    width: 720px;
+		    background:#FFFFFF;
     	}
     	.xinxi_1{
 		    height: 180px;
@@ -308,12 +313,12 @@
 						<li>4</li>
 					</ul>
 					<div id="banner_list">
-						[#list imgs as img]
-							<a href="/newsInfo.jhtml?id=${img.id}}" target="_blank"><img src="${img.imgpath}" width="314" height="236" title="${img.title}" alt="
-							[#if img.title?length > 18]
-								${img.title?string?substring(0,18)}...
+						[#list news as new]
+							<a href="/newsInfo.jhtml?id=${new.id}" target="_blank"><img src="${new.imgpath}" width="314" height="236" title="${new.title}" alt="
+							[#if new.title?length > 18]
+								${new.title?string?substring(0,18)}...
 							[#else]
-								${img.title}
+								${new.title}
 							[/#if]" /></a>
 						[/#list]
 					</div>
@@ -322,19 +327,19 @@
 				
 			</div>
 			<div class="xinwen">
-				<div style="padding-left: 20px;margin-bottom:20px;">
+				<div style="padding-left: 20px;margin-bottom:20px;margin-top:10px;">
 					[#list news as new]
 						[#if new_index==0]
 							<h2 style="margin: 0px; font-size: 21px; font-weight: bold;"><a href="/newsInfo.jhtml?id=${new.id}">
-							[#if new.title?length > 16]
-								${new.title?string?substring(0,16)}...
+							[#if new.title?length > 15]
+								${new.title?string?substring(0,15)}...
 							[#else]
 								${new.title}
 							[/#if]
 							</a></h2>
 							<div style="color:#2B8BDF;margin:0;font-size:13px;">
-							[#if new.content?length > 27]
-									${new.content?string?substring(0,27)}...
+							[#if new.content?length > 34]
+									${new.content?string?substring(0,34)}...
 							[#else]
 									${new.content}
 							[/#if]
@@ -346,14 +351,14 @@
 					[#list news as new]
 						[#if new_index==1]	
 							<h2 style="margin: 0px; font-size: 21px; font-weight: bold;"><a href="/newsInfo.jhtml?id=${new.id}">
-							[#if new.title?length > 16]
-								${new.title?string?substring(0,16)}...
+							[#if new.title?length > 15]
+								${new.title?string?substring(0,15)}...
 							[#else]
 								${new.title}
 							[/#if]</a></h2>
 							<div style="color:#2B8BDF;margin:0;font-size:12px;">
-							[#if new.content?length > 27]
-								${new.content?string?substring(0,27)}...
+							[#if new.content?length > 34]
+								${new.content?string?substring(0,34)}...
 							[#else]
 								${new.content}
 							[/#if]
@@ -707,7 +712,13 @@
 							</a>
 						</p>
 						<p>
-							<a href="/imgShow.jhtml?id=${img.id}" title="${img.title}">${img.title}</a>
+							<a href="/imgShow.jhtml?id=${img.id}" title="${img.title}">
+								[#if img.content?length >10]
+		                    		${img.content?string?substring(0,10)}...
+		                    	[#else]
+		                    		${img.content}
+		                    	[/#if]
+							</a>
 						</p>
 					</div>
 					[/#if]

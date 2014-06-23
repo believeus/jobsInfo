@@ -36,7 +36,7 @@ public class ControllerMailBox extends ControllerCRUD{
 		List<TmailBox> mailBoxList=(List<TmailBox>)etechService.getListByProperty(TmailBox.class, "status", "0", 20);
 		log.debug("time:"+mailBoxList.get(0).getEditTime());
 		request.setAttribute("mailBoxList",mailBoxList);
-		return "admin/service/list";
+		return "admin/mailBox/list";
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public class ControllerMailBox extends ControllerCRUD{
 	@RequestMapping("/delete")
 	public String removeNews(HttpServletRequest request,HttpServletResponse response){
 		super.deleteDataInfo(request,response);
-		return "redirect:/admin/service/list.jhtml";
+		return "redirect:/admin/mailBox/list.jhtml";
 	}
 	
 	/**
@@ -59,7 +59,7 @@ public class ControllerMailBox extends ControllerCRUD{
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
 		request.setAttribute("type",EtechGobal.mailBox);
-		return "admin/service/add";
+		return "admin/mailBox/add";
 	}
 	/**
 	 * 编辑局长信箱
@@ -72,7 +72,7 @@ public class ControllerMailBox extends ControllerCRUD{
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
 		request.setAttribute("type",EtechGobal.mailBox);
-		return "admin/service/edit";
+		return "admin/mailBox/edit";
 	}
 	
 	/**
@@ -82,7 +82,7 @@ public class ControllerMailBox extends ControllerCRUD{
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
-		return "redirect:/admin/service/list.jhtml";
+		return "redirect:/admin/mailBox/list.jhtml";
 	}
 	/**
 	 * 修改局长信箱
@@ -91,6 +91,6 @@ public class ControllerMailBox extends ControllerCRUD{
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);
-		return "redirect:/admin/service/list.jhtml";
+		return "redirect:/admin/mailBox/list.jhtml";
 	}
 }

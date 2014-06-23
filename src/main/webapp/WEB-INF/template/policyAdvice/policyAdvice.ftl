@@ -23,6 +23,7 @@
 		    border-radius: 4px;
 		    height: 215px;
 		    width: 258px;
+		    background:#FFFFFF;
 		}
 		.j_main_left_1 p{
 		    color: #BF0906;
@@ -67,6 +68,7 @@
 			width:728px;
 			height:auto;
 			margin-top:10px;
+			background:#FFFFFF;
 		}
 		.j_main_right_2_1{
 			float:left;

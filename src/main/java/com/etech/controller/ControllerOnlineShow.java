@@ -34,6 +34,12 @@ public class ControllerOnlineShow {
 		List<TdataCenter> vedios = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("vedios", vedios);
 		
+		//图片新闻
+		hql = "From TdataCenter tdataCenter where tdataCenter.type='3' order by id asc";
+		List<TdataCenter> imgs = (List<TdataCenter>)etechService.findListByHQL(hql);
+		request.setAttribute("imgs", imgs); 
+		
+		
 		return "onlineShow/onlineShow";
 	}
 }

@@ -95,7 +95,7 @@ a:link{
 
 <body>
 [#include "/include/header.ftl" /]
-<div style="border:1px solid #DCDCDC; border-top-style:none; width:1000px; margin:auto;">
+<div style="border:1px solid #DCDCDC; border-top-style:none; width:1000px; margin:auto;background:#FFFFFF;">
 	<div style="border-bottom:1px solid #DCDCDC;">
 		[#list vedios as vedio]
 	  	[#if vedio_index==0]
@@ -177,7 +177,7 @@ a:link{
     	<div style="margin:10px 10px 0px; height:30px; border:1px solid #F6C078; background:url(/resource/public/images/background.png) repeat-x scroll 0 0 #FFFFFF;">
         	<div style="margin:5px 10px;">
             	<img style="height:20px; width:20px;" src="/resource/public/images/sanjiaojian.png"/>
-                <div style="width:900px; vertical-align:top; display:inline-block; font-size:16px; font-weight:bold;">图片新闻</div>
+                <div style="width:880px; vertical-align:top; display:inline-block; font-size:16px; font-weight:bold;">图片新闻</div>
                 <a style="vertical-align:top" href="/imagesList.jhtml">更多</a>
             </div>
         </div>

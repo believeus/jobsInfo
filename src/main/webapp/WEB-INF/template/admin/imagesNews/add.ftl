@@ -77,26 +77,20 @@ $().ready(function() {
 	});
 	
 	$("#add_imgs").click(function(){
-	
 		[@compress single_line = true]
 			var html =
-				'<form novalidate="novalidate"  action="/enterprise-user/center/upload.jhtml" encType="multipart/form-data"  method="post" id="ImgForm'+a+'">
-					<input type="hidden" name="type" value="0">
-					<input type="hidden" name="id" value="">
-					<input type="hidden" name="url" value="">
-					<div class="img_list">
-						<span style="float:left">
-							<div class="brandImg">
-								<span>
-									<a class="click_upimgs" onclick="file'+a+'.click()" href="javascript:return false;">点击上传图片</a>
-								</span>
-								<img style="width:190px;height:120px" src="" name="img"/>
-							</div>
-							<input type="file" style="display:none" id="file'+a+'" name="file'+a+'" onchange="filename'+a+'.value=this.value;loadImgFast(this,'+a+')">
-							<input type="hidden" id="filename'+a+'" name="filename'+a+'">
-						</span>
-					</div>
-				</form>';
+				'<div class="img_list">
+					<span style="float:left">
+						<div class="brandImg">
+							<span>
+								<a class="click_upimgs" onclick="file'+a+'.click()" href="javascript:return false;">点击上传图片</a>
+							</span>
+							<img style="width:190px;height:120px" src="" name="img"/>
+						</div>
+						<input type="file" style="display:none" id="file'+a+'" name="file'+a+'" onchange="filename'+a+'.value=this.value;loadImgFast(this,'+a+')">
+						<input type="hidden" id="filename'+a+'" name="filename'+a+'">
+					</span>
+				</div>';
 		[/@compress]
 		$(".img_list").parent().append(html);
 		a++;
@@ -154,9 +148,6 @@ $().ready(function() {
 					   		} 
 						}
 					</script>
-					<form novalidate="novalidate"  action="/upload.jhtml" encType="multipart/form-data"  method="post" id="ImgForm0">
-						<input type="hidden" name="type" value="0">
-						<input type="hidden" name="url" value="">
 						<div class="img_list">
 							<span style="float:left">
 								<div class="brandImg">
@@ -169,7 +160,6 @@ $().ready(function() {
 								<input type="hidden" id="filename0" name="filename0">
 							</span>
 						</div>
-					</form>
 					<style type="text/css">
 						.brandImg span{
 							display:block;

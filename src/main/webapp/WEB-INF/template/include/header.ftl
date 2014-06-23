@@ -22,13 +22,14 @@
 		background:url(/resource/public/images/zhuye-img_01.gif);
 	}
 	.j_head_pic{
-		width:100%;
+		width:1283px;
 		height:132px;
 		background:url(/resource/public/images/head_pic.gif);
 	}
 	.j_head_nav{
 		width:100%;
 		height:37px;
+		background:url(/resource/public/images/nav_pic.png);
 	}
 	.nav{
 		overflow:hidden;
@@ -69,8 +70,9 @@
 </script>
 <div style="width:100%;margin-bottom:5px;">
 	<div class="j_head">
-		<div class="j_head_pic">
-			
+		<div style="width:100%;background:url(/resource/public/images/header_bg.png);">
+			<div class="j_head_pic">
+			</div>
 		</div>
 		<div class="j_head_nav">
 			<div class="nav">

@@ -23,6 +23,7 @@
 			height:180px;
     		border:1px solid #e4e4e4;
     		border-radius:4px;
+    		background:#FFFFFF;
 		}
 		.j_main_left_1 p{
 		    color: #BF0906;
@@ -67,6 +68,7 @@
 			width:727px;
 			height:auto;
 			margin-top:10px;
+			background:#FFFFFF;
 		}
 		.j_main_right_2 li{
 			border-bottom: 1px solid #000000;
@@ -118,7 +120,9 @@
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml" style="margin-left:0;">更多>></a></div>
 				<div class="zhuanti_list">
 				[#list subjectReport as sReport]
-					<a href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:186px;height:58px;margin-top:7px;"></a>
+					<a href="/special.jhtml?id=${sReport.id}">
+						<img src="${sReport.imgpath}" style="width:222px;height:62px;margin-top:7px;">
+					</a>
 				[/#list]
 				</div>
 			</div>
@@ -133,7 +137,7 @@
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				[#list datas as data]
 				<h2 style="text-align:center;font-weight:normal;">${data.title}</h2>
-				<p>来源：人力资源和社会保障厅政府信息公开网 发布时间：${data.createTime?number_to_datetime}&nbsp;${data.createTime?number_to_time} 浏览次数： 147次 </p>
+				<p>来源：潜江公共就业服务网 发布时间：${data.createTime?number_to_datetime}&nbsp;${data.createTime?number_to_time} 浏览次数： 147次 </p>
 				<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">
 				<p style="text-align: center;">
 					${data.content}

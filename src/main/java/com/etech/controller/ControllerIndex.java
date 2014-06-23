@@ -48,6 +48,11 @@ public class ControllerIndex {
 		List<TdataCenter> works = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("works",works ); 
 		
+		//工作动态
+		hql="From TdataCenter dataCenter where dataCenter.type='0'";
+		List<TdataCenter> news = (List<TdataCenter>)etechService.findListByHQL(hql);
+		session.setAttribute("news",news ); 
+		
 		// 公告公示
 		hql="From TdataCenter dataCenter where dataCenter.type='2'";
 		List<TdataCenter> notices = (List<TdataCenter>)etechService.findListByHQL(hql);
@@ -82,6 +87,11 @@ public class ControllerIndex {
 		hql = "From TcomUser tcomUser order by id asc";
 		List<TcomUser> qiuzhiList = (List<TcomUser>)etechService.findListByHQL(hql);
 		session.setAttribute("qiuzhiList", qiuzhiList); 
+		
+		//图片新闻
+		hql = "From TdataCenter tdataCenter where tdataCenter.type='3' order by id asc";
+		List<TdataCenter> imgs = (List<TdataCenter>)etechService.findListByHQL(hql);
+		session.setAttribute("imgs", imgs); 
 		
 		/*End Author:wuqiwei Data:2014-06-11 AddReason:shiro登录成功之后会跳转到主页面,此处控制后台登录后进入后台主页面*/
 		log.debug("current controller is defaultIndex !");

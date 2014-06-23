@@ -32,7 +32,7 @@ public class ControllerLinks extends ControllerCRUD{
 	public String newsListView(HttpServletRequest request) {
 		List<?> dataCenters = super.listDataInfo(request,EtechGobal.links);
 		request.setAttribute("dataCenters",dataCenters);
-		return "admin/service/list";
+		return "admin/alinks/list";
 	}
 	
 	/**
@@ -55,7 +55,7 @@ public class ControllerLinks extends ControllerCRUD{
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
 		request.setAttribute("type",EtechGobal.links);
-		return "admin/service/add";
+		return "admin/alinks/add";
 	}
 	/**
 	 * 编辑友情链接
@@ -68,7 +68,7 @@ public class ControllerLinks extends ControllerCRUD{
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
 		request.setAttribute("type",EtechGobal.links);
-		return "admin/service/edit";
+		return "admin/alinks/edit";
 	}
 	
 	/**

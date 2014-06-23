@@ -63,16 +63,16 @@ $().ready(function() {
 		<table class="input">
 			<tr>
 				<th>
-					<span class="requiredField">*</span>作者
-				</th>
-				<td>
-					<input type="text" name="author" class="text" maxlength="200" value="${dataCenter.author}" />
-				</td>
-				<th>
 					<span class="requiredField">*</span>标题
 				</th>
 				<td>
 					<input type="text" name="title" class="text" maxlength="200" value="${dataCenter.title}"/>
+				</td>
+				<th>
+					<span class="requiredField">*</span>作者
+				</th>
+				<td>
+					<input type="text" name="author" class="text" maxlength="200" value="${dataCenter.author}" />
 				</td>
 			</tr>
 				<th>

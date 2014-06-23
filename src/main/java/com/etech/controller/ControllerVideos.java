@@ -3,6 +3,7 @@ package com.etech.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -22,10 +23,17 @@ public class ControllerVideos {
 	@Resource
 	private EtechService etechService;
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/videosInfo", method = RequestMethod.GET)
-	public String videoList(HttpSession session,Integer id) {
-		TentImgVedio imgVedio = (TentImgVedio)etechService.findObjectById(TentImgVedio.class, id);
-		session.setAttribute("imgVedio", imgVedio);
+	public String videoList(HttpServletRequest request,Integer id) {
+		
+		TdataCenter imgVedio=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
+		request.setAttribute("imgVedio", imgVedio);
+		
+		String hql="From TdataCenter dataCenter where dataCenter.type='4'";
+		List<TdataCenter> videos = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
+		request.setAttribute("videos", videos);
+		
 		return "infoCenter/videosInfo";
 	}
 	

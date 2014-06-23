@@ -40,6 +40,22 @@
 		#ul_1 li{
 			line-height:16px;	
 		}
+		.div1 {
+			float:left;	
+			border-top:1px solid #DCDCDC;
+			padding-top:20px;
+			cursor:pointer;
+		}
+		.div1 a {
+		    margin-top: 0 !important;
+		}
+		.div2{
+			float:left;
+			width:250px;
+			height:100px;
+			border-top:1px solid #DCDCDC;
+			padding:0px 0px 20px 10px;	
+		}
     </style>
 </head>
 <body>
@@ -47,7 +63,7 @@
 	<div style="border-width: 1px; border-right: 1px solid rgb(220, 220, 220); border-style: none solid solid; border-color: rgb(220, 220, 220); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; width: 1000px; margin: -5px auto auto;">
 	<div style="">
     	<div style="float:left; margin:10px auto; border-right:1px solid #DCDCDC; width:600px;">
-        	<h2 style="margin-left:30px;">中国研制超级磁悬浮列车 速度为飞机的三倍</h2>
+        	<h2 style="margin-left:30px;">${imgVedio.title}</h2>
             <div style="width:585px; margin:0px auto;">
             	<embed width="585" height="432" flashvars="" bgcolor="#000000" quality="high" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" id="myMovie" src="/${imgVedio.vedioUrl}" type="application/x-shockwave-flash" pluginspage="">
             </div>
@@ -56,7 +72,7 @@
                 	<table style="width:100%; border-collapse:collapse;" id="tab_1">
                       <tbody><tr>
                         <td>发布：</td>
-                        <td style="width:235px;">2014-05-18  18:30</td>
+                        <td style="width:235px;">${imgVedio.createTime}</td>
                         <td>标签：</td>
                         <td>磁悬浮列车</td>
                       </tr>
@@ -68,7 +84,13 @@
                       </tr>
                       <tr>
                         <td>简介：</td>
-                        <td colspan="3">中国研制的磁悬浮列车，速度为飞机的三倍......</td>
+                        <td colspan="3">
+                        	[#if imgVedio.content?length >20]
+	                    		${imgVedio.content?string?substring(0,20)}...
+	                    	[#else]
+	                    		${imgVedio.content}
+	                    	[/#if]
+                        </td>
                       </tr>
                     </tbody></table>
                 </div>
@@ -82,62 +104,30 @@
         	<h3 style="margin-left:15px;">视频列表</h3>
             <div>
               <ul id="ul_1">
-                <li>
-                  <div>
-                  	<img src="/resource/public/images/xiao_sp_1.jpg">
-                  </div>
-                  <div>
-                  	<a href="">我政府包机从越南接回291名中方人员</a>
-                    <p>今天上午9点，两架中国政府组织的包机从广州起飞，于今天上午11时左右抵达越南越荣市，计划接回290..</p>
-                    <p>
-                    	<span>5月18日 17:31</span>
-                        <span>播放：</span>
-                        <span>426.467</span>
-                    </p>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                  	<img src="/resource/public/images/xiao_sp_1.jpg">
-                  </div>
-                  <div>
-                  	<a href="">我政府包机从越南接回291名中方人员</a>
-                    <p>今天上午9点，两架中国政府组织的包机从广州起飞，于今天上午11时左右抵达越南越荣市，计划接回290..</p>
-                    <p>
-                    	<span>5月18日 17:31</span>
-                        <span>播放：</span>
-                        <span>426.467</span>
-                    </p>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                  	<img src="/resource/public/images/xiao_sp_1.jpg">
-                  </div>
-                  <div>
-                  	<a href="">我政府包机从越南接回291名中方人员</a>
-                    <p>今天上午9点，两架中国政府组织的包机从广州起飞，于今天上午11时左右抵达越南越荣市，计划接回290..</p>
-                    <p>
-                    	<span>5月18日 17:31</span>
-                        <span>播放：</span>
-                        <span>426.467</span>
-                    </p>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                  	<img src="/resource/public/images/xiao_sp_1.jpg">
-                  </div>
-                  <div>
-                  	<a href="">我政府包机从越南接回291名中方人员</a>
-                    <p>今天上午9点，两架中国政府组织的包机从广州起飞，于今天上午11时左右抵达越南越荣市，计划接回290..</p>
-                    <p>
-                    	<span>5月18日 17:31</span>
-                        <span>播放：</span>
-                        <span>426.467</span>
-                    </p>
-                  </div>
-                </li>
+      			[#list vedios as vedio]
+	                <li>
+	                  <div class="div1">
+	                  	<a href="/videosInfo.jhtml?id=${vedio.id}">
+	                  		<img src="${vedio.imgpath}" width="120" height="90"/>
+                  		</a>
+	                  </div>
+	                  <div class="div2">
+	                  	<a href="/videosInfo.jhtml?id=${vedio.id}" title="${vedio.title}">${vedio.title}</a>
+	                    <div class="vcontent">
+	                    	[#if vedio.content?length >20]
+	                    		${vedio.content?string?substring(0,15)}...
+	                    	[#else]
+	                    		${vedio.content}
+	                    	[/#if]
+                		 </div>
+	                    <p>
+	                    	<span>${vedio.editTime?number_to_datetime}</span>
+	                        <span>播放：</span>
+	                        <span>426.467</span>
+	                    </p>
+	                  </div>
+	                </li>
+                [/#list]
               </ul>
           </div>
         </div>

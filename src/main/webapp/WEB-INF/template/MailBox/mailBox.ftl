@@ -13,11 +13,10 @@ a:link{
 .left_{
 	width:240px; 
 	height:285px;
-	border:1px solid #999;	
 }
 .left_top{
 	height:35px; 
-	border-bottom: 1px solid #999; 
+	border-bottom: 1px solid #e4e4e4; 
 	background:url(/resource/public/images/background_b.png);
 }
 .zti_im{
@@ -124,6 +123,39 @@ textarea{
 	max-width:465px;
 	min-height:120px;
 }
+.j_main_left_1{
+	width:240px;
+	height:290px;
+	border:1px solid;
+}
+.j_main_left_1 p{
+	background: #FFCC00;
+    border-bottom: 1px solid;
+    margin: 0;
+    text-align:left;
+    padding: 5px;
+}
+.j_main_left_1 span{
+	float:right;
+}
+.j_main_left_1 li{
+	line-height:28px;
+}
+.gonggao{
+	width:240px;
+	height:285px;
+	border:1px solid #EED9C8;
+	margin-bottom:5px;
+	background:#fffbf6;
+}
+.gonggao li{
+	margin-right:10px;
+	line-height:29px;
+	font-size:12px;
+}
+.gonggao span{
+	float:right;
+}
 </style>
 
 </head>
@@ -132,47 +164,41 @@ textarea{
 <div style="width:1002px; height:850px; margin:auto;">
 	<div style="width:240px; float:left;">
         <div class="left_">  
-            <div class="left_top">
-                <div style="margin:8px 10px; width:160px; display:inline-block"><img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">公告公示</div>
-                <a href="/publicityList.jhtml" style="vertical-align:middle; font-size:18px;">更多</a>
-            </div>
-            <div class="gg" style="font-size:12px; font-weight:100;">
-              <ul>
-               	[#list notices as notice]
-					<li>
-						<a href="/publicityInfo.jhtml?id=${notice.id}">
+           <div id="" class="gonggao">
+				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);">
+					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
+					公告公示<span style="float:right;"><a href="/publicityList.jhtml">更多</a></span>
+				</p>
+				<ul id="" style="padding-left:25px;">
+					[#list notices as notice]
+						<li><a href="/publicityInfo.jhtml?id=${notice.id}">
 							[#if notice.title?length > 13]
 								${notice.title?string?substring(0,13)}...
 							[#else]
 								${notice.title}
 							[/#if]
-						</a>
-						<span style="float:right;margin-right:10px;">${notice.createTime?number_to_datetime}</span>
-					</li>
-				[/#list]
-              </ul>
-            </div>
+					</a><span>${notice.createTime?number_to_datetime}</span></li>
+					[/#list]
+				</ul>
+			</div>
         </div>
-        <div class="left_" style="height:360px; margin-top:10px;">
-            <div class="left_top">
-                <div style="margin:8px 10px; width:160px; display:inline-block"><img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">专题报道</div>
-                <a href="/specialList.jhtml" style="vertical-align:middle; font-size:18px;">更多</a>
-            </div>
-            <div style="padding:5px 0px;">
-            	[#list subjectReport as sReport]
-					[#if sReport_index <5]
-		            	<div class="zti_im">
-		            		<a href="/special.jhtml?id=${sReport.id}">
-		            			<img src="${sReport.imgpath}" width="222" height="62"/>
-		        			</a>
-		    			</div>
-               		[/#if]
-				[/#list]
-            </div>	 
-        </div>
+        <div class="j_main_left_1" style="margin-top:10px;height:auto;text-align:center;border:1px solid #E4E4E4;">
+			<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
+			<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 45px;"><hr style="border:1px dashed #e4e4e4;"></div>
+			<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml">更多>></a></div>
+			[#list subjectReport as sReport]
+				[#if sReport_index <5]
+	            	<div class="zti_im">
+	            		<a href="/special.jhtml?id=${sReport.id}">
+	            			<img src="${sReport.imgpath}" width="222" height="62"/>
+	        			</a>
+	    			</div>
+           		[/#if]
+			[/#list]
+		</div>
     </div>
     <div style="width:750px; float:left; margin-left:10px;">
-    	<div style="width:710px; height:30px;line-height:30px;border:1px solid #e4e4e4; background:url(/resource/public/images/background_b.png);">
+    	<div style="width:750px; height:30px;line-height:30px;border:1px solid #e4e4e4; background:url(/resource/public/images/background_b.png);">
         	<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-left: 10px; margin-top: 7px; margin-right: 10px;">
         	<span>所在位置</span>
             <span>></span>
@@ -180,7 +206,7 @@ textarea{
             <span>></span>
 			<span>局长信箱</span>
         </div>
-        <div style="width:750px; padding-bottom:20px; border:1px solid #999; margin-top:10px; background-color:#F7F3FA;">
+        <div style="width:750px; padding-bottom:20px; border:1px solid #e4e4e4; margin-top:10px; background-color:#F7F3FA;">
         <form action="/savaMailBox.jhtml" method="post">
         	<input type="hidden" name="status" value="0"/>
         	<div style="width:670px; margin:30px auto;">

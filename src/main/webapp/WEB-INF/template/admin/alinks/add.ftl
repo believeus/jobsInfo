@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>添加新闻 - Powered By e3dmall</title>
+<title>友情链接 - Powered By e3dmall</title>
 <meta name="author" content="e3dmall Team" />
 <meta name="copyright" content="e3dmall" />
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
@@ -47,7 +47,7 @@ $().ready(function() {
 			adPositionId: "required",
 			path: "required",
 			order: "digits",
-			alink:"required"
+			author:"required"
 		}
 	});
 	
@@ -69,85 +69,15 @@ $().ready(function() {
 					<input type="text" name="title" class="text" maxlength="200" />
 				</td>
 			</tr>
-			<tr id="pathTr">
-				<th>
-					<span class="requiredField">*</span>相关图片:
-				</th>
-				<td>
-					<script type="text/javascript">
-					function loadImgFast(img,i){
-							if (img.files && img.files[0]){
-								var reader = new FileReader();
-								reader.onload = function(evt){$(".brandImg:eq("+i+") img")[0].src = evt.target.result;}
-					            reader.readAsDataURL(img.files[0]);	
-							}else if(window.navigator.userAgent.indexOf("MSIE")>=1){
-							   	file.select(); 
-					   			path = document.selection.createRange().text;
-					   			$(".brandImg:eq("+i+") img")[0].src = path;
-					   		} 
-						}
-					</script>
-					
-					<div>
-						<span style="float:left">
-							<div class="brandImg">
-								<span>
-									<a onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
-								</span>
-								<img style="width:190px;height:120px" src="" name="img"/>
-							</div>
-							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
-							<input type="hidden" id="filename0" name="filename0">
-						</span>
-						<label style="color:#0000FF;position:relative;top:100px;left:10px;">(建议尺寸：大图:w548px*h85px,小图:w165px*h85)</label>
-					</div>
-					<style type="text/css">
-						.brandImg span{
-							display:block;
-							position:absolute;
-							top:0px;left:0px;
-							width:200px;
-							height:130px;
-						}
-						
-						.brandImg{
-							border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
-						    border-radius: 2px 2px 2px 2px;
-						    border-style: solid;
-						    border-width: 1px;
-						    background-color: #666666;
-						    width:192px;height:122px;
-						    position:relative;
-						}
-						
-						.brandImg span:hover{
-							background-color:#FFFFFF;
-						    opacity: 0.7;
-						    filter:alpha(opacity=50);
-						    -moz-opacity:0.5;
-						    -khtml-opacity: 0.5;
-						}
-						
-						.brandImg span a{
-							display:block;
-							position:absolute;
-							top:50px;left:50px;
-						}
-						
-						.deleteProductImage:hover{
-							color:#C9033B !important;
-						}
-					</style>
-				</td>
-			</tr>
 			<tr>
 				<th>
-					<span class="requiredField">*</span>外链接:
+					<span class="requiredField">*</span>链接:
 				</th>
 				<td>
-					<input type="text" name="alink" class="text" maxlength="200" />
+					<input type="text" name="author" class="text" maxlength="200" />
 				</td>
 			</tr>
+			
 			<tr>
 				<th>
 					&nbsp;

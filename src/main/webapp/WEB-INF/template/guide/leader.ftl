@@ -22,6 +22,7 @@
 			height:180px;
     		border:1px solid #e4e4e4;
     		border-radius:4px;
+    		background:#FFFFFF;
 		}
 		.j_main_left_1 p{
 		    color: #BF0906;
@@ -67,6 +68,7 @@
 			height:auto;
 			margin-top:10px;
 			overflow:hidden;
+			background:#FFFFFF;
 		}
 		.j_main_right_2_1{
 			float:left;
@@ -128,7 +130,7 @@
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml" style="margin-left:0;">更多>></a></div>
 				<div class="zhuanti_list">
 				[#list subjectReport as sReport]
-					<a href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:186px;height:58px;margin-top:7px;"></a>
+					<a href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:222px;height:62px;margin-top:7px;"></a>
 				[/#list]
 				</div>
 			</div>

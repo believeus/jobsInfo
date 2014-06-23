@@ -45,6 +45,7 @@
 		    height: 198px;
 		    width: 260px;
 		    float: left;
+		    background:#FFFFFF;
     	}
     	.j_main_3_1 td{
     		line-height:30px;
@@ -82,6 +83,7 @@
     		border: 1px solid #E4630F;
     		border-radius:4px;
     		margin-left:10px;
+    		background:#FFFFFF;
     	}
     	.j_main_3_3 li{
     		list-style:none;
@@ -164,6 +166,7 @@
     		height:auto;
     		overflow:hidden;
     		margin-top: 10px;
+    		background:#FFFFFF;
     	}
     	.j_main_7_1{
     		width:320px;
@@ -213,6 +216,7 @@
 			overflow:hidden;
 			margin-left:auto;
 			margin-right:auto;
+			background:#FFFFFF;
 		}
 		.new_intro_list{
 			float: left;
@@ -562,7 +566,7 @@
 			<a href="/personalReg.jhtml"><img src="/resource/public/images/zhiyejieshao.png"></a>
 		</div>
 		
-		<div class="zuixinjianli" style="width:997px;height:auto;border:1px solid #e4e4e4;">
+		<div class="zuixinjianli" style="width:997px;height:auto;border:1px solid #e4e4e4;background:#FFFFFF;">
 			<img src="/resource/public/images/zuixinjianli.png">
 			<div class="jianli">
 				[#list qiuzhiList as qiuzhi]
