@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.etech.entity.TbaseUser;
 import com.etech.entity.TcomInfo;
 import com.etech.entity.TcomUser;
 import com.etech.entity.TentImgVedio;
@@ -336,6 +337,16 @@ public class ControllerCenter {
 		map.put("error", 0);
 		map.put("url", "/"+storepath);
 		response.setContentType("text/html; charset=UTF-8");
+		JsonOutToBrower.out(map, response);
+	}
+	
+	@RequestMapping(value = "/user/center/updatepd", method = RequestMethod.POST)
+	public  void updatepd(Integer id,String password,HttpServletResponse response) {
+		TbaseUser user = (TbaseUser)etechService.findObjectById(TbaseUser.class, id);
+		user.setPassword(DigestUtils.md5Hex(password)); 
+		etechService.merge(user); 
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("message", "success");
 		JsonOutToBrower.out(map, response);
 	}
 }

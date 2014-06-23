@@ -1008,6 +1008,20 @@
 						showdiv();
 						submitVolunteer();
 				});
+				
+				// 修改密码
+				$("#btn_pd").click(function(){
+					$("#pdFrom").ajaxSubmit({
+				            	 type: "post",
+							     url: "/user/center/updatepd.jhtml",
+							     dataType: "json",
+							     success: function(data){
+								     $("#need").html("密码修改成功！正在返回页面....");// 这个是渐渐消失 			     		
+							     	 setTimeout(function(){ alert_win.style.display='none';},1000);	
+							     }
+			        	});	
+				
+				});
 			
 			})
 		</script>
@@ -1789,15 +1803,15 @@
 	<div id="alert_win" style="display:none;">
 		<div id="mask" style="top:0;left:0;position: absolute;z-index:1000;" class="bg"></div>
 		<DIV class=beian_winBG id=beian_popup><!--弹出框-->
-			<div id="divOneStep" style="z-index:1002;height:200px;">
+			<div id="divOneStep" style="z-index:1002;height:140px;">
 				<div style="width:100%;height:30px;light-height:30px;text-align:right;">
 					<a style="font-size: 20px; position: relative; top: -15px; padding: 6px; left: 70px;" href="javascript:;" onClick="alert_win.style.display='none';">&times;</a>
 				</div>
-				<div>
-					<form action="" method="post">
-						<input class="pass_text" type="password" name="pass" placeholder="密码"><br/>
-						<input class="pass_text" type="password" name="repass" placeholder="新密码"><br/>
-						<input class="btn_submit" type="button" value="确定">
+				<div id="need">
+					<form action="/user/center/updatepd.jhtml" method="post" id="pdFrom">
+						<input type="hidden" name="id" value="${sessionUser.id}">
+						<input class="pass_text" type="text" autocomplete="off" name="password" placeholder="新密码"><br/>
+						<input class="btn_submit" type="button" value="确定" id="btn_pd">
 						<input type="reset" value="重置" class="btn_submit" style="margin-left: 50px;">
 					</form>
 				</div>
