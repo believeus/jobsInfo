@@ -611,7 +611,7 @@
 					$(document).ready(function(e) {
 						/***不需要自动滚动，去掉即可***/
 						time = window.setInterval(function(){
-							$('.og_next').click();
+							$('.og_prev').click();
 						},5000);
 						/***不需要自动滚动，去掉即可***/
 						linum = $('.mainlist li').length;//图片数量
@@ -676,18 +676,12 @@
 					<div class="picbox">
 						<ul class="piclist mainlist">
 							[#list subjectReport as sReport]
-								<li><a href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" width="220" height="62"></a></li>
+								<li>
+									<a href="/special.jhtml?id=${sReport.id}">
+										<img src="${sReport.imgpath}" width="220" height="62">
+									</a>
+								</li>
 							[/#list]
-							<!--
-								<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/1.jpg" width="220" height="62" /></a></li>
-								<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/2.jpg" width="220" height="62" /></a></li>
-								<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/3.jpg" width="220" height="62" /></a></li>
-								<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/4.jpg" width="220" height="62" /></a></li>
-								<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/1.jpg" width="220" height="62" /></a></li>
-				    			<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/2.jpg" width="220" height="62" /></a></li>
-								<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/3.jpg" width="220" height="62" /></a></li>
-								<li><a href="/imgShow.jhtml" target="_blank"><img src="http://www.codefans.net/jscss/demoimg/201401/4.jpg" width="220" height="62" /></a></li>
-							-->
 						</ul>
 				        <ul class="piclist swaplist"></ul>
 					</div>
@@ -730,7 +724,7 @@
 			<div style="width: 850px; float: right; margin-right: 25px;">
 				[#list links as links]
 					<span style="float: left; margin-right: 10px; width: 200px; line-height: 55px;">
-						<a href="http://${links.content}" title="${links.title}" target="_blank">${links.title}</a>
+						<a href="http://${links.alink}" title="${links.title}" target="_blank">${links.title}</a>
 					</span>
 				[/#list]
 			</div>

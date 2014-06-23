@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>新闻列表 - Powered By e3dmall</title>
+<title>友情链接列表 - Powered By e3dmall</title>
 <meta name="author" content="e3dmall Team" />
 <meta name="copyright" content="e3dmall" />
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
@@ -78,7 +78,7 @@ $().ready(function() {
 					<a href="javascript:;" class="sort" name="title">标题</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="adPosition">发信人</a>
+					<a href="javascript:;" class="sort" name="adPosition">链接</a>
 				</th>
 				<th>
 					<a href="javascript:;" class="sort" name="type">发布时间</a>
@@ -88,23 +88,22 @@ $().ready(function() {
 				</th>
 			</tr>
 			
-			[#list mailBoxList as mail]
+			[#list dataCenters as dataCenter]
 			<tr>
 				<td>
-					<input type="checkbox" name="ids" value="${mail.id}" />
+					<input type="checkbox" name="ids" value="${dataCenter.id}" />
 				</td>
 				<td>
-					<span title="${center.id}">${mail.title}</span>
+					<span title="${dataCenter.id}">${dataCenter.title}</span>
 				</td>
 				<td>
-					${mail.username}
+					${dataCenter.alink}
 				</td>
 				<td>
-					${mail.editTime?number_to_datetime} ${mail.editTime?number_to_time}
+					${dataCenter.editTime?number_to_datetime} ${dataCenter.editTime?number_to_time}
 				</td>
 				<td>
-					<a href="edit.jhtml?id=${center.id}">[查看]</a>
-					<a>审核通过</a>
+					<a href="edit.jhtml?id=${dataCenter.id}">[编辑]</a>
 				</td>
 			</tr>
 			[/#list]

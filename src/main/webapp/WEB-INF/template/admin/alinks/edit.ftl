@@ -66,7 +66,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>标题:
 				</th>
 				<td>
-					<input type="text" name="title" class="text" maxlength="200" />
+					<input type="text" name="title" class="text" maxlength="200" value="${dataCenter.title}"/>
 				</td>
 			</tr>
 			<tr>
@@ -74,7 +74,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>链接:
 				</th>
 				<td>
-					<input type="text" name="author" class="text" maxlength="200" />
+					<input type="text" name="alink" class="text" maxlength="200" value="${dataCenter.alink}" />
 				</td>
 			</tr>
 			

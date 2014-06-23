@@ -66,20 +66,8 @@ $().ready(function() {
 		<input type="hidden" name="id" value="${mailBox.id}"/>
 		<input type="hidden" name="" value="${mailBox.createTime}"/>
     	<input type="hidden" name="status" value="0"/>
-    	<div style="width:670px; margin:30px auto;">
-			<table class="tab_1" cellspacing="0"> 
-              <tr style="background:url(/resource/public/images/xiexin.jpg) repeat-x scroll 0 0 #FFFFFF;">
-                <th scope="row" style="background-color:transparent;">
-                	<span>*</span>
-                	<span style="font-weight:bold">写信人：</span>
-                </th>
-                <th scope="col" colspan="3" style="background-color:transparent; text-align:left; width:auto;"> 
-                	<div style="margin-left:20px; ">
-                        <span>*</span>
-                        <span style="width:200px; display:inline-block;">为必填项目</span>
-                    </div>
-                </th>
-              </tr>
+    	<div>
+			<table class="input" cellspacing="0"> 
               <tr>
                 <th scope="row">
                 	<span>*</span>
@@ -181,8 +169,8 @@ $().ready(function() {
               </tr>
             </table>
         </div>
-        <div style="width:670px; margin:30px auto 0px;">
-        	<table class="tab_1" cellspacing="0" id="tab_2">
+        <div>
+        	<table class="input" cellspacing="0" id="tab_2">
               <tr>
                 <th scope="col">
                 	<span>*</span>
@@ -263,11 +251,16 @@ $().ready(function() {
                     </span>
                 </td>
               </tr>
+			<tr>
+				<th>
+					&nbsp;
+				</th>
+				<td colspan="3">
+					<input type="submit" class="button" value="确定" />
+					<input type="button" id="backButton" class="button" value="返回" />
+				</td>
+			</tr>
             </table>
-        </div>
-        <div style="text-align:center;margin-top:10px;">
-            <input type="submit" class="butt_" value="提交" style="width:70px; margin-left:0px;"/>
-            <input type="reset" class="butt_" value="重写" style="width:70px; "/>
         </div>
     </div>
     </form>
