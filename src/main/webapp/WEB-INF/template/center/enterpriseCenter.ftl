@@ -160,7 +160,7 @@
 		    width: 158px;
 		}
 		.shipin td {
-		    padding: 10px;
+		    padding: 0 10px;
 		}
 		.shipin a{
 			color: #AE3234;
@@ -344,18 +344,13 @@
 				        //上传到服务器，服务器返回相应信息到data里    
 				        'onUploadSuccess':function(file, data, response){    
 				        	// 添加数据到form表单。
-				        	var info='';
-				        	var infoName='';
 				        	if(file.type==".swf"||file.type==".flv"){
 				        		$("#vedioUrl").val(data);
-				        		$("#vedioName").val(data);
+				        		$("#vedioName").val(file.name);
 				        	}else{
 				        		$("#url").val(data);
-				        		$("#originName").val(data);
+				        		$("#originName").val(file.name);
 				        	}
-				        	alert(info);
-							$("#vedioForm"+sum).append(info);
-							$("#vedioForm"+sum).append(infoName);
 				            //如需上传后生成预览，可在此操作 。
 				        },  
 				        'onQueueComplete': function(queueData){ 
@@ -365,11 +360,12 @@
 							     url: "/enterprise-user/center/uploadVedio.jhtml",
 							     dataType: "json",
 							     success: function(data){
-							     	alert(data.message);
 							     	// 成功提交之后继续提交下一个。
 							     	if(sum < v){
 							     		sum++;
 							     		$('#uploadify'+sum).uploadify('upload','*');
+							     	}else{
+							     		alert("提交完成");
 							     	}
 							     }
 			        		});	
@@ -448,15 +444,23 @@
 			var c = 2;
 		[/#if]
 		function delete_pic(object,id){		
-				if ($(".qiyepic").size() <= 1) {
-					alert("必须至少保留一个参数");
-				} else {
+			if ($(".qiyepic").size() <= 1) {
+				alert("必须至少保留一张空图片");				
+				// 获取图片是否有值
+				if($(object).closest("div").parent().find("img").attr("src")!="/resource/public/images/bg.png"){
+					$(object).closest("div").parent().find("img").attr("src","/resource/public/images/bg.png");
 					if(id!=0){
 						deleteImg(id);					
 					}
 					c--;
-					$(object).closest("div").parent().remove();
+				}					
+			} else {
+				if(id!=0){
+					deleteImg(id);					
 				}
+				c--;
+				$(object).closest("div").parent().parent().remove();
+			}
 		}
 		
 		//删除招聘信息
@@ -515,20 +519,19 @@
 		}
 		
     	var b = 2;
-    	[#if Vedios?exists]
+    	[#if Vedios?size>0]
     		var v=${Vedios?size}+1;
     	[#else]
     		var v=2;
     	[/#if]
+    	
+    	
     	var sum=1;
-   
-   
-   
    
    
     $().ready(function(){
     
-    	[#if Vedios?exists]
+    	[#if Vedios?size>0]
 		[#list Vedios as vedio]
 			uploadInfo(${vedio_index+1},true);
     	[/#list]
@@ -567,9 +570,10 @@
     	$("#add_pic").click(function(){
     		
     		[@compress single_line = true]
-    		var html = '<form novalidate="novalidate"  action="/enterprise-user/center/upload.jhtml" encType="multipart/form-data"  method="post" id="ImgForm'+c+'">
-						<input type="hidden" name="type" value="0">
+    		var html = '
     					<div class="qiyepic">
+    					<form novalidate="novalidate"  action="/enterprise-user/center/upload.jhtml" encType="multipart/form-data"  method="post" id="ImgForm'+c+'">
+						<input type="hidden" name="type" value="0">
 							<p>
 								<div class="brandImg">
 									<span><a onclick="file'+c+'.click()" href="javascript:void(0);">点击上传图片</a></span>
@@ -580,13 +584,13 @@
 							</p>
 							<p><textArea placeholder="添加描述（20字以内）" maxlength="20" name="fileDes'+c+'"></textArea></p>
 							<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this,0);" href="javascript:void(0);">删除</a></div>
-						</div>
 						</form>
+						</div>
     					';
 			[/@compress]
 			if($(".qiyepic").size() <8){
 				c++;
-				$(".qiyepic").parent().parent().append(html);
+				$(".qiyepic").parent().append(html);
 				var pics = $(".qiyepic");
 		    	pics.each(function(){
 		    		if(($(this).index()+1)%4==0){
@@ -604,14 +608,14 @@
     	$("#add_vedio").click(function(){
     		[@compress single_line = true]
     		var html = 
-    			'<form novalidate="novalidate"  action="/enterprise-user/center/uploadVedio.jhtml"  method="post" id="vedioForm'+v+'">
+    			'<div class="shipin" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+    			<form novalidate="novalidate"  action="/enterprise-user/center/uploadVedio.jhtml"  method="post" id="vedioForm'+v+'">
     			<input type="hidden" name="type" value="1">
-    			<input type="hidden" id="size'+v+'" value="0"> 
+    			<input type="hidden" id="size'+v+'" value="2"> 
     			<input name="vedioUrl" type="hidden" value="" id="vedioUrl">
 	        	<input name="vedioName" type="hidden" value="" id="vedioName">
 	        	<input name="url" type="hidden" value="" id="url">
 	        	<input name="originName" type="hidden" value="" id="originName">
-    			<div class="shipin" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 					<table width="690">
 						<tr>
 							<td rowspan="3" style="color:#ae3234;">'+v+'</td>
@@ -632,8 +636,8 @@
 							<td style="vertical-align: bottom;"><a class="delete_vedio" href="javascript:void(0);">删除</a></td>
 						</tr>
 					</table>
-				</div>
-				</form>';
+					</form>
+				</div>';
 			[/@compress]
 			if($(".shipin").size() <3){
 				$(".shipin_parent").append(html);
@@ -657,7 +661,7 @@
     		[@compress single_line = true]
     		var html = 
     			'<form novalidate="novalidate"  action="/enterprise-user/center/submit-recruit.jhtml"  method="post" id="jobsForm'+b+'">
-    			<div class="zhaopinxinxi" style="padding:10px 30px;width:650px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+    			 <div class="zhaopinxinxi" style="padding:10px 30px;width:650px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 					<table>
 						<tr>
 							<td rowspan="9" style="color:#E2652E;">'+b+'</td>
@@ -818,8 +822,7 @@
 					     url: "/enterprise/submit-account-Info.jhtml",
 					     dataType: "json",
 					     success: function(data){
-					     	//submitMap();
-					     	submitVedio();
+					     	submitMap();
 					     }
 	        		});	
 			}
@@ -844,8 +847,7 @@
 				     url: "/enterprise-user/center/upload.jhtml",
 				     dataType: "json",
 				     success: function(data){
-				     	alert(data.message);
-						//submitVedio();
+						submitVedio();
 				     }
 	    		});	
     		}
@@ -853,7 +855,6 @@
 		
 		// 上传视频
 		function submitVedio(){
-				alert("上传视频");
 				$('#uploadify1').uploadify('upload','*');
 		}
 		
@@ -884,6 +885,20 @@
 		// 保存招聘信息。
     	$("#savaJobs").click(function() {
 				submitJobs();
+		});
+		
+		// 修改密码
+		$("#btn_pd").click(function(){
+			$("#pdFrom").ajaxSubmit({
+		            	 type: "post",
+					     url: "/user/center/updatepd.jhtml",
+					     dataType: "json",
+					     success: function(data){
+						     $("#need").html("密码修改成功！正在返回页面....");// 这个是渐渐消失 			     		
+					     	 setTimeout(function(){ alert_win.style.display='none';},1000);	
+					     }
+	        	});	
+		
 		});
 		
     
@@ -1078,9 +1093,6 @@
 										[/#if]
 									</form>
 									</td>
-									<td>
-										<input type="button" value="上传" id="submitImg" style="width:60px;">
-									</td>
 								</tr>
 							</table>
 						</div>
@@ -1097,11 +1109,12 @@
 						
 						[#if Imgs?size>0]
 						[#list Imgs as img]
+						<div class="qiyepic">
 						<form novalidate="novalidate"  action="/enterprise-user/center/upload.jhtml" encType="multipart/form-data"  method="post" id="ImgForm${img_index+1}">
 						<input type="hidden" name="type" value="0">
 						<input type="hidden" name="id" value="${img.id}">
 						<input type="hidden" name="url" value="${img.url}">
-						<div class="qiyepic">
+						
 							<p>
 								<div class="brandImg">
 									<span><a onclick="file${img_index+1}.click()" href="javascript:void(0);">点击上传图片</a></span>
@@ -1112,13 +1125,13 @@
 							</p>
 							<p><textArea placeholder="添加描述（20字以内）" maxlength="20" name="descption">${img.descption}</textArea></p>
 							<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this,${img.id})" href="javascript:void(0);">删除</a></div>
-						</div>
 						</form>
+						</div>
 						[/#list]
 						[#else]
-						<form novalidate="novalidate"  action="/enterprise-user/center/upload.jhtml" encType="multipart/form-data"  method="post" id="ImgForm1">
-						<input type="hidden" name="type" value="0">
-							<div class="qiyepic">
+						<div class="qiyepic">
+							<form novalidate="novalidate"  action="/enterprise-user/center/upload.jhtml" encType="multipart/form-data"  method="post" id="ImgForm1">
+							<input type="hidden" name="type" value="0">
 								<p>
 									<div class="brandImg">
 										<span><a onclick="file1.click()" href="javascript:void(0);">点击上传图片</a></span>
@@ -1129,8 +1142,8 @@
 								</p>
 								<p><textArea placeholder="添加描述（20字以内）" maxlength="20" name="descption"></textArea></p>
 								<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this,0)" href="javascript:void(0);">删除</a></div>
-							</div>
-						</form>
+							</form>
+						</div>
 						[/#if]
 						
 					</div>
@@ -1146,9 +1159,11 @@
 						<div style="height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 							<font color="red" size="3">视频上传说明：</font><font color="red">总上传数量为2。一张视频截图+视频文件。支持格式为：gif,jpg,jpeg,bmp,png,swf,flv。</font>
 					 	</div>
-						[#if Vedios?exists]
+						[#if Vedios?size>0]
 						[#list Vedios as vedio]
-						<form novalidate="novalidate"  action="/enterprise-user/center/uploadVedio.jhtml"  method="post" id="vedioForm${vedio_index+1}">
+						
+							<div class="shipin" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+							<form novalidate="novalidate"  action="/enterprise-user/center/uploadVedio.jhtml"  method="post" id="vedioForm${vedio_index+1}">
 							<input type="hidden" name="type" value="1">
 							<input type="hidden" name="id" value="${vedio.id}">
 							<input type="hidden" id="size${vedio_index+1}" value="0"> 
@@ -1156,7 +1171,6 @@
 				        	<input name="vedioName" type="hidden" value="${vedio.vedioName}" id="vedioName">
 				        	<input name="url" type="hidden" value="${vedio.url}" id="url">
 				        	<input name="originName" type="hidden" value="${vedio.originName}" id="originName">
-							<div class="shipin" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 							<table width="690">
 								<tr>
 									<td rowspan="3" style="color:#ae3234;">${vedio_index+1}</td>
@@ -1190,18 +1204,18 @@
 									<td style="vertical-align: bottom;"><a class="delete_vedio" href="javascript:void(0);">删除</a></td>
 								</tr>
 							</table>
-						</div>
 						</form>
+						</div>
 						[/#list]
 						[#else]
+			    			<div class="shipin" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 							<form novalidate="novalidate"  action="/enterprise-user/center/uploadVedio.jhtml"  method="post" id="vedioForm1">
 			    			<input type="hidden" name="type" value="1">
-			    			<input type="hidden" id="size1" value="0"> 
+			    			<input type="hidden" id="size1" value="2"> 
 			    			<input name="vedioUrl" type="hidden" value="" id="vedioUrl">
 				        	<input name="vedioName" type="hidden" value="" id="vedioName">
 				        	<input name="url" type="hidden" value="" id="url">
 				        	<input name="originName" type="hidden" value="" id="originName">
-			    			<div class="shipin" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 								<table width="690">
 									<tr>
 										<td rowspan="3" style="color:#ae3234;">1</td>
@@ -1222,8 +1236,8 @@
 										<td style="vertical-align: bottom;"><a class="delete_vedio" href="javascript:void(0);">删除</a></td>
 									</tr>
 								</table>
-							</div>
 							</form>		    
+							</div>
 						[/#if]
 					</div>			    
 					
@@ -1249,8 +1263,20 @@
 							[#if recruits?size>0]
 							[#list recruits as recruit]
 								<tr>
-								<td>${recruit.majorType.name}</td>
-								<td>${recruit.workType.name}</td>
+								<td title="${recruit.majorType.name}">
+									[#if recruit.majorType.name?length > 5]
+										${recruit.majorType.name?string?substring(0,5)}...
+									[#else]
+										${recruit.majorType.name}
+									[/#if]
+								</td>
+								<td title="${recruit.workType.name}">
+								[#if recruit.workType.name?length > 5]
+									${recruit.workType.name?string?substring(0,5)}...
+								[#else]
+									${recruit.workType.name}
+								[/#if]
+								</td>
 								<td>
 								[#if recruit.sex=="man"&&recruit.sex!="woman"]男[#elseif recruit.sex=="woman"]女[/#if]
 								</td>
@@ -1417,15 +1443,15 @@
 	<div id="alert_win" style="display:none;">
 		<div id="mask" style="top:0;left:0;position: absolute;z-index:1000;" class="bg"></div>
 		<DIV class=beian_winBG id=beian_popup><!--弹出框-->
-			<div id="divOneStep" style="z-index:1002;height:200px;">
+			<div id="divOneStep" style="z-index:1002;height:140px;">
 				<div style="width:100%;height:30px;light-height:30px;text-align:right;">
 					<a style="font-size: 20px; position: relative; top: -15px; padding: 6px; left: 70px;" href="javascript:;" onClick="alert_win.style.display='none';">&times;</a>
 				</div>
-				<div>
-					<form action="" method="post">
-						<input class="pass_text" type="password" name="pass" placeholder="密码"><br/>
-						<input class="pass_text" type="password" name="repass" placeholder="新密码"><br/>
-						<input class="btn_submit" type="button" value="确定">
+				<div id="need">
+					<form action="/user/center/updatepd.jhtml" method="post" id="pdFrom">
+						<input type="hidden" name="id" value="${sessionUser.id}">
+						<input class="pass_text" type="text"  autocomplete="off" name="password" placeholder="新密码"><br/>
+						<input class="btn_submit" type="button" value="确定" id="btn_pd">
 						<input type="reset" value="重置" class="btn_submit" style="margin-left: 50px;">
 					</form>
 				</div>
