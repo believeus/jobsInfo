@@ -103,8 +103,12 @@ $().ready(function() {
 					${mail.editTime?number_to_datetime} ${mail.editTime?number_to_time}
 				</td>
 				<td>
-					<a href="edit.jhtml?id=${center.id}">[查看]</a>
-					<a>审核通过</a>
+					<a href="/admin/mailBox/edit.jhtml?id=${mail.id}">[查看]</a>
+					[#if mail.status=="0"]
+						<a href="/admin/mailBox/review.jhtml?id=${mail.id}"><font color="red">[点击审核通过]</font></a>
+					[#else]
+						<font color="green">[审核通过]</font>
+					[/#if]
 				</td>
 			</tr>
 			[/#list]

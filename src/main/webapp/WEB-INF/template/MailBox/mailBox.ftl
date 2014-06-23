@@ -236,8 +236,8 @@ textarea{
                     	<span>性别：</span>
                     </th>
                     <td>
-                        <input type="radio" checked="checked" name="sex" id="radio"/><span>男</span>
-                        <input type="radio" name="sex"/><span>女</span>
+                        <input type="radio" checked="checked" name="sex" id="radio" value="man"/><span>男</span>
+                        <input type="radio" name="sex" value="woman"/><span>女</span>
                     </td>
                   </tr>
                   <tr>

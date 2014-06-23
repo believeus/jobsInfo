@@ -14,7 +14,11 @@
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
 <script type="text/javascript">
 $().ready(function() {
-
+	$("#province").val("${mailBox.province}");
+	$("#city").val("${mailBox.city}");
+	$("#county").val("${mailBox.county}");
+	$("#job").val("${mailBox.job}")
+	$("$sex")
 	var $inputForm = $("#inputForm");
 	var $type = $("#type");
 	var $contentTr = $("#contentTr");
@@ -58,7 +62,9 @@ $().ready(function() {
 		<a href="/admin/common/main.jhtml">首页</a> &raquo; 编辑内容
 	</div>
 	
-	<form id="inputForm" action="update.jhtml" method="post" enctype="multipart/form-data">
+	<form id="inputForm" action="/admin/mailBox/update.jhtml" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="id" value="${mailBox.id}"/>
+		<input type="hidden" name="" value="${mailBox.createTime}"/>
     	<input type="hidden" name="status" value="0"/>
     	<div style="width:670px; margin:30px auto;">
 			<table class="tab_1" cellspacing="0"> 
@@ -80,15 +86,15 @@ $().ready(function() {
                 	<span>姓名：</span>
                 </th>
                 <td>
-                	<input type="text" name="username" />
+                	<input type="text" name="username" value="${mailBox.username}" />
                 </td>
                 <th scope="row">
                 	<span>*</span>
                 	<span>性别：</span>
                 </th>
                 <td>
-                    <input type="radio" checked="checked" name="sex" id="radio"/><span>男</span>
-                    <input type="radio" name="sex"/><span>女</span>
+                    <input type="radio" checked="checked" name="sex" id="radio" value="man"/><span>男</span>
+                    <input type="radio" name="sex" value="woman"/><span>女</span>
                 </td>
               </tr>
               <tr>
@@ -104,7 +110,7 @@ $().ready(function() {
                 	<span>E-mail：</span>
                 </th>
                 <td>
-                	<input name="email" />
+                	<input name="email" value="${mailBox.email}"/>
                 </td>
               </tr>
               <tr>
@@ -137,7 +143,7 @@ $().ready(function() {
                         </select>
                     </div>
                     <div style="height:22px;">
-                    	<input type="text" name="supplyAddress" style="width:305px;" />
+                    	<input type="text" name="supplyAddress" style="width:305px;" value="${mailBox.supplyAddress}" />
                     </div>
                 </td>
               </tr>
@@ -160,7 +166,7 @@ $().ready(function() {
                 	<span>身份证：</span>
                 </th>
                 <td>
-                	<input type="text" name="idcard" />
+                	<input type="text" name="idcard" value="${mailBox.idcard}"/>
                 </td>
               </tr>
               <tr>
@@ -169,7 +175,7 @@ $().ready(function() {
                 	<span>固定电话：</span>
                 </th>
                 <td colspan="3">
-                	<input type="text" name="fixPhone" />
+                	<input type="text" name="fixPhone" value=${mailBox.fixPhone} />
                     <span>（*输入格式：027-89898989）</span>
                 </td>
               </tr>
@@ -183,7 +189,7 @@ $().ready(function() {
                 	<span>信件标题：</span>
                 </th>
                 <td>
-                	<input type="text" name="title"/>
+                	<input type="text" name="title" value="${mailBox.title}"/>
                 </td>
               </tr>
               <tr>
@@ -192,7 +198,7 @@ $().ready(function() {
                 	<span>发生地区：</span>
                 </th>
                 <td>
-                	<input type="text" name="happenArea"  style="width:300px" />
+                	<input type="text" name="happenArea"  style="width:300px" value="${mailBox.happenArea}"/>
                 </td>
               </tr>
               <tr>
@@ -216,7 +222,7 @@ $().ready(function() {
                 	<span>来信人数：</span>
                 </th>
                 <td>
-                	<input type="text" name="letterNumber"  style="width:50px;" placeholder="人数..."/>
+                	<input type="text" name="letterNumber"  style="width:50px;" value="${mailBox.letterNumber}"/>
                 </td>
               </tr>
               <tr>
@@ -225,7 +231,7 @@ $().ready(function() {
                 	<span>信件内容：</span>
                 </th>
                 <td>
-                	<textarea cols="60" name="content" rows="5"></textarea>
+                	<textarea cols="60" name="content" rows="5">${mailBox.content}</textarea>
                     <span style="display:inline-block; margin-left:20px;">*如果字数多于1000字，请以附加形式上传，你已经输入了0个字。</span>
                 </td>
               </tr>

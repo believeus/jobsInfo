@@ -33,10 +33,9 @@ public class ControllerMailBox extends ControllerCRUD{
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
-		List<TmailBox> mailBoxList=(List<TmailBox>)etechService.getListByProperty(TmailBox.class, "status", "0", 20);
-		log.debug("time:"+mailBoxList.get(0).getEditTime());
+		List<TmailBox> mailBoxList=(List<TmailBox>)etechService.getListByClass(TmailBox.class, 20);
 		request.setAttribute("mailBoxList",mailBoxList);
-		return "admin/mailBox/list";
+		return "/admin/mailBox/list";
 	}
 	
 	/**
@@ -69,9 +68,8 @@ public class ControllerMailBox extends ControllerCRUD{
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
-		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
-		request.setAttribute("dataCenter", dataCenter);
-		request.setAttribute("type",EtechGobal.mailBox);
+		TmailBox mailBox=(TmailBox)etechService.findObjectById(TmailBox.class, id);
+		request.setAttribute("mailBox", mailBox);
 		return "admin/mailBox/edit";
 	}
 	
@@ -89,8 +87,17 @@ public class ControllerMailBox extends ControllerCRUD{
 	 * @return
 	 */
 	@RequestMapping(value = "/update")
-	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
-		super.updataDataInfo(editDataCenter, request);
+	public String updateNewsView(TmailBox mailBox){
+		mailBox.setEditTime(System.currentTimeMillis());
+		// 设置审核通过
+		mailBox.setStatus("1");
+		etechService.merge(mailBox);
+		return "redirect:/admin/mailBox/list.jhtml";
+	}
+	@RequestMapping(value="/review")
+	public String review(Integer id){
+		//更改审核通过状态
+		etechService.updata(TmailBox.class, "id", id, "status","1");
 		return "redirect:/admin/mailBox/list.jhtml";
 	}
 }
