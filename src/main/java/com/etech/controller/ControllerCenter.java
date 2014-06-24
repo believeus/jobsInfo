@@ -175,7 +175,7 @@ public class ControllerCenter {
 
 	/** 企业用户信息提交 */
 	@RequestMapping(value = "/enterprise/submit-account-Info")
-	public void submitEntUserInfo(TentUser entUser,String ids, HttpServletRequest request,HttpSession session,HttpServletResponse response) {
+	public void submitEntUserInfo(TentUser entUser,String ids, String vIds,HttpServletRequest request,HttpSession session,HttpServletResponse response) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		TentUser sessionUser = null;
 		try {
@@ -201,6 +201,14 @@ public class ControllerCenter {
 		// 删除图片
 		if (ids!=null&&!ids.equals("")) {
 			String[] split = ids.split(",");
+			for (String id : split) {
+				etechService.deleteObjectById(TentImgVedio.class, Integer.valueOf(id));
+			}
+		}
+		
+		// 删除视频
+		if (vIds!=null&&!vIds.equals("")) {
+			String[] split = vIds.split(",");
 			for (String id : split) {
 				etechService.deleteObjectById(TentImgVedio.class, Integer.valueOf(id));
 			}
@@ -242,7 +250,9 @@ public class ControllerCenter {
 		}
 		imgVedios.add(imgVedio); 
 		entUser.setImgVedios(imgVedios); 
-		etechService.saveOrUpdata(entUser);
+		if (storepath!="") {
+			etechService.saveOrUpdata(entUser);			
+		}
 		map.put("message", "success");
 		JsonOutToBrower.out(map, response);
 		
