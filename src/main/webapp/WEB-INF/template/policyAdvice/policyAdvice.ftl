@@ -6,6 +6,7 @@
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script src="/resource/public/resources/scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/resource/public/js/datePicker/WdatePicker.js"></script>
     <style type="text/css">
    		.j_main{
     		width:1000px;
@@ -121,6 +122,15 @@
 			color:#FFFFFF;
 		}
     </style>
+        <script type="text/javascript">
+			// 转换时间类型为long类型。
+	  		var beginDate=$("input[eidLearning='beginDateLearning"+index+"']").val();
+			var endDate=$("input[eidLearning='endDateLearning"+index+"']").val();
+			if(beginDate!=""||endDate!=""){
+				beginDate=new Date(beginDate.replace(/-/g,",")).getTime();
+				endDate=new Date(endDate.replace(/-/g,",")).getTime(); 				
+			}
+		</script>
 </head>
 <body>
 	[#include "/include/header.ftl" /]
@@ -168,24 +178,9 @@
 						<td>
 							发布日期：
 						</td>
-						<td>
-							<select name="">
-								<option value="">年</option>
-							</select>
-							<select name="">
-								<option value="">月</option>
-							</select>
-						</td>
-						<td>
-							至
-						</td>
-						<td>
-							<select name="">
-								<option value="">年</option>
-							</select>
-							<select name="">
-								<option value="">月</option>
-							</select>
+						<td>起始时间:
+						<input type="text"  id="beginDate" name="beginDate" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
+						结束时间: <input type="text" id="endDate" name="endDate" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
 						</td>
 						<td rowspan="2" style="background: url(/resource/public/images/chaxun.png); border-radius: 4px;">
 							<input type="submit" value=""  style="border: 0px none; font-size: 18px; cursor: pointer; height: 61px; width: 61px; background: none;">
