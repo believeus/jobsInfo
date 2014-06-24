@@ -117,7 +117,7 @@
 				<ul>
 					[#list monthlyDemandList as supply]
 						<li>
-							<a>${supply.editTime?number_to_datetime?string?substring(0,7)}月需求排行</a>
+							<a href="">${supply.editTime?number_to_datetime?string?substring(0,7)}月需求排行</a>
 						</li>
 					[/#list]
 				</ul>

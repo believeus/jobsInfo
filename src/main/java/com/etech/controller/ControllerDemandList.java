@@ -36,10 +36,8 @@ public class ControllerDemandList {
 		}
 		if(!StringUtils.isEmpty(request.getParameter("pageSize"))){
 			 pageSize = Integer.parseInt(request.getParameter("pageSize"));
-			
 		}
 		// 每页多少行数据
-		// group by FROM_UNIXTIME(info.editDate/1000, '%Y-%m') order by FROM_UNIXTIME(info.editDate/1000, '%Y-%m') asc
 		String hql = "from Trecruit recruit left join fetch recruit.workType "+ "group by FROM_UNIXTIME(recruit.editTime/1000, '%Y-%m') order by FROM_UNIXTIME(recruit.editTime/1000, '%Y-%m') desc";
 		log.debug(hql);
 		List<Trecruit> monthlyDemandList = (List<Trecruit>) etechService.findObjectList(hql, pageNo, pageSize, Trecruit.class);

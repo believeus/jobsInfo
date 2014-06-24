@@ -191,7 +191,7 @@ a:link{
                     [#list supply as supply]
 	                    <li>
 	                      	<div>
-		                      	<a style="color:#fe0002;" href="/personalResume.jhtml?id=${supply.comUser.id}">${supply.jobPost}</a>
+		                      	<a style="color:#fe0002;" href="javascript:void(0)">${supply.jobPost}</a>
                       		</div>
 	                    </li>
                     [/#list]
@@ -210,7 +210,7 @@ a:link{
                     [#list demand as demand]
 	                    <li>
 	                      	<div>
-		                      	<a  style="color:#fe0002;" href="/enterpriseInformation.jhtml?id=${demand.id}">${demand.workType.name}</a>
+		                      	<a  style="color:#fe0002;" href="javascript:void(0)">${demand.workType.name}</a>
                       		</div>
 	                    </li>
                     [/#list]
