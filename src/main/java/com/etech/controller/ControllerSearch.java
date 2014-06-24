@@ -1,15 +1,21 @@
 package com.etech.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Assert; 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.etech.entity.TdataCenter;
 import com.etech.service.EtechService;
 import com.etech.service.PolicyAdviceService;
@@ -100,16 +106,25 @@ public class ControllerSearch {
 	public String searchPolicyAdvice(HttpServletRequest request){
 		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
 		int perCount=Integer.parseInt(request.getParameter("perCount"));
-		TdataCenter formDataCenter=new TdataCenter();
-		String title=request.getParameter("title");
-		String powerLevel=request.getParameter("powerLevel");
-		String powerProperty=request.getParameter("powerProperty");
-		formDataCenter.setTitle(title);
-		formDataCenter.setPowerLevel(Integer.parseInt(powerLevel));
-		formDataCenter.setPowerProperty(Integer.parseInt(powerProperty));
-		List<TdataCenter> dataCenterList = policyAdviceService.searchPolicyAdvice(formDataCenter,currentPage,perCount);
-		log.debug(dataCenterList.size());
-		request.setAttribute("dataCenterList", dataCenterList);
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			long beginDate = formatter.parse(request.getParameter("beginDate")).getTime();
+			log.debug("beginData:"+beginDate);
+			long endDate=formatter.parse(request.getParameter("endDate")).getTime();
+			log.debug("endDate:"+endDate);
+			TdataCenter formDataCenter=new TdataCenter();
+			String title=request.getParameter("title");
+			String powerLevel=request.getParameter("powerLevel");
+			String powerProperty=request.getParameter("powerProperty");
+			formDataCenter.setTitle(title);
+			formDataCenter.setPowerLevel(Integer.parseInt(powerLevel));
+			formDataCenter.setPowerProperty(Integer.parseInt(powerProperty));
+			List<TdataCenter> dataCenterList = policyAdviceService.searchPolicyAdvice(formDataCenter,beginDate,endDate,currentPage,perCount);
+			log.debug(dataCenterList.size());
+			request.setAttribute("dataCenterList", dataCenterList);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		return "policyAdvice/policyAdviceSearch";
 	}
 	

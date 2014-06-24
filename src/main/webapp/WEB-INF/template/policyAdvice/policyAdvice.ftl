@@ -122,15 +122,7 @@
 			color:#FFFFFF;
 		}
     </style>
-        <script type="text/javascript">
-			// 转换时间类型为long类型。
-	  		var beginDate=$("input[eidLearning='beginDateLearning"+index+"']").val();
-			var endDate=$("input[eidLearning='endDateLearning"+index+"']").val();
-			if(beginDate!=""||endDate!=""){
-				beginDate=new Date(beginDate.replace(/-/g,",")).getTime();
-				endDate=new Date(endDate.replace(/-/g,",")).getTime(); 				
-			}
-		</script>
+
 </head>
 <body>
 	[#include "/include/header.ftl" /]

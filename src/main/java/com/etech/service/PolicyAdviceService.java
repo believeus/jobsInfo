@@ -12,8 +12,10 @@ import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.Query;
+import org.apache.lucene.search.RangeQuery;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.BooleanClause.Occur;
+import org.apache.lucene.search.TermRangeQuery;
 import org.apache.lucene.util.Version;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,6 +23,7 @@ import org.hibernate.Transaction;
 import org.hibernate.search.FullTextQuery;
 import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
+import org.hibernate.search.query.dsl.impl.RangeQueryContext;
 import org.junit.Assert;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -34,13 +37,14 @@ public class PolicyAdviceService {
 	@Resource
 	private SessionFactory sessionFactory;
 	@SuppressWarnings("unchecked")
-	public List<TdataCenter> searchPolicyAdvice(TdataCenter formDataCenter,int currentPage,int perCount){
+	public List<TdataCenter> searchPolicyAdvice(TdataCenter formDataCenter,Long beginData,Long endDate,int currentPage,int perCount){
 		List<TdataCenter> dataCenterList=null;
 		if(StringUtils.isEmpty(formDataCenter.getTitle())){
 			return dataCenterList;
 		}
 		log.debug("title:"+formDataCenter.getTitle());
-		
+		log.debug("beginData:"+beginData);
+		log.debug("endDate:"+endDate);
 		log.debug("powerLevel:"+formDataCenter.getPowerLevel());
 		log.debug("powerProperty:"+formDataCenter.getPowerProperty());
 		try {
@@ -70,6 +74,12 @@ public class PolicyAdviceService {
 				Term powerPropertyTerm=new Term("powerProperty",String.valueOf(powerProperty));
 				Query powerPropertyQuery=new TermQuery(powerPropertyTerm);
 				booleanQuery.add(powerPropertyQuery,Occur.MUST);
+			}
+			// 时间范围查询
+			if(!StringUtils.isEmpty(beginData)&&!StringUtils.isEmpty(endDate)){
+				// 范围查询
+				TermRangeQuery rangeQuery=new TermRangeQuery("editTime", String.valueOf(beginData), String.valueOf(endDate), true, true);
+				booleanQuery.add(rangeQuery,Occur.MUST);
 			}
 			
 			booleanQuery.add(titleAndContentQuery, Occur.MUST);
