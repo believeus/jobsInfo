@@ -117,8 +117,7 @@
 				<ul>
 					[#list monthSupplyList as supply]
 						<li>
-							<a href="/personalResume.jhtml?id=${supply.id}">${supply.workType.name}</a>
-							<span>${supply.editDate?number_to_datetime}</span>
+							<a href="">${supply.editDate?number_to_datetime?string?substring(0,7)}月供给排行</a>
 						</li>
 					[/#list]
 				</ul>
