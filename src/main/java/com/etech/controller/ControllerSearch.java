@@ -1,19 +1,18 @@
 package com.etech.controller;
 
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Assert; 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestMethod;
 import com.etech.entity.TdataCenter;
 import com.etech.service.EtechService;
+import com.etech.service.PolicyAdviceService;
 
 /**
  * 搜索
@@ -23,6 +22,8 @@ public class ControllerSearch {
 	private static Log log = LogFactory.getLog(ControllerSearch.class);
 	@Resource
 	private EtechService etechService;
+	@Resource
+	private PolicyAdviceService policyAdviceService;
 	/**简单搜索*/
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/search")
@@ -94,5 +95,22 @@ public class ControllerSearch {
 		return "occupationIntroduction/advancedSearch";			
 	}
 	
+	//
+	@RequestMapping(value="/searchPolicyAdvice",method = RequestMethod.POST)
+	public String searchPolicyAdvice(HttpServletRequest request){
+		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		int perCount=Integer.parseInt(request.getParameter("perCount"));
+		TdataCenter formDataCenter=new TdataCenter();
+		String title=request.getParameter("title");
+		String powerLevel=request.getParameter("powerLevel");
+		String powerProperty=request.getParameter("powerProperty");
+		formDataCenter.setTitle(title);
+		formDataCenter.setPowerLevel(Integer.parseInt(powerLevel));
+		formDataCenter.setPowerProperty(Integer.parseInt(powerProperty));
+		List<TdataCenter> dataCenterList = policyAdviceService.searchPolicyAdvice(formDataCenter,currentPage,perCount);
+		log.debug(dataCenterList.size());
+		request.setAttribute("dataCenterList", dataCenterList);
+		return "policyAdvice/policyAdviceSearch";
+	}
 	
 }
