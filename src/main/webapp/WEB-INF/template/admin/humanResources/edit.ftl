@@ -93,7 +93,7 @@ $().ready(function() {
 					是否置顶:
 				</th>
 				<td>
-					<input type="checkbox" name="top" value="1">
+					<input type="checkbox" name="top" value="0">
 				</td>
 			</tr>
 			<tr id="pathTr">

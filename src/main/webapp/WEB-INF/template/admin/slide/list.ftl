@@ -22,9 +22,11 @@ $().ready(function() {
 	</div>
 	<form id="listForm" action="list.jhtml" method="get">
 		<div class="bar">
+		[#if size >2]
 			<a href="add.jhtml" class="iconButton">
 				<span class="addIcon">&nbsp;</span>添加
 			</a>
+		[/#if]
 			<div class="buttonWrap">
 				<a href="javascript:;" id="deleteButton" class="iconButton disabled">
 					<span class="deleteIcon">&nbsp;</span>删除

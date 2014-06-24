@@ -50,6 +50,14 @@ $().ready(function() {
 		}
 	});
 	
+	$("#checked_true").click(function(){
+		if($("#checked_true").attr("value") == 0){
+			$("#checked_true").attr("value","1");
+		}else{
+			$("#checked_true").attr("value","0");
+		}
+	});
+	
 });
 </script>
 </head>
@@ -79,7 +87,7 @@ $().ready(function() {
 					是否置顶:
 				</th>
 				<td>
-					<input type="checkbox" name="top" value="1">
+					<input id="checked_true" type="checkbox" name="top"  [#if dataCenter.top == 1]value="1" checked="true"[#else]value="0"[/#if]>
 				</td>
 			</tr>
 			<tr id="pathTr">

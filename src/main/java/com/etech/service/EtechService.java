@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.etech.dao.EtechComDao;
-import com.etech.entity.Trecruit;
 
 @Service
 public class EtechService {

@@ -577,51 +577,7 @@
 							<a style="color:#FF7800;" href="/personalResume.jhtml?id=${qiuzhi.id}">[#if qiuzhi.trueName?exists] ${qiuzhi.trueName} [#else] 隔壁老王 [/#if]</a>
 						</span>
 						<span class="jianli_xinxi">
-							&nbsp;&nbsp;${qiuzhi.sex}
-							&nbsp;&nbsp;
-							[#if qiuzhi.eduLevel?exists]
-								${qiuzhi.eduLevel}
-							[#else]
-								大学
-							[/#if]
-							&nbsp;&nbsp;
-							[#if qiuzhi.comInfo?size != 0]
-								[#list qiuzhi.comInfo as comInfo]
-									${comInfo.workType.name}
-								[/#list]
-							[#else]
-								中学教师，小学教师
-							[/#if]
-						</span>
-					</div>
-					<div class="jianli_list">
-						<span class="jianli_name">
-							<a style="color:#FF7800;" href="/personalResume.jhtml?id=${qiuzhi.id}">[#if qiuzhi.trueName?exists] ${qiuzhi.trueName} [#else] 隔壁老王 [/#if]</a>
-						</span>
-						<span class="jianli_xinxi">
-							&nbsp;&nbsp;${qiuzhi.sex}
-							&nbsp;&nbsp;
-							[#if qiuzhi.eduLevel?exists]
-								${qiuzhi.eduLevel}
-							[#else]
-								大学
-							[/#if]
-							&nbsp;&nbsp;
-							[#if qiuzhi.comInfo?size != 0]
-								[#list qiuzhi.comInfo as comInfo]
-									${comInfo.workType.name}
-								[/#list]
-							[#else]
-								中学教师，小学教师
-							[/#if]
-						</span>
-					</div>
-					<div class="jianli_list">
-						<span class="jianli_name">
-							<a style="color:#FF7800;" href="/personalResume.jhtml?id=${qiuzhi.id}">[#if qiuzhi.trueName?exists] ${qiuzhi.trueName} [#else] 隔壁老王 [/#if]</a>
-						</span>
-						<span class="jianli_xinxi">
-							&nbsp;&nbsp;${qiuzhi.sex}
+							&nbsp;&nbsp;[#if qiuzhi.sex == 'man']男[#else]女[/#if]
 							&nbsp;&nbsp;
 							[#if qiuzhi.eduLevel?exists]
 								${qiuzhi.eduLevel}

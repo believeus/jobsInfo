@@ -56,6 +56,8 @@ public class ControllerNews extends ControllerCRUD{
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
 		//新闻动态
+		List<?> dataCenters = super.listDataInfoByTop(request,EtechGobal.newsDinamic);
+		request.setAttribute("size",dataCenters.size());
 		request.setAttribute("type",EtechGobal.newsDinamic);
 		return "admin/news/add";
 	}

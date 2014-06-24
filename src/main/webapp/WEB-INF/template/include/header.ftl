@@ -25,6 +25,8 @@
 		width:1283px;
 		height:132px;
 		background:url(/resource/public/images/head_pic.gif);
+		margin-left:auto;
+		margin-right:auto;
 	}
 	.j_head_nav{
 		width:100%;
@@ -55,7 +57,22 @@
 		color:#ededa2 !important;
 	}
 </style>
+<!--IE-->
+<!--[if IE ]> 
+	<style type="text/css">
+		.box{
+			right:0;
+			top:0;
+		}
+	</style>
+<![endif]-->
 <script type="text/javascript">
+	//给所有页面BODY加背景色
+	 window.onload=addColor();
+	 function addColor(){
+	 	document.body.style.background = "#FFFBF6";
+	 }
+
 	$().ready(function(){
 		$("body").css("background","#FFFBF6");
 		

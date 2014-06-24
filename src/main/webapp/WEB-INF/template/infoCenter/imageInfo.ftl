@@ -37,10 +37,10 @@ $(document).ready(function(){
      <img src="${data.imgpath}" /> 
     <div class="panel-overlay">
       	<div style="text-align:left;padding:0 12px;">
-      		[#if data.title?length > 50]
-				${data.title?string?substring(0,50)}...
+      		[#if data.content?length > 50]
+				${data.content?string?substring(0,50)}...
 			[#else]
-				${data.title}
+				${data.content}
 			[/#if]
   		</div>
     </div>

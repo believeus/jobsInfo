@@ -48,8 +48,8 @@ public class ControllerIndex {
 		List<TdataCenter> works = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("works",works ); 
 		
-		//工作动态
-		hql="From TdataCenter dataCenter where dataCenter.type='0'";
+		//新闻动态
+		hql="From TdataCenter dataCenter where dataCenter.type='0' and dataCenter.top='1' order by editTime desc";
 		List<TdataCenter> news = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("news",news ); 
 		

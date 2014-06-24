@@ -84,10 +84,6 @@ $().ready(function() {
 				<th>
 					<a href="javascript:;" class="sort" name="type">置顶</a>
 				</th>
-				<!--
-				<th>
-					<a href="javascript:;" class="sort" name="endDate">排序</a>
-				</th> -->
 				<th>
 					<a href="#"  class="sort">操作</a>
 				</th>
@@ -104,12 +100,8 @@ $().ready(function() {
 					${center.title}
 				</td>
 				<td>
-					<input type="checkbox" id="" />
+					<input type="checkbox" id="" [#if center.top == 1]checked="true"[/#if]/>
 				</td>
-				<!--<td>
-					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
-					<a href="" style="text-decoration:underline;">降</a>
-				</td>-->
 				<td>
 					<a href="edit.jhtml?id=${center.id}">[修改]</a>
 				</td>

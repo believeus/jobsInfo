@@ -106,9 +106,10 @@
     	}
     	.youqing{
     		width:998px;
-    		height:55px;
+    		height:auto;
     		border:1px solid #e4e4e4;
     		background:#FFFFFF;
+    		overflow:hidden;
     	}
     	.picshow{
     		width:314px;
@@ -182,6 +183,15 @@
 		    margin-right: 10px;
 		    width: 60px;
 		    cursor:pointer;
+		}
+		.yqlj{
+			 float: left;
+			 margin-right: 10px; 
+			 line-height: 30px;
+		}
+		.yqlj a {
+		    color: #0000ff;
+		    text-decoration: underline;
 		}
     </style>
     <style type="text/css">
@@ -330,7 +340,7 @@
 				<div style="padding-left: 20px;margin-bottom:20px;margin-top:10px;">
 					[#list news as new]
 						[#if new_index==0]
-							<h2 style="margin: 0px; font-size: 21px; font-weight: bold;"><a href="/newsInfo.jhtml?id=${new.id}">
+							<h2 style="margin: 0px; font-size: 21px; font-weight: bold;"><a href="/newsInfo.jhtml?id=${new.id}" title="${new.title}">
 							[#if new.title?length > 15]
 								${new.title?string?substring(0,15)}...
 							[#else]
@@ -369,7 +379,7 @@
 				<hr style="margin-left: 10px; margin-right: 10px; border: 1px dashed #e4e4e4;">
 				<ul class="xinwen_ul" style="padding-left: 25px;">
 					[#list news as new]
-					[#if new_index > 1]	
+					[#if new_index > 1 && new_index <6]	
 						<li><a href="/newsInfo.jhtml?id=${new.id}">
 						[#if new.title?length > 16]
 							${new.title?string?substring(0,16)}...
@@ -441,7 +451,7 @@
 								<ul style="padding-left:25px;">
 									[#list qiuzhiList as qiuzhi]
 										<li>
-											<a href="/personalResume.jhtml?id=${qiuzhi.id}">${qiuzhi.trueName}&nbsp;&nbsp;${qiuzhi.sex}&nbsp;&nbsp;${qiuzhi.eduLevel}&nbsp;&nbsp;${qiuzhi.workType}</a>
+											<a href="/personalResume.jhtml?id=${qiuzhi.id}">${qiuzhi.trueName}&nbsp;&nbsp;[#if qiuzhi.sex == 'man']男[#else]女[/#if]&nbsp;&nbsp;${qiuzhi.eduLevel}&nbsp;&nbsp;${qiuzhi.workType}</a>
 											<span>${qiuzhi.createDate?number_to_datetime}</span>
 										</li>
 									[/#list]
@@ -728,9 +738,9 @@
 		</div>
 		<div class="youqing">
 			<span style="line-height: 55px; padding-left: 15px;">友情链接</span>
-			<div style="width: 850px; float: right; margin-right: 25px;">
+			<div style="width: 850px; float: right; margin-right: 25px;margin-top:11px;">
 				[#list links as links]
-					<span style="float: left; margin-right: 10px; width: 200px; line-height: 55px;">
+					<span class="yqlj">
 						<a href="http://${links.alink}" title="${links.title}" target="_blank">${links.title}</a>
 					</span>
 				[/#list]

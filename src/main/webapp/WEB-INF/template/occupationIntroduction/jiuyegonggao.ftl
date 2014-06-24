@@ -126,7 +126,7 @@
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<h2 style="text-align:center;font-weight:normal;">面试环节中的薪资问题</h2>
-				<p>来源：潜江公共就业服务网 发布时间：2014-04-14 00:40 </p>
+				<p style="text-align:center;">来源：潜江公共就业服务网 发布时间：2014-04-14 00:40 </p>
 				<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">
 				<p style="text-align: center;">
 					<img src="/resource/public/images/news01.png">

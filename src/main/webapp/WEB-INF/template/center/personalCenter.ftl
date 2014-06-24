@@ -7,6 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script type="text/javascript" src="/resource/public/js/jquery.js"></script>
     <script type="text/javascript" src="/resource/public/js/jquery.form.js"></script>
+    <script type="text/javascript" src="/resource/public/js/admin/jquery.validate.js"></script>
     <script type="text/javascript"  src="/resource/public/js/Etech.js"></script>
     <link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
     <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />  
@@ -302,6 +303,12 @@
     			$("#base_xinxi").hide();
     		});
     		
+    		// 表单验证
+			$("#pdFrom").validate({
+				rules: {
+					password: "required"
+				}
+			});
     		
 						
     		//添加学习经历
@@ -997,8 +1004,24 @@
 				// 保存其他信息。
 				$("#saveInfo").click(function() {
 					var loginName=$("#loginName").val();
+					var phoneNum =$("#phoneNum").val();
+					var regPartton=/^(?:13\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/; //验证手机号
+					
+					var dataTime=$("#beginDate");
+					var isStudy=$("#schoolLearning1");
+					alert(isStudy.val()+"---"+dataTime.val());
+					if(isStudy.val() != "" && dataTime.val() == ""){
+						alert("请选择学习经历时间");
+						return false;
+					}
+					
 					if(loginName==""){
 						alert("用户名必填！");
+					}else if(phoneNum==""){
+						alert("手机号码必填！");
+					}else if(!regPartton.test(phoneNum)){
+						alert("手机号码格式不正确！");
+						return false;
 					}else{
 						submitValid("submit");
 					}
@@ -1011,16 +1034,22 @@
 				
 				// 修改密码
 				$("#btn_pd").click(function(){
+					var password=$(".pass_text").val();
+					
+					if(password==""){
+						alert("请输入新密码");
+						return false;
+					}
 					$("#pdFrom").ajaxSubmit({
-				            	 type: "post",
-							     url: "/user/center/updatepd.jhtml",
-							     dataType: "json",
-							     success: function(data){
-								     $("#need").html("密码修改成功！正在返回页面....");// 这个是渐渐消失 			     		
-							     	 setTimeout(function(){ alert_win.style.display='none';},1000);	
-							     }
-			        	});	
-				
+		            	 type: "post",
+					     url: "/user/center/updatepd.jhtml",
+					     dataType: "json",
+					     success: function(data){
+						     $("#need").html("密码修改成功！正在返回页面....");// 这个是渐渐消失 		     		
+					     	 setTimeout(function(){ alert_win.style.display='none';},1000);
+					     	 location.replace("/common-user/center.jhtml");	
+					     }
+		        	});	
 				});
 			
 			})
@@ -1115,7 +1144,7 @@
 								</tr>
 								<tr>
 									<td>年龄:</td>
-									<td><input type="text" id="age" name="age" value="${sessionUser.age}"></td>
+									<td><input type="text" id="age" name="age" value="${sessionUser.age}" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"></td>
 								</tr>
 								<tr>
 									<td>民族:</td>
@@ -1153,7 +1182,7 @@
 									<td><input type="text" id="strongPoint" name="strongPoint" value="${sessionUser.strongPoint}"></td>
 								</tr>
 								<tr>
-									<td>联系电话:</td>
+									<td>手机号码:</td>
 									<td><input type="text" id="phoneNum" name="phoneNum" value="${sessionUser.phoneNum}"></td>
 								</tr>
 								<tr>
@@ -1180,11 +1209,11 @@
 								</tr>
 								<tr>
 									<td>密码:</td>
-									<td><input type="text" id="password"  name="password" placeholder="不填则默认"></td>
+									<td><input type="text" id="password"  name="password" placeholder="不填" readonly="readonly"></td>
 								</tr>
 								<tr>
 									<td>身份证号:</td>
-									<td><input type="text" id="idcard" name="idcard" value="${sessionUser.idcard}"></td>
+									<td><input type="text" id="idcard" name="idcard" value="${sessionUser.idcard}"  onkeyup="value=this.value.replace(/\D+x/g,'')" minlength="15" minlength="18"></td>
 								</tr>
 								<tr>
 									<td>文化程度:</td>
@@ -1209,7 +1238,7 @@
 								</tr>
 								<tr>
 									<td>身高:</td>
-									<td><input type="text" id="height" name="height" value="${sessionUser.height}"></td>
+									<td><input type="text" id="height" name="height" value="${sessionUser.height}" placeholder="cm"></td>
 								</tr>
 								<tr>
 									<td>健康状况:</td>
@@ -1232,7 +1261,7 @@
 								</tr>
 								<tr>
 									<td style="font-size: 12px;">就失业证号:</td>
-									<td><input type="text" id="jobId" name="jobId" value="${sessionUser.jobId}"></td>
+									<td><input type="text" id="jobId" name="jobId" value="${sessionUser.jobId}"onkeyup="value=this.value.replace(/\D+/g,'')"></td>
 								</tr>
 								<tr>
 									<td>独生子女:</td>
@@ -1633,7 +1662,6 @@
 					
 					<p style="text-align:center;">
 						<input type="button" id="saveInfo" value="保存">
-						<input type="reset" value="重写">
 					</p>
 				</div>
 				

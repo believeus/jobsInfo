@@ -38,7 +38,6 @@ import org.springframework.util.ReflectionUtils;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import com.etech.entity.TdataCenter;
-import com.etech.entity.Trecruit;
 
 @Repository
 public class EtechComDao extends HibernateDaoSupport {

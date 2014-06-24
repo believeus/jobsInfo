@@ -65,14 +65,14 @@
     	<div style="float:left; margin:10px auto; border-right:1px solid #DCDCDC; width:600px;">
         	<h2 style="margin-left:30px;">${imgVedio.title}</h2>
             <div style="width:585px; margin:0px auto;">
-            	<embed width="585" height="432" flashvars="" bgcolor="#000000" quality="high" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" id="myMovie" src="/${imgVedio.vedioUrl}" type="application/x-shockwave-flash" pluginspage="">
+            	<embed width="585" height="432" flashvars="" bgcolor="#000000" quality="high" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" id="myMovie" [#if imgVedio.vedioUrl?exists] src="/${imgVedio.vedioUrl}"[#else]src="http://p.you.video.sina.com.cn/swf/bokePlayer20140616_V4_1_42_49.swf"[/#if] type="application/x-shockwave-flash" pluginspage="">
             </div>
             <div style="padding:20px 29px;">
             	<div style="float:left; width:465px;">
                 	<table style="width:100%; border-collapse:collapse;" id="tab_1">
                       <tbody><tr>
                         <td>发布：</td>
-                        <td style="width:235px;">${imgVedio.createTime}</td>
+                        <td style="width:235px;">${imgVedio.createTime?number_to_datetime}</td>
                         <td>标签：</td>
                         <td>磁悬浮列车</td>
                       </tr>

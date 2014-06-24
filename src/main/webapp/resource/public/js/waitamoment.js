@@ -3,7 +3,7 @@
             var msgw, msgh, bordercolor;
             msgw = 32; //提示窗口的宽度 
             msgh = 32; //提示窗口的高度 
-            bordercolor = "white"; //提示窗口的边框颜色 
+            bordercolor = "none"; //提示窗口的边框颜色 
             titlecolor = "#99CCFF"; //提示窗口的标题颜色 
 
             var bgObj = document.createElement("div");

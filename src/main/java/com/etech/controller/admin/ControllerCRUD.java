@@ -42,7 +42,10 @@ public class ControllerCRUD {
 			InputStream inputStream;
 			try {
 				inputStream = file.getInputStream();
-				if(inputStream.available()==0)break;
+				if(inputStream.available()==0){
+					storepath="/group/M00/01/21/6551-A40C-4FDA-8D55-87265167B506.jpg";
+					break;
+				}
 				count++;
 				Assert.assertNotNull("upload file InputStream is null", inputStream);
 				String fileName = file.getName();
@@ -66,11 +69,17 @@ public class ControllerCRUD {
 		String author=request.getParameter("author");
 		/**Begin Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
 		String content=request.getParameter("content");
+		System.out.println("**************************************************");
+		System.out.println(content);
+		if (content.contains("div")) {
+			System.out.println("nimei");
+		}
+		System.out.println("**************************************************");
 		/**End Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
 		String top=request.getParameter("top");
 		String alink=request.getParameter("alink");
 		if (top == null) {
-			top = "1";
+			top = "0";
 		}
 		center.setType(type);
 		center.setTitle(title);
@@ -131,7 +140,7 @@ public class ControllerCRUD {
 	// 信息列表
 	public List<?> listDataInfo(HttpServletRequest request,int type) {
 		// 查询新闻动态
-		String hql="From TdataCenter center where center.type='"+type+"'";
+		String hql="From TdataCenter center where center.type='"+type+"' order by editTime desc";
 		@SuppressWarnings("unchecked")
 		List<?> dataCenters = (List<TdataCenter>)etechService.findObjectList(hql, 1, 15, TdataCenter.class);
 		return dataCenters;
@@ -145,5 +154,13 @@ public class ControllerCRUD {
 	public boolean unTop(int id){
 		etechService.updata(TdataCenter.class, "top", 0, "id", id);
 		return true;
+	}
+	
+	// 查询置顶的新闻
+	@SuppressWarnings("unchecked")
+	public List<?> listDataInfoByTop(HttpServletRequest request, int type) {
+		String hql="From TdataCenter center where center.type='"+type+"' and center.top = '1'";
+		List<?> dataCenters = (List<TdataCenter>)etechService.findObjectList(hql, 1, 15, TdataCenter.class);
+		return dataCenters;
 	}
 }

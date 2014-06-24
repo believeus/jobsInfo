@@ -407,9 +407,12 @@
 				<table>
 					<tr>
 						[#list vedios as vedio]
+						[#if vedio_index <5]
 						<td>
 							<p>
-								<a href="/videosInfo.jhtml?id=${vedio.id}"><img src="${vedio.imgpath}" width="104"></a>
+								<a href="/videosInfo.jhtml?id=${vedio.id}">
+									<img src="${vedio.imgpath}" width="105" height="105">
+								</a>
 							</p>
 							<p><a href="/videosInfo.jhtml?id=${vedio.id}">
 							[#if vedio.title?length > 6]
@@ -420,6 +423,7 @@
 						
 							</a></p>
 						</td>
+						[/#if]
 						[/#list]
 					</tr>
 				</table>

@@ -55,6 +55,7 @@ public class ControllerSlide extends ControllerCRUD{
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
 		request.setAttribute("type",EtechGobal.slide);
+		request.setAttribute("size",super.listDataInfo(request,EtechGobal.slide).size());
 		return "admin/slide/add";
 	}
 	/**
