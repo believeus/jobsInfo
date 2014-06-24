@@ -92,5 +92,29 @@ public class EtechGobal {
 	public static final int top=1;
 	//不置顶
 	public static final int untop=0;
+	// 效率等级 查询所有
+	public static final int PowerLevel_all=0;
+	//法律
+	public static final int PowerLevel_laws=1;
+	//行政法规
+	public static final int PowerLevel_executiveAndlaws=2;
+	//地方法规
+	public static final int PowerLevel_localLaws=3;
+	//规章
+	public static final int PowerLevel_rules=4;
+	//规范性文件
+	public static final int PowerLevel_regularFile=5;
+	// 省厅文件
+	public static final int PowerLevel_provinceFallFile=6;
+	// 效力属性 全部
+	public static final int PowerProperty_All=0;
+	// 效力属性 有效
+	public static final int PowerProperty_Valid=1; 
+	// 效力属性 失效
+	public static final int PowerProperty_failure=2;
+	// 效率属性 废止
+	public static final int PowerProperty_abolish=3;
+	
+
 	
 }

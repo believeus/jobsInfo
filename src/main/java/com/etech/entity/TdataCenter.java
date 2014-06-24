@@ -24,6 +24,12 @@ public class TdataCenter extends TbaseEntity implements Cloneable{
 	private long createTime;
 	private long editTime;
 	private int clickNum;
+	// 0:所有效率等级 1:法律 
+	// 2：行政法规 3：地方法规
+	// 4: 规章 5:规范性文件 6:省厅文件
+	private int powerLevel;
+	// 效率属性 0:全部 1:有效 2:失效
+	private int powerProperty;
 	// 1 置顶 0：取消之地
 	private int top;
 	private String alink;
@@ -84,16 +90,30 @@ public class TdataCenter extends TbaseEntity implements Cloneable{
 	public void setAlink(String alink) {
 		this.alink = alink;
 	}
-	@Override
-	public Object clone() throws CloneNotSupportedException {
-		return super.clone();
-	}
+	
 	public int getClickNum() {
 		return clickNum;
 	}
 	public void setClickNum(int clickNum) {
 		this.clickNum = clickNum;
 	}
-	
+	@Field(store=Store.YES,index = Index.TOKENIZED)
+	public int getPowerLevel() {
+		return powerLevel;
+	}
+	public void setPowerLevel(int powerLevel) {
+		this.powerLevel = powerLevel;
+	}
+	@Field(store=Store.YES,index = Index.TOKENIZED)
+	public int getPowerProperty() {
+		return powerProperty;
+	}
+	public void setPowerProperty(int powerProperty) {
+		this.powerProperty = powerProperty;
+	}
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 	
 }
