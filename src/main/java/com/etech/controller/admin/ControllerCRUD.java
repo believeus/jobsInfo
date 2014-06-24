@@ -36,17 +36,23 @@ public class ControllerCRUD {
 	public void savaDataInfo(HttpServletRequest request) {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		String storepath = "";
+		int count=0;
 		Map<String, MultipartFile> files = multipartRequest.getFileMap();
 		for (MultipartFile file : files.values()) {
 			InputStream inputStream;
 			try {
 				inputStream = file.getInputStream();
 				if(inputStream.available()==0)break;
+				count++;
 				Assert.assertNotNull("upload file InputStream is null", inputStream);
 				String fileName = file.getName();
 				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
 				log.debug("upload file stuffix"+extention);
-				storepath = mydfsTrackerServer.upload(inputStream, extention);
+				if (count>1) {
+					storepath += "#";
+				}
+				storepath += mydfsTrackerServer.upload(inputStream, extention);
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

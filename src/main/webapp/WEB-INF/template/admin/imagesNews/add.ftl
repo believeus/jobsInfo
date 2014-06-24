@@ -53,28 +53,6 @@ $().ready(function() {
 	});
 	
 	var a = 1;
-    function img(){
-    	alert("xxxx---"+a);
-		for(var i=0;i<a;i++){
-				alert(i);
-				$("#ImgForm"+i).ajaxSubmit({
-	            	 type: "post",
-				     url: "/upload.jhtml",
-				     dataType: "json",
-				     success: function(data){
-				     	alert(data);
-				     	var html='<input type="hidden" name="" value="'+data+'">';
-				     	$("#ImgForm"+i).append(html);
-				     }
-	  			});	
-	  		
-	  	}
-   }
-   
-	$("#submit_tijiao").click(function(){
-		img();
-		return false;
-	});
 	
 	$("#add_imgs").click(function(){
 		[@compress single_line = true]
@@ -85,7 +63,7 @@ $().ready(function() {
 							<span>
 								<a class="click_upimgs" onclick="file'+a+'.click()" href="javascript:return false;">点击上传图片</a>
 							</span>
-							<img style="width:190px;height:120px" src="" name="img"/>
+							<img style="width:190px;height:120px" src="/resource/public/images/bg.png" name="img"/>
 						</div>
 						<input type="file" style="display:none" id="file'+a+'" name="file'+a+'" onchange="filename'+a+'.value=this.value;loadImgFast(this,'+a+')">
 						<input type="hidden" id="filename'+a+'" name="filename'+a+'">
@@ -154,7 +132,7 @@ $().ready(function() {
 									<span>
 										<a class="click_upimgs" onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
 									</span>
-									<img style="width:190px;height:120px" src="" name="img"/>
+									<img style="width:190px;height:120px" src="/resource/public/images/bg.png" name="img"/>
 								</div>
 								<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
 								<input type="hidden" id="filename0" name="filename0">

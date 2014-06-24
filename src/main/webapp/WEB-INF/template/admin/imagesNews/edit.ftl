@@ -50,6 +50,34 @@ $().ready(function() {
 		}
 	});
 	
+	var a = 1;
+	
+	[#list dataCenter.imgpath?string?split("#") as url]   
+		[#if url!=""]
+			a++;
+		[/#if]
+	[/#list]
+	
+	$("#add_imgs").click(function(){
+		[@compress single_line = true]
+			var html =
+				'<div class="img_list">
+					<span style="float:left">
+						<div class="brandImg">
+							<span>
+								<a class="click_upimgs" onclick="file'+a+'.click()" href="javascript:return false;">点击上传图片</a>
+							</span>
+							<img style="width:190px;height:120px" src="/resource/public/images/bg.png" name="img"/>
+						</div>
+						<input type="file" style="display:none" id="file'+a+'" name="file'+a+'" onchange="filename'+a+'.value=this.value;loadImgFast(this,'+a+')">
+						<input type="hidden" id="filename'+a+'" name="filename'+a+'">
+					</span>
+				</div>';
+		[/@compress]
+		$(".img_list").parent().append(html);
+		a++;
+	});
+	
 });
 </script>
 </head>
@@ -85,7 +113,8 @@ $().ready(function() {
 			</tr>
 			<tr id="pathTr">
 				<th>
-					<span class="requiredField">*</span>相关图片:
+					<span class="requiredField">*</span>相关图片:<br/>
+					<input id="add_imgs" type="button" value="添加图片" style="font-size: 10px; width: 52px;cursor:pointer;">
 				</th>
 				<td colspan="3">
 					<script type="text/javascript">
@@ -101,20 +130,23 @@ $().ready(function() {
 					   		} 
 						}
 					</script>
-					
-					<div>
+					[#list dataCenter.imgpath?string?split("#") as url]   
+					[#if url!=""]
+					<div class="img_list">
 						<span style="float:left">
 							<div class="brandImg">
 								<span>
-									<a onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
+									<a onclick="file${url_index+1}.click()" href="javascript:return false;">点击上传图片</a>
 								</span>
-								<input type="hidden" name="imgpath" value="${dataCenter.imgpath}"/>
-								<img style="width:190px;height:120px" [#if dataCenter.imgpath?exists] src="/${dataCenter.imgpath}" [#else]src="/resource/public/images/bg.png"[/#if] name="img"/>
+								<input type="hidden" name="imgpath" value="${url}"/>
+								<img style="width:190px;height:120px" [#if url?exists] src="/${url}" [#else]src="/resource/public/images/bg.png"[/#if] name="img"/>
 							</div>
-							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
-							<input type="hidden" id="filename0" name="filename0">
+							<input type="file" style="display:none" id="file${url_index+1}" name="file${url_index+1}" onchange="filename${url_index+1}.value=this.value;loadImgFast(this,${url_index+1})">
+							<input type="hidden" id="filename${url_index+1}" name="filename${url_index+1}">
 						</span>
 					</div>
+					[/#if]
+					[/#list]
 					<style type="text/css">
 						.brandImg span{
 							display:block;
