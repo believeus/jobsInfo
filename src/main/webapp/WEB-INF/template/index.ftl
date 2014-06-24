@@ -417,16 +417,18 @@
 								<p><span style="margin-left:30px;float:none;">政策信息</span></p>
 								<ul style="padding-left:25px;">
 									[#list countryLawDataList as countryLawData]
-										<li>
-											<a href="/countryLaw.jhtml?id=${countryLawData.id}">
-												[#if countryLawData.title?length > 15]
-													${countryLawData.title?string?substring(0,15)}...
-												[#else]
-													${countryLawData.title}
-												[/#if]
-											</a>
-											<span style="">${countryLawData.editTime?number_to_datetime}</span>
-										</li>
+										[#if countryLawData_index <6]
+											<li>
+												<a href="/countryLaw.jhtml?id=${countryLawData.id}">
+													[#if countryLawData.title?length > 15]
+														${countryLawData.title?string?substring(0,15)}...
+													[#else]
+														${countryLawData.title}
+													[/#if]
+												</a>
+												<span style="">${countryLawData.editTime?number_to_datetime}</span>
+											</li>
+										[/#if]
 									[/#list]
 								</ul>
 							</div>
@@ -451,16 +453,18 @@
 								<p><span style="margin-left:30px;float:none;">工作动态</span></p>
 								<ul style="padding-left:25px;">
 								[#list works as work]
-									<li>
-										<a href="/workInfo.jhtml?id=${work.id}">
-											[#if work.title?length > 15]
-												${work.title?string?substring(0,15)}...
-											[#else]
-												${work.title}
-											[/#if]
-										</a>
-										<span>${work.editTime?number_to_datetime}</span>
-									</li>
+									[#if work_index <6]
+										<li>
+											<a href="/workInfo.jhtml?id=${work.id}">
+												[#if work.title?length > 15]
+													${work.title?string?substring(0,15)}...
+												[#else]
+													${work.title}
+												[/#if]
+											</a>
+											<span>${work.editTime?number_to_datetime}</span>
+										</li>
+									[/#if]
 								[/#list]
 								</ul>
 							</div>
@@ -477,13 +481,16 @@
 				</p>
 				<ul id="" style="padding-left:25px;">
 					[#list notices as notice]
+						[#if notice_index <8]
 						<li><a href="/publicityInfo.jhtml?id=${notice.id}">
 							[#if notice.title?length > 13]
 								${notice.title?string?substring(0,13)}...
 							[#else]
 								${notice.title}
 							[/#if]
-					</a><span>${notice.createTime?number_to_datetime}</span></li>
+							</a><span>${notice.createTime?number_to_datetime}</span>
+						</li>
+						[/#if]
 					[/#list]
 				</ul>
 			</div>

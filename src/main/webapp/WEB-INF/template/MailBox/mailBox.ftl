@@ -171,6 +171,7 @@ textarea{
 				</p>
 				<ul id="" style="padding-left:25px;">
 					[#list notices as notice]
+					[#if notice_index <8]
 						<li><a href="/publicityInfo.jhtml?id=${notice.id}">
 							[#if notice.title?length > 13]
 								${notice.title?string?substring(0,13)}...
@@ -178,6 +179,7 @@ textarea{
 								${notice.title}
 							[/#if]
 					</a><span>${notice.createTime?number_to_datetime}</span></li>
+					[/#if]
 					[/#list]
 				</ul>
 			</div>

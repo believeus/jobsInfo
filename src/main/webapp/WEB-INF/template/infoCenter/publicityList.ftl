@@ -124,9 +124,11 @@
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<ul>
 					[#list notices as notice]
-					<li>
-						<a href="/publicityInfo.jhtml?id=${notice.id}">${notice.title}</a><span>${notice.createTime?number_to_datetime}</span>
-					</li>
+						[#if notice_index <8]
+						<li>
+							<a href="/publicityInfo.jhtml?id=${notice.id}">${notice.title}</a><span>${notice.createTime?number_to_datetime}</span>
+						</li>
+						[/#if]
 					[/#list]
 					
 				</ul>

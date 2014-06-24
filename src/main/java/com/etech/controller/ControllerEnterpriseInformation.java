@@ -34,7 +34,6 @@ public class ControllerEnterpriseInformation {
 		session.setAttribute("trecruit", trecruit);
 		String hql="From TentImgVedio vedio where vedio.type='1'";
 		List<TentImgVedio> vedios = (List<TentImgVedio>)etechService.findListByHQL(hql);
-		System.out.println(vedios.size());
 		request.setAttribute("vedios", vedios);
 		return "occupationIntroduction/enterpriseInformation";
 	}

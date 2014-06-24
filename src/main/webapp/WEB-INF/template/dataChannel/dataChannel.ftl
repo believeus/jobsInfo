@@ -68,6 +68,7 @@ a:link{
             <div class="gg" style="font-size:12px; font-weight:100;">
               <ul>
            		[#list notices as notice]
+           		[#if notice_index <8]
 					<li>
 						<a href="/publicityInfo.jhtml?id=${notice.id}">
 						[#if notice.title?length > 13]
@@ -78,6 +79,7 @@ a:link{
 						</a>
 						<span>${notice.createTime?number_to_datetime}</span>
 					</li>
+				[/#if]
 				[/#list]
               </ul>
             </div>

@@ -64,6 +64,7 @@ $().ready(function() {
 								<a class="click_upimgs" onclick="file'+a+'.click()" href="javascript:return false;">点击上传图片</a>
 							</span>
 							<img style="width:190px;height:120px" src="/resource/public/images/bg.png" name="img"/>
+							<a class="delete_pic" href="javascript:void(0);">删除</a>
 						</div>
 						<input type="file" style="display:none" id="file'+a+'" name="file'+a+'" onchange="filename'+a+'.value=this.value;loadImgFast(this,'+a+')">
 						<input type="hidden" id="filename'+a+'" name="filename'+a+'">
@@ -71,9 +72,17 @@ $().ready(function() {
 				</div>';
 		[/@compress]
 		$(".img_list").parent().append(html);
+		
+		//删除企业视频
+		$("a.delete_pic").on("click",function(){
+			if ($(".delete_pic").size() <= 1) {
+				alert("必须至少保留一个参数");
+			} else {
+				$(this).closest("div").remove();
+			}
+		});
 		a++;
 	});
-	
 });
 </script>
 </head>
@@ -133,12 +142,17 @@ $().ready(function() {
 										<a class="click_upimgs" onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
 									</span>
 									<img style="width:190px;height:120px" src="/resource/public/images/bg.png" name="img"/>
+									<a class="delete_pic" href="javascript:void(0);">删除</a>
 								</div>
 								<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
 								<input type="hidden" id="filename0" name="filename0">
 							</span>
 						</div>
 					<style type="text/css">
+						.delete_pic{
+							color:#FFFFFF;
+							font-size:16px;
+						}
 						.brandImg span{
 							display:block;
 							position:absolute;
@@ -147,14 +161,19 @@ $().ready(function() {
 							height:130px;
 						}
 						
+						.brandImg a{
+							text-decoration:underline;
+						}
 						.brandImg{
 							border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
 						    border-radius: 2px 2px 2px 2px;
 						    border-style: solid;
 						    border-width: 1px;
 						    background-color: #666666;
-						    width:192px;height:122px;
+						    width:192px;
+						    height:150px;
 						    position:relative;
+						    text-align:center;
 						}
 						
 						.brandImg span:hover{

@@ -197,13 +197,15 @@
 				</p>
 				<ul style="padding-left:25px;">
 					[#list notices as notice]
-						<li><a href="/publicityInfo.jhtml?id=${notice.id}">
+						[#if notice_index <8]
+							<li><a href="/publicityInfo.jhtml?id=${notice.id}">
 							[#if notice.title?length > 13]
 								${notice.title?string?substring(0,13)}...
 							[#else]
 								${notice.title}
 							[/#if]
-					</a><span>${notice.createTime?number_to_datetime}</span></li>
+							</a><span>${notice.createTime?number_to_datetime}</span></li>
+						[/#if]
 					[/#list]
 				</ul>
 			</div>
@@ -288,7 +290,7 @@
 					<hr style="margin-left: 10px; margin-right: 10px; border: 1px dashed #e4e4e4;">
 					<ul class="xinwen_ul" style="padding-left: 25px;">
 						[#list news as new]
-						[#if new_index > 1]	
+						[#if new_index > 1 && new_index < 6]	
 							<li><a href="/newsInfo.jhtml?id=${new.id}">
 							[#if new.title?length > 16]
 								${new.title?string?substring(0,16)}...
@@ -334,13 +336,18 @@
 					<div style="width: 320px; height: 0px; margin-left: auto; margin-right: auto; border: 1px dashed #E4E4E4;margin-bottom:15px;"></div>
 					<ul style="margin: 0px; padding: 0px 15px;">
 						[#list news as new]
-							<li><a href="/newsInfo.jhtml?id=${new.id}" title="${new.title}">
-							[#if new.title?length > 15]
-								${new.title?string?substring(0,15)}...
-							[#else]
-								${new.title}
+							[#if new_index > 0 && new_index <5]
+								<li>
+									<a href="/newsInfo.jhtml?id=${new.id}" title="${new.title}">
+									[#if new.title?length > 15]
+										${new.title?string?substring(0,15)}...
+									[#else]
+										${new.title}
+									[/#if]
+									</a>
+									<span>${new.createTime?number_to_datetime}</span>
+								</li>
 							[/#if]
-							</a><span>${new.createTime?number_to_datetime}</span></li>
 						[/#list]
 					</ul>
 				</div>
@@ -376,14 +383,18 @@
 					<div style="width: 320px; height: 0px; margin-left: auto; margin-right: auto; border: 1px dashed #E4E4E4;margin-bottom:15px;"></div>
 					<ul style="margin: 0px; padding: 0px 15px;">
 						[#list works as work]
-							<li><a href="/workInfo.jhtml?id=${work.id}" title="${work.title}">
-							[#if work.title?length > 15]
-								${work.title?string?substring(0,15)}...
-							[#else]
-								${work.title}
+							[#if work_index > 0 && work_index <5]
+								<li>
+									<a href="/workInfo.jhtml?id=${work.id}" title="${work.title}">
+									[#if work.title?length > 15]
+										${work.title?string?substring(0,15)}...
+									[#else]
+										${work.title}
+									[/#if]
+									</a>
+									<span>${work.editTime?number_to_datetime}</span>
+								</li>
 							[/#if]
-							
-							</a><span>${work.editTime?number_to_datetime}</span></li>
 						[/#list]
 					</ul>
 				</div>
