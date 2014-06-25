@@ -354,8 +354,10 @@
 				        	}
 				        },  
 				        'onQueueComplete': function(queueData){
+				        	alert(" 控件一次");
 				           sum++;
-				           if(sum==(v-1)){
+				           if(sum==(v-1)){			           		
+					           alert("控件："+sum);
 				           		// 表单提交
 				           		submitInfo();
 				           } 
@@ -582,8 +584,28 @@
 			alert("可选择文件上传");
 		}
 		
+		
+		// 上传文件
+		function submitFile(){
+			for(var i=1;i<v;i++){
+			    alert(num);
+			   if(parseInt($("#num"+i).val())>0){
+					$("#uploadify"+i).uploadify('upload','*');
+			   }else{
+			   		sum++;
+			   		if(sum==(v-1)){
+			   			alert(" 文件： "+sum);
+		           		// 表单提交
+		           		submitInfo();
+		           } 
+			   }
+			}
+		}
+		
+		
 		// ajax 提交验证和保存。
 		function submitInfo(){
+			alert(" 信息提交");
 			$("#InfoForm").ajaxSubmit({
 	            	 type: "post",
 				     url: "/enterprise/submit-account-Info.jhtml",
@@ -610,41 +632,29 @@
 			}
 		}
 		
+		var inum=0;
 		// 上传企业图片
 		function submitImgs(){
-			for(var i=1;i<c;i++){
-				$("#ImgForm"+i).ajaxSubmit({
-	            	 type: "post",
-				     url: "/enterprise-user/center/upload.jhtml",
-				     dataType: "json",
-				     success: function(data){
-						submitVedio();
-				     }
+		   for(var i=1;i<c;i++){
+		   		$("#ImgForm"+i).ajaxSubmit({
+            	 type: "post",
+			     url: "/enterprise-user/center/upload.jhtml",
+			     dataType: "json",
+			     success: function(data){
+			     		inum++;
+				     	if(inum==(c-1)){
+							submitVedio();				     	
+			     		}
+			    	 }
 	    		});	
-    		}
-		}
-		
-		// 上传文件
-		function submitFile(){
-			for(var i=1;i<v;i++){
-			   if(parseInt($("#num"+i).val())>0){
-					$("#uploadify"+i).uploadify('upload','*');			   
-			   }else{
-			   		sum++;
-			   		if(sum==(v-1)){
-		           		// 表单提交
-		           		submitInfo();
-		           } 
-			   }
-			}
+		   }
+			
 		}
 		
 		var vnum=0;
 		// 上传视频
 		function submitVedio(){
-		
-			for(var i=1;i<3;i++){
-				alert(i);
+			for(var i=1;i<4;i++){
 				$("#vedioForm"+i).ajaxSubmit({
 	            	 type: "post",
 				     url: "/enterprise-user/center/uploadVedio.jhtml",
