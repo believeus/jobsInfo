@@ -624,11 +624,11 @@
 				     url: "/enterprise-user/center/upload.jhtml",
 				     dataType: "json",
 				     success: function(data){
-				     	submitImgs();
+				     	//submitImgs();
 				     }
 	    		});	
 			}else{
-				submitImgs();
+				//submitImgs();
 			}
 		}
 		
@@ -1020,8 +1020,8 @@
     			alert("请输入单位简介");
     		}
     		
-			//submitInfo();
-			submitVedio();
+			submitInfo();
+			//submitVedio();
 		});
 		
 		// 保存招聘信息。
