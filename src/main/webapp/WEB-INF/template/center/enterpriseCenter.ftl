@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu.js"></script> 
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>
 	<script type="text/javascript" src="/resource/public/js/datePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="/resource/public/js/waitamoment.js"></script>
 	
 	<!--  引入文件上传组件-->
 	<link href="/resource/public/js/uploadify3.2.1/uploadify.css" rel="stylesheet"/>
@@ -318,6 +319,8 @@
 					      },
 				        // 选中图片的时候。
 				        'onSelect': function(file){ 
+				        	var v=parseInt($("#num"+num).val())+1;
+				        	$("#num"+num).val(v)
 				        	// 重新设置uploader的上传类型
 				        	if(file.type==".swf"||file.type==".flv"){
 				    	    	$("#uploadify"+num).uploadify('settings','fileTypeExts','*.gif;*.jpg;*.jpeg;*.bmp;*.png;');	
@@ -328,44 +331,34 @@
 				        	}
 				        },  
 				        'onCancel':function(file){  
-				        	uploadnum--;
+				        	var v=parseInt($("#num"+num).val())-1;
+				        	$("#num"+num).val(v)
 				        	// 重新设置uploader的上传类型
 				        	if(file.type==".swf"||file.type==".flv"){
-		 						$("#uploadify"+sum).uploadify('settings','fileTypeExts','*.swf;*.flv');		
-		 						$("#uploadify"+sum).uploadify('settings','queueSizeLimit',2);				        	
+		 						$("#uploadify"+num).uploadify('settings','fileTypeExts','*.swf;*.flv');		
+		 						$("#uploadify"+num).uploadify('settings','queueSizeLimit',2);				        	
 				        	}else{
-				    	    	$("#uploadify"+sum).uploadify('settings','fileTypeExts','*.gif;*.jpg;*.jpeg;*.bmp;*.png;');	
-				    	    	$("#uploadify"+sum).uploadify('settings','queueSizeLimit',2);
+				    	    	$("#uploadify"+num).uploadify('settings','fileTypeExts','*.gif;*.jpg;*.jpeg;*.bmp;*.png;');	
+				    	    	$("#uploadify"+num).uploadify('settings','queueSizeLimit',2);
 				        	}
 				        }, 
 				        //上传到服务器，服务器返回相应信息到data里    
 				        'onUploadSuccess':function(file, data, response){    
 				        	// 添加数据到form表单。
 				        	if(file.type==".swf"||file.type==".flv"){
-				        		$("#vedioForm"+sum).find("input[name='vedioUrl']").val(data);
-				        		$("#vedioForm"+sum).find("input[name='vedioName']").val(file.name);
+				        		$("#vedioForm"+num).find("input[name='vedioUrl']").val(data);
+				        		$("#vedioForm"+num).find("input[name='vedioName']").val(file.name);
 				        	}else{
-				        		$("#vedioForm"+sum).find("input[name='url']").val(data);
-				        		$("#vedioForm"+sum).find("input[name='originName']").val(file.name);
+				        		$("#vedioForm"+num).find("input[name='url']").val(data);
+				        		$("#vedioForm"+num).find("input[name='originName']").val(file.name);
 				        	}
 				        },  
-				        'onQueueComplete': function(queueData){ 
-				          	//队列里所有的文件处理完成后调用  
-				           /* $("#vedioForm"+sum).ajaxSubmit({
-				            	 type: "post",
-							     url: "/enterprise-user/center/uploadVedio.jhtml",
-							     dataType: "json",
-							     success: function(data){
-							     	// 成功提交之后继续提交下一个。
-							     	if(sum < v){
-							     		sum++;
-							     		$('#uploadify'+sum).uploadify('upload','*');
-							     	}else{
-							     		alert("提交完成");
-							     	}
-							     }
-			        		});	
-			        		*/
+				        'onQueueComplete': function(queueData){
+				           sum++;
+				           if(sum==(v-1)){
+				           		// 表单提交
+				           		submitInfo();
+				           } 
 				        }
 			        });  
 				
@@ -453,7 +446,7 @@
 					<form novalidate="novalidate"  action="/enterprise-user/center/uploadVedio.jhtml"  method="post" id="vedioForm1">
 	    			<input type="hidden" name="type" value="1">
 	    			<input type="hidden" id="size1" value="2"> 
-	    			<input type="hidden" id="num1" value="2">
+	    			<input type="hidden" id="num1" value="0">
 	    			<input name="vedioUrl" type="hidden" value="" id="vedioUrl">
 		        	<input name="vedioName" type="hidden" value="" id="vedioName">
 		        	<input name="url" type="hidden" value="" id="url">
@@ -567,6 +560,8 @@
 			// 获取图片后缀
 			str=str.split("\.");
 			$("#uploadify"+value).uploadify('disable', false);
+			var v=parseInt($("#num"+value).val())+1;
+			$("#num"+value).val(v);
 			if(str[1]=="swf"||str[1]=="flv"){
 				$("#uploadify"+value).uploadify('settings','fileTypeExts','*.swf;*.flv;');	
 				$("#uploadify"+value).uploadify('settings','queueSizeLimit',1);	
@@ -586,6 +581,87 @@
 			}
 			alert("可选择文件上传");
 		}
+		
+		// ajax 提交验证和保存。
+		function submitInfo(){
+			$("#InfoForm").ajaxSubmit({
+	            	 type: "post",
+				     url: "/enterprise/submit-account-Info.jhtml",
+				     dataType: "json",
+				     success: function(data){
+				     	submitMap();
+				     }
+        		});	
+		}
+		
+		// 上传电子图片
+		function submitMap(){
+			if(changex==1){
+				$("#MapForm").ajaxSubmit({
+	            	 type: "post",
+				     url: "/enterprise-user/center/upload.jhtml",
+				     dataType: "json",
+				     success: function(data){
+				     	submitImgs();
+				     }
+	    		});	
+			}else{
+				submitImgs();
+			}
+		}
+		
+		// 上传企业图片
+		function submitImgs(){
+			for(var i=1;i<c;i++){
+				$("#ImgForm"+i).ajaxSubmit({
+	            	 type: "post",
+				     url: "/enterprise-user/center/upload.jhtml",
+				     dataType: "json",
+				     success: function(data){
+						submitVedio();
+				     }
+	    		});	
+    		}
+		}
+		
+		// 上传文件
+		function submitFile(){
+			for(var i=1;i<v;i++){
+			   if(parseInt($("#num"+i).val())>0){
+					$("#uploadify"+i).uploadify('upload','*');			   
+			   }else{
+			   		sum++;
+			   		if(sum==(v-1)){
+		           		// 表单提交
+		           		submitInfo();
+		           } 
+			   }
+			}
+		}
+		
+		var vnum=0;
+		// 上传视频
+		function submitVedio(){
+		
+			for(var i=1;i<3;i++){
+				alert(i);
+				$("#vedioForm"+i).ajaxSubmit({
+	            	 type: "post",
+				     url: "/enterprise-user/center/uploadVedio.jhtml",
+				     dataType: "json",
+				     success: function(data){
+				     	vnum++;
+				     	if(vnum==(v-1)){
+				     		alert(" 提交完成！");
+				     		//setTimeout(function(){location.reload(true);},1000);	
+				     	}
+				     }
+        		});
+			}
+				
+		}
+		
+		
 		
     	var b = 2;
     	[#if Vedios?size>0]
@@ -684,7 +760,7 @@
     			<form novalidate="novalidate"  action="/enterprise-user/center/uploadVedio.jhtml"  method="post" id="vedioForm'+v+'">
     			<input type="hidden" name="type" value="1">
     			<input type="hidden" id="size'+v+'" value="2"> 
-    			<input type="hidden" id="num'+v+'" value="2">
+    			<input type="hidden" id="num'+v+'" value="0">
     			<input name="vedioUrl" type="hidden" value="" id="vedioUrl">
 	        	<input name="vedioName" type="hidden" value="" id="vedioName">
 	        	<input name="url" type="hidden" value="" id="url">
@@ -881,78 +957,11 @@
 			
 		});
 		
-		// ajax 提交验证和保存。
-		function submitInfo(){
-				$("#InfoForm").ajaxSubmit({
-		            	 type: "post",
-					     url: "/enterprise/submit-account-Info.jhtml",
-					     dataType: "json",
-					     success: function(data){
-					     	submitMap();
-					     }
-	        		});	
-			}
-		// 上传电子图片
-		function submitMap(){
-			if(changex==1){
-				$("#MapForm").ajaxSubmit({
-	            	 type: "post",
-				     url: "/enterprise-user/center/upload.jhtml",
-				     dataType: "json",
-				     success: function(data){
-				     	submitImgs();
-				     }
-	    		});	
-			}else{
-				submitImgs();
-			}
-		}
-		
-		// 上传企业图片
-		function submitImgs(){
-			for(var i=1;i<c;i++){
-				$("#ImgForm"+i).ajaxSubmit({
-	            	 type: "post",
-				     url: "/enterprise-user/center/upload.jhtml",
-				     dataType: "json",
-				     success: function(data){
-						submitVedio();
-				     }
-	    		});	
-    		}
-		}
-		
-		// 上传视频
-		function submitVedio(){
-		
-			for(var i=1;i<v;i++){
-				alert("待上传数量："+$("#uploadify"+i).uploadify('settings','queueSize'));		
-			}
-				//$("#uploadify1").uploadify('upload','*');
-				/*
-				 $("#vedioForm"+sum).ajaxSubmit({
-	            	 type: "post",
-				     url: "/enterprise-user/center/uploadVedio.jhtml",
-				     dataType: "json",
-				     success: function(data){
-				     	// 成功提交之后继续提交下一个。
-				     	if(sum < v){
-				     		sum++;
-				     		$('#uploadify'+sum).uploadify('upload','*');
-				     	}else{
-				     		alert("提交完成");
-				     	}
-				     }
-        		});
-				*/
-		}
 		
 			//封装ajax信息提交
 		function submitJobs(){
-			alert("提交招聘信息");
 			$("div.zhaopinxinxi").each(function(index){
 				index=index+1;
-				alert(index);
 				$("#jobsForm1").ajaxSubmit({
 		            	 type: "post",
 					     url: "/enterprise-user/center/submit-recruit.jhtml",
@@ -968,8 +977,8 @@
 		}
     	// 保存信息。
     	$("#savaAll").click(function() {
-				//submitInfo();
-				submitVedio();
+    			//showdiv();
+				submitFile();
 		});
 		
 		// 保存招聘信息。
@@ -1258,7 +1267,7 @@
 							<input type="hidden" name="type" value="1">
 							<input type="hidden" name="id" value="${vedio.id}">
 							<input type="hidden" id="size${vedio_index+1}" value="0">
-							<input type="hidden" id="num${vedio_index+1}" value="2"> 
+							<input type="hidden" id="num${vedio_index+1}" value="0"> 
 							<input name="vedioUrl" type="hidden" value="${vedio.vedioUrl}" id="vedioUrl">
 				        	<input name="vedioName" type="hidden" value="${vedio.vedioName}" id="vedioName">
 				        	<input name="url" type="hidden" value="${vedio.url}" id="url">
@@ -1304,7 +1313,7 @@
 							<form novalidate="novalidate"  action="/enterprise-user/center/uploadVedio.jhtml"  method="post" id="vedioForm1">
 			    			<input type="hidden" name="type" value="1">
 			    			<input type="hidden" id="size1" value="2"> 
-			    			<input type="hidden" id="num1" value="2"> 
+			    			<input type="hidden" id="num1" value="0"> 
 			    			<input name="vedioUrl" type="hidden" value="" id="vedioUrl">
 				        	<input name="vedioName" type="hidden" value="" id="vedioName">
 				        	<input name="url" type="hidden" value="" id="url">
