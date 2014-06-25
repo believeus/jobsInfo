@@ -7,11 +7,16 @@
 <meta name="copyright" content="e3dmall" />
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
 <link href="/resource/public/js/admin/themes/default/default.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/resource/public/js/admin/jquery.js"></script>
+<script type="text/javascript" src="/resource/public/js/jquery.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/jquery.validate.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/kindeditor.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
+
+<!--  引入文件上传组件-->
+<link href="/resource/public/js/uploadify3.2.1/uploadify.css" rel="stylesheet"/>
+<script src="/resource/public/js/uploadify3.2.1/jquery.uploadify.js" charset="utf-8"></script>
+
 <script type="text/javascript">
 $().ready(function() {
 
@@ -22,7 +27,7 @@ $().ready(function() {
 	var $path = $("#path");
 	var $browserButton = $("#browserButton");
 	
-	
+	upload();
 	
 	// "类型"修改
 	$type.change(function() {
@@ -47,7 +52,11 @@ $().ready(function() {
 			adPositionId: "required",
 			path: "required",
 			order: "digits"
+		},
+		submitHandler: function(form) {
+			$('#uploadify').uploadify('upload','*');	
 		}
+		
 	});
 	
 });
@@ -59,6 +68,7 @@ $().ready(function() {
 	</div>
 	<form id="inputForm" action="save.jhtml" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="type" value="${type}">
+		<input type="hidden" name="imgPaths" value="" id="vedios">
 		<table class="input">
 			<tr>
 				<th>
@@ -86,71 +96,59 @@ $().ready(function() {
 				<th>
 					<span class="requiredField">*</span>相关图片:
 				</th>
-				<td colspan="3">
-					<script type="text/javascript">
-					function loadImgFast(img,i){
-							if (img.files && img.files[0]){
-								var reader = new FileReader();
-								reader.onload = function(evt){$(".brandImg:eq("+i+") img")[0].src = evt.target.result;}
-					            reader.readAsDataURL(img.files[0]);	
-							}else if(window.navigator.userAgent.indexOf("MSIE")>=1){
-							   	file.select(); 
-					   			path = document.selection.createRange().text;
-					   			$(".brandImg:eq("+i+") img")[0].src = path;
-					   		} 
-						}
-					</script>
-					
-					<div>
-						<span style="float:left">
-							<div class="brandImg">
-								<span>
-									<a onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
-								</span>
-								<img style="width:190px;height:120px" src="/resource/public/images/bg.png" name="img"/>
-							</div>
-							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
-							<input type="hidden" id="filename0" name="filename0">
-						</span>
-					</div>
-					<style type="text/css">
-						.brandImg span{
-							display:block;
-							position:absolute;
-							top:0px;left:0px;
-							width:200px;
-							height:130px;
-						}
-						
-						.brandImg{
-							border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
-						    border-radius: 2px 2px 2px 2px;
-						    border-style: solid;
-						    border-width: 1px;
-						    background-color: #666666;
-						    width:192px;height:122px;
-						    position:relative;
-						}
-						
-						.brandImg span:hover{
-							background-color:#FFFFFF;
-						    opacity: 0.7;
-						    filter:alpha(opacity=50);
-						    -moz-opacity:0.5;
-						    -khtml-opacity: 0.5;
-						}
-						
-						.brandImg span a{
-							display:block;
-							position:absolute;
-							top:50px;left:50px;
-						}
-						
-						.deleteProductImage:hover{
-							color:#C9033B !important;
-						}
-					</style>
-				</td>
+			<td colspan="3">
+        	<div>
+        	视频上传说明：支持图片格式为：swf,flv。
+			</div>
+			<br>
+			<div id="uploader-demo" class="wu-example">
+		    <!--用来存放图片列表-->
+		    <div id="fileQueue"></div>  
+			    <input type="file" name="uploadify" id="uploadify" />  
+			    <p>  
+			        <a href="javascript:$('#uploadify').uploadify('cancel','*')">&nbsp;&nbsp;取消所有上传</a>  
+			    </p>  
+    		<script type="text/javascript" charset="UTF-8">
+				function upload(){
+			       	$("#uploadify").uploadify({  
+			            'swf' : '/resource/public/js/uploadify3.2.1/uploadify.swf', 
+			            'uploader' : '/upload.jhtml',  
+			            'queueID' : 'fileQueue',//与div的id对应  
+			            'queueSizeLimit' : 20,  
+			            'fileTypeDesc' : '支持类型:',  
+			            'fileTypeExts' : '*.swf;*.flv;', //控制可上传文件的扩展名，启用本项时需同时声明fileDesc  
+			            'auto' : false,  
+			            'multi' : true,  
+			            'simUploadLimit' : 5,  
+			            'removeCompleted' : false, 
+			            'buttonText' : '选择图片',  
+			            'buttonCursor' : 'hand', 
+			            //返回一个错误，选择文件的时候触发    
+				        'onSelectError':function(file, errorCode, errorMsg){  
+				        },    
+				        //检测FLASH失败调用    
+				        'onFallback':function(){    
+				            alert("您未安装FLASH控件，无法上传图片！请安装FLASH控件后再试。");    
+				        },    
+				        // 选中图片的时候。
+				        'onSelect': function(file){  
+				        },  
+				        'onCancel':function(file){  
+				        }, 
+				        //上传到服务器，服务器返回相应信息到data里    
+				        'onUploadSuccess':function(file, data, response){    
+				        	var vedios = $("#vedios");
+					        $("#vedios").val(vedios.val()+"#"+data);
+				        },  
+				        'onQueueComplete': function(queueData){ 
+				        	 document.getElementById("inputForm").submit();
+				        }
+			        });  
+			       }
+			
+			
+			</script>
+        </td>
 			</tr>
 			<tr id="contentTr">
 				<th>

@@ -65,6 +65,11 @@ public class ControllerCRUD {
 		if(!StringUtils.isEmpty(request.getParameter("type"))){
 			type=Integer.parseInt(request.getParameter("type"));
 		}
+		if(!StringUtils.isEmpty(request.getParameter("imgPaths"))){
+			String path=request.getParameter("imgPaths");
+			center.setImgpath(path); 
+		}
+		System.out.println(center.getImgpath());
 		String title=request.getParameter("title");
 		String author=request.getParameter("author");
 		/**Begin Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
