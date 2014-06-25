@@ -561,7 +561,6 @@
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="VolunteerForm'+d+'">
 						<table>
 							<tr>
-								<td rowspan="4" style="background:#DCDCDC;color:#FE7200;">'+d+'</td>
 								<td>专业:</td>
 								<td>
 									<input type="hidden" value="" id="selectVolunteerSpecialtyhidden'+d+'" name="majorTypeId"/>
@@ -576,7 +575,7 @@
 								</td>
 								<td>择业地区:</td>
 								<td>
-									<input type="text" ov="请选择/输入城市名称" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" value="请选择/输入城市名称" autocomplete="off" id="start1" name="">
+									<input type="text" ov="请选择/输入城市名称" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" value="请选择/输入城市名称" autocomplete="off" id="start1" name="expectArea">
 									<!--////////////////////////////////////////////////////////////////////////-->
 										<div class="provinceCityAll">
 										  <div class="tabs clearfix">
@@ -1741,7 +1740,6 @@
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="VolunteerForm${volunteer_index+1}">	
 						<table>
 							<tr>
-								<td rowspan="3" style="background:#DCDCDC;color:#FE7200;">${volunteer_index+1}</td>
 								<td>专业:</td>
 								<td>
 									<input type="hidden" value="${volunteer.majorType.id}" id="selectVolunteerSpecialtyhidden${volunteer_index+1}" name="majorTypeId"/>
@@ -1762,7 +1760,7 @@
 								</td>
 								<td>择业地区:</td>
 								<td>
-									<input type="text" ov="请选择/输入城市名称" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" value="请选择/输入城市名称" autocomplete="off" id="start1" name="">
+									<input type="text" ov="请选择/输入城市名称" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" value="${volunteer.expectArea}" autocomplete="off" id="start1" name="expectArea">
 									<!--////////////////////////////////////////////////////////////////////////-->
 										<div class="provinceCityAll">
 										  <div class="tabs clearfix">
@@ -1880,7 +1878,7 @@
 								</td>
 								<td>择业地区:</td>
 								<td>
-									<input type="text" ov="请选择/输入城市名称" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" value="请选择/输入城市名称" autocomplete="off" id="start1" name="">
+									<input type="text" ov="请选择/输入城市名称" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" value="请选择/输入城市名称" autocomplete="off" id="start1" name="expectArea">
 									<!--////////////////////////////////////////////////////////////////////////-->
 										<div class="provinceCityAll">
 										  <div class="tabs clearfix">

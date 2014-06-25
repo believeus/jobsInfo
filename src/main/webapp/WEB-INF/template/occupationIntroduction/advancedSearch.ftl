@@ -67,7 +67,6 @@
 		    line-height: 30px;
 		    list-style: none outside none;
 		    padding: 0 15px;
-		    margin-top:-14px;
 		    font-size:12px;
 		}
 		.j_main_right_2_2 a:hover{
@@ -422,7 +421,7 @@
 				</div>
 				<div style="width: 996px; height: 30px;">
 					<div class="j_main_right_2_1">
-						<span style="font-weight: bold;">工作性质</span><span style="color: blue; float: right;"><a st-yle="color: blue; font-size: 12px;" href="">不限</a></span>
+						<span style="font-weight: bold;">工作性质</span><span style="color: blue; float: right;"><a style="color: blue; font-size: 12px;" href="">不限</a></span>
 					</div>
 					<div class="j_main_right_2_2">
 						<ul>

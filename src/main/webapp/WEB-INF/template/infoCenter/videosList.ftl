@@ -66,6 +66,7 @@
 			width:727px;
 			height:auto;
 			margin-top:10px;
+			overflow:hidden;
 		}
 		.j_main_right_2 li{
     		margin-right: 30px;
@@ -103,11 +104,19 @@
 		    font-weight: bold;
 		    height: 32px;
 		    line-height: 32px;
-		    margin-left: 5px;
+		    margin-left: 14px;
 		    margin-top: -37px;
 		    position: relative;
 		    text-align: right;
-		    width: 190px;
+		    width: 195px;
+		}
+		.velist{
+			width:220px;
+			height:200px;
+			border:1px solid #e4e4e4;
+			text-align:center;
+			float:left;
+			margin:10px;
 		}
     </style>
 </head>
@@ -142,49 +151,20 @@
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
-				<table>
-					<tr>
-						[#list videos as video]
-						<td>
-							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
-								<p style="margin-top: 3px; margin-bottom: 0px;">
-									<a href="/videosInfo.jhtml"><img src="/resource/public/images/tupxinwen.png" width="195" height="130"></a>
-								</p>
-								<div class="middle-money">2分30秒</div>
-								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;"><a href="/videosInfo.jhtml">${video.title}</a></p>
-								<p style="margin-top:0;">[${video.createTime?number_to_datetime}]</p>
-							</div>
-						</td>
-						[/#list]
-					</tr>
-					<tr>
-						<td>
-							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
-								<p style="margin-top: 3px; margin-bottom: 0px;">
-									<a href="/videosInfo.jhtml"><img src="/resource/public/images/tupxinwen.png" width="195" height="130"></a>
-								</p>
-								<div class="middle-money">2分30秒</div>
-								<p style="padding:3px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;"><a href="/videosInfo.jhtml">2014年医疗、工伤和生育保险工作座谈会召开</a></p>
-								<p style="margin-top:0;">[2014-04-19]</p>
-							</div>
-						</td>
-					</tr>
-					
-				</table>
-				<p style="padding-left:25px;">
-					<a href="">首页</a>
-					<a href="">上一页</a>
-					<a href="">下一页</a>
-					<a href="">末页</a>
-					<select name="">
-						<option value="">1</option>
-						<option value="">2</option>
-						<option value="">3</option>
-						<option value="">4</option>
-						<option value="">5</option>
-					</select>
-					共<font color="red">5</font>页<font color="red">51</font>条
-				</p>
+				[#list videos as video]
+					<div class="velist">
+						<p style="margin-top: 3px; margin-bottom: 0px;">
+							<a href="/videosInfo.jhtml?id=${video.id}">
+								<img [#if video.imgpath?exists]src="${video.imgpath}"[#else]src="/group/M00/01/21/6551-A40C-4FDA-8D55-87265167B506.jpg"[/#if] width="195" height="130">
+							</a>
+						</p>
+						<div class="middle-money">2分30秒</div>
+						<p style="padding:10px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;text-align:center;">
+							<a href="/videosInfo.jhtml">${video.title}</a>
+						</p>
+						<p style="margin-top:0;">[${video.createTime?number_to_datetime}]</p>
+					</div>
+				[/#list]
 			</div>
 		</div>
 	</div>

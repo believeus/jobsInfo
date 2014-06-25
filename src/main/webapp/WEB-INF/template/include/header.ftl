@@ -18,13 +18,12 @@
 	}
 	.j_head{
 		width:100%;
-		height:169px;
+		height:163px;
 		background:url(/resource/public/images/zhuye-img_01.gif);
 	}
 	.j_head_pic{
 		width:1283px;
-		height:132px;
-		background:url(/resource/public/images/head_pic.gif);
+		height:127px;
 		margin-left:auto;
 		margin-right:auto;
 	}
@@ -87,8 +86,9 @@
 </script>
 <div style="width:100%;margin-bottom:5px;">
 	<div class="j_head">
-		<div style="width:100%;background:url(/resource/public/images/header_bg.png);">
+		<div style="width:100%;background:#DC6D0E;">
 			<div class="j_head_pic">
+				<embed width="100%" height="127" bgcolor="" quality="high" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" id="myMovie" src="/resource/public/images/boner2.swf" type="application/x-shockwave-flash" pluginspage="">
 			</div>
 		</div>
 		<div class="j_head_nav">
