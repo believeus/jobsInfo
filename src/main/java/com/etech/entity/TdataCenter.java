@@ -46,6 +46,7 @@ public class TdataCenter extends TbaseEntity implements Cloneable{
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+	@Field(store=Store.YES,index = Index.TOKENIZED)
 	public int getType() {
 		return type;
 	}
@@ -72,6 +73,7 @@ public class TdataCenter extends TbaseEntity implements Cloneable{
 	public void setCreateTime(long createTime) {
 		this.createTime = createTime;
 	}
+	@Field(store=Store.YES,index = Index.TOKENIZED)
 	public long getEditTime() {
 		return editTime;
 	}

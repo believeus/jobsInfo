@@ -4,6 +4,8 @@
     <title>政策咨询-搜索</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
+    <script src="/resource/public/resources/scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/resource/public/js/datePicker/WdatePicker.js"></script>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <style type="text/css">
    		.j_main{
@@ -162,75 +164,60 @@
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;width:727px;">
+						  	<form method="post" action="/searchPolicyAdvice.jhtml">
+		  		<input type="hidden" name="currentPage" value="0" />
+		  		<input type="hidden" name="perCount" value="25"/>
 				<table style="background:#F2F2F2;border: 3px solid #FFFFFF; padding: 10px 0; width: 700px; margin-left: auto; margin-right: auto; margin-top: 10px;">
 					<tr>
 						<td>
-							<select name="">
-								<option value="标题">标题</option>
-								<option value="关键字">关键字</option>
-								<option value="文号">文号</option>
-							</select>
+							关键字：
 						</td>
 						<td>
-							<input type="text" name="" placeholder="输入文本..">
+							<input type="text" name="title">
 						</td>
 						<td>
 							发布日期：
 						</td>
-						<td>
-							<select name="">
-								<option value="">年</option>
-							</select>
-							<select name="">
-								<option value="">月</option>
-							</select>
-						</td>
-						<td>
-							至
-						</td>
-						<td>
-							<select name="">
-								<option value="">年</option>
-							</select>
-							<select name="">
-								<option value="">月</option>
-							</select>
+						<td>起始时间:
+						<input type="text"  id="beginDate" name="beginDate" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
+						结束时间: <input type="text" id="endDate" name="endDate" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
 						</td>
 						<td rowspan="2" style="background: url(/resource/public/images/chaxun.png); border-radius: 4px;">
-							<input type="button" value="" name="" style="border: 0px none; font-size: 18px; cursor: pointer; height: 61px; width: 61px; background: none;">
+							<input type="submit" value=""  style="border: 0px none; font-size: 18px; cursor: pointer; height: 61px; width: 61px; background: none;">
 						</td>
 					</tr>
 					<tr>
 						<td>效力等级：</td>
 						<td>
-							<select name="" style="width: 235px;">
-								<option value="全部">全部</option>
-								<option value="法律">法律</option>
-								<option value="行政法规">行政法规</option>
-								<option value="地方法规">地方法规</option>
-								<option value="规章">规章</option>
-								<option value="规范性文件">规范性文件</option>
-								<option value="省厅文件">省厅文件</option>
+							<select name="powerLevel" style="width: 235px;">
+								<option value="0">全部</option>
+								<option value="1">法律</option>
+								<option value="2">行政法规</option>
+								<option value="3">地方法规</option>
+								<option value="4">规章</option>
+								<option value="5">规范性文件</option>
+								<option value="6">省厅文件</option>
 							</select>
 						</td>
 						<td>
 							效力属性：
 						</td>
 						<td colspan="3">
-							<select name="" style="width: 217px;">
-								<option value="全部">全部</option>
-								<option value="有效">有效</option>
-								<option value="失效">失效</option>
-								<option value="废止">废止</option>
+							<select name="powerProperty" style="width: 217px;">
+								<option value="0">全部</option>
+								<option value="1">有效</option>
+								<option value="2">失效</option>
+								<option value="3">废止</option>
 							</select>
 						<td>
 					</tr>
 				</table>
+			</form>
 				<div style="border:1px solid #e4e4e4;" class="j_main_right_2">
 					<ul>
 						[#list dataCenterList as dataCenter]
 						<li>
-							<a href="/newsInfo.jhtml">${dataCenter.title}</a><span>>${dataCenter.editTime?number_to_date} ${dataCenter.editTime?number_to_time}</span>
+							<a href="/newsInfo.jhtml">${dataCenter.title}</a><span>${dataCenter.editTime?number_to_date} ${dataCenter.editTime?number_to_time}</span>
 						</li>
 						[/#list]
 					</ul>

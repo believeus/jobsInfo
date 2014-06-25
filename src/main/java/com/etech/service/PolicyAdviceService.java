@@ -74,11 +74,13 @@ public class PolicyAdviceService {
 			}
 			// 时间范围查询
 			if(!StringUtils.isEmpty(beginData)&&!StringUtils.isEmpty(endDate)){
-				// 范围查询
+				// 范围查询条件
 				TermRangeQuery rangeQuery=new TermRangeQuery("editTime", String.valueOf(beginData), String.valueOf(endDate), true, true);
 				booleanQuery.add(rangeQuery,Occur.MUST);
 			}
-			
+			//查询  国家法规 国家文件 地方法规 地方文件
+			TermRangeQuery advicePolicyQuery=new TermRangeQuery("type", "10", "13", true,true);
+			booleanQuery.add(advicePolicyQuery,Occur.MUST);
 			booleanQuery.add(titleAndContentQuery, Occur.MUST);
 			
 			FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(booleanQuery, TdataCenter.class);

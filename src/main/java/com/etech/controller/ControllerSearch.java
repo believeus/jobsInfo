@@ -13,6 +13,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Assert; 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -108,10 +109,14 @@ public class ControllerSearch {
 		int perCount=Integer.parseInt(request.getParameter("perCount"));
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		try {
-			long beginDate = formatter.parse(request.getParameter("beginDate")).getTime();
-			log.debug("beginData:"+beginDate);
-			long endDate=formatter.parse(request.getParameter("endDate")).getTime();
-			log.debug("endDate:"+endDate);
+			Long beginDate=null;
+			Long endDate=null;
+			if(!StringUtils.isEmpty(request.getParameter("beginDate"))&&!StringUtils.isEmpty(request.getParameter("endDate"))){
+				beginDate = formatter.parse(request.getParameter("beginDate")).getTime();
+				log.debug("beginData:"+beginDate);
+				endDate=formatter.parse(request.getParameter("endDate")).getTime();
+				log.debug("endDate:"+endDate);
+			}
 			TdataCenter formDataCenter=new TdataCenter();
 			String title=request.getParameter("title");
 			String powerLevel=request.getParameter("powerLevel");
@@ -120,7 +125,6 @@ public class ControllerSearch {
 			formDataCenter.setPowerLevel(Integer.parseInt(powerLevel));
 			formDataCenter.setPowerProperty(Integer.parseInt(powerProperty));
 			List<TdataCenter> dataCenterList = policyAdviceService.searchPolicyAdvice(formDataCenter,beginDate,endDate,currentPage,perCount);
-			log.debug(dataCenterList.size());
 			request.setAttribute("dataCenterList", dataCenterList);
 		} catch (ParseException e) {
 			e.printStackTrace();
