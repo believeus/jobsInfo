@@ -10,7 +10,12 @@
     <script type="text/javascript" src="/resource/public/js/admin/jquery.validate.js"></script>
     <script type="text/javascript"  src="/resource/public/js/Etech.js"></script>
     <link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
-    <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />  
+    <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" /> 
+    <link rel="stylesheet" type="text/css" href="/resource/public/areaSelect/css.css" />
+    <link href="/resource/public/selectArea/css/cityLayout.css" type="text/css" rel="stylesheet">
+	<link href="/resource/public/selectArea/css/css.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="/resource/public/areaSelect/drag.js"></script>
+	<script type="text/javascript" src="/resource/public/areaSelect/city_arr.js"></script> 
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu.js"></script> 
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>
 	<script type="text/javascript" src="/resource/public/js/datePicker/WdatePicker.js"></script>
@@ -141,6 +146,10 @@
 		}
 		.j_main_right_2 input{
 			width:150px;
+		}
+		.list input {
+		    width: 45px;
+		    font-size:13px;
 		}
 		.currentSwich{
 			background:#E36510;
@@ -566,7 +575,59 @@
 									</div>
 								</td>
 								<td>择业地区:</td>
-								<td><input type="text" id="expectAreaVolunteer'+d+'" name="expectArea"></td>
+								<td>
+									<input type="text" ov="请选择/输入城市名称" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" value="请选择/输入城市名称" autocomplete="off" id="start1" name="">
+									<!--////////////////////////////////////////////////////////////////////////-->
+										<div class="provinceCityAll">
+										  <div class="tabs clearfix">
+										    <ul class="">
+										      <li><a href="javascript:" class="current" tb="hotCityAll">热门城市</a></li>
+										      <li><a href="javascript:" tb="provinceAll">省份</a></li>
+										      <li><a href="javascript:" tb="cityAll" id="cityAll">城市</a></li>
+										      <li><a href="javascript:" tb="countyAll" id="countyAll">区县</a></li>
+										    </ul>
+										  </div>
+										  <div class="con">
+										    <div class="hotCityAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										         
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										    <div class="provinceAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										        
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										    <div class="cityAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										          
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										    <div class="countyAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										  </div>
+										</div>
+									<!--////////////////////////////////////////////////////////////////////////-->
+									
+								</td>
 							</tr>
 							<tr>
 								
@@ -1314,7 +1375,7 @@
 									<div class="topnav">
 										<a id="selectSkillSpecialty${skill_index+1}" href="javascript:void(0);" class="as">
 											<span >
-												[#assign name=skill.majorType.name+"(点击即可取消选择)"]
+												[#assign name=skill.majorType.name]
 												[#if name?length > 15]
 													${name?string?substring(0,15)}...
 												[#else]
@@ -1343,7 +1404,7 @@
 									<div class="topnav">
 										<a id="selectSkillJobs${skill_index+1}" href="javascript:void(0);" class="as">
 											<span >
-												[#assign name=skill.workType.name+"(点击即可取消选择)"]
+												[#assign name=skill.workType.name]
 												[#if name?length > 15]
 													${name?string?substring(0,15)}...
 												[#else]
@@ -1472,7 +1533,7 @@
 									<div class="topnav">
 										<a id="selectLearningSpecialty${learning_index+1}" href="javascript:void(0);" class="as">
 											<span >
-												[#assign name=learning.majorType.name+"(点击即可取消选择)"]
+												[#assign name=learning.majorType.name]
 												[#if name?length > 15]
 													${name?string?substring(0,15)}...
 												[#else]
@@ -1575,7 +1636,7 @@
 									<div class="topnav">
 										<a id="selectWorkJob${work_index+1}" href="javascript:void(0);" class="as">
 											<span >
-												[#assign name=work.workType.name+"(点击即可取消选择)"]
+												[#assign name=work.workType.name]
 												[#if name?length > 15]
 													${name?string?substring(0,15)}...
 												[#else]
@@ -1689,7 +1750,7 @@
 									<div class="topnav">
 										<a id="selectVolunteerSpecialty${volunteer_index+1}" href="javascript:void(0);" class="as">
 											<span >
-												[#assign name=volunteer.majorType.name+"(点击即可取消选择)"]
+												[#assign name=volunteer.majorType.name]
 												[#if name?length > 15]
 													${name?string?substring(0,15)}...
 												[#else]
@@ -1700,7 +1761,59 @@
 									</div>
 								</td>
 								<td>择业地区:</td>
-								<td><input type="text" id="expectAreaVolunteer1" name="expectArea" value="${volunteer.expectArea}"></td>
+								<td>
+									<input type="text" ov="请选择/输入城市名称" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" value="请选择/输入城市名称" autocomplete="off" id="start1" name="">
+									<!--////////////////////////////////////////////////////////////////////////-->
+										<div class="provinceCityAll">
+										  <div class="tabs clearfix">
+										    <ul class="">
+										      <li><a href="javascript:" class="current" tb="hotCityAll">热门城市</a></li>
+										      <li><a href="javascript:" tb="provinceAll">省份</a></li>
+										      <li><a href="javascript:" tb="cityAll" id="cityAll">城市</a></li>
+										      <li><a href="javascript:" tb="countyAll" id="countyAll">区县</a></li>
+										    </ul>
+										  </div>
+										  <div class="con">
+										    <div class="hotCityAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										         
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										    <div class="provinceAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										        
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										    <div class="cityAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										          
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										    <div class="countyAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										  </div>
+										</div>
+									<!--////////////////////////////////////////////////////////////////////////-->
+									
+								</td>
 							</tr>
 							<tr>
 								
@@ -1710,7 +1823,7 @@
 									<div class="topnav">
 										<a id="selectVolunteerJobs${volunteer_index+1}" href="javascript:void(0);" class="as">
 											<span >
-												[#assign name=volunteer.workType.name+"(点击即可取消选择)"]
+												[#assign name=volunteer.workType.name]
 												[#if name?length > 15]
 													${name?string?substring(0,15)}...
 												[#else]
@@ -1766,7 +1879,59 @@
 									</div>
 								</td>
 								<td>择业地区:</td>
-								<td><input type="text" id="expectAreaVolunteer1" name="expectArea"></td>
+								<td>
+									<input type="text" ov="请选择/输入城市名称" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" value="请选择/输入城市名称" autocomplete="off" id="start1" name="">
+									<!--////////////////////////////////////////////////////////////////////////-->
+										<div class="provinceCityAll">
+										  <div class="tabs clearfix">
+										    <ul class="">
+										      <li><a href="javascript:" class="current" tb="hotCityAll">热门城市</a></li>
+										      <li><a href="javascript:" tb="provinceAll">省份</a></li>
+										      <li><a href="javascript:" tb="cityAll" id="cityAll">城市</a></li>
+										      <li><a href="javascript:" tb="countyAll" id="countyAll">区县</a></li>
+										    </ul>
+										  </div>
+										  <div class="con">
+										    <div class="hotCityAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										         
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										    <div class="provinceAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										        
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										    <div class="cityAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										          
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										    <div class="countyAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										  </div>
+										</div>
+									<!--////////////////////////////////////////////////////////////////////////-->
+									
+								</td>
 							</tr>
 							<tr>
 								
@@ -1812,7 +1977,6 @@
 					</div>
 					<p style="text-align:center;">
 						<input type="button" id="saveVolunteer" value="保存">
-						<input type="reset" value="重写">
 					</p>
 				</div>
 				</div>
@@ -1848,6 +2012,7 @@
 	</div>
 	<!--********************************************-->
 	
+	<script src="/resource/public/selectArea/js/public.js"></script>
 	[#include "/include/footer.ftl" /]
 </body>
 </html>
