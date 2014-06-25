@@ -27,7 +27,7 @@ public class TentUser extends TbaseUser implements Serializable {
 	
 	/** 公司联系人 */
 	private String contacts;
-	/** 单位类型 */
+	/** 公司类型 */
 	private String unitType;
 	/**经济类型*/
 	private String economicType;

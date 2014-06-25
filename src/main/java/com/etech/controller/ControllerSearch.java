@@ -87,7 +87,7 @@ public class ControllerSearch {
 			
 		}
 		if (type=="position") {
-			System.out.println("职位搜索");
+			log.debug("职位搜索");
 			
 		}else if (type=="resume") {
 			System.out.println("简历搜索");

@@ -8,14 +8,21 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.search.annotations.Analyzer;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.wltea.analyzer.lucene.IKAnalyzer;
 
 /**
  * 用户拥有技能的类型
  * */
 @Entity
 @Table
+@Indexed(index="com.etech.entity.TmajorType")
 public class TmajorType extends TbaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 265386274128991391L;
@@ -54,6 +61,7 @@ public class TmajorType extends TbaseEntity implements Serializable {
 	/**专业或工种名*/
 	@NotEmpty
 	@Length(max = 25)
+	@Field(store=Store.YES,index = Index.TOKENIZED)
 	public String getName() {
 		return name;
 	}

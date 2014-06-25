@@ -10,11 +10,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
 import org.hibernate.validator.constraints.Length;
 
 /**招聘信息*/
 @Entity
 @Table
+@Indexed(index="com.etech.entity.Trecruit")
 public class Trecruit extends TbaseEntity implements Serializable {
 	private static final long serialVersionUID = 2866696326333568722L;
 	
@@ -22,6 +27,8 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	@Length(max=25)
 	@Column(nullable=false)
 	private String company;
+	//公司类型
+	private String companyType;
 	/**招收人数*/
 	private int worknum;
 	/**性别*/
@@ -41,7 +48,7 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	@Column(nullable=true)
 	private String eduLevel;
 	/**从事年限*/
-	private int workyear;
+	private String workyear;
 	private int age;
 	/**视力*/
 	@Length(max=5)
@@ -57,7 +64,7 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	private String worklimit;
 	/**面试时间*/
 	private long viewData;
-	/**用工形式*/
+	/**工作性质*/
 	@Length(max=20)
 	private String workWay;
 	/**工作地点*/
@@ -76,6 +83,7 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	/** 该信息属于那个用户 */
 	private TentUser entUser;
 	
+	@Field(store=Store.YES,index = Index.TOKENIZED)
 	public String getCompany() {
 		return company;
 	}
@@ -100,6 +108,8 @@ public class Trecruit extends TbaseEntity implements Serializable {
 		this.sex = sex;
 	}
 
+	// 学历
+	@Field(store=Store.YES,index = Index.TOKENIZED)
 	public String getEteLevel() {
 		return eteLevel;
 	}
@@ -107,7 +117,7 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	public void setEteLevel(String eteLevel) {
 		this.eteLevel = eteLevel;
 	}
-
+	@Field(store=Store.YES,index = Index.TOKENIZED)
 	public String getEduLevel() {
 		return eduLevel;
 	}
@@ -115,12 +125,12 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	public void setEduLevel(String eduLevel) {
 		this.eduLevel = eduLevel;
 	}
-
-	public int getWorkyear() {
+	@Field(store=Store.YES,index = Index.TOKENIZED)
+	public String getWorkyear() {
 		return workyear;
 	}
 
-	public void setWorkyear(int workyear) {
+	public void setWorkyear(String workyear) {
 		this.workyear = workyear;
 	}
 
@@ -147,7 +157,7 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	public void setHeight(String height) {
 		this.height = height;
 	}
-
+	@Field(store=Store.YES,index = Index.TOKENIZED)
 	public String getSalary() {
 		return salary;
 	}
@@ -248,5 +258,14 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	public void setEditTime(long editTime) {
 		this.editTime = editTime;
 	}
+	// 公司性质
+	@Field(store=Store.YES,index = Index.TOKENIZED)
+	public String getCompanyType() {
+		return entUser.getUnitType();
+	}
 
+	public void setCompanyType(String companyType) {
+		this.companyType = companyType;
+	}
+	
 }
