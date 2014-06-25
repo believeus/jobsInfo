@@ -1,5 +1,6 @@
 package com.etech.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -28,6 +29,14 @@ public class ControllerVideos {
 	public String videoList(HttpServletRequest request,Integer id) {
 		
 		TdataCenter imgVedio=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
+		
+		String[] path = imgVedio.getImgpath().split("#");
+		List<String> pathList = new ArrayList<String>();
+		for (int i = 0; i < path.length; i++) {
+			pathList.add(path[i]);
+			request.setAttribute("pathList", pathList);
+		}
+		
 		request.setAttribute("imgVedio", imgVedio);
 		
 		String hql="From TdataCenter dataCenter where dataCenter.type='4'";

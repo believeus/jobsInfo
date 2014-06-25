@@ -64,9 +64,13 @@
 	<div style="">
     	<div style="float:left; margin:10px auto; border-right:1px solid #DCDCDC; width:600px;">
         	<h2 style="margin-left:30px;">${imgVedio.title}</h2>
+        	[#list pathList as pl]
+        	[#if pl_index>0]
             <div style="width:585px; margin:0px auto;">
-            	<embed width="585" height="432" flashvars="" bgcolor="#000000" quality="high" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" id="myMovie" [#if imgVedio.vedioUrl?exists] src="/${imgVedio.vedioUrl}"[#else]src="http://p.you.video.sina.com.cn/swf/bokePlayer20140616_V4_1_42_49.swf"[/#if] type="application/x-shockwave-flash" pluginspage="">
+            	<embed width="585" height="432" flashvars="" bgcolor="#000000" quality="high" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" id="myMovie" [#if pl?exists] src="/${pl}"[#else]src="http://p.you.video.sina.com.cn/swf/bokePlayer20140616_V4_1_42_49.swf"[/#if] type="application/x-shockwave-flash" pluginspage="">
             </div>
+            [/#if]
+            [/#list]
             <div style="padding:20px 29px;">
             	<div style="float:left; width:465px;">
                 	<table style="width:100%; border-collapse:collapse;" id="tab_1">
@@ -108,7 +112,7 @@
 	                <li>
 	                  <div class="div1">
 	                  	<a href="/videosInfo.jhtml?id=${vedio.id}">
-	                  		<img src="${vedio.imgpath}" width="120" height="90"/>
+	                  		<img [#if !vedio.imgpath?exists] src="${vedio.imgpath}" [#else]src="group/M00/5B/22/B3C8-256C-43D1-9553-AF6A93E0A548.jpg"[/#if] width="120" height="90"/>
                   		</a>
 	                  </div>
 	                  <div class="div2">
