@@ -222,6 +222,7 @@ public class TcomInfo extends TbaseEntity implements Serializable {
 		this.createDate = createDate;
 	}
 
+	@Field(store = Store.YES, index = Index.UN_TOKENIZED)
 	public String getWorkWay() {
 		return workWay;
 	}

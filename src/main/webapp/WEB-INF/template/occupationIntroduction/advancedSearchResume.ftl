@@ -475,7 +475,7 @@
 							</div>
 						</td>
 						<td>
-							<input type="text" name="expectArea" id="start1" value="选择城市" autocomplete="off" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" style="width:auto;min-width:150px;" readonly="readonly">
+							<input type="text" name="area" id="start1" value="[#if area !=""]${area}[#else]选择城市[/#if]" autocomplete="off" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" style="width:auto;min-width:150px;" readonly="readonly">
 							<!--/////地区插件///////////////////////////////////////////////////////////////////-->
 								<div class="provinceCityAll">
 								  <div class="tabs clearfix">
@@ -593,23 +593,6 @@
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="初中_3" name="初中">初中</a></li>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="小学_3" name="小学">小学</a></li>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="文盲或半文盲_3" name="文盲或半文盲">文盲或半文盲</a></li>
-						</ul>
-					</div>
-				</div>
-				<div style="width: 996px; height: 30px;">
-					<div class="j_main_right_2_1">
-						<span style="font-weight: bold;">工作年限</span><span style="color: blue; float: right;"><a group="4" name="不限" id="" href="javascript:void(0);" onclick="javascript:Aclick(this);">不限</a></span>
-					</div>
-					<div class="j_main_right_2_2">
-						<ul>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="在读学生_4" name="在读学生">在读学生</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="应届毕业生_4" name="应届毕业生">应届毕业生</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="1~2年_4" name="1~2年">1~2年</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="2~3年_4" name="2~3年">2~3年</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="3~5年_4" name="3~5年">3~5年</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="5~8年_4" name="5~8年">5~8年</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="8~10年_4" name="8~10年">8~10年</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="10年以上_4" name="10年以上">10年以上</a></li>
 						</ul>
 					</div>
 				</div>

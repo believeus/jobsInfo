@@ -70,7 +70,7 @@ public class ResumeSearchService {
 						log.debug("endTime:"+endTime);
 						long beginTime=endTime-(Integer.valueOf(issueTime)*1000*60*60*24);
 						log.debug("beginTime:"+beginTime);
-						TermRangeQuery issueRangeQuery=new TermRangeQuery("editTime", String.valueOf(beginTime),String.valueOf(endTime),true, true);
+						TermRangeQuery issueRangeQuery=new TermRangeQuery("editDate", String.valueOf(beginTime),String.valueOf(endTime),true, true);
 						booleanQuery.add(issueRangeQuery,Occur.MUST);
 					}
 				} catch (PatternSyntaxException ex) {
@@ -106,7 +106,8 @@ public class ResumeSearchService {
 			// 工作地点
 			if(!StringUtils.isEmpty(area)){
 				log.debug("area:"+area);
-				TermQuery workspaceQuery=new TermQuery(new Term("expectArea",area));
+				MultiFieldQueryParser multiFieldQueryParser = new MultiFieldQueryParser(Version.LUCENE_36, new String[]{"expectArea"}, new IKAnalyzer());
+				Query workspaceQuery = multiFieldQueryParser.parse(area);
 				booleanQuery.add(workspaceQuery, Occur.MUST);
 			}
 			// 专业

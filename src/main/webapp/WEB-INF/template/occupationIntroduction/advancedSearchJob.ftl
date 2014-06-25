@@ -475,7 +475,7 @@
 							</div>
 						</td>
 						<td>
-							<input type="text" name="expectArea" id="start1" value="选择城市" autocomplete="off" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" style="width:auto;min-width:150px;" readonly="readonly">
+							<input type="text" name="area" id="start1" value="[#if area !=""]${area}[#else]选择城市[/#if]" autocomplete="off" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" style="width:auto;min-width:150px;" readonly="readonly">
 							<!--/////地区插件///////////////////////////////////////////////////////////////////-->
 								<div class="provinceCityAll">
 								  <div class="tabs clearfix">

@@ -36,59 +36,59 @@ public class ControllerSearch {
 	private static Map<String, String> conditonMap=new HashMap<String, String>();
 	static{
 		// 发布日期
-		conditonMap.put("近2天","issueTime_1");
-		conditonMap.put("近3天", "issueTime_2");
-		conditonMap.put("近7天","issueTime_3");
-		conditonMap.put("近15天", "issueTime_4");
-		conditonMap.put("近30天","issueTime_5");
-		conditonMap.put("近60天", "issueTime_6");
-		conditonMap.put("近60天以上","issueTime_7");
+		conditonMap.put("近2天_0","issueTime_1");
+		conditonMap.put("近3天_0", "issueTime_2");
+		conditonMap.put("近7天_0","issueTime_3");
+		conditonMap.put("近15天_0", "issueTime_4");
+		conditonMap.put("近30天_0","issueTime_5");
+		conditonMap.put("近60天_0", "issueTime_6");
+		conditonMap.put("近60天以上_0","issueTime_7");
 		//起薪范围
-		conditonMap.put("1000以下", "salaryRange_1");
-		conditonMap.put("1000~1999", "salaryRange_2");
-		conditonMap.put("2000~2999", "salaryRange_3");
-		conditonMap.put("3000~3999", "salaryRange_4");
-		conditonMap.put("4000~4999", "salaryRange_5");
-		conditonMap.put("5000以上", "salaryRange_6");
+		conditonMap.put("1000以下_1", "salaryRange_1");
+		conditonMap.put("1000~1999_1", "salaryRange_2");
+		conditonMap.put("2000~2999_1", "salaryRange_3");
+		conditonMap.put("3000~3999_1", "salaryRange_4");
+		conditonMap.put("4000~4999_1", "salaryRange_5");
+		conditonMap.put("5000以上_1", "salaryRange_6");
 		//工作性质
-		conditonMap.put("全职", "workType_1");
-		conditonMap.put("兼职", "workType_2");
-		conditonMap.put("实习", "workType_3");
-		conditonMap.put("临时", "workType_4");
-		conditonMap.put("小时工", "workType_5");
-		conditonMap.put("全职/兼职/实习均可", "workType_6");
-		conditonMap.put("就业见习", "workType_7");
+		conditonMap.put("全职_2", "workType_1");
+		conditonMap.put("兼职_2", "workType_2");
+		conditonMap.put("实习_2", "workType_3");
+		conditonMap.put("临时_2", "workType_4");
+		conditonMap.put("小时工_2", "workType_5");
+		conditonMap.put("全职/兼职/实习均可_2", "workType_6");
+		conditonMap.put("就业见习_2", "workType_7");
 		// 学历要求 
-		conditonMap.put("博士", "eduRequire_1");
-		conditonMap.put("硕士", "eduRequire_2");
-		conditonMap.put("大学", "eduRequire_3");
-		conditonMap.put("大专", "eduRequire_4");
-		conditonMap.put("中专中技", "eduRequire_5");
-		conditonMap.put("技校", "eduRequire_6");
-		conditonMap.put("高中", "eduRequire_7");
-		conditonMap.put("职高", "eduRequire_8");
-		conditonMap.put("初中", "eduRequire_9");
-		conditonMap.put("小学", "eduRequire_10");
-		conditonMap.put("文盲或半文盲", "eduRequire_11");
+		conditonMap.put("博士_3", "eduRequire_1");
+		conditonMap.put("硕士_3", "eduRequire_2");
+		conditonMap.put("大学_3", "eduRequire_3");
+		conditonMap.put("大专_3", "eduRequire_4");
+		conditonMap.put("中专中技_3", "eduRequire_5");
+		conditonMap.put("技校_3", "eduRequire_6");
+		conditonMap.put("高中_3", "eduRequire_7");
+		conditonMap.put("职高_3", "eduRequire_8");
+		conditonMap.put("初中_3", "eduRequire_9");
+		conditonMap.put("小学_3", "eduRequire_10");
+		conditonMap.put("文盲或半文盲_3", "eduRequire_11");
 		//工作年限
-		conditonMap.put("在读学生", "workYear_1");
-		conditonMap.put("应届毕业生", "workYear_2");
-		conditonMap.put("1~2年", "workYear_3");
-		conditonMap.put("2~3年", "workYear_4");
-		conditonMap.put("3~5年", "workYear_5");
-		conditonMap.put("5~8年", "workYear_6");
-		conditonMap.put("8~10年", "workYear_7");
-		conditonMap.put("10年以上", "workYear_8");
+		conditonMap.put("在读学生_4", "workYear_1");
+		conditonMap.put("应届毕业生_4", "workYear_2");
+		conditonMap.put("1~2年_4", "workYear_3");
+		conditonMap.put("2~3年_4", "workYear_4");
+		conditonMap.put("3~5年_4", "workYear_5");
+		conditonMap.put("5~8年_4", "workYear_6");
+		conditonMap.put("8~10年_4", "workYear_7");
+		conditonMap.put("10年以上_4", "workYear_8");
 		//公司性质
-		conditonMap.put("内资", "companyType_1");
-		conditonMap.put("国有全资", "companyType_2");
-		conditonMap.put("集体全资", "companyType_3");
-		conditonMap.put("股份合作", "companyType_3");
-		conditonMap.put("联营", "companyType_4");
-		conditonMap.put("国有联营", "companyType_5");
-		conditonMap.put("国有与集体联营", "companyType_6");
-		conditonMap.put("其他联营", "companyType_7");
-		conditonMap.put("有限责任（公司）", "companyType_8");
+		conditonMap.put("内资_5", "companyType_1");
+		conditonMap.put("国有全资_5", "companyType_2");
+		conditonMap.put("集体全资_5", "companyType_3");
+		conditonMap.put("股份合作_5", "companyType_3");
+		conditonMap.put("联营_5", "companyType_4");
+		conditonMap.put("国有联营_5", "companyType_5");
+		conditonMap.put("国有与集体联营_5", "companyType_6");
+		conditonMap.put("其他联营_5", "companyType_7");
+		conditonMap.put("有限责任（公司）_5", "companyType_8");
 	}
 	private static Log log = LogFactory.getLog(ControllerSearch.class);
 	@Resource
@@ -139,9 +139,11 @@ public class ControllerSearch {
 			log.debug("search data:"+data);
 			String[] split = data.split("-");
 			for (String key : split) {
+				log.debug("key:"+key+" conditonMap.get(key):"+conditonMap.get(key));
 				// 进行条件映射
 				if(!StringUtils.isEmpty(conditonMap.get(key))){
 					String value=conditonMap.get(key).replaceAll("_[0-9]+", "");
+					key=key.replaceAll("_[0-9]+", "");
 					if(value.equals(issueTime)){
 						issueTime=key;
 					}else if(value.equals(salaryRange)) {
@@ -176,6 +178,9 @@ public class ControllerSearch {
 		if(companyType.equals("companyType")){
 			companyType="";
 		}
+		if("选择城市".equals(area)){
+			area="";
+		}
 		if (!StringUtils.isEmpty(majorTypeId)) {
 			// 获取对象
 			TmajorType majorValue=(TmajorType)etechService.findObjectById(TmajorType.class, Integer.valueOf(majorTypeId));
@@ -193,6 +198,7 @@ public class ControllerSearch {
 		request.setAttribute("keyword", keyword);
 		request.setAttribute("majorTypeId", majorTypeId);
 		request.setAttribute("workTypeId", workTypeId);
+		request.setAttribute("area", area);
 		String hql="From TdataCenter dataCenter where dataCenter.type='2'";
 		@SuppressWarnings("unchecked")
 		List<TdataCenter> notices = (List<TdataCenter>)etechService.findListByHQL(hql);
@@ -201,21 +207,68 @@ public class ControllerSearch {
 		// 岗位搜索和
 		if ("position".equals(type)) {
 			log.debug("根据关键字和条件搜索招聘岗位");
-			List<Trecruit> recruitList=(List<Trecruit>)jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
+			List<Trecruit> recruitList=null;
+			if(StringUtils.isEmpty(issueTime)&&
+					StringUtils.isEmpty(salaryRange)&&
+					StringUtils.isEmpty(workType)&&
+					StringUtils.isEmpty(eduRequire)&&
+					StringUtils.isEmpty(workYear)&&
+					StringUtils.isEmpty(companyType)&&
+					StringUtils.isEmpty(keyword)&&
+					StringUtils.isEmpty(majorTypeId)&&
+					"".equals(area)&&
+					StringUtils.isEmpty(companyType)){
+				hql="from Trecruit recruit order by recruit.editTime desc";
+				recruitList= (List<Trecruit>)etechService.findObjectList(hql, 1, 15, Trecruit.class);
+			}else {
+				recruitList=(List<Trecruit>)jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
+			}
 			request.setAttribute("recruitList", recruitList);
 			request.setAttribute("location", "position");
 			return "occupationIntroduction/advancedSearchJob";
 		//公司搜索
 		}else if ("company".equals(type)) {
 			log.debug("根据关键字和条件搜索公司");
-			List<Trecruit> recruitList=(List<Trecruit>)jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
+			List<Trecruit> recruitList=null;
+			if(StringUtils.isEmpty(issueTime)&&
+					StringUtils.isEmpty(salaryRange)&&
+					StringUtils.isEmpty(workType)&&
+					StringUtils.isEmpty(eduRequire)&&
+					StringUtils.isEmpty(workYear)&&
+					StringUtils.isEmpty(companyType)&&
+					StringUtils.isEmpty(keyword)&&
+					StringUtils.isEmpty(majorTypeId)&&
+					"".equals(area)&&
+					StringUtils.isEmpty(companyType)){
+				hql="from Trecruit recruit order by recruit.editTime desc";
+				recruitList= (List<Trecruit>)etechService.findObjectList(hql, 1, 15, Trecruit.class);
+			}else {
+				recruitList=(List<Trecruit>)jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
+			}
 			request.setAttribute("recruitList", recruitList);
 			request.setAttribute("location", "company");
 			return "occupationIntroduction/advancedSearchCompany";
 		// 简历搜索
 		}else{
 			log.debug("简历搜索");
-			List<TcomInfo> comInfoList = resumeSearchService.search(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
+			List<TcomInfo> comInfoList=null;
+			// (issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType
+			if(StringUtils.isEmpty(issueTime)&&
+				StringUtils.isEmpty(salaryRange)&&
+				StringUtils.isEmpty(workType)&&
+				StringUtils.isEmpty(eduRequire)&&
+				StringUtils.isEmpty(workYear)&&
+				StringUtils.isEmpty(companyType)&&
+				StringUtils.isEmpty(keyword)&&
+				StringUtils.isEmpty(majorTypeId)&&
+				"".equals(area)&&
+				StringUtils.isEmpty(companyType)){
+				//搜索简历
+				hql="from TcomInfo comInfo where comInfo.infoType=4  order by comInfo.editDate desc";
+				comInfoList= (List<TcomInfo>)etechService.findObjectList(hql, 1, 15, TcomInfo.class);
+			}else {
+				comInfoList = resumeSearchService.search(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
+			}
 			request.setAttribute("comInfoList", comInfoList);
 			request.setAttribute("location", "resume");
 			return "occupationIntroduction/advancedSearchResume";
@@ -264,7 +317,7 @@ public class ControllerSearch {
 		request.setAttribute("location", "resume");
 		return "occupationIntroduction/advancedSearchResume";
 	}
-	//搜索公司
+		//搜索公司
 		@RequestMapping(value = "/companyAdvancedSearch")
 		public String companyAdvancedSearch(HttpServletRequest request) {
 			// 当前是第几页
@@ -277,7 +330,7 @@ public class ControllerSearch {
 			if(!StringUtils.isEmpty(request.getParameter("pageSize"))){
 				pageSize=Integer.valueOf(request.getParameter("pageSize"));
 			}
-			//搜索职位
+			//搜索公司
 			String hql="from Trecruit recruit order by recruit.editTime desc";
 			@SuppressWarnings("unchecked")
 			List<Trecruit> recruitList= (List<Trecruit>)etechService.findObjectList(hql, pageNo, pageSize, Trecruit.class);
