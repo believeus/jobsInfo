@@ -7,7 +7,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-1.7.2.min.js"></script>
    	<link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
-    <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />  
+    <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/resource/public/areaSelect/css.css" />
+	<script type="text/javascript" src="/resource/public/areaSelect/drag.js"></script>
+	<script type="text/javascript" src="/resource/public/areaSelect/city_arr.js"></script>
 	<script type="text/javascript" src="/resource/public/js/jquery.form.js"></script>
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu-search.js"></script> 
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>
@@ -378,7 +381,11 @@
 								</a>	
 							</div>
 						</td>
-						<td><input type="text" placeholder="请选择区域.." name="area"></td>
+						<td>
+							<script type="text/javascript" src="/resource/public/areaSelect/city_func.js"></script>
+							<input id="btn_residency" type="text" placeholder="请选择区域.." name="area" onclick="residencySelect()">
+							<input id="residency" type="hidden" name="residency" value="" />
+						</td>
 						<td><input type="button" value="搜索" style="width: 80px;"></td>
 					</tr>
 				</table>
@@ -696,6 +703,19 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- alpha div -->
+	<div id="maskLayer" style="display:none">
+	<div id="alphadiv" style="filter:alpha(opacity=50);-moz-opacity:0.5;opacity:0.5"></div>
+		<div id="drag">
+			<h3 id="drag_h"></h3>
+			<div id="drag_con"></div><!-- drag_con end -->
+		</div>
+	</div><!-- maskLayer end -->
+	</div>
+	<!-- alpha div end -->
+	<div id="sublist" style="display:none"></div>
+	
 	[#include "/include/footer.ftl" /]
 </body>
 </html>

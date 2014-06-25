@@ -705,7 +705,9 @@
 						hiddenID : "selectSpecialtyhidden1"//隐藏域ID	
 			});
 			$("#selectJobs1").xMenu({	
-						width :600,	
+						width :1000,
+						top:175.5,
+						left:145,
 						eventType: "click", //事件类型 支持focus click hover
 						dropmenu:"#xmenuJobs1",//弹出层
 						emptytext:"选择工种",
@@ -977,8 +979,39 @@
 		}
     	// 保存信息。
     	$("#savaAll").click(function() {
-    			//showdiv();
-				submitFile();
+    		
+    		if($("#fullName").val() == ""){
+    			alert("请输入单位全称");
+    		}else if($("#shorName").val() == ""){
+    			alert("请输入单位简称");
+    		}else if($("#legalMan").val() == ""){
+    			alert("请输入法人代表");
+    		}else if($("#area").val() == ""){
+    			alert("请输入所属地区");
+    		}else if($("#trade").val() == ""){
+    			alert("请输入所属行业");
+    		}else if($("#regMoney").val() == ""){
+    			alert("请输入注册资金");
+    		}else if($("#detailAddress").val() == ""){
+    			alert("请输入详细地址");
+    		}else if($("#contacts").val() == ""){
+    			alert("请输入联系人");
+    		}else if($("#address").val() == ""){
+    			alert("请输入通讯地址");
+    		}else if($("#zip").val() == ""){
+    			alert("请输入邮政编码");
+    		}else if($("#phoneNum").val() == ""){
+    			alert("请输入手机号码");
+    		}else if($("#phoneFax").val() == ""){
+    			alert("请输入电话/传真");
+    		}else if($("#webSite").val() == ""){
+    			alert("请输入网址");
+    		}else if($("#introduce").val() == ""){
+    			alert("请输入单位简介");
+    		}
+    		
+			//submitInfo();
+			submitVedio();
 		});
 		
 		// 保存招聘信息。
@@ -988,15 +1021,21 @@
 		
 		// 修改密码
 		$("#btn_pd").click(function(){
+			var password=$(".pass_text").val();
+			if(password==""){
+				alert("请输入新密码");
+				return false;
+			}
 			$("#pdFrom").ajaxSubmit({
-		            	 type: "post",
-					     url: "/user/center/updatepd.jhtml",
-					     dataType: "json",
-					     success: function(data){
-						     $("#need").html("密码修改成功！正在返回页面....");// 这个是渐渐消失 			     		
-					     	 setTimeout(function(){ alert_win.style.display='none';},1000);	
-					     }
-	        	});	
+            	 type: "post",
+			     url: "/user/center/updatepd.jhtml",
+			     dataType: "json",
+			     success: function(data){
+				     $("#need").html("密码修改成功！正在返回页面....");// 这个是渐渐消失 			     		
+			     	 setTimeout(function(){ alert_win.style.display='none';},1000);
+			     	 location.replace("/enterprise-user/center.jhtml");		
+			     }
+        	});	
 		
 		});
 		
@@ -1345,7 +1384,6 @@
 					
 					<p style="text-align:center;">
 						<input type="button" id="savaAll" value="保存">
-						<input type="reset" value="重写">
 					</p>
 				</div>
 				

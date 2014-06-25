@@ -101,7 +101,7 @@
 					$selectUl.find("li[rel='"+id+"']").remove();					
 					$li.removeClass("current");
 				}else{					
-					$("<li rel='"+id+"' class='current'>"+val+"(点击即可取消选择)</li>").appendTo($selectUl);
+					$("<li rel='"+id+"' class='current'>"+val+"</li>").appendTo($selectUl);
 					$li.addClass("current");
 				}	
 				if($selectUl.children("li").length==0){
@@ -160,7 +160,7 @@
 					for(var i=0;i<array.length;i++){
 						var $cli = $mli.filter("li[rel='"+array[i]+"']");
 						$cli.addClass("current");
-						$("<li rel='"+array[i]+"' class='current'>"+$cli.text()+"(点击即可取消选择)</li>").appendTo($selectUl);
+						$("<li rel='"+array[i]+"' class='current'>"+$cli.text()+"</li>").appendTo($selectUl);
 					}					
 				}else if($selectUl.children("li").length > 0){
 					$selectinfo.show();

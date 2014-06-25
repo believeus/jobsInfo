@@ -33,21 +33,25 @@ $(document).ready(function(){
 	<p style="color:#FFFFFF;text-align:center;">${data.createTime?number_to_datetime}</p>
 </div>
 <div id="photos" class="galleryview">
-  <div class="panel">
-     <img src="${data.imgpath}" /> 
-    <div class="panel-overlay">
-      	<div style="text-align:left;padding:0 12px;">
-      		[#if data.content?length > 50]
-				${data.content?string?substring(0,50)}...
-			[#else]
-				${data.content}
-			[/#if]
-  		</div>
-    </div>
-  </div>
-  <ul class="filmstrip">
-    <li><img src="${data.imgpath}" width="98" height="98" alt="${data.title}" title="${data.title}" /></li>
-  </ul>
+	[#list pathList as path]
+	  <div class="panel">
+	     	<img src="${path}" /> 
+	    <div class="panel-overlay">
+	      	<div style="text-align:left;padding:0 12px;">
+	      		[#if data.content?length > 50]
+					${data.content?string?substring(0,50)}...
+				[#else]
+					${data.content}
+				[/#if]
+	  		</div>
+	    </div>
+	  </div>
+	[/#list]
+	  <ul class="filmstrip">
+	  	[#list pathList as path]
+	    	<li><img src="${path}" width="98" height="98" alt="${data.title}" title="${data.title}" /></li>
+		[/#list]
+	  </ul>
 </div>
 [#include "/include/footer.ftl" /]
 </body>

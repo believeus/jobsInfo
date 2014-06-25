@@ -69,7 +69,7 @@ a.as span {
     height: 20px;
     left: 5px;
     position: absolute;
-    top: 20px;
+    top: 8px;
     font-size: 14px;
     font-weight: bold;
 	color: #5893B7;
@@ -110,7 +110,9 @@ a.as span {
     box-shadow: 0 0 4px #8B99A8, 0 0 1px #8B99A8;
     border-radius: 0px 0px 4px 4px;
     outline: medium none;
-	width: 500px;
+	width: 1000px !important;
+	top:175.5px !important;
+	left:145px !important;
 }
 
 
@@ -151,6 +153,7 @@ a.as span {
 .xmenu dl dd ul {
    padding-bottom:0px; 
    overflow: hidden;
+   padding-left:50px;
 }
 
 .xmenu dl dd ul li {
@@ -158,12 +161,12 @@ a.as span {
     background-repeat: no-repeat;
     cursor: pointer;
     float: left;
-    height: 25px;
+    height: 20px;
     overflow: hidden;
     text-indent: 2px;
-    width: 150px;
+    width: 130px;
 	color:#666666;
-
+	font-size:12px;
 }
 .xmenu dl dd ul  li:hover {
     background-color: #DFECFF;

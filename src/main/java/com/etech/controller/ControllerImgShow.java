@@ -1,5 +1,6 @@
 package com.etech.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -26,7 +27,13 @@ public class ControllerImgShow {
 		TdataCenter dataCenter = (TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		session.setAttribute("data", dataCenter);
 		
-		
+		String path = dataCenter.getImgpath();
+		String[] date = path.split("#");
+		List<String> pathList = new ArrayList<String>();
+		for (int i = 0; i < date.length; i++) {
+			pathList.add(date[i]);
+		}
+		session.setAttribute("pathList", pathList);
 		
 		return "infoCenter/imageInfo";
 	}

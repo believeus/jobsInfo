@@ -66,6 +66,7 @@
 			width:727px;
 			height:auto;
 			margin-top:10px;
+			overflow:hidden;
 		}
 		.j_main_right_2 li{
     		margin-right: 30px;
@@ -91,6 +92,14 @@
 		}
 		.current_li a{
 			color:#FFFFFF;
+		}
+		.img_list{
+			width:220px;
+			height:200px;
+			border:1px solid #e4e4e4;
+			text-align:center;
+			float:left;
+			margin:10px;
 		}
     </style>
 </head>
@@ -125,39 +134,23 @@
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
-				<table>
-					<tr>
-						[#list imgs as img]
-						<td>
-							<div style="width:205px;height:200px;border:1px solid #e4e4e4;text-align:center;">
-								<p><a href="/imgShow.jhtml?id=${img.id}"><img src="${img.imgpath}" width="170" height="110"></a></p>
-								<p style="padding:0 5px;text-align:left;color:#3A71AA;font-size:14px;margin-bottom:0;"><a href="/imgShow.jhtml?id=${img.id}">
+				[#list imgs as img]
+				[#if img_index <12]
+					<div class="img_list">
+						<p><a href="/imgShow.jhtml?id=${img.id}"><img src="${img.imgpath}" width="170" height="110"></a></p>
+						<p style="padding:0 5px;text-align:center;color:#3A71AA;font-size:14px;margin-bottom:0;">
+							<a href="/imgShow.jhtml?id=${img.id}">
 								[#if img.title?length > 27]
 									${img.title?string?substring(0,27)}...
 								[#else]
 									${img.title}
 								[/#if]
-								</a></p>
-								<p style="margin-top:0;">[${img.createTime?number_to_datetime}]</p>
-							</div>
-						</td>
-						[/#list]
-					</tr>
-				</table>
-				<p style="padding-left:25px;">
-					<a href="">首页</a>
-					<a href="">上一页</a>
-					<a href="">下一页</a>
-					<a href="">末页</a>
-					<select name="">
-						<option value="">1</option>
-						<option value="">2</option>
-						<option value="">3</option>
-						<option value="">4</option>
-						<option value="">5</option>
-					</select>
-					共<font color="red">5</font>页<font color="red">51</font>条
-				</p>
+							</a>
+						</p>
+						<p style="margin-top:0;">[${img.createTime?number_to_datetime}]</p>
+					</div>
+				[/#if]
+				[/#list]
 			</div>
 		</div>
 	</div>
