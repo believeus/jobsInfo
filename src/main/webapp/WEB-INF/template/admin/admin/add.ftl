@@ -94,7 +94,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>用户名:
 				</th>
 				<td>
-					<input type="text" name="loginName" class="text" maxlength="200" />
+					<input type="text" name="loginName" value="" class="text" maxlength="200" />
 				</td>
 			</tr>
 			<tr>
@@ -102,7 +102,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>电子邮件:
 				</th>
 				<td>
-					<input type="text" name="email" class="text" maxlength="200" />
+					<input type="text" name="email" value="" class="text" maxlength="200" />
 				</td>
 			</tr>
 			<tr>
@@ -122,7 +122,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>密码:
 				</th>
 				<td>
-					<input type="password" name="password" id="password" class="text" maxlength="200" />
+					<input type="password" value="" name="password" id="password" class="text" maxlength="200" />
 				</td>
 			</tr>
 			<tr>
@@ -130,7 +130,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>确认密码:
 				</th>
 				<td>
-					<input type="password" name="repass" class="text" maxlength="200" />
+					<input type="password" value="" name="repass" class="text" maxlength="200" />
 				</td>
 			</tr>
 			<tr>

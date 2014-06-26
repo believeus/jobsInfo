@@ -99,7 +99,6 @@ public class ControllerAdmin{
 	/**
 	 * 编辑
 	 */
-	@RequiresPermissions("admin:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String edit(int id,HttpServletRequest request) {
 		String hql="from Trole role where role.disable = 0";
@@ -118,7 +117,6 @@ public class ControllerAdmin{
 	 * 更新
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	@RequiresPermissions("admin:modify")
 	public String update(Tadmin editAdmin,int roleId) {
 		log.debug("roleId:"+roleId);
 		log.debug("loginName:"+editAdmin.getLoginName());

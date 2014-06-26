@@ -75,7 +75,6 @@ $().ready(function() {
 		<table class="input">
 			<tr>
 				<th colspan="2" style="text-align: left; font-size: 15px; padding-left: 120px;">
-					修改管理员
 				</th>
 			</tr>
 			<tr>
@@ -95,7 +94,7 @@ $().ready(function() {
 					<input type="text" name="email" class="text" maxlength="200" value="${admin.email}" />
 				</td>
 			</tr>
-			[#if admin.loginName !="admin"]
+			[#if sessionUser.loginName =="admin"]
 			<tr>
 				<th>
 					<span class="requiredField">*</span>请选择角色:
