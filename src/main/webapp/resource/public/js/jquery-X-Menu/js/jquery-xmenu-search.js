@@ -80,6 +80,11 @@
 					name =name.substring(0,10)+"...";
 				}
 				
+				// wuhuanrong 2014-06-25
+				// 更改搜索页面的关键字的值。
+				changeKeyword(name,$span);
+				// 可删除。
+				
 				$span.text(name);
 				$Hd.val(id);
 				$.powerFloat.hide();
@@ -100,12 +105,12 @@
 					$li.removeClass("current");
 					count--;
 				}else{	
-					if(count<5){
+					if(count<1){
 						$("<li rel='"+id+"' class='current'>"+val+"</li>").appendTo($selectUl);
 						$li.addClass("current");
 						count++;
 					}else{
-						alert("最多选择5个");
+						alert("最多选择1个");
 					}
 				}	
 				if($selectUl.children("li").length==0){

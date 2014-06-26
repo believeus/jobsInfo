@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.etech.entity.TdataCenter;
-import com.etech.entity.TentImgVedio;
 import com.etech.service.EtechService;
 
 /**

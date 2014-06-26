@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.etech.entity.TdataCenter;
 import com.etech.service.EtechService;
 import com.etech.util.JsonOutToBrower;
@@ -65,10 +66,19 @@ public class ControllerCRUD {
 		if(!StringUtils.isEmpty(request.getParameter("type"))){
 			type=Integer.parseInt(request.getParameter("type"));
 		}
-		if(!StringUtils.isEmpty(request.getParameter("imgPaths"))){
-			String path=request.getParameter("imgPaths");
-			center.setImgpath(path); 
+		if (count==1) {
+			if(!StringUtils.isEmpty(request.getParameter("suffix"))){
+				int suffix=Integer.parseInt(request.getParameter("suffix"));
+				String string = request.getParameter("oldUrl");
+				String[] split = string.split("#");
+				if (suffix==0) {
+					storepath+=split[suffix+1];
+				}else {
+					storepath=split[suffix]+storepath;					
+				}
+			}
 		}
+		System.out.println(storepath);
 		System.out.println(center.getImgpath());
 		String title=request.getParameter("title");
 		String author=request.getParameter("author");

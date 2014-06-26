@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 import org.hibernate.search.annotations.Store;
 import org.hibernate.validator.constraints.Length;
 
@@ -182,7 +183,7 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	public void setViewData(long viewData) {
 		this.viewData = viewData;
 	}
-
+	@Field(store=Store.YES,index = Index.TOKENIZED)
 	public String getWorkWay() {
 		return workWay;
 	}
@@ -207,6 +208,7 @@ public class Trecruit extends TbaseEntity implements Serializable {
 		this.note = note;
 	}
 	
+	@IndexedEmbedded
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="fk_workTypeId",referencedColumnName="id")
 	public TmajorType getWorkType() {
@@ -251,6 +253,7 @@ public class Trecruit extends TbaseEntity implements Serializable {
 		this.createTime = createTime;
 	}
 
+	@Field(store=Store.YES,index = Index.TOKENIZED)
 	public long getEditTime() {
 		return editTime;
 	}

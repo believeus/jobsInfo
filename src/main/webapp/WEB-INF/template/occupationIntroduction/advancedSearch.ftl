@@ -331,7 +331,7 @@
 					</tr>
 				</table>
 			</div>
-			<form id="infoForm" novalidate="novalidate"  action="/advancedSearch.jhtml"  method="post" >
+			<form id="infoForm" novalidate="novalidate"  action="/advanceSearchByContision.jhtml"  method="post" >
 			<input type="hidden" name="data" value="" id="data">
 			<div id="tag" class="j_main_right_2" style="border:1px solid #E4925A;border-radius:4px;">
 				<table style="background: #60B732; border-radius: 4px; margin: 5px 25px;">
@@ -385,7 +385,7 @@
 							<input id="btn_residency" type="text" placeholder="请选择区域.." name="area" onclick="residencySelect()">
 							<input id="residency" type="hidden" name="residency" value="" />
 						</td>
-						<td><input type="button" value="搜索" style="width: 80px;"></td>
+						<td><input type="submit" value="搜索" style="width: 80px;"></td>
 					</tr>
 				</table>
 				<div style="width: 996px; height: 30px;">
@@ -394,13 +394,13 @@
 					</div>
 					<div class="j_main_right_2_2">
 						<ul>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近2天_0" name="近2天_0">近2天</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近3天_0" name="近3天_0">近3天</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近7天_0" name="近7天_0">近7天</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近15天_0" name="近15天_0">近15天</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近30_0" name="近30_0">近30天</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近60天_0" name="近60天_0">近60天</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近60天以上_0" name="近60天以上_0">近60天以上</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近2天_0" name="近2天">近2天</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近3天_0" name="近3天">近3天</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近7天_0" name="近7天">近7天</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近15天_0" name="近15天">近15天</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近30_0" name="近30">近30天</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近60天_0" name="近60天">近60天</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近60天以上_0" name="近60天以上">近60天以上</a></li>
 						</ul>
 					</div>
 				</div>

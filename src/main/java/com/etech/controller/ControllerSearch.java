@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.etech.entity.TdataCenter;
+import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
+import com.etech.service.JobSearchService;
 import com.etech.service.PolicyAdviceService;
 
 /**
@@ -31,6 +33,8 @@ public class ControllerSearch {
 	private EtechService etechService;
 	@Resource
 	private PolicyAdviceService policyAdviceService;
+	@Resource
+	private JobSearchService jobSearchService;
 	/**简单搜索*/
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/search")
@@ -54,24 +58,50 @@ public class ControllerSearch {
 		
 		return "occupationIntroduction/search";
 	}
-	/**高级搜索*/
-	@RequestMapping(value = "/advancedSearch")
-	public String advancedSearchView(String data,String keyword,String majorTypeId,String workTypeId,
-			Integer area,String type,HttpServletRequest request,HttpSession session) {
-		
-		System.out.println(data);
-		System.out.println(keyword);
-		System.out.println(majorTypeId);
-		System.out.println(workTypeId);
-		System.out.println(area); 
-		System.out.println(type);
-		
+	@RequestMapping(value="/advanceSearchByContision")
+	public String advanceSearch(String data,String keyword,String majorTypeId,String workTypeId,
+			String area,String type,HttpServletRequest request,HttpSession session){
+
+		// 第一组：发布日期 第二组:起薪范围 第三组：工作性质
+		// 第三组：学历性质 第四组:工作年限 第五组：公司性质
+		String issueTime="";
+		String salaryRange="";
+		String workType="";
+		String eduRequire="";
+		String workYear="";
+		String companyType="";
 		if (data!=null) {
 			String[] split = data.split("-");
-			for (String string : split) {
-				String[] str = string.split("_");
-				System.out.println(str[0]);
+			int length=split.length;
+			// length 长度=6
+			if(length-5>0){
+			  // 公司性质
+			  companyType=split[5];
 			}
+			// length 长度=5
+			if(length-4>0){
+				// 工作年限
+				workYear=split[4];
+			}
+			// length 长度=4
+			if(length-3>0){
+				// 学历要求
+				eduRequire=split[3];
+			}
+			// length 长度=3
+			if(length-2>0){
+				// 工作性质
+				workType=split[2];
+			}
+			// length长度等于2
+			if(length-1>0){
+				//起薪范围
+			  salaryRange=split[1];
+			   // 发布日期
+			  issueTime=split[0];
+			  log.debug("issueTime:"+issueTime);
+			}
+			
 		}
 		if (majorTypeId!=null) {
 			// 获取对象
@@ -86,8 +116,10 @@ public class ControllerSearch {
 		if (area!=null) {
 			
 		}
-		if (type=="position") {
-			log.debug("职位搜索");
+		if ("position".equals(type)) {
+			log.debug("根据关键字搜索招聘岗位");
+			List<Trecruit> recruitList=(List<Trecruit>)jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
+			
 			
 		}else if (type=="resume") {
 			System.out.println("简历搜索");
@@ -100,6 +132,11 @@ public class ControllerSearch {
 		request.setAttribute("majorTypeId", majorTypeId);
 		request.setAttribute("workTypeId", workTypeId);
 		return "occupationIntroduction/advancedSearch";			
+	}
+	/**高级搜索*/
+	@RequestMapping(value = "/advancedSearch")
+	public String advancedSearchView() {
+		return "occupationIntroduction/advancedSearch";		
 	}
 	
 	//

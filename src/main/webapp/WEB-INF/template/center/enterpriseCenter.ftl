@@ -320,7 +320,7 @@
 				        // 选中图片的时候。
 				        'onSelect': function(file){ 
 				        	var v=parseInt($("#num"+num).val())+1;
-				        	$("#num"+num).val(v)
+				        	$("#num"+num).val(v);
 				        	// 重新设置uploader的上传类型
 				        	if(file.type==".swf"||file.type==".flv"){
 				    	    	$("#uploadify"+num).uploadify('settings','fileTypeExts','*.gif;*.jpg;*.jpeg;*.bmp;*.png;');	
@@ -1499,7 +1499,21 @@
 								</tr>
 								<tr>
 									<td>从事年限:</td>
-									<td><input type="text" id="workyear1" name="workyear"></td>
+									<td>
+									<select id="workyear1" name="workyear" style="width: 183px;">
+											<option value="">请选择..</option>
+											<option value="在读学生">在读学生</option>
+											<option value="应届毕业生">应届毕业生</option>
+											<option value="1~2年">1~2年</option>
+											<option value="2~3年">2~3年</option>
+											<option value="3~5年">3~5年</option>
+											<option value="5~8年">5~8年</option>
+											<option value="8~10年">8~10年</option>
+											<option value="8~10年">8~10年</option>
+											<option value="10年以上">10年以上</option>
+										</select>
+    
+									</td>
 									<td>文化程度:</td>
 									<td>
 										<select id="eduLevel1" name="eduLevel" style="width: 183px;">
@@ -1534,15 +1548,28 @@
 								</tr>
 								<tr>
 									<td>薪资待遇:</td>
-									<td><input type="text" id="salary1" name="salary"></td>
+									<td>
+									<select id="salary1" name="salary" style="width: 183px;">
+											<option value="">请选择..</option>
+											<option value="1000以下">1000以下</option>
+											<option value="1000~1999">1000~1999</option>
+											<option value="2000~2999">2000~2999</option>
+											<option value="3000~3999">3000~3999</option>
+											<option value="4000~4999">4000~4999</option>
+											<option value="5000以上">5000以上</option>
+										</select>
+									</td>
 									<td>用工形式:</td>
 									<td>
 										<select id="workWay1" name="workWay" style="width: 183px;">
 											<option value="">请选择..</option>
-											<option value="兼职">兼职</option>
 											<option value="全职">全职</option>
+											<option value="兼职">兼职</option>
 											<option value="实习">实习</option>
-											<option value="...">...</option>
+											<option value="临时">临时</option>
+											<option value="小时工">小时工</option>
+											<option value="全职/兼职/实习均可">全职/兼职/实习均可</option>
+											<option value="就业见习">就业见习</option>
 										</select>
 									</td>
 								</tr>
