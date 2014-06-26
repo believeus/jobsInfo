@@ -30,9 +30,9 @@ var residency = {
 		}
 		$('#drag').width('580px');
 		// 鼠标悬停变色
-		$('#residencyAlpha li').hover(function(){$(this).addClass('over')},function(){$(this).removeClass()});
+		$('.residencyAlpha li').hover(function(){$(this).addClass('over')},function(){$(this).removeClass()});
 		// 点击弹出子菜单
-		$('#allProv li').click(function(e){$("#sublist").css({top:e.pageY-4,left:e.pageX-4}).hover(function(){$(this).show()},function(){$(this).hide()})})
+		$('.allProv li').click(function(e){$("#sublist").css({top:e.pageY-4,left:e.pageX-4}).hover(function(){$(this).show()},function(){$(this).hide()})})
 	},
 	// 所有省份 下拉 城市菜单
 	SubLayer : function(id){
@@ -45,14 +45,14 @@ var residency = {
 			output+='<li><a href="javascript:" onclick="residency.Chk(\''+key+'\')">'+ja[key]+'</a></li>';
 		}
 		output=output+'</ul></div>';
-		$("#sublist").html(output).show();
+		$(".sublist").html(output).show();
 	},
 
 
 	Chk : function(id){
 		if(residency_hukou_flag==0){
-			$('#btn_residency').val(ja[id]);
-			$('#residency').val(id);
+			$('.proCitySelAll').val(ja[id]);
+			$('.residency').val(id);
 		}else{
 			$('#btn_hukou').val(ja[id]);
 			$('#hukou').val(id);
@@ -64,12 +64,12 @@ var residency = {
 	
 function residencySelect(){
 	residency_hukou_flag=0;
-	var dragHtml ='<div id="residencyAlpha">';		//居住地
+	/*var dragHtml ='<div id="residencyAlpha">';		//居住地
 		dragHtml+='		<div id="maincity"></div>';	//主要城市
 		dragHtml+='		<div id="allProv"></div>';	//所有省市
 		dragHtml+='</div>';
 	$('#drag_h').html('<b>请选择居住地</b><span onclick="boxAlpha()">关闭</span>');
-	$('#drag_con').html(dragHtml);
+	$('#drag_con').html(dragHtml);*/
 	residency.Show();
 	boxAlpha();
 	draglayer();

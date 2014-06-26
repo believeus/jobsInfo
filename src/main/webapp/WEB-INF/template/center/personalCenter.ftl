@@ -14,6 +14,9 @@
     <link rel="stylesheet" type="text/css" href="/resource/public/areaSelect/css.css" />
     <link href="/resource/public/selectArea/css/cityLayout.css" type="text/css" rel="stylesheet">
 	<link href="/resource/public/selectArea/css/css.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/resource/public/areaSelect/css.css" />
+	<script type="text/javascript" src="/resource/public/areaSelect/drag.js"></script>
+	<script type="text/javascript" src="/resource/public/areaSelect/city_arr.js"></script>
 	<script type="text/javascript" src="/resource/public/areaSelect/drag.js"></script>
 	<script type="text/javascript" src="/resource/public/areaSelect/city_arr.js"></script> 
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu.js"></script> 
@@ -578,7 +581,8 @@
 								</td>
 								<td>择业地区:</td>
 								<td>
-									<input type="text" ov="请选择/输入城市名称" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" value="请选择/输入城市名称" autocomplete="off" id="start1" name="expectArea">
+									<input id="btn_residency" onclick="residencySelect()" type="text" ov="请选择/输入城市名称" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" value="请选择/输入城市名称" autocomplete="off" id="start1" name="expectArea">
+									<input class="residency" type="hidden" value="" name="residency" id="residency'+d+'">
 									<!--////////////////////////////////////////////////////////////////////////-->
 										<div class="provinceCityAll">
 										  <div class="tabs clearfix">
@@ -1072,7 +1076,6 @@
 					
 					var dataTime=$("#beginDate");
 					var isStudy=$("#schoolLearning1");
-					alert(isStudy.val()+"---"+dataTime.val());
 					if(isStudy.val() != "" && dataTime.val() == ""){
 						alert("请选择学习经历时间");
 						return false;
@@ -2013,6 +2016,24 @@
 	</div>
 	<!--********************************************-->
 	
+	<!-- alpha div -->
+	<div id="maskLayer" style="display:none">
+	<div id="alphadiv" style="filter:alpha(opacity=50);-moz-opacity:0.5;opacity:0.5"></div>
+		<div id="drag">
+			<h3 id="drag_h"><b>请选择居住地</b><span onclick="boxAlpha()">关闭</span></h3>
+			<div id="drag_con">
+				<div id="residencyAlpha" class="residencyAlpha">
+					<div id="maincity" class="maincity"></div>
+					<div id="allProv" class="allProv"></div>
+				</div>
+			</div><!-- drag_con end -->
+		</div>
+	</div><!-- maskLayer end -->
+	</div>
+	<!-- alpha div end -->
+	<div id="sublist" class="sublist" style="display:none"></div>
+	
+	<script type="text/javascript" src="/resource/public/areaSelect/city_func.js"></script>
 	<script src="/resource/public/selectArea/js/public.js"></script>
 	[#include "/include/footer.ftl" /]
 </body>

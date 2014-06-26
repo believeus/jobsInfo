@@ -256,9 +256,6 @@ $(function(){
 							<a target="main" href="/admin/power/list.jhtml">权限分组</a>
 						</li>
 					[/@shiro.hasPermission]
-						<li>
-							<a target="main" href="/admin/uploadFile/list.jhtml">上传文件管理</a>
-						</li>
        			 </ul>
 			</div>
 		</div>
