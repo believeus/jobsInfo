@@ -92,8 +92,13 @@ public class ControllerCRUD {
 	}
 	// 更新信息
 	public void updataDataInfo(TdataCenter formDataCenter,HttpServletRequest request) {
+		
+		// 与这两个值相关的都是对视频新闻的操作。
 		String suffix = request.getParameter("suffix");
 		String oldUrl = request.getParameter("oldUrl");
+		
+		String type = request.getParameter("type");
+		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		String storepath = "";
 		Map<String, MultipartFile> files = multipartRequest.getFileMap();
@@ -129,9 +134,17 @@ public class ControllerCRUD {
 				}
 			}
 		}
-		formDataCenter.setImgpath(storepath);
 		log.debug("是否置顶top:"+formDataCenter.getTop());
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, formDataCenter.getId());
+		if(!StringUtils.isEmpty(type)){
+			// 判断是否是图片新闻
+			if (type.equals("3")) {
+				if(!StringUtils.isEmpty(storepath)) {
+					storepath+="#"+dataCenter.getImgpath();
+				}
+			}
+		}
+		formDataCenter.setImgpath(storepath);
 		if(StringUtils.isEmpty(storepath)) {
 			formDataCenter.setImgpath(dataCenter.getImgpath());
 		}

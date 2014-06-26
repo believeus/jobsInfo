@@ -1,5 +1,7 @@
 package com.etech.controller.admin;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -85,7 +88,19 @@ public class ControllerImagesNews extends ControllerCRUD{
 	 * @return
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request) {
+	public String updateNewsView(TdataCenter editDataCenter,String ids,HttpServletRequest request) {
+		if (!StringUtils.isEmpty(ids)) {
+			TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, editDataCenter.getId());
+			List<String> oldlist = new ArrayList<String>(Arrays.asList(dataCenter.getImgpath().split("#")));
+			List<String> newList = new ArrayList<String>(Arrays.asList(ids.split("#")));
+			oldlist.removeAll(newList);
+			String imgpath="";
+			for (String string : oldlist) {
+				imgpath+=string+"#"; 
+			}
+			dataCenter.setImgpath(imgpath);
+			etechService.merge(dataCenter); 
+		}
 		super.updataDataInfo(editDataCenter, request);
 		return "redirect:/admin/imagesNews/list.jhtml";
 	}

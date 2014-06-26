@@ -12,8 +12,114 @@
 <script type="text/javascript" src="/resource/public/js/admin/kindeditor.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
+
+<style type="text/css">
+			.delete_pic{
+				color:#FFFFFF;
+				font-size:16px;
+			}
+			.brandImg a{
+				text-decoration:underline;
+			}
+			.brandImg span{
+				display:block;
+				position:absolute;
+				top:0px;left:0px;
+				width:200px;
+				height:130px;
+			}
+			
+			.brandImg{
+				border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
+			    border-radius: 2px 2px 2px 2px;
+			    border-style: solid;
+			    border-width: 1px;
+			    background-color: #666666;
+			    width:192px;
+			    height:150px;
+			    text-align:center;
+			    position:relative;
+			}
+			
+			.brandImg span:hover{
+				background-color:#FFFFFF;
+			    opacity: 0.7;
+			    filter:alpha(opacity=50);
+			    -moz-opacity:0.5;
+			    -khtml-opacity: 0.5;
+			}
+			
+			.brandImg span a{
+				display:block;
+				position:absolute;
+				top:50px;left:50px;
+			}
+			
+			.deleteProductImage:hover{
+				color:#C9033B !important;
+			}
+		</style>
+					
+	<script type="text/javascript">
+		function loadImgFast(img,i){
+				// 获取修改之前的图片链接。
+				var srcx=$(".brandImg:eq("+i+") img")[0].src;
+				if(srcx.indexOf("/resource/public/images/bg.png") < 0 && srcx.indexOf("data:image/jpeg;") < 0)
+				{
+				    // 不包含
+					deleteImg($(".brandImg:eq("+i+") input")[0].value);									    
+				}
+				if (img.files && img.files[0]){
+					var reader = new FileReader();
+					reader.onload = function(evt){$(".brandImg:eq("+i+") img")[0].src = evt.target.result;}
+		            reader.readAsDataURL(img.files[0]);	
+				}else if(window.navigator.userAgent.indexOf("MSIE")>=1){
+				   	file.select(); 
+		   			path = document.selection.createRange().text;
+		   			$(".brandImg:eq("+i+") img")[0].src = path;
+		   		} 
+			}
+		</script>
+					
 <script type="text/javascript">
+
+	
+	function deleteImg(value){
+			var deleteImgs = $("#deleteImgs");
+			if (deleteImgs.length > 0) { 
+		     	//对象存在的处理逻辑
+	            $("#deleteImgs").val(deleteImgs.val()+"#"+value);
+		    } else {
+		      	//对象不存在的处理逻辑
+		      	var html='<input id="deleteImgs" type="hidden" name="ids" value="'+value+'"/>';
+				$("#inputForm").append(html);
+		   }
+		}
+		
+		function delete_pic(object,value){		
+			if ($(".delete_pic").size() <= 1) {
+				alert("必须至少保留一张空图片");				
+				// 获取图片是否有值
+				if($(object).closest("div").parent().find("img").attr("src")!="/resource/public/images/bg.png"){
+					// 清空图片和描述
+					$(object).closest("div").parent().find("img").attr("src","/resource/public/images/bg.png");
+					if(value!="none"){
+						deleteImg(value);					
+					}
+				}					
+			} else {
+				if(value!="none"){
+						deleteImg(value);					
+				}
+				$(object).closest("div").parent().parent().remove();
+			}
+			a--;
+		}
+		
+	var a = 0;
 $().ready(function() {
+
+		
 
 	var $inputForm = $("#inputForm");
 	var $type = $("#type");
@@ -50,7 +156,6 @@ $().ready(function() {
 		}
 	});
 	
-	var a = 1;
 	
 	[#list dataCenter.imgpath?string?split("#") as url]   
 		[#if url!=""]
@@ -65,10 +170,10 @@ $().ready(function() {
 					<span style="float:left">
 						<div class="brandImg">
 							<span>
-								<a class="click_upimgs" onclick="file'+a+'.click()" href="javascript:return false;">点击上传图片</a>
+								<a class="click_upimgs" onclick="file'+a+'.click()" href="javascript:void(0);">点击上传图片</a>
 							</span>
 							<img style="width:190px;height:120px" src="/resource/public/images/bg.png" name="img"/>
-							<a class="delete_pic" href="javascript:void(0);">删除</a>
+							<a class="delete_pic" href="javascript:void(0);" onclick="delete_pic(this,no)">删除</a>
 						</div>
 						<input type="file" style="display:none" id="file'+a+'" name="file'+a+'" onchange="filename'+a+'.value=this.value;loadImgFast(this,'+a+')">
 						<input type="hidden" id="filename'+a+'" name="filename'+a+'">
@@ -76,14 +181,6 @@ $().ready(function() {
 				</div>';
 		[/@compress]
 		$(".img_list").parent().append(html);
-		//删除企业视频
-		$("a.delete_pic").on("click",function(){
-			if ($(".delete_pic").size() <= 1) {
-				alert("必须至少保留一个参数");
-			} else {
-				$(this).closest("div").remove();
-			}
-		});
 		a++;
 	});
 	
@@ -126,83 +223,24 @@ $().ready(function() {
 					<input id="add_imgs" type="button" value="添加图片" style="font-size: 10px; width: 52px;cursor:pointer;">
 				</th>
 				<td colspan="3">
-					<script type="text/javascript">
-					function loadImgFast(img,i){
-							if (img.files && img.files[0]){
-								var reader = new FileReader();
-								reader.onload = function(evt){$(".brandImg:eq("+i+") img")[0].src = evt.target.result;}
-					            reader.readAsDataURL(img.files[0]);	
-							}else if(window.navigator.userAgent.indexOf("MSIE")>=1){
-							   	file.select(); 
-					   			path = document.selection.createRange().text;
-					   			$(".brandImg:eq("+i+") img")[0].src = path;
-					   		} 
-						}
-					</script>
 					[#list dataCenter.imgpath?string?split("#") as url]   
 					[#if url!=""]
 					<div class="img_list">
 						<span style="float:left">
 							<div class="brandImg">
 								<span>
-									<a onclick="file${url_index+1}.click()" href="javascript:return false;">点击上传图片</a>
+									<a onclick="file${url_index}.click()" href="javascript:void(0)">点击上传图片</a>
 								</span>
 								<input type="hidden" name="imgpath" value="${url}"/>
-								<img style="width:190px;height:120px" [#if url?exists] src="/${url}" [#else]src="/resource/public/images/bg.png"[/#if] name="img"/>
-								<a class="delete_pic" href="javascript:void(0);">删除</a>
+								<img style="width:190px;height:120px" [#if url?exists] src="/${url}" [#else]src="/resource/public/images/bg.png"[/#if] value="${url}"/>
+								<a class="delete_pic" href="javascript:void(0);" onclick="delete_pic(this,'${url}')">删除</a>
 							</div>
-							<input type="file" style="display:none" id="file${url_index+1}" name="file${url_index+1}" onchange="filename${url_index+1}.value=this.value;loadImgFast(this,${url_index+1})">
-							<input type="hidden" id="filename${url_index+1}" name="filename${url_index+1}">
+							<input type="file" style="display:none" id="file${url_index}" name="file${url_index}" onchange="filename${url_index}.value=this.value;loadImgFast(this,${url_index})">
+							<input type="hidden" id="filename${url_index}" name="filename${url_index}">
 						</span>
 					</div>
 					[/#if]
 					[/#list]
-					<style type="text/css">
-						.delete_pic{
-							color:#FFFFFF;
-							font-size:16px;
-						}
-						.brandImg a{
-							text-decoration:underline;
-						}
-						.brandImg span{
-							display:block;
-							position:absolute;
-							top:0px;left:0px;
-							width:200px;
-							height:130px;
-						}
-						
-						.brandImg{
-							border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
-						    border-radius: 2px 2px 2px 2px;
-						    border-style: solid;
-						    border-width: 1px;
-						    background-color: #666666;
-						    width:192px;
-						    height:150px;
-						    text-align:center;
-						    position:relative;
-						}
-						
-						.brandImg span:hover{
-							background-color:#FFFFFF;
-						    opacity: 0.7;
-						    filter:alpha(opacity=50);
-						    -moz-opacity:0.5;
-						    -khtml-opacity: 0.5;
-						}
-						
-						.brandImg span a{
-							display:block;
-							position:absolute;
-							top:50px;left:50px;
-						}
-						
-						.deleteProductImage:hover{
-							color:#C9033B !important;
-						}
-					</style>
 				</td>
 			</tr>
 			<tr id="contentTr">
