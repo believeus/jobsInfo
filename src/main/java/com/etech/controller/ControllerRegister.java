@@ -77,12 +77,6 @@ public class ControllerRegister {
 				JsonOutToBrower.out(message, response);
 				return;
 			}
-			if(StringUtils.isEmpty(cpName)){
-				message.put("property","cpName");
-				message.put("message","企业名称必填");
-				JsonOutToBrower.out(message, response);
-				return;
-			}
 		}
 		log.debug("Idcard:"+regUser.getIdcard());
 		if(!StringUtils.isEmpty(regUser.getIdcard())){
