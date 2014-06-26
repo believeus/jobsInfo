@@ -920,11 +920,11 @@
 							<td>招聘期限:</td>
 							<td>
 								<select name="worklimit" style="width: 183px;">
-									<option value="">请选择..</option>
-									<option value="1年">1年</option>
-									<option value="3年">3年</option>
-									<option value="5年">5年</option>
-									<option value="...">...</option>
+									<option value="三个月">三个月</option>
+									<option value="一个月">一个月</option>
+									<option value="六个月">六个月</option>
+									<option value="一年">一年</option>
+									<option value="长期">长期</option>
 								</select>
 							</td>
 							<td>面试时间:</td>
@@ -1001,6 +1001,7 @@
     		
     		if($("#fullName").val() == ""){
     			alert("请输入单位全称");
+    			retrun;
     		}else if($("#shorName").val() == ""){
     			alert("请输入单位简称");
     		}else if($("#legalMan").val() == ""){
@@ -1487,8 +1488,8 @@
 								<td>
 								[#if recruit.status=="0"&&recruit.status!="1"]审核中[#elseif recruit.status=="1"]已通过审核[/#if]
 								</td>
-								<td>再看</td>
-								<td><a href="" style="margin-right: 5px;">编辑</a><a href="">删除</a></td>
+								<td>发布和未发布</td>
+								<td><a href="" style="margin-right: 5px;">编辑</a><a href="javascript:void(0)" onclick="">删除</a></td>
 							</tr>
 							[/#list]
 							[/#if]
@@ -1628,12 +1629,12 @@
 								<tr>
 									<td>招聘期限:</td>
 									<td>
-										<select id="worklimit1" name="worklimit" style="width: 183px;">
-											<option value="">请选择..</option>
-											<option value="1年">1年</option>
-											<option value="3年">3年</option>
-											<option value="5年">5年</option>
-											<option value="...">...</option>
+										<select name="worklimit" style="width: 183px;">
+											<option value="三个月">三个月</option>
+											<option value="一个月">一个月</option>
+											<option value="六个月">六个月</option>
+											<option value="一年">一年</option>
+											<option value="长期">长期</option>
 										</select>
 									</td>
 									<td>面试时间:</td>
