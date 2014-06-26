@@ -71,12 +71,6 @@ public class ControllerCRUD {
 		String author=request.getParameter("author");
 		/**Begin Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
 		String content=request.getParameter("content");
-		System.out.println("**************************************************");
-		System.out.println(content);
-		if (content.contains("div")) {
-			System.out.println("nimei");
-		}
-		System.out.println("**************************************************");
 		/**End Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
 		String top=request.getParameter("top");
 		String alink=request.getParameter("alink");

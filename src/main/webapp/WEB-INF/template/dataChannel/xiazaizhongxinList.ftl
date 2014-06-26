@@ -137,20 +137,6 @@
 					</li>
 					[/#list]
 				</ul>
-				<p style="padding-left:25px;">
-					<a href="">首页</a>
-					<a href="">上一页</a>
-					<a href="">下一页</a>
-					<a href="">末页</a>
-					<select name="">
-						<option value="">1</option>
-						<option value="">2</option>
-						<option value="">3</option>
-						<option value="">4</option>
-						<option value="">5</option>
-					</select>
-					共<font color="red">5</font>页<font color="red">51</font>条
-				</p>
 			</div>
 		</div>
 	</div>

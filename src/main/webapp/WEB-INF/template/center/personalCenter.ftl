@@ -155,6 +155,9 @@
 			background:#E36510;
 			color:#FFFFFF;
 		}
+		input[type="radio"] {
+			width: 10px !important;
+		}
     </style>
     <script type="text/javascript">
      	// 图片上传

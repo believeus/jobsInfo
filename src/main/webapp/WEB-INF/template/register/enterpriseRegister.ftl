@@ -111,7 +111,7 @@ body {
 					}
 					
 				// 用户名验证。
-				$("#loginName,#password,#comfirmPwd").change(function(){
+				$("#loginName,#password,#comfirmPwd,#cpName").change(function(){
 					submitF("nosubmit");
 				});
 				
@@ -119,9 +119,12 @@ body {
 				$("#register").click(function() {
 					var loginName= $("#loginName").val();
 					var password=$("#password").val();
-					var comfirmPwd=$("#comfirmPwd").val()
+					var comfirmPwd=$("#comfirmPwd").val();
+					var cpName=$("#cpName").val();
 					if(loginName==""&&password==""&&comfirmPwd==""){
-						alert("用户名和密码和确认密码不能为空！");
+						alert("用户名密码和确认密码及企业名称不能为空！");
+					}else if(cpName==""){
+						alert("企业名称不能为空！");
 					}else{
 						submitF("submit");
 					}
@@ -157,7 +160,7 @@ body {
             </div>
             <div>
             	<span>企业名称：</span>
-                <span><input  id="cpName" /></span>
+                <span><input type="text"  id="cpName" name="cpName"/></span>
             </div>
             <div>
             	<span>法人：</span>

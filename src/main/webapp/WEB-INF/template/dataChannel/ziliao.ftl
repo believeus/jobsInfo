@@ -133,13 +133,13 @@
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
-				<h2 style="text-align:center;font-weight:normal;">${data.author}</h2>
+				<h2 style="text-align:center;font-weight:normal;">${data.title}</h2>
 				<p style="text-align:center;">来源：潜江公共就业服务网 发布时间：${data.createTime?number_to_datetime} </p>
 				<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">
 				<p style="text-align: center;">
 					${data.content}
 				</p>
-				<p><a href="#" title="点击下载">附件：2014年湖北省人力资源和社会保障统计报表制度</a></p>
+				<p><a href="${data.imgpath}" title="点击下载" style="color:#0000FF;">附件：${data.title}</a></p>
 			</div>
 		</div>
 	</div>

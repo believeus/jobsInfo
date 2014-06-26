@@ -40,7 +40,7 @@ public class ControllerRegister {
 	
 	/** Begin Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:ajax判断一般用户的ajax验证*/
 	@RequestMapping(value="/ajaxComValidReg")
-	public void ajaxComValidReg(TcomUser regUser,String submit,String comfirmPwd,HttpSession session,HttpServletResponse response){
+	public void ajaxComValidReg(TcomUser regUser,String submit,String comfirmPwd,String cpName,HttpSession session,HttpServletResponse response){
 		log.debug("current regUser reginName:"+regUser.getLoginName());
 		TbaseUser sessionUser = (TbaseUser)session.getAttribute("sessionUser");
 		Map<String, Object> message=new HashMap<String, Object>();
@@ -74,6 +74,12 @@ public class ControllerRegister {
 			if(!regUser.getPassword().equals(comfirmPwd)){
 				message.put("property","comfirmPwd");
 				message.put("message","密码和确定密码不一致!");
+				JsonOutToBrower.out(message, response);
+				return;
+			}
+			if(StringUtils.isEmpty(cpName)){
+				message.put("property","cpName");
+				message.put("message","企业名称必填");
 				JsonOutToBrower.out(message, response);
 				return;
 			}

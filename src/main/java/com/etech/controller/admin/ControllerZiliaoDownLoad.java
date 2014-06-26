@@ -35,7 +35,7 @@ public class ControllerZiliaoDownLoad extends ControllerCRUD{
 	public String newsListView(HttpServletRequest request) {
 		List<?> dataCenters = super.listDataInfo(request,EtechGobal.ziliao);
 		request.setAttribute("dataCenters",dataCenters);
-		return "admin/dataChannel/list";
+		return "admin/downLoad/list";
 	}
 	
 	/**
@@ -58,7 +58,7 @@ public class ControllerZiliaoDownLoad extends ControllerCRUD{
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
 		request.setAttribute("type",EtechGobal.ziliao);
-		return "admin/dataChannel/add";
+		return "admin/downLoad/add";
 	}
 	/**
 	 * 编辑资料下载
@@ -71,7 +71,7 @@ public class ControllerZiliaoDownLoad extends ControllerCRUD{
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
 		request.setAttribute("type",EtechGobal.ziliao);
-		return "admin/dataChannel/edit";
+		return "admin/downLoad/edit";
 	}
 	
 	/**

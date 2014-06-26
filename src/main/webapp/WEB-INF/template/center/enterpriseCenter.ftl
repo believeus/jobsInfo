@@ -29,11 +29,17 @@
     			$("#bianji_xinxi").hide();
     		});
     		$("#zhaopin_xinxi").click(function(){
-    			$("#qiye_xinxi").removeClass("currentSwich");
-    			$("#zhaopin_xinxi").removeClass("currentSwich");
-    			$("#zhaopin_xinxi").addClass("currentSwich");
-    			$("#bianji_xinxi").show();
-    			$("#base_xinxi").hide();
+    			
+    			if(${sessionUser.status} =="1"){//审核通过
+    				$("#qiye_xinxi").removeClass("currentSwich");
+	    			$("#zhaopin_xinxi").removeClass("currentSwich");
+	    			$("#zhaopin_xinxi").addClass("currentSwich");
+	    			$("#bianji_xinxi").show();
+	    			$("#base_xinxi").hide();
+    			}else{
+    				alert("审核没有通过");
+    				return false;
+    			}
     		});
     	});
     </script>
@@ -605,7 +611,7 @@
 		
 		// ajax 提交验证和保存。
 		function submitInfo(){
-			alert(" 信息提交");
+			//alert(" 信息提交");
 			$("#InfoForm").ajaxSubmit({
 	            	 type: "post",
 				     url: "/enterprise/submit-account-Info.jhtml",
@@ -701,6 +707,7 @@
     	$("#unitType").val("${sessionUser.unitType}");
     	$("#relationship").val("${sessionUser.relationship}");
     	$("#economicType").val("${sessionUser.economicType}");
+    	
     	// 为所有插件使用相同的模板。
     	var html ='<div id="xmenuSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'+
 				  '<div id="xmenuJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>';
@@ -822,7 +829,7 @@
 							<td>招聘单位:</td>
 							<td style="padding-right:80px;"><input type="text" name="company" ></td>
 							<td>人数:</td>
-							<td><input type="text" name="worknum"></td>
+							<td><input type="text" name="worknum" onkeyup="value=this.value.replace(/\D+/g,"")" maxlength="3"></td>
 						</tr>
 						<tr>
 							<td>工种:</td>
@@ -887,13 +894,13 @@
 							<td>工作地点:</td>
 							<td><input type="text" name="workspace"></td>
 							<td>年龄:</td>
-							<td><input type="text" name="age"></td>
+							<td><input type="text" name="age" onkeyup="value=this.value.replace(/\D+/g,"")" maxlength="3"></td>
 						</tr>
 						<tr>
 							<td>身高:</td>
-							<td><input type="text" name="height"></td>
+							<td><input type="text" name="height" placeholder="cm" onkeyup="value=this.value.replace(/\D+/g,"")" maxlength="3"></td>
 							<td>视力:</td>
-							<td><input type="text" name="eyesight"></td>
+							<td><input type="text" name="eyesight" onkeyup="value=this.value.replace(/\D+./g,"")" maxlength="3"></td>
 						</tr>
 						<tr>
 							<td>薪资待遇:</td>
@@ -921,7 +928,7 @@
 								</select>
 							</td>
 							<td>面试时间:</td>
-							<td><input type="text" name="viewData"></td>
+							<td><input type="text" name="viewData" placeholder="如2014-02-28"></td>
 						</tr>
 						<tr>
 							<td style="vertical-align:top;">其他说明:</td>
@@ -989,6 +996,8 @@
 		}
     	// 保存信息。
     	$("#savaAll").click(function() {
+    		var phoneNum =$("#phoneNum").val();
+			var regPartton=/^(?:13\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/; //验证手机号
     		
     		if($("#fullName").val() == ""){
     			alert("请输入单位全称");
@@ -1012,21 +1021,64 @@
     			alert("请输入邮政编码");
     		}else if($("#phoneNum").val() == ""){
     			alert("请输入手机号码");
-    		}else if($("#phoneFax").val() == ""){
+    		}else if(!regPartton.test(phoneNum)){
+				alert("手机号码格式不正确！");
+				return false;
+			}else if($("#phoneFax").val() == ""){
     			alert("请输入电话/传真");
     		}else if($("#webSite").val() == ""){
     			alert("请输入网址");
     		}else if($("#introduce").val() == ""){
     			alert("请输入单位简介");
+    		}else{
+    			var selects = $("#base_xinxi select");//判断下拉框是否选值
+	    		selects.each(function(index,obj){
+	    			if($(this).val() == ""){
+	    				$(this).css("color","red");
+	    				if(index == 1){
+		    				alert("请选择下拉框信息");
+	    				}
+	    			}
+	    		});
     		}
+    		
     		
 			submitInfo();
 			//submitVedio();
+			alert("完成提交");
 		});
 		
 		// 保存招聘信息。
     	$("#savaJobs").click(function() {
-				submitJobs();
+    		
+    		if($("#worknum1").val() == ""){
+    			alert("请输入招聘人数");
+    		}else if($("#workspace1").val() == ""){
+    			alert("请输入工作地点");
+    		}else if($("#age1").val() == ""){
+    			alert("请输入年龄");
+    		}else if($("#height1").val() == ""){
+    			alert("请输入身高");
+    		}else if($("#eyesight1").val() == ""){
+    			alert("请输入视力");
+    		}else if($("#viewData1").val() == ""){
+    			alert("请输入面试时间");
+    		}else if($("#selectJobshidden1").val() == ""){
+    			alert("请选择工种");
+    		}else if($("#selectSpecialtyhidden1").val() == ""){
+    			alert("请选择专业");
+    		}else{
+	    		var selects = $(".zhaopinxinxi select");//判断下拉框是否选值
+	    		selects.each(function(index,obj){
+	    			if($(this).val()==""){
+	    				$(this).css("color","red");
+	    				if(index == 1){
+	    					alert("请选择下拉框信息");
+	    				}
+	    			}
+	    		});
+    		}
+			submitJobs();
 		});
 		
 		// 修改密码
@@ -1108,9 +1160,9 @@
 					<div id="zhaopin_xinxi" class="j_main_right_2_1_2" style="cursor:pointer;">招聘信息</div>
 				</div>
 				<p>
-					<span>登记编号:${sessionUser.id}</span>
+					<span>登记编号:0000${sessionUser.id}</span>
 					<span style="padding-right: 20px; margin-left: 90px;">更新日期:${sessionUser.editDate?number_to_datetime}&nbsp;${sessionUser.editDate?number_to_time}</span>
-					<span style="float: right; padding-right: 20px;">审核状态:[#if sessionUser.status=="0"&&sessionUser.status!="1"]审核中[#elseif ssionUser.status=="1"]已通过审核[/#if]</span>
+					<span style="float: right; padding-right: 20px;">审核状态:[#if sessionUser.status=="0"&&sessionUser.status!="1"]审核中[#elseif sessionUser.status=="1"]已通过审核[/#if]</span>
 				</p>
 				
 				<div id="base_xinxi" style="width::728px;height:auto;overflow:hidden;">
@@ -1187,7 +1239,7 @@
 								</tr>
 								<tr>
 									<td>注册资金:</td>
-									<td><input type="text"  value="${sessionUser.regMoney}" id="regMoney" name="regMoney"></td>
+									<td><input type="text"  value="${sessionUser.regMoney}" id="regMoney" name="regMoney" placeholder="万元"></td>
 									<td>详细地址:</td>
 									<td><input type="text"  value="${sessionUser.detailAddress}"id="detailAddress" name="detailAddress"></td>
 								</tr>
@@ -1457,9 +1509,9 @@
 								<tr>
 									<td rowspan="9" style="color:#E2652E;">1</td>
 									<td>招聘单位:</td>
-									<td style="padding-right:80px;"><input type="text" id="company1" name="company"></td>
+									<td style="padding-right:80px;"><input type="text" id="company1" name="company" value="${sessionUser.fullName}"></td>
 									<td>人数:</td>
-									<td><input type="text" id="worknum1" name="worknum"></td>
+									<td><input type="text" id="worknum1" name="worknum" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"></td>
 								</tr>
 								<tr>
 									<td>工种:</td>
@@ -1538,13 +1590,13 @@
 									<td>工作地点:</td>
 									<td><input type="text" id="workspace1" name="workspace"></td>
 									<td>年龄:</td>
-									<td><input type="text" id="age1" name="age"></td>
+									<td><input type="text" id="age1" name="age" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"></td>
 								</tr>
 								<tr>
 									<td>身高:</td>
-									<td><input type="text" id="height1" name="height"></td>
+									<td><input type="text" id="height1" name="height" placeholder="cm" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"></td>
 									<td>视力:</td>
-									<td><input type="text" id="eyesight1" name="eyesight"></td>
+									<td><input type="text" id="eyesight1" name="eyesight" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"></td>
 								</tr>
 								<tr>
 									<td>薪资待遇:</td>
@@ -1585,7 +1637,7 @@
 										</select>
 									</td>
 									<td>面试时间:</td>
-									<td><input type="text" id="viewData1" name="viewData"></td>
+									<td><input type="text" id="viewData1" name="viewData" placeholder="如2014-02-28"></td>
 								</tr>
 								<tr>
 									<td style="vertical-align:top;">其他说明:</td>
@@ -1602,7 +1654,6 @@
 					</div>
 					<p style="text-align:center;">
 						<input type="button" id="savaJobs" value="保存">
-						<input type="reset" value="重写">
 					</p>
 				</div>
 			</div>

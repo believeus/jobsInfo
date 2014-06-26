@@ -77,7 +77,7 @@ $().ready(function() {
 			<tr>
 				<th>效力等级:</th>
 				<td>
-					<select style="width: 235px;" name="powerLevel">
+					<select style="width: 192px;" name="powerLevel">
 						<option value="0">全部</option>
 						<option value="1">法律</option>
 						<option value="2">行政法规</option>
@@ -87,11 +87,9 @@ $().ready(function() {
 						<option value="6">省厅文件</option>
 					</select>
 				</td>
-			</tr>
-			<tr>
 				<th>效率属性</th>
 				<td>
-					<select style="width: 217px;" name="powerProperty">
+					<select style="width: 192px;" name="powerProperty">
 						<option value="0">全部</option>
 						<option value="1">有效</option>
 						<option value="2">失效</option>

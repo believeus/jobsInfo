@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>修改视频新闻 - Powered By e3dmall</title>
+<title>修改上传文件 - Powered By e3dmall</title>
 <meta name="author" content="e3dmall Team" />
 <meta name="copyright" content="e3dmall" />
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
@@ -64,73 +64,30 @@ $().ready(function() {
 		<table class="input">
 			<tr>
 				<th>
-					<span class="requiredField">*</span>标题:
+					<span class="requiredField">*</span>文件标题:
 				</th>
 				<td>
 					<input type="text" name="title" class="text" maxlength="200" value="${dataCenter.title}"/>
 				</td>
 				<th>
-					<span class="requiredField">*</span>作者:
+					<span class="requiredField">*</span>上传作者:
 				</th>
 				<td>
 					<input type="text" name="author" class="text" maxlength="200" value="${dataCenter.author}" />
 				</td>
 			</tr>
 			<tr>
-				<th>
-					是否置顶:
-				</th>
-				<td colspan="3">
-					<input type="checkbox" name="top" value="0">
-				</td>
-			</tr>
-			<tr id="pathTr">
-				<th>
-					<span class="requiredField">*</span>视频截图:
-				
-				</th>
-				<td colspan="3">
-					<input type="file" name="fileImg" onchange="checkI(this)">
-					已上传截图:
-					[#assign num=0]
-					[#list dataCenter.imgpath?string?split("#") as value]   
-					 [#if num==0]	
-					 		<a href="/${value}" title="点击查看" target="_blank">点击查看</a>		 	
-					 [/#if]
-					 [#assign num=num+1]					
-					[/#list]
-					<script type="text/javascript">
-				 	function checkI(file) {
- 				  	 if(!(/(?:gif|jpg|jpeg|bmp|png)$/i.test(file.value))) {
-      				  alert("只允许上传 gif/jpg/jpeg/bmp/png 格式的视频");
-       				  if(window.ActiveXObject) {//for IE
-        					file.select();//select the file ,and clear selection
-          				    document.selection.clear();
-       						} else if(window.opera) {//for opera
-       	   						file.type="text";file.type="file";
-       						} else file.value="";//for FF,Chrome,Safari
-   					  }else{
-   						$("#suffix").val("0");	
-   					  } 
-				  }
-				</script>
-				</td>
-			</tr>
-			<tr>
-				<th><span class="requiredField">*</span>视频文件:</th>
+				<th><span class="requiredField">*</span>选择文件:</th>
 				<td>
-				<input type="file" name="fileV" onchange="checkV(this)">
-				已上传视频：
+				<input type="file" name="fileV" >
+				已上传文件：
 				[#list dataCenter.imgpath?string?split("#") as value]   
-					 [#assign num=num-1]					
-					 [#if num==0]	
-					 	<a href="/${value}" title="点击查看" target="_blank">点击查看</a>		 	
-					 [/#if]
+				 	<a href="/${value}" title="点击查看" target="_blank">点击查看</a>		 	
 				[/#list]
 				<script type="text/javascript">
 				 function checkV(file) {
- 				   if(!(/(?:swf|flv)$/i.test(file.value))) {
-      				  alert("只允许上传swf和flv 格式的视频");
+ 				   if(!(/(?:rar|zip|7z)$/i.test(file.value))) {
+      				  alert("文件格式有误");
        				  if(window.ActiveXObject) {//for IE
         					file.select();//select the file ,and clear selection
           				    document.selection.clear();
@@ -146,7 +103,7 @@ $().ready(function() {
 			</tr>
 			<tr id="contentTr">
 				<th>
-					内容:
+					文件说明:
 				</th>
 				<td colspan="3">
 					<textarea id="editor" name="content" class="editor">${dataCenter.content}</textarea>

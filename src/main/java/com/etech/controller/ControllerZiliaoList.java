@@ -33,7 +33,6 @@ public class ControllerZiliaoList {
 		List<TdataCenter> ziliaoList = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("ziliaoList", ziliaoList);
 		
-		
 		return "dataChannel/xiazaizhongxinList";
 	}
 }

@@ -724,10 +724,10 @@
 						</p>
 						<p>
 							<a href="/imgShow.jhtml?id=${img.id}" title="${img.title}">
-								[#if img.content?length >10]
-		                    		${img.content?string?substring(0,10)}...
+								[#if img.title?length >10]
+		                    		${img.title?string?substring(0,10)}...
 		                    	[#else]
-		                    		${img.content}
+		                    		${img.title}
 		                    	[/#if]
 							</a>
 						</p>
