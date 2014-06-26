@@ -29,7 +29,6 @@ public class InitIndex implements ApplicationListener<ApplicationEvent>{
 					props.setProperty("isInitIndex", "false");
 					// 文件输出流
 					String url=InitIndex.class.getClassLoader().getResource("jobs.properties").toString().replace("file:", "");
-					System.out.println(url);
 					FileOutputStream fos = new FileOutputStream(url);
 					// 将Properties集合保存到流中
 					props.store(fos, "");

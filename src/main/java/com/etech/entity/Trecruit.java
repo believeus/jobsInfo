@@ -15,10 +15,7 @@ import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
 import org.hibernate.search.annotations.Store;
-import org.hibernate.search.backend.WorkType;
 import org.hibernate.validator.constraints.Length;
-
-import bsh.This;
 
 /**招聘信息*/
 @Entity
@@ -270,17 +267,19 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	// 公司性质
 	@Field(store=Store.YES,index = Index.TOKENIZED)
 	public String getCompanyType() {
-		return entUser.getUnitType();
+		return companyType;
 	}
 	public void setCompanyType(String companyType) {
+		companyType=(entUser!=null?entUser.getUnitType():"");
 		this.companyType = companyType;
 	}
 	@Field(store=Store.YES,index = Index.TOKENIZED)
 	public String getJobPost() {
-		return (workType!=null?workType.getName():"");
+		return jobPost;
 	}
 
 	public void setJobPost(String jobPost) {
+		jobPost=(workType!=null?workType.getName():"");
 		this.jobPost = jobPost;
 	}
 	

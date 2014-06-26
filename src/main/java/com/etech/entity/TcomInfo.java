@@ -10,7 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.annotations.Store;
 import org.hibernate.validator.constraints.Length;
 
 /**
@@ -18,6 +22,7 @@ import org.hibernate.validator.constraints.Length;
  */
 @Entity
 @Table
+@Indexed(index="com.etech.entity.TcomInfo")
 public class TcomInfo extends TbaseEntity implements Serializable{
 	private static final long serialVersionUID = -948982752176471588L;
 	
@@ -29,6 +34,10 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 	private long beginData;
 	/**结束时间*/
 	private long endData;
+	/**编辑时间*/
+	private long editDate;
+	/**创建时间*/
+	private long createDate;
 	/**技能等级*/
 	private String skillLevel;
 	/**工作年限*/
@@ -39,6 +48,8 @@ public class TcomInfo extends TbaseEntity implements Serializable{
     private String expectSalary;
     /**期望工作所在地*/
     private String expectArea;
+    /**工作方式*/
+    private String workWay;
 	/**描述*/
 	private String note;
 	/**工种*/
@@ -48,10 +59,13 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 	
 	/**该信息属于哪个用户*/
 	private TcomUser comUser;
+	private String loginName;
+	private String jobPost;
 	
 	/**该信息属于哪个类型 1：表示具备技能，2：表示学习经历，3：表示工作经验，4：表示选择志愿 */
 	private Integer infoType; 
 	
+	@IndexedEmbedded
 	@ManyToOne(cascade=CascadeType.ALL,optional = false)
 	@JoinColumn(name="fk_comUserId",referencedColumnName="id")
 	public TcomUser getComUser() {
@@ -89,6 +103,7 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 	public void setEndData(long endData) {
 		this.endData = endData;
 	}
+	@Field(store=Store.YES,index = Index.TOKENIZED)
 	@Column(nullable=true)
 	@Length(max=20)
 	public String getSkillLevel() {
@@ -97,6 +112,7 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 	public void setSkillLevel(String skillLevel) {
 		this.skillLevel = skillLevel;
 	}
+	@Field(store=Store.YES,index = Index.TOKENIZED)
 	@Column(nullable=true)
 	@Length(max=20)
 	public String getWorkingLife() {
@@ -105,6 +121,7 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 	public void setWorkingLife(String workingLife) {
 		this.workingLife = workingLife;
 	}
+	@Field(store=Store.YES,index = Index.TOKENIZED)
 	@Column(nullable=true)
 	public String getWorkspace() {
 		return workspace;
@@ -119,12 +136,14 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 	public void setNote(String note) {
 		this.note = note;
 	}
+	@Field(store=Store.YES,index = Index.TOKENIZED)
 	public String getExpectSalary() {
 		return expectSalary;
 	}
 	public void setExpectSalary(String expectSalary) {
 		this.expectSalary = expectSalary;
 	}
+	@Field(store=Store.YES,index = Index.TOKENIZED)
 	public String getExpectArea() {
 		return expectArea;
 	}
@@ -132,6 +151,7 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 		this.expectArea = expectArea;
 	}
 
+	@IndexedEmbedded
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="fk_workTypeId",referencedColumnName="id")
 	public TmajorType getWorkType() {
@@ -141,6 +161,7 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 		this.workType = workType;
 	}
 	
+	@IndexedEmbedded
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="fk_majorTypeId",referencedColumnName="id")
 	public TmajorType getMajorType() {
@@ -150,10 +171,47 @@ public class TcomInfo extends TbaseEntity implements Serializable{
 		this.majorType = majorType;
 	}
 	@NotNull
+	@Field(store=Store.YES,index = Index.TOKENIZED)
 	public Integer getInfoType() {
 		return infoType;
 	}
 	public void setInfoType(Integer infoType) {
 		this.infoType = infoType;
 	}
+	@Field(store=Store.YES,index = Index.TOKENIZED)
+	public long getEditDate() {
+		return editDate;
+	}
+	public void setEditDate(long editDate) {
+		this.editDate = editDate;
+	}
+	@Field(store=Store.YES,index = Index.TOKENIZED)
+	public long getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(long createDate) {
+		this.createDate = createDate;
+	}
+	public String getWorkWay() {
+		return workWay;
+	}
+	public void setWorkWay(String workWay) {
+		this.workWay = workWay;
+	}
+	public String getLoginName() {
+		return loginName;
+	}
+	public void setLoginName(String loginName) {
+		loginName=(comUser!=null?comUser.getLoginName():"");
+		this.loginName = loginName;
+	}
+	@Field(store=Store.YES,index = Index.TOKENIZED)
+	public String getJobPost() {
+		return jobPost;
+	}
+	public void setJobPost(String jobPost) {
+		jobPost=(workType!=null?workType.getName():"");
+		this.jobPost = jobPost;
+	}
+	
 }

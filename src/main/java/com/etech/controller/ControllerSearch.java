@@ -3,9 +3,11 @@ package com.etech.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Assert; 
@@ -14,11 +16,13 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.etech.entity.TcomInfo;
 import com.etech.entity.TdataCenter;
 import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
 import com.etech.service.JobSearchService;
 import com.etech.service.PolicyAdviceService;
+import com.etech.service.ResumeSearchService;
 
 /**
  * 搜索
@@ -32,6 +36,8 @@ public class ControllerSearch {
 	private PolicyAdviceService policyAdviceService;
 	@Resource
 	private JobSearchService jobSearchService;
+	@Resource
+	private ResumeSearchService resumeSearchService;
 	/**简单搜索*/
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/search")
@@ -117,22 +123,24 @@ public class ControllerSearch {
 		if (area!=null) {
 			
 		}
-		if ("position".equals(type)) {
-			log.debug("根据关键字搜索招聘岗位");
-			List<Trecruit> recruitList=(List<Trecruit>)jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
-			request.setAttribute("recruitList", recruitList);
-			
-		}else if (type=="resume") {
-			System.out.println("简历搜索");
-		
-		}else {
-			System.out.println("公司搜索");
-		}
 		request.setAttribute("data", data);
 		request.setAttribute("keyword", keyword);
 		request.setAttribute("majorTypeId", majorTypeId);
 		request.setAttribute("workTypeId", workTypeId);
-		return "occupationIntroduction/advancedSearch";			
+		// 岗位搜索和公司搜索
+		if ("position".equals(type)||"company".equals(type)) {
+			log.debug("根据关键字搜索招聘岗位");
+			List<Trecruit> recruitList=(List<Trecruit>)jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
+			request.setAttribute("recruitList", recruitList);
+			return "occupationIntroduction/advancedSearch";
+		// 简历搜索
+		}else{
+			log.debug("简历搜索");
+			List<TcomInfo> comInfoList = resumeSearchService.search(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
+			request.setAttribute("comInfoList", comInfoList);
+			return "occupationIntroduction/advancedSearchResume";
+		}
+		
 	}
 	/**高级搜索*/
 	@RequestMapping(value = "/advancedSearch")

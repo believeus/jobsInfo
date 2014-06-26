@@ -115,6 +115,15 @@ public class EtechGobal {
 	// 效率属性 废止
 	public static final int PowerProperty_abolish=3;
 	
+	// 求职者具备技能
+	public static final int seekerSkill=1;
+	//求职者学习经历
+	public static final int seekerStudyExperience=2;
+	// 求职者工作经验
+	public static final int seekerWorkExperience=3;
+	// 求职者选择志愿
+	public static final int  seekerWish=4;
+	
 
 	
 }

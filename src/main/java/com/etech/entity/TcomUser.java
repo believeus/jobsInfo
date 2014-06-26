@@ -9,6 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
 import org.hibernate.validator.constraints.Length;
 
 
@@ -19,6 +24,7 @@ import org.hibernate.validator.constraints.Length;
  * */
 @Entity
 @Table
+@Indexed(index="com.etech.entity.TcomUser")
 public class TcomUser extends TbaseUser implements Serializable{
 
 	private static final long serialVersionUID = 5791526164788361621L;
@@ -66,6 +72,7 @@ public class TcomUser extends TbaseUser implements Serializable{
 	/** 教育程度 */
 	@Length(max = 10)
 	@Column(nullable = true)
+	@Field(store=Store.YES,index = Index.TOKENIZED)
 	public String getEduLevel() {
 		new NullPointerException();
 		return eduLevel;
