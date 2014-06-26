@@ -45,9 +45,7 @@ $().ready(function() {
 		rules: {
 			title: "required",
 			adPositionId: "required",
-			fileImg: "required",
-			order: "digits",
-			file:"required"
+			order: "digits"
 		}
 	});
 	
@@ -61,8 +59,8 @@ $().ready(function() {
 	<form id="inputForm" action="update.jhtml" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="${dataCenter.id}"/>
 		<input type="hidden" name="type" value="${type}"/>
-		<input type="hidden" name="suffix" value="">
-		<input type="hidden" name="oldUrl" value="${dataCenter.imgPath}">
+		<input type="hidden" name="suffix" value="" id="suffix">
+		<input type="hidden" name="oldUrl" value="${dataCenter.imgpath}">
 		<table class="input">
 			<tr>
 				<th>
@@ -121,7 +119,7 @@ $().ready(function() {
 			<tr>
 				<th><span class="requiredField">*</span>视频文件:</th>
 				<td>
-				<input type="file" name="file" onchange="checkV(this)">
+				<input type="file" name="fileV" onchange="checkV(this)">
 				以上传视频：
 				[#list dataCenter.imgpath?string?split("#") as value]   
 					 [#assign num=num-1]					
@@ -131,7 +129,7 @@ $().ready(function() {
 				[/#list]
 				<script type="text/javascript">
 				 function checkV(file) {
- 				   if(!(/(?:wmv|flv)$/i.test(file.value))) {
+ 				   if(!(/(?:swf|flv)$/i.test(file.value))) {
       				  alert("只允许上传swf和flv 格式的视频");
        				  if(window.ActiveXObject) {//for IE
         					file.select();//select the file ,and clear selection

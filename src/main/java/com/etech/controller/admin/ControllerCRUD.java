@@ -66,20 +66,7 @@ public class ControllerCRUD {
 		if(!StringUtils.isEmpty(request.getParameter("type"))){
 			type=Integer.parseInt(request.getParameter("type"));
 		}
-		if (count==1) {
-			if(!StringUtils.isEmpty(request.getParameter("suffix"))){
-				int suffix=Integer.parseInt(request.getParameter("suffix"));
-				String string = request.getParameter("oldUrl");
-				String[] split = string.split("#");
-				if (suffix==0) {
-					storepath+=split[suffix+1];
-				}else {
-					storepath=split[suffix]+storepath;					
-				}
-			}
-		}
-		System.out.println(storepath);
-		System.out.println(center.getImgpath());
+		
 		String title=request.getParameter("title");
 		String author=request.getParameter("author");
 		/**Begin Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
@@ -111,26 +98,49 @@ public class ControllerCRUD {
 	}
 	// 更新信息
 	public void updataDataInfo(TdataCenter formDataCenter,HttpServletRequest request) {
+		String suffix = request.getParameter("suffix");
+		String oldUrl = request.getParameter("oldUrl");
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		String storepath = "";
 		Map<String, MultipartFile> files = multipartRequest.getFileMap();
+		int count=0;
 		for (MultipartFile file : files.values()) {
 			InputStream inputStream;
 			try {
 				inputStream = file.getInputStream();
-				if(inputStream.available()==0)break;
-				Assert.assertNotNull("upload file InputStream is null", inputStream);
-				String fileName = file.getName();
-				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
-				log.debug("upload file stuffix"+extention);
-				storepath = mydfsTrackerServer.upload(inputStream, extention);
-				formDataCenter.setImgpath(storepath);
+				if(inputStream.available()==0){
+				}else {					
+					count++;
+					Assert.assertNotNull("upload file InputStream is null", inputStream);
+					String fileName = file.getName();
+					String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
+					log.debug("upload file stuffix"+extention);
+					if (count>1) {
+						storepath += "#";
+					}
+					storepath += mydfsTrackerServer.upload(inputStream, extention);
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+		if (count==1) {
+			if(!StringUtils.isEmpty(suffix)){
+				int i = Integer.parseInt(suffix); 
+				String[] split = oldUrl.split("#");
+				if (i==0) {
+					storepath+="#"+split[i+1];
+				}else {
+					storepath=split[i-1]+"#"+storepath;					
+				}
+			}
+		}
+		formDataCenter.setImgpath(storepath);
 		log.debug("是否置顶top:"+formDataCenter.getTop());
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, formDataCenter.getId());
+		if(StringUtils.isEmpty(storepath)) {
+			formDataCenter.setImgpath(dataCenter.getImgpath());
+		}
 		formDataCenter.setEditTime(System.currentTimeMillis());
 		BeanUtils.copyProperties(formDataCenter, dataCenter);
 		etechService.merge(dataCenter);
