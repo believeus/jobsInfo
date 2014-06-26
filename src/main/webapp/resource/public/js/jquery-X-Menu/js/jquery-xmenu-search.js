@@ -77,7 +77,7 @@
 				
 				if(name.length>10){
 					$span.attr({"title":name});
-					name =name.substring(0,10)+"...";
+					name =name.substring(0,10)+"";
 				}
 				
 				// wuhuanrong 2014-06-25

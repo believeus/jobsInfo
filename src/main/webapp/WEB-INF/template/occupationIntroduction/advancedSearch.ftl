@@ -219,12 +219,17 @@
 					}
 					data=data+str3[i];
 					if(i!=str3.length-1){
-						data=data + "-" ;					
+						if(data!=""){
+							data=data + "-" ;
+						}
 					}
 				} 
 				//当前a值没有做替换使用则加上这个条件。
 				if(ifx!=true){
-					data=data+"-"+aId;
+					if(data!=""){
+						data=data+"-";
+					}
+					data=data+aId;
 				}
 				// 发送form表单提交。
 				$("#data").val(data);
@@ -238,7 +243,9 @@
 					if(str3[i]!=aId){
 						data=data+str3[i];
 						if(i!=str3.length-1){
-							data=data + "-" ;					
+							if(data!=""){
+								data=data + "-" ;													
+							}
 						}
 					}
 				} 
@@ -246,7 +253,12 @@
 				$("#infoForm").submit();
 			}
 		}
-			
+		function changeKeyword(value,object){
+			var name=$(object).attr("id");
+			if(name=="changeKeyword"){
+				$("#keyword").val(value);
+			}
+		}
 		$().ready(function(){
 			
 			// 条件组合显示
@@ -366,7 +378,7 @@
 							<input type="hidden" value="" id="selectJobshidden1" name="workTypeId"/>
 							<div class="topnav">
 								<a id="selectJobs1" href="javascript:void(0);" class="as">
-									<span >
+									<span id="changeKeyword">
 									[#if workTypeId!=""]
 										[#if workValue?length > 10]
 											${workValue?string?substring(0,10)}...
@@ -410,12 +422,12 @@
 					</div>
 					<div class="j_main_right_2_2">
 						<ul>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="1000以下_1" name="1000以下_1">1000以下</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="1000-1999_1" name="1000~1999_1">1000~1999</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="2000-2999_1" name="2000~2999_1">2000~2999</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="3000-3999_1" name="3000~3999_1"> 3000~3999</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="4000-4999_1" name="4000~4999_1">4000~4999</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="5000以上_1" name="5000以上_1">5000以上</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="1000以下_1" name="1000以下">1000以下</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="1000-1999_1" name="1000~1999">1000~1999</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="2000-2999_1" name="2000~2999">2000~2999</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="3000-3999_1" name="3000~3999"> 3000~3999</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="4000-4999_1" name="4000~4999">4000~4999</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="5000以上_1" name="5000以上">5000以上</a></li>
 						</ul>
 					</div>
 				</div>
@@ -425,13 +437,13 @@
 					</div>
 					<div class="j_main_right_2_2">
 						<ul>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="全职_2" name="全职_2">全职</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="兼职_2" name="兼职_2">兼职</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="实习_2" name="实习_2">实习</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="临时_2" name="临时_2">临时</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="小时工_2" name="小时工_2">小时工</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="全职/兼职/实习均可_2" name="全职/兼职/实习均可_2">全职/兼职/实习均可</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="就业见习_2" name="就业见习_2">就业见习</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="全职_2" name="全职">全职</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="兼职_2" name="兼职">兼职</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="实习_2" name="实习">实习</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="临时_2" name="临时">临时</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="小时工_2" name="小时工">小时工</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="全职/兼职/实习均可" name="全职/兼职/实习均可_2">全职/兼职/实习均可</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="就业见习_2" name="就业见习">就业见习</a></li>
 						</ul>
 					</div>
 				</div>
@@ -441,17 +453,17 @@
 					</div>
 					<div class="j_main_right_2_2">
 						<ul>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="博士_3" name="博士_3">博士</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="硕士_3" name="硕士_3">硕士</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="大学_3" name="大学_3">大学</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="大专_3" name="大专_3">大专</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="中专中技_3" name="中专中技_3">中专中技</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="技校_3" name="技校_3">技校</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="高中_3" name="高中_3">高中</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="职高_3" name="职高_3">职高</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="初中_3" name="初中_3">初中</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="小学_3" name="小学_3">小学</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="文盲或半文盲_3" name="文盲或半文盲_3">文盲或半文盲</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="博士_3" name="博士">博士</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="硕士_3" name="硕士">硕士</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="大学_3" name="大学">大学</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="大专_3" name="大专">大专</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="中专中技_3" name="中专中技">中专中技</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="技校_3" name="技校">技校</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="高中_3" name="高中">高中</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="职高_3" name="职高">职高</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="初中_3" name="初中">初中</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="小学_3" name="小学">小学</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="3" id="文盲或半文盲_3" name="文盲或半文盲">文盲或半文盲</a></li>
 						</ul>
 					</div>
 				</div>
@@ -463,12 +475,12 @@
 						<ul>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="在读学生_4" name="在读学生_4">在读学生</a></li>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="应届毕业生_4" name="应届毕业生_4">应届毕业生</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="1-2年_4" name="1~2年_4">1~2年</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="2-3年_4" name="2~3年_4">2~3年</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="3-5年_4" name="3~5年_4">3~5年</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="5-8年_4" name="5~8年_4">5~8年</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="8-10年_4" name="8~10年_4">8~10年</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="10年以上_4" name="10年以上_4">10年以上</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="1-2年_4" name="1~2年">1~2年</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="2-3年_4" name="2~3年">2~3年</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="3-5年_4" name="3~5年">3~5年</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="5-8年_4" name="5~8年">5~8年</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="8-10年_4" name="8~10年">8~10年</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="10年以上_4" name="10年以上">10年以上</a></li>
 						</ul>
 					</div>
 				</div>
@@ -542,134 +554,18 @@
 						<th>公司名称</th>
 						<th>月薪范围</th>
 						<th>招聘人数</th>
-						<th>有效日期</th>
+						<th>发布时间</th>
 					</tr>
+					[#list recruitList as recruit]
 					<tr>
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">java程序员</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">云科科技</a></td>
-						<td style="color:#0101FF;">2000-3000</td>
-						<td>3</td>
-						<td>2014-06-01</td>
+					   
+						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">${recruit.jobPost}</a></td>
+						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">${recruit.company}</a></td>
+						<td style="color:#0101FF;">${recruit.salary}</td>
+						<td>${recruit.worknum}</td>
+						<td>${recruit.editTime?number_to_date} ${recruit.editTime?number_to_time}</td>
 					</tr>
-					<tr style="background:#F6F6F6;">
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">java程序员</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">云科科技</a></td>
-						<td style="color:#0101FF;">2000-3000</td>
-						<td>3</td>
-						<td>2014-06-01</td>
-					</tr>
-					<tr>
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">java程序员</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">云科科技</a></td>
-						<td style="color:#0101FF;">2000-3000</td>
-						<td>3</td>
-						<td>2014-06-01</td>
-					</tr>
-					<tr style="background:#F6F6F6;">
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">java程序员</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">云科科技</a></td>
-						<td style="color:#0101FF;">2000-3000</td>
-						<td>3</td>
-						<td>2014-06-01</td>
-					</tr>
-					<tr>
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">java程序员</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">云科科技</a></td>
-						<td style="color:#0101FF;">2000-3000</td>
-						<td>3</td>
-						<td>2014-06-01</td>
-					</tr>
-					<tr style="background:#F6F6F6;">
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">java程序员</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">云科科技</a></td>
-						<td style="color:#0101FF;">2000-3000</td>
-						<td>3</td>
-						<td>2014-06-01</td>
-					</tr>
-					<tr>
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">java程序员</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">云科科技</a></td>
-						<td style="color:#0101FF;">2000-3000</td>
-						<td>3</td>
-						<td>2014-06-01</td>
-					</tr>
-					<tr style="background:#F6F6F6;">
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">java程序员</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">云科科技</a></td>
-						<td style="color:#0101FF;">2000-3000</td>
-						<td>3</td>
-						<td>2014-06-01</td>
-					</tr>
-					<tr>
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">java程序员</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">云科科技</a></td>
-						<td style="color:#0101FF;">2000-3000</td>
-						<td>3</td>
-						<td>2014-06-01</td>
-					</tr>
-					<tr style="background:#F6F6F6;">
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">java程序员</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">云科科技</a></td>
-						<td style="color:#0101FF;">2000-3000</td>
-						<td>3</td>
-						<td>2014-06-01</td>
-					</tr>
-					<tr>
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">java程序员</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">云科科技</a></td>
-						<td style="color:#0101FF;">2000-3000</td>
-						<td>3</td>
-						<td>2014-06-01</td>
-					</tr>
-					<tr style="background:#F6F6F6;">
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">java程序员</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">云科科技</a></td>
-						<td style="color:#0101FF;">2000-3000</td>
-						<td>3</td>
-						<td>2014-06-01</td>
-					</tr>
-					<tr>
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">java程序员</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">云科科技</a></td>
-						<td style="color:#0101FF;">2000-3000</td>
-						<td>3</td>
-						<td>2014-06-01</td>
-					</tr>
-					<tr style="background:#F6F6F6;">
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">java程序员</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">云科科技</a></td>
-						<td style="color:#0101FF;">2000-3000</td>
-						<td>3</td>
-						<td>2014-06-01</td>
-					</tr>
-					<tr>
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">java程序员</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">云科科技</a></td>
-						<td style="color:#0101FF;">2000-3000</td>
-						<td>3</td>
-						<td>2014-06-01</td>
-					</tr>
-					<tr style="background:#F6F6F6;">
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">java程序员</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">云科科技</a></td>
-						<td style="color:#0101FF;">2000-3000</td>
-						<td>3</td>
-						<td>2014-06-01</td>
-					</tr>
-					<tr>
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">java程序员</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">云科科技</a></td>
-						<td style="color:#0101FF;">2000-3000</td>
-						<td>3</td>
-						<td>2014-06-01</td>
-					</tr>
-					<tr style="background:#F6F6F6;">
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">java程序员</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">云科科技</a></td>
-						<td style="color:#0101FF;">2000-3000</td>
-						<td>3</td>
-						<td>2014-06-01</td>
-					</tr>
+				   [/#list]
 				</table>
 				<div class="paixu" style="margin-top:30px;">
 					<ul class="fenye" style="float: right; margin: 0px 40px 0px 0px;">

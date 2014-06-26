@@ -2,13 +2,10 @@ package com.etech.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Assert; 
@@ -70,7 +67,8 @@ public class ControllerSearch {
 		String eduRequire="";
 		String workYear="";
 		String companyType="";
-		if (data!=null) {
+		if (!StringUtils.isEmpty(data)) {
+			log.debug("search data:"+data);
 			String[] split = data.split("-");
 			int length=split.length;
 			// length 长度=6
@@ -97,11 +95,14 @@ public class ControllerSearch {
 			if(length-1>0){
 				//起薪范围
 			  salaryRange=split[1];
-			   // 发布日期
-			  issueTime=split[0];
-			  log.debug("issueTime:"+issueTime);
+			  log.debug("salaryRange:"+salaryRange);
 			}
-			
+			// length长度等于1
+			if(length-1>=0){
+				// 发布日期
+				issueTime=split[0];
+				log.debug("issueTime:"+issueTime);
+			}
 		}
 		if (majorTypeId!=null) {
 			// 获取对象
@@ -119,7 +120,7 @@ public class ControllerSearch {
 		if ("position".equals(type)) {
 			log.debug("根据关键字搜索招聘岗位");
 			List<Trecruit> recruitList=(List<Trecruit>)jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
-			
+			request.setAttribute("recruitList", recruitList);
 			
 		}else if (type=="resume") {
 			System.out.println("简历搜索");

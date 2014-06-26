@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.index.Term;
+import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.BooleanQuery;
@@ -61,7 +62,9 @@ public class JobSearchService {
 						// 3600*60*60*24
 						//当前时间为标准,近n天
 						long endTime=System.currentTimeMillis();
+						log.debug("endTime:"+endTime);
 						long beginTime=endTime-(Integer.valueOf(issueTime)*1000*60*60*24);
+						log.debug("beginTime:"+beginTime);
 						TermRangeQuery issueRangeQuery=new TermRangeQuery("editTime", String.valueOf(beginTime),String.valueOf(endTime),true, true);
 						booleanQuery.add(issueRangeQuery,Occur.MUST);
 					}
@@ -103,9 +106,10 @@ public class JobSearchService {
 			//根据关键字搜索
 			if(!StringUtils.isEmpty(keyword)){
 				log.debug("keyword:"+keyword);
-				QueryParser parser = new QueryParser(Version.LUCENE_36,"workType.name",new IKAnalyzer());
-				Query queryParser = parser.parse(keyword);
-				booleanQuery.add(queryParser, Occur.MUST);
+				MultiFieldQueryParser parser = new MultiFieldQueryParser(Version.LUCENE_36, new String[]{"company","workType.name"}, new IKAnalyzer());
+				parser.setDefaultOperator(QueryParser.OR_OPERATOR);
+				Query multiFieldQueryParser = parser.parse(keyword);
+				booleanQuery.add(multiFieldQueryParser, Occur.MUST);
 			}
 			// 工作地点
 			if(!StringUtils.isEmpty(area)){

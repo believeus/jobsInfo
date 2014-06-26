@@ -15,7 +15,10 @@ import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
 import org.hibernate.search.annotations.Store;
+import org.hibernate.search.backend.WorkType;
 import org.hibernate.validator.constraints.Length;
+
+import bsh.This;
 
 /**招聘信息*/
 @Entity
@@ -32,6 +35,7 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	private String companyType;
 	/**招收人数*/
 	private int worknum;
+	
 	/**性别*/
 	@Length(max=5)
 	@Column(nullable=true)
@@ -81,6 +85,8 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	private TmajorType majorType;
 	/**工种类型*/
 	private TmajorType workType;
+	/**工作岗位*/
+	private String jobPost;
 	/** 该信息属于那个用户 */
 	private TentUser entUser;
 	
@@ -266,9 +272,17 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	public String getCompanyType() {
 		return entUser.getUnitType();
 	}
-
 	public void setCompanyType(String companyType) {
 		this.companyType = companyType;
 	}
+	@Field(store=Store.YES,index = Index.TOKENIZED)
+	public String getJobPost() {
+		return (workType!=null?workType.getName():"");
+	}
+
+	public void setJobPost(String jobPost) {
+		this.jobPost = jobPost;
+	}
+	
 	
 }
