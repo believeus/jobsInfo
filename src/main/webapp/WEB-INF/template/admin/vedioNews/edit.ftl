@@ -12,6 +12,7 @@
 <script type="text/javascript" src="/resource/public/js/admin/kindeditor.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
+<script type="text/javascript" src="/resource/public/js/waitamoment.js"></script>
 <script type="text/javascript">
 $().ready(function() {
 
@@ -46,6 +47,10 @@ $().ready(function() {
 			title: "required",
 			adPositionId: "required",
 			order: "digits"
+		},
+		submitHandler: function(form) {
+			 	showdiv();
+			 	form.submit();	
 		}
 	});
 	

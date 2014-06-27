@@ -889,8 +889,8 @@
 							<td>
 								<select name="sex" style="width: 183px;">
 									<option value="">请选择..</option>
-									<option value="woman">男</option>
-									<option value="man">女</option>
+									<option value="woman">女</option>
+									<option value="man">男</option>
 								</select>
 							</td>
 						</tr>
@@ -1113,6 +1113,7 @@
     			tag=true;
     		}else{
 	    		if(tag==false){
+	    			showdiv();
 	    			submitJobs();
     			}
     		}
@@ -1574,8 +1575,8 @@
 									<td>
 										<select id="sex1" name="sex" style="width: 183px;">
 											<option value="不限">不限</option>
-											<option value="woman">男</option>
-											<option value="man">女</option>
+											<option value="woman">女</option>
+											<option value="man">男</option>
 										</select>
 									</td>
 								</tr>
@@ -1681,7 +1682,7 @@
 									</td>
 									<td>面试时间:</td>
 									<td>
-									<input type="text" name="viewData" id="beginDate"   style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
+									<input type="text" name="beginDate" id="beginDate"   style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
 								    <input type="hidden"  name="endDate" id="endDate"  style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
 								<tr>
 									<td style="vertical-align:top;">其他说明:</td>

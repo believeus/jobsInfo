@@ -339,8 +339,8 @@
 							eventType: "click", //事件类型 支持focus click hover
 							dropmenu:"#xmenuSpecialty1",//弹出层
 							emptytext:"选择专业",
-							hiddenID : "selectSpecialtyhidden1",//隐藏域ID	
-							value : "";
+							hiddenID : "selectSpecialtyhidden1"//隐藏域ID	
+							,value : "${recruit.majorType.id}"
 				});
 				$("#selectJobs1").xMenu({	
 							width :1000,
@@ -349,9 +349,30 @@
 							eventType: "click", //事件类型 支持focus click hover
 							dropmenu:"#xmenuJobs1",//弹出层
 							emptytext:"选择工种",
-							hiddenID : "selectJobshidden1",//隐藏域ID	
-							value : "";
+							hiddenID : "selectJobshidden1"//隐藏域ID	
+							,value : "${recruit.workType.id}"
 				});
+				
+			//封装ajax信息提交
+			function submitJobs(){
+				var viewData=new Date($("#beginDate").val().replace(/-/g,",")).getTime();
+				$("#viewData").val(viewData);
+					alert("xxx");
+					$("#jobsForm1").ajaxSubmit({
+			            	 type: "post",
+						     url: "/enterprise-user/center/submit-recruit.jhtml",
+						     dataType: "json",
+						     success: function(data){
+						     	alert("eee");
+						     	
+						     	if(data.message=="success"){
+							     	location.reload(true);	     		
+						     	}
+						     }
+		        	});	
+				
+			}
+			
 			// 保存招聘信息。
     	$("#savaJobs").click(function() {
     	    var tag=false;
@@ -372,11 +393,14 @@
     			tag=true;
     		}else{
 	    		if(tag==false){
+	    			showdiv();
 	    			submitJobs();
     			}
     		}
     		
 		});
+		
+		
 		});
 </script>
 <body>
@@ -429,7 +453,7 @@
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<div class="j_main_right_2_1">
-					<div id="zhaopin_xinxi" class="j_main_right_2_1_2" style="cursor:pointer;">招聘信息</div>
+					<div id="zhaopin_xinxi" class="j_main_right_2_1_2" style="cursor:pointer;">编辑招聘信息</div>
 				</div>
 				
 				
@@ -451,7 +475,6 @@
 						<input type="hidden" name="isview" value="未发布">
 							<table>
 								<tr>
-									<td rowspan="9" style="color:#E2652E;">1</td>
 									<td>招聘单位:</td>
 									<td style="padding-right:80px;"><input type="text" id="company1" name="company" value="${recruit.company}"></td>
 									<td>人数:</td>
@@ -464,17 +487,26 @@
 									<div class="topnav">
 										<a id="selectJobs1" href="javascript:void(0);" class="as">
 											<span >
+											[#assign name=recruit.workType.name] 
+											 [#if name!=""]
+											 	[#if name?length > 15]
+													${name?string?substring(0,15)}...
+												[#else]
+													${name}
+												[/#if]
+											 [#else]
 												选择工种
+											 [/#if]
 											</span>		
 										</a>	
 									</div>
 									</td>
 									<td>性别:</td>
 									<td>
-										<select id="sex1" name="sex" style="width: 183px;">
+										<select id="sex1" name="sex" style="width: 183px;" value="${recruit.sex}">
 											<option value="不限">不限</option>
-											<option value="woman">男</option>
-											<option value="man">女</option>
+											<option value="woman">女</option>
+											<option value="man">男</option>
 										</select>
 									</td>
 								</tr>
@@ -485,18 +517,27 @@
 									<div class="topnav">
 										<a id="selectSpecialty1" href="javascript:void(0);" class="as">
 											<span >
+											[#assign name=recruit.majorType.name] 
+											 [#if name!=""]
+											 	[#if name?length > 15]
+													${name?string?substring(0,15)}...
+												[#else]
+													${name}
+												[/#if]
+											 [#else]
 												选择专业
+											 [/#if]
 											</span>		
 										</a>	
 									</div>
 								</td>
 									<td>技术等级:</td>
-									<td><input type="text" id="eteLevel1" name="eteLevel"></td>
+									<td><input type="text" id="eteLevel1" name="eteLevel" value="${recruit.eteLevel}"></td>
 								</tr>
 								<tr>
 									<td>从事年限:</td>
 									<td>
-									<select id="workyear1" name="workyear" style="width: 183px;">
+									<select id="workyear1" name="workyear" style="width: 183px;" value="${recruit.workyear}">
 											<option value="不限">不限</option>
 											<option value="在读学生">在读学生</option>
 											<option value="应届毕业生">应届毕业生</option>
@@ -512,7 +553,7 @@
 									</td>
 									<td>文化程度:</td>
 									<td>
-										<select id="eduLevel1" name="eduLevel" style="width: 183px;">
+										<select id="eduLevel1" name="eduLevel" style="width: 183px;" value="${recruit.eduLevel}">
 											<option value="不限">不限</option>
 											<option value="博士">博士</option>
 											<option value="硕士">硕士</option>
@@ -543,7 +584,7 @@
 								<tr>
 									<td>薪资待遇:</td>
 									<td>
-									<select id="salary1" name="salary" style="width: 183px;">
+									<select id="salary1" name="salary" style="width: 183px;" value="${recruit.salary}">
 											<option value="不限">不限</option>
 											<option value="1000以下">1000以下</option>
 											<option value="1000~1999">1000~1999</option>
@@ -555,7 +596,7 @@
 									</td>
 									<td>用工形式:</td>
 									<td>
-										<select id="workWay1" name="workWay" style="width: 183px;">
+										<select id="workWay1" name="workWay" style="width: 183px;" value="${recruit.workWay}">
 											<option value="不限">不限</option>
 											<option value="全职">全职</option>
 											<option value="兼职">兼职</option>
@@ -570,7 +611,7 @@
 								<tr>
 									<td>招聘期限:</td>
 									<td>
-										<select id="worklimit1" name="worklimit" style="width: 183px;">
+										<select id="worklimit1" name="worklimit" style="width: 183px;" value="${recruit.worklimit}">
 											<option value="三个月">三个月</option>
 											<option value="一个月">一个月</option>
 											<option value="六个月">六个月</option>
