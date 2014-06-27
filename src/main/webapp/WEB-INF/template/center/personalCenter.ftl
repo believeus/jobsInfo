@@ -488,16 +488,17 @@
 									$("#InfoForm").append(html);
 							   }
 							   
-							}
-							if(type==1){
-								$(object).parent().parent().parent().parent().parent().parent().html(type1);
-							}else if(type==2){
-								$(object).parent().parent().parent().parent().parent().parent().html(type2);
-							}else if(type==3){
-								$(object).parent().parent().parent().parent().parent().parent().html(type3);
-							}else if(type==4){
-								$(object).parent().parent().parent().parent().parent().parent().html(type4);
-								deleteIds();
+							   if(type==1){
+									$(object).parent().parent().parent().parent().parent().parent().html(type1);
+								}else if(type==2){
+									$(object).parent().parent().parent().parent().parent().parent().html(type2);
+								}else if(type==3){
+									$(object).parent().parent().parent().parent().parent().parent().html(type3);
+								}else if(type==4){
+									$(object).parent().parent().parent().parent().parent().parent().html(type4);
+									deleteIds();
+								}
+							   
 							}
 							
 						} else {
@@ -524,6 +525,25 @@
 						}
 					
 	    	};
+	    	
+	    	   // ajax 提交验证和登录。
+		    	function deleteIds(){
+		    			if($("#deleteids").length>0){
+			    			var ids=$("#deleteids").val();
+							$.ajax({
+								url: "/common-user/submit-deleteids.jhtml",
+								type: "POST",
+								data: {ids:ids},
+								dataType: "json",
+								cache: false,
+								success: function(data) {
+									location.reload(true);
+								}
+							})
+		    			}else{
+							location.reload(true);
+						}				
+					}
 	    	
     		
     	[@compress single_line = true]
@@ -1300,25 +1320,6 @@
     				 
     			}
     			
-    			// ajax 提交验证和登录。
-		    	function deleteIds(){
-		    			if($("#deleteids").length>0){
-			    			var ids=$("#deleteids").val();
-							$.ajax({
-								url: "/common-user/submit-deleteids.jhtml",
-								type: "POST",
-								data: {ids:ids},
-								dataType: "json",
-								cache: false,
-								success: function(data) {
-									location.reload(true);
-								}
-							})
-		    			}else{
-							location.reload(true);
-						}				
-					}
-					
   			
 				// ajax 提交验证和保存，先提交图片再提交个人信息。
 				function submitValid(submitx){
