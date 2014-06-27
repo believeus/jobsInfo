@@ -921,6 +921,7 @@
     				 //alert("xxxxx学习经历xxxxxxxxxx");
     				  var num=0;
     				  $("div.xuexi_div").each(function(index){
+		    				var tag=false;
     				  		index++;
     				  		// 转换时间类型为long类型。
     				  		var beginDate=$("input[eidLearning='beginDateLearning"+index+"']").val();
@@ -928,21 +929,29 @@
 	    					if(beginDate!=""||endDate!=""){
 		    					beginDate=new Date(beginDate.replace(/-/g,",")).getTime();
 	    						endDate=new Date(endDate.replace(/-/g,",")).getTime(); 				
+	    					}else{
+	    						tag=true;
 	    					}
 	    					$("input[name='beginData']").val(beginDate);
 	    					$("input[name='endData']").val(endDate);
-	    					
-	    					$("#LearningForm"+index).ajaxSubmit({
-				            	 type: "post",
-							     url: "/common-user/center/submit-comInfo.jhtml",
-							     dataType: "json",
-							     success: function(result){
-							     	num=num+1;
-							     	if(num==index){
-				 		   				submitWorks();    				 						     	
-							     	}
-							     }
-			        		});	
+	    					if(tag==false){
+		    					$("#LearningForm"+index).ajaxSubmit({
+					            	 type: "post",
+								     url: "/common-user/center/submit-comInfo.jhtml",
+								     dataType: "json",
+								     success: function(result){
+								     	num=num+1;
+								     	if(num==index){
+					 		   				submitWorks();    				 						     	
+								     	}
+								     }
+				        		});	
+	    					}else{
+	    						num=num+1;
+						     	if(num==index){
+			 		   				submitWorks();    				 						     	
+						     	}
+	    					}
 	    					
 	    				 })
     			}
@@ -951,29 +960,36 @@
     				//alert("xxxxxxxx工作经验xxxxxxx");
     				  var num=0;
     				  $("div.gongzuo_div").each(function(index){
+		   				    var tag=false;
     				  		index++;
-    				  		
     				  		var beginDate=$("input[eidWork='beginDateWork"+index+"']").val();
 							var endDate=$("input[eidWork='endDateWork"+index+"']").val();
 							if(beginDate!=""||endDate!=""){
 		    					beginDate=new Date(beginDate.replace(/-/g,",")).getTime();
 	    						endDate=new Date(endDate.replace(/-/g,",")).getTime(); 				
+	    					}else{
+	    						tag=true;
 	    					}
 	    					$("input[name='beginData']").val(beginDate);
 	    					$("input[name='endData']").val(endDate);
-	    					
-	    					$("#WorkForm"+index).ajaxSubmit({
-				            	type: "post",
-							     url: "/common-user/center/submit-comInfo.jhtml",
-							     dataType: "json",
-							     success: function(result){
-							     	num=num+1;
-							     	if(num==index){
-				 		   				deleteIds();    				 						     	
-							     	}
-							     }
-			        		});
-			        		
+	    					if(tag==false){
+		    					$("#WorkForm"+index).ajaxSubmit({
+					            	type: "post",
+								     url: "/common-user/center/submit-comInfo.jhtml",
+								     dataType: "json",
+								     success: function(result){
+								     	num=num+1;
+								     	if(num==index){
+					 		   				deleteIds();    				 						     	
+								     	}
+								     }
+				        		});
+	    					}else{
+	    						num=num+1;
+								if(num==index){
+					 		   		deleteIds();    				 						     	
+								}
+	    					}
     				  })
     			}
     			
@@ -1378,12 +1394,17 @@
 									<div class="topnav">
 										<a id="selectSkillSpecialty${skill_index+1}" href="javascript:void(0);" class="as">
 											<span >
-												[#assign name=skill.majorType.name]
-												[#if name?length > 15]
+											 
+											[#assign name=skill.majorType.name]
+											 [#if name!=""]
+											 	[#if name?length > 15]
 													${name?string?substring(0,15)}...
 												[#else]
 													${name}
 												[/#if]
+											 [#else]
+											 	选择专业
+											 [/#if]
 											</span>		
 										</a>	
 									</div>
@@ -1408,10 +1429,14 @@
 										<a id="selectSkillJobs${skill_index+1}" href="javascript:void(0);" class="as">
 											<span >
 												[#assign name=skill.workType.name]
-												[#if name?length > 15]
-													${name?string?substring(0,15)}...
+												[#if name!=""]
+													[#if name?length > 15]
+														${name?string?substring(0,15)}...
+													[#else]
+														${name}
+													[/#if]
 												[#else]
-													${name}
+													选择工种
 												[/#if]
 											</span>		
 										</a>	
@@ -1537,10 +1562,14 @@
 										<a id="selectLearningSpecialty${learning_index+1}" href="javascript:void(0);" class="as">
 											<span >
 												[#assign name=learning.majorType.name]
-												[#if name?length > 15]
-													${name?string?substring(0,15)}...
+												[#if name!=""]
+													[#if name?length > 15]
+														${name?string?substring(0,15)}...
+													[#else]
+														${name}
+													[/#if]
 												[#else]
-													${name}
+													选择专业
 												[/#if]
 											</span>		
 										</a>	
@@ -1640,10 +1669,14 @@
 										<a id="selectWorkJob${work_index+1}" href="javascript:void(0);" class="as">
 											<span >
 												[#assign name=work.workType.name]
-												[#if name?length > 15]
-													${name?string?substring(0,15)}...
+												[#if name!=""]
+													[#if name?length > 15]
+														${name?string?substring(0,15)}...
+													[#else]
+														${name}
+													[/#if]
 												[#else]
-													${name}
+												 	选择工种
 												[/#if]
 											</span>		
 										</a>	
@@ -1753,10 +1786,14 @@
 										<a id="selectVolunteerSpecialty${volunteer_index+1}" href="javascript:void(0);" class="as">
 											<span >
 												[#assign name=volunteer.majorType.name]
-												[#if name?length > 15]
-													${name?string?substring(0,15)}...
+												[#if name!=""]
+													[#if name?length > 15]
+														${name?string?substring(0,15)}...
+													[#else]
+														${name}
+													[/#if]
 												[#else]
-													${name}
+													选择专业
 												[/#if]
 											</span>		
 										</a>	
@@ -1826,10 +1863,14 @@
 										<a id="selectVolunteerJobs${volunteer_index+1}" href="javascript:void(0);" class="as">
 											<span >
 												[#assign name=volunteer.workType.name]
-												[#if name?length > 15]
-													${name?string?substring(0,15)}...
+												[#if name!=""]
+													[#if name?length > 15]
+														${name?string?substring(0,15)}...
+													[#else]
+														${name}
+													[/#if]
 												[#else]
-													${name}
+													选择专业
 												[/#if]
 											</span>		
 										</a>	
