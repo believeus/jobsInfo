@@ -179,12 +179,12 @@ public class ControllerCRUD {
 	}
 	// 置顶
 	public boolean top(int id){
-		etechService.updata(TdataCenter.class, "top", 1, "id", id);
+		etechService.updata(TdataCenter.class, "id", id,"top", 1);
 		return true;
 	}
 	// 取消置顶
 	public boolean unTop(int id){
-		etechService.updata(TdataCenter.class, "top", 0, "id", id);
+		etechService.updata(TdataCenter.class,"id", id, "top", 0);
 		return true;
 	}
 	

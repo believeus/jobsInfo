@@ -106,4 +106,15 @@ public class ControllerImagesNews extends ControllerCRUD{
 		super.updataDataInfo(editDataCenter, request);
 		return "redirect:/admin/imagesNews/list.jhtml";
 	}
+	
+	@RequestMapping(value="/imagesNewsTop")
+	public String newsTop(int id){
+		super.top(id);
+		return "redirect:/admin/imagesNews/list.jhtml";
+	}
+	@RequestMapping(value="/unImagesNewsTop")
+	public String unNewsTop(int id){
+		super.unTop(id);
+		return "redirect:/admin/imagesNews/list.jhtml";
+	}
 }

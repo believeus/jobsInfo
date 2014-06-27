@@ -91,4 +91,15 @@ public class ControllerVedioNews extends ControllerCRUD{
 		super.updataDataInfo(editDataCenter, request);
 		return "redirect:/admin/vedioNews/list.jhtml";
 	}
+	
+	@RequestMapping(value="/vedioNewsTop")
+	public String newsTop(int id){
+		super.top(id);
+		return "redirect:/admin/vedioNews/list.jhtml";
+	}
+	@RequestMapping(value="/unVedioNewsTop")
+	public String unNewsTop(int id){
+		super.unTop(id);
+		return "redirect:/admin/vedioNews/list.jhtml";
+	}
 }

@@ -107,7 +107,11 @@ $().ready(function() {
 					${center.title}
 				</td>
 				<td>
-					<input type="checkbox" id="" />
+					[#if center.top == 1]
+						<a href="/admin/imagesNews/unImagesNewsTop.jhtml?id=${center.id}"><font color="green">取消置顶</font></a>
+					[#else]
+						<a href="/admin/imagesNews/imagesNewsTop.jhtml?id=${center.id}"><font color="red">点击置顶</font></a>
+					[/#if]
 				</td>
 				<!--<td>
 					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>

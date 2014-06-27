@@ -100,5 +100,14 @@ public class ControllerNews extends ControllerCRUD{
 		return "redirect:/admin/news/newsList.jhtml";
 	}
 
-	
+	@RequestMapping(value="/newsTop")
+	public String newsTop(int id){
+		super.top(id);
+		return "redirect:/admin/news/newsList.jhtml";
+	}
+	@RequestMapping(value="/unNewsTop")
+	public String unNewsTop(int id){
+		super.unTop(id);
+		return "redirect:/admin/news/newsList.jhtml";
+	}
 }

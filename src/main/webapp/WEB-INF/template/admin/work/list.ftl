@@ -109,14 +109,12 @@ $().ready(function() {
 					${center.title}
 				</td>
 				<td>
-					<input type="checkbox" id="" />
+					[#if center.top == 1]
+						<a href="/admin/work/unWorkTop.jhtml?id=${center.id}"><font color="green">取消置顶</font></a>
+					[#else]
+						<a href="/admin/work/workTop.jhtml?id=${center.id}"><font color="red">点击置顶</font></a>
+					[/#if]
 				</td>
-				<!--
-					<td>
-						<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
-						<a href="" style="text-decoration:underline;">降</a>
-					</td>
-				-->
 				[@shiro.hasPermission name="workDinamic:modify"]
 				<td>
 					<a href="edit.jhtml?id=${center.id}">[修改]</a>

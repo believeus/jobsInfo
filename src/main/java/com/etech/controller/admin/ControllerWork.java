@@ -92,4 +92,15 @@ public class ControllerWork extends ControllerCRUD {
 		super.updataDataInfo(editDataCenter, request);
 		return "redirect:/admin/work/list.jhtml";
 	}
+	
+	@RequestMapping(value="/workTop")
+	public String newsTop(int id){
+		super.top(id);
+		return "redirect:/admin/work/list.jhtml";
+	}
+	@RequestMapping(value="/unWorkTop")
+	public String unNewsTop(int id){
+		super.unTop(id);
+		return "redirect:/admin/work/list.jhtml";
+	}
 }
