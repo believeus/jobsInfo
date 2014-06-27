@@ -304,7 +304,33 @@ public class ControllerCenter {
 		}
 		JsonOutToBrower.out(map, response);
 	}
-
+	
+	
+	@RequestMapping(value = "/enterprise-user/center/change-recruit")
+	public void changeRecruit(String id,HttpServletResponse response){
+		Trecruit recruit= (Trecruit)etechService.findObjectById(Trecruit.class, Integer.valueOf(id));
+		String isview = recruit.getIsview();
+		String info="";
+		if (isview.equals("发布")) {
+			recruit.setIsview("不发布");
+			info="不发布";
+		}else {
+			recruit.setIsview("发布");
+			info="发布";
+		}
+		etechService.saveOrUpdata(recruit);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("message", info);
+		JsonOutToBrower.out(map, response);
+	}
+	@RequestMapping(value = "/enterprise-user/center/delete-recruit")
+	public void deleteRecruit(String id,HttpServletResponse response){
+		etechService.deleteObjectById(Trecruit.class, Integer.valueOf(id));
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("message", "success");
+		JsonOutToBrower.out(map, response);
+	}
+	
 	@RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
 	public @ResponseBody
 	String upload(HttpServletRequest request) {

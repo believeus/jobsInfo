@@ -63,7 +63,6 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	@Length(max=10)
 	private String salary;
 	/**招聘限制*/
-	@Length(max=2)
 	private String worklimit;
 	/**面试时间*/
 	private long viewData;
@@ -79,6 +78,7 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	/**是否审核通过 0:审核中 1:审核通过*/
 	@Column(nullable=true)
 	private int status;
+	private String isview;
 	/**专业类型*/
 	private TmajorType majorType;
 	/**工种类型*/
@@ -137,10 +137,6 @@ public class Trecruit extends TbaseEntity implements Serializable {
 
 	public void setWorkyear(String workyear) {
 		this.workyear = workyear;
-	}
-
-	public int getAge() {
-		return age;
 	}
 
 	public void setAge(int age) {
@@ -289,6 +285,14 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	public void setJobPost(String jobPost) {
 		jobPost=(workType!=null?workType.getName():"");
 		this.jobPost = jobPost;
+	}
+
+	public String getIsview() {
+		return isview;
+	}
+
+	public void setIsview(String isview) {
+		this.isview = isview;
 	}
 	
 	

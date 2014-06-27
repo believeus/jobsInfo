@@ -6,8 +6,10 @@
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script type="text/javascript" src="/resource/public/js/jquery.js"></script>
+    <script type="text/javascript" src="/resource/public/js/jquery-ui.js"></script>
     <script type="text/javascript" src="/resource/public/js/jquery.form.js"></script>
     <script type="text/javascript"  src="/resource/public/js/Etech.js"></script>
+    <link href="/resource/public/js/jquery-ui.css" rel="stylesheet" type="text/css" />  
     <link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
     <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />  
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu.js"></script> 
@@ -677,8 +679,48 @@
 				
 		}
 		
+		function showDialog(id,object){
+			$("#dialog").dialog({
+			    bgiframe: true,
+			    resizable: false,
+			    modal: true,
+			    buttons: {
+			        '确定': function() {
+			        	$(this).dialog('close');
+			        	$.ajax({
+							url: "/enterprise-user/center/delete-recruit.jhtml",
+							type: "POST",
+							data: {'id':id},
+							dataType: "json",
+							cache: false,
+							success: function(data) {
+								 if(data.message=="success"){								 
+								 	$(object).parent().parent().remove();
+								 }
+							}
+						});
+			           
+			        },
+			        Cancel: function() {
+			            $(this).dialog('close');
+			        }
+			    }
+			});
+			
+		}
 		
-		
+		function changeIsview(id){
+			$.ajax({
+				url: "/enterprise-user/center/change-recruit.jhtml",
+				type: "POST",
+				data: {'id':id},
+				dataType: "json",
+				cache: false,
+				success: function(data) {
+					$("#isview"+id).text(data.message);
+				}
+			});
+		}
     	var b = 2;
     	[#if Vedios?size>0]
     		var v=${Vedios?size}+1;
@@ -979,6 +1021,8 @@
 		
 			//封装ajax信息提交
 		function submitJobs(){
+			var viewData=new Date($("#beginDate").val().replace(/-/g,",")).getTime();
+			$("#viewData").val(viewData);
 			$("div.zhaopinxinxi").each(function(index){
 				index=index+1;
 				$("#jobsForm1").ajaxSubmit({
@@ -987,7 +1031,7 @@
 					     dataType: "json",
 					     success: function(data){
 					     	if(data.message=="success"){
-						     	alert("提交成功");				     		
+						     	location.reload(true);	     		
 					     	}
 					     }
 	        	});	
@@ -1051,35 +1095,28 @@
 		
 		// 保存招聘信息。
     	$("#savaJobs").click(function() {
-    		
+    	    var tag=false;
     		if($("#worknum1").val() == ""){
     			alert("请输入招聘人数");
-    		}else if($("#workspace1").val() == ""){
-    			alert("请输入工作地点");
-    		}else if($("#age1").val() == ""){
-    			alert("请输入年龄");
-    		}else if($("#height1").val() == ""){
-    			alert("请输入身高");
-    		}else if($("#eyesight1").val() == ""){
-    			alert("请输入视力");
-    		}else if($("#viewData1").val() == ""){
-    			alert("请输入面试时间");
+    			tag=true;
     		}else if($("#selectJobshidden1").val() == ""){
     			alert("请选择工种");
+    			tag=true;
     		}else if($("#selectSpecialtyhidden1").val() == ""){
     			alert("请选择专业");
+    			tag=true;
+    		}else if($("#workspace1").val() == ""){
+    			alert("请输入工作地点");
+    			tag=true;
+    		}else if($("#beginDate").val() == ""){
+    			alert("请输入面试时间");
+    			tag=true;
     		}else{
-	    		var selects = $(".zhaopinxinxi select");//判断下拉框是否选值
-	    		selects.each(function(index,obj){
-	    			if($(this).val()==""){
-	    				$(this).css("color","red");
-	    				if(index == 1){
-	    					alert("请选择下拉框信息");
-	    				}
-	    			}
-	    		});
+	    		if(tag==false){
+	    			submitJobs();
+    			}
     		}
-			submitJobs();
+    		
 		});
 		
 		// 修改密码
@@ -1488,8 +1525,13 @@
 								<td>
 								[#if recruit.status=="0"&&recruit.status!="1"]审核中[#elseif recruit.status=="1"]已通过审核[/#if]
 								</td>
-								<td>发布和未发布</td>
-								<td><a href="" style="margin-right: 5px;">编辑</a><a href="javascript:void(0)" onclick="">删除</a></td>
+								<td><a href="javascript:void(0)" onclick="changeIsview(${recruit.id});" title="点击即可修改" id="isview${recruit.id}">${recruit.isview}</a></td>
+								<td><a href="javascript:void(0)" style="margin-right: 5px;" id="editx" >编辑</a>
+								<a href="javascript:void(0)" onclick="showDialog(${recruit.id},this)">删除</a>
+								<div id="dialog" title="&nbsp;" style="display: none;">
+									<p style="text-align: center;">确定要删除吗？</p>
+								</div>
+								</td>
 							</tr>
 							[/#list]
 							[/#if]
@@ -1499,13 +1541,15 @@
 						<span style="float:left;">添加/编辑招聘信息</span>
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 490px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 						<div style="float: left; width: 50px; margin-left: 20px;">
-							<input id="add_zhaopin" type="button" value="添加" style="width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
+							<input id="add_zhaopin" type="hidden" value="添加" style="width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
 						</div>
 					</div>
 					<div>
 				<div class="zhaopinxinxi" style="padding:10px 30px;width:650px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 					<form novalidate="novalidate"  action="/enterprise-user/center/submit-recruit.jhtml"  method="post" id="jobsForm1">
 						<input type="hidden" name="status" value="0">
+						<input type="hidden" name="viewData" value="" id="viewData">
+						<input type="hidden" name="isview" value="未发布">
 							<table>
 								<tr>
 									<td rowspan="9" style="color:#E2652E;">1</td>
@@ -1529,7 +1573,7 @@
 									<td>性别:</td>
 									<td>
 										<select id="sex1" name="sex" style="width: 183px;">
-											<option value="">请选择..</option>
+											<option value="不限">不限</option>
 											<option value="woman">男</option>
 											<option value="man">女</option>
 										</select>
@@ -1554,7 +1598,7 @@
 									<td>从事年限:</td>
 									<td>
 									<select id="workyear1" name="workyear" style="width: 183px;">
-											<option value="">请选择..</option>
+											<option value="不限">不限</option>
 											<option value="在读学生">在读学生</option>
 											<option value="应届毕业生">应届毕业生</option>
 											<option value="1~2年">1~2年</option>
@@ -1570,20 +1614,18 @@
 									<td>文化程度:</td>
 									<td>
 										<select id="eduLevel1" name="eduLevel" style="width: 183px;">
-											<option value="">请选择..</option>
-											<option value="研究生以上">研究生以上</option>
-											<option value="博士研究生">博士研究生</option>
-											<option value="大学本科">大学本科</option>
-											<option value="大学专科">大学专科</option>
-											<option value="中专技校">中专技校</option>
-											<option value="中等专科">中等专科</option>
-											<option value="职业高中">职业高中</option>
-											<option value="技工学校">技工学校</option>
-											<option value="普通高中">普通高中</option>
-											<option value="初中及以下">初中及以下</option>
-											<option value="初级中学">初级中学</option>
+											<option value="不限">不限</option>
+											<option value="博士">博士</option>
+											<option value="硕士">硕士</option>
+											<option value="大学">大学</option>
+											<option value="大专">大专</option>
+											<option value="中专中技">中专中技</option>
+											<option value="技校">技校</option>
+											<option value="高中">高中</option>
+											<option value="职高">职高</option>
+											<option value="初中">初中</option>
 											<option value="小学">小学</option>
-											<option value="其他">其他</option>
+											<option value="文盲或半文盲">文盲或半文盲</option>
 										</select>
 									</td>
 								</tr>
@@ -1591,19 +1633,19 @@
 									<td>工作地点:</td>
 									<td><input type="text" id="workspace1" name="workspace"></td>
 									<td>年龄:</td>
-									<td><input type="text" id="age1" name="age" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"></td>
+									<td><input type="text" id="age1" name="age" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3" value="0"></td>
 								</tr>
 								<tr>
 									<td>身高:</td>
 									<td><input type="text" id="height1" name="height" placeholder="cm" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"></td>
 									<td>视力:</td>
-									<td><input type="text" id="eyesight1" name="eyesight" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"></td>
+									<td><input type="text" id="eyesight1" name="eyesight" onkeyup="value=this.value.replace(/\D+\./g,'')" maxlength="3"></td>
 								</tr>
 								<tr>
 									<td>薪资待遇:</td>
 									<td>
 									<select id="salary1" name="salary" style="width: 183px;">
-											<option value="">请选择..</option>
+											<option value="不限">不限</option>
 											<option value="1000以下">1000以下</option>
 											<option value="1000~1999">1000~1999</option>
 											<option value="2000~2999">2000~2999</option>
@@ -1615,7 +1657,7 @@
 									<td>用工形式:</td>
 									<td>
 										<select id="workWay1" name="workWay" style="width: 183px;">
-											<option value="">请选择..</option>
+											<option value="不限">不限</option>
 											<option value="全职">全职</option>
 											<option value="兼职">兼职</option>
 											<option value="实习">实习</option>
@@ -1638,14 +1680,15 @@
 										</select>
 									</td>
 									<td>面试时间:</td>
-									<td><input type="text" id="viewData1" name="viewData" placeholder="如2014-02-28"></td>
-								</tr>
+									<td>
+									<input type="text" name="beginDate" id="beginDate"   style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
+								    <input type="hidden"  name="endDate" id="endDate"  style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
 								<tr>
 									<td style="vertical-align:top;">其他说明:</td>
 									<td colspan="2">
 										<textArea cols="30" style="resize:none;" id="note1" name="note"></textArea>
 									</td>
-									<td style="vertical-align: bottom; text-align: right;">
+									<td style="display:none;vertical-align: bottom; text-align: right;">
 										<a onclick="delete_zhaopin(this)" href="javascript:void(0);">删除</a>
 									</td>
 								</tr>
