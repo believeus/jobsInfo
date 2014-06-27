@@ -497,6 +497,7 @@
 								$(object).parent().parent().parent().parent().parent().parent().html(type3);
 							}else if(type==4){
 								$(object).parent().parent().parent().parent().parent().parent().html(type4);
+								deleteIds();
 							}
 							
 						} else {
@@ -850,6 +851,7 @@
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="VolunteerForm'+d+'">
 						<table>
 							<tr>
+								<td rowspan="4" style="background:#DCDCDC;color:#FE7200;">'+d+'</td>
 								<td>专业:</td>
 								<td>
 									<input type="hidden" value="" id="selectVolunteerSpecialtyhidden'+d+'" name="majorTypeId"/>
@@ -2065,6 +2067,7 @@
 						<input name="id" type="hidden" value="${volunteer.id}">
 						<table>
 							<tr>
+								<td rowspan="4" style="background:#DCDCDC;color:#FE7200;">${volunteer_index+1}</td>
 								<td>专业:</td>
 								<td>
 									<input type="hidden" value="${volunteer.majorType.id}" id="selectVolunteerSpecialtyhidden${volunteer_index+1}" name="majorTypeId"/>
