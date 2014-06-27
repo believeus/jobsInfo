@@ -5,7 +5,9 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <script src="/resource/public/resources/scripts/jquery-1.10.2.min.js"></script>
+    <link href="/resource/public/selectArea/css/cityLayout.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/resource/public/areaSelect/css.css" />
+    <script type="text/javascript" src="/resource/public/js/jquery.js"></script>
 	 <script type="text/javascript" src="/resource/public/resources/scripts/jquery.validate.js"></script>
 	 <script type="text/javascript" src="/resource/public/js/Etech.js"></script>
     <style type="text/css">
@@ -247,10 +249,12 @@
 		    	$("#gangwei").click(function(){
 		    		$("#gongsi").removeClass("current");
 		    		$("#gangwei").addClass("current");
+		    		$("#stype").val("position");
 		    	});
 		    	$("#gongsi").click(function(){
 		    		$("#gangwei").removeClass("current");
 		    		$("#gongsi").addClass("current");
+		    		$("#stype").val("company");
 		    	});
 		    	
 		    
@@ -425,20 +429,12 @@
 					<div id="gongsi" class="" style="border-bottom:1px solid #E45900;cursor:pointer;height: 42px; float: left; text-align: center; line-height: 42px; font-size: 20px;width: 229px;color:#E45900;cursor:point;">公司搜索</div>
 				</div>
 				<div style="width:457px;height:156px;background:#FFF1DA;border:1px solid #E45900;">
-					<form action="">
+					<form action="/advanceSearchByContision.jhtml" method="post">
+						<input id="stype" type="hidden" name="type" value="">
 						<div style="width: 380px; margin-left: auto; margin-right: auto; margin-top: 20px;">
 							<input type="text" value="" placeholder="请输入查询内容..." style="width: 360px;">
-							<select style="margin-top: 20px;">
-								<option value="">选择区域</option>
-								<option value="">北京</option>
-								<option value="">上海</option>
-								<option value="">广州</option>
-								<option value="">深圳</option>
-								<option value="">南京</option>
-								<option value="">重庆</option>
-								<option value="">武汉</option>
-							</select>
-							<input type="button" value="搜索" style="cursor:pointer;border-radius:4px;width:100px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
+							<input type="text" name="expectArea" id="start1" placeholder="选择城市" autocomplete="off" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" style="width:151px;">
+							<input type="submit" value="搜索" style="cursor:pointer;border-radius:4px;width:100px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
 							<input type="button" value="高级搜索" onclick="javascript:window.location.href='/advancedSearch.jhtml'" style="cursor:pointer;border-radius:4px;width:100px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
 							<p>搜索热词：
 								<span><a href="">软件工程师</a></span>
@@ -449,6 +445,55 @@
 						</div>
 					</form>
 				</div>
+				<!--/////地区插件///////////////////////////////////////////////////////////////////-->
+					<div class="provinceCityAll">
+					  <div class="tabs clearfix">
+					    <ul class="">
+					      <li><a href="javascript:" class="current" tb="hotCityAll">热门城市</a></li>
+					      <li><a href="javascript:" tb="provinceAll">省份</a></li>
+					      <li><a href="javascript:" tb="cityAll" id="cityAll">城市</a></li>
+					      <li><a href="javascript:" tb="countyAll" id="countyAll">区县</a></li>
+					    </ul>
+					  </div>
+					  <div class="con">
+					    <div class="hotCityAll invis">
+					      <div class="pre"><a></a></div>
+					      <div class="list">
+					        <ul>
+					         
+					        </ul>
+					      </div>
+					      <div class="next"><a class="can"></a></div>
+					    </div>
+					    <div class="provinceAll invis">
+					      <div class="pre"><a></a></div>
+					      <div class="list">
+					        <ul>
+					        
+					        </ul>
+					      </div>
+					      <div class="next"><a class="can"></a></div>
+					    </div>
+					    <div class="cityAll invis">
+					      <div class="pre"><a></a></div>
+					      <div class="list">
+					        <ul>
+					          
+					        </ul>
+					      </div>
+					      <div class="next"><a class="can"></a></div>
+					    </div>
+					    <div class="countyAll invis">
+					      <div class="pre"><a></a></div>
+					      <div class="list">
+					        <ul>
+					        </ul>
+					      </div>
+					      <div class="next"><a class="can"></a></div>
+					    </div>
+					  </div>
+					</div>
+				<!--////////////////////////////////////////////////////////////////////////-->
 			</div>
 			<div class="j_main_3_3">
 				<p style="background:url(/resource/public/images/beijingse.png)">招聘会</p>
@@ -656,5 +701,6 @@
 		</div>
 	</div>
 	[#include "/include/footer.ftl" /]
+	<script src="/resource/public/selectArea/js/public.js"></script>
 </body>
 </html>

@@ -385,7 +385,7 @@
 				[#list slide as slide]
 					[#if slide_index<2]
 					<a href="${slide.alink}" title="${slide.title}">
-						<img src="${slide.imgpath}" [#if slide_index=0] style="width: 548px;height:85px;"[#elseif slide_index=1]style="width: 165px;height:85px;"[/#if]>
+						<img src="${slide.imgpath}" [#if slide_index=0] style="width: 543px;height:85px;"[#elseif slide_index=1]style="width: 165px;height:85px;"[/#if]>
 					</a>
 					[/#if]
 				[/#list]
@@ -604,7 +604,7 @@
 				
 				-->
 				<style type="text/css">
-					.box{ width:980px;position:relative; overflow:hidden; _height:100%;right:988px;top:50px;}
+					.box{ width:980px;position:relative; overflow:hidden; height:100%;right:0;top:0;}
 					.picbox{ width:980px; height:70px; overflow:hidden; position:relative;}
 					.picbox li{list-style:none;}
 					.piclist{ height:70px;position:absolute; left:0px; top:0px;padding:0;margin:0;}
@@ -679,7 +679,7 @@
 						})
 					})
 					</script>
-				<div class="box">
+				<div class="box" id="box">
 					<div class="picbox">
 						<ul class="piclist mainlist">
 							[#list subjectReport as sReport]
@@ -738,5 +738,21 @@
 		</div>
 	</div>
 	[#include "/include/footer.ftl" /]
+<script type="text/javascript">
+	$().ready(function(){
+		var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+		var isOpera = userAgent.indexOf("Opera") > -1;
+		
+		if (isOpera){return "Opera"}; //判断是否Opera浏览器
+		if (userAgent.indexOf("Firefox") > -1){//判断是否Firefox浏览器
+			//alert("Firefox浏览器");
+			$("#box").css("right","988px");
+			$("#box").css("top","50px");
+			return "FF";
+		} 
+		if (userAgent.indexOf("Safari") > -1){return "Safari";} //判断是否Safari浏览器
+		if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera){return "IE";} ; //判断是否IE浏览器
+	});
+</script>
 </body>
 </html>

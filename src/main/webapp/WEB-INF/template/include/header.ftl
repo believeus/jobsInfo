@@ -58,14 +58,7 @@
 	}
 </style>
 <!--IE-->
-<!--[if IE ]> 
-	<style type="text/css">
-		.box{
-			right:0;
-			top:0;
-		}
-	</style>
-<![endif]-->
+
 <script type="text/javascript">
 	//给所有页面BODY加背景色
 	 window.onload=addColor();
@@ -74,7 +67,7 @@
 	 }
 
 	$().ready(function(){
-		$("body").css("background","#FFFBF6");
+		//$("body").css("background","#FFFBF6");
 		
 		//alert(window.location.pathname);
 		$(".nav a").each(function(){

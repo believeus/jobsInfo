@@ -394,8 +394,8 @@
 						</td>
 						<td>
 							<script type="text/javascript" src="/resource/public/areaSelect/city_func.js"></script>
-							<input id="btn_residency" type="text" placeholder="请选择区域.." name="area" onclick="residencySelect()">
-							<input id="residency" type="hidden" name="residency" value="" />
+							<input id="btn_residency" class="proCitySelAll" type="text" placeholder="请选择区域.." name="area" onclick="residencySelect()" style="text-align:center;">
+							<input id="residency" class="residency" type="hidden" name="residency" value="" />
 						</td>
 						<td><input type="submit" value="搜索" style="width: 80px;"></td>
 					</tr>
@@ -588,13 +588,18 @@
 	<div id="maskLayer" style="display:none">
 	<div id="alphadiv" style="filter:alpha(opacity=50);-moz-opacity:0.5;opacity:0.5"></div>
 		<div id="drag">
-			<h3 id="drag_h"></h3>
-			<div id="drag_con"></div><!-- drag_con end -->
+			<h3 id="drag_h"><b>请选择居住地</b><span onclick="boxAlpha()">关闭</span></h3>
+			<div id="drag_con">
+				<div id="residencyAlpha" class="residencyAlpha">
+					<div id="maincity" class="maincity"></div>
+					<div id="allProv" class="allProv"></div>
+				</div>
+			</div><!-- drag_con end -->
 		</div>
 	</div><!-- maskLayer end -->
 	</div>
 	<!-- alpha div end -->
-	<div id="sublist" style="display:none"></div>
+	<div id="sublist" class="sublist" style="display:none"></div>
 	
 	[#include "/include/footer.ftl" /]
 </body>

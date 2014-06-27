@@ -17,8 +17,6 @@
 	<link rel="stylesheet" type="text/css" href="/resource/public/areaSelect/css.css" />
 	<script type="text/javascript" src="/resource/public/areaSelect/drag.js"></script>
 	<script type="text/javascript" src="/resource/public/areaSelect/city_arr.js"></script>
-	<script type="text/javascript" src="/resource/public/areaSelect/drag.js"></script>
-	<script type="text/javascript" src="/resource/public/areaSelect/city_arr.js"></script> 
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu.js"></script> 
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>
 	<script type="text/javascript" src="/resource/public/js/datePicker/WdatePicker.js"></script>
