@@ -205,15 +205,300 @@
     			d = 2;
     		[/#if]
     		
+    		[@compress single_line = true]
+    		var type1='
+						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="SkillForm1">						
+						<table>
+						
+							<tr>
+								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">1</td>
+							</tr>
+							<tr>
+								<td>专业：</td>
+								<td>
+									<input type="hidden" value="" id="selectSkillSpecialtyhidden1" name="majorTypeId"/>
+										<input type="hidden" value="1" name="infoType">
+									<div class="topnav">
+										<a id="selectSkillSpecialty1" href="javascript:void(0);" class="as">
+											<span >
+												选择专业
+											</span>		
+										</a>	
+									</div>
+								</td>
+								<td>技能等级:</td>
+								<td style="padding-right:70px;">
+									<select id="skillLevel1" name="skillLevel" style="width:158px;">
+										<option value="">请选择..</option>
+										<option value="职业资格一级（高级技师）">职业资格一级（高级技师）</option>
+										<option value="职业资格二级（技师）">职业资格二级（技师）</option>
+										<option value="职业资格三级（高级）">职业资格三级（高级）</option>
+										<option value="职业资格四级（中级）">职业资格四级（中级）</option>
+										<option value="职业资格五级（初级）">职业资格五级（初级）</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>工种:</td>
+								<td>
+									<input type="hidden" value="" id="selectSkillJobshidden1" name="workTypeId"/>
+									<div class="topnav">
+										<a id="selectSkillJobs1" href="javascript:void(0);" class="as">
+											<span >
+												选择工种
+											</span>		
+										</a>	
+									</div>
+								</td>
+								<td>从事年限:</td>
+								<td><input type="text" id="workingLifeSkill1" name="workingLife">
+								</td>
+							</tr>
+							<tr>
+								<td>说明:</td>
+								<td colspan="3"><textArea cols="50" style="resize:none;" name="note" id="noteSkill1"></textArea></td>
+								<td rowspan="3"><a class="delete_jineng"  onclick="deleteDiv(this,1)" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
+							</tr>
+						</table>
+						</form>
+    		';
     		
+    		var type2='
+    				<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="LearningForm1">	
+						<table>
+							<tr>
+								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">1</td>
+							</tr>
+							<tr>
+								<td>起始时间:</td>
+								<td colspan="3">
+								<input type="text" name="beginDate" id="beginDate"  eidLearning="beginDateLearning1" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: \'#F{$dp.$D(endDate)}\'});" />
+								结束时间: <input type="text"  name="endDate" id="endDate" eidLearning="endDateLearning1" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: \'#F{$dp.$D(beginDate)}\'});" />
+								<input type="hidden" name="beginData" value=""/>
+								<input type="hidden" name="endData" value=""/>
+								</td>
+								
+							</tr>
+							<tr>
+								<td>学校名称:</td>
+								<td style="padding-right:100px;">
+								<input type="text" id="schoolLearning1" name="workspace"></td>
+								<td>系别:</td>
+								<td><input type="text" id="deptLearning1" name="dept" ></td>
+							</tr>
+							<tr>
+								<td>专业:</td>
+								<td colspan="3">
+									<input type="hidden" value="" id="selectLearningSpecialtyhidden1" name="majorTypeId"/>
+									<input type="hidden" value="2" name="infoType">
+									<div class="topnav">
+										<a id="selectLearningSpecialty1" href="javascript:void(0);" class="as">
+											<span >
+												选择专业
+											</span>		
+										</a>	
+									</div>
+								</td>
+								<td rowspan="3"><a class="delete_xuexi"  onclick="deleteDiv(this,2)"  href="javascript:void(0);">删除</a></td>
+							</tr>
+						</table>
+						</form>
+    		';
+    		var type3='
+    		<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="WorkForm1">	
+						<table>
+							<tr>
+								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">1</td>
+							</tr>
+							<tr>
+								<td>起始时间:</td>
+								<td colspan="3">
+								<input type="text" eidWork="beginDateWork1" id="beginDate" name="beginDate" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: \'#F{$dp.$D(endDate)}\'});" />
+								结束时间: <input type="text" eidWork="endDateWork1" id="endDate" name="endDate" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: \'#F{$dp.$D(beginDate)}\'});" />
+								<input type="hidden" name="beginData" value=""/>
+								<input type="hidden" name="endData" value=""/>
+								</td>
+							</tr>
+							<tr>
+								<td>工作单位:</td>
+								<td style="padding-right:100px;"><input type="text" id="workspaceWork1" name="workspace"></td>
+								<td>职务:</td>
+								<td><input type="text" id="dutyWork1" name="duty"></td>
+							</tr>
+							<tr>
+								<td>工种:</td>
+								<td>
+									<input type="hidden" value="" id="selectWorkJobhidden1" name="workTypeId"/>
+									<input type="hidden" value="3" name="infoType">
+									<div class="topnav">
+										<a id="selectWorkJob1" href="javascript:void(0);" class="as">
+											<span >
+												选择工种
+											</span>		
+										</a>	
+									</div>
+								</td>
+								<td>工作内容:</td>
+								<td ><input type="text" id="noteWork1" name="note"></td>
+								<td rowspan="3"><a class="delete_gongzuo"  onclick="deleteDiv(this,3)" href="javascript:void(0);">删除</a></td>
+							</tr>
+						</table>
+						</form>
+    		';
+    		var type4='
+    		<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="VolunteerForm1">	
+						<table>
+							<tr>
+								<td rowspan="4" style="background:#DCDCDC;color:#FE7200;">1</td>
+								<td>专业:</td>
+								<td>
+									<input type="hidden" value="" id="selectVolunteerSpecialtyhidden1" name="majorTypeId"/>
+									<input type="hidden" value="4" name="infoType">
+									<div class="topnav">
+										<a id="selectVolunteerSpecialty1" href="javascript:void(0);" class="as">
+											<span >
+												选择专业
+											</span>		
+										</a>	
+									</div>
+								</td>
+								<td>择业地区:</td>
+								<td>
+									<input type="text"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" name="expectArea">
+									<!--////////////////////////////////////////////////////////////////////////-->
+										<div class="provinceCityAll">
+										  <div class="tabs clearfix">
+										    <ul class="">
+										      <li><a href="javascript:" class="current" tb="hotCityAll">热门城市</a></li>
+										      <li><a href="javascript:" tb="provinceAll">省份</a></li>
+										      <li><a href="javascript:" tb="cityAll" id="cityAll">城市</a></li>
+										      <li><a href="javascript:" tb="countyAll" id="countyAll">区县</a></li>
+										    </ul>
+										  </div>
+										  <div class="con">
+										    <div class="hotCityAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										         
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										    <div class="provinceAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										        
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										    <div class="cityAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										          
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										    <div class="countyAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										  </div>
+										</div>
+									<!--////////////////////////////////////////////////////////////////////////-->
+									
+								</td>
+							</tr>
+							<tr>
+								
+								<td>工种:</td>
+								<td>
+									<input type="hidden" value="" id="selectVolunteerJobshidden1" name="workTypeId"/>
+									<div class="topnav">
+										<a id="selectVolunteerJobs1" href="javascript:void(0);" class="as">
+											<span >
+												选择工种
+											</span>		
+										</a>	
+									</div>
+								</td>
+								<td>月薪要求:</td>
+								<td style="padding-right:70px;">
+									
+									<select id="expectSalaryVolunteer1" name="expectSalary">
+										<option value="1000以下">1000以下</option>
+										<option value="1000~1999">1000~1999</option>
+										<option value="2000~2999">2000~2999</option>
+										<option value="3000~3999">3000~3999</option>
+										<option value="4000~4999">4000~4999</option>
+										<option value="5000以上">5000以上</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>工作性质</td>
+								<td colspan="3">
+									<select name="workWay">
+										<option value="全职">全职</option>
+										<option value="兼职">兼职</option>
+										<option value="实习">实习</option>
+										<option value="小时工">小时工</option>
+										<option value="全职/兼职/实习即可">全职/兼职/实习即可</option>
+										<option value="就业见习">就业见习</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>其他要求:</td>
+								<td colspan="3"><textArea cols="50" name="note" id="noteVolunteer1" style="resize:none;"></textArea></td>
+								<td rowspan="3"><a class="delete_zhiyuan" href="javascript:void(0);"  onclick="deleteDiv(this,4)" style="margin-top:35px;float:right;">删除</a></td>
+							</tr>
+						</table>
+						</form>
+    		';
+    		[/@compress]
 	    		// 删除信息
-		    	function deleteDiv(object){
+		    	function deleteDiv(object,type){
 	    				// 得到最外层的div
 	    				var div=$(object).parent().parent().parent().parent().parent().parent().parent();
 	    				var clazz=div.attr("class");
 	    				
 	    				if ($("."+clazz).find("div."+clazz+"_div").size() <= 1) {
 							alert("必须至少保留一个参数");
+							// 获取需要删除的id
+							var id=$(object).parent().parent().parent().find("input[name='id']");
+							if(id.length > 0){
+								id=id.val();
+								var deleteids = $("#deleteids");
+								
+								if (deleteids.length > 0) { 
+							     	//对象存在的处理逻辑
+						            $("#deleteids").val(deleteids.val()+","+id);
+							    } else {
+							      	//对象不存在的处理逻辑
+							      	var html='<input id="deleteids" type="hidden" name="ids" value="'+id+'"/>';
+									$("#InfoForm").append(html);
+							   }
+							   
+							}
+							if(type==1){
+								$(object).parent().parent().parent().parent().parent().parent().html(type1);
+							}else if(type==2){
+								$(object).parent().parent().parent().parent().parent().parent().html(type2);
+							}else if(type==3){
+								$(object).parent().parent().parent().parent().parent().parent().html(type3);
+							}else if(type==4){
+								$(object).parent().parent().parent().parent().parent().parent().html(type4);
+							}
+							
 						} else {
 							// 获取需要删除的id
 							var id=$(object).parent().parent().parent().find("input[name='id']");
@@ -363,7 +648,7 @@
 										</a>	
 									</div>
 								</td>
-								<td rowspan="3"><a class="delete_xuexi"  onclick="deleteDiv(this)" href="javascript:void(0);">删除</a></td>
+								<td rowspan="3"><a class="delete_xuexi"  onclick="deleteDiv(this,2)" href="javascript:void(0);">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -446,7 +731,7 @@
 							<tr>
 								<td>说明:</td>
 								<td colspan="3"><textArea name="note" id="noteSkill'+b+'" cols="50" style="resize:none;"></textArea></td>
-								<td rowspan="3"><a class="delete_jineng"  onclick="deleteDiv(this)" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
+								<td rowspan="3"><a class="delete_jineng"  onclick="deleteDiv(this,1)" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -528,7 +813,7 @@
 								</td>
 								<td>工作内容:</td>
 								<td ><input type="text" id="noteWork'+c+'" name="note"></td>
-								<td rowspan="3"><a class="delete_gongzuo"  onclick="deleteDiv(this)" href="javascript:void(0);">删除</a></td>
+								<td rowspan="3"><a class="delete_gongzuo"  onclick="deleteDiv(this,3)" href="javascript:void(0);">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -667,7 +952,7 @@
 							<tr>
 								<td>其他要求:</td>
 								<td colspan="3"><textArea cols="50" name="note" id="noteVolunteer'+d+'" style="resize:none;"></textArea></td>
-								<td rowspan="3"><a class="delete_zhiyuan"  onclick="deleteDiv(this)" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
+								<td rowspan="3"><a class="delete_zhiyuan"  onclick="deleteDiv(this,4)" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -1378,8 +1663,8 @@
 					[#if skills?size>0]
 					[#list skills as skill]
 						<div class="jineng_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
-						
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="SkillForm${skill_index+1}">						
+						<input type="hidden" name="id" value="${skill.id}">
 						<table>
 						
 							<tr>
@@ -1449,7 +1734,7 @@
 							<tr>
 								<td>说明:</td>
 								<td colspan="3"><textArea cols="50" style="resize:none;" name="note"  id="noteSkill1">${skill.note}</textArea></td>
-								<td rowspan="3"><a class="delete_jineng" onclick="deleteDiv(this)"  href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
+								<td rowspan="3"><a class="delete_jineng" onclick="deleteDiv(this,1)"  href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -1510,7 +1795,7 @@
 							<tr>
 								<td>说明:</td>
 								<td colspan="3"><textArea cols="50" style="resize:none;" name="note" id="noteSkill1"></textArea></td>
-								<td rowspan="3"><a class="delete_jineng"  onclick="deleteDiv(this)" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
+								<td rowspan="3"><a class="delete_jineng"  onclick="deleteDiv(this,1)" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -1531,6 +1816,7 @@
 					[#list learnings as learning]
 						<div class="xuexi_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="LearningForm${learning_index+1}">	
+						<input name="id" type="hidden" value="${learning.id}">
 						<table>
 							<tr>
 								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">${learning_index+1}</td>
@@ -1575,7 +1861,7 @@
 										</a>	
 									</div>
 								</td>
-								<td rowspan="3"><a class="delete_xuexi" onclick="deleteDiv(this)" href="javascript:void(0);">删除</a></td>
+								<td rowspan="3"><a class="delete_xuexi" onclick="deleteDiv(this,2)" href="javascript:void(0);">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -1618,7 +1904,7 @@
 										</a>	
 									</div>
 								</td>
-								<td rowspan="3"><a class="delete_xuexi"  onclick="deleteDiv(this)"  href="javascript:void(0);">删除</a></td>
+								<td rowspan="3"><a class="delete_xuexi"  onclick="deleteDiv(this,2)"  href="javascript:void(0);">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -1640,6 +1926,7 @@
 						[#list works as work]
 						<div class="gongzuo_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="WorkForm${work_index+1}">	
+						<input name="id" value="${work.id}" type="hidden">
 						<table>
 							<tr>
 								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">${work_index+1}</td>
@@ -1684,7 +1971,7 @@
 								</td>
 								<td>工作内容:</td>
 								<td ><input type="text" id="noteWork1" name="note" value="${work.note}"></td>
-								<td rowspan="3"><a class="delete_gongzuo" href="javascript:void(0);" onclick="deleteDiv(this)">删除</a></td>
+								<td rowspan="3"><a class="delete_gongzuo" href="javascript:void(0);" onclick="deleteDiv(this,3)">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -1727,7 +2014,7 @@
 								</td>
 								<td>工作内容:</td>
 								<td ><input type="text" id="noteWork1" name="note"></td>
-								<td rowspan="3"><a class="delete_gongzuo"  onclick="deleteDiv(this)" href="javascript:void(0);">删除</a></td>
+								<td rowspan="3"><a class="delete_gongzuo"  onclick="deleteDiv(this,3)" href="javascript:void(0);">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -1775,6 +2062,7 @@
 					[#list volunteers as volunteer]
 						<div class="zhiyuan_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="VolunteerForm${volunteer_index+1}">	
+						<input name="id" type="hidden" value="${volunteer.id}">
 						<table>
 							<tr>
 								<td>专业:</td>
@@ -1897,7 +2185,7 @@
 							<tr>
 								<td>其他要求:</td>
 								<td colspan="3"><textArea cols="50" name="note" id="noteVolunteer1"  style="resize:none;">${volunteer.note}</textArea></td>
-								<td rowspan="3"><a class="delete_zhiyuan" href="javascript:void(0);" onclick="deleteDiv(this)" style="margin-top:35px;float:right;">删除</a></td>
+								<td rowspan="3"><a class="delete_zhiyuan" href="javascript:void(0);" onclick="deleteDiv(this,4)" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
 						</form>
@@ -2018,7 +2306,7 @@
 							<tr>
 								<td>其他要求:</td>
 								<td colspan="3"><textArea cols="50" name="note" id="noteVolunteer1" style="resize:none;"></textArea></td>
-								<td rowspan="3"><a class="delete_zhiyuan" href="javascript:void(0);"  onclick="deleteDiv(this)" style="margin-top:35px;float:right;">删除</a></td>
+								<td rowspan="3"><a class="delete_zhiyuan" href="javascript:void(0);"  onclick="deleteDiv(this,4)" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
 						</form>
