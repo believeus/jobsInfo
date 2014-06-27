@@ -506,23 +506,8 @@
 			</form>
 			<p class="selected">您选择的是：
 			</p>
-			<p class="hotword">搜索热词： 
-				<span><a href="">软件工程师</a></span>
-				<span><a href="">建筑工程师</a></span>
-				<span><a href="">厨师</a></span>
-				<span><a href="">会计</a></span>
-				<span><a href="">出租司机</a></span>
-				<span><a href="">计算机硬件工程师</a></span>
-				<span><a href="">计算机软件工程师</a></span>
-			</p>
+			
 			<div class="paixu">
-				<div class="paixu_1">
-					<span>排序方式：</span>
-					<a href="">按有效日期</a>
-					<a href="">按月薪范围</a>
-					<a href="">按相关度</a>
-				</div>
-				
 				<ul class="fenye" style="float: right; margin: 0px;">
 					<li>
 						<a href="">上一页</a>

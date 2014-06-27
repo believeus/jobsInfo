@@ -148,6 +148,8 @@ public class ControllerCenter {
 				TmajorType majorType = (TmajorType) etechService.findObjectById(TmajorType.class, majorTypeId);
 				comInfo.setMajorType(majorType);
 			}
+			// 设置编辑时间
+			comInfo.setEditDate(System.currentTimeMillis());
 			etechService.merge(comInfo);
 			map.put("message", "success");
 		} catch (Exception ex) {

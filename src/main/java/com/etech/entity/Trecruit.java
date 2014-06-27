@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.LazyInitializationException;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
@@ -267,11 +268,18 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	// 公司性质
 	@Field(store=Store.YES,index = Index.TOKENIZED)
 	public String getCompanyType() {
-		return companyType;
+		try {
+			return company=entUser.getUnitType();
+		} catch (LazyInitializationException e) {
+			return this.companyType;
+		}
 	}
 	public void setCompanyType(String companyType) {
-		companyType=(entUser!=null?entUser.getUnitType():"");
-		this.companyType = companyType;
+		try {
+		   this.company=entUser.getUnitType();
+		} catch (LazyInitializationException e) {
+			this.companyType = companyType;
+		}
 	}
 	@Field(store=Store.YES,index = Index.TOKENIZED)
 	public String getJobPost() {

@@ -581,7 +581,7 @@
 								</td>
 								<td>择业地区:</td>
 								<td>
-									<input id="btn_residency" onclick="residencySelect()" type="text" ov="请选择/输入城市名称" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" value="请选择/输入城市名称" autocomplete="off" id="start1" name="expectArea">
+									<input id="btn_residency" onclick="residencySelect()" type="text" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" autocomplete="off" id="start1" name="expectArea">
 									<input class="residency" type="hidden" value="" name="residency" id="residency'+d+'">
 									<!--////////////////////////////////////////////////////////////////////////-->
 										<div class="provinceCityAll">
@@ -1766,7 +1766,7 @@
 								</td>
 								<td>择业地区:</td>
 								<td>
-									<input type="text" ov="请选择/输入城市名称" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" value="${volunteer.expectArea}" autocomplete="off" id="start1" name="expectArea">
+									<input type="text"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2" value="${volunteer.expectArea}" autocomplete="off" id="start1" name="expectArea">
 									<!--////////////////////////////////////////////////////////////////////////-->
 										<div class="provinceCityAll">
 										  <div class="tabs clearfix">
@@ -1884,7 +1884,7 @@
 								</td>
 								<td>择业地区:</td>
 								<td>
-									<input type="text" ov="请选择/输入城市名称" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" value="请选择/输入城市名称" autocomplete="off" id="start1" name="expectArea">
+									<input type="text"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" name="expectArea">
 									<!--////////////////////////////////////////////////////////////////////////-->
 										<div class="provinceCityAll">
 										  <div class="tabs clearfix">
@@ -1952,13 +1952,21 @@
 								</td>
 								<td>月薪要求:</td>
 								<td style="padding-right:70px;">
-									<input type="text" id="expectSalaryVolunteer1" name="expectSalary">
+									
+									<select id="expectSalaryVolunteer1" name="expectSalary">
+										<option value="1000以下">1000以下</option>
+										<option value="1000~1999">1000~1999</option>
+										<option value="2000~2999">2000~2999</option>
+										<option value="3000~3999">3000~3999</option>
+										<option value="4000~4999">4000~4999</option>
+										<option value="5000以上">5000以上</option>
+									</select>
 								</td>
 							</tr>
 							<tr>
 								<td>工作性质</td>
 								<td colspan="3">
-									<select name="">
+									<select name="workWay">
 										<option value="全职">全职</option>
 										<option value="兼职">兼职</option>
 										<option value="实习">实习</option>

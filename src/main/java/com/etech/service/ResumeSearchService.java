@@ -42,7 +42,7 @@ public class ResumeSearchService {
 	@SuppressWarnings("unchecked")
 	public List<TcomInfo> search(String issueTime, String salaryRange,String workType, String eduRequire, String workYear,
 			String companyType,String keyword,String majorTypeId,String area,String type,int currentPage,int perCount){
-		List<TcomInfo> recruitList=null;
+		List<TcomInfo> comInfoList=null;
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			FullTextSession fullTextSession = Search.getFullTextSession(session);
@@ -127,12 +127,12 @@ public class ResumeSearchService {
 			fullTextQuery.setFirstResult(perCount * (currentPage - 1));
 			fullTextQuery.setMaxResults(perCount);
 			log.debug("fullTextQuery:"+fullTextQuery);
-			recruitList=fullTextQuery.list();
+			comInfoList=fullTextQuery.list();
 			tx.commit();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return recruitList;
+		return comInfoList;
 	}
 	
 }
