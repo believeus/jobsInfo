@@ -54,6 +54,8 @@ public class ControllerWork extends ControllerCRUD {
 	@RequiresPermissions("workDinamic:create")
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
+		List<?> dataCenters = super.listDataInfoByTop(request,EtechGobal.workDinamic);
+		request.setAttribute("size",dataCenters.size());
 		request.setAttribute("type",EtechGobal.workDinamic);
 		return "admin/work/add";
 	}

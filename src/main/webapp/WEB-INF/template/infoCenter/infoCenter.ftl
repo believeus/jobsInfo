@@ -23,17 +23,17 @@
 			height:290px;
     		border:1px solid;
 		}
-		.j_main_left_1 p{
+		.j_main_left_1_p{
 			background: #FFCC00;
 		    border-bottom: 1px solid;
 		    margin: 0;
 		    text-align:left;
 		    padding: 5px;
 		}
-		.j_main_left_1 span{
+		.j_main_left_1_span{
 			float:right;
 		}
-		.j_main_left_1 li{
+		.j_main_left_1_li{
 			line-height:28px;
 		}
 		.j_main_right{
@@ -46,13 +46,6 @@
 		.j_main_right_1{
     		width:730px;
 			height:29px;
-		}
-		.j_main_right_1 p{
-			margin:0;
-			padding: 5px;
-			background: #FFCC00;
-		    border: 1px solid;
-		    font-size:13px;
 		}
 		.j_main_right_2{
 			width:727px;
@@ -68,16 +61,16 @@
 			margin-right:9px;
 			padding:5px;
 		}
-		.j_main_right_2_1 p a{
+		.j_main_right_2_1_p_a{
 			color: #3586F2;
 		    margin-right: 10px;
 		}
-		.j_main_right_2_1 li{
+		.j_main_right_2_1_li{
 			font-size: 12px;
 		    line-height: 30px;
 		    list-style: none;
 		}
-		.j_main_right_2_1 span {
+		.j_main_right_2_1_span {
 		    color: #555555;
 		    float: right;
 		}
@@ -102,12 +95,12 @@
     		border:1px solid #EED9C8;
     		margin-bottom:5px;
     	}
-		.gonggao li{
+		.gonggao_li{
 			margin-right:10px;
 			line-height:30px;
 			font-size:12px;
 		}
-		.gonggao span{
+		.gonggao_span{
     		float:right;
     	}
     	.picshow{
@@ -122,10 +115,10 @@
     		margin-left:5px;
     		background:#FFFFFF;
     	}
-    	.xinwen li{
+    	.xinwen_li{
     		line-height:20px;
     	}
-    	.xinwen_ul li{
+    	.xinwen_ul_li{
     		line-height:30px;
     	}
     	.tupian{
@@ -140,7 +133,7 @@
     		width:249px;
     		height:120px;
     	}
-    	.tupian p {
+    	.tupian_p {
 		    margin: 10px 15px;
 		    text-align: center;
 		}
@@ -198,13 +191,13 @@
 				<ul style="padding-left:25px;">
 					[#list notices as notice]
 						[#if notice_index <8]
-							<li><a href="/publicityInfo.jhtml?id=${notice.id}">
+							<li class="gonggao_li"><a href="/publicityInfo.jhtml?id=${notice.id}">
 							[#if notice.title?length > 13]
 								${notice.title?string?substring(0,13)}...
 							[#else]
 								${notice.title}
 							[/#if]
-							</a><span>${notice.createTime?number_to_datetime}</span></li>
+							</a><span class="gonggao_span">${notice.createTime?number_to_datetime}</span></li>
 						[/#if]
 					[/#list]
 				</ul>
@@ -258,12 +251,8 @@
 								${new.title}
 							[/#if]
 							</a></h2>
-							<div style="color:#2B8BDF;margin:0;font-size:13px;">
-							[#if new.content?length > 27]
-								${new.content?string?substring(0,34)}...
-							[#else]
-								${new.content}
-							[/#if]
+							<div style="color:#2B8BDF;margin-top:10px;font-size:13px;">
+								${new.title}	
 							</div>
 						[/#if]
 						[/#list]
@@ -277,12 +266,8 @@
 							[#else]
 								${new.title}
 							[/#if]</a></h2>
-							<div style="color:#2B8BDF;margin:0;font-size:12px;">
-							[#if new.content?length > 27]
-								${new.content?string?substring(0,34)}...
-							[#else]
-								${new.content}
-							[/#if]
+							<div style="color:#2B8BDF;margin-top:10px;font-size:12px;">
+								${new.title}
 							</div>
 						[/#if]
 						[/#list]
@@ -291,7 +276,7 @@
 					<ul class="xinwen_ul" style="padding-left: 25px;">
 						[#list news as new]
 						[#if new_index > 1 && new_index < 6]	
-							<li><a href="/newsInfo.jhtml?id=${new.id}">
+							<li class="xinwen_ul_li"><a href="/newsInfo.jhtml?id=${new.id}">
 							[#if new.title?length > 16]
 								${new.title?string?substring(0,16)}...
 							[#else]
@@ -308,7 +293,7 @@
 				<div class="j_main_right_2_1" style="margin-right:4px;">
 					<p style="margin:0;padding:5px;background:url(/resource/public/images/background.png);border:1px solid #FF7800;">
 						<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-						<span style="font-weight:bold;float:none;">新闻动态</span><span><a href="/newsList.jhtml">更多>></a></span>
+						<span style="font-weight:bold;float:none;">新闻动态</span><span class="j_main_right_2_1_span"><a href="/newsList.jhtml">更多>></a></span>
 					</p>
 					[#list news as new]
 					[#if new_index==0]
@@ -323,12 +308,8 @@
 							[/#if]
 						</a></p>
 						<div style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;">
-							[#if new.content?length > 22]
-								${new.content?string?substring(0,22)}...
-							[#else]
-								${new.content}
-							[/#if]
-							<span style="text-align: right;float:right;"><a href="/newsInfo.jhtml?id=${new.id}">[详细]</a></span>
+							${new.title}
+							<span style="text-align: right;float:right;"><a class="j_main_right_2_1_p_a" href="/newsInfo.jhtml?id=${new.id}">[详细]</a></span>
 						</div>
 					</div>
 					[/#if]
@@ -337,7 +318,7 @@
 					<ul style="margin: 0px; padding: 0px 15px;">
 						[#list news as new]
 							[#if new_index > 0 && new_index <5]
-								<li>
+								<li class="j_main_right_2_1_li">
 									<a href="/newsInfo.jhtml?id=${new.id}" title="${new.title}">
 									[#if new.title?length > 15]
 										${new.title?string?substring(0,15)}...
@@ -345,7 +326,7 @@
 										${new.title}
 									[/#if]
 									</a>
-									<span>${new.createTime?number_to_datetime}</span>
+									<span class="j_main_right_2_1_span">${new.createTime?number_to_datetime}</span>
 								</li>
 							[/#if]
 						[/#list]
@@ -355,7 +336,7 @@
 				<div class="j_main_right_2_1" style="margin-right:0;">
 					<p style="margin:0;padding:5px;background:url(/resource/public/images/background.png);border:1px solid #FF7800;">
 						<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-						<span style="font-weight:bold;float:none;">工作动态</span><span><a href="/workList.jhtml">更多>></a></span>
+						<span style="font-weight:bold;float:none;">工作动态</span><span class="j_main_right_2_1_span"><a href="/workList.jhtml">更多>></a></span>
 					</p>
 					[#list works as work]
 					[#if work_index==0]					
@@ -370,12 +351,8 @@
 							[/#if]
 							</a></p>
 						<div style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;">
-							[#if work.content?length > 22]
-								${work.content?string?substring(0,22)}...
-							[#else]
-								${work.content}
-							[/#if]
-							<span style="text-align: right;float:right;"><a href="/workInfo.jhtml?id=${work.id}">[详细]</a></span>
+							${work.title}
+							<span style="text-align: right;float:right;"><a class="j_main_right_2_1_p_a" href="/workInfo.jhtml?id=${work.id}">[详细]</a></span>
 						</div>
 					</div>
 					[/#if]
@@ -384,7 +361,7 @@
 					<ul style="margin: 0px; padding: 0px 15px;">
 						[#list works as work]
 							[#if work_index > 0 && work_index <5]
-								<li>
+								<li class="j_main_right_2_1_li">
 									<a href="/workInfo.jhtml?id=${work.id}" title="${work.title}">
 									[#if work.title?length > 15]
 										${work.title?string?substring(0,15)}...
@@ -392,7 +369,7 @@
 										${work.title}
 									[/#if]
 									</a>
-									<span>${work.editTime?number_to_datetime}</span>
+									<span class="j_main_right_2_1_span">${work.editTime?number_to_datetime}</span>
 								</li>
 							[/#if]
 						[/#list]
@@ -400,7 +377,7 @@
 				</div>
 			</div>
 			<div class="j_main_right_3">
-				<p style="background:url(/resource/public/images/background.png);margin: 0px; padding: 5px; border: 1px solid #FF7800;">
+				<p class="j_main_right_3_p" style="background:url(/resource/public/images/background.png);margin: 0px; padding: 5px; border: 1px solid #FF7800;">
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
 					<span style="font-weight:bold;float:none;color:#555555;">视频新闻</span><span style="float:right;"><a href="/videosList.jhtml">更多>></a></span>
 				</p>
@@ -409,7 +386,7 @@
 						[#list vedios as vedio]
 						[#if vedio_index <5]
 						<td>
-							<p>
+							<p class="j_main_right_3_p">
 								<a href="/videosInfo.jhtml?id=${vedio.id}">
 									<img src="${vedio.imgpath}" width="105" height="105">
 								</a>
@@ -437,12 +414,12 @@
 				[#list imgs as img]
 					[#if img_index <=3]
 						<div class="tupian_1" [#if !img_has_next && img_index= 3] style="margin-top: -3px;"[/#if]>
-							<p>
+							<p class="tupian_p">
 								<a href="/imgShow.jhtml" title="${img.title}">
 									<img src="${img.imgpath}" width="220" height="105">
 								</a>
 							</p>
-							<p>
+							<p class="tupian_p">
 								<a href="/imgShow.jhtml" title="${img.title}">${img.title}</a>
 							</p>
 						</div>

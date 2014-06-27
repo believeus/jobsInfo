@@ -97,14 +97,6 @@ $().ready(function() {
 					</select>
 				</td>
 			</tr>
-			<tr>
-				<th>
-					是否置顶:
-				</th>
-				<td colspan="3">
-					<input type="checkbox" name="top" value="0">
-				</td>
-			</tr>
 			<tr id="pathTr">
 				<th>
 					<span class="requiredField">*</span>相关图片:

@@ -15,6 +15,7 @@
 		overflow:hidden;
 		margin-left:auto;
 		margin-right:auto;
+		background:#FFFFFF;
 	}
 	.j_head{
 		width:100%;

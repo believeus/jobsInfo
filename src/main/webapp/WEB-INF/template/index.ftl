@@ -33,14 +33,13 @@
     		height:285px;
     		border:1px solid #EED9C8;
     		margin-bottom:5px;
-    		background:#fffbf6;
     	}
-		.gonggao li{
+		.gonggao_li{
 			margin-right:10px;
 			line-height:29px;
 			font-size:12px;
 		}
-		.gonggao span{
+		.gonggao_span{
     		float:right;
     	}
     	.denglu{
@@ -50,7 +49,7 @@
     		margin-bottom:5px;
     		background:#FFFFFF;
     	}
-    	.denglu tr{
+    	.denglu_tr{
     		line-height:35px;
     	}
     	.jiuye{
@@ -58,7 +57,6 @@
     		height:320px;
     		border:1px solid #EED9C8;
     		margin-bottom:5px;
-    		background:#fffbf6;
     	}
     	.jiuye_1{
     		background:url(/resource/public/images/zhuye-img_12.png);
@@ -124,10 +122,10 @@
     		margin-left:5px;
     		background:#FFFFFF;
     	}
-    	.xinwen li{
+    	.xinwen_li{
     		line-height:20px;
     	}
-    	.xinwen_ul li{
+    	.xinwen_ul_li{
     		line-height:30px;
     	}
     	.biaoti{
@@ -150,19 +148,19 @@
 		    margin-top: 5px;
 		    width: 340px;
     	}
-    	.xinxi_1 p{
+    	.xinxi_1_p{
     		background: url(/resource/public/images/jianbian.png);
 		    color: #FF0000;
 		    margin: 0;
 		    padding: 8px;
 		    height:14px;
     	}
-    	.xinxi_1 li{
+    	.xinxi_1_li{
     		font-size:12px;
     		line-height:23px;
     		list-style:none;
     	}
-    	.xinxi_1 span{
+    	.xinxi_1_span{
     		float:right;
     		margin-right:10px;
     	}
@@ -171,7 +169,7 @@
     		width:249px;
     		height:120px;
     	}
-    	.tupian p {
+    	.tupian_p {
 		    margin: 10px 15px;
 		    text-align: center;
 		}
@@ -189,7 +187,7 @@
 			 margin-right: 10px; 
 			 line-height: 30px;
 		}
-		.yqlj a {
+		.yqlj_a {
 		    color: #0000ff;
 		    text-decoration: underline;
 		}
@@ -347,13 +345,9 @@
 								${new.title}
 							[/#if]
 							</a></h2>
-							<div style="color:#2B8BDF;margin:0;font-size:13px;">
-							[#if new.content?length > 34]
-									${new.content?string?substring(0,34)}...
-							[#else]
-									${new.content}
-							[/#if]
-							</div>
+							<p style="color:#2B8BDF;font-size:13px;">
+								${new.title}
+							</p>
 						[/#if]
 						[/#list]
 				</div>
@@ -366,13 +360,9 @@
 							[#else]
 								${new.title}
 							[/#if]</a></h2>
-							<div style="color:#2B8BDF;margin:0;font-size:12px;">
-							[#if new.content?length > 34]
-								${new.content?string?substring(0,34)}...
-							[#else]
-								${new.content}
-							[/#if]
-							</div>
+							<p style="color:#2B8BDF;font-size:12px;">
+							${new.title}
+							</p>
 						[/#if]
 						[/#list]
 				</div>
@@ -380,7 +370,7 @@
 				<ul class="xinwen_ul" style="padding-left: 25px;">
 					[#list news as new]
 					[#if new_index > 1 && new_index <6]	
-						<li><a href="/newsInfo.jhtml?id=${new.id}">
+						<li class="xinwen_ul_li"><a href="/newsInfo.jhtml?id=${new.id}">
 						[#if new.title?length > 16]
 							${new.title?string?substring(0,16)}...
 						[#else]
@@ -410,13 +400,13 @@
 					<tr>
 						<td>
 							<div class="xinxi_1">
-								<p><span style="margin-left:30px;float:none;">招聘信息</span></p>
+								<p class="xinxi_1_p"><span style="margin-left:30px;float:none;">招聘信息</span></p>
 								<ul style="padding-left:25px;">
 									[#list zhaopList as zhaop]
-										<li>
-											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zw">${zhaop.company}</a>&nbsp;&nbsp;
-											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}">${zhaop.workType.name}</a>
-											<span>${zhaop.editTime?number_to_datetime}</span>
+										<li  class="xinxi_1_li">
+											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}">${zhaop.company}</a>&nbsp;&nbsp;
+											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zw">${zhaop.workType.name}</a>
+											<span class="xinxi_1_span">${zhaop.editTime?number_to_datetime}</span>
 										</li>
 									[/#list]
 								</ul>
@@ -424,11 +414,11 @@
 						</td>
 						<td>
 							<div class="xinxi_1">
-								<p><span style="margin-left:30px;float:none;">政策信息</span></p>
+								<p class="xinxi_1_p"><span style="margin-left:30px;float:none;">政策信息</span></p>
 								<ul style="padding-left:25px;">
 									[#list countryLawDataList as countryLawData]
 										[#if countryLawData_index <6]
-											<li>
+											<li  class="xinxi_1_li">
 												<a href="/countryLaw.jhtml?id=${countryLawData.id}">
 													[#if countryLawData.title?length > 15]
 														${countryLawData.title?string?substring(0,15)}...
@@ -436,7 +426,7 @@
 														${countryLawData.title}
 													[/#if]
 												</a>
-												<span style="">${countryLawData.editTime?number_to_datetime}</span>
+												<span class="xinxi_1_span" style="">${countryLawData.editTime?number_to_datetime}</span>
 											</li>
 										[/#if]
 									[/#list]
@@ -447,12 +437,12 @@
 					<tr>
 						<td>
 							<div class="xinxi_1">
-								<p><span style="margin-left:30px;float:none;">求职信息</span></p>
+								<p class="xinxi_1_p"><span style="margin-left:30px;float:none;">求职信息</span></p>
 								<ul style="padding-left:25px;">
 									[#list qiuzhiList as qiuzhi]
-										<li>
+										<li  class="xinxi_1_li">
 											<a href="/personalResume.jhtml?id=${qiuzhi.id}">${qiuzhi.trueName}&nbsp;&nbsp;[#if qiuzhi.sex == 'man']男[#else]女[/#if]&nbsp;&nbsp;${qiuzhi.eduLevel}&nbsp;&nbsp;${qiuzhi.workType}</a>
-											<span>${qiuzhi.createDate?number_to_datetime}</span>
+											<span class="xinxi_1_span">${qiuzhi.createDate?number_to_datetime}</span>
 										</li>
 									[/#list]
 								</ul>
@@ -460,11 +450,11 @@
 						</td>
 						<td>
 							<div class="xinxi_1">
-								<p><span style="margin-left:30px;float:none;">工作动态</span></p>
+								<p class="xinxi_1_p"><span style="margin-left:30px;float:none;">工作动态</span></p>
 								<ul style="padding-left:25px;">
 								[#list works as work]
 									[#if work_index <6]
-										<li>
+										<li  class="xinxi_1_li">
 											<a href="/workInfo.jhtml?id=${work.id}">
 												[#if work.title?length > 15]
 													${work.title?string?substring(0,15)}...
@@ -472,7 +462,7 @@
 													${work.title}
 												[/#if]
 											</a>
-											<span>${work.editTime?number_to_datetime}</span>
+											<span class="xinxi_1_span">${work.editTime?number_to_datetime}</span>
 										</li>
 									[/#if]
 								[/#list]
@@ -492,13 +482,13 @@
 				<ul id="" style="padding-left:25px;">
 					[#list notices as notice]
 						[#if notice_index <8]
-						<li><a href="/publicityInfo.jhtml?id=${notice.id}">
+						<li class="gonggao_li"><a href="/publicityInfo.jhtml?id=${notice.id}">
 							[#if notice.title?length > 13]
 								${notice.title?string?substring(0,13)}...
 							[#else]
 								${notice.title}
 							[/#if]
-							</a><span>${notice.createTime?number_to_datetime}</span>
+							</a><span class="gonggao_span">${notice.createTime?number_to_datetime}</span>
 						</li>
 						[/#if]
 					[/#list]
@@ -508,20 +498,20 @@
 			[#if sessionUser?exists]
 				<div class="denglu" id="denglu2">
 				<table style="padding:19px;">
-					<tr>
+					<tr class="denglu_tr">
 						<td colspan="2" align="center" style="background:url(/resource/public/images/beijingse.png);line-height:28px;color:#FFFFFF;border-radius:4px;">用户登录</td>
 					</tr>
-					<tr>
+					<tr class="denglu_tr">
 						<td colspan="2"><font color="red" size="2">${sessionUser.loginName}</font>，欢迎您登录！</td>
 					</tr>
-					<tr>
+					<tr class="denglu_tr">
 						<td colspan="2">上次登录时间:
 						  <span style="font-size:13px">
 							${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
 						  </span>
 						 </td>
 					</tr>
-					<tr>
+					<tr class="denglu_tr">
 						<td align="center" colspan="2" style="padding-top: 5px;">
 							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" 
 							value="[#if sessionUser.class.name == "com.etech.entity.TcomUser"]个人中心[#elseif sessionUser.class.name == "com.etech.entity.TentUser"]企业中心[#else]管理员后台[/#if]"
@@ -717,12 +707,12 @@
 				[#list imgs as img]
 					[#if img_index <=3]
 					<div class="tupian_1" [#if !img_has_next && img_index= 3] style="margin-top: -3px;"[/#if]>
-						<p>
+						<p class="tupian_p">
 							<a href="/imgShow.jhtml?id=${img.id}" title="${img.title}">
 								<img src="${img.imgpath}" width="220" height="105">
 							</a>
 						</p>
-						<p>
+						<p class="tupian_p">
 							<a href="/imgShow.jhtml?id=${img.id}" title="${img.title}">
 								[#if img.title?length >10]
 		                    		${img.title?string?substring(0,10)}...
@@ -741,7 +731,7 @@
 			<div style="width: 850px; float: right; margin-right: 25px;margin-top:11px;">
 				[#list links as links]
 					<span class="yqlj">
-						<a href="http://${links.alink}" title="${links.title}" target="_blank">${links.title}</a>
+						<a class="yqlj_a" href="http://${links.alink}" title="${links.title}" target="_blank">${links.title}</a>
 					</span>
 				[/#list]
 			</div>

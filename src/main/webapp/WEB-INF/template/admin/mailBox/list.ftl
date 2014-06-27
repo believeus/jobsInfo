@@ -18,7 +18,7 @@ $().ready(function() {
 </head>
 <body>
 	<div class="path">
-		<a href="/admin/common/main.jhtml">首页</a> &raquo; 内容列表 <span>共99条记录</span>
+		<a href="/admin/common/main.jhtml">首页</a> &raquo; 内容列表 <span>共${mailBoxList?size}条记录</span>
 	</div>
 	<form id="listForm" action="list.jhtml" method="get">
 		<div class="bar">

@@ -18,7 +18,7 @@ $().ready(function() {
 </head>
 <body>
 	<div class="path">
-		<a href="/admin/common/main.jhtml">首页</a> &raquo; 内容列表 <span>共99条记录</span>
+		<a href="/admin/common/main.jhtml">首页</a> &raquo; 内容列表 <span>共${dataCenters?size}条记录</span>
 	</div>
 	<form id="listForm" action="list.jhtml" method="get">
 		<div class="bar">
@@ -75,40 +75,29 @@ $().ready(function() {
 					<input type="checkbox" id="selectAll" />
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="title">标题</a>
+					<a href="javascript:;" class="sort" name="title">编号</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="adPosition">发信人</a>
-				</th>
-				<th>
-					<a href="javascript:;" class="sort" name="type">发布时间</a>
+					<a href="javascript:;" class="sort" name="adPosition">标题</a>
 				</th>
 				<th>
 					<a href="#"  class="sort">操作</a>
 				</th>
 			</tr>
 			
-			[#list mailBoxList as mail]
+			[#list dataCenters as mail]
 			<tr>
 				<td>
 					<input type="checkbox" name="ids" value="${mail.id}" />
 				</td>
 				<td>
-					<span title="${center.id}">${mail.title}</span>
+					<span title="${mail.id}">${mail.id}</span>
 				</td>
 				<td>
-					${mail.username}
+					${mail.title}
 				</td>
 				<td>
-					${mail.editTime?number_to_datetime} ${mail.editTime?number_to_time}
-				</td>
-				<td>
-					<a href="/admin/mailBox/edit.jhtml?id=${mail.id}">[查看]</a>
-					[#if mail.status=="0"]
-						<a href="/admin/mailBox/review.jhtml?id=${mail.id}"><font color="red">[点击审核通过]</font></a>
-					[#else]
-						<font color="green">[审核通过]</font>
-					[/#if]
+					<a href="edit.jhtml?id=${mail.id}">[修改]</a>
 				</td>
 			</tr>
 			[/#list]

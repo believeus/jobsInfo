@@ -57,6 +57,8 @@ public class ControllerImagesNews extends ControllerCRUD{
 	@RequiresPermissions("newsImg:create")
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
+		List<?> dataCenters = super.listDataInfoByTop(request,EtechGobal.newsImg);
+		request.setAttribute("size",dataCenters.size());
 		request.setAttribute("type",EtechGobal.newsImg);
 		return "admin/imagesNews/add";
 	}

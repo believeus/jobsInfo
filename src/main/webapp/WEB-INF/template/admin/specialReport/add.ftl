@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>添加新闻 - Powered By e3dmall</title>
+<title>添加专题 - Powered By e3dmall</title>
 <meta name="author" content="e3dmall Team" />
 <meta name="copyright" content="e3dmall" />
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
@@ -72,14 +72,6 @@ $().ready(function() {
 				</th>
 				<td>
 					<input type="text" name="author" class="text" maxlength="200" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					是否置顶:
-				</th>
-				<td colspan="3">
-					<input type="checkbox" name="top" value="0">
 				</td>
 			</tr>
 			<tr id="pathTr">

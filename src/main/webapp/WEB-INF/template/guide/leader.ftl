@@ -56,7 +56,7 @@
     		width:730px;
 			height:29px;
 		}
-		.j_main_right_1 p{
+		.j_main_right_1_p{
 			margin:0;
 			padding: 5px;
 			background: url(/resource/public/images/background_b.png);
@@ -75,16 +75,7 @@
 			width:728px;
 			height:auto;
 		}
-		.j_main_right_2_1 p a{
-			color: #3586F2;
-		    margin-right: 10px;
-		    text-decoration: underline;
-		}
-		.j_main_right_2_1 li{
-			border-bottom: 1px solid #000000;
-    		line-height: 25px;
-		}
-		.j_main_right_2 p{
+		.j_main_right_2_p{
 			padding:0 30px;
 			font-size:13px;
 			line-height:20px;
@@ -137,7 +128,7 @@
 		</div>
 		<div class="j_main_right">
 			<div class="j_main_right_1">
-				<p>
+				<p class="j_main_right_1_p">
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
 					所在位置 > 工作指南 > 局领导
 				</p>
@@ -151,9 +142,9 @@
 							<img src="${data.imgpath}" width="95" height="130">
 						</div>
 						<div class="" style="height: 130px; float: left; margin-left: 10px; width: 585px; margin-top: 10px;">
-							<p>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：${data.author}</p>
-							<p>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务：${data.title}</p>
-							<p>分管范围：${data.content}</p>
+							<p class="j_main_right_2_p">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：${data.author}</p>
+							<p class="j_main_right_2_p">职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务：${data.title}</p>
+							<p class="j_main_right_2_p">分管范围：${data.content}</p>
 						</div>
 					</div>
 					[/#list]

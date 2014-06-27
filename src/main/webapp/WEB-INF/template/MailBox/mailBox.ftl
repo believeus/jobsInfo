@@ -146,7 +146,6 @@ textarea{
 	height:285px;
 	border:1px solid #EED9C8;
 	margin-bottom:5px;
-	background:#fffbf6;
 }
 .gonggao li{
 	margin-right:10px;

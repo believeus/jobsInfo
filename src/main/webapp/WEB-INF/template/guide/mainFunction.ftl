@@ -69,17 +69,7 @@
 			margin-top:10px;
 			background:#FFFFFF;
 		}
-		.j_main_right_2 li{
-			border-bottom: 1px solid #000000;
-    		margin-right: 30px;
-    		font-size: 14px;
-    		line-height:35px;
-		}
-		.j_main_right_2 span{
-			float: right;
-			font-size: 14px;
-		}
-		.j_main_right_2 p{
+		.j_main_right_2_p{
 			padding:0 40px;
 			font-size:13px;
 		}
@@ -134,9 +124,9 @@
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				[#list datas as data]
 				<h2 style="text-align:center;font-weight:normal;">${data.title}</h2>
-				<p style="text-align:center;">来源：潜江公共就业服务网 发布时间：${data.createTime?number_to_datetime}&nbsp;${data.createTime?number_to_time} </p>
+				<p class="j_main_right_2_p" style="text-align:center;">来源：潜江公共就业服务网 发布时间：${data.createTime?number_to_datetime}&nbsp;${data.createTime?number_to_time} </p>
 				<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">
-				<p style="text-align: center;">
+				<p class="j_main_right_2_p" style="text-align: center;">
 					${data.content}
 				</p>
 				[/#list]

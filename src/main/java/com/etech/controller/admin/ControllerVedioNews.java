@@ -54,6 +54,8 @@ public class ControllerVedioNews extends ControllerCRUD{
 	@RequiresPermissions("newsVideo:create")
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
+		List<?> dataCenters = super.listDataInfoByTop(request,EtechGobal.newsVideo);
+		request.setAttribute("size",dataCenters.size());
 		request.setAttribute("type",EtechGobal.newsVideo);
 		return "admin/vedioNews/add";
 	}
