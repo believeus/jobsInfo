@@ -1,5 +1,7 @@
 package com.etech.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -27,6 +29,10 @@ public class ControllerMianshibaodian {
 		
 		TdataCenter dataCenter = (TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		session.setAttribute("data", dataCenter);
+		
+		String hql="From TdataCenter dataCenter where dataCenter.type='5'";
+		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
+		session.setAttribute("subjectReport", subjectReport);
 		
 		return "occupationIntroduction/mianshibaodian";
 	}

@@ -886,8 +886,8 @@
 								</td>
 								<td>择业地区:</td>
 								<td>
-									<input id="btn_residency" onclick="residencySelect()" type="text" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" autocomplete="off" id="start1" name="expectArea">
-									<input class="residency" type="hidden" value="" name="residency" id="residency'+d+'">
+									<input type="text" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" autocomplete="off" id="start1" name="expectArea">
+									<input class="residency" type="hidden" value="" name="residency" id="residency">
 									<!--////////////////////////////////////////////////////////////////////////-->
 										<div class="provinceCityAll">
 										  <div class="tabs clearfix">

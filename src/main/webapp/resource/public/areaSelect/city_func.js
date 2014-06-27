@@ -51,8 +51,8 @@ var residency = {
 
 	Chk : function(id){
 		if(residency_hukou_flag==0){
-			$('.proCitySelAll').val(ja[id]);
-			$('.residency').val(id);
+			$('#btn_residency').val(ja[id]);
+			$('#residency').val(id);
 		}else{
 			$('#btn_hukou').val(ja[id]);
 			$('#hukou').val(id);

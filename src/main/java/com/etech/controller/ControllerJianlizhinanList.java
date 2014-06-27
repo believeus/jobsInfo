@@ -30,6 +30,10 @@ public class ControllerJianlizhinanList {
 		List<TdataCenter> jianlizhinanService = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("jianlizhinanService", jianlizhinanService);
 		
+		hql="From TdataCenter dataCenter where dataCenter.type='5'";
+		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
+		session.setAttribute("subjectReport", subjectReport);
+		
 		return "occupationIntroduction/jianlizhinanList";
 	}
 }

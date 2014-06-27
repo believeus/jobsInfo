@@ -33,6 +33,10 @@ public class ControllerZhaopinhuiList {
 		List<TdataCenter> zhaopinhuiService = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("zhaopinhuiService", zhaopinhuiService);
 		
+		hql="From TdataCenter dataCenter where dataCenter.type='5'";
+		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
+		session.setAttribute("subjectReport", subjectReport);
+		
 		return "occupationIntroduction/zhaopinhuiList";
 	}
 }

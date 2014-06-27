@@ -67,16 +67,6 @@
 			height:auto;
 			margin-top:10px;
 		}
-		.j_main_right_2 li{
-			border-bottom: 1px solid #000000;
-    		margin-right: 30px;
-    		font-size: 14px;
-    		line-height:35px;
-		}
-		.j_main_right_2 span{
-			float: right;
-			font-size: 14px;
-		}
 		.j_main_right_2 p{
 			padding:0 40px;
 			font-size:13px;
@@ -114,7 +104,9 @@
 				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml" style="margin-left:0;">更多>></a></div>
-				<img src="/resource/public/images/zhuanti.png" style="margin-top:7px;">
+				[#list subjectReport as sReport]
+					<a style="margin-left:0;" href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:222px;height:66px;margin-top:7px;"></a>
+				[/#list]
 			</div>
 		</div>
 		<div class="j_main_right">

@@ -113,7 +113,9 @@
 				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml" style="margin-left:0;">更多>></a></div>
-				<img src="/resource/public/images/zhuanti.png" style="margin-top:7px;">
+				[#list subjectReport as sReport]
+					<a style="margin-left:0;" href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:222px;height:66px;margin-top:7px;"></a>
+				[/#list]
 			</div>
 		</div>
 		<div class="j_main_right">
@@ -127,7 +129,7 @@
 				<ul>
 					[#list qiuzhizhidaoService as qzzd]
 					<li>
-						<a href="/jianlizhinan.jhtml?${qzzd.id}">${qzzd.title}</a><span>${qzzd.createTime?number_to_datetime}</span>
+						<a href="/qiuzhizhidao.jhtml?id=${qzzd.id}">${qzzd.title}</a><span>${qzzd.createTime?number_to_datetime}</span>
 					</li>
 					[/#list]
 				</ul>

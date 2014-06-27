@@ -159,7 +159,7 @@ body {
                 <span><input type="password" id="comfirmPwd" /></span>
             </div>
             <div>
-            	<span>企业名称：</span>
+            	<span><font color="red">*</font>企业名称：</span>
                 <span><input type="text"  id="cpName" name="cpName"/></span>
             </div>
             <div>

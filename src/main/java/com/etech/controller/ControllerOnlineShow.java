@@ -1,5 +1,6 @@
 package com.etech.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -32,6 +33,13 @@ public class ControllerOnlineShow {
 		//视频新闻
 		String hql="From TdataCenter dataCenter where dataCenter.type='4'";
 		List<TdataCenter> vedios = (List<TdataCenter>)etechService.findListByHQL(hql);
+		String[] imgpaths = vedios.get(0).getImgpath().split("#");
+		List<String> pathlList = new ArrayList<String>();
+		for (int i = 0; i < imgpaths.length; i++) {
+			pathlList.add(imgpaths[i]);
+			request.setAttribute("pathlList", pathlList);
+		}
+		
 		request.setAttribute("vedios", vedios);
 		
 		//图片新闻

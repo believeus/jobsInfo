@@ -29,7 +29,10 @@ public class ControllerVideos {
 		
 		TdataCenter imgVedio=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		
-		String[] path = imgVedio.getImgpath().split("#");
+		String[] path = null;
+		if (imgVedio.getImgpath() != null) {
+			path = imgVedio.getImgpath().split("#");
+		}
 		List<String> pathList = new ArrayList<String>();
 		for (int i = 0; i < path.length; i++) {
 			pathList.add(path[i]);

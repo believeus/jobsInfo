@@ -58,7 +58,7 @@
 	}
 </style>
 <!--IE-->
-
+<script type="text/javascript" src="/resource/public/js/jquery.js"></script>
 <script type="text/javascript">
 	//给所有页面BODY加背景色
 	 window.onload=addColor();

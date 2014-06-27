@@ -112,7 +112,11 @@
 	                <li>
 	                  <div class="div1">
 	                  	<a href="/videosInfo.jhtml?id=${vedio.id}">
-	                  		<img [#if !vedio.imgpath?exists] src="${vedio.imgpath}" [#else]src="group/M00/5B/22/B3C8-256C-43D1-9553-AF6A93E0A548.jpg"[/#if] width="120" height="90"/>
+	                  		[#list vedio.imgpath?string?split("#") as path]
+	                  			[#if path_index==0]
+	                  				<img src="${path}" width="120" height="90"/>
+                  				[/#if]
+                  			[/#list]
                   		</a>
 	                  </div>
 	                  <div class="div2">

@@ -105,7 +105,7 @@
 					<li class="j_main_left_1_li"><a class="j_main_left_1_a" href="/leader.jhtml">局领导</a></li>
 				</ul>
 			</div>
-			<div class="j_main_left_1" style="margin-top:10px;height:400px;text-align:center;">
+			<div class="j_main_left_1" style="margin-top:10px;min-height:400px;height:auto;text-align:center;">
 				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml" style="margin-left:0;">更多>></a></div>
@@ -130,9 +130,9 @@
 				<h2 style="text-align:center;font-weight:normal;">${data.title}</h2>
 				<p class="j_main_right_2_p" style="text-align:center;">来源：潜江公共就业服务网 发布时间：${data.createTime?number_to_datetime}&nbsp;${data.createTime?number_to_time} </p>
 				<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">
-				<p class="j_main_right_2_p" style="text-align: center;">
+				<div class="j_main_right_2_p" style="">
 					${data.content}
-				</p>
+				</div>
 				[/#list]
 				<!--
 					<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">

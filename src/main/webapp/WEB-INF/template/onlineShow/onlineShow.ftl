@@ -99,10 +99,12 @@ a:link{
 	<div style="border-bottom:1px solid #DCDCDC;">
 		[#list vedios as vedio]
 	  	[#if vedio_index==0]
+	  	[#list pathlList as path]
+	  	[#if path_index ==1]
     	<div style="float:left; margin:10px auto; border-right:1px solid #DCDCDC; width:600px;">
         	<h2 style="margin-left:30px;">${vedio.title}</h2>
             <div style="width:585px; margin:0px auto;">
-            	<embed width="585" height="432" bgcolor="#000000" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" src="http://p.you.video.sina.com.cn/swf/bokePlayer20140616_V4_1_42_49.swf"  type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"/>
+            	<embed width="585" height="432" bgcolor="#000000" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" [#if path?exists]src="${path}"[#else]src="http://p.you.video.sina.com.cn/swf/bokePlayer20140616_V4_1_42_49.swf"[/#if]  type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"/>
             </div>
             <div style="padding:20px 29px;">
             	<div style="float:left; width:465px;">
@@ -138,16 +140,22 @@ a:link{
         </div>
         [/#if]
         [/#list]
+        [/#if]
+        [/#list]
       	<div style="float:left; margin-top:15px; width:399px;">
         	<h3 style="margin-left:15px;">视频列表</h3>
             <div>
               <ul id="ul_1">
               	[#list vedios as vedio]
-              	[#if vedio_index<=4 && vedio_index >0]
+              	[#if vedio_index<=4]
 	                <li>
 	                  <div class="div1">
 	                  	<a href="/videosInfo.jhtml?id=${vedio.id}">
-	                  		<img src="${vedio.imgpath}" width="120" height="90"/>
+	                  		[#list vedio.imgpath?string?split("#") as path]
+	  						[#if path_index ==0]
+	                  			<img src="${path}" width="120" height="90"/>
+	                  		[/#if]
+	                  		[/#list]
                   		</a>
 	                  </div>
 	                  <div class="div2">
