@@ -9,8 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.LazyInitializationException;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
@@ -266,14 +264,14 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	public String getCompanyType() {
 		try {
 			return company=entUser.getUnitType();
-		} catch (LazyInitializationException e) {
+		} catch (Exception e) {
 			return this.companyType;
 		}
 	}
 	public void setCompanyType(String companyType) {
 		try {
 		   this.company=entUser.getUnitType();
-		} catch (LazyInitializationException e) {
+		} catch (Exception e) {
 			this.companyType = companyType;
 		}
 	}
@@ -283,16 +281,23 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	}
 
 	public void setJobPost(String jobPost) {
-		jobPost=(workType!=null?workType.getName():"");
-		this.jobPost = jobPost;
+		try {
+			jobPost=workType.getName();
+		} catch (Exception e) {
+			this.jobPost = jobPost;
+		}
+		
 	}
-
 	public String getIsview() {
 		return isview;
 	}
 
 	public void setIsview(String isview) {
 		this.isview = isview;
+	}
+
+	public int getAge() {
+		return age;
 	}
 	
 	

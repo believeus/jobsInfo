@@ -1,7 +1,6 @@
 package com.etech.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import org.hibernate.LazyInitializationException;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
@@ -239,7 +237,7 @@ public class TcomInfo extends TbaseEntity implements Serializable {
 	public void setLoginName(String loginName) {
 		try {
 			this.loginName = comUser.getLoginName();
-		} catch (LazyInitializationException e) {
+		} catch (Exception e) {
 			this.loginName = loginName;
 		}
 	}
@@ -248,14 +246,17 @@ public class TcomInfo extends TbaseEntity implements Serializable {
 	public String getJobPost() {
 		try {
 			return jobPost = workType.getName();
-		} catch (LazyInitializationException e) {
+		} catch (Exception e) {
 			return this.jobPost;
 		}
 	}
 
 	public void setJobPost(String jobPost) {
-		jobPost = (workType != null ? workType.getName() : "");
-		this.jobPost = jobPost;
+		try {
+			jobPost=workType.getName();
+		} catch (Exception e) {
+			this.jobPost = jobPost;
+		}
 	}
 
 }
