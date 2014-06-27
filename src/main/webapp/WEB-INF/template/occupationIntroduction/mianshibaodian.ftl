@@ -120,9 +120,9 @@
 				<h2 style="text-align:center;font-weight:normal;">${data.title}</h2>
 				<p style="text-align:center;">来源：潜江公共就业服务网 发布时间：${data.createTime?number_to_datetime} </p>
 				<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">
-				<p style="text-align: center;">
+				<div style="">
 					${data.content}
-				</p>
+				</div>
 				<!--
 					<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">
 					<p style="padding-left:25px;">
