@@ -116,8 +116,17 @@ public class ControllerCenter {
 		/*End Author:wuqiwei Data:2014-06-18 AddReason:根据填写的求职信息获取推荐人才*/
 		return "center/enterpriseCenter";
 	}
-
-
+	// 编辑招聘信息
+	@RequestMapping(value="/editRecruit")
+	public String editRecruit(int id,HttpServletRequest request){
+		Trecruit recruit=(Trecruit)etechService.findObjectById(Trecruit.class, id);
+		request.setAttribute("recruit",recruit);
+		return "center/enterpriseCenterEditRecruit";
+	}
+	public String submitEditRecruit(Trecruit formRecruit){
+		etechService.merge(formRecruit);
+		return "redirect:/enterprise-user/center";
+	}
 	/** 一般用户信息提交 */
 	@RequestMapping(value = "/common-user/submit-account-Info")
 	public void submitComUserInfo(TcomUser comUser, HttpServletResponse response) {

@@ -1526,7 +1526,7 @@
 								[#if recruit.status=="0"&&recruit.status!="1"]审核中[#elseif recruit.status=="1"]已通过审核[/#if]
 								</td>
 								<td><a href="javascript:void(0)" onclick="changeIsview(${recruit.id});" title="点击即可修改" id="isview${recruit.id}">${recruit.isview}</a></td>
-								<td><a href="javascript:void(0)" style="margin-right: 5px;" id="editx" >编辑</a>
+								<td><a href="/editRecruit.jhtml?id=${recruit.id}" style="margin-right: 5px;" id="editx" >编辑</a>
 								<a href="javascript:void(0)" onclick="showDialog(${recruit.id},this)">删除</a>
 								<div id="dialog" title="&nbsp;" style="display: none;">
 									<p style="text-align: center;">确定要删除吗？</p>
@@ -1681,7 +1681,7 @@
 									</td>
 									<td>面试时间:</td>
 									<td>
-									<input type="text" name="beginDate" id="beginDate"   style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
+									<input type="text" name="viewData" id="beginDate"   style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
 								    <input type="hidden"  name="endDate" id="endDate"  style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
 								<tr>
 									<td style="vertical-align:top;">其他说明:</td>
