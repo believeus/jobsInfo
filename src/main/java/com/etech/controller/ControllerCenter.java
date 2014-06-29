@@ -262,7 +262,9 @@ public class ControllerCenter {
 		imgVedios.add(imgVedio); 
 		entUser.setImgVedios(imgVedios); 
 		if (storepath!="") {
-			etechService.saveOrUpdata(entUser);			
+				etechService.saveOrUpdata(entUser);				
+		}else if (!StringUtils.isEmpty(imgVedio.getUrl())) {
+				etechService.saveOrUpdata(entUser);	
 		}
 		map.put("message", "success");
 		JsonOutToBrower.out(map, response);
@@ -274,11 +276,41 @@ public class ControllerCenter {
 		// 获取用户
 		TentUser entUser=(TentUser)session.getAttribute("sessionUser");
 		entUser=(TentUser) etechService.findObjectById(TentUser.class, entUser.getId());
+		// 遍历图片
+		String storepath = "";
 		Set<TentImgVedio> imgVedios=new HashSet<TentImgVedio>();
-		imgVedios.add(imgVedio); 
 		imgVedio.setEntUser(entUser);
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		Map<String, MultipartFile> files = multipartRequest.getFileMap();
+		for (MultipartFile file : files.values()) {
+			InputStream inputStream;
+			try {
+				inputStream = file.getInputStream();
+				if(inputStream.available()==0)break;
+				org.junit.Assert.assertNotNull("upload file InputStream is null", inputStream);
+				String fileName = file.getName();
+				String originName=file.getOriginalFilename();
+				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
+				log.debug("upload file stuffix"+extention);
+				storepath = mydfsTrackerServer.upload(inputStream, extention);
+				if (fileName.equals("fileImg")) {
+					imgVedio.setUrl(storepath);
+					imgVedio.setOriginName(originName);
+				}else {
+					imgVedio.setVedioUrl(storepath);
+					imgVedio.setVedioName(originName);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		imgVedios.add(imgVedio); 
 		entUser.setImgVedios(imgVedios); 
-		etechService.saveOrUpdata(entUser);
+		if (storepath!="") {
+			etechService.saveOrUpdata(entUser);			
+		}else if(!StringUtils.isEmpty(imgVedio.getUrl())){
+			etechService.saveOrUpdata(entUser);
+		}
 		map.put("message", "success");
 		JsonOutToBrower.out(map, response);
 		

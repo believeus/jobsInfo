@@ -99,7 +99,7 @@ $().ready(function() {
 					<script type="text/javascript">
 				 	function checkI(file) {
  				  	 if(!(/(?:gif|jpg|jpeg|bmp|png)$/i.test(file.value))) {
-      				  alert("只允许上传 gif/jpg/jpeg/bmp/png 格式的视频");
+      				  alert("只允许上传 gif/jpg/jpeg/bmp/png 格式的视频截图");
        				  if(window.ActiveXObject) {//for IE
         					file.select();//select the file ,and clear selection
           				    document.selection.clear();

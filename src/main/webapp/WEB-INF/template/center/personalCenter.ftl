@@ -488,7 +488,8 @@
 									$("#InfoForm").append(html);
 							   }
 							   
-							   if(type==1){
+							}
+							 if(type==1){
 									$(object).parent().parent().parent().parent().parent().parent().html(type1);
 								}else if(type==2){
 									$(object).parent().parent().parent().parent().parent().parent().html(type2);
@@ -498,8 +499,6 @@
 									$(object).parent().parent().parent().parent().parent().parent().html(type4);
 									deleteIds();
 								}
-							   
-							}
 							
 						} else {
 							// 获取需要删除的id
@@ -955,13 +954,21 @@
 								</td>
 								<td>月薪要求:</td>
 								<td style="padding-right:70px;">
-									<input type="text" id="expectSalaryVolunteer'+d+'" name="expectSalary">
+									
+									<select id="expectSalaryVolunteer1" name="expectSalary">
+										<option value="1000以下">1000以下</option>
+										<option value="1000~1999">1000~1999</option>
+										<option value="2000~2999">2000~2999</option>
+										<option value="3000~3999">3000~3999</option>
+										<option value="4000~4999">4000~4999</option>
+										<option value="5000以上">5000以上</option>
+									</select>
 								</td>
 							</tr>
 							<tr>
 								<td>工作性质</td>
 								<td colspan="3">
-									<select name="">
+									<select name="workWay">
 										<option value="全职">全职</option>
 										<option value="兼职">兼职</option>
 										<option value="实习">实习</option>
@@ -1018,6 +1025,7 @@
     </script>
     <script type="text/javascript">
     			
+    		
     		//检查图片是否需要重新上传。
 			var checkChange=0;
 		    $().ready(function() {
@@ -1159,6 +1167,8 @@
 				
 				[#if volunteers?size>0]
 		    		[#list volunteers as volunteer]
+		    			$("#workWay"+${volunteer_index+1}).val("${volunteer.workWay}");
+		    			$("#expectSalaryVolunteer"+${volunteer_index+1}).val("${volunteer.expectSalary}");
 		    			var html ='<div id="xmenuVolunteerSpecialty'+${volunteer_index+1}+'" class="xmenu" style="display: none;">'+Specialty +'</div>'+
 						  '<div id="xmenuVolunteerJobs'+${volunteer_index+1}+'" class="xmenu" style="display: none;">'+Jobs +'</div>';
 						$("#conentDiv").parent().append(html);
@@ -1667,7 +1677,6 @@
 					[#list skills as skill]
 						<div class="jineng_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="SkillForm${skill_index+1}">						
-						<input type="hidden" name="id" value="${skill.id}">
 						<table>
 						
 							<tr>
@@ -1819,7 +1828,6 @@
 					[#list learnings as learning]
 						<div class="xuexi_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="LearningForm${learning_index+1}">	
-						<input name="id" type="hidden" value="${learning.id}">
 						<table>
 							<tr>
 								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">${learning_index+1}</td>
@@ -1929,7 +1937,6 @@
 						[#list works as work]
 						<div class="gongzuo_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="WorkForm${work_index+1}">	
-						<input name="id" value="${work.id}" type="hidden">
 						<table>
 							<tr>
 								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">${work_index+1}</td>
@@ -2065,7 +2072,6 @@
 					[#list volunteers as volunteer]
 						<div class="zhiyuan_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="VolunteerForm${volunteer_index+1}">	
-						<input name="id" type="hidden" value="${volunteer.id}">
 						<table>
 							<tr>
 								<td rowspan="4" style="background:#DCDCDC;color:#FE7200;">${volunteer_index+1}</td>
@@ -2170,13 +2176,21 @@
 								</td>
 								<td>月薪要求:</td>
 								<td style="padding-right:70px;">
-									<input type="text" id="expectSalaryVolunteer1" name="expectSalary" value="${volunteer.expectSalary}">
+									
+									<select id="expectSalaryVolunteer${volunteer_index+1}" name="expectSalary" value="${volunteer.expectSalary}">
+										<option value="1000以下">1000以下</option>
+										<option value="1000~1999">1000~1999</option>
+										<option value="2000~2999">2000~2999</option>
+										<option value="3000~3999">3000~3999</option>
+										<option value="4000~4999">4000~4999</option>
+										<option value="5000以上">5000以上</option>
+									</select>
 								</td>
 							</tr>
 							<tr>
 								<td>工作性质</td>
 								<td colspan="3">
-									<select name="">
+									<select id="workWay${volunteer_index+1}" name="workWay" value="${volunteer.workWay}">
 										<option value="全职">全职</option>
 										<option value="兼职">兼职</option>
 										<option value="实习">实习</option>

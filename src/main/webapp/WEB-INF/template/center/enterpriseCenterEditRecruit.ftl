@@ -328,6 +328,14 @@
 				</div>';
 		[/@compress]
 		 $().ready(function(){
+		 
+		 	$("#workyear1").val("${recruit.workyear}");
+		 	$("#sex1").val("${recruit.sex}");
+		 	$("#eduLevel1").val("${recruit.eduLevel}");
+		 	$("#salary1").val("${recruit.salary}");
+		 	$("#worklimit1").val("${recruit.worklimit}");
+		 	$("#workWay1").val("${recruit.workWay}");
+		 	
 			 // 为所有插件使用相同的模板。
 	    	var html ='<div id="xmenuSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'+
 					  '<div id="xmenuJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>';
@@ -357,16 +365,13 @@
 			function submitJobs(){
 				var viewData=new Date($("#beginDate").val().replace(/-/g,",")).getTime();
 				$("#viewData").val(viewData);
-					alert("xxx");
 					$("#jobsForm1").ajaxSubmit({
 			            	 type: "post",
 						     url: "/enterprise-user/center/submit-recruit.jhtml",
 						     dataType: "json",
 						     success: function(data){
-						     	alert("eee");
-						     	
 						     	if(data.message=="success"){
-							     	location.reload(true);	     		
+							     	location.href="/enterprise-user/center.jhtml";	     		
 						     	}
 						     }
 		        	});	
@@ -389,7 +394,7 @@
     			alert("请输入工作地点");
     			tag=true;
     		}else if($("#beginDate").val() == ""){
-    			alert("请输入面试时间");
+    			alert("请选择面试时间");
     			tag=true;
     		}else{
 	    		if(tag==false){
@@ -473,6 +478,7 @@
 						<input type="hidden" name="status" value="0">
 						<input type="hidden" name="viewData" value="" id="viewData">
 						<input type="hidden" name="isview" value="未发布">
+						<input type="hidden" name="id" value="${recruit.id}">
 							<table>
 								<tr>
 									<td>招聘单位:</td>
@@ -621,7 +627,7 @@
 									</td>
 									<td>面试时间:</td>
 									<td>
-									<input type="text" value="[#if recruit.viewData!=0]${recruit.viewData?number_to_date}[/#if]" name="viewData" id="beginDate"   style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
+									<input type="text" value="[#if recruit.viewData!=0]${recruit.viewData?number_to_date}[/#if]" name="beginDate" id="beginDate"   style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
 								    <input type="hidden"  name="endDate" id="endDate"  style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
 								<tr>
 									<td style="vertical-align:top;">其他说明:</td>
