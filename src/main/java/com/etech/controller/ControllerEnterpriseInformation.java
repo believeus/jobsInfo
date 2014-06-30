@@ -33,7 +33,6 @@ public class ControllerEnterpriseInformation {
 		
 		//招聘信息
 		List<Trecruit> trecruitList = (List<Trecruit>)etechService.getListByProperty(Trecruit.class, "entUser.id", id);
-		System.out.println(trecruitList.get(0).getEditTime());
 		request.setAttribute("trecruitList", trecruitList);
 		String hql="From TentImgVedio vedio where vedio.type='1'";
 		List<TentImgVedio> vedios = (List<TentImgVedio>)etechService.findListByHQL(hql);
