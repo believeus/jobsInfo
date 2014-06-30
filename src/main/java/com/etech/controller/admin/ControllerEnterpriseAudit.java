@@ -15,6 +15,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -105,13 +106,15 @@ public class ControllerEnterpriseAudit {
 	 * 修改企业审核
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/update")
-	public String updateNewsView(TentUser formUser,HttpServletRequest request){
+	public String updateNewsView(TentUser formUser,HttpServletRequest request,Integer MapId){
+		
 		TentUser entUser=(TentUser) etechService.findObjectById(TentUser.class,formUser.getId());
-		String hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+entUser.getId()+"  and info.type='2'";
-		List<TentImgVedio> Maps=(List<TentImgVedio>)etechService.findListByHQL(hql);
-		TentImgVedio imgVedio = Maps.get(0); 
+		TentImgVedio map=null;
+		if (!StringUtils.isEmpty(MapId)) {
+			 map = (TentImgVedio)etechService.findObjectById(TentImgVedio.class, MapId);
+		}
+		
 		String storepath = "";
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> files = multipartRequest.getFileMap();
@@ -125,8 +128,15 @@ public class ControllerEnterpriseAudit {
 				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
 				log.debug("upload file stuffix"+extention);
 				storepath = mydfsTrackerServer.upload(inputStream, extention);
-				imgVedio.setUrl(storepath);
-				entUser.getImgVedios().add(imgVedio);
+				if (map!=null) {
+					map.setUrl(storepath);
+				}else {
+					map=new TentImgVedio();
+					map.setEntUser(entUser);
+					map.setType(2);
+					map.setUrl(storepath); 
+				}
+				entUser.getImgVedios().add(map);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -138,6 +148,6 @@ public class ControllerEnterpriseAudit {
 		formUser.setImgVedios(entUser.getImgVedios());
 		BeanUtils.copyProperties(formUser, entUser);
 		etechService.saveOrUpdata(entUser);
-		return "redirect:/admin/enterpriseAudit/list.jhtml";
+		return "redirect:/admin/enterpriseList/list.jhtml";
 	}
 }

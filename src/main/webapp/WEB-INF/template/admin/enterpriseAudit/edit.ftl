@@ -82,13 +82,12 @@ $().ready(function() {
 	// 表单验证
 	$inputForm.validate({
 		submitHandler: function(form){  
-			submitInfo();
+			submitInfo(form);
    		} 
 	});
-	
 		
 		// 保存。
-		function submitInfo(){
+		function submitInfo(form){
 			var phoneNum =$("#phoneNum").val();
 			var regPartton=/^(?:13\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/; //验证手机号
     		
@@ -125,9 +124,8 @@ $().ready(function() {
     			alert("请输入单位简介");
     		}else{
     			var tag=false;
-    			var selects = $("#inputForm select");//判断下拉框是否选值
+    			var selects = $(".input select");//判断下拉框是否选值
 	    		selects.each(function(index,obj){
-	    			alert(index);
 	    			if($(this).val() == ""){
 	    				tag=true;
 	    				$(this).css("color","red");
@@ -138,8 +136,7 @@ $().ready(function() {
 	    		});
 	    		// 判断是否完全通过。
 	    		if(tag==false){
-	    			alert(" 信息提交");
-					$("#inputForm").submit();
+					form.submit();
 		   		}
     	  }
 			
@@ -168,10 +165,10 @@ $().ready(function() {
 	</div>			
 		<table class="input">
 			<form id="inputForm" novalidate="novalidate"  action="/admin/enterpriseAudit/update.jhtml" encType="multipart/form-data"   method="post">
-					<input type="hidden" name="id" value="${sessionUser.id}">
-					<input type="hidden" name="status" value="${sessionUser.status}">
-					<input type="hidden" name="loginName" value="${sessionUser.loginName}">
-					<input type="hidden" name="password" value="">
+					<input type="hidden" name="id" value="${tentUsers.id}">
+					<input type="hidden" name="status" value="${tentUsers.status}">
+					<input type="hidden" name="loginName" value="${tentUsers.loginName}">
+					<input type="hidden" name="password" value="${tentUsers.password}">
 					<tr>
 						<td>单位全称:</td>
 						<td style="padding-right: 80px;"><input type="text" value="${tentUsers.fullName}" id="fullName" name="fullName"></td>
@@ -266,7 +263,7 @@ $().ready(function() {
 										<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片x</a>
 										</span>
 											<img width="260px" height="30px" src="/${map.url}" name="url" id="${map.id}"/>
-											<input type="hidden" name="id" value="${map.id}">
+											<input type="hidden" name="MapId" value="${map.id}">
 									</div>
 									<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">
 									<input type="hidden" id="filename0" name="filename0">
