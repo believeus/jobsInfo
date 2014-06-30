@@ -87,7 +87,7 @@
 			//绑定每一个职位
 			$mli.click(function(){
 				// 判断是否有绑定的职位 wuhuanrong 2014-06-30
-			 if($selectUl.children("li").length!=1){				
+			 if($selectUl.children("li").length==0){				
 				var $li = $(this);
 				var val  =$li.text();
 				var id  = $li.attr("rel");
@@ -104,8 +104,6 @@
 				if($selectUl.children("li").length==0){
 					$selectinfo.hide();
 				}
-			  }else{
-					alert("最多选择1个");
 			  }
 			});
 			

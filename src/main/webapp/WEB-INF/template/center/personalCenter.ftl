@@ -491,14 +491,14 @@
 							}
 							 if(type==1){
 									$(object).parent().parent().parent().parent().parent().parent().html(type1);
-								}else if(type==2){
+							 }else if(type==2){
 									$(object).parent().parent().parent().parent().parent().parent().html(type2);
-								}else if(type==3){
+							 }else if(type==3){
 									$(object).parent().parent().parent().parent().parent().parent().html(type3);
-								}else if(type==4){
+							 }else if(type==4){
 									$(object).parent().parent().parent().parent().parent().parent().html(type4);
 									deleteIds();
-								}
+							 }
 							
 						} else {
 							// 获取需要删除的id
@@ -522,6 +522,15 @@
 							// 删除。
 						   $(object).closest("div").remove();
 						}
+						 if(type==1){
+									b--;
+						 }else if(type==2){
+								a--;
+						 }else if(type==3){
+								c--;
+						 }else if(type==4){
+						 		d--
+						 }
 					
 	    	};
 	    	
@@ -1312,7 +1321,6 @@
     			
     			function submitVolunteer(){
     				  //alert("xxxxxxxx选择志愿xxxxxxx");
-    				  var num=0;
     				  $("div.zhiyuan_div").each(function(index){
     				  		index++;
     				  		$("#VolunteerForm"+index).ajaxSubmit({
@@ -1320,8 +1328,7 @@
 							     url: "/common-user/center/submit-comInfo.jhtml",
 							     dataType: "json",
 							     success: function(result){
-							     	num=num+1;
-							     	if(num==index){
+							     	if(index==(d-1)){
 				 		   				deleteIds();    				 						     	
 							     	}
 							     }

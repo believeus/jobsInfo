@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.etech.entity.TcomInfo;
 import com.etech.entity.TdataCenter;
+import com.etech.entity.TmajorType;
 import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
 import com.etech.service.JobSearchService;
@@ -110,15 +111,17 @@ public class ControllerSearch {
 				log.debug("issueTime:"+issueTime);
 			}
 		}
-		if (majorTypeId!=null) {
+		if (!StringUtils.isEmpty(majorTypeId)) {
 			// 获取对象
+			TmajorType majorValue=(TmajorType)etechService.findObjectById(TmajorType.class, Integer.valueOf(majorTypeId));
 			// 获取字符串
-			request.setAttribute("majorValue","" );
+			request.setAttribute("majorValue",majorValue.getName());
 		}
-		if (workTypeId!=null) {
+		if (!StringUtils.isEmpty(workTypeId)) {
 			// 获取对象
+			TmajorType  workValue= (TmajorType)etechService.findObjectById(TmajorType.class, Integer.valueOf(workTypeId));
 			// 获取字符串
-			request.setAttribute("workValue","" );
+			request.setAttribute("workValue",workValue.getName());
 		}
 		if (area!=null) {
 			
