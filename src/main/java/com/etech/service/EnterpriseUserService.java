@@ -33,7 +33,7 @@ public class EnterpriseUserService {
 		}
 		if(!workTypeIds.isEmpty()){
 			String ids=workTypeIds.toString().replace("[", "(").replaceAll("]", ")");
-			String hql="from TcomUser user inner join fetch user.comInfo userInfo  where  userInfo.workType.id="+ids+"";
+			String hql="from TcomUser user inner join fetch user.comInfo userInfo  where  userInfo.workType.id in "+ids+"";
 			log.debug(hql);
 			List<TcomUser> comUserList=(List<TcomUser>)etechService.findListByHQL(hql, 15);
 			if(!comUserList.isEmpty()){

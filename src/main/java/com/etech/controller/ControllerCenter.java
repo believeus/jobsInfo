@@ -105,9 +105,9 @@ public class ControllerCenter {
 		List<TentImgVedio> Maps=(List<TentImgVedio>)etechService.findListByHQL(hql);
 		hql="From Trecruit recruit left join fetch recruit.entUser as user where  user.id='"+entUser.getId()+"'";
 		List<Trecruit> recruits = (List<Trecruit>)etechService.findListByHQL(hql);
+		log.debug(recruits.size());
 		request.setAttribute("Imgs", Imgs);
 		request.setAttribute("Vedios", Vedios);
-		System.out.println(Vedios.size()); 
 		request.setAttribute("Maps", Maps);
 		request.setAttribute("recruits",recruits);
 		/*Begin Author:wuqiwei Data:2014-06-18 AddReason:根据填写的求职信息获取推荐人才*/

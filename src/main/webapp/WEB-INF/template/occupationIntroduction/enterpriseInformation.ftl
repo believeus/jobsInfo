@@ -374,27 +374,14 @@
 			[/#if]
 			<div class="j_main_left_1" style="margin-top:10px;height:auto;text-align:center;border:1px solid #E4630F;border-radius:4px;">
 				<p style="background: #EE981F; text-align: center; margin: 5px; padding: 5px; border-radius: 5px; border: 0px none; color: #FFFFFF;">人才推荐</p>
+				[#list talentRecommend as user]
 				<div class="j_main_left_1_1">
-					<p style="color: blue;">王小利</p>
-					<p style="color: blue;font-weight:bold;">室内设计师</p>
+					<p><a target="_blank" style="color: blue;" href="/personalResume.jhtml?id=${user.id}">${user.loginName}</a></p>
+					<p style="color: blue;font-weight:bold;">${user.comInfo[0].workType.name}</p>
 					<p>薪资待遇：面议</p>
-					<p>招聘人数：若干人</p>
-					<p>学历要求：中专</p>
+					<p>学历：${user.eduLevel}</p>
 				</div>
-				<div class="j_main_left_1_1">
-					<p style="color: blue;">王小利</p>
-					<p style="color: blue;font-weight:bold;">室内设计师</p>
-					<p>薪资待遇：面议</p>
-					<p>招聘人数：若干人</p>
-					<p>学历要求：中专</p>
-				</div>
-				<div class="j_main_left_1_1" style="border-bottom:0;">
-					<p style="color: blue;">王小利</p>
-					<p style="color: blue;font-weight:bold;">室内设计师</p>
-					<p>薪资待遇：面议</p>
-					<p>招聘人数：若干人</p>
-					<p>学历要求：中专</p>
-				</div>
+				[/#list]
 			</div>
 		</div>
 		<div class="j_main_right">
@@ -558,18 +545,19 @@
 								<th>招聘人数</th>
 								<th>工作地区</th>
 								<th>学历要求</th>
-								<th>刷新日期</th>
+								<th>发布日期</th>
 								<th>截至日期</th>
 							</tr>
-							
+							[#list trecruitList as trecruit]
 							<tr>
 								<td>${trecruit.workType.name}</td>
 								<td>${trecruit.worknum}人</td>
 								<td>${trecruit.workspace}</td>
 								<td>${trecruit.eduLevel}</td>
-								<td>2天前</td>
-								<td>${trecruit.editTime?number_to_datetime}</td>
+								<td>${trecruit.editTime?number_to_date}</td>
+								<td>${trecruit.worklimit}</td>
 							</tr>
+						   [/#list]
 						</table>
 					</div>
 				</div>
