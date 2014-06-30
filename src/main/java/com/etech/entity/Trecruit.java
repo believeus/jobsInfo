@@ -263,14 +263,14 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	@Field(store=Store.YES,index = Index.TOKENIZED)
 	public String getCompanyType() {
 		try {
-			return company=entUser.getUnitType();
+			return companyType=entUser.getUnitType();
 		} catch (Exception e) {
 			return this.companyType;
 		}
 	}
 	public void setCompanyType(String companyType) {
 		try {
-		   this.company=entUser.getUnitType();
+		   this.companyType=entUser.getUnitType();
 		} catch (Exception e) {
 			this.companyType = companyType;
 		}

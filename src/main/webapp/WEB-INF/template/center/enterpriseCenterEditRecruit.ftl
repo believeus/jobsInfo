@@ -629,6 +629,7 @@
 									<td>
 									<input type="text" value="[#if recruit.viewData!=0]${recruit.viewData?number_to_date}[/#if]" name="beginDate" id="beginDate"   style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
 								    <input type="hidden"  name="endDate" id="endDate"  style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
+									</td>
 								<tr>
 									<td style="vertical-align:top;">其他说明:</td>
 									<td colspan="2">
@@ -643,7 +644,7 @@
 						</div>
 					</div>
 					<p style="text-align:center;">
-						<input type="submit" id="savaJobs" value="保存">
+						<input type="button" id="savaJobs" value="保存">
 					</p>
 				</div>
 			</div>

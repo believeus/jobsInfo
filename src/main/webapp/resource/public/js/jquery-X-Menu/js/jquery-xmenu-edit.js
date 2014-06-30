@@ -20,8 +20,6 @@
 	
 	$.fn.xMenu = function(options) {
 		return $(this).each(function() {
-			// 定义变量设置为单选的,根据需求删除
-			var count=1;
 		
 			var owl = $.extend({}, defaults, options || {});
 			//触发按钮
@@ -88,9 +86,8 @@
 			
 			//绑定每一个职位
 			$mli.click(function(){
-				// 判断是否有绑定的职位
-			  if(count==0){					
-				count=1;
+				// 判断是否有绑定的职位 wuhuanrong 2014-06-30
+			 if($selectUl.children("li").length!=1){				
 				var $li = $(this);
 				var val  =$li.text();
 				var id  = $li.attr("rel");
@@ -107,12 +104,13 @@
 				if($selectUl.children("li").length==0){
 					$selectinfo.hide();
 				}
+			  }else{
+					alert("最多选择1个");
 			  }
 			});
 			
 			//绑定已选区li事件
 			$("li",$selectUl).live('click',function(){
-				count=0;
 				var $li = $(this);
 				var id  = $li.attr("rel");
 				$mli.filter("li[rel='"+id+"']").removeClass("current");	

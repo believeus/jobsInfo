@@ -12,7 +12,7 @@
 <script type="text/javascript" src="/resource/public/js/admin/kindeditor.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
-<link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
+<link href="/resource/public/js/jquery-X-Menu/css/xmenu-edit.css" rel="stylesheet" type="text/css" />  
 <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />  
 <script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu-edit.js"></script> 
 <script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>
@@ -78,10 +78,14 @@
 				</div>';
 	[/@compress]
 $().ready(function() {
-	$("#sex1").val("${recruit.sex}");
-	$("#eduLevel1").val("${recruit.eduLevel}");
-	$("#workWay1").val("${recruit.workWay}");
-	$("#worklimit1").val("${recruit.worklimit}")
+
+	$("#workyear1").val("${recruit.workyear}");
+ 	$("#sex1").val("${recruit.sex}");
+ 	$("#eduLevel1").val("${recruit.eduLevel}");
+ 	$("#salary1").val("${recruit.salary}");
+ 	$("#worklimit1").val("${recruit.worklimit}");
+ 	$("#workWay1").val("${recruit.workWay}");
+ 	
 	var $inputForm = $("#inputForm");
 	var $type = $("#type");
 	var $contentTr = $("#contentTr");
@@ -169,7 +173,7 @@ $().ready(function() {
 						<div class="topnav">
 							<a id="selectSkillJobs1" href="javascript:void(0);" class="as">
 								<span >
-									[#assign name=recruit.workType.name+"(点击即可取消选择)"]
+									[#assign name=recruit.workType.name]
 									[#if name?length > 15]
 										${name?string?substring(0,15)}...
 									[#else]
@@ -196,7 +200,7 @@ $().ready(function() {
 						<div class="topnav">
 							<a id="selectSkillSpecialty1" href="javascript:void(0);" class="as">
 								<span >
-									[#assign name=recruit.majorType.name+"(点击即可取消选择)"]
+									[#assign name=recruit.majorType.name]
 									[#if name?length > 15]
 										${name?string?substring(0,15)}...
 									[#else]

@@ -12,10 +12,12 @@
 <script type="text/javascript" src="/resource/public/js/admin/kindeditor.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
-<link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
+<link href="/resource/public/js/jquery-X-Menu/css/xmenu-edit.css" rel="stylesheet" type="text/css" />  
 <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />  
 <script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu-edit.js"></script> 
 <script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>
+<script type="text/javascript" src="/resource/public/js/datePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="/resource/public/js/waitamoment.js"></script>
 
 
 <script type="text/javascript">
@@ -78,10 +80,13 @@
 				</div>';
 	[/@compress]
 $().ready(function() {
-	$("#sex1").val("${recruit.sex}");
-	$("#eduLevel1").val("${recruit.eduLevel}");
-	$("#workWay1").val("${recruit.workWay}");
-	$("#worklimit1").val("${recruit.worklimit}")
+	$("#workyear1").val("${recruit.workyear}");
+ 	$("#sex1").val("${recruit.sex}");
+ 	$("#eduLevel1").val("${recruit.eduLevel}");
+ 	$("#salary1").val("${recruit.salary}");
+ 	$("#worklimit1").val("${recruit.worklimit}");
+ 	$("#workWay1").val("${recruit.workWay}");
+ 	
 	var $inputForm = $("#inputForm");
 	var $type = $("#type");
 	var $contentTr = $("#contentTr");
@@ -128,16 +133,42 @@ $().ready(function() {
 		}
 	});
 	
-	// 表单验证
-	$inputForm.validate({
-		rules: {
-			title: "required",
-			adPositionId: "required",
-			path: "required",
-			order: "digits"
-		}
-	});
+		// 表单验证
+		$inputForm.validate({
+			submitHandler: function(form){  
+				   submitJobs();
+   			}  
+		});
 	
+		//封装ajax信息提交
+		function submitJobs(){
+				var tag=false;
+	    		if($("#worknum1").val() == ""){
+	    			alert("请输入招聘人数");
+	    			tag=true;
+	    		}else if($("#selectJobshidden1").val() == ""){
+	    			alert("请选择工种");
+	    			tag=true;
+	    		}else if($("#selectSpecialtyhidden1").val() == ""){
+	    			alert("请选择专业");
+	    			tag=true;
+	    		}else if($("#workspace1").val() == ""){
+	    			alert("请输入工作地点");
+	    			tag=true;
+	    		}else if($("#beginDate").val() == ""){
+	    			alert("请选择面试时间");
+	    			tag=true;
+	    		}else{
+		    		if(tag==false){
+		    			showdiv();
+		    			var viewData=new Date($("#beginDate").val().replace(/-/g,",")).getTime();
+						$("#viewData").val(viewData);
+						$(form).submit();  
+	    			}
+	    		}
+				  
+			}
+			
 });
 </script>
 </head>
@@ -153,6 +184,7 @@ $().ready(function() {
 		<input type="hidden" name="status" value="${recruit.status}"/>
 		<input type="hidden" name="createTime" value="${recruit.createTime}"/>
 		<input type="hidden" name="userId" value="${recruit.entUser.id}"/>
+		<input type="hidden" name="viewData" value="" id="viewData">
 			<table class="input">
 				<tr>
 					<th>招聘单位:</th>
@@ -169,7 +201,7 @@ $().ready(function() {
 						<div class="topnav">
 							<a id="selectSkillJobs1" href="javascript:void(0);" class="as">
 								<span >
-									[#assign name=recruit.workType.name+"(点击即可取消选择)"]
+									[#assign name=recruit.workType.name]
 									[#if name?length > 15]
 										${name?string?substring(0,15)}...
 									[#else]
@@ -196,7 +228,7 @@ $().ready(function() {
 						<div class="topnav">
 							<a id="selectSkillSpecialty1" href="javascript:void(0);" class="as">
 								<span >
-									[#assign name=recruit.majorType.name+"(点击即可取消选择)"]
+									[#assign name=recruit.majorType.name]
 									[#if name?length > 15]
 										${name?string?substring(0,15)}...
 									[#else]
@@ -211,24 +243,35 @@ $().ready(function() {
 				</tr>
 				<tr>
 					<th>从事年限:</th>
-					<td><input type="text" id="workyear1" name="workyear" value="${recruit.workyear}"/></td>
+					<td>
+					<select id="workyear1" name="workyear"  value="${recruit.workyear}">
+						<option value="不限">不限</option>
+						<option value="在读学生">在读学生</option>
+						<option value="应届毕业生">应届毕业生</option>
+						<option value="1~2年">1~2年</option>
+						<option value="2~3年">2~3年</option>
+						<option value="3~5年">3~5年</option>
+						<option value="5~8年">5~8年</option>
+						<option value="8~10年">8~10年</option>
+						<option value="8~10年">8~10年</option>
+						<option value="10年以上">10年以上</option>
+					</select>
+					</td>
 					<th>文化程度:</th>
 					<td>
 						<select id="eduLevel1" name="eduLevel" style="width: 183px;">
-							<option value="">请选择..</option>
-							<option value="研究生以上">研究生以上</option>
-							<option value="博士研究生">博士研究生</option>
-							<option value="大学本科">大学本科</option>
-							<option value="大学专科">大学专科</option>
-							<option value="中专技校">中专技校</option>
-							<option value="中等专科">中等专科</option>
-							<option value="职业高中">职业高中</option>
-							<option value="技工学校">技工学校</option>
-							<option value="普通高中">普通高中</option>
-							<option value="初中及以下">初中及以下</option>
-							<option value="初级中学">初级中学</option>
+							<option value="不限">不限</option>
+							<option value="博士">博士</option>
+							<option value="硕士">硕士</option>
+							<option value="大学">大学</option>
+							<option value="大专">大专</option>
+							<option value="中专中技">中专中技</option>
+							<option value="技校">技校</option>
+							<option value="高中">高中</option>
+							<option value="职高">职高</option>
+							<option value="初中">初中</option>
 							<option value="小学">小学</option>
-							<option value="其他">其他</option>
+							<option value="文盲或半文盲">文盲或半文盲</option>
 						</select>
 					</td>
 				</tr>
@@ -240,37 +283,53 @@ $().ready(function() {
 				</tr>
 				<tr>
 					<th>身高:</th>
-					<td><input type="text" id="height1" name="height" value="${recruit.height}"/></td>
+					<td><input type="text" id="height1" name="height" placeholder="cm" value="${recruit.height}"/></td>
 					<th>视力:</th>
 					<td><input type="text" id="eyesight1" name="eyesight" value="${recruit.eyesight}"></td>
 				</tr>
 				<tr>
 					<th>薪资待遇:</th>
-					<td><input type="text" id="salary1" name="salary" value="${recruit.salary}"></td>
+					<td>
+					<select id="salary1" name="salary" style="width: 183px;" value="${recruit.salary}">
+						<option value="不限">不限</option>
+						<option value="1000以下">1000以下</option>
+						<option value="1000~1999">1000~1999</option>
+						<option value="2000~2999">2000~2999</option>
+						<option value="3000~3999">3000~3999</option>
+						<option value="4000~4999">4000~4999</option>
+						<option value="5000以上">5000以上</option>
+					</select>
+					</td>
 					<th>用工形式:</th>
 					<td>
-						<select id="workWay1" name="workWay" style="width: 183px;">
-							<option value="">请选择..</option>
-							<option value="兼职">兼职</option>
+						<select id="workWay1" name="workWay" style="width: 183px;" value="${recruit.workWay}">
+							<option value="不限">不限</option>
 							<option value="全职">全职</option>
+							<option value="兼职">兼职</option>
 							<option value="实习">实习</option>
-							<option value="...">...</option>
+							<option value="临时">临时</option>
+							<option value="小时工">小时工</option>
+							<option value="全职/兼职/实习均可">全职/兼职/实习均可</option>
+							<option value="就业见习">就业见习</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<th>招聘期限:</th>
 					<td>
-						<select id="worklimit1" name="worklimit" style="width: 183px;">
-							<option value="">请选择..</option>
-							<option value="1年">1年</option>
-							<option value="3年">3年</option>
-							<option value="5年">5年</option>
-							<option value="...">...</option>
+						<select id="worklimit1" name="worklimit" style="width: 183px;" value="${recruit.worklimit}">
+							<option value="三个月">三个月</option>
+							<option value="一个月">一个月</option>
+							<option value="六个月">六个月</option>
+							<option value="一年">一年</option>
+							<option value="长期">长期</option>
 						</select>
 					</td>
 					<th>面试时间:</th>
-					<td><input type="text" id="viewData1" name="viewData" value="${recruit.viewData}"/></td>
+					<td>
+						<input type="text" value="[#if recruit.viewData!=0]${recruit.viewData?number_to_date}[/#if]" name="beginDate" id="beginDate"   style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
+				    	<input type="hidden"  name="endDate" id="endDate"  style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
+					</td>
 				</tr>
 				<tr>
 					<th style="vertical-align:top;">其他说明:</th>
@@ -283,7 +342,7 @@ $().ready(function() {
 						&nbsp;
 					</th>
 					<td colspan="3">
-						<input type="submit" class="button" value="确定" />
+						<input type="submit" id="savaJobs" value="确定">
 						<input type="button" id="backButton" class="button" value="返回" />
 					</td>
 				</tr>

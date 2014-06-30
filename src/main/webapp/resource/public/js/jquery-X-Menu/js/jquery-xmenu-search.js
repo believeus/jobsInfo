@@ -94,27 +94,31 @@
 			//绑定每一个职位
 			$mli.click(function(){
 				// 判断是否有绑定的职位
-				var $li = $(this);
-				var val  =$li.text();
-				var id  = $li.attr("rel");
-				if($selectinfo.is(":hidden")){
-					$selectinfo.show();
-				}
-				if($li.hasClass("current")){
-					$selectUl.find("li[rel='"+id+"']").remove();					
-					$li.removeClass("current");
-					count--;
-				}else{	
-					if(count<1){
-						$("<li rel='"+id+"' class='current'>"+val+"</li>").appendTo($selectUl);
-						$li.addClass("current");
-						count++;
-					}else{
-						alert("最多选择1个");
-					}
-				}	
 				if($selectUl.children("li").length==0){
-					$selectinfo.hide();
+					var $li = $(this);
+					var val  =$li.text();
+					var id  = $li.attr("rel");
+					if($selectinfo.is(":hidden")){
+						$selectinfo.show();
+					}
+					if($li.hasClass("current")){
+						$selectUl.find("li[rel='"+id+"']").remove();					
+						$li.removeClass("current");
+						count--;
+					}else{	
+						if(count<1){
+							$("<li rel='"+id+"' class='current'>"+val+"</li>").appendTo($selectUl);
+							$li.addClass("current");
+							count++;
+						}else{
+							alert("最多选择1个");
+						}
+					}	
+					if($selectUl.children("li").length==0){
+						$selectinfo.hide();
+					}
+				}else{
+					alert("最多选择1个");
 				}
 			});
 			
