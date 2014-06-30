@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -32,6 +31,7 @@ public class ControllerStationAudit {
 	 * 岗位审核列表
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
 		log.debug("current controller is newsListView !");
@@ -96,7 +96,7 @@ public class ControllerStationAudit {
 		formRecruit.setEntUser(entUser);
 		BeanUtils.copyProperties(formRecruit, recruit);
 		etechService.saveOrUpdata(recruit);
-		return "redirect:/admin/stationAudit/list.jhtml";
+		return "redirect:/admin/stationList/list.jhtml";
 	}
 	@RequestMapping(value = "/review", method = RequestMethod.GET)
 	public String review(HttpServletRequest request){
