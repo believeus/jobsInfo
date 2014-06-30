@@ -426,7 +426,13 @@
 									<td>单位全称:</td>
 									<td style="padding-right: 80px;">${trecruit.entUser.fullName}</td>
 									<td rowspan="2" colspan="2">
-										<img src="/resource/public/images/zt_topImg.png" width="260px" height="30px"/>
+										[#if Maps?size>0]
+											[#list Maps as map]
+												<img width="260px" height="30px" src="/${map.url}" name="url" id="${map.id}"/>
+											[/#list]
+										[#else]
+											<img src="/resource/public/images/zt_topImg.png" width="260px" height="30px"/>
+										[/#if]
 									</td>
 								</tr>
 								<tr>

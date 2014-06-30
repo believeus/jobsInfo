@@ -54,7 +54,7 @@ public class ControllerJobIntroduce {
 		session.setAttribute("jianlizhinanService", jianlizhinanService);
 		
 		//招聘信息
-		hql = "From Trecruit trecruit order by id asc";
+		hql = "From Trecruit trecruit where trecruit.status = '1' order by id asc";
 		List<Trecruit> zhaopList = (List<Trecruit>)etechService.findListByHQL(hql);
 		session.setAttribute("zhaopList", zhaopList); 
 		

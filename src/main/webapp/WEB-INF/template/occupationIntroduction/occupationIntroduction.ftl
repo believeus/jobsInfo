@@ -337,7 +337,13 @@
 					[#if notices_index <4]
 						<td style="padding-right: 20px;">${notices.createTime?number_to_datetime}</td>
 						<td style="padding-right: 40px;">
-							<a href="/publicityInfo.jhtml?id=8">${notices.title}</a>
+							<a href="/publicityInfo.jhtml?id=8" title="${notices.title}">
+								[#if notices.title?length > 15]
+									${notices.title?string?substring(0,15)}...
+								[#else]
+									${notices.title}
+								[/#if]
+							</a>
 						</td>
 					[/#if]
 					[/#list]
@@ -348,14 +354,14 @@
 			<table align="left"  style="font-size: 13px; padding: 4px;">
 				<tr>
 					<td style="padding-right: 10px;">地区频道：</td>
-					<td style=""><a href="/advancedSearch.jhtml?id=">湖北</a></td>
-					<td style=""><a href="/advancedSearch.jhtml?id=">武汉</a></td>
-					<td style=""><a href="/advancedSearch.jhtml?id=">潜江</a></td>
-					<td style=""><a href="/advancedSearch.jhtml?id=">荆州</a></td>
-					<td style=""><a href="/advancedSearch.jhtml?id=">天门</a></td>
-					<td style=""><a href="/advancedSearch.jhtml?id=">十堰</a></td>
-					<td style=""><a href="/advancedSearch.jhtml?id=">黄石</a></td>
-					<td style=""><a href="/advancedSearch.jhtml?id=">襄阳</a></td>
+					<td style=""><a href="/advanceSearchByContision.jhtml?area='湖北'&type='position'">湖北</a></td>
+					<td style=""><a href="/advanceSearchByContision.jhtml?area='武汉'&type='position'">武汉</a></td>
+					<td style=""><a href="/advanceSearchByContision.jhtml?area='潜江'&type='position'">潜江</a></td>
+					<td style=""><a href="/advanceSearchByContision.jhtml?area='荆州'&type='position'">荆州</a></td>
+					<td style=""><a href="/advanceSearchByContision.jhtml?area='天门'&type='position'">天门</a></td>
+					<td style=""><a href="/advanceSearchByContision.jhtml?area='十堰'&type='position'">十堰</a></td>
+					<td style=""><a href="/advanceSearchByContision.jhtml?area='黄石'&type='position'">黄石</a></td>
+					<td style=""><a href="/advanceSearchByContision.jhtml?area='襄阳'&type='position'">襄阳</a></td>
 				</tr>
 			</table>	
 		</div>
@@ -437,10 +443,10 @@
 							<input type="submit" value="搜索" style="cursor:pointer;border-radius:4px;width:100px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
 							<input type="button" value="高级搜索" onclick="javascript:window.location.href='/advancedSearch.jhtml'" style="cursor:pointer;border-radius:4px;width:100px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
 							<p>搜索热词：
-								<span><a href="">软件工程师</a></span>
-								<span><a href="">建筑工程师</a></span>
-								<span><a href="">厨师</a></span>
-								<span><a href="">出租车司机</a></span>
+								<span><a href="/advanceSearchByContision.jhtml?keyword='软件工程师'&type='position'">软件工程师</a></span>
+								<span><a href="/advanceSearchByContision.jhtml?keyword='建筑工程师'&type='position'">建筑工程师</a></span>
+								<span><a href="/advanceSearchByContision.jhtml?keyword='厨师'&type='position'">厨师</a></span>
+								<span><a href="/advanceSearchByContision.jhtml?keyword='出租车司机'&type='position'">出租车司机</a></span>
 							</p>
 						</div>
 					</form>
@@ -499,7 +505,17 @@
 				<p style="background:url(/resource/public/images/beijingse.png)">招聘会</p>
 				<ul style="padding-left:15px;margin:0;">
 					[#list zhaopinhuiService as zph]
-						<li><a href="/zhaopinhui.jhtml?id=${zph.id}">${zph.title}</a><span>${zph.createTime?number_to_datetime}</span></li>
+					[#if zph_index <6]
+						<li>
+							<a href="/zhaopinhui.jhtml?id=${zph.id}">
+								[#if zph.title?length > 10]
+									${zph.title?string?substring(0,10)}...
+								[#else]
+									${zph.title}
+								[/#if]
+							</a>
+							<span>${zph.createTime?number_to_datetime}</span></li>
+					[/#if]
 					[/#list]
 				</ul>
 			</div>
@@ -540,41 +556,6 @@
 					<img src="${headImg.url}" width="195" height="33">
 				</a>
 			[/#list]
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad01.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad03.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad04.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad02.png"></a>
-			
-			
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad04.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad03.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad05.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad02.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad01.png"></a>
-			
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad05.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad01.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad03.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad04.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad02.png"></a>
-			
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad01.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad03.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad04.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad02.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad05.png"></a>
-			
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad03.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad01.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad02.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad05.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad04.png"></a>
-			
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad04.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad03.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad05.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad02.png"></a>
-			<a href="/enterpriseInformation.jhtml?id=1"><img src="/resource/public/images/ad01.png"></a>
 		</div>
 		<div class="j_main_6">
 			<div class="j_main_6_1" style="background:url(/resource/public/images/intro.png);">
@@ -619,7 +600,7 @@
 				[#list qiuzhiList as qiuzhi]
 					<div class="jianli_list">
 						<span class="jianli_name">
-							<a style="color:#FF7800;" href="/personalResume.jhtml?id=${qiuzhi.id}">[#if qiuzhi.trueName?exists] ${qiuzhi.trueName} [#else] 隔壁老王 [/#if]</a>
+							<a style="color:#FF7800;" href="/personalResume.jhtml?id=${qiuzhi.id}">[#if qiuzhi.trueName?exists] ${qiuzhi.trueName} [#else] 匿名 [/#if]</a>
 						</span>
 						<span class="jianli_xinxi">
 							&nbsp;&nbsp;[#if qiuzhi.sex == 'man']男[#else]女[/#if]
@@ -656,8 +637,17 @@
 					<img style="float: left; margin-top: 2px;" src="/resource/public/images/meinv.png">
 					<ul  style="float: left; padding-left: 10px; margin: 5px;width:175px;">
 						[#list qiuzhizhidaoService as qzzd]
-							<li><a href="/qiuzhizhidao.jhtml?id=${qzzd.id}">${qzzd.title}</a>
+						[#if qzzd_index < 6]
+							<li>
+								<a href="/qiuzhizhidao.jhtml?id=${qzzd.id}" title="${qzzd.title}">
+									[#if qzzd.title?length > 7]
+										${qzzd.title?string?substring(0,6)}...
+									[#else]
+										${qzzd.title}
+									[/#if]
+								</a>
 							<span style="float:right;">${qzzd.createTime?number_to_datetime}</span></li>
+						[/#if]
 						[/#list]
 					</ul>
 				</div>
@@ -674,7 +664,14 @@
 					<img style="float: left; margin-top: 2px;" src="/resource/public/images/meinv.png">
 					<ul  style="float: left; padding-left: 10px; margin: 5px;width:175px;">
 						[#list jianlizhinanService as jlzn]
-							<li><a href="/jianlizhinan.jhtml?id=${jlzn.id}">${jlzn.title}</a>
+							<li>
+								<a href="/jianlizhinan.jhtml?id=${jlzn.id}" title="${jlzn.title}">
+									[#if jlzn.title?length > 7]
+										${jlzn.title?string?substring(0,7)}...
+									[#else]
+										${jlzn.title}
+									[/#if]
+								</a>
 							<span style="float:right;">${jlzn.createTime?number_to_datetime}</span></li>
 						[/#list]
 					</ul>
@@ -692,7 +689,14 @@
 					<img style="float: left; margin-top: 2px;" src="/resource/public/images/meinv.png">
 					<ul  style="float: left; padding-left: 10px; margin: 5px;width:175px;">
 						[#list mianshibaodianService as msbd]
-							<li><a href="/mianshibaodian.jhtml?id=${msbd.id}">${msbd.title}</a>
+							<li>
+								<a href="/mianshibaodian.jhtml?id=${msbd.id}" title="${msbd.title}">
+									[#if msbd.title?length > 7]
+										${msbd.title?string?substring(0,7)}...
+									[#else]
+										${msbd.title}
+									[/#if]
+								</a>
 							<span style="float:right;">${msbd.createTime?number_to_datetime}</span></li>
 						[/#list]
 					</ul>

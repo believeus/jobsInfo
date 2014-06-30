@@ -162,10 +162,15 @@
 		    width: 118px;
 		    padding: 5px 10px;
 		}
-		.zhiyuan_div td {
+		.zhiyuan_div th {
 		    text-align: center;
 		    width: 118px;
 		    padding: 5px 10px;
+		}
+		.zhiyuan_div td {
+		    font-size: 12px;
+		    padding: 5px;
+		    text-align: center;
 		}
 		.btn_login {
 		    background: none repeat scroll 0 0 #b2e85c;
@@ -175,6 +180,11 @@
 		    cursor: pointer;
 		    margin-right: 10px;
 		    width: 60px;
+		}
+		.xuexi_div th{
+			text-align: center;
+		    width: 153px;
+		    padding: 5px 10px;
 		}
     </style>
 </head>
@@ -283,7 +293,7 @@
 					</tr>
 					<tr>
 						<td align="center" colspan="2" style="padding-top: 20px;">
-							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 75px;height:27px;" 
+							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 83px;height:27px;" 
 							value="[#if sessionUser.class.name == "com.etech.entity.TcomUser"]个人中心[#elseif sessionUser.class.name == "com.etech.entity.TentUser"]企业中心[#else]管理员后台[/#if]"
 							onclick="javascript:[#if sessionUser.class.name == "com.etech.entity.TcomUser"]window.location.href='/common-user/center.jhtml';[#elseif sessionUser.class.name == "com.etech.entity.TentUser"] window.location.href='/enterprise-user/center.jhtml';[#else]window.location.href='/admin/common/main.jhtml';[/#if]" 
 							>
@@ -327,27 +337,15 @@
 			[/#if]
 			<div class="j_main_left_1" style="margin-top:10px;height:auto;text-align:center;border:1px solid #E4630F;border-radius:4px;">
 				<p style="background: #EE981F; text-align: center; margin: 5px; padding: 5px; border-radius: 5px; border: 0px none; color: #FFFFFF;">职位推荐</p>
+				[#list recommendTrecruit as recruit]
 				<div class="j_main_left_1_1">
-					<p style="color: blue;font-weight:bold;">室内设计师</p>
-					<p style="color: blue;">中南集团营销公司</p>
-					<p>薪资待遇：面议</p>
-					<p>招聘人数：若干人</p>
-					<p>学历要求：中专</p>
+					<p style="color: blue;font-weight:bold;">${recruit.workType.name}</p>
+					<p style="color: blue;">${recruit.company}</p>
+					<p>薪资待遇:${recruit.salary}</p>
+					<p>招聘人数：${recruit.worknum}</p>
+					<p>学历要求：${recruit.eduLevel}</p>
 				</div>
-				<div class="j_main_left_1_1">
-					<p style="color: blue;font-weight:bold;">室内设计师</p>
-					<p style="color: blue;">中南集团营销公司</p>
-					<p>薪资待遇：面议</p>
-					<p>招聘人数：若干人</p>
-					<p>学历要求：中专</p>
-				</div>
-				<div class="j_main_left_1_1" style="border-bottom:0;">
-					<p style="color: blue;font-weight:bold;">室内设计师</p>
-					<p style="color: blue;">中南集团营销公司</p>
-					<p>薪资待遇：面议</p>
-					<p>招聘人数：若干人</p>
-					<p>学历要求：中专</p>
-				</div>
+				[/#list]
 			</div>
 		</div>
 		<div class="j_main_right" id="conentDiv">
@@ -362,7 +360,7 @@
 					<div id="personal_xinxi" class="j_main_right_2_1_1 currentSwich" style="cursor:pointer;">个人简历</div>
 				</div>
 				<p>
-					<span style="font-size: 20px;">${tcomUser.trueName}</span>
+					<span style="font-size: 20px;">[#if tcomUser.trueName?exists] ${tcomUser.trueName} [#else]匿名[/#if]</span>
 				</p>
 				
 				<div id="base_xinxi" style="width::728px;height:auto;overflow:hidden;">
@@ -375,9 +373,9 @@
 							<table cellspacing="0" width="500px">
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;">姓名:</td>
-									<td>${tcomUser.trueName}</td>
+									<td>[#if tcomUser.trueName?exists] ${tcomUser.trueName} [#else]匿名[/#if]</td>
 									<td style="background: #EEEEEE; text-align: right;">性别:</td>
-									<td>${tcomUser.sex}</td>
+									<td>[#if tcomUser.sex == "woman"] 女 [#else]男[/#if]</td>
 								</tr>
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;">二女户:</td>
@@ -440,12 +438,21 @@
 						<div class="zhiyuan_div" style="width:690px;height:100px;border:1px solid #e4e4e4;overflow:hidden;margin:0 20px;margin-bottom:15px;">
 							<table cellspacing="0">
 								<tr style="background:#eeeeee;">
-									<td>专业</td>
-									<td>工种</td>
-									<td>月薪要求</td>
-									<td>择业地区</td>
-									<td>其他要求</td>
+									<th>专业</th>
+									<th>工种</th>
+									<th>月薪要求</th>
+									<th>择业地区</th>
+									<th>其他要求</th>
 								</tr>
+								[#list tcomUser.comInfo as comInfo]
+								<tr>
+									<td>${comInfo.majorType.name}</td>
+									<td>${comInfo.workType.name}</td>
+									<td>${comInfo.expectSalary}</td>
+									<td>${comInfo.expectArea}</td>
+									<td>[#if comInfo.note?exists]${comInfo.note}[#else]无[/#if]</td>
+								</tr>
+								[/#list]
 							</table>
 						</div>
 					</div>
@@ -455,15 +462,24 @@
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 					</div>
 					<div class="jineng">
-						<div class="jineng_div" style="width:690px;height:100px;border:1px solid #e4e4e4;overflow:hidden;margin:0 20px;margin-bottom:15px;">
+						<div class="zhiyuan_div" style="width:690px;height:100px;border:1px solid #e4e4e4;overflow:hidden;margin:0 20px;margin-bottom:15px;">
 							<table cellspacing="0">
 								<tr style="background:#EEEEEE;">
-									<td>专业</td>
-									<td>工种</td>
-									<td>技能等级</td>
-									<td>从事年限</td>
-									<td>说明</td>
+									<th>专业</th>
+									<th>工种</th>
+									<th>技能等级</th>
+									<th>从事年限</th>
+									<th>说明</th>
 								</tr>
+								[#list tcomUser.comInfo as comInfo]
+								<tr>
+									<td>${comInfo.majorType.name}</td>
+									<td>${comInfo.workType.name}</td>
+									<td>${comInfo.skillLevel}</td>
+									<td>${comInfo.workingLife}</td>
+									<td>[#if comInfo.note?exists]${comInfo.note}[#else]无[/#if]</td>
+								</tr>
+								[/#list]
 							</table>
 						</div>
 					</div>
@@ -477,11 +493,19 @@
 					<div class="xuexi_div" style="width:690px;height:100px;border:1px solid #e4e4e4;overflow:hidden;margin:0 20px;margin-bottom:15px;">
 						<table cellspacing="0">
 							<tr style="background:#EEEEEE;">
-								<td>时间</td>
-								<td>学校</td>
-								<td>系别</td>
-								<td>专业</td>
+								<th>时间</th>
+								<th>学校</th>
+								<th>系别</th>
+								<th>专业</th>
 							</tr>
+							[#list tcomUser.comInfo as comInfo]
+							<tr>
+								<td>${comInfo.beginData}--${comInfo.endData}</td>
+								<td>xx大学</td>
+								<td>${comInfo.dept}</td>
+								<td>${comInfo.majorType.name}</td>
+							</tr>
+							[/#list]
 						</table>
 					</div>
 					</div>
@@ -491,15 +515,24 @@
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 					</div>
 					<div class="gongzuo">
-					<div class="gongzuo_div" style="width:690px;height:100px;border:1px solid #e4e4e4;overflow:hidden;margin:0 20px;margin-bottom:15px;">
+					<div class="zhiyuan_div" style="width:690px;height:100px;border:1px solid #e4e4e4;overflow:hidden;margin:0 20px;margin-bottom:15px;">
 						<table cellspacing="0">
 							<tr style="background:#EEEEEE;">
-								<td>时间</td>
-								<td>工作单位</td>
-								<td>职位</td>
-								<td>工种</td>
-								<td>工作内容</td>
+								<th>时间</th>
+								<th>工作单位</th>
+								<th>职位</th>
+								<th>工种</th>
+								<th>工作内容</th>
 							</tr>
+							[#list tcomUser.comInfo as comInfo]
+							<tr>
+								<td>${comInfo.beginData}--${comInfo.endData}</td>
+								<td>${comInfo.workspace}</td>
+								<td>${comInfo.duty}</td>
+								<td>${comInfo.workType.name}</td>
+								<td>[#if comInfo.note?exists]${comInfo.note}[#else]无[/#if]</td>
+							</tr>
+							[/#list]
 						</table>
 					</div>
 					</div>

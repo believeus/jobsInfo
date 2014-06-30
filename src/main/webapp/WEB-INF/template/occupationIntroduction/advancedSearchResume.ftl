@@ -7,6 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-1.7.2.min.js"></script>
    	<link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
+   	<link href="/resource/public/selectArea/css/cityLayout.css" type="text/css" rel="stylesheet">
     <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="/resource/public/areaSelect/css.css" />
 	<script type="text/javascript" src="/resource/public/areaSelect/drag.js"></script>
@@ -117,7 +118,7 @@
 		}
 		.t_table th {
 		    padding: 5px;
-		    width: 194px;
+		    width: 239px;
 		}
 		.t_table tr {
 		    line-height: 35px;
@@ -129,6 +130,19 @@
 		    border: 0 none;
 		    color: blue;
 		    text-decoration: underline;
+		}
+		.list input {
+		    width: 80px;
+		}
+		#start1{
+			background: none repeat scroll 0 0 #88bbd4;
+		    border-radius: 4px;
+		    color: #fff;
+		    font-weight: bold;
+		    border:1px solid #88bbd4;
+		    text-align:center;
+		    line-height: 21px;
+		    cursor:pointer;
 		}
     </style>
 </head>
@@ -334,12 +348,20 @@
 				<table align="left"  style="font-size: 13px; padding: 4px;">
 					<tr>
 						<td style="padding-right: 20px; padding-left: 10px;">最新消息：</td>
-						<td style="padding-right: 20px;">05月21日</td>
-						<td style="padding-right: 40px;">潜江人才招聘会第二期.....</td>
-						<td style="padding-right: 20px;">05月21日</td>
-						<td style="padding-right: 40px;">潜江人才招聘会第二期.....</td>
-						<td style="padding-right: 20px;">05月21日</td>
-						<td style="padding-right: 40px;">潜江人才招聘会第二期.....</td>
+						[#list notices as notices]
+						[#if notices_index <4]
+							<td style="padding-right: 20px;">${notices.createTime?number_to_datetime}</td>
+							<td style="padding-right: 40px;">
+								<a href="/publicityInfo.jhtml?id=${notices.id}" title="${notices.title}">
+									[#if notices.title?length > 15]
+										${notices.title?string?substring(0,15)}...
+									[#else]
+										${notices.title}
+									[/#if]
+								</a>
+							</td>
+						[/#if]
+						[/#list]
 					</tr>
 				</table>
 			</div>
@@ -393,9 +415,56 @@
 							</div>
 						</td>
 						<td>
-							<script type="text/javascript" src="/resource/public/areaSelect/city_func.js"></script>
-							<input id="btn_residency" type="text" placeholder="请选择区域.." name="area" onclick="residencySelect()">
-							<input id="residency" type="hidden" name="residency" value="" />
+							<input type="text" name="expectArea" id="start1" value="选择城市" autocomplete="off" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" style="width:auto;min-width:150px;">
+							<!--/////地区插件///////////////////////////////////////////////////////////////////-->
+								<div class="provinceCityAll">
+								  <div class="tabs clearfix">
+								    <ul class="">
+								      <li><a href="javascript:" class="current" tb="hotCityAll">热门城市</a></li>
+								      <li><a href="javascript:" tb="provinceAll">省份</a></li>
+								      <li><a href="javascript:" tb="cityAll" id="cityAll">城市</a></li>
+								      <li><a href="javascript:" tb="countyAll" id="countyAll">区县</a></li>
+								    </ul>
+								  </div>
+								  <div class="con">
+								    <div class="hotCityAll invis">
+								      <div class="pre"><a></a></div>
+								      <div class="list">
+								        <ul>
+								         
+								        </ul>
+								      </div>
+								      <div class="next"><a class="can"></a></div>
+								    </div>
+								    <div class="provinceAll invis">
+								      <div class="pre"><a></a></div>
+								      <div class="list">
+								        <ul>
+								        
+								        </ul>
+								      </div>
+								      <div class="next"><a class="can"></a></div>
+								    </div>
+								    <div class="cityAll invis">
+								      <div class="pre"><a></a></div>
+								      <div class="list">
+								        <ul>
+								          
+								        </ul>
+								      </div>
+								      <div class="next"><a class="can"></a></div>
+								    </div>
+								    <div class="countyAll invis">
+								      <div class="pre"><a></a></div>
+								      <div class="list">
+								        <ul>
+								        </ul>
+								      </div>
+								      <div class="next"><a class="can"></a></div>
+								    </div>
+								  </div>
+								</div>
+							<!--////////////////////////////////////////////////////////////////////////-->
 						</td>
 						<td><input type="submit" value="搜索" style="width: 80px;"></td>
 					</tr>
@@ -578,5 +647,6 @@
 	<div id="sublist" style="display:none"></div>
 	
 	[#include "/include/footer.ftl" /]
+	<script src="/resource/public/selectArea/js/public.js"></script>
 </body>
 </html>

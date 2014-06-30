@@ -130,6 +130,11 @@ public class ControllerSearch {
 		request.setAttribute("keyword", keyword);
 		request.setAttribute("majorTypeId", majorTypeId);
 		request.setAttribute("workTypeId", workTypeId);
+		String hql="From TdataCenter dataCenter where dataCenter.type='2'";
+		@SuppressWarnings("unchecked")
+		List<TdataCenter> notices = (List<TdataCenter>)etechService.findListByHQL(hql);
+		request.setAttribute("notices",notices ); 
+		
 		// 岗位搜索和公司搜索
 		if ("position".equals(type)||"company".equals(type)) {
 			log.debug("根据关键字搜索招聘岗位");

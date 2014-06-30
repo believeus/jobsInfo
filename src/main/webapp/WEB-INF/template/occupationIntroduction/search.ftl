@@ -180,10 +180,10 @@
 						[/#list]
 						<img style="width: 660px;" src="/resource/public/images/line.png">
 						<p style="padding-left:25px;">
-							<a href="">首页</a>
-							<a href="">上一页</a>
-							<a href="">下一页</a>
-							<a href="">末页</a>
+							<a href="#">首页</a>
+							<a href="#">上一页</a>
+							<a href="#">下一页</a>
+							<a href="#">末页</a>
 							<select name="">
 								<option value="">1</option>
 								<option value="">2</option>

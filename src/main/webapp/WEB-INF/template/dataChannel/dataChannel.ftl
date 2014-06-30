@@ -161,7 +161,10 @@ a:link{
              </div>
              <div style="width:215px; float:left; border:1px solid #e4e4e4; height:357px; margin-top:10px;background:#FFF6E5;">
                 <div class="middle_" style="text-align:center; padding-top:8px; height:22px;"> 
-                    <div>每月职业供给排行榜<span style="float:right;"><a href="/gongjipaihangList.jhtml">更多</a></span></div>
+                    <div>
+                    	<img style="float: left; margin-left: 10px;" src="/resource/public/images/sanjiaojian.png">
+                    	每月职业供给排行榜<span style="float:right;"><a href="/gongjipaihangList.jhtml">更多</a></span>
+                	</div>
                 </div>
                 <div class="gg" style="">
                   <ul class="gongji" style="font-size:13px; letter-spacing:0px; list-style-type:none;margin:0;padding-left:15px;padding-right:15px;">
@@ -182,7 +185,10 @@ a:link{
              </div>
              <div style="width:215px; float:left; border:1px solid #e4e4e4; height:370px; margin-top:10px;background:#FFF6E5;">
                 <div class="middle_" style="text-align:center; padding-top:8px; height:22px;"> 
-                    <div>每月职业需求排行榜<span style="float:right;"><a href="/xuqiupaihangList.jhtml">更多</a></span></div>
+                    <div>
+                    	<img style="float: left; margin-left: 10px;" src="/resource/public/images/sanjiaojian.png">
+                    	每月职业需求排行榜<span style="float:right;"><a href="/xuqiupaihangList.jhtml">更多</a></span>
+                	</div>
                 </div>
                 <div class="gg">
                   <ul class="gongji" style="font-size:13px; letter-spacing:0px; list-style-type:none;margin:0;padding-left:15px;padding-right:15px;">

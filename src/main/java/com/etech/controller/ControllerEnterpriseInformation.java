@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.etech.entity.TdataCenter;
 import com.etech.entity.TentImgVedio;
 import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
@@ -35,6 +34,9 @@ public class ControllerEnterpriseInformation {
 		String hql="From TentImgVedio vedio where vedio.type='1'";
 		List<TentImgVedio> vedios = (List<TentImgVedio>)etechService.findListByHQL(hql);
 		request.setAttribute("vedios", vedios);
+		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+id+"  and info.type='2'";
+		List<TentImgVedio> Maps=(List<TentImgVedio>)etechService.findListByHQL(hql);
+		request.setAttribute("Maps", Maps);
 		return "occupationIntroduction/enterpriseInformation";
 	}
 }
