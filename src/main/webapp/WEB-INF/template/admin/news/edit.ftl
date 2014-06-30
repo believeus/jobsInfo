@@ -82,14 +82,6 @@ $().ready(function() {
 				<td>
 					<input type="text" name="author" class="text" maxlength="200" value="${dataCenter.author}" />
 				</td>
-			</tr>
-				<th>
-					是否置顶:
-				</th>
-				<td>
-					<input id="checked_true" type="checkbox" name="top"  [#if dataCenter.top == 1]value="1" checked="true"[#else]value="0"[/#if]>
-				</td>
-			</tr>
 			<tr id="pathTr">
 				<th>
 					<span class="requiredField">*</span>相关图片:

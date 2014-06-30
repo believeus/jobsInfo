@@ -108,7 +108,7 @@
         	<h3 style="margin-left:15px;">视频列表</h3>
             <div>
               <ul id="ul_1">
-      			[#list vedios as vedio]
+      			[#list videolList as vedio]
 	                <li>
 	                  <div class="div1">
 	                  	<a href="/videosInfo.jhtml?id=${vedio.id}">

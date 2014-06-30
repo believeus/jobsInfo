@@ -82,14 +82,6 @@ $().ready(function() {
 					<input type="text" name="author" class="text" maxlength="200" />
 				</td>
 			</tr>
-			<tr>
-				<th>
-					是否置顶:
-				</th>
-				<td colspan="3">
-					<input type="checkbox" name="top" value="0">
-				</td>
-			</tr>
 			<tr id="pathTr">
 				<th>
 					<span class="requiredField">*</span>视频截图:

@@ -82,16 +82,6 @@ $().ready(function() {
 					<input type="text" name="author" class="text" maxlength="200" />
 				</td>
 			</tr>
-			[#if size <=6]
-				<tr>
-					<th>
-						是否置顶:
-					</th>
-					<td>
-						<input id="checked_true" type="checkbox" name="top" value="0">
-					</td>
-				</tr>
-			[/#if]
 			<tr id="pathTr">
 				<th>
 					<span class="requiredField">*</span>相关图片:

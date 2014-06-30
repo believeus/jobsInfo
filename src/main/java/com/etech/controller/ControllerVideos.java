@@ -42,9 +42,9 @@ public class ControllerVideos {
 		request.setAttribute("imgVedio", imgVedio);
 		
 		String hql="From TdataCenter dataCenter where dataCenter.type='4'";
-		List<TdataCenter> videos = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
-		request.setAttribute("videos", videos);
-		
+		List<TdataCenter> videolList = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
+		request.setAttribute("videolList", videolList);
+		System.out.println(videolList.size()+"--------------size");
 		return "infoCenter/videosInfo";
 	}
 	

@@ -34,6 +34,7 @@ public class ControllerImgShow {
 			pathList.add(date[i]);
 		}
 		session.setAttribute("pathList", pathList);
+		session.setAttribute("size", pathList.size());
 		
 		return "infoCenter/imageInfo";
 	}

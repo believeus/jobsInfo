@@ -500,8 +500,14 @@
 							</tr>
 							[#list tcomUser.comInfo as comInfo]
 							<tr>
-								<td>${comInfo.beginData}--${comInfo.endData}</td>
-								<td>xx大学</td>
+								<td>
+									[#if comInfo.beginData = 0]
+										求职者未填写
+									[#else]
+										${comInfo.beginData?number_to_datetime}---${comInfo.endData?number_to_datetime}
+									[/#if]
+								</td>
+								<td>求职者未填写</td>
 								<td>${comInfo.dept}</td>
 								<td>${comInfo.majorType.name}</td>
 							</tr>
@@ -526,7 +532,13 @@
 							</tr>
 							[#list tcomUser.comInfo as comInfo]
 							<tr>
-								<td>${comInfo.beginData}--${comInfo.endData}</td>
+								<td>
+									[#if comInfo.beginData = 0]
+										求职者未填写
+									[#else]
+										${comInfo.beginData?number_to_datetime}---${comInfo.endData?number_to_datetime}
+									[/#if]
+								</td>
 								<td>${comInfo.workspace}</td>
 								<td>${comInfo.duty}</td>
 								<td>${comInfo.workType.name}</td>
