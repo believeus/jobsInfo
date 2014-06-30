@@ -1218,7 +1218,58 @@
 								</tr>
 								<tr>
 									<td>所属地区:</td>
-									<td><input type="text"  value="${sessionUser.area}" id="area" name="area"></td>
+									<td>
+										<input type="text" name="workspace" value="${sessionUser.area}"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" name="expectArea">
+									<!--////////////////////////////////////////////////////////////////////////-->
+										<div class="provinceCityAll">
+										  <div class="tabs clearfix">
+										    <ul class="">
+										      <li><a href="javascript:" class="current" tb="hotCityAll">热门城市</a></li>
+										      <li><a href="javascript:" tb="provinceAll">省份</a></li>
+										      <li><a href="javascript:" tb="cityAll" id="cityAll">城市</a></li>
+										      <li><a href="javascript:" tb="countyAll" id="countyAll">区县</a></li>
+										    </ul>
+										  </div>
+										  <div class="con">
+										    <div class="hotCityAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										         
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										    <div class="provinceAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										        
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										    <div class="cityAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										          
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										    <div class="countyAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										  </div>
+										</div>
+									<!--////////////////////////////////////////////////////////////////////////-->
+									</td>
 									<td>行业:</td>
 									<td><input type="text"  value="${sessionUser.trade}" id="trade" name="trade"></td>
 								</tr>

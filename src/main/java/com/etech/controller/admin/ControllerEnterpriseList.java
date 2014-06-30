@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.etech.entity.TentImgVedio;
 import com.etech.entity.TentUser;
 import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
@@ -24,6 +25,7 @@ import com.etech.service.EtechService;
 @RequestMapping("/admin/enterpriseList")
 public class ControllerEnterpriseList {
 	private static Log log = LogFactory.getLog(ControllerEnterpriseList.class);
+	
 	@Resource
 	private EtechService etechService;
 	/**
@@ -66,8 +68,19 @@ public class ControllerEnterpriseList {
 	 */
 	@RequiresPermissions("enterpriseList:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public String editNewsView() {
+	public String editNewsView(HttpServletRequest request) {
 		log.debug("current controller is newsListView !");
+		
+		String id=request.getParameter("id");
+		System.out.println(etechService+"=etechService");
+		TentUser tentUsers=(TentUser)etechService.findObjectById(TentUser.class, Integer.parseInt(id));
+		request.setAttribute("tentUsers", tentUsers);
+		String hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+tentUsers.getId()+"  and info.type='2'";
+		@SuppressWarnings("unchecked")
+		List<TentImgVedio> Maps=(List<TentImgVedio>)etechService.findListByHQL(hql);
+		request.setAttribute("Maps", Maps);
+		log.debug("current controller is editNewsView !");
+		
 		return "admin/humanResources/edit";
 	}
 	

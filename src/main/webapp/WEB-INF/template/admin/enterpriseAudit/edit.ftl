@@ -7,7 +7,9 @@
 <meta name="copyright" content="e3dmall" />
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
 <link href="/resource/public/js/admin/themes/default/default.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/resource/public/js/admin/jquery.js"></script>
+<link href="/resource/public/selectArea/css/css.css" type="text/css" rel="stylesheet">
+<link href="/resource/public/selectArea/css/cityLayout.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="/resource/public/js/jquery.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/jquery.validate.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/kindeditor.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
@@ -46,7 +48,12 @@
 		top:0px !important;
 		left:90px !important;
 	}
-	
+	.list li {
+	    line-height: 23px;
+	}
+	.list input {
+		width:80px;
+	}
 	</style>
 	
 <script type="text/javascript">
@@ -221,7 +228,58 @@ $().ready(function() {
 					</tr>
 					<tr>
 						<td>所属地区:</td>
-						<td><input type="text"  value="${tentUsers.area}" id="area" name="area"></td>
+						<td>
+							<input type="text" name="area" value="${tentUsers.area}"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" name="expectArea">
+							<!--////////////////////////////////////////////////////////////////////////-->
+								<div class="provinceCityAll">
+								  <div class="tabs clearfix">
+								    <ul class="">
+								      <li><a href="javascript:" class="current" tb="hotCityAll">热门城市</a></li>
+								      <li><a href="javascript:" tb="provinceAll">省份</a></li>
+								      <li><a href="javascript:" tb="cityAll" id="cityAll">城市</a></li>
+								      <li><a href="javascript:" tb="countyAll" id="countyAll">区县</a></li>
+								    </ul>
+								  </div>
+								  <div class="con">
+								    <div class="hotCityAll invis">
+								      <div class="pre"><a></a></div>
+								      <div class="list">
+								        <ul>
+								         
+								        </ul>
+								      </div>
+								      <div class="next"><a class="can"></a></div>
+								    </div>
+								    <div class="provinceAll invis">
+								      <div class="pre"><a></a></div>
+								      <div class="list">
+								        <ul>
+								        
+								        </ul>
+								      </div>
+								      <div class="next"><a class="can"></a></div>
+								    </div>
+								    <div class="cityAll invis">
+								      <div class="pre"><a></a></div>
+								      <div class="list">
+								        <ul>
+								          
+								        </ul>
+								      </div>
+								      <div class="next"><a class="can"></a></div>
+								    </div>
+								    <div class="countyAll invis">
+								      <div class="pre"><a></a></div>
+								      <div class="list">
+								        <ul>
+								        </ul>
+								      </div>
+								      <div class="next"><a class="can"></a></div>
+								    </div>
+								  </div>
+								</div>
+							<!--////////////////////////////////////////////////////////////////////////-->
+						</td>
 						<td>行业:</td>
 						<td><input type="text"  value="${tentUsers.trade}" id="trade" name="trade"></td>
 					</tr>
@@ -260,7 +318,7 @@ $().ready(function() {
 								[#if Maps?exists&&Maps?size>0]
 									[#list Maps as map]
 									<div class="brandImg" id="Img">
-										<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片x</a>
+										<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
 										</span>
 											<img width="260px" height="30px" src="/${map.url}" name="url" id="${map.id}"/>
 											<input type="hidden" name="MapId" value="${map.id}">
@@ -284,11 +342,12 @@ $().ready(function() {
 							&nbsp;
 						</th>
 						<td colspan="3">
-							<input type="submit" class="button" value="确定x" />
+							<input type="submit" class="button" value="确定" />
 							<input type="button" id="backButton" class="button" value="返回" />
 						</td>
 					</tr>
 				</form>
 			</table>
+			<script src="/resource/public/selectArea/js/public.js"></script>
 </body>
 </html>

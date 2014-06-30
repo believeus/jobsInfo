@@ -106,7 +106,7 @@ $().ready(function() {
 					${user.unitType}
 				</td>
 				<td>
-					<a href="/admin/enterpriseAudit/edit.jhtml?id=${user.id}">[修改]</a>
+					<a href="/admin/enterpriseList/edit.jhtml?id=${user.id}">[修改]</a>
 				</td>
 			</tr>
 			[/#list]
