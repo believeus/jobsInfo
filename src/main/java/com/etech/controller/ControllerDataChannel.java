@@ -63,6 +63,8 @@ public class ControllerDataChannel {
 		List<TdataCenter> downLoad = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("downLoad", downLoad);
 		
+		// 每月需求排行榜:查询发布招聘最多的工种
+		hql="From Trecruit recruit from";
 		log.debug("current controller is dataChanelView !");
 		return "dataChannel/dataChannel";
 	}
