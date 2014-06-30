@@ -48,6 +48,9 @@ public class TbaseUser extends TbaseEntity implements Serializable{
 	private String address;
 	/**用户属于哪个角色*/
 	
+	/** 禁用和启用*/
+	private int disable;
+	
 	private Set<Trole> roles=new HashSet<Trole>();
 	
 	@NotEmpty
@@ -148,6 +151,12 @@ public class TbaseUser extends TbaseEntity implements Serializable{
 	}
 	public void setRoles(Set<Trole> roles) {
 		this.roles = roles;
+	}
+	public int getDisable() {
+		return disable;
+	}
+	public void setDisable(int disable) {
+		this.disable = disable;
 	}
 	
 	

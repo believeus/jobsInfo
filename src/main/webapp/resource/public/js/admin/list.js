@@ -43,7 +43,6 @@ $().ready( function() {
 					dataType: "json",
 					cache: false,
 					success: function(message) {
-						$.message(message);
 						if (message.type == "success") {
 							location.reload(true);
 						}

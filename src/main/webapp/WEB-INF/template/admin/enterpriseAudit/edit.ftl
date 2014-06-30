@@ -12,7 +12,7 @@
 <script type="text/javascript" src="/resource/public/js/admin/kindeditor.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
-
+<script type="text/javascript" src="/resource/public/js/admin/list.js"></script>
  <style type="text/css">
 	#Img{
 		border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
