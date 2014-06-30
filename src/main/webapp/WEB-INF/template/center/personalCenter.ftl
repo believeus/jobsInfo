@@ -1474,7 +1474,7 @@
 				[#list recommendTrecruit as recruit]
 				<div class="j_main_left_1_1">
 					<p style="color: blue;font-weight:bold;">${recruit.workType.name}</p>
-					<p style="color: blue;">${recruit.company}</p>
+					<p><font color="black">招聘单位:</font><a target="_blank" href="/enterpriseInformation.jhtml?id=${recruit.entUser.id}" style="color: blue;">${recruit.company}</a></p>
 					<p>薪资待遇:${recruit.salary}</p>
 					<p>招聘人数：${recruit.worknum}</p>
 					<p>学历要求：${recruit.eduLevel}</p>

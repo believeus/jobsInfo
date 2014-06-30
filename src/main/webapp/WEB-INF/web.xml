@@ -132,4 +132,8 @@
 		<exception-type>org.apache.shiro.authz.UnauthenticatedException</exception-type>
 		<location>/admin/common/unauthorized.jhtml</location>
 	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/</location>
+	</error-page>
 </web-app>

@@ -2,19 +2,13 @@ package com.etech.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
-
 import javax.annotation.Resource;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
-import com.etech.dao.EtechComDao;
 import com.etech.entity.TcomInfo;
 import com.etech.entity.Trecruit;
 
@@ -26,22 +20,30 @@ public class CommonUserService {
 	/*Begin Author:wuqiwei Data:2014-06-18 AddReason:根据填写的志愿信息获取推荐企业*/
 	@SuppressWarnings("unchecked")
 	public List<Trecruit> enterpriseRecommend(List<TcomInfo> comInfoList){
-		List<Trecruit> recruitList=new ArrayList<Trecruit>();
+		List<String> workTypeIds=new ArrayList<String>();
+		// 遍历该用户获取用户填写的志愿信息
 		for (Iterator<TcomInfo> iterator = comInfoList.iterator(); iterator.hasNext();) {
 			TcomInfo tcomInfo = (TcomInfo) iterator.next();
 			if(!StringUtils.isEmpty(tcomInfo.getWorkType())){
-				String hql="From Trecruit recruit where recruit.workType.id='"+tcomInfo.getWorkType().getId()+"'";
-				List<Trecruit> recruits = (List<Trecruit>)etechService.findListByHQL(hql, 15);
-				recruitList.addAll(recruits);
+				workTypeIds.add(String.valueOf(tcomInfo.getWorkType().getId()));
 			}
 		}
-		if(!recruitList.isEmpty()){
-			Collections.shuffle(recruitList);
-			if (recruitList.size()>3) {
-				recruitList.subList(0, 3);
+		// 查询志愿信息获取招聘信息
+		if(!workTypeIds.isEmpty()){
+			String ids=workTypeIds.toString().replace("[", "(").replaceAll("]", ")");
+			String hql="From Trecruit recruit left join fetch recruit.entUser  where recruit.workType.id in "+ids+"";
+			log.debug(hql);
+			List<Trecruit> recruits = (List<Trecruit>)etechService.findListByHQL(hql, 15);
+			// 随机获取三个招聘职位
+			if(!recruits.isEmpty()){
+				// 随机
+				Collections.shuffle(recruits);
+				if (recruits.size()>3) {
+					recruits.subList(0, 3);
+				}
 			}
+			return recruits;
 		}
-		// 随机
-		return recruitList;
-	} 
+		return null;
+	}
 }

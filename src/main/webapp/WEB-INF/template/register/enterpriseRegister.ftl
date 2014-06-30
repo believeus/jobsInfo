@@ -88,9 +88,9 @@ body {
 								loginName: $("#loginName").val(),
 								password:$("#password").val(),
 								comfirmPwd:$("#comfirmPwd").val(),
-								cpName:$("#cpName").val(),
-								LegalMan:$("#LegalMan").val(),
-								cpContacts:$("#cpContacts").val(),
+								fullName:$("#cpName").val(),
+								legalMan:$("#LegalMan").val(),
+								contacts:$("#cpContacts").val(),
 								phoneNum:$("#phoneNum").val(),
 								submit:submitx
 								},
@@ -160,7 +160,7 @@ body {
             </div>
             <div>
             	<span><font color="red">*</font>企业名称：</span>
-                <span><input type="text"  id="cpName" name="cpName"/></span>
+                <span><input type="text"  id="cpName" name="fullName"/></span>
             </div>
             <div>
             	<span>法人：</span>

@@ -299,6 +299,5 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	public int getAge() {
 		return age;
 	}
-	
-	
+
 }

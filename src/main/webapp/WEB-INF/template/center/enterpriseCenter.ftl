@@ -1107,7 +1107,7 @@
 				<p style="background: #EE981F; text-align: center; margin: 5px; padding: 5px; border-radius: 5px; border: 0px none; color: #FFFFFF;">人才推荐</p>
 				[#list talentRecommend as user]
 				<div class="j_main_left_1_1">
-					<p style="color: blue;">${user.loginName}</p>
+					<p><a target="_blank" style="color: blue;" href="/personalResume.jhtml?id=${user.id}">${user.loginName}</a></p>
 					<p style="color: blue;font-weight:bold;">${user.comInfo[0].workType.name}</p>
 					<p>薪资待遇：面议</p>
 					<p>学历：${user.eduLevel}</p>

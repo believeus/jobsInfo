@@ -407,6 +407,7 @@
 											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}">${zhaop.company}</a>&nbsp;&nbsp;
 											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zw">${zhaop.workType.name}</a>
 											<span class="xinxi_1_span">${zhaop.editTime?number_to_datetime}</span>
+
 										</li>
 									[/#list]
 								</ul>
