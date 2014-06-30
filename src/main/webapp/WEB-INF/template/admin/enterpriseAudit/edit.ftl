@@ -12,6 +12,43 @@
 <script type="text/javascript" src="/resource/public/js/admin/kindeditor.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
+
+ <style type="text/css">
+	#Img{
+		border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
+	    border-radius: 2px 2px 2px 2px;
+	    border-style: solid;
+	    border-width: 1px;
+	    background-color: #666666;
+	    width:260px !important;height:30px !important;
+	    position:relative;
+	}
+	
+	#Img span{
+		display:block;
+		position:absolute;
+		top:0px;left:0px;
+		width:240px !important;
+		height:30px !important;
+	}
+	
+	#Img span:hover{
+		background-color:#FFFFFF;
+	    opacity: 0.7;
+	    filter:alpha(opacity=50);
+	    -moz-opacity:0.5;
+	    -khtml-opacity: 0.5;
+	}
+	
+	#Img span a{
+		display:block;
+		position:absolute;
+		top:0px !important;
+		left:90px !important;
+	}
+	
+	</style>
+	
 <script type="text/javascript">
 $().ready(function() {
 	$("#relationship").val("${tentUsers.relationship}")
@@ -44,29 +81,97 @@ $().ready(function() {
 	
 	// 表单验证
 	$inputForm.validate({
-		rules: {
-			title: "required",
-			adPositionId: "required",
-			path: "required",
-			order: "digits"
+		submitHandler: function(form){  
+			submitInfo();
+   		} 
+	});
+	
+		
+		// 保存。
+		function submitInfo(){
+			var phoneNum =$("#phoneNum").val();
+			var regPartton=/^(?:13\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/; //验证手机号
+    		
+    		if($("#fullName").val() == ""){
+    			alert("请输入单位全称");
+    		}else if($("#shorName").val() == ""){
+    			alert("请输入单位简称");
+    		}else if($("#legalMan").val() == ""){
+    			alert("请输入法人代表");
+    		}else if($("#area").val() == ""){
+    			alert("请输入所属地区");
+    		}else if($("#trade").val() == ""){
+    			alert("请输入所属行业");
+    		}else if($("#regMoney").val() == ""){
+    			alert("请输入注册资金");
+    		}else if($("#detailAddress").val() == ""){
+    			alert("请输入详细地址");
+    		}else if($("#contacts").val() == ""){
+    			alert("请输入联系人");
+    		}else if($("#address").val() == ""){
+    			alert("请输入通讯地址");
+    		}else if($("#zip").val() == ""){
+    			alert("请输入邮政编码");
+    		}else if($("#phoneNum").val() == ""){
+    			alert("请输入手机号码");
+    		}else if(!regPartton.test(phoneNum)){
+				alert("手机号码格式不正确！");
+				return false;
+			}else if($("#phoneFax").val() == ""){
+    			alert("请输入电话/传真");
+    		}else if($("#webSite").val() == ""){
+    			alert("请输入网址");
+    		}else if($("#introduce").val() == ""){
+    			alert("请输入单位简介");
+    		}else{
+    			var tag=false;
+    			var selects = $("#inputForm select");//判断下拉框是否选值
+	    		selects.each(function(index,obj){
+	    			alert(index);
+	    			if($(this).val() == ""){
+	    				tag=true;
+	    				$(this).css("color","red");
+	    				if(index == 1){
+		    				alert("请选择下拉框信息");
+	    				}
+	    			}
+	    		});
+	    		// 判断是否完全通过。
+	    		if(tag==false){
+	    			alert(" 信息提交");
+					$("#inputForm").submit();
+		   		}
+    	  }
+			
 		}
-	});F
 	
 });
 </script>
+ <script type="text/javascript">
+     	// 图片上传
+		function loadImgFast(img,i){
+				if (img.files && img.files[0]){
+					var reader = new FileReader();
+					reader.onload = function(evt){$(".brandImg:eq("+i+") img")[0].src = evt.target.result;}
+		            reader.readAsDataURL(img.files[0]);	
+				}else if(window.navigator.userAgent.indexOf("MSIE")>=1){
+				   	file.select(); 
+		   			path = document.selection.createRange().text;
+		   			$(".brandImg:eq("+i+") img")[0].src = path;
+		   		} 
+			}
+	</script>
 </head>
 <body>
 	<div class="path">
 		<a href="/admin/common/main.jhtml">首页</a> &raquo; 编辑内容
 	</div>			
 		<table class="input">
-			<form id="inputForm" novalidate="novalidate"  action="/admin/enterpriseAudit/update.jhtml"   method="post">
-				<input type="hidden" name="id" value="${tentUsers.id}">
-				<input type="hidden" name="status" value="${tentUsers.status}">
-				<input type="hidden" name="loginName" value="${tentUsers.loginName}">
-				<input type="hidden" name="password" value="${tentUsers.password}">
-				<input type="hidden" name="idcard" value="${tentUsers.idcard}"/>
-				<input type="hidden" name="email" value="${tentUsers.email}"/>
+			<form id="inputForm" novalidate="novalidate"  action="/admin/enterpriseAudit/update.jhtml" encType="multipart/form-data"   method="post">
+					<input type="hidden" name="id" value="${sessionUser.id}">
+					<input type="hidden" name="status" value="${sessionUser.status}">
+					<input type="hidden" name="loginName" value="${sessionUser.loginName}">
+					<input type="hidden" name="password" value="">
 					<tr>
 						<td>单位全称:</td>
 						<td style="padding-right: 80px;"><input type="text" value="${tentUsers.fullName}" id="fullName" name="fullName"></td>
@@ -151,12 +256,38 @@ $().ready(function() {
 						<td style="vertical-align: top;">单位简介:</td>
 						<td colspan="3"><textArea cols="50" rows="5"  name="introduce" id="introduce" style="resize:none;">${tentUsers.introduce}</textArea></td>
 					</tr>
+						<tr>
+							<td style="vertical-align: top;">企业电子图:</td>
+							<td>
+							<input type="hidden" name="type" value="2">
+								[#if Maps?exists&&Maps?size>0]
+									[#list Maps as map]
+									<div class="brandImg" id="Img">
+										<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片x</a>
+										</span>
+											<img width="260px" height="30px" src="/${map.url}" name="url" id="${map.id}"/>
+											<input type="hidden" name="id" value="${map.id}">
+									</div>
+									<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">
+									<input type="hidden" id="filename0" name="filename0">
+									[/#list]
+								[#else]
+								<div class="brandImg" id="Img">
+									<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
+									</span>
+										<img width="260px" height="30px" src="/resource/public/images/bg.png" name="url" id="0"/>
+								</div>
+								<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">
+								<input type="hidden" id="filename0" name="filename0">
+								[/#if]
+							</td>
+						</tr>
 					<tr>
 						<th>
 							&nbsp;
 						</th>
 						<td colspan="3">
-							<input type="submit" class="button" value="确定" />
+							<input type="submit" class="button" value="确定x" />
 							<input type="button" id="backButton" class="button" value="返回" />
 						</td>
 					</tr>

@@ -30,6 +30,7 @@ public class ControllerEnterpriseList {
 	 * 企业列表
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
 		log.debug("current controller is newsListView !");

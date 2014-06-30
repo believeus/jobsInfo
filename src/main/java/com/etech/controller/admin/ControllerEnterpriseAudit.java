@@ -1,9 +1,14 @@
 package com.etech.controller.admin;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
+import mydfs.storage.server.MydfsTrackerServer;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -12,7 +17,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.etech.entity.TentImgVedio;
 import com.etech.entity.TentUser;
 import com.etech.service.EtechService;
 
@@ -25,6 +33,9 @@ public class ControllerEnterpriseAudit {
 	private static Log log = LogFactory.getLog(ControllerEnterpriseAudit.class);
 	@Resource
 	private EtechService etechService;
+	
+	@Resource
+	private MydfsTrackerServer mydfsTrackerServer;
 	/**
 	 * 企业审核列表
 	 * @return
@@ -58,12 +69,16 @@ public class ControllerEnterpriseAudit {
 	 * 编辑企业审核
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@RequiresPermissions("enterpriseAudit:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		String id=request.getParameter("id");
 		TentUser tentUsers=(TentUser)etechService.findObjectById(TentUser.class, Integer.parseInt(id));
 		request.setAttribute("tentUsers", tentUsers);
+		String hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+tentUsers.getId()+"  and info.type='2'";
+		List<TentImgVedio> Maps=(List<TentImgVedio>)etechService.findListByHQL(hql);
+		request.setAttribute("Maps", Maps);
 		log.debug("current controller is editNewsView !");
 		return "admin/enterpriseAudit/edit";
 	}
@@ -90,9 +105,33 @@ public class ControllerEnterpriseAudit {
 	 * 修改企业审核
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/update")
-	public String updateNewsView(TentUser formUser){
+	public String updateNewsView(TentUser formUser,HttpServletRequest request){
 		TentUser entUser=(TentUser) etechService.findObjectById(TentUser.class,formUser.getId());
+		String hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+entUser.getId()+"  and info.type='2'";
+		List<TentImgVedio> Maps=(List<TentImgVedio>)etechService.findListByHQL(hql);
+		TentImgVedio imgVedio = Maps.get(0); 
+		String storepath = "";
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		Map<String, MultipartFile> files = multipartRequest.getFileMap();
+		for (MultipartFile file : files.values()) {
+			InputStream inputStream;
+			try {
+				inputStream = file.getInputStream();
+				if(inputStream.available()==0)break;
+				org.junit.Assert.assertNotNull("upload file InputStream is null", inputStream);
+				String fileName = file.getName();
+				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
+				log.debug("upload file stuffix"+extention);
+				storepath = mydfsTrackerServer.upload(inputStream, extention);
+				imgVedio.setUrl(storepath);
+				entUser.getImgVedios().add(imgVedio);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		formUser.setEditDate(System.currentTimeMillis());
 		formUser.setRoles(entUser.getRoles());
 		formUser.setRecruit(entUser.getRecruit());

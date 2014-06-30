@@ -955,7 +955,6 @@
     			alert("请输入手机号码");
     		}else if(!regPartton.test(phoneNum)){
 				alert("手机号码格式不正确！");
-				return false;
 			}else if($("#phoneFax").val() == ""){
     			alert("请输入电话/传真");
     		}else if($("#webSite").val() == ""){
@@ -1233,8 +1232,8 @@
 									<td style="vertical-align: top;">单位简介:</td>
 									<td colspan="3"><textArea cols="50" rows="5"  name="introduce" id="introduce" style="resize:none;">${sessionUser.introduce}</textArea></td>
 								</tr>
-								<tr>
 							</form>
+									<tr>
 									<td style="vertical-align: top;">企业电子图:</td>
 									<td colspan="2">
 									<form novalidate="novalidate"  action="/enterprise-user/center/upload.jhtml" encType="multipart/form-data"  method="post" id="MapForm">
