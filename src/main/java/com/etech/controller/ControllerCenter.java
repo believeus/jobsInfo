@@ -192,15 +192,16 @@ public class ControllerCenter {
 		try {
 			// 如果为空就报错
 			Assert.notNull(entUser.getId(), "user.id is not null");
-			sessionUser = (TentUser) etechService.findObjectById(
-					TentUser.class, entUser.getId());
+			sessionUser = (TentUser) etechService.findObjectById(TentUser.class, entUser.getId());
 			String password = entUser.getPassword();
 			// 如果没有输入密码,使用原密码
-			password = StringUtils.isEmpty(password) ? sessionUser
-					.getPassword() : DigestUtils.md5Hex(password);
+			password = StringUtils.isEmpty(password) ? sessionUser.getPassword() : DigestUtils.md5Hex(password);
 			entUser.setPassword(password);
 			// 得到原来的数据。
-			entUser.setRoles(sessionUser.getRoles()); 
+			entUser.setRoles(sessionUser.getRoles());
+			log.debug("create date:"+sessionUser.getCreateDate());
+			entUser.setCreateDate(sessionUser.getCreateDate());
+			entUser.setEditDate(System.currentTimeMillis());
 			// 将注编辑的数据复制给sessionUser
 			BeanUtils.copyProperties(sessionUser, entUser);
 		} catch (IllegalAccessException e) {
