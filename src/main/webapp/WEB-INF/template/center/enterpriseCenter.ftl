@@ -10,6 +10,8 @@
     <script type="text/javascript" src="/resource/public/js/jquery.form.js"></script>
     <script type="text/javascript"  src="/resource/public/js/Etech.js"></script>
     <link href="/resource/public/js/jquery-ui.css" rel="stylesheet" type="text/css" />  
+    <link href="/resource/public/selectArea/css/css.css" type="text/css" rel="stylesheet">
+    <link href="/resource/public/selectArea/css/cityLayout.css" type="text/css" rel="stylesheet">
     <link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
     <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />  
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu.js"></script> 
@@ -188,6 +190,12 @@
 		}
 		.uploadify {
 			margin-top:6px;
+		}
+		.list li {
+		    line-height: 23px;
+		}
+		.list input {
+			width:80px;
 		}
     </style>
     
@@ -830,7 +838,7 @@
 						</tr>
 						<tr>
 							<td>身高:</td>
-							<td><input type="text" name="height" placeholder="cm" onkeyup="value=this.value.replace(/\D+/g,"")" maxlength="3"></td>
+							<td><input type="text" name="height" onkeyup="value=this.value.replace(/\D+/g,"")" maxlength="3">cm</td>
 							<td>视力:</td>
 							<td><input type="text" name="eyesight" onkeyup="value=this.value.replace(/\D+./g,"")" maxlength="3"></td>
 						</tr>
@@ -864,8 +872,8 @@
 						</tr>
 						<tr>
 							<td style="vertical-align:top;">其他说明:</td>
-							<td colspan="2">
-								<textArea cols="30" style="resize:none;" name="note"></textArea>
+							<td colspan="3">
+								<textArea cols="" style="resize:none;" name="note"></textArea>
 							</td>
 							
 						</tr>
@@ -908,7 +916,7 @@
 		
 		
 			//封装ajax信息提交
-		function submitJobs(){
+		function submitJobs(value){
 			var viewData=new Date($("#beginDate").val().replace(/-/g,",")).getTime();
 			$("#viewData").val(viewData);
 			$("div.zhaopinxinxi").each(function(index){
@@ -919,7 +927,8 @@
 					     dataType: "json",
 					     success: function(data){
 					     	if(data.message=="success"){
-						     	location.reload(true);	     		
+						     	location.href="/enterprise-user/center.jhtml#"+value;
+						     	location.reload(true);
 					     	}
 					     }
 	        	});	
@@ -1024,6 +1033,7 @@
 		// 保存招聘信息。
     	$("#savaJobs").click(function() {
     	    var tag=false;
+    	    var value = "zhaopin_xinxi";
     		if($("#worknum1").val() == ""){
     			alert("请输入招聘人数");
     			tag=true;
@@ -1036,13 +1046,10 @@
     		}else if($("#workspace1").val() == ""){
     			alert("请输入工作地点");
     			tag=true;
-    		}else if($("#beginDate").val() == ""){
-    			alert("请选择面试时间");
-    			tag=true;
     		}else{
 	    		if(tag==false){
 	    			showdiv();
-	    			submitJobs();
+	    			submitJobs(value);
     			}
     		}
     		
@@ -1072,6 +1079,17 @@
     })
     
     </script>
+    <script type="text/javascript">
+    	$().ready(function(){
+    		if(window.location.hash == "#zhaopin_xinxi"){
+    			$("#qiye_xinxi").removeClass("currentSwich");
+    			$("#zhaopin_xinxi").removeClass("currentSwich");
+    			$("#zhaopin_xinxi").addClass("currentSwich");
+    			$("#base_xinxi").css("display","none");
+    			$("#bianji_xinxi").css("display","block");
+    		}
+    	});
+	</script>
 </head>
 <body>
 	[#include "/include/header.ftl" /]
@@ -1206,7 +1224,7 @@
 								</tr>
 								<tr>
 									<td>注册资金:</td>
-									<td><input type="text"  value="${sessionUser.regMoney}" id="regMoney" name="regMoney" placeholder="万元"></td>
+									<td><input type="text"  value="${sessionUser.regMoney}" id="regMoney" name="regMoney" placeholder="万元"><span style="padding:0;margin-left:-35px;color:#000000;">万元</span></td>
 									<td>详细地址:</td>
 									<td><input type="text"  value="${sessionUser.detailAddress}"id="detailAddress" name="detailAddress"></td>
 								</tr>
@@ -1220,7 +1238,7 @@
 									<td>邮编:</td>
 									<td><input type="text"  value="${sessionUser.zip}" id="zip" name="zip"></td>
 									<td>手机:</td>
-									<td><input type="text"  value="${sessionUser.phoneNum}" id="phoneNum" name="phoneNum"></td>
+									<td><input type="text"  value="${sessionUser.phoneNum}" id="phoneNum" name="phoneNum" onkeyup="value=this.value.replace(/\D+/g,'')"></td>
 								</tr>
 								<tr>
 									<td>电话/传真:</td>
@@ -1469,9 +1487,8 @@
 						<input type="hidden" name="isview" value="未发布">
 							<table>
 								<tr>
-									<td rowspan="9" style="color:#E2652E;">1</td>
 									<td>招聘单位:</td>
-									<td style="padding-right:80px;"><input type="text" id="company1" name="company" value="${sessionUser.fullName}"></td>
+									<td style="padding-right:80px;"><input type="text" id="company1" name="company" value="${sessionUser.fullName}" readonly="readonly"></td>
 									<td>人数:</td>
 									<td><input type="text" id="worknum1" name="worknum" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"></td>
 								</tr>
@@ -1509,7 +1526,16 @@
 									</div>
 								</td>
 									<td>技术等级:</td>
-									<td><input type="text" id="eteLevel1" name="eteLevel"></td>
+									<td>
+										<select style="width:183px;" name="eteLevel" id="eteLevel1">
+											<option value="">请选择..</option>
+											<option value="职业资格一级（高级技师）">职业资格一级（高级技师）</option>
+											<option value="职业资格二级（技师）">职业资格二级（技师）</option>
+											<option value="职业资格三级（高级）">职业资格三级（高级）</option>
+											<option value="职业资格四级（中级）">职业资格四级（中级）</option>
+											<option value="职业资格五级（初级）">职业资格五级（初级）</option>
+										</select>	
+									</td>
 								</tr>
 								<tr>
 									<td>从事年限:</td>
@@ -1548,13 +1574,64 @@
 								</tr>
 								<tr>
 									<td>工作地点:</td>
-									<td><input type="text" id="workspace1" name="workspace"></td>
+									<td>
+										<input type="text" name="workspace"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" name="expectArea">
+									<!--////////////////////////////////////////////////////////////////////////-->
+										<div class="provinceCityAll">
+										  <div class="tabs clearfix">
+										    <ul class="">
+										      <li><a href="javascript:" class="current" tb="hotCityAll">热门城市</a></li>
+										      <li><a href="javascript:" tb="provinceAll">省份</a></li>
+										      <li><a href="javascript:" tb="cityAll" id="cityAll">城市</a></li>
+										      <li><a href="javascript:" tb="countyAll" id="countyAll">区县</a></li>
+										    </ul>
+										  </div>
+										  <div class="con">
+										    <div class="hotCityAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										         
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										    <div class="provinceAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										        
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										    <div class="cityAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										          
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										    <div class="countyAll invis">
+										      <div class="pre"><a></a></div>
+										      <div class="list">
+										        <ul>
+										        </ul>
+										      </div>
+										      <div class="next"><a class="can"></a></div>
+										    </div>
+										  </div>
+										</div>
+									<!--////////////////////////////////////////////////////////////////////////-->
+									</td>
 									<td>年龄:</td>
-									<td><input type="text" id="age1" name="age" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3" value="0"></td>
+									<td><input type="text" id="age1" name="age" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3" value="23"></td>
 								</tr>
 								<tr>
 									<td>身高:</td>
-									<td><input type="text" id="height1" name="height" placeholder="cm" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"></td>
+									<td><input type="text" id="height1" name="height" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"><span style="padding: 0px; margin-left: -25px;color:#000000;">cm</span></td>
 									<td>视力:</td>
 									<td><input type="text" id="eyesight1" name="eyesight" onkeyup="value=this.value.replace(/\D+\./g,'')" maxlength="3"></td>
 								</tr>
@@ -1598,12 +1675,12 @@
 									</td>
 									<td>面试时间:</td>
 									<td>
-									<input type="text" name="beginDate" id="beginDate"   style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
+									<input type="text" name="beginDate" id="beginDate"   style="width:178px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
 								    <input type="hidden"  name="endDate" id="endDate"  style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
 								<tr>
 									<td style="vertical-align:top;">其他说明:</td>
-									<td colspan="2">
-										<textArea cols="30" style="resize:none;" id="note1" name="note"></textArea>
+									<td colspan="3">
+										<textArea cols="50" rows="3" style="resize:none;" id="note1" name="note"></textArea>
 									</td>
 								</tr>
 							</table>
@@ -1646,5 +1723,6 @@
 	</div>
 	<!--********************************************-->
 	[#include "/include/footer.ftl" /]
+	<script src="/resource/public/selectArea/js/public.js"></script>
 </body>
 </html>
