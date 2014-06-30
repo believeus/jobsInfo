@@ -34,11 +34,10 @@ public class ControllerPersonalResume {
 		TcomUser tcomUser = (TcomUser)etechService.findObjectById(TcomUser.class, id);
 		request.setAttribute("tcomUser", tcomUser);
 		
-		String hql="From TcomInfo comInfo left join fetch comInfo.comUser  as user where comInfo.infoType='4'";;
+		String hql="From TcomInfo comInfo left join fetch comInfo.comUser as user where comInfo.infoType='4' and user.id='"+id+"'";;
 		List<TcomInfo> volunteers = (List<TcomInfo>)etechService.findListByHQL(hql);
 		List<Trecruit> recommendTrecruit = commonUserService.enterpriseRecommend(volunteers);
 		request.setAttribute("recommendTrecruit", recommendTrecruit);
-		
 		// 获取推荐企业
 		
 		return "occupationIntroduction/personalResume";
