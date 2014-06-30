@@ -579,7 +579,7 @@
 									<td>工种:</td>
 									<td>${trecruit.workType.name}</td>
 									<td>性别:</td>
-									<td>${trecruit.sex}</td>
+									<td>[#if trecruit.sex == "woman"]女[#else]男[/#if]</td>
 								</tr>
 								<tr>
 									<td>人数:</td>

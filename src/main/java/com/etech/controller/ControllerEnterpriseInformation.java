@@ -31,8 +31,12 @@ public class ControllerEnterpriseInformation {
 	@RequestMapping(value = "/enterpriseInformation", method = RequestMethod.GET)
 	public String policyAdviceView(HttpSession session,Integer id,HttpServletRequest request) {
 		
+		
+		Trecruit trecruit = (Trecruit)etechService.findObjectById(Trecruit.class, id);
+		session.setAttribute("trecruit", trecruit);
+		
 		//招聘信息
-		List<Trecruit> trecruitList = (List<Trecruit>)etechService.getListByProperty(Trecruit.class, "entUser.id", id);
+		List<Trecruit> trecruitList = (List<Trecruit>)etechService.getListByProperty(Trecruit.class, "entUser.id", trecruit.getEntUser().getId());
 		request.setAttribute("trecruitList", trecruitList);
 		String hql="From TentImgVedio vedio where vedio.type='1'";
 		List<TentImgVedio> vedios = (List<TentImgVedio>)etechService.findListByHQL(hql);
