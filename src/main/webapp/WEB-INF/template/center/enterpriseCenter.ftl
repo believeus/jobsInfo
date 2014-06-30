@@ -1238,7 +1238,7 @@
 									<td>邮编:</td>
 									<td><input type="text"  value="${sessionUser.zip}" id="zip" name="zip"></td>
 									<td>手机:</td>
-									<td><input type="text"  value="${sessionUser.phoneNum}" id="phoneNum" name="phoneNum" onkeyup="value=this.value.replace(/\D+/g,'')"></td>
+									<td><input type="text"  value="${sessionUser.phoneNum}" id="phoneNum" name="phoneNum" minlegnth="11" maxlength="11" onkeyup="value=this.value.replace(/\D+/g,'')"></td>
 								</tr>
 								<tr>
 									<td>电话/传真:</td>
