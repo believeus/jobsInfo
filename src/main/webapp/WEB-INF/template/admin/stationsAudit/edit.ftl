@@ -86,6 +86,7 @@ $().ready(function() {
  	$("#salary1").val("${recruit.salary}");
  	$("#worklimit1").val("${recruit.worklimit}");
  	$("#workWay1").val("${recruit.workWay}");
+ 	$("#eteLevel1").val("${recruit.eteLevel}");
  	
 	var $inputForm = $("#inputForm");
 	var $type = $("#type");
@@ -185,6 +186,7 @@ $().ready(function() {
 		<input type="hidden" name="createTime" value="${recruit.createTime}"/>
 		<input type="hidden" name="userId" value="${recruit.entUser.id}"/>
 		<input type="hidden" name="viewData" value="" id="viewData">
+		<input type="hidden" name="isview" value="未发布">
 			<table class="input">
 				<tr>
 					<th>招聘单位:</th>
@@ -239,7 +241,16 @@ $().ready(function() {
 						</div>
 					</td>
 					<th>技术等级:</th>
-					<td><input type="text" id="eteLevel1" name="eteLevel" value="${recruit.eteLevel}"/></td>
+					<td>
+					<select id="eteLevel1" name="eteLevel" style="width:183px;">
+						<option value="">请选择..</option>
+						<option value="职业资格一级（高级技师）">职业资格一级（高级技师）</option>
+						<option value="职业资格二级（技师）">职业资格二级（技师）</option>
+						<option value="职业资格三级（高级）">职业资格三级（高级）</option>
+						<option value="职业资格四级（中级）">职业资格四级（中级）</option>
+						<option value="职业资格五级（初级）">职业资格五级（初级）</option>
+					</select>
+					</td>
 				</tr>
 				<tr>
 					<th>从事年限:</th>
