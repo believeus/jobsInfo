@@ -84,7 +84,7 @@ public class ControllerIndex {
 		session.setAttribute("zhaopList", zhaopList); 
 		
 		//求职信息
-		hql = "From TcomUser tcomUser order by id asc";
+		hql = "From TcomUser tcomUser where tcomUser.disable='0' order by id asc";
 		List<TcomUser> qiuzhiList = (List<TcomUser>)etechService.findListByHQL(hql);
 		session.setAttribute("qiuzhiList", qiuzhiList); 
 		

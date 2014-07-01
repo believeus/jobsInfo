@@ -198,7 +198,7 @@
 		    width: 113px;
 		}
 		.zhaopin td {
-		    font-size: 13px;
+		    font-size: 12px;
 		    border-bottom: 1px dashed #E4E4E4;
 		}
 		.zhaopin a {
@@ -459,13 +459,31 @@
 								</tr>
 								<tr>
 									<td>邮编:</td>
-									<td>${trecruit.entUser.zip}</td>
+									<td>
+										[#if "${sessionUser?exists}"]
+											${trecruit.entUser.zip}
+										[#else]
+											<a href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
+										[/#if]
+									</td>
 									<td>手机:</td>
-									<td>${trecruit.entUser.phoneFax}</td>
+									<td>
+										[#if "${sessionUser?exists}"]
+											${trecruit.entUser.phoneFax}
+										[#else]
+											<a href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
+										[/#if]
+									</td>
 								</tr>
 								<tr>
 									<td>电话/传真:</td>
-									<td>${trecruit.entUser.phoneFax}</td>
+									<td>
+										[#if "${sessionUser?exists}"]
+											${trecruit.entUser.phoneFax}
+										[#else]
+											<a href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
+										[/#if]
+									</td>
 									<td>网址:</td>
 									<td>${trecruit.entUser.webSite}</td>
 								</tr>
@@ -616,7 +634,7 @@
 									<td>招聘期限:</td>
 									<td>${trecruit.worklimit}</td>
 									<td>面试时间:</td>
-									<td>${trecruit.viewData}</td>
+									<td>${trecruit.viewData?number_to_datetime}</td>
 								</tr>
 							</table>
 							<h4>职位描述：</h4>
@@ -625,11 +643,19 @@
 							</p>
 							<h4>联系方式：</h4>
 							<p style="margin: 0px; width: 570px; line-height: 22px;">
-								${trecruit.entUser.phoneFax}
+								[#if "${sessionUser?exists}"]
+									${trecruit.entUser.phoneFax}
+								[#else]
+									<a href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
+								[/#if]
 							</p>
 							<h4>公司地点：</h4>
 							<p style="margin: 0px; width: 570px; line-height: 22px;">
-								${trecruit.entUser.detailAddress}
+								[#if "${sessionUser?exists}"]
+									${trecruit.entUser.detailAddress}
+								[#else]
+									<a href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
+								[/#if]
 							</p>
 						</div>
 					</div>

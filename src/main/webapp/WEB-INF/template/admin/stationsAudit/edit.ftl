@@ -167,9 +167,6 @@ $().ready(function() {
 	    		}else if($("#workspace1").val() == ""){
 	    			alert("请输入工作地点");
 	    			tag=true;
-	    		}else if($("#beginDate").val() == ""){
-	    			alert("请选择面试时间");
-	    			tag=true;
 	    		}else{
 		    		if(tag==false){
 		    			showdiv();
@@ -178,9 +175,7 @@ $().ready(function() {
 						$(form).submit();  
 	    			}
 	    		}
-				  
 			}
-			
 });
 </script>
 </head>

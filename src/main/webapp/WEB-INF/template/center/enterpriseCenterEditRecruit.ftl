@@ -370,7 +370,7 @@
 				});
 				
 			//封装ajax信息提交
-			function submitJobs(){
+			function submitJobs(value){
 				if($("#beginDate").val()!=""){
 					var viewData=new Date($("#beginDate").val().replace(/-/g,",")).getTime();
 					$("#viewData").val(viewData);
@@ -384,8 +384,8 @@
 						     dataType: "json",
 						     success: function(data){
 						     	if(data.message=="success"){
-							     	location.href="/enterprise-user/center.jhtml";	     		
-						     	}
+							     	location.href="/enterprise-user/center.jhtml"+value;	     		
+					     		}
 						     }
 		        	});	
 				
@@ -394,6 +394,7 @@
 			// 保存招聘信息。
     	$("#savaJobs").click(function() {
     	    var tag=false;
+    	    var value = "#bj";
     		if($("#worknum1").val() == ""){
     			alert("请输入招聘人数");
     			tag=true;
@@ -409,14 +410,12 @@
     		}else{
 	    		if(tag==false){
 	    			showdiv();
-	    			submitJobs();
+	    			submitJobs(value);
     			}
     		}
-    		
 		});
 		
-		
-		});
+	});
 </script>
 <body>
 	[#include "/include/header.ftl" /]

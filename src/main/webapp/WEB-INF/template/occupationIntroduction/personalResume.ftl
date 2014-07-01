@@ -156,6 +156,7 @@
 		    text-align: center;
 		    width: 153px;
 		    padding: 5px 10px;
+		    font-size:12px;
 		}
 		.gongzuo_div td {
 		    text-align: center;
@@ -435,7 +436,7 @@
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 					</div>
 					<div class="zhiyuan">
-						<div class="zhiyuan_div" style="width:690px;height:100px;border:1px solid #e4e4e4;overflow:hidden;margin:0 20px;margin-bottom:15px;">
+						<div class="zhiyuan_div" style="width:690px;height:auto;border:1px solid #e4e4e4;overflow:hidden;margin:0 20px;margin-bottom:15px;">
 							<table cellspacing="0">
 								<tr style="background:#eeeeee;">
 									<th>专业</th>
@@ -445,6 +446,7 @@
 									<th>其他要求</th>
 								</tr>
 								[#list tcomUser.comInfo as comInfo]
+								[#if comInfo.infoType == 4]
 								<tr>
 									<td>${comInfo.majorType.name}</td>
 									<td>${comInfo.workType.name}</td>
@@ -452,6 +454,7 @@
 									<td>${comInfo.expectArea}</td>
 									<td>[#if comInfo.note?exists && comInfo.infoType==4]${comInfo.note}[#else]无[/#if]</td>
 								</tr>
+								[/#if]
 								[/#list]
 							</table>
 						</div>
@@ -462,7 +465,7 @@
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 					</div>
 					<div class="jineng">
-						<div class="zhiyuan_div" style="width:690px;height:100px;border:1px solid #e4e4e4;overflow:hidden;margin:0 20px;margin-bottom:15px;">
+						<div class="zhiyuan_div" style="width:690px;height:auto;border:1px solid #e4e4e4;overflow:hidden;margin:0 20px;margin-bottom:15px;">
 							<table cellspacing="0">
 								<tr style="background:#EEEEEE;">
 									<th>专业</th>
@@ -472,13 +475,27 @@
 									<th>说明</th>
 								</tr>
 								[#list tcomUser.comInfo as comInfo]
+								[#if comInfo.infoType == 1]
 								<tr>
 									<td>${comInfo.majorType.name}</td>
-									<td>${comInfo.workType.name}</td>
-									<td>${comInfo.skillLevel}</td>
+									<td>
+										[#if comInfo.workType.name?length > 8]
+											${comInfo.workType.name?string?substring(0,8)}...
+										[#else]
+											${comInfo.workType.name}
+										[/#if]
+									</td>
+									<td>
+										[#if comInfo.workType.name?length > 8]
+											${comInfo.skillLevel?string?substring(0,8)}...
+										[#else]
+											${comInfo.skillLevel}
+										[/#if]
+									</td>
 									<td>${comInfo.workingLife}</td>
 									<td>[#if comInfo.note?exists && comInfo.infoType==1]${comInfo.note}[#else]无[/#if]</td>
 								</tr>
+								[/#if]
 								[/#list]
 							</table>
 						</div>
@@ -490,7 +507,7 @@
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 					</div>
 					<div class="xuexi">
-					<div class="xuexi_div" style="width:690px;height:100px;border:1px solid #e4e4e4;overflow:hidden;margin:0 20px;margin-bottom:15px;">
+					<div class="xuexi_div" style="width:690px;height:auto;border:1px solid #e4e4e4;overflow:hidden;margin:0 20px;margin-bottom:15px;">
 						<table cellspacing="0">
 							<tr style="background:#EEEEEE;">
 								<th>时间</th>
@@ -499,6 +516,7 @@
 								<th>专业</th>
 							</tr>
 							[#list tcomUser.comInfo as comInfo]
+							[#if comInfo.infoType == 2]
 							<tr>
 								<td>
 									[#if comInfo.beginData = 0]
@@ -511,6 +529,7 @@
 								<td>${comInfo.dept}</td>
 								<td>${comInfo.majorType.name}</td>
 							</tr>
+							[/#if]
 							[/#list]
 						</table>
 					</div>
@@ -521,7 +540,7 @@
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 					</div>
 					<div class="gongzuo">
-					<div class="zhiyuan_div" style="width:690px;height:100px;border:1px solid #e4e4e4;overflow:hidden;margin:0 20px;margin-bottom:15px;">
+					<div class="zhiyuan_div" style="width:690px;height:auto;border:1px solid #e4e4e4;overflow:hidden;margin:0 20px;margin-bottom:15px;">
 						<table cellspacing="0">
 							<tr style="background:#EEEEEE;">
 								<th>时间</th>
@@ -531,6 +550,7 @@
 								<th>工作内容</th>
 							</tr>
 							[#list tcomUser.comInfo as comInfo]
+							[#if comInfo.infoType == 3]
 							<tr>
 								<td>
 									[#if comInfo.beginData = 0]
@@ -544,6 +564,7 @@
 								<td>${comInfo.workType.name}</td>
 								<td>[#if comInfo.note?exists && comInfo.infoType==3]${comInfo.note}[#else]无[/#if]</td>
 							</tr>
+							[/#if]
 							[/#list]
 						</table>
 					</div>

@@ -41,7 +41,7 @@ public class ControllerEnterpriseInformation {
 		String hql="From TentImgVedio vedio where vedio.type='1'";
 		List<TentImgVedio> vedios = (List<TentImgVedio>)etechService.findListByHQL(hql);
 		request.setAttribute("vedios", vedios);
-		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+id+"  and info.type='2'";
+		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+trecruit.getEntUser().getId()+"  and info.type='2'";
 		List<TentImgVedio> Maps=(List<TentImgVedio>)etechService.findListByHQL(hql);
 		request.setAttribute("Maps", Maps);
 		hql="From Trecruit recruit left join fetch recruit.entUser as user where  user.id='"+id+"'";

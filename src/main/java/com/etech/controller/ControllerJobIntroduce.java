@@ -53,13 +53,13 @@ public class ControllerJobIntroduce {
 		List<TdataCenter> jianlizhinanService = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("jianlizhinanService", jianlizhinanService);
 		
-		//招聘信息
-		hql = "From Trecruit trecruit where trecruit.status = '1' and  trecruit.isview='发布' order by id asc";
+		//招聘信息 审核通过的status='1'  所属企业没有被删除的disable='0'
+		hql = "From Trecruit trecruit where trecruit.status='1' and trecruit.isview='发布' and trecruit.entUser.disable='0' order by id asc";
 		List<Trecruit> zhaopList = (List<Trecruit>)etechService.findListByHQL(hql);
 		session.setAttribute("zhaopList", zhaopList); 
 		
-		//求职信息
-		hql = "From TcomUser tcomUser order by id asc";
+		//求职信息   所属企业没有被删除的disable='0'
+		hql = "From TcomUser tcomUser where tcomUser.disable='0' order by id asc";
 		List<TcomUser> qiuzhiList = (List<TcomUser>)etechService.findListByHQL(hql);
 		session.setAttribute("qiuzhiList", qiuzhiList); 
 		

@@ -612,7 +612,9 @@
 							&nbsp;&nbsp;
 							[#if qiuzhi.comInfo?size != 0]
 								[#list qiuzhi.comInfo as comInfo]
-									${comInfo.workType.name}
+									[#if comInfo_index =0]
+										${comInfo.workType.name} ...
+									[/#if]
 								[/#list]
 							[#else]
 								中学教师，小学教师

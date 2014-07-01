@@ -172,7 +172,7 @@ body {
             </div>
             <div>
             	<span>真实姓名：</span>
-                <span><input type="text id="trueName" /></span>
+                <span><input type="text" id="trueName" name="trueName" /></span>
             </div>
             <div>
             	<span>身份证号：</span>

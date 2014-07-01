@@ -181,7 +181,7 @@
 		    width: 100px;
 		}
 		.zhaopin td {
-		    font-size: 13px;
+		    font-size: 12px;
 		    border-bottom: 1px dashed #E4E4E4;
 		}
 		.currentSwich{
@@ -1083,7 +1083,7 @@
     </script>
     <script type="text/javascript">
     	$().ready(function(){
-    		if(window.location.hash == "#zhaopin_xinxi"){
+    		if(window.location.hash == "#zhaopin_xinxi" || window.location.hash == "#bj"){
     			$("#qiye_xinxi").removeClass("currentSwich");
     			$("#zhaopin_xinxi").removeClass("currentSwich");
     			$("#zhaopin_xinxi").addClass("currentSwich");
@@ -1149,7 +1149,7 @@
 				<p>
 					<span>登记编号:0000${sessionUser.id}</span>
 					<span style="padding-right: 20px; margin-left: 90px;">更新日期:${sessionUser.editDate?number_to_datetime}&nbsp;${sessionUser.editDate?number_to_time}</span>
-					<span style="float: right; padding-right: 20px;">审核状态:[#if sessionUser.status=="0"&&sessionUser.status!="1"]审核中[#elseif sessionUser.status=="1"]已通过审核[/#if]</span>
+					<span style="float: right; padding-right: 20px;">审核状态:[#if sessionUser.status=="0"&&sessionUser.status!="1"]<font color="#FF0000">审核中</font>[#elseif sessionUser.status=="1"]<font color="green">已通过审核</font>[/#if]</span>
 				</p>
 				
 				<div id="base_xinxi" style="width::728px;height:auto;overflow:hidden;">
@@ -1517,7 +1517,7 @@
 								<td>${recruit.eduLevel}</td>
 								<td>${recruit.age}</td>
 								<td>
-								[#if recruit.status=="0"&&recruit.status!="1"]审核中[#elseif recruit.status=="1"]已通过审核[/#if]
+								[#if recruit.status=="0"&&recruit.status!="1"]<font color="red">审核中</font>[#elseif recruit.status=="1"]<font color="green">已通过审核</font>[/#if]
 								</td>
 								<td><a href="javascript:void(0)" onclick="changeIsview(${recruit.id});" title="点击即可修改" id="isview${recruit.id}">${recruit.isview}</a></td>
 								<td><a href="/editRecruit.jhtml?id=${recruit.id}" style="margin-right: 5px;" id="editx" >编辑</a>

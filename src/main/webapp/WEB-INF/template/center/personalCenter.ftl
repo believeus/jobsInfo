@@ -566,7 +566,8 @@
 	    	};
 	    	
 	    	   // ajax 提交验证和登录。
-		    	function deleteIds(){
+		    	function deleteIds(value){
+		    		value="#zy";
 		    			if($("#deleteids").length>0){
 			    			var ids=$("#deleteids").val();
 							$.ajax({
@@ -576,10 +577,12 @@
 								dataType: "json",
 								cache: false,
 								success: function(data) {
+									location.href="/common-user/center.jhtml" +value;
 									location.reload(true);
 								}
 							})
 		    			}else{
+		    				location.href="/common-user/center.jhtml" +value;
 							location.reload(true);
 						}				
 					}
@@ -1337,7 +1340,7 @@
 								     success: function(result){
 								     	num=num+1;
 								     	if(num==index){
-					 		   				deleteIds();    				 						     	
+					 		   				deleteIds(value);    				 						     	
 								     	}
 								     }
 				        		});
@@ -1351,6 +1354,7 @@
     			}
     			
     			function submitVolunteer(){
+    					
     				  //alert("xxxxxxxx选择志愿xxxxxxx");
     				  $("div.zhiyuan_div").each(function(index){
     				  		index++;
@@ -1470,6 +1474,17 @@
 			
 			})
 		</script>
+	<script type="text/javascript">
+    	$().ready(function(){
+    		if(window.location.hash == "#zy"){
+    			$("#personal_xinxi").removeClass("currentSwich");
+    			$("#select_zhiyuan").removeClass("currentSwich");
+    			$("#select_zhiyuan").addClass("currentSwich");
+    			$("#base_xinxi").css("display","none");
+    			$("#select_zhuti").css("display","block");
+    		}
+    	});
+	</script>
 </head>
 <body>
 	[#include "/include/header.ftl" /]
@@ -1690,9 +1705,12 @@
 						<div style="width: 150px; float: left; margin-left: 15px; height: auto; margin-top: 15px;">
 								<form novalidate="novalidate"  action="/upload.jhtml" method="post" encType="multipart/form-data" id="imageForm">
 									<div class="brandImg">
-										<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
+										<span>
+											<a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
 										</span>
-												<img style="width:122px;height:150px" src="[#if sessionUser.imgHead?exists]/${sessionUser.imgHead}[#else]/resource/public/images/bg.png[/#if]" name="img"/>
+											<img style="width:122px;height:150px" src="[#if sessionUser.imgHead?exists]/${sessionUser.imgHead}[#else]/resource/public/images/bg.png[/#if]" name="img"/>
+											<div style="color: #000000; font-size: 12px; position: relative; padding: 0px; width: 122px;text-align:center;">建议图片大小：</div>
+											<div style="color: #000000; font-size: 12px; position: relative; padding: 0px; width: 122px;text-align:center;">宽122px*高150px</div>
 									</div>
 									<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;checkChange=1;loadImgFast(this,0)">
 									<input type="hidden" id="filename0" name="filename0">

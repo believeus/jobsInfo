@@ -8,6 +8,10 @@
 		text-decoration:none;
 		color:#555555;
 	}
+	a:hover{
+		text-decoration:underline;
+		color:#FF6600;
+	}
 	input[type="button"]{
 		cursor:pointer;
 	}

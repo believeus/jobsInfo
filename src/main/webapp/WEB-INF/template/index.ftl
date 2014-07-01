@@ -409,7 +409,7 @@
 									[#if zhaop_index <6]
 										<li class="xinxi_1_li">
 											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}">${zhaop.company}</a>&nbsp;&nbsp;
-											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zw">[#if zhaop.workType?exists]${zhaop.workType.name}[#else]不明[/#if]</a>
+											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zw">[#if zhaop.workType.name?length >13]${zhaop.workType.name?string?substring(0,13)}...[#else]${zhaop.workType.name}[/#if]</a>
 											<span class="xinxi_1_span">${zhaop.editTime?number_to_datetime}</span>
 
 										</li>
@@ -448,7 +448,7 @@
 									[#list qiuzhiList as qiuzhi]
 									[#if qiuzhi_index <6]
 										<li class="xinxi_1_li">
-											<a href="/personalResume.jhtml?id=${qiuzhi.id}">${qiuzhi.trueName}&nbsp;&nbsp;[#if qiuzhi.sex == 'man']男[#else]女[/#if]&nbsp;&nbsp;${qiuzhi.eduLevel}&nbsp;&nbsp;${qiuzhi.workType}</a>
+											<a href="/personalResume.jhtml?id=${qiuzhi.id}">${qiuzhi.trueName}&nbsp;&nbsp;[#if qiuzhi.sex == 'man']男[#else]女[/#if]&nbsp;&nbsp;${qiuzhi.eduLevel}&nbsp;&nbsp;${qiuzhi.workType.name}</a>
 											<span class="xinxi_1_span">${qiuzhi.createDate?number_to_datetime}</span>
 										</li>
 									[/#if]
