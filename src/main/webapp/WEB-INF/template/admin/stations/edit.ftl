@@ -191,12 +191,13 @@ $().ready(function() {
 	
 	
 	
-	<form id="inputForm" novalidate="novalidate"  action="/admin/stationAudit/update.jhtml" method="post">
+	<form id="inputForm" novalidate="novalidate"  action="/admin/stationList/update.jhtml" method="post">
 		<input type="hidden" name="id" value="${recruit.id}"/>
 		<input type="hidden" name="status" value="${recruit.status}"/>
 		<input type="hidden" name="createTime" value="${recruit.createTime}"/>
 		<input type="hidden" name="userId" value="${recruit.entUser.id}"/>
 		<input type="hidden" name="viewData" value="" id="viewData">
+		<input type="hidden" name="isview" value="${recruit.isview}">
 			<table class="input">
 				<tr>
 					<th>招聘单位:</th>

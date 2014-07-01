@@ -106,7 +106,7 @@ public class ControllerStationAudit {
 		formRecruit.setEntUser(entUser);
 		BeanUtils.copyProperties(formRecruit, recruit);
 		etechService.saveOrUpdata(recruit);
-		return "redirect:/admin/stationList/list.jhtml";
+		return "redirect:/admin/stationAudit/list.jhtml";
 	}
 	@RequestMapping(value = "/review", method = RequestMethod.GET)
 	public String review(HttpServletRequest request){

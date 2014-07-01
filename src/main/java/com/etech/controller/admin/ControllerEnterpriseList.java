@@ -1,5 +1,7 @@
 package com.etech.controller.admin;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -9,12 +11,18 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mydfs.storage.server.MydfsTrackerServer;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.etech.entity.TentImgVedio;
 import com.etech.entity.TentUser;
@@ -31,6 +39,9 @@ public class ControllerEnterpriseList {
 	
 	@Resource
 	private EtechService etechService;
+	
+	@Resource
+	private MydfsTrackerServer mydfsTrackerServer;
 	/**
 	 * 企业列表
 	 * @return
@@ -108,9 +119,48 @@ public class ControllerEnterpriseList {
 	 * 修改企业
 	 * @return
 	 */
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String updateNewsView(){
+	@RequestMapping(value = "/update")
+	public String updateNewsView(TentUser formUser,HttpServletRequest request,Integer MapId){
 		
+		TentUser entUser=(TentUser) etechService.findObjectById(TentUser.class,formUser.getId());
+		TentImgVedio map=null;
+		if (!StringUtils.isEmpty(MapId)) {
+			 map = (TentImgVedio)etechService.findObjectById(TentImgVedio.class, MapId);
+		}
+		
+		String storepath = "";
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		Map<String, MultipartFile> files = multipartRequest.getFileMap();
+		for (MultipartFile file : files.values()) {
+			InputStream inputStream;
+			try {
+				inputStream = file.getInputStream();
+				if(inputStream.available()==0)break;
+				org.junit.Assert.assertNotNull("upload file InputStream is null", inputStream);
+				String fileName = file.getName();
+				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
+				log.debug("upload file stuffix"+extention);
+				storepath = mydfsTrackerServer.upload(inputStream, extention);
+				if (map!=null) {
+					map.setUrl(storepath);
+				}else {
+					map=new TentImgVedio();
+					map.setEntUser(entUser);
+					map.setType(2);
+					map.setUrl(storepath); 
+				}
+				entUser.getImgVedios().add(map);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		formUser.setEditDate(System.currentTimeMillis());
+		formUser.setRoles(entUser.getRoles());
+		formUser.setRecruit(entUser.getRecruit());
+		formUser.setImgVedios(entUser.getImgVedios());
+		BeanUtils.copyProperties(formUser, entUser);
+		etechService.saveOrUpdata(entUser);
 		return "redirect:/admin/enterpriseList/list.jhtml";
 	}
 }

@@ -487,7 +487,7 @@
 					<form novalidate="novalidate"  action="/enterprise-user/center/submit-recruit.jhtml"  method="post" id="jobsForm1">
 						<input type="hidden" name="status" value="0">
 						<input type="hidden" name="viewData" value="" id="viewData">
-						<input type="hidden" name="isview" value="未发布">
+						<input type="hidden" name="isview" value="${recruit.isview}">
 						<input type="hidden" name="id" value="${recruit.id}">
 							<table>
 								<tr>

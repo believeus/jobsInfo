@@ -48,7 +48,12 @@
 		top:0px !important;
 		left:90px !important;
 	}
-	
+	.list li {
+	    line-height: 23px;
+	}
+	.list input {
+		width:80px;
+	}
 	</style>
 	
 <script type="text/javascript">
@@ -87,6 +92,13 @@ $().ready(function() {
 			submitInfo(form);
    		} 
 	});
+		$("#phoneNum").blur(function(){
+			var phoneNum =$(this).val();
+			var regPartton=/^(?:13\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/; //验证手机号
+			if(!regPartton.test(phoneNum)){
+				alert("手机格式不正确！");
+			}
+		});
 		
 		// 保存。
 		function submitInfo(form){
@@ -115,13 +127,8 @@ $().ready(function() {
     			alert("请输入邮政编码");
     		}else if($("#phoneNum").val() == ""){
     			alert("请输入手机号码");
-    		}else if(!regPartton.test(phoneNum)){
-				alert("手机号码格式不正确！");
-				return false;
-			}else if($("#phoneFax").val() == ""){
+    		}else if($("#phoneFax").val() == ""){
     			alert("请输入电话/传真");
-    		}else if($("#webSite").val() == ""){
-    			alert("请输入网址");
     		}else if($("#introduce").val() == ""){
     			alert("请输入单位简介");
     		}else{
@@ -166,7 +173,7 @@ $().ready(function() {
 		<a href="/admin/common/main.jhtml">首页</a> &raquo; 编辑内容
 	</div>			
 		<table class="input">
-			<form id="inputForm" novalidate="novalidate"  action="/admin/enterpriseAudit/update.jhtml" encType="multipart/form-data"   method="post">
+			<form id="inputForm" novalidate="novalidate"  action="/admin/enterpriseList/update.jhtml" encType="multipart/form-data"   method="post">
 					<input type="hidden" name="id" value="${tentUsers.id}">
 					<input type="hidden" name="status" value="${tentUsers.status}">
 					<input type="hidden" name="loginName" value="${tentUsers.loginName}">
@@ -224,7 +231,7 @@ $().ready(function() {
 					<tr>
 						<td>所属地区:</td>
 						<td>
-							<input type="text" name="area" value="${tentUsers.area}"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" name="expectArea">
+							<input type="text" name="area" value="${tentUsers.area}"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1">
 							<!--////////////////////////////////////////////////////////////////////////-->
 								<div class="provinceCityAll">
 								  <div class="tabs clearfix">

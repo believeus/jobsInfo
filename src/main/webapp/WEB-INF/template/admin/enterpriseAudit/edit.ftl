@@ -129,8 +129,6 @@ $().ready(function() {
     			alert("请输入手机号码");
     		}else if($("#phoneFax").val() == ""){
     			alert("请输入电话/传真");
-    		}else if($("#webSite").val() == ""){
-    			alert("请输入网址");
     		}else if($("#introduce").val() == ""){
     			alert("请输入单位简介");
     		}else{
