@@ -446,7 +446,7 @@
 							<tr>
 								<td>工作性质</td>
 								<td colspan="3">
-									<select name="workWay">
+									<select name="workWay" id="workWay1">
 										<option value="全职">全职</option>
 										<option value="兼职">兼职</option>
 										<option value="实习">实习</option>
@@ -487,17 +487,48 @@
 							      	var html='<input id="deleteids" type="hidden" name="ids" value="'+id+'"/>';
 									$("#InfoForm").append(html);
 							   }
+							   $(object).parent().parent().parent().find("input[name='id']").remove();
 							   
 							}
+							// 清空表单的值。
+					 		var tablex=$(object).parent().parent().parent().parent();
 							 if(type==1){
-									$(object).parent().parent().parent().parent().parent().parent().html(type1);
+							 		tablex.find("#selectSkillSpecialtyhidden1").val("");
+							 		tablex.find("#selectSkillJobshidden1").val("");
+							 		tablex.find("#skillLevel1").val("");
+							 		tablex.find("#workingLifeSkill1").val("");
+							 		tablex.find("#noteSkill1").val("");
+							 		tablex.find("#selectSkillSpecialty1").find("span").text("选择专业");
+							 		tablex.find("#selectSkillJobs1").find("span").text("选择工种");
+							 		
 							 }else if(type==2){
-									$(object).parent().parent().parent().parent().parent().parent().html(type2);
+							 		tablex.find("#beginDate").val("");
+							 		tablex.find("#endDate").val("");
+							 		tablex.find("#schoolLearning1").val("");
+							 		tablex.find("#deptLearning1").val("");
+							 		tablex.find("#selectLearningSpecialtyhidden1").val("");
+							 		tablex.find("#selectLearningSpecialty1").find("span").text("选择专业")
+							 		
 							 }else if(type==3){
-									$(object).parent().parent().parent().parent().parent().parent().html(type3);
+							 		tablex.find("#beginDate").val("");
+							 		tablex.find("#endDate").val("");
+							 		tablex.find("#workspaceWork1").val("");
+							 		tablex.find("#dutyWork1").val("");
+							 		tablex.find("#noteWork1").val("");
+							 		tablex.find("#selectWorkJobhidden1 ").val("");
+							 		tablex.find("#selectWorkJob1").find("span").text("选择工种")
+							 
 							 }else if(type==4){
-									$(object).parent().parent().parent().parent().parent().parent().html(type4);
-									deleteIds();
+							 		
+							 		tablex.find("#selectVolunteerSpecialtyhidden1").val("");
+							 		tablex.find("#workWay1").val("");
+							 		tablex.find("#selectVolunteerJobshidden1").val("");
+							 		tablex.find("#noteVolunteer1").val("");
+							 		tablex.find("#start1").val("");
+							 		tablex.find("#expectSalaryVolunteer1").val("");
+							 		tablex.find("#selectVolunteerSpecialty1").find("span").text("选择专业");
+							 		tablex.find("#selectVolunteerJobs1").find("span").text("选择工种");
+							 		
 							 }
 							
 						} else {
@@ -522,14 +553,14 @@
 							// 删除。
 						   $(object).closest("div").remove();
 						}
-						 if(type==1){
-									b--;
-						 }else if(type==2){
+						 if(type==1&&b>2){
+								b--;						 	
+						 }else if(type==2&&a>2){
 								a--;
-						 }else if(type==3){
-								c--;
-						 }else if(type==4){
-						 		d--
+						 }else if(type==3&&c>2){
+								c--;						 	
+						 }else if(type==4&&d>2){
+						 		d--;						 	
 						 }
 					
 	    	};
@@ -2104,7 +2135,7 @@
 								</td>
 								<td>择业地区:</td>
 								<td>
-									<input type="text"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2" value="${volunteer.expectArea}" autocomplete="off" id="start1" name="expectArea">
+									<input type="text"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2" value="${volunteer.expectArea}" autocomplete="off" id="start${volunteer_index+1}" name="expectArea">
 									<!--////////////////////////////////////////////////////////////////////////-->
 										<div class="provinceCityAll">
 										  <div class="tabs clearfix">
@@ -2207,7 +2238,7 @@
 							</tr>
 							<tr>
 								<td>其他要求:</td>
-								<td colspan="3"><textArea cols="50" name="note" id="noteVolunteer1"  style="resize:none;">${volunteer.note}</textArea></td>
+								<td colspan="3"><textArea cols="50" name="note" id="noteVolunteer${volunteer_index+1}"  style="resize:none;">${volunteer.note}</textArea></td>
 								<td rowspan="3"><a class="delete_zhiyuan" href="javascript:void(0);" onclick="deleteDiv(this,4)" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
@@ -2316,7 +2347,7 @@
 							<tr>
 								<td>工作性质</td>
 								<td colspan="3">
-									<select name="workWay">
+									<select name="workWay" id="workWay1">
 										<option value="全职">全职</option>
 										<option value="兼职">兼职</option>
 										<option value="实习">实习</option>
