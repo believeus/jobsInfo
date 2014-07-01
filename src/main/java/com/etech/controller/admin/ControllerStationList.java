@@ -1,6 +1,9 @@
 package com.etech.controller.admin;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +21,7 @@ import com.etech.entity.TentUser;
 import com.etech.entity.TmajorType;
 import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
+import com.etech.util.JsonOutToBrower;
 
 /**
  * 岗位
@@ -34,26 +38,33 @@ public class ControllerStationList {
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
+		@SuppressWarnings("unchecked")
 		List<Trecruit> recruitList =(List<Trecruit>)etechService.getListByProperty(Trecruit.class, "status", 1, 20);
 		request.setAttribute("recruitList", recruitList);
 		log.debug("current controller is newsListView !");
 		return "admin/stations/list";
 	}
-	@RequiresPermissions("stationList:delete")
-	@RequestMapping("/delete")
-	public String removeNews(HttpServletRequest request,HttpServletResponse response){
-		return "redirect:/admin/stationList/list.jhtml";
-	}
+	
 	/**
-	 * 添加岗位
+	 * 删除 
+	 * @param request
+	 * @param response
 	 * @return
 	 */
-	@RequiresPermissions("stationList:create")
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String addNewsView() {
-		log.debug("current controller is newsListView !");
-		return "admin/stations/add";
+	@RequiresPermissions("stationList:delete")
+	@RequestMapping("/delete")
+	public void removeNews(Long[] ids,HttpServletResponse response){
+		System.out.println(ids);
+		String userIds = Arrays.toString(ids).replace("[","(").replace("]", ")");
+		//delete from Trecruit trecruit where trecruit.id in userIds;
+		String hql="delete from Trecruit trecruit where trecruit.id in "+userIds;
+		log.debug(hql);
+		etechService.delete(hql);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("type", "success");
+		JsonOutToBrower.out(map, response);
 	}
+	
 	/**
 	 * 编辑岗位
 	 * @return

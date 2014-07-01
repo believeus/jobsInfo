@@ -1,9 +1,13 @@
 package com.etech.controller.admin;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -17,6 +21,7 @@ import com.etech.entity.TentUser;
 import com.etech.entity.TmajorType;
 import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
+import com.etech.util.JsonOutToBrower;
 
 /**
  * 岗位审核
@@ -40,21 +45,6 @@ public class ControllerStationAudit {
 		return "admin/stationsAudit/list";
 	}
 	
-	@RequiresPermissions("stationAudit:delete")
-	@RequestMapping("/delete")
-	public String delete(){
-		return "";
-	}
-	/**
-	 * 添加岗位审核
-	 * @return
-	 */
-	@RequiresPermissions("stationAudit:create")
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String addNewsView() {
-		log.debug("current controller is newsListView !");
-		return "admin/stationsAudit/add";
-	}
 	/**
 	 * 编辑岗位审核
 	 * @return
@@ -67,6 +57,26 @@ public class ControllerStationAudit {
 		request.setAttribute("recruit", recruit);
 		log.debug("current controller is newsListView !");
 		return "admin/stationsAudit/edit";
+	}
+	
+	/**
+	 * 删除 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequiresPermissions("stationAudit:delete")
+	@RequestMapping("/delete")
+	public void removeNews(Long[] ids,HttpServletResponse response){
+		System.out.println(ids);
+		String userIds = Arrays.toString(ids).replace("[","(").replace("]", ")");
+		//delete from Trecruit trecruit where trecruit.id in userIds;
+		String hql="delete from Trecruit trecruit where trecruit.id in "+userIds;
+		log.debug(hql);
+		etechService.delete(hql);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("type", "success");
+		JsonOutToBrower.out(map, response);
 	}
 	
 	/**
