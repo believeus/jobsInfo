@@ -459,9 +459,6 @@
 					if(id!=0){
 						deleteImg(id);					
 					}
-					if(c>2){
-						c--;					
-					}
 				}					
 			} else {
 				if(id!=0){
