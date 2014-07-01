@@ -371,7 +371,12 @@
 				
 			//封装ajax信息提交
 			function submitJobs(){
-				var viewData=new Date($("#beginDate").val().replace(/-/g,",")).getTime();
+				if($("#beginDate").val()!=""){
+					var viewData=new Date($("#beginDate").val().replace(/-/g,",")).getTime();
+					$("#viewData").val(viewData);
+				}else{
+					$("#viewData").remove();
+				}
 				$("#viewData").val(viewData);
 					$("#jobsForm1").ajaxSubmit({
 			            	 type: "post",
@@ -400,9 +405,6 @@
     			tag=true;
     		}else if($("#workspace1").val() == ""){
     			alert("请输入工作地点");
-    			tag=true;
-    		}else if($("#beginDate").val() == ""){
-    			alert("请选择面试时间");
     			tag=true;
     		}else{
 	    		if(tag==false){

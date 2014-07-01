@@ -216,7 +216,7 @@ $().ready(function() {
 					<th>性别:</th>
 					<td>
 						<select id="sex1" name="sex" style="width: 183px;">
-							<option value="">请选择..</option>
+							<option value="不限">不限</option>
 							<option value="woman">男</option>
 							<option value="man">女</option>
 						</select>

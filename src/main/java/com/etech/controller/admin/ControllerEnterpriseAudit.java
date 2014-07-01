@@ -148,6 +148,6 @@ public class ControllerEnterpriseAudit {
 		formUser.setImgVedios(entUser.getImgVedios());
 		BeanUtils.copyProperties(formUser, entUser);
 		etechService.saveOrUpdata(entUser);
-		return "redirect:/admin/enterpriseList/list.jhtml";
+		return "redirect:/admin/enterpriseAudit/list.jhtml";
 	}
 }

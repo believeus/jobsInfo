@@ -919,11 +919,22 @@
 			
 		});
 		
+		$("#phoneNum").blur(function(){
+			var phoneNum =$(this).val();
+			var regPartton=/^(?:13\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/; //验证手机号
+			if(!regPartton.test(phoneNum)){
+				alert("手机格式不正确！");
+			}
+		});
 		
 			//封装ajax信息提交
 		function submitJobs(value){
-			var viewData=new Date($("#beginDate").val().replace(/-/g,",")).getTime();
-			$("#viewData").val(viewData);
+			if($("#beginDate").val()!=""){
+				var viewData=new Date($("#beginDate").val().replace(/-/g,",")).getTime();
+				$("#viewData").val(viewData);
+			}else{
+				$("#viewData").remove();
+			}
 			$("div.zhaopinxinxi").each(function(index){
 				index=index+1;
 				$("#jobsForm1").ajaxSubmit({
@@ -967,9 +978,7 @@
     			alert("请输入邮政编码");
     		}else if($("#phoneNum").val() == ""){
     			alert("请输入手机号码");
-    		}else if(!regPartton.test(phoneNum)){
-				alert("手机号码格式不正确！");
-			}else if($("#phoneFax").val() == ""){
+    		}else if($("#phoneFax").val() == ""){
     			alert("请输入电话/传真");
     		}else if($("#introduce").val() == ""){
     			alert("请输入单位简介");
@@ -1219,7 +1228,7 @@
 								<tr>
 									<td>所属地区:</td>
 									<td>
-										<input type="text" name="area" value="${sessionUser.area}"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" name="expectArea">
+										<input type="text" name="area" value="${sessionUser.area}"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off">
 									<!--////////////////////////////////////////////////////////////////////////-->
 										<div class="provinceCityAll">
 										  <div class="tabs clearfix">
@@ -1326,6 +1335,9 @@
 											<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
 											</span>
 												<img width="260px" height="30px" src="/resource/public/images/bg.png" name="url" id="0"/>
+												<div style="height: 20px; position: relative; width: 230px; left: 270px; font-size: 12px; top: -30px;">
+														建议图片尺寸：宽240px*高30px
+												</div>
 										</div>
 										<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">
 										<input type="hidden" id="filename0" name="filename0">
@@ -1507,7 +1519,7 @@
 								[/#if]
 								</td>
 								<td>
-								[#if recruit.sex=="man"&&recruit.sex!="woman"]男[#elseif recruit.sex=="woman"]女[/#if]
+								[#if recruit.sex=="man"&&recruit.sex!="woman"]男[#elseif recruit.sex=="woman"]女[#else]不限[/#if]
 								</td>
 								<td>${recruit.eduLevel}</td>
 								<td>${recruit.age}</td>

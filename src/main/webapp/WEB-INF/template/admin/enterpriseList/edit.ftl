@@ -265,7 +265,7 @@ $().ready(function() {
 					</tr>
 					<tr>
 						<td>注册资金:</td>
-						<td><input type="text"  value="" id="regMoney" name="regMoney"></td>
+						<td><input type="text"  value="" id="regMoney" name="regMoney"><span style="padding:0;margin-left:-35px;color:#000000;">万元</span></td>
 						<td>详细地址:</td>
 						<td><input type="text"  value=""id="detailAddress" name="detailAddress"></td>
 					</tr>
