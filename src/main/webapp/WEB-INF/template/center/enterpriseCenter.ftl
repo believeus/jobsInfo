@@ -971,8 +971,6 @@
 				alert("手机号码格式不正确！");
 			}else if($("#phoneFax").val() == ""){
     			alert("请输入电话/传真");
-    		}else if($("#webSite").val() == ""){
-    			alert("请输入网址");
     		}else if($("#introduce").val() == ""){
     			alert("请输入单位简介");
     		}else{
@@ -1221,7 +1219,7 @@
 								<tr>
 									<td>所属地区:</td>
 									<td>
-										<input type="text" name="workspace" value="${sessionUser.area}"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" name="expectArea">
+										<input type="text" name="area" value="${sessionUser.area}"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" name="expectArea">
 									<!--////////////////////////////////////////////////////////////////////////-->
 										<div class="provinceCityAll">
 										  <div class="tabs clearfix">
@@ -1277,7 +1275,7 @@
 								</tr>
 								<tr>
 									<td>注册资金:</td>
-									<td><input type="text"  value="${sessionUser.regMoney}" id="regMoney" name="regMoney" placeholder="万元"><span style="padding:0;margin-left:-35px;color:#000000;">万元</span></td>
+									<td><input type="text"  value="${sessionUser.regMoney}" id="regMoney" name="regMoney" ><span style="padding:0;margin-left:-35px;color:#000000;">万元</span></td>
 									<td>详细地址:</td>
 									<td><input type="text"  value="${sessionUser.detailAddress}"id="detailAddress" name="detailAddress"></td>
 								</tr>
@@ -1316,6 +1314,9 @@
 												</span>
 													<img width="260px" height="30px" src="/${map.url}" name="url" id="${map.id}"/>
 													<input type="hidden" name="id" value="${map.id}">
+													<div style="height: 20px; position: relative; width: 230px; left: 270px; font-size: 12px; top: -30px;">
+														建议图片尺寸：宽240px*高30px
+													</div>
 											</div>
 											<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">
 											<input type="hidden" id="filename0" name="filename0">
@@ -1417,14 +1418,14 @@
 										</th>
 										<td >
 											<input type="file" name="fileImg" onchange="checkI(this)">
-											已上传视频截图：<a href="/${vedio.url}" title="点击查看" target="_blank">${vedio.originName}</a>
+											<div>已上传视频截图：<a href="/${vedio.url}" title="点击查看" target="_blank">${vedio.originName}</a></div>
 										</td>
 									</tr>
 									<tr>
 										<th>视频文件:</th>
 										<td>
 										<input type="file" name="fileVedio" onchange="checkV(this)">
-										已上传视频文件：<a href="/${vedio.vedioUrl}" title="点击查看" target="_blank">${vedio.vedioName}</a>
+										<div>已上传视频文件：<a href="/${vedio.vedioUrl}" title="点击查看" target="_blank">${vedio.vedioName}</a></div>
 										</td>
 									</tr>
 								<tr>

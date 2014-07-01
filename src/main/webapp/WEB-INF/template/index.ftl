@@ -191,6 +191,9 @@
 		    color: #0000ff;
 		    text-decoration: underline;
 		}
+		#loginForm tr {
+		    line-height: 35px;
+		}
     </style>
     <style type="text/css">
 		#banner {position:relative; width:314px; height:286px; overflow:hidden;}

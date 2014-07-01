@@ -7,6 +7,8 @@
 <meta name="copyright" content="e3dmall" />
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
 <link href="/resource/public/js/admin/themes/default/default.css" rel="stylesheet" type="text/css" />
+<link href="/resource/public/selectArea/css/css.css" type="text/css" rel="stylesheet">
+<link href="/resource/public/selectArea/css/cityLayout.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="/resource/public/js/jquery.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/jquery.validate.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/kindeditor.js"></script>
@@ -19,7 +21,17 @@
 <script type="text/javascript" src="/resource/public/js/datePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="/resource/public/js/waitamoment.js"></script>
 
-
+<style type="text/css">
+	.list li {
+	    line-height: 23px;
+	}
+	.list input {
+		width:80px;
+	}
+	input[type="text"] {
+	    width: 176px;
+	}
+</style>
 <script type="text/javascript">
 
 	[@compress single_line = true]
@@ -239,12 +251,21 @@ $().ready(function() {
 						</div>
 					</td>
 					<th>技术等级:</th>
-					<td><input type="text" id="eteLevel1" name="eteLevel" value="${recruit.eteLevel}"/></td>
+					<td>
+						<select style="width:183px;" name="eteLevel" id="eteLevel1" value="${recruit.eteLevel}">
+							<option value="">请选择..</option>
+							<option value="职业资格一级（高级技师）">职业资格一级（高级技师）</option>
+							<option value="职业资格二级（技师）">职业资格二级（技师）</option>
+							<option value="职业资格三级（高级）">职业资格三级（高级）</option>
+							<option value="职业资格四级（中级）">职业资格四级（中级）</option>
+							<option value="职业资格五级（初级）">职业资格五级（初级）</option>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<th>从事年限:</th>
 					<td>
-					<select id="workyear1" name="workyear"  value="${recruit.workyear}">
+					<select id="workyear1" name="workyear"  value="${recruit.workyear}" style="width: 186px;">
 						<option value="不限">不限</option>
 						<option value="在读学生">在读学生</option>
 						<option value="应届毕业生">应届毕业生</option>
@@ -277,13 +298,64 @@ $().ready(function() {
 				</tr>
 				<tr>
 					<th>工作地点:</th>
-					<td><input type="text" id="workspace1" name="workspace" value="${recruit.workspace}"/></td>
+					<td>
+						<input type="text" name="workspace" value="${recruit.workspace}"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" name="expectArea">
+							<!--////////////////////////////////////////////////////////////////////////-->
+								<div class="provinceCityAll">
+								  <div class="tabs clearfix">
+								    <ul class="">
+								      <li><a href="javascript:" class="current" tb="hotCityAll">热门城市</a></li>
+								      <li><a href="javascript:" tb="provinceAll">省份</a></li>
+								      <li><a href="javascript:" tb="cityAll" id="cityAll">城市</a></li>
+								      <li><a href="javascript:" tb="countyAll" id="countyAll">区县</a></li>
+								    </ul>
+								  </div>
+								  <div class="con">
+								    <div class="hotCityAll invis">
+								      <div class="pre"><a></a></div>
+								      <div class="list">
+								        <ul>
+								         
+								        </ul>
+								      </div>
+								      <div class="next"><a class="can"></a></div>
+								    </div>
+								    <div class="provinceAll invis">
+								      <div class="pre"><a></a></div>
+								      <div class="list">
+								        <ul>
+								        
+								        </ul>
+								      </div>
+								      <div class="next"><a class="can"></a></div>
+								    </div>
+								    <div class="cityAll invis">
+								      <div class="pre"><a></a></div>
+								      <div class="list">
+								        <ul>
+								          
+								        </ul>
+								      </div>
+								      <div class="next"><a class="can"></a></div>
+								    </div>
+								    <div class="countyAll invis">
+								      <div class="pre"><a></a></div>
+								      <div class="list">
+								        <ul>
+								        </ul>
+								      </div>
+								      <div class="next"><a class="can"></a></div>
+								    </div>
+								  </div>
+								</div>
+							<!--////////////////////////////////////////////////////////////////////////-->
+					</td>
 					<th>年龄:</th>
 					<td><input type="text" id="age1" name="age" value="${recruit.age}"></td>
 				</tr>
 				<tr>
 					<th>身高:</th>
-					<td><input type="text" id="height1" name="height" placeholder="cm" value="${recruit.height}"/></td>
+					<td><input type="text" id="height1" name="height" value="${recruit.height}"/><span style="margin-left:-25px;color:#000000;">cm</span></td>
 					<th>视力:</th>
 					<td><input type="text" id="eyesight1" name="eyesight" value="${recruit.eyesight}"></td>
 				</tr>
@@ -327,14 +399,14 @@ $().ready(function() {
 					</td>
 					<th>面试时间:</th>
 					<td>
-						<input type="text" value="[#if recruit.viewData!=0]${recruit.viewData?number_to_date}[/#if]" name="beginDate" id="beginDate"   style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
+						<input type="text" value="[#if recruit.viewData!=0]${recruit.viewData?number_to_date}[/#if]" name="beginDate" id="beginDate"   style="width:172px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
 				    	<input type="hidden"  name="endDate" id="endDate"  style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
 					</td>
 				</tr>
 				<tr>
 					<th style="vertical-align:top;">其他说明:</th>
 					<td colspan="3">
-						<textArea cols="30" style="resize:none;" id="note1" name="note">${recruit.note}</textArea>
+						<textArea rows="3" cols="77" style="resize:none;" id="note1" name="note">${recruit.note}</textArea>
 					</td>
 				</tr>
 				<tr>
@@ -342,12 +414,12 @@ $().ready(function() {
 						&nbsp;
 					</th>
 					<td colspan="3">
-						<input type="submit" id="savaJobs" value="确定">
+						<input type="submit" id="savaJobs" class="button" value="确定">
 						<input type="button" id="backButton" class="button" value="返回" />
 					</td>
 				</tr>
 			</table>
 		</form>
-	
+	<script src="/resource/public/selectArea/js/public.js"></script>
 </body>
 </html>
