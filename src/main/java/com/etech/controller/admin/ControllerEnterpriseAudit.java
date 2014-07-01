@@ -2,11 +2,14 @@ package com.etech.controller.admin;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import mydfs.storage.server.MydfsTrackerServer;
 
@@ -24,6 +27,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.etech.entity.TentImgVedio;
 import com.etech.entity.TentUser;
 import com.etech.service.EtechService;
+import com.etech.util.JsonOutToBrower;
 
 /**
  * 企业审核
@@ -45,17 +49,13 @@ public class ControllerEnterpriseAudit {
 	public String newsListView(HttpServletRequest request) {
 		log.debug("current controller is newsListView !");
 		//查询待审核的企业用户
+		String hql="FROM TentUser user where user.status=0 and user.disable=0";
 		@SuppressWarnings("unchecked")
-		List<TentUser> enterpriseTentUsers=(List<TentUser>)etechService.getListByProperty(TentUser.class, "status", "0");
-		request.setAttribute("enterpriseTentUsers", enterpriseTentUsers);
+		List<TentUser> userList=(List<TentUser>) etechService.findListByHQL(hql);
+		request.setAttribute("enterpriseTentUsers", userList);
 		return "admin/enterpriseAudit/list";
 	}
 	
-	@RequiresPermissions("enterpriseAudit:delete")
-	@RequestMapping("/delete")
-	public String delete(){
-		return "";
-	}
 	/**
 	 * 添加企业审核
 	 * @return
@@ -82,6 +82,25 @@ public class ControllerEnterpriseAudit {
 		request.setAttribute("Maps", Maps);
 		log.debug("current controller is editNewsView !");
 		return "admin/enterpriseAudit/edit";
+	}
+	
+	/**
+	 * 删除 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequiresPermissions("enterpriseAudit:delete")
+	@RequestMapping("/delete")
+	public void removeNews(Long[] ids,HttpServletResponse response){
+		System.out.println(ids);
+		String userIds = Arrays.toString(ids).replace("[","(").replace("]", ")");
+		String hql="update from TbaseUser user set user.disable=1 where user.id in "+userIds;
+		log.debug(hql);
+		etechService.update(hql);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("type", "success");
+		JsonOutToBrower.out(map, response);
 	}
 	
 	/**
