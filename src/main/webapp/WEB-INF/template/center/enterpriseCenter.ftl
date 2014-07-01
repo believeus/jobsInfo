@@ -449,16 +449,19 @@
 		function delete_pic(object,id){		
 			if ($(".qiyepic").size() <= 1) {
 				changpic=true;
-				alert("必须至少保留一张空图片");				
+				alert("必须至少保留一张空图片");		
 				// 获取图片是否有值
 				if($(object).closest("div").parent().find("img").attr("src")!="/resource/public/images/bg.png"){
 					// 清空图片和描述
 					$(object).closest("div").parent().find("img").attr("src","/resource/public/images/bg.png");
 					$(object).closest("div").parent().find("textarea").text("");
+					$(object).closest("div").parent().find("input[name='id']").remove();
 					if(id!=0){
 						deleteImg(id);					
 					}
-					c--;
+					if(c>2){
+						c--;					
+					}
 				}					
 			} else {
 				if(id!=0){
@@ -487,8 +490,8 @@
 						deleteVIds(id);
 					}
 					$(object).closest("div").remove();
+					v--;
 				}
-				v--;
 		}
 		
 		
@@ -547,7 +550,6 @@
 		var inum=1;
 		// 上传企业图片
 		function submitImgs(){
-		  if(changpic==false){
 			   for(var i=1;i<c;i++){
 			   		$("#ImgForm"+i).ajaxSubmit({
 	            	 type: "post",
@@ -561,16 +563,11 @@
 				    	 }
 		    		});	
 			   }
-		  }else{
-		  	submitVedio();		
-		  }
 		}
 		
 		var vnum=0;
 		// 上传视频
 		function submitVedio(){
-			// 判断视频是否被清空过。
-		  if(visz==false){
 			 for(var i=1;i<v;i++){
 		   		$("#vedioForm"+i).ajaxSubmit({
             	 type: "post",
@@ -584,9 +581,6 @@
 			    	 }
 	    		});	
 		  	 }
-			}else{
-				location.reload(true);
-		  	}
 		}
 		
 		function showDialog(id,object){
@@ -647,7 +641,6 @@
    
    
     $().ready(function(){
-    
     	
     	// 初始化一些值。设置value为用户填写过的项选中。
     	$("#unitType").val("${sessionUser.unitType}");
