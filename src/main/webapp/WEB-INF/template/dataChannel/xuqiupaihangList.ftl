@@ -117,8 +117,8 @@
 				<ul>
 					[#list monthlyDemandList as supply]
 						<li>
-							<a href="/supply.jhtml?id=${supply.id}">${supply.author}</a>
-							<span>${supply.createTime?number_to_datetime}</span>
+							<a href="/enterpriseInformation.jhtml?id=${supply.id}">${supply.workType.name}</a>
+							<span>${supply.editTime?number_to_datetime}</span>
 						</li>
 					[/#list]
 				</ul>

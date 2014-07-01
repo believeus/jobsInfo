@@ -163,7 +163,7 @@ a:link{
                 <div class="middle_" style="text-align:center; padding-top:8px; height:22px;"> 
                     <div>
                     	<img style="float: left; margin-left: 10px;" src="/resource/public/images/sanjiaojian.png">
-                    	每月职业供给排行榜<span style="float:right;"><a href="/gongjipaihangList.jhtml">更多</a></span>
+                    	每月职业供给排行榜<span style="float:right;"><a href="/gongjipaihangList.jhtml?pageNo=0&pageSize=20">更多</a></span>
                 	</div>
                 </div>
                 <div class="gg" style="">
@@ -182,7 +182,7 @@ a:link{
                 <div class="middle_" style="text-align:center; padding-top:8px; height:22px;"> 
                     <div>
                     	<img style="float: left; margin-left: 10px;" src="/resource/public/images/sanjiaojian.png">
-                    	每月职业需求排行榜<span style="float:right;"><a href="/xuqiupaihangList.jhtml">更多</a></span>
+                    	每月职业需求排行榜<span style="float:right;"><a href="/xuqiupaihangList.jhtml?pageNo=0&pageSize=20">更多</a></span>
                 	</div>
                 </div>
                 <div class="gg">
