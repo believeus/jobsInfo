@@ -1,6 +1,9 @@
 package com.etech.controller.admin;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +20,7 @@ import com.etech.entity.TentImgVedio;
 import com.etech.entity.TentUser;
 import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
+import com.etech.util.JsonOutToBrower;
 
 /**
  * 企业列表
@@ -37,7 +41,8 @@ public class ControllerEnterpriseList {
 	public String newsListView(HttpServletRequest request) {
 		log.debug("current controller is newsListView !");
 		//查找审核列表
-		List<Trecruit> userList=(List<Trecruit>) etechService.getListByProperty(TentUser.class, "status","1" , 20);
+		String hql="FROM TentUser user where user.status=1 and user.disable=0";
+		List<TentUser> userList=(List<TentUser>) etechService.findListByHQL(hql);
 		request.setAttribute("enterpriseTentUsers",userList);
 		return "admin/humanResources/list";
 	}
@@ -49,7 +54,15 @@ public class ControllerEnterpriseList {
 	 */
 	@RequiresPermissions("enterpriseList:delete")
 	@RequestMapping("/delete")
-	public String removeNews(HttpServletRequest request,HttpServletResponse response){
+	public String removeNews(Long[] ids,HttpServletResponse response){
+		System.out.println(ids);
+		String userIds = Arrays.toString(ids).replace("[","(").replace("]", ")");
+		String hql="update from TentUser user set user.disable=1 where user.id in "+userIds;
+		log.debug(hql);
+		etechService.update(hql);
+		Map<String, Object> map=new HashMap<String, Object>();
+		/*map.
+		JsonOutToBrower.out(map, response);*/
 		return "redirect:/admin/enterpriseList/list.jhtml";
 	}
 	/**

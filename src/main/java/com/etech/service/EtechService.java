@@ -67,4 +67,9 @@ public class EtechService {
 	public List<?> getListByClass(Class<?> clazz,Integer num){
 		return etechComDao.getListByClass(clazz,num);
 	}
+
+	public void update(String hql) {
+		etechComDao.update(hql);
+		
+	}
 }

@@ -384,4 +384,18 @@ public class EtechComDao extends HibernateDaoSupport {
 			}
 		});
 	}
+
+	public void update(final String hql) {
+		getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				Query query = session.createQuery(hql);
+				query.executeUpdate();
+				return null;
+			}
+			
+		});
+	}
 }

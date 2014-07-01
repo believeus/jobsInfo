@@ -48,7 +48,7 @@ public class TbaseUser extends TbaseEntity implements Serializable{
 	private String address;
 	/**用户属于哪个角色*/
 	
-	/** 禁用和启用*/
+	/** 1:禁用 0:启用*/
 	private int disable;
 	
 	private Set<Trole> roles=new HashSet<Trole>();
