@@ -445,8 +445,10 @@
 		[#else]
 			var c = 2;
 		[/#if]
+		var changpic=false;
 		function delete_pic(object,id){		
 			if ($(".qiyepic").size() <= 1) {
+				changpic=true;
 				alert("必须至少保留一张空图片");				
 				// 获取图片是否有值
 				if($(object).closest("div").parent().find("img").attr("src")!="/resource/public/images/bg.png"){
@@ -542,30 +544,33 @@
 			}
 		}
 		
-		var inum=0;
+		var inum=1;
 		// 上传企业图片
 		function submitImgs(){
-		   for(var i=1;i<c;i++){
-		   		$("#ImgForm"+i).ajaxSubmit({
-            	 type: "post",
-			     url: "/enterprise-user/center/upload.jhtml",
-			     dataType: "json",
-			     success: function(data){
-			     		inum++;
-				     	if(inum==(c-1)){
-							submitVedio();				     	
-			     		}
-			    	 }
-	    		});	
-		   }
-			
+		  if(changpic==false){
+			   for(var i=1;i<c;i++){
+			   		$("#ImgForm"+i).ajaxSubmit({
+	            	 type: "post",
+				     url: "/enterprise-user/center/upload.jhtml",
+				     dataType: "json",
+				     success: function(data){
+				     		inum++;
+					     	if(inum==c){
+								submitVedio();				     	
+				     		}
+				    	 }
+		    		});	
+			   }
+		  }else{
+		  	submitVedio();		
+		  }
 		}
 		
 		var vnum=0;
 		// 上传视频
 		function submitVedio(){
 			// 判断视频是否被清空过。
-			if(visz==false){
+		  if(visz==false){
 			 for(var i=1;i<v;i++){
 		   		$("#vedioForm"+i).ajaxSubmit({
             	 type: "post",
@@ -581,7 +586,7 @@
 		  	 }
 			}else{
 				location.reload(true);
-		  	 }
+		  	}
 		}
 		
 		function showDialog(id,object){
@@ -1006,12 +1011,9 @@
 		   						return;		   						
 		   					}else{
 								count++;
-								if(tag==false&&count==v){
-				   					showdiv();
-									submitInfo();
-				   				}else{
+								if(tag!=false&&count!=v){
 									return;
-								}	   					
+				   				}   					
 		   					}
 		   				}else{
 		   					count++;
