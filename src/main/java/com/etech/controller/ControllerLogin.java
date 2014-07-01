@@ -51,6 +51,10 @@ public class ControllerLogin {
 				message.put("message", "用户不存在，请注册");
 				log.debug("error loginName:" + user.getLoginName());
 				JsonOutToBrower.out(message, response);
+			}else if (sessionUser.getDisable()==1) { // 判断该用户是否被删除。
+				message.put("message", "该用户已被删除或被禁用,不能注册");
+				log.debug("error loginName:" + user.getLoginName());
+				JsonOutToBrower.out(message, response);
 			}else {
 				/*用户名和密码都正确*/
 				/*密码使用md5加密*/

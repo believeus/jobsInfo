@@ -56,6 +56,9 @@ public class ControllerRegister {
 			message.put("message","最少6位的英文字母或数字");
 			JsonOutToBrower.out(message, response);
 			return;
+		}else if (regUser.getDisable()==1) { // 判断该用户是否被删除。
+			message.put("message", "该用户已被删除或被禁用,不能注册");
+			JsonOutToBrower.out(message, response);
 		}
 		// 用户注册
 		if(StringUtils.isEmpty(sessionUser)){
