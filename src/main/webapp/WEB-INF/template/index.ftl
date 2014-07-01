@@ -406,12 +406,14 @@
 								<p class="xinxi_1_p"><span style="margin-left:30px;float:none;">招聘信息</span></p>
 								<ul style="padding-left:25px;">
 									[#list zhaopList as zhaop]
-										<li  class="xinxi_1_li">
+									[#if zhaop_index <6]
+										<li class="xinxi_1_li">
 											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}">${zhaop.company}</a>&nbsp;&nbsp;
-											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zw">[#if zhaop.workType?exists][#else]不明[/#if]</a>
+											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zw">[#if zhaop.workType?exists]${zhaop.workType.name}[#else]不明[/#if]</a>
 											<span class="xinxi_1_span">${zhaop.editTime?number_to_datetime}</span>
 
 										</li>
+									[/#if]
 									[/#list]
 								</ul>
 							</div>
@@ -444,10 +446,12 @@
 								<p class="xinxi_1_p"><span style="margin-left:30px;float:none;">求职信息</span></p>
 								<ul style="padding-left:25px;">
 									[#list qiuzhiList as qiuzhi]
-										<li  class="xinxi_1_li">
+									[#if qiuzhi_index <6]
+										<li class="xinxi_1_li">
 											<a href="/personalResume.jhtml?id=${qiuzhi.id}">${qiuzhi.trueName}&nbsp;&nbsp;[#if qiuzhi.sex == 'man']男[#else]女[/#if]&nbsp;&nbsp;${qiuzhi.eduLevel}&nbsp;&nbsp;${qiuzhi.workType}</a>
 											<span class="xinxi_1_span">${qiuzhi.createDate?number_to_datetime}</span>
 										</li>
+									[/#if]
 									[/#list]
 								</ul>
 							</div>

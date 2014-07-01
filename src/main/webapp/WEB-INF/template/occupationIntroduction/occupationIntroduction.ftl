@@ -550,7 +550,6 @@
 			<div style="width:994px;height:37px; background:url(/resource/public/images/intro.png);border: 1px solid #e4e4e4;">
 				<span style="color: #817f80;font-size: 19px;font-weight: bold;line-height: 38px;margin-left: 10px;">名企招聘</span>
 			</div>
-			
 			[#list headImgs as headImg]
 				<a href="/enterpriseInformation.jhtml?id=${headImg.id}">
 					<img src="${headImg.url}" width="195" height="33">

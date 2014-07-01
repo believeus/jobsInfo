@@ -450,7 +450,7 @@
 									<td>${comInfo.workType.name}</td>
 									<td>${comInfo.expectSalary}</td>
 									<td>${comInfo.expectArea}</td>
-									<td>[#if comInfo.note?exists]${comInfo.note}[#else]无[/#if]</td>
+									<td>[#if comInfo.note?exists && comInfo.infoType==4]${comInfo.note}[#else]无[/#if]</td>
 								</tr>
 								[/#list]
 							</table>
@@ -477,7 +477,7 @@
 									<td>${comInfo.workType.name}</td>
 									<td>${comInfo.skillLevel}</td>
 									<td>${comInfo.workingLife}</td>
-									<td>[#if comInfo.note?exists]${comInfo.note}[#else]无[/#if]</td>
+									<td>[#if comInfo.note?exists && comInfo.infoType==1]${comInfo.note}[#else]无[/#if]</td>
 								</tr>
 								[/#list]
 							</table>
@@ -542,7 +542,7 @@
 								<td>${comInfo.workspace}</td>
 								<td>${comInfo.duty}</td>
 								<td>${comInfo.workType.name}</td>
-								<td>[#if comInfo.note?exists]${comInfo.note}[#else]无[/#if]</td>
+								<td>[#if comInfo.note?exists && comInfo.infoType==3]${comInfo.note}[#else]无[/#if]</td>
 							</tr>
 							[/#list]
 						</table>

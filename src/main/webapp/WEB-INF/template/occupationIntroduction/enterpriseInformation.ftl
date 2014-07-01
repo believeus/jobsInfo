@@ -419,6 +419,7 @@
 											[/#list]
 										[#else]
 											<img src="/resource/public/images/zt_topImg.png" width="260px" height="30px"/>
+											<span style="color:#000000;font-size:12px;">默认企业电子图</span>
 										[/#if]
 									</td>
 								</tr>
@@ -503,11 +504,11 @@
 						[#list vedios as vedio]
 							[#if vedio_index=0]
 								<div style="width:600px;height:auto;margin-left:auto;margin-right:auto;">
-									<embed width="585" height="432" bgcolor="#000000" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" src="http://p.you.video.sina.com.cn/swf/bokePlayer20140616_V4_1_42_49.swf"  type="application/x-shockwave-flash"/>
+									<embed width="585" height="432" bgcolor="#000000" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" [#if vedio.vedioUrl?exists] src="${vedio.vedioUrl}"[#else] src="http://p.you.video.sina.com.cn/swf/bokePlayer20140616_V4_1_42_49.swf"[/#if]  type="application/x-shockwave-flash"/>
 									<p>视频简介：</p>
 									<div>
-										[#if veiod.content?exists]
-											${vedio.content}
+										[#if veiod.descption?exists]
+											${vedio.descption}
 										[#else]	
 											每一个人工作都是为了获得合理的报酬，所以广大面试者不需要任何心理负担，或者有任何难以启齿的感觉。工资是每一个员工的正常收益，只有在面试的过程中得到恰当的定位，那么让员工在工作中有更好的积极性，也让企业获得最恰当的员工。
 										[/#if]
