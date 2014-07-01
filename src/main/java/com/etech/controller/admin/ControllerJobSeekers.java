@@ -1,6 +1,9 @@
 package com.etech.controller.admin;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.etech.entity.TcomUser;
+import com.etech.entity.TentUser;
 import com.etech.service.EtechService;
+import com.etech.util.JsonOutToBrower;
 
 /**
  * 求职者
@@ -34,23 +39,32 @@ public class ControllerJobSeekers {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
 		log.debug("current controller is admin/JobSeekers/list !");
+		String hql="FROM TcomUser user where user.disable=0";
 		@SuppressWarnings("unchecked")
-		List<TcomUser> userList=(List<TcomUser>)etechService.getListByClass(TcomUser.class, 20);
+		List<TcomUser> userList=(List<TcomUser>) etechService.findListByHQL(hql);
 		request.setAttribute("userList", userList);
 		return "admin/JobSeekers/list";
 	}
 	
 	/**
-	 * 删除
+	 * 删除 
 	 * @param request
 	 * @param response
 	 * @return
 	 */
 	@RequiresPermissions("jobSeekersList:delete")
 	@RequestMapping("/delete")
-	public String removeNews(HttpServletRequest request,HttpServletResponse response){
-		return "redirect:/admin/jobSeekersList/list.jhtml";
+	public void removeNews(Long[] ids,HttpServletResponse response){
+		System.out.println(ids);
+		String userIds = Arrays.toString(ids).replace("[","(").replace("]", ")");
+		String hql="update from TbaseUser user set user.disable=1 where user.id in "+userIds;
+		log.debug(hql);
+		etechService.update(hql);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("type", "success");
+		JsonOutToBrower.out(map, response);
 	}
+	
 	/**
 	 * 添加求职者
 	 * @return

@@ -408,7 +408,7 @@
 									[#list zhaopList as zhaop]
 										<li  class="xinxi_1_li">
 											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}">${zhaop.company}</a>&nbsp;&nbsp;
-											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zw">[#if zhaop.workType?exists]${zhaop.workType.name}[#else]不明[/#if]</a>
+											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zw">[#if zhaop.workType?exists][#else]不明[/#if]</a>
 											<span class="xinxi_1_span">${zhaop.editTime?number_to_datetime}</span>
 
 										</li>
