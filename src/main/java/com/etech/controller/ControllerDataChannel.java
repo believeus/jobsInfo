@@ -11,8 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.etech.entity.TcomInfo;
 import com.etech.entity.TdataCenter;
+import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
+import com.etech.util.TimeUtils;
 
 /**
  * 数据频道
@@ -48,14 +51,25 @@ public class ControllerDataChannel {
 		List<TdataCenter> wagePriceGuide = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("wagePriceGuide", wagePriceGuide);
 		
+		// 获取一个月的毫秒数
+		long oneMonthTimeMillis=TimeUtils.getOneMonthTimeMillis();
+		// 当前时间
+		long endTime=System.currentTimeMillis();
+		long beginTime=endTime-oneMonthTimeMillis;
 		//需求排行
-		hql="From TdataCenter dataCenter where dataCenter.type='16'";
-		List<TdataCenter> demand = (List<TdataCenter>)etechService.findListByHQL(hql);
+		hql="from Trecruit recruit left join fetch recruit.workType "
+		   + "where recruit.editTime >="+beginTime+" and recruit.editTime <="+endTime +" "
+		   + "group by recruit.workType "
+		   + "order by recruit.editTime desc";
+		log.debug(hql);
+		List<Trecruit> demand = (List<Trecruit>)etechService.findListByHQL(hql,8);
 		session.setAttribute("demand", demand);
 		
-		//供给排行
-		hql="From TdataCenter dataCenter where dataCenter.type='17'";
-		List<TdataCenter> supply = (List<TdataCenter>)etechService.findListByHQL(hql);
+		//每月供给排行
+		hql="from TcomInfo info left join fetch info.comUser "
+		  + "where info.editDate>="+beginTime+" and info.editDate<="+endTime+" group by info.workType";
+		log.debug(hql);
+		List<TcomInfo> supply = (List<TcomInfo>)etechService.findListByHQL(hql,8);
 		session.setAttribute("supply", supply);
 		
 		//下载

@@ -168,15 +168,10 @@ a:link{
                 </div>
                 <div class="gg" style="">
                   <ul class="gongji" style="font-size:13px; letter-spacing:0px; list-style-type:none;margin:0;padding-left:15px;padding-right:15px;">
-                    [#assign x = 0]
                     [#list supply as supply]
-                    [#assign x = x+1]
 	                    <li>
 	                      	<div>
-		                      	<a [#if supply_index<2] style="color:#fe0002;" [#elseif supply_index = 2]style="color:#2ccd0f;"[/#if]  href="/supply.jhtml?id=${supply.id}">${x}、${supply.author}</a>
-		                      	[#if supply_index<3]
-		                      		<span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span>
-	                      		[/#if]
+		                      	<a style="color:#fe0002;" href="/personalResume.jhtml?id=${supply.comUser.id}">${supply.jobPost}</a>
                       		</div>
 	                    </li>
                     [/#list]
@@ -192,15 +187,10 @@ a:link{
                 </div>
                 <div class="gg">
                   <ul class="gongji" style="font-size:13px; letter-spacing:0px; list-style-type:none;margin:0;padding-left:15px;padding-right:15px;">
-               		[#assign y = 0]
                     [#list demand as demand]
-                    [#assign y = y+1]
 	                    <li>
 	                      	<div>
-		                      	<a [#if demand_index<2] style="color:#fe0002;" [#elseif demand_index = 2]style="color:#2ccd0f;"[/#if]  href="/demand.jhtml?id=${demand.id}">${y}、${demand.author}</a>
-		                      	[#if demand_index<3]
-		                      		<span style="color:#fe0002;float:right;margin-right:10px;">HOT!</span>
-	                      		[/#if]
+		                      	<a  style="color:#fe0002;" href="/enterpriseInformation.jhtml?id=${demand.id}">${demand.workType.name}</a>
                       		</div>
 	                    </li>
                     [/#list]
