@@ -645,19 +645,22 @@
     $().ready(function(){
     	 
     	 var countchange=0;
-    	$("textarea,#InfoForm input[type=text],select").change(function() {
-    		countchange++;
-    		if(countchange==1){
-    			alert("修改企业基本信息，需管理员重新审核！");
-    		}
+    	$("textarea,input[type=text],select").change(function() {
     		var oldvalue=$(this).attr("oldvalue");
-    		var value=$(this).val();
-    		// 监听是否发生改变。
-    		if(oldvalue!=value){
-    			infochange++;
-    		}else{
-    			infochange--;
+    		if(oldvalue!=""){
+    			countchange++;
+	    		if(countchange==1){
+	    			alert("修改企业基本信息，需管理员重新审核！");
+	    		}
+	    		var value=$(this).val();
+	    		// 监听是否发生改变。
+	    		if(oldvalue!=value){
+	    			infochange++;
+	    		}else{
+	    			infochange--;
+	    		}
     		}
+    		
     	});
 
     
