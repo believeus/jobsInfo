@@ -515,6 +515,9 @@
 		
 		// ajax 提交验证和保存。
 		function submitInfo(){
+			if(infochange!=0||changex==1){
+				$("#status").val(0);
+			}
 			//alert(" 信息提交");
 			$("#InfoForm").ajaxSubmit({
 	            	 type: "post",
@@ -526,8 +529,7 @@
         		});	
 		}
 		
-		// 查看电子图是否有改变。
-    	var changex=0;
+		
 		// 上传电子图片
 		function submitMap(){
 			if(changex==1){
@@ -634,11 +636,31 @@
     	
     	var sum=1;
     	
+    	// 查看是否发生改变。
+    	var infochange=0;
     	
-   
-   
+    	// 查看电子图是否有改变。
+    	var changex=0;
+    
     $().ready(function(){
-    	
+    	 
+    	 var countchange=0;
+    	$("textarea,input[type=text],select").change(function() {
+    		countchange++;
+    		if(countchange==1){
+    			alert("修改企业基本信息，需管理员重新审核！");
+    		}
+    		var oldvalue=$(this).attr("oldvalue");
+    		var value=$(this).val();
+    		// 监听是否发生改变。
+    		if(oldvalue!=value){
+    			infochange++;
+    		}else{
+    			infochange--;
+    		}
+    	});
+
+    
     	// 初始化一些值。设置value为用户填写过的项选中。
     	$("#unitType").val("${sessionUser.unitType}");
     	$("#relationship").val("${sessionUser.relationship}");
@@ -1156,15 +1178,15 @@
 						<table>
 						<form novalidate="novalidate"  action="/enterprise/submit-account-Info.jhtml" encType="multipart/form-data"  method="post" id="InfoForm">
 							<input type="hidden" name="id" value="${sessionUser.id}">
-							<input type="hidden" name="status" value="${sessionUser.status}">
+							<input type="hidden" id="status" name="status" value="${sessionUser.status}">
 							<input type="hidden" name="loginName" value="${sessionUser.loginName}">
 							<input type="hidden" name="password" value="">
 								<tr>
 									<td>单位全称:</td>
-									<td style="padding-right: 80px;"><input type="text" value="${sessionUser.fullName}" id="fullName" name="fullName"></td>
+									<td style="padding-right: 80px;"><input type="text" oldvalue="${sessionUser.fullName}" value="${sessionUser.fullName}" id="fullName" name="fullName"></td>
 									<td>单位性质:</td>
 									<td>
-										<select id="unitType" name="unitType" style="width: 182px;">
+										<select id="unitType" name="unitType" style="width: 182px;" oldvalue="${sessionUser.unitType}">
 											<option value="">请选择..</option>
 											<option value="企业">企业</option>
 											<option value="党政机关">党政机关</option>
@@ -1175,10 +1197,10 @@
 								</tr>
 								<tr>
 									<td>单位简称:</td>
-									<td><input type="text" id="shorName" value="${sessionUser.shorName}" name="shorName"></td>
+									<td><input type="text" id="shorName" value="${sessionUser.shorName}" name="shorName" oldvalue="${sessionUser.shorName}"></td>
 									<td>隶属关系:</td>
 									<td>
-										<select id="relationship" name="relationship" style="width: 182px;">
+										<select id="relationship" name="relationship" style="width: 182px;" oldvalue="${sessionUser.relationship}">
 											<option value="">请选择..</option>
 											<option value="中央">中央</option>
 											<option value="省">省</option>
@@ -1193,7 +1215,7 @@
 								<tr>
 									<td>经济类型:</td>
 									<td>
-										<select id="economicType" name="economicType" style="width: 182px;">
+										<select id="economicType" name="economicType" style="width: 182px;" oldvalue="${sessionUser.economicType}">
 											<option value="">请选择..</option>
 											<option value="国有">国有</option>
 											<option value="集体">集体</option>
@@ -1207,12 +1229,12 @@
 										</select>
 									</td>
 									<td>法人代表:</td>
-									<td><input type="text" value="${sessionUser.legalMan}" id="legalMan" name="legalMan"></td>
+									<td><input type="text" value="${sessionUser.legalMan}" id="legalMan" name="legalMan" oldvalue="${sessionUser.legalMan}"></td>
 								</tr>
 								<tr>
 									<td>所属地区:</td>
 									<td>
-										<input type="text" name="area" value="${sessionUser.area}"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off">
+										<input type="text" name="area" value="${sessionUser.area}" oldvalue="${sessionUser.area}" class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off">
 									<!--////////////////////////////////////////////////////////////////////////-->
 										<div class="provinceCityAll">
 										  <div class="tabs clearfix">
@@ -1264,35 +1286,35 @@
 									<!--////////////////////////////////////////////////////////////////////////-->
 									</td>
 									<td>行业:</td>
-									<td><input type="text"  value="${sessionUser.trade}" id="trade" name="trade"></td>
+									<td><input type="text"  value="${sessionUser.trade}" id="trade" name="trade" oldvalue="${sessionUser.trade}"></td>
 								</tr>
 								<tr>
 									<td>注册资金:</td>
-									<td><input type="text"  value="${sessionUser.regMoney}" id="regMoney" name="regMoney" ><span style="padding:0;margin-left:-35px;color:#000000;">万元</span></td>
+									<td><input type="text"  value="${sessionUser.regMoney}" oldvalue="${sessionUser.regMoney}" id="regMoney" name="regMoney" ><span style="padding:0;margin-left:-35px;color:#000000;">万元</span></td>
 									<td>详细地址:</td>
-									<td><input type="text"  value="${sessionUser.detailAddress}"id="detailAddress" name="detailAddress"></td>
+									<td><input type="text"  value="${sessionUser.detailAddress}" oldvalue="${sessionUser.detailAddress}" id="detailAddress" name="detailAddress"></td>
 								</tr>
 								<tr>
 									<td>联系人:</td>
-									<td><input type="text"  value="${sessionUser.contacts}" id="contacts" name="contacts"></td>
+									<td><input type="text"  value="${sessionUser.contacts}" oldvalue="${sessionUser.contacts}" id="contacts" name="contacts"></td>
 									<td>通讯地址:</td>
-									<td><input type="text"  value="${sessionUser.address}" id="address" name="address"></td>
+									<td><input type="text"  value="${sessionUser.address}" oldvalue="${sessionUser.address}" id="address" name="address"></td>
 								</tr>
 								<tr>
 									<td>邮编:</td>
-									<td><input type="text"  value="${sessionUser.zip}" id="zip" name="zip"></td>
+									<td><input type="text"  value="${sessionUser.zip}" oldvalue="${sessionUser.zip}" id="zip" name="zip"></td>
 									<td>手机:</td>
-									<td><input type="text"  value="${sessionUser.phoneNum}" id="phoneNum" name="phoneNum" minlegnth="11" maxlength="11" onkeyup="value=this.value.replace(/\D+/g,'')"></td>
+									<td><input type="text"  value="${sessionUser.phoneNum}" oldvalue="${sessionUser.phoneNum}" id="phoneNum" name="phoneNum" minlegnth="11" maxlength="11" onkeyup="value=this.value.replace(/\D+/g,'')"></td>
 								</tr>
 								<tr>
 									<td>电话/传真:</td>
-									<td><input type="text"  value="${sessionUser.phoneFax}" id="phoneFax" name="phoneFax"></td>
+									<td><input type="text"  value="${sessionUser.phoneFax}" oldvalue="${sessionUser.phoneFax}" id="phoneFax" name="phoneFax"></td>
 									<td>网址:</td>
-									<td><input type="text"  value="${sessionUser.webSite}" id="webSite" name="webSite"></td>
+									<td><input type="text"  value="${sessionUser.webSite}" oldvalue="${sessionUser.webSite}" id="webSite" name="webSite"></td>
 								</tr>
 								<tr>
 									<td style="vertical-align: top;">单位简介:</td>
-									<td colspan="3"><textArea cols="50" rows="5"  name="introduce" id="introduce" style="resize:none;">${sessionUser.introduce}</textArea></td>
+									<td colspan="3"><textArea cols="50" rows="5"  name="introduce" id="introduce" style="resize:none;" oldvalue="${sessionUser.introduce}">${sessionUser.introduce}</textArea></td>
 								</tr>
 							</form>
 									<tr>
