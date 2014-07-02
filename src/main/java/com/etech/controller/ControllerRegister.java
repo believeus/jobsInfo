@@ -120,7 +120,7 @@ public class ControllerRegister {
 		}
 		//用户注册
 		if(StringUtils.isEmpty(sessionUser)){
-			TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TcomUser.class, EtechGobal.loginName, regUser.getLoginName());
+			TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TbaseUser.class, EtechGobal.loginName, regUser.getLoginName());
 			if (!StringUtils.isEmpty(user)) {
 				message.put("property","loginName");
 				message.put("message","用户名已存在");
@@ -129,10 +129,10 @@ public class ControllerRegister {
 			}
 		// 用户编辑
 		}else{
-			TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TcomUser.class, "id", regUser.getId());
+			TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TbaseUser.class, "id", regUser.getId());
 			// 编辑用户名和原用户名不等
 			if(!user.getLoginName().equals(regUser.getLoginName())){
-				user = (TbaseUser) etechService.findObjectByProperty(TcomUser.class, EtechGobal.loginName, regUser.getLoginName());
+				user = (TbaseUser) etechService.findObjectByProperty(TbaseUser.class, EtechGobal.loginName, regUser.getLoginName());
 				if (!StringUtils.isEmpty(user)) {
 					message.put("property","loginName");
 					message.put("message","用户名已存在");
@@ -220,7 +220,7 @@ public class ControllerRegister {
 			JsonOutToBrower.out(message, response);
 			return;
 		}
-		TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TentUser.class, EtechGobal.loginName, regUser.getLoginName());
+		TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TbaseUser.class, EtechGobal.loginName, regUser.getLoginName());
 		if (!StringUtils.isEmpty(user)) {
 			message.put("property","loginName");
 			message.put("message","用户名已存在");
