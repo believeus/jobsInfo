@@ -30,15 +30,13 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	//公司类型
 	private String companyType;
 	/**招收人数*/
-	private int worknum;
+	private Integer worknum;
 	
 	/**性别*/
 	@Length(max=5)
-	@Column(nullable=true)
 	private String sex;
 	/**技术等级*/
 	@Length(max=15)
-	@Column(nullable=true)
 	private String eteLevel;
 	//创建时间
 	private long createTime;
@@ -46,11 +44,10 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	private long editTime;
 	/**文化程度*/
 	@Length(max=20)
-	@Column(nullable=true)
 	private String eduLevel;
 	/**从事年限*/
 	private String workyear;
-	private int age;
+	private Integer age;
 	/**视力*/
 	@Length(max=5)
 	private String eyesight;
@@ -71,7 +68,6 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	@Length(max=45)
 	private String workspace;
 	/**备注*/
-	@Column(nullable=true)
 	private String note;
 	/**是否审核通过 0:审核中 1:审核通过*/
 	@Column(nullable=true)
@@ -95,11 +91,11 @@ public class Trecruit extends TbaseEntity implements Serializable {
 		this.company = company;
 	}
 
-	public int getWorknum() {
+	public Integer getWorknum() {
 		return worknum;
 	}
 
-	public void setWorknum(int worknum) {
+	public void setWorknum(Integer worknum) {
 		this.worknum = worknum;
 	}
 
@@ -297,12 +293,14 @@ public class Trecruit extends TbaseEntity implements Serializable {
 		this.isview = isview;
 	}
 
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
+
+	
 
 }

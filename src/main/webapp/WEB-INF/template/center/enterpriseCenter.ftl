@@ -645,7 +645,7 @@
     $().ready(function(){
     	 
     	 var countchange=0;
-    	$("textarea,input[type=text],select").change(function() {
+    	$("textarea,#InfoForm input[type=text],select").change(function() {
     		countchange++;
     		if(countchange==1){
     			alert("修改企业基本信息，需管理员重新审核！");
