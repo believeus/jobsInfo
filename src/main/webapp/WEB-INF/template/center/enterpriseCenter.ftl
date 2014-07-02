@@ -1033,16 +1033,10 @@
     	$("#savaJobs").click(function() {
     	    var tag=false;
     	    var value = "zhaopin_xinxi";
-    		if($("#worknum1").val() == ""){
-    			alert("请输入招聘人数");
-    			tag=true;
-    		}else if($("#selectJobshidden1").val() == ""){
+    		if($("#selectJobshidden1").val() == ""){
     			alert("请选择工种");
     			tag=true;
-    		}else if($("#selectSpecialtyhidden1").val() == ""){
-    			alert("请选择专业");
-    			tag=true;
-    		}else if($("#workspace1").val() == ""){
+    		}else if($("#start1").val() == ""){
     			alert("请输入工作地点");
     			tag=true;
     		}else{
@@ -1584,7 +1578,7 @@
 									<td>技术等级:</td>
 									<td>
 										<select style="width:183px;" name="eteLevel" id="eteLevel1">
-											<option value="">请选择..</option>
+											<option value="">不限</option>
 											<option value="职业资格一级（高级技师）">职业资格一级（高级技师）</option>
 											<option value="职业资格二级（技师）">职业资格二级（技师）</option>
 											<option value="职业资格三级（高级）">职业资格三级（高级）</option>

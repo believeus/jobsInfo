@@ -317,26 +317,26 @@
 	    	};
 	    	
 	    	   // ajax 提交验证和登录。
-		    	function deleteIds(){
-		    		value="#zy";
-		    			if($("#deleteids").length>0){
-			    			var ids=$("#deleteids").val();
-							$.ajax({
-								url: "/common-user/submit-deleteids.jhtml",
-								type: "POST",
-								data: {ids:ids},
-								dataType: "json",
-								cache: false,
-								success: function(data) {
-									//location.href="/common-user/center.jhtml" +value;
-									location.reload(true);
-								}
-							})
-		    			}else{
-		    				//location.href="/common-user/center.jhtml" +value;
-							location.reload(true);
-						}				
-					}
+		    	function deleteIds(value){
+		    		//alert(value+"=value");
+	    			if($("#deleteids").length>0){
+		    			var ids=$("#deleteids").val();
+						$.ajax({
+							url: "/common-user/submit-deleteids.jhtml",
+							type: "POST",
+							data: {ids:ids},
+							dataType: "json",
+							cache: false,
+							success: function(data) {
+								location.href="/common-user/center.jhtml" +value;
+								location.reload(true);
+							}
+						})
+	    			}else{
+	    				location.href="/common-user/center.jhtml" +value;
+						location.reload(true);
+					}				
+				}
 	    	
     		
     	[@compress single_line = true]
@@ -1077,6 +1077,9 @@
     			}
     			
     			function submitWorks(){
+    				
+    				var value = "#gr";
+    				
     				//alert("xxxxxxxx工作经验xxxxxxx");
     				  // 获取form表单个数
     				  var size=$(".gongzuo").find("div.gongzuo_div").size();
@@ -1100,20 +1103,20 @@
 								     dataType: "json",
 								     success: function(result){
 								     	if(index==size){
-					 		   				deleteIds();    				 						     	
+					 		   				deleteIds(value);    				 						     	
 								     	}
 								     }
 				        		});
 	    					}else{
 	    						if(index==size){
-					 		   		deleteIds();    				 						     	
+					 		   		deleteIds(value);    				 						     	
 								}
 	    					}
     				  })
     			}
     			
     			function submitVolunteer(){
-    					
+    					var value= "#zy";
     				  //alert("xxxxxxxx选择志愿xxxxxxx");
     				  // 获取form表单个数
     				  var size=$(".zhiyuan").find("div.zhiyuan_div").size();
@@ -1125,7 +1128,7 @@
 							     dataType: "json",
 							     success: function(result){
 							     	if(index==size){
-				 		   				deleteIds();    				 						     	
+				 		   				deleteIds(value);    				 						     	
 							     	}
 							     }
 			        		});
@@ -1234,6 +1237,13 @@
     			$("#select_zhiyuan").addClass("currentSwich");
     			$("#base_xinxi").css("display","none");
     			$("#select_zhuti").css("display","block");
+    		}
+    		if(window.location.hash == "#gr"){
+    			$("#personal_xinxi").removeClass("currentSwich");
+    			$("#select_zhiyuan").removeClass("currentSwich");
+    			$("#personal_xinxi").addClass("currentSwich");
+    			$("#select_zhuti").css("display","none");
+    			$("#base_xinxi").css("display","block");
     		}
     	});
 	</script>

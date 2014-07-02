@@ -408,8 +408,8 @@
 									[#list zhaopList as zhaop]
 									[#if zhaop_index <6]
 										<li class="xinxi_1_li">
-											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}">${zhaop.company}</a>&nbsp;&nbsp;
-											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zw">[#if zhaop.workType.name?length >13]${zhaop.workType.name?string?substring(0,13)}...[#else]${zhaop.workType.name}[/#if]</a>
+											<a href="/enterpriseInformation.jhtml?id=${zhaop.entUser.id}">${zhaop.company}</a>&nbsp;&nbsp;
+											<a href="/enterpriseInformation.jhtml?id=${zhaop.entUser.id}#zw">[#if zhaop.workType.name?length >13]${zhaop.workType.name?string?substring(0,13)}...[#else]${zhaop.workType.name}[/#if]</a>
 											<span class="xinxi_1_span">${zhaop.editTime?number_to_datetime}</span>
 
 										</li>

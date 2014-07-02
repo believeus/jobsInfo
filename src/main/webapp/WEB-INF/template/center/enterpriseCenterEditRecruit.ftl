@@ -714,6 +714,7 @@
 					</div>
 					<p style="text-align:center;">
 						<input type="button" id="savaJobs" value="保存">
+						<input type="button" value="返回" onclick="javascript :window.location.href='/enterprise-user/center.jhtml#bj'">
 					</p>
 				</div>
 			</div>

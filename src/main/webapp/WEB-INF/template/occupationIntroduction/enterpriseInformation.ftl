@@ -400,7 +400,7 @@
 				
 				<div id="base_xinxi" style="width::728px;height:auto;overflow:hidden;">
 					<p>
-						<span style="font-size:20px;color:#000000;">${trecruit.company}</span>
+						<span style="font-size:20px;color:#000000;">${entUser.fullName}</span>
 					</p>
 					<div style="height: 30px; width: 728px;">
 						<span style="float:left;">基本信息</span>
@@ -411,7 +411,7 @@
 							<table>
 								<tr>
 									<td>单位全称:</td>
-									<td style="padding-right: 80px;">${trecruit.entUser.fullName}</td>
+									<td style="padding-right: 80px;">${entUser.fullName}</td>
 									<td rowspan="2" colspan="2">
 										[#if Maps?size>0]
 											[#list Maps as map]
@@ -425,43 +425,43 @@
 								</tr>
 								<tr>
 									<td>单位性质:</td>
-									<td>${trecruit.entUser.unitType}</td>
+									<td>${entUser.unitType}</td>
 								</tr>
 								<tr>
 									<td>单位简称:</td>
-									<td>${trecruit.entUser.shorName}</td>
+									<td>${entUser.shorName}</td>
 									<td>隶属关系:</td>
-									<td>${trecruit.entUser.relationship}</td>
+									<td>${entUser.relationship}</td>
 								</tr>
 								<tr>
 									<td>经济类型:</td>
-									<td>${trecruit.entUser.economicType}</td>
+									<td>${entUser.economicType}</td>
 									<td>法人代表:</td>
-									<td>${trecruit.entUser.legalMan}</td>
+									<td>${entUser.legalMan}</td>
 								</tr>
 								<tr>
 									<td>所属地区:</td>
-									<td>${trecruit.entUser.area}</td>
+									<td>${entUser.area}</td>
 									<td>行业:</td>
-									<td>${trecruit.entUser.trade}</td>
+									<td>${entUser.trade}</td>
 								</tr>
 								<tr>
 									<td>注册资金:</td>
-									<td>${trecruit.entUser.regMoney}</td>
+									<td>${entUser.regMoney}</td>
 									<td>详细地址:</td>
-									<td>${trecruit.entUser.detailAddress}</td>
+									<td>${entUser.detailAddress}</td>
 								</tr>
 								<tr>
 									<td>联系人:</td>
-									<td>${trecruit.entUser.contacts}</td>
+									<td>${entUser.contacts}</td>
 									<td>通讯地址:</td>
-									<td>${trecruit.entUser.detailAddress}</td>
+									<td>${entUser.detailAddress}</td>
 								</tr>
 								<tr>
 									<td>邮编:</td>
 									<td>
 										[#if "${sessionUser?exists}"]
-											${trecruit.entUser.zip}
+											${entUser.zip}
 										[#else]
 											<a href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
 										[/#if]
@@ -469,7 +469,7 @@
 									<td>手机:</td>
 									<td>
 										[#if "${sessionUser?exists}"]
-											${trecruit.entUser.phoneFax}
+											${entUser.phoneFax}
 										[#else]
 											<a href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
 										[/#if]
@@ -479,19 +479,19 @@
 									<td>电话/传真:</td>
 									<td>
 										[#if "${sessionUser?exists}"]
-											${trecruit.entUser.phoneFax}
+											${entUser.phoneFax}
 										[#else]
 											<a href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
 										[/#if]
 									</td>
 									<td>网址:</td>
-									<td>${trecruit.entUser.webSite}</td>
+									<td>${entUser.webSite}</td>
 								</tr>
 								<tr>
 									<td style="vertical-align: top;">单位简介:</td>
 									<td colspan="3">
 										<p style="margin: 0px; width: 570px; line-height: 22px;">
-											${trecruit.entUser.introduce} 
+											${entUser.introduce} 
 										</p>
 									</td>
 								</tr>
@@ -504,31 +504,45 @@
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 					</div>
 					<div style="width:670px;height:auto;overflow:hidden;margin:0 20px;margin-bottom:15px;padding:10px;">
-						[#list trecruit.entUser.imgVedios as imgVedio]
+						[#list entUser.imgVedios as imgVedio]
+						[#if imgVedio.type == 0]
 						<div class="qiyepic" [#if (imgVedio_index+1)%4==0] style="margin-right:0;"[/#if]>
 							<p><img src="${imgVedio.url}" width="160" height="130"/></p>
 							<p style="margin-top: -5px;background:#EEEEEE;padding:5px;color:#555555;">
 								${imgVedio.descption}
 							</p>
 						</div>
+						[/#if]
 						[/#list]
 					</div>
 					
 					<div style="height: 30px; width: 728px;">
-						<span style="float:left;">企业视频</span>
+						<span style="float:left;"><a name="qysp">企业视频</a></span>
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 					</div>
 					<div class="shipin_parent">
 						[#list vedios as vedio]
 							[#if vedio_index=0]
 								<div style="width:600px;height:auto;margin-left:auto;margin-right:auto;">
-									<embed width="585" height="432" bgcolor="#000000" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" [#if vedio.vedioUrl?exists] src="${vedio.vedioUrl}"[#else] src="http://p.you.video.sina.com.cn/swf/bokePlayer20140616_V4_1_42_49.swf"[/#if]  type="application/x-shockwave-flash"/>
+									<embed width="585" height="432" bgcolor="#000000" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all"
+										 [#if tentImgVedio?exists] 111
+										 	src="/${tentImgVedio.vedioUrl}"
+										 [#elseif vedio.vedioUrl?exists] 222
+										 	 	src="/${vedio.vedioUrl}"
+								 	 	 [#else] 333
+									 	 	 	src="http://p.you.video.sina.com.cn/swf/bokePlayer20140616_V4_1_42_49.swf"
+							 	 	 	 [/#if] 
+						 	 	 	 type="application/x-shockwave-flash"/>
 									<p>视频简介：</p>
 									<div>
-										[#if veiod.descption?exists]
-											${vedio.descption}
-										[#else]	
-											每一个人工作都是为了获得合理的报酬，所以广大面试者不需要任何心理负担，或者有任何难以启齿的感觉。工资是每一个员工的正常收益，只有在面试的过程中得到恰当的定位，那么让员工在工作中有更好的积极性，也让企业获得最恰当的员工。
+										[#if tentImgVedio?exists]
+											${tentImgVedio.descption}
+										[#else]
+											[#if vedio.descption?exists]
+												${vedio.descption}
+											[#else]	
+												每一个人工作都是为了获得合理的报酬，所以广大面试者不需要任何心理负担，或者有任何难以启齿的感觉。工资是每一个员工的正常收益，只有在面试的过程中得到恰当的定位，那么让员工在工作中有更好的积极性，也让企业获得最恰当的员工。
+											[/#if]
 										[/#if]
 									</div>
 								</div>
@@ -538,9 +552,9 @@
 							<table>
 								<tr>
 									[#list vedios as vedio]
-										[#if vedio_index<6 && vedio_index>0]
+										[#if vedio_index<6]
 										<td>
-											<a href="/videosInfo.jhtml?id=${vedio.id}">
+											<a href="/enterpriseInformation.jhtml?id=${entUser.id}&vid=${vedio.id}#qysp">
 												<img src="${vedio.url}" width="100" height="70">
 											</a>
 										</td>
@@ -567,16 +581,22 @@
 								<th>发布日期</th>
 								<th>截至日期</th>
 							</tr>
-							[#list trecruitList as trecruit]
-							<tr>
-								<td>${trecruit.workType.name}</td>
-								<td>${trecruit.worknum}人</td>
-								<td>${trecruit.workspace}</td>
-								<td>${trecruit.eduLevel}</td>
-								<td>${trecruit.editTime?number_to_date}</td>
-								<td>${trecruit.worklimit}</td>
-							</tr>
-						   [/#list]
+							[#if trecruitList?exists && trecruitList?size > 0]
+								[#list trecruitList as trecruit]
+								<tr>
+									<td>${trecruit.workType.name}</td>
+									<td>${trecruit.worknum}人</td>
+									<td>${trecruit.workspace}</td>
+									<td>${trecruit.eduLevel}</td>
+									<td>${trecruit.editTime?number_to_date}</td>
+									<td>${trecruit.worklimit}</td>
+								</tr>
+							   [/#list]
+						   [#else]
+						   		<tr>
+						   			<td colspan="6">暂无信息</td>
+						   		</tr>
+						   [/#if]
 						</table>
 					</div>
 				</div>
@@ -598,7 +618,7 @@
 									<td>工种:</td>
 									<td>${trecruit.workType.name}</td>
 									<td>性别:</td>
-									<td>[#if trecruit.sex == "woman"]女[#else]男[/#if]</td>
+									<td>[#if trecruit.sex == "woman"]女[#elseif trecruit.sex == "man"]男[/#if]</td>
 								</tr>
 								<tr>
 									<td>人数:</td>
@@ -634,7 +654,7 @@
 									<td>招聘期限:</td>
 									<td>${trecruit.worklimit}</td>
 									<td>面试时间:</td>
-									<td>${trecruit.viewData?number_to_datetime}</td>
+									<td></td>
 								</tr>
 							</table>
 							<h4>职位描述：</h4>

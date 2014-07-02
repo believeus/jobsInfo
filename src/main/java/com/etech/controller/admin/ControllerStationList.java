@@ -34,9 +34,13 @@ public class ControllerStationList {
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
+		
+		String hql = "From Trecruit trecruit where trecruit.entUser.disable='0' order by id desc";
 		@SuppressWarnings("unchecked")
-		List<Trecruit> recruitList =(List<Trecruit>)etechService.getListByProperty(Trecruit.class, "status", 1, 20);
-		request.setAttribute("recruitList", recruitList);
+		List<Trecruit> trecruits = (List<Trecruit>) etechService.findListByHQL(hql);
+		request.setAttribute("recruitList", trecruits);
+		//List<Trecruit> recruitList =(List<Trecruit>)etechService.getListByProperty(Trecruit.class, "status", 1, 20);
+		//request.setAttribute("recruitList", recruitList);
 		log.debug("current controller is newsListView !");
 		return "admin/stations/list";
 	}

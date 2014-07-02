@@ -551,7 +551,7 @@
 				<span style="color: #817f80;font-size: 19px;font-weight: bold;line-height: 38px;margin-left: 10px;">名企招聘</span>
 			</div>
 			[#list headImgs as headImg]
-				<a href="/enterpriseInformation.jhtml?id=${headImg.id}">
+				<a href="/enterpriseInformation.jhtml?id=${headImg.entUser.id}">
 					<img src="${headImg.url}" width="195" height="33">
 				</a>
 			[/#list]

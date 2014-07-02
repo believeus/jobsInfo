@@ -137,9 +137,7 @@ public class Trecruit extends TbaseEntity implements Serializable {
 		this.workyear = workyear;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
-	}
+	
 
 	public String getEyesight() {
 		return eyesight;
@@ -298,6 +296,10 @@ public class Trecruit extends TbaseEntity implements Serializable {
 
 	public int getAge() {
 		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 }
