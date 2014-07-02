@@ -212,6 +212,10 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	}
 	public void setWorkType(TmajorType workType) {
 		this.workType = workType;
+		if(workType!=null){
+			this.jobPost=workType.getName();
+			setJobPost(jobPost);
+		}
 	}
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -280,11 +284,10 @@ public class Trecruit extends TbaseEntity implements Serializable {
 
 	public void setJobPost(String jobPost) {
 		try {
-			jobPost=workType.getName();
+			this.jobPost=workType.getName();
 		} catch (Exception e) {
 			this.jobPost = jobPost;
 		}
-		
 	}
 	public String getIsview() {
 		return isview;
