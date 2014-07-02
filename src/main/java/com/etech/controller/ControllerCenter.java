@@ -250,9 +250,9 @@ public class ControllerCenter {
 				inputStream = file.getInputStream();
 				if(inputStream.available()==0)break;
 				org.junit.Assert.assertNotNull("upload file InputStream is null", inputStream);
-				String fileName = file.getName();
-				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
-				log.debug("upload file stuffix"+extention);
+				String originName=file.getOriginalFilename();
+				String extention = originName.substring(originName.lastIndexOf(".") + 1);
+				log.debug("upload file stuffix:"+extention);
 				storepath = mydfsTrackerServer.upload(inputStream, extention);
 				imgVedio.setUrl(storepath);
 				
@@ -291,8 +291,8 @@ public class ControllerCenter {
 				org.junit.Assert.assertNotNull("upload file InputStream is null", inputStream);
 				String fileName = file.getName();
 				String originName=file.getOriginalFilename();
-				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
-				log.debug("upload file stuffix"+extention);
+				String extention = originName.substring(originName.lastIndexOf(".") + 1);
+				log.debug("upload file stuffix:"+extention);
 				storepath = mydfsTrackerServer.upload(inputStream, extention);
 				if (fileName.equals("fileImg")) {
 					imgVedio.setUrl(storepath);
@@ -384,10 +384,10 @@ public class ControllerCenter {
 			InputStream inputStream;
 			try {
 				inputStream = file.getInputStream();
-				String fileName = file.getName();
-				String fileSuffix = fileName.substring(fileName
-						.lastIndexOf(".") + 1);
-				storepath = mydfsTrackerServer.upload(inputStream, fileSuffix);
+				String originName=file.getOriginalFilename();
+				String extention = originName.substring(originName.lastIndexOf(".") + 1);
+				log.debug("upload file stuffix:"+extention);
+				storepath = mydfsTrackerServer.upload(inputStream, extention);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -404,10 +404,10 @@ public class ControllerCenter {
 			InputStream inputStream;
 			try {
 				inputStream = file.getInputStream();
-				String fileName = file.getName();
-				String fileSuffix = fileName.substring(fileName
-						.lastIndexOf(".") + 1);
-				storepath = mydfsTrackerServer.upload(inputStream, fileSuffix);
+				String originName=file.getOriginalFilename();
+				String extention = originName.substring(originName.lastIndexOf(".") + 1);
+				log.debug("upload file stuffix:"+extention);
+				storepath = mydfsTrackerServer.upload(inputStream, extention);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

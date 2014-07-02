@@ -49,9 +49,9 @@ public class ControllerCRUD {
 				}
 				count++;
 				Assert.assertNotNull("upload file InputStream is null", inputStream);
-				String fileName = file.getName();
-				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
-				log.debug("upload file stuffix"+extention);
+				String originName=file.getOriginalFilename();
+				String extention = originName.substring(originName.lastIndexOf(".") + 1);
+				log.debug("upload file stuffix:"+extention);
 				if (count>1) {
 					storepath += "#";
 				}
@@ -111,9 +111,9 @@ public class ControllerCRUD {
 				}else {					
 					count++;
 					Assert.assertNotNull("upload file InputStream is null", inputStream);
-					String fileName = file.getName();
-					String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
-					log.debug("upload file stuffix"+extention);
+					String originName=file.getOriginalFilename();
+					String extention = originName.substring(originName.lastIndexOf(".") + 1);
+					log.debug("upload file stuffix:"+extention);
 					if (count>1) {
 						storepath += "#";
 					}

@@ -4,19 +4,15 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.etech.entity.TentUser;
 import com.etech.entity.TmajorType;
 import com.etech.entity.Trecruit;
@@ -93,20 +89,19 @@ public class ControllerStationList {
 	 * @return
 	 */
 	@RequestMapping(value = "/update")
-	public String updateNewsView(Trecruit formRecruit,Integer workTypeId,Integer majorTypeId,Integer userId){
-		Trecruit recruit=(Trecruit) etechService.findObjectById(Trecruit.class, formRecruit.getId());
+	public String updateNewsView(Trecruit recruit,Integer workTypeId,Integer majorTypeId,Integer userId){
 		TentUser entUser=(TentUser)etechService.findObjectById(TentUser.class, userId);
 		if (workTypeId != null) {
 			TmajorType workType = (TmajorType) etechService.findObjectById(TmajorType.class, workTypeId);
-			formRecruit.setWorkType(workType);
+			recruit.setWorkType(workType);
 		}
 		if (majorTypeId != null) {
 			TmajorType majorType = (TmajorType) etechService.findObjectById(TmajorType.class, majorTypeId);
-			formRecruit.setMajorType(majorType);
+			recruit.setMajorType(majorType);
 		}
-		formRecruit.setEntUser(entUser);
-		BeanUtils.copyProperties(formRecruit, recruit);
-		etechService.saveOrUpdata(recruit);
+		recruit.setEntUser(entUser);
+		recruit.setEditTime(System.currentTimeMillis());
+		etechService.merge(recruit);
 		return "redirect:/admin/stationList/list.jhtml";
 	}
 

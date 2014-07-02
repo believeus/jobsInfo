@@ -137,9 +137,9 @@ public class ControllerEnterpriseList {
 				inputStream = file.getInputStream();
 				if(inputStream.available()==0)break;
 				org.junit.Assert.assertNotNull("upload file InputStream is null", inputStream);
-				String fileName = file.getName();
-				String extention = fileName.substring(fileName.lastIndexOf(".") + 1);
-				log.debug("upload file stuffix"+extention);
+				String originName=file.getOriginalFilename();
+				String extention = originName.substring(originName.lastIndexOf(".") + 1);
+				log.debug("upload file stuffix:"+extention);
 				storepath = mydfsTrackerServer.upload(inputStream, extention);
 				if (map!=null) {
 					map.setUrl(storepath);
