@@ -248,48 +248,49 @@
 							  id=id.val();
 							  showDialog(id);
 							}else{
-								alert("必须至少保留一个参数");							
+								alert("必须至少保留一个参数");	
+								// 清空表单的值。
+						 		var tablex=$(object).parent().parent().parent().parent();
+								 if(type==1){
+								 		tablex.find("#selectSkillSpecialtyhidden"+tag).val("");
+								 		tablex.find("#selectSkillJobshidden"+tag).val("");
+								 		tablex.find("#skillLevel"+tag).val("");
+								 		tablex.find("#workingLifeSkill"+tag).val("");
+								 		tablex.find("#noteSkill"+tag).val("");
+								 		tablex.find("#selectSkillSpecialty"+tag).find("span").text("选择专业");
+								 		tablex.find("#selectSkillJobs"+tag).find("span").text("选择工种");
+								 		
+								 }else if(type==2){
+								 		tablex.find("#beginDateLearning"+tag).val("");
+								 		tablex.find("#endDateLearning"+tag).val(""); 
+								 		tablex.find("#schoolLearning"+tag).val("");
+								 		tablex.find("#deptLearning"+tag).val("");
+								 		tablex.find("#selectLearningSpecialtyhidden"+tag).val("");
+								 		tablex.find("#selectLearningSpecialty"+tag).find("span").text("选择专业")
+								 		
+								 }else if(type==3){
+								 		tablex.find("#beginDateWork"+tag).val("");
+								 		tablex.find("#endDateWork"+tag).val("");  
+								 		tablex.find("#workspaceWork"+tag).val("");
+								 		tablex.find("#dutyWork"+tag).val("");
+								 		tablex.find("#noteWork"+tag).val("");
+								 		tablex.find("#selectWorkJobhidden"+tag).val("");
+								 		tablex.find("#selectWorkJob"+tag).find("span").text("选择工种")
+								 
+								 }else if(type==4){
+								 		
+								 		tablex.find("#selectVolunteerSpecialtyhidden"+tag).val("");
+								 		tablex.find("#workWay"+tag).val("");
+								 		tablex.find("#selectVolunteerJobshidden"+tag).val("");
+								 		tablex.find("#noteVolunteer"+tag).val("");
+								 		tablex.find("#start"+tag).val("");
+								 		tablex.find("#expectSalaryVolunteer"+tag).val("");
+								 		tablex.find("#selectVolunteerSpecialty"+tag).find("span").text("选择专业");
+								 		tablex.find("#selectVolunteerJobs"+tag).find("span").text("选择工种");
+								 		
+								 }					
 							}
-							// 清空表单的值。
-					 		var tablex=$(object).parent().parent().parent().parent();
-							 if(type==1){
-							 		tablex.find("#selectSkillSpecialtyhidden"+tag).val("");
-							 		tablex.find("#selectSkillJobshidden"+tag).val("");
-							 		tablex.find("#skillLevel"+tag).val("");
-							 		tablex.find("#workingLifeSkill"+tag).val("");
-							 		tablex.find("#noteSkill"+tag).val("");
-							 		tablex.find("#selectSkillSpecialty"+tag).find("span").text("选择专业");
-							 		tablex.find("#selectSkillJobs"+tag).find("span").text("选择工种");
-							 		
-							 }else if(type==2){
-							 		tablex.find("#beginDateLearning"+tag).val("");
-							 		tablex.find("#endDateLearning"+tag).val(""); 
-							 		tablex.find("#schoolLearning"+tag).val("");
-							 		tablex.find("#deptLearning"+tag).val("");
-							 		tablex.find("#selectLearningSpecialtyhidden"+tag).val("");
-							 		tablex.find("#selectLearningSpecialty"+tag).find("span").text("选择专业")
-							 		
-							 }else if(type==3){
-							 		tablex.find("#beginDateWork"+tag).val("");
-							 		tablex.find("#endDateWork"+tag).val("");  
-							 		tablex.find("#workspaceWork"+tag).val("");
-							 		tablex.find("#dutyWork"+tag).val("");
-							 		tablex.find("#noteWork"+tag).val("");
-							 		tablex.find("#selectWorkJobhidden"+tag).val("");
-							 		tablex.find("#selectWorkJob"+tag).find("span").text("选择工种")
-							 
-							 }else if(type==4){
-							 		
-							 		tablex.find("#selectVolunteerSpecialtyhidden"+tag).val("");
-							 		tablex.find("#workWay"+tag).val("");
-							 		tablex.find("#selectVolunteerJobshidden"+tag).val("");
-							 		tablex.find("#noteVolunteer"+tag).val("");
-							 		tablex.find("#start"+tag).val("");
-							 		tablex.find("#expectSalaryVolunteer"+tag).val("");
-							 		tablex.find("#selectVolunteerSpecialty"+tag).find("span").text("选择专业");
-							 		tablex.find("#selectVolunteerJobs"+tag).find("span").text("选择工种");
-							 		
-							 }
+							
 							
 						} else {
 							// 获取需要删除的id
@@ -1019,7 +1020,7 @@
     	
     			// 提交信息列表
     			function submitSkill(){
-    				 // alert("xxxxx具备技能xxxxxxxxxx");
+    				 //alert("xxxxx具备技能xxxxxxxxxx");
     				  // 获取form表单个数
     				  var size=$(".jineng").find("div.jineng_div").size();
     				  $("div.jineng_div").each(function(index){
@@ -1029,8 +1030,8 @@
 							     url: "/common-user/center/submit-comInfo.jhtml",
 							     dataType: "json",
 							     success: function(result){
-							     	if(index=size){
-				 		   				submitLearnging();    				 						     	
+							     	if(index==size){
+				 		   				submitLearnging();  
 							     	}
 							     }
 			        		});	
