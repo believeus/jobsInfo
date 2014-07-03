@@ -1,6 +1,9 @@
 package com.etech.shiro;
 
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -12,7 +15,9 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
+import org.springframework.util.StringUtils;
 
+import com.etech.entity.Tadmin;
 import com.etech.entity.TbaseUser;
 import com.etech.service.EtechService;
 
@@ -29,6 +34,21 @@ public class AuthenticationFilter extends FormAuthenticationFilter {
 		try {
 			HttpServletRequest request = (HttpServletRequest) servletRequest;
 			HttpServletResponse response = (HttpServletResponse) servletResponse;
+			/**Begin Author:wuqiwei Data:2014-07-03 AddReason:后台登录如果使用的不是管理员帐号登录跳转到管理员登录页面*/
+			String username=request.getParameter("loginName");
+			TbaseUser sessionUser = (TbaseUser)etechService.findObjectByProperty(TbaseUser.class, "loginName", username);
+			String refered=request.getHeader("Referer");
+			if (refered.contains("/admin/login.jhtml")) {
+				if(!(sessionUser instanceof Tadmin)||StringUtils.isEmpty(username)){
+					StringBuilder script=new StringBuilder();
+					script.append("<script>").append("top.location.href='/admin/login.jhtml'").append("</script>");
+					PrintWriter pw = new PrintWriter(servletResponse.getOutputStream());
+					pw.write(script.toString());
+					pw.close();
+					return false;
+				}
+			}
+			/**End Author:wuqiwei Data:2014-07-03 AddReason:后台登录如果使用的不是管理员帐号登录跳转到管理员登录页面*/
 			return super.onAccessDenied(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
