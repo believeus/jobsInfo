@@ -2,8 +2,10 @@ package com.etech.controller.admin;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.etech.entity.Tauthority;
+import com.etech.entity.TbaseUser;
 import com.etech.entity.Trole;
 import com.etech.service.EtechService;
 import com.etech.util.JsonOutToBrower;
@@ -137,8 +140,20 @@ public class ControllerPower {
 		String roleIds = Arrays.toString(ids).replace("[","(").replace("]", ")");
 		String hql="update from Trole role set role.disable=1 where role.id in "+roleIds;
 		log.debug(hql);
-		//etechService.update(hql);
-		hql="update from TbaseUser admin set admin.disable=1 where admin.roles.id in "+roleIds;
+		etechService.update(hql);
+		hql="from Trole role where role.id in "+roleIds;
+		List<Trole> roles=(List<Trole>)etechService.findListByHQL(hql);
+		List<String> adminIdList=new ArrayList<String>();
+		for (Iterator<Trole> iterator = roles.iterator(); iterator.hasNext();) {
+			Trole trole = (Trole) iterator.next();
+			Set<TbaseUser> users = trole.getUsers();
+			for (TbaseUser tbaseUser : users) {
+				log.debug("admin id:"+tbaseUser.getId());
+				adminIdList.add(tbaseUser.getId()+"");
+			}
+		}
+		String adminIds=adminIdList.toString().replace("[","(").replace("]", ")");
+		hql="update from TbaseUser admin set admin.disable=1 where admin.id in "+adminIds ;
 		log.debug(hql);
 		etechService.update(hql);
 		Map<String, Object> map=new HashMap<String, Object>();

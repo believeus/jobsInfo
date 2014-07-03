@@ -64,7 +64,7 @@ public class ControllerAdmin{
 	@RequiresPermissions("admin:create")
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(HttpServletRequest request) {
-		String hql="from Trole";
+		String hql="from Trole role where role.disable = 0";
 		// 查询有哪些角色
 		@SuppressWarnings("unchecked")
 		List<?> roles = (List<Trole>)etechService.findListByHQL(hql);
