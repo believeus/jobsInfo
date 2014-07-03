@@ -150,7 +150,7 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	public void setHeight(String height) {
 		this.height = height;
 	}
-	@Field(store=Store.YES,index = Index.TOKENIZED)
+	@Field(store=Store.YES,index = Index.UN_TOKENIZED)
 	public String getSalary() {
 		return salary;
 	}
