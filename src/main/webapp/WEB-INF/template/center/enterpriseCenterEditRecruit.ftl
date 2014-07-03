@@ -379,16 +379,15 @@
 				}
 				$("#viewData").val(viewData);
 					$("#jobsForm1").ajaxSubmit({
-			            	 type: "post",
-						     url: "/enterprise-user/center/submit-recruit.jhtml",
-						     dataType: "json",
-						     success: function(data){
-						     	if(data.message=="success"){
-							     	location.href="/enterprise-user/center.jhtml"+value;	     		
-					     		}
-						     }
+		            	 type: "post",
+					     url: "/enterprise-user/center/submit-recruit.jhtml",
+					     dataType: "json",
+					     success: function(data){
+					     	if(data.message=="success"){
+						     	location.href="/enterprise-user/center.jhtml"+value;	     		
+				     		}
+					     }
 		        	});	
-				
 			}
 			
 			// 保存招聘信息。

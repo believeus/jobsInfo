@@ -382,33 +382,11 @@
 					     dataType: "json",
 					     success: function(result){
 					     	if(index==size){
-		 		   				deleteIds(value);    				 						     	
+		 		   				location.href="/common-user/center.jhtml"+value;   				 						     	
 					     	}
 					     }
 	        		});
 			  })
-		}
-		
-		// ajax 提交验证和登录。
-    	function deleteIds(value){
-    		alert(value+"=value");
-			if($("#deleteids").length>0){
-    			var ids=$("#deleteids").val();
-				$.ajax({
-					url: "/common-user/submit-deleteids.jhtml",
-					type: "POST",
-					data: {ids:ids},
-					dataType: "json",
-					cache: false,
-					success: function(data) {
-						location.href="/common-user/center.jhtml" +value;
-						location.reload(true);
-					}
-				})
-			}else{
-				location.href="/common-user/center.jhtml" +value;
-				location.reload(true);
-			}				
 		}
 	});
 </script>

@@ -360,8 +360,12 @@
 								[/#if]
 							</a>
 						</h2>
-						<div style="color:#2B8BDF;margin:10px 0;font-size:13px;">
-							${new.title}	
+						<div style="color:#2B8BDF;margin:10px 0;font-size:13px;height:20px;">
+							[#if new.content?length > 25]
+								${new.content?string?substring(0,25)}...
+							[#else]
+								${new.content}
+							[/#if]
 						</div>
 					[/#if]
 					[/#list]

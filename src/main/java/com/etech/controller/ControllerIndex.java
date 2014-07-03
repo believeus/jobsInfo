@@ -103,7 +103,9 @@ public class ControllerIndex {
 			try {
 				TdataCenter dataCenter=(TdataCenter) tdataCenter.clone();
 				if(!StringUtils.isEmpty(dataCenter.getContent())){
-					dataCenter.getContent().replaceAll("[a-z<>A-Z/=\".]+", "");
+					log.debug(dataCenter.getContent());
+					dataCenter.setContent(dataCenter.getContent().replaceAll("<[^>]+>", ""));
+					log.debug(dataCenter.getContent());
 					dataCenterList.add(dataCenter);
 				}
 			} catch (CloneNotSupportedException e) {

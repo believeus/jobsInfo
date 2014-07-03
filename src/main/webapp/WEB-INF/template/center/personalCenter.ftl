@@ -171,6 +171,10 @@
 		    line-height:25px;
 		    border-bottom:1px dashed #e4e4e4;
 		}
+		.tzhiyuan span{
+			padding:0;
+			color:#000000;
+		}
     </style>
     <script type="text/javascript">
      	// 图片上传
@@ -1949,36 +1953,36 @@
 							[#if volunteer.infoType == 4]
 							
 							<tr>
-								<td>
+								<td><span title="${volunteer.majorType.name}">
 									[#if volunteer.majorType.name?length > 7]
 										${volunteer.majorType.name?string?substring(0,7)}...
 									[#else]
 										${volunteer.majorType.name}
 									[/#if]
-								</td>
-								<td>
+								</span></td>
+								<td><span title="${volunteer.workType.name}">
 									[#if volunteer.workType.name?length > 7]
 										${volunteer.workType.name?string?substring(0,7)}...
 									[#else]
 										${volunteer.workType.name}
 									[/#if]
-								</td>
-								<td>
+								</span></td>
+								<td><span title="${volunteer.expectArea}">
 									[#if volunteer.expectArea?length > 7]
 										${volunteer.expectArea?string?substring(0,7)}...
 									[#else]
 										${volunteer.expectArea}
 									[/#if]
-								</td>
-								<td>${volunteer.expectSalary}</td>
-								<td>${volunteer.workWay}</td>
-								<td>
+								</span></td>
+								<td><span title="${volunteer.expectSalary}">${volunteer.expectSalary}</span></td>
+								<td><span title="${volunteer.workWay}">${volunteer.workWay}</span></td>
+								<td><span title="${volunteer.note}">
 									[#if volunteer.note?length > 7]
 										${volunteer.note?string?substring(0,7)}...
 									[#else]
 										${volunteer.note}
 									[/#if]
-								</td>
+								</span></td>
 								<td>
 									<a href="/editVolunteer.jhtml?id=${volunteer.id}">编辑</a>
 									<a href="javascript:void(0)" onclick="showDialog_V(${volunteer.id},this)">删除</a>
@@ -1993,7 +1997,7 @@
 					</div>
 					
 					<div style="height: 30px; width: 728px;">
-						<span style="float:left;">选择志愿</span>
+						<span style="float:left;">添加选择志愿</span>
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 					</div>
 					<div class="zhiyuan">
