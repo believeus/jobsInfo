@@ -43,10 +43,33 @@ $().ready(function() {
 	// 表单验证
 	$inputForm.validate({
 		rules: {
-			title: "required",
-			adPositionId: "required",
-			path: "required",
-			order: "digits"
+			loginName: {
+				required:true,
+				remote:{
+					url:"/admin/check_username.jhtml",
+					cache:false
+				}
+			},
+			email: {
+				required:true,
+				email:true			
+			},
+			password: "required",
+			repass: {
+				required:true,
+				equalTo:"#password"
+			}
+		},
+		messages: {
+			loginName:{
+				remote:"用户名已经存在"
+			},
+			email:{
+				email:"格式不正确"
+			},
+			repass:{
+				equalTo:"密码和确认密码一样"
+			}
 		}
 	});
 	
@@ -97,7 +120,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>密码:
 				</th>
 				<td>
-					<input type="password" name="password" class="text" maxlength="200" />
+					<input type="password" name="password" id="password" class="text" maxlength="200" />
 				</td>
 			</tr>
 			<tr>

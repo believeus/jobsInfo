@@ -101,7 +101,7 @@ $().ready(function() {
 				<tr>
 					<td>
 					    [#if admin.id !=1]
-						 <input type="checkbox" name="id" value="${admin.id}" />
+						 <input type="checkbox" name="ids" value="${admin.id}" />
 						[/#if]
 					</td>
 					<td>

@@ -50,6 +50,8 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 				role = new Trole();
 				role.setRoleName(EtechGobal.personal_role);
 				role.setDescription("该角色可以访问个人相关信息");
+				role.setCreateDate(System.currentTimeMillis());
+				role.setEditDate(System.currentTimeMillis());
 				//给该用户初始化相关默认权限
 				initAuthority(role);
 				etechService.merge(role);
@@ -63,6 +65,8 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 				role.setDescription("该角色可以访问企业相关信息");
 				//给该用户初始化相关默认权限
 				initAuthority(role);
+				role.setCreateDate(System.currentTimeMillis());
+				role.setEditDate(System.currentTimeMillis());
 				etechService.merge(role);
 				log.debug("init enterpriseRole");
 			}
@@ -74,6 +78,8 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 				role.setDescription("该角色没有任何权限");
 				//给该用户初始化相关默认权限
 				initAuthority(role);
+				role.setCreateDate(System.currentTimeMillis());
+				role.setEditDate(System.currentTimeMillis());
 				etechService.merge(role);
 				log.debug("init anonymousRole");
 			}
@@ -90,6 +96,8 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 				authority.setRole(role);
 				authorities.add(authority);
 				role.setAuthorities(authorities);
+				role.setCreateDate(System.currentTimeMillis());
+				role.setEditDate(System.currentTimeMillis());
 				etechService.merge(role);
 				log.debug("init superAdminRole");
 			}
@@ -99,9 +107,11 @@ public class InitRole implements ApplicationListener<ApplicationEvent> {
 				admin=new Tadmin();
 				admin.setLoginName("admin");
 				String password="admin!@#";
+				admin.setEmail("1058633117@qq.com");
 				password=DigestUtils.md5Hex(password);
 				admin.setPassword(password);
 				admin.setCreateDate(System.currentTimeMillis());
+				admin.setEditDate(System.currentTimeMillis());
 				admin.setDescription("最高权限管理员,拥有管理网站的所有权限");
 				role = (Trole) etechService.findObjectByProperty(Trole.class,"roleName", EtechGobal.super_role);
 				Set<Trole> roles=new HashSet<Trole>();

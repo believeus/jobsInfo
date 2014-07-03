@@ -8,7 +8,7 @@
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/resource/public/js/admin/jquery.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
-<script type="text/javascript" src="/resource/public/js/admin/list.js"></script>
+<script type="text/javascript" src="/resource/public/js/admin/list-role.js"></script>
 <script type="text/javascript">
 $().ready(function() {
 

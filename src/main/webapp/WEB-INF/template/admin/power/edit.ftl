@@ -23,7 +23,9 @@ $().ready(function() {
 	var $browserButton = $("#browserButton");
 	var $selectAll = $("#selectAll");
 	
-	
+	[#list authorities as authoritie]
+		$("input[value='${authoritie.authName}']").attr("checked",true);		
+	[/#list]
 	
 	// 全选
 	$selectAll.click( function() {
@@ -56,12 +58,7 @@ $().ready(function() {
 	
 	// 表单验证
 	$inputForm.validate({
-		rules: {
-			title: "required",
-			adPositionId: "required",
-			path: "required",
-			order: "digits"
-		}
+		
 	});
 	
 });
@@ -463,7 +460,6 @@ $().ready(function() {
 							<td>
 								<p>企业审核</p>
 								<p>
-									<input type="checkbox" name="authority" value="enterpriseAudit:create">增加
 									<input type="checkbox" name="authority" value="enterpriseAudit:modify">修改
 									<input type="checkbox" name="authority" value="enterpriseAudit:delete">删除
 								</p>
@@ -473,7 +469,6 @@ $().ready(function() {
 							<td>
 								<p>招聘岗位审核</p>
 								<p>
-									<input type="checkbox" name="authority" value="stationAudit:create">增加
 									<input type="checkbox" name="authority" value="stationAudit:modify">修改
 									<input type="checkbox" name="authority" value="stationAudit:delete">删除
 								</p>
@@ -499,7 +494,6 @@ $().ready(function() {
 							<td>
 								<p>企业</p>
 								<p>
-									<input type="checkbox" name="authority" value="enterpriseList:create">增加
 									<input type="checkbox" name="authority" value="enterpriseList:modify">修改
 									<input type="checkbox" name="authority" value="enterpriseList:delete">删除
 								</p>
@@ -509,7 +503,6 @@ $().ready(function() {
 							<td>
 								<p>求职者</p>
 								<p>
-									<input type="checkbox" name="authority" value="jobSeekersList:create">增加
 									<input type="checkbox" name="authority" value="jobSeekersList:modify">修改
 									<input type="checkbox" name="authority" value="jobSeekersList:delete">删除
 								</p>
@@ -519,7 +512,6 @@ $().ready(function() {
 							<td>
 								<p>招聘岗位</p>
 								<p>
-									<input type="checkbox" name="authority" value="stationList:create">增加
 									<input type="checkbox" name="authority" value="stationList:modify">修改
 									<input type="checkbox" name="authority" value="stationList:delete">删除
 								</p>
@@ -543,8 +535,9 @@ $().ready(function() {
 			</tr>
 			<tr>
 				<td colspan="5">
-					<input type="checkbox" name="authority" value="adminList:view">管理员列表
-					<input type="checkbox" name="authority" value="admin:group">管理员分组
+					<input type="checkbox" name="authority" value="adminList:view">查看管理员列表
+					<input type="checkbox" name="authority" value="admin:group">创建角色
+					<input type="checkbox" name="authority" value="admin:groupDelete">删除角色
 					<input type="checkbox" name="authority" value="admin:create">添加管理员
 					<input type="checkbox" name="authority" value="admin:modify">修改管理员
 					<input type="checkbox" name="authority" value="admin:delete">删除管理员
@@ -552,7 +545,6 @@ $().ready(function() {
 			</tr>
 			<tr>
 				<td colspan="5">
-					<input type="checkbox" name="authority">上传文件管理
 					<input type="checkbox" id="selectAll">全选
 				</td>
 			</tr>

@@ -14,7 +14,8 @@
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
 <script type="text/javascript">
 $().ready(function() {
-
+	
+	$("#roleId").val('${rolelist.get[0].id}');
 	var $inputForm = $("#inputForm");
 	var $type = $("#type");
 	var $contentTr = $("#contentTr");
@@ -41,12 +42,24 @@ $().ready(function() {
 	});
 	
 	// 表单验证
+	// 表单验证
 	$inputForm.validate({
 		rules: {
-			title: "required",
-			adPositionId: "required",
-			path: "required",
-			order: "digits"
+			email: {
+				required:true,
+				email:true			
+			},
+			repass: {
+				equalTo:"#password"
+			}
+		},
+		messages: {
+			email:{
+				email:"格式不正确"
+			},
+			repass:{
+				equalTo:"密码和确认密码一样"
+			}
 		}
 	});
 	
@@ -70,11 +83,8 @@ $().ready(function() {
 					<span class="requiredField">*</span>用户名:
 				</th>
 				<td>
-					[#if admin.loginName="admin"]
-						<input type="text" name="loginName" readonly="true" class="text" maxlength="200" value="${admin.loginName}" />
-					[#else]
-						<input type="text" name="loginName"  class="text" maxlength="200" value="${admin.loginName}" />
-					[/#if]
+						<input type="hidden" name="loginName" value="${admin.loginName}">
+						<span>${admin.loginName}</span>
 				</td>
 			</tr>
 			<tr>
@@ -91,7 +101,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>请选择角色:
 				</th>
 				<td>
-				<select name="roleId">
+				<select name="roleId" id="roleId">
 					[#list roles as role]
 						<option value="${role.id}">${role.roleName}</option>
 					[/#list]
@@ -101,18 +111,18 @@ $().ready(function() {
 			[/#if]
 			<tr>
 				<th>
-					<span class="requiredField">*</span>密码:
+					新密码:
 				</th>
 				<td>
-					<input type="password" name="password" class="text" maxlength="200"/>
+					<input type="password" name="password" id="password" class="text" maxlength="200" />
 				</td>
 			</tr>
 			<tr>
 				<th>
-					<span class="requiredField">*</span>确认密码:
+					确认新密码:
 				</th>
 				<td>
-					<input type="password" name="repass" class="text" maxlength="200" />
+					<input type="password" name="repass" class="text" maxlength="200"/>
 				</td>
 			</tr>
 			<tr>

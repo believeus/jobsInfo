@@ -72,4 +72,8 @@ public class EtechService {
 		etechComDao.update(hql);
 		
 	}
+
+	public Object findObjectByHql(String hql) {
+		return etechComDao.getObjectByHQL(hql);
+	}
 }

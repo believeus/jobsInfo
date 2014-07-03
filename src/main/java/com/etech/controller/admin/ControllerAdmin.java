@@ -1,11 +1,16 @@
 package com.etech.controller.admin;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
@@ -19,8 +24,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.etech.entity.Tadmin;
+import com.etech.entity.TbaseUser;
 import com.etech.entity.Trole;
 import com.etech.service.EtechService;
+import com.etech.util.JsonOutToBrower;
 
 /**
  * Controller - 管理员
@@ -42,10 +49,13 @@ public class ControllerAdmin{
 	/**
 	 * 检查用户名是否存在
 	 */
-	@RequestMapping(value = "/check_username", method = RequestMethod.GET)
-	public @ResponseBody
-	boolean checkUsername(String username) {
-		return true;
+	@RequestMapping(value = "/check_username")
+	public @ResponseBody String checkUsername(String loginName) {
+		TbaseUser admin = (TbaseUser)etechService.findObjectByProperty(TbaseUser.class, "loginName", loginName);
+		if (!StringUtils.isEmpty(admin)) {
+			return "false";
+		}
+		return "true";
 	}
 
 	/**
@@ -86,13 +96,15 @@ public class ControllerAdmin{
 	@RequiresPermissions("admin:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String edit(int id,HttpServletRequest request) {
-		String hql="from Trole";
+		String hql="from Trole role where role.disable = 0";
 		// 查询有哪些角色
 		@SuppressWarnings("unchecked")
 		List<?> roles = (List<Trole>)etechService.findListByHQL(hql);
 		request.setAttribute("roles", roles);
-		Tadmin admin=(Tadmin)etechService.findObjectById(Tadmin.class, id);
+		hql="from Tadmin admin left join fetch admin.roles where admin.id='"+id+"'";
+		Tadmin admin=(Tadmin)etechService.findObjectByHql(hql);
 		request.setAttribute("admin", admin);
+		request.setAttribute("rolelist", new ArrayList<Trole>(admin.getRoles()));
 		return "/admin/admin/edit";
 	}
 
@@ -127,17 +139,24 @@ public class ControllerAdmin{
 	/**
 	 * 列表
 	 */
+	@SuppressWarnings("unchecked")
 	@RequiresPermissions("adminList:view")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(HttpServletRequest request) {
-		@SuppressWarnings("unchecked")
-		List<Tadmin> admins = (List<Tadmin>)etechService.findObjectList("From Tadmin", 1, 15, Tadmin.class);
+		String hql="FROM Tadmin admin where admin.disable=0 order by admin.editDate desc";
+		List<Tadmin> admins = (List<Tadmin>)etechService.findListByHQL(hql);
 		request.setAttribute("admins", admins);
 		return "/admin/admin/list";
 	}
 	@RequiresPermissions("admin:delete")
 	@RequestMapping("/delete")
-	public String delete(){
-		return "";
+	public void delete(Long[] ids,HttpServletResponse response){
+		String userIds = Arrays.toString(ids).replace("[","(").replace("]", ")");
+		String hql="update from TbaseUser user set user.disable=1 where user.id in "+userIds;
+		log.debug(hql);
+		etechService.update(hql);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("type", "success");
+		JsonOutToBrower.out(map, response);
 	}
 }

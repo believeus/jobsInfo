@@ -43,10 +43,27 @@ $().ready(function() {
 	// 表单验证
 	$inputForm.validate({
 		rules: {
-			title: "required",
-			adPositionId: "required",
-			path: "required",
-			order: "digits"
+			roleName: {
+				required:true,
+				remote:{
+					url:"/admin/power/check_rolename.jhtml",
+					cache:false,
+					 data: { //要传递的数据
+				        roleName: function() {
+				        	var roleName=$("#roleName").val();
+				        	// 需要时可encodeURI两次。
+				        	roleName=encodeURI(roleName);
+				            return roleName;
+				        }
+				    }
+				}			
+			},
+			description: "required"
+		},
+		messages:{
+			roleName:{
+				remote:"角色已经存在"
+			}
 		}
 	});
 	
@@ -69,7 +86,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>角色:
 				</th>
 				<td>
-					<input type="text" name="roleName" class="text" maxlength="200" />
+					<input type="text" name="roleName" class="text" id="roleName" maxlength="200" />
 				</td>
 			</tr>
 			<tr>

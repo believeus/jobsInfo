@@ -5,8 +5,6 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -22,6 +20,15 @@ public class Trole extends TbaseEntity{
 	private String roleName;
 	//角色描述
 	private String description;
+	
+	/**编辑更新时间*/
+	private long editDate;
+	
+	/**创建时间*/
+	private long createDate;
+	
+	/** 1:禁用 0:启用*/
+	private int disable;
 	
 	/**角色拥有哪些权限*/
 	
@@ -58,6 +65,24 @@ public class Trole extends TbaseEntity{
 	}
 	public void setUsers(Set<TbaseUser> users) {
 		this.users = users;
+	}
+	public long getEditDate() {
+		return editDate;
+	}
+	public void setEditDate(long editDate) {
+		this.editDate = editDate;
+	}
+	public long getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(long createDate) {
+		this.createDate = createDate;
+	}
+	public int getDisable() {
+		return disable;
+	}
+	public void setDisable(int disable) {
+		this.disable = disable;
 	}
 	
 	
