@@ -2,7 +2,9 @@ package com.etech.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +32,63 @@ import com.etech.service.ResumeSearchService;
  * */
 @Controller
 public class ControllerSearch {
+	private static Map<String, String> conditonMap=new HashMap<String, String>();
+	static{
+		// 发布日期
+		conditonMap.put("近2天","issueTime_1");
+		conditonMap.put("近3天", "issueTime_2");
+		conditonMap.put("近7天","issueTime_3");
+		conditonMap.put("近15天", "issueTime_4");
+		conditonMap.put("近30天","issueTime_5");
+		conditonMap.put("近60天", "issueTime_6");
+		conditonMap.put("近60天以上","issueTime_7");
+		//起薪范围
+		conditonMap.put("1000以下", "salaryRange_1");
+		conditonMap.put("1000~1999", "salaryRange_2");
+		conditonMap.put("2000~2999", "salaryRange_3");
+		conditonMap.put("3000~3999", "salaryRange_4");
+		conditonMap.put("4000~4999", "salaryRange_5");
+		conditonMap.put("5000以上", "salaryRange_6");
+		//工作性质
+		conditonMap.put("全职", "workType_1");
+		conditonMap.put("兼职", "workType_2");
+		conditonMap.put("实习", "workType_3");
+		conditonMap.put("临时", "workType_4");
+		conditonMap.put("小时工", "workType_5");
+		conditonMap.put("全职/兼职/实习均可", "workType_6");
+		conditonMap.put("就业见习", "workType_7");
+		// 学历要求 
+		conditonMap.put("博士", "eduRequire_1");
+		conditonMap.put("硕士", "eduRequire_2");
+		conditonMap.put("大学", "eduRequire_3");
+		conditonMap.put("大专", "eduRequire_4");
+		conditonMap.put("中专中技", "eduRequire_5");
+		conditonMap.put("技校", "eduRequire_6");
+		conditonMap.put("高中", "eduRequire_7");
+		conditonMap.put("职高", "eduRequire_8");
+		conditonMap.put("初中", "eduRequire_9");
+		conditonMap.put("小学", "eduRequire_10");
+		conditonMap.put("文盲或半文盲", "eduRequire_11");
+		//工作年限
+		conditonMap.put("在读学生", "workYear_1");
+		conditonMap.put("应届毕业生", "workYear_2");
+		conditonMap.put("1~2年", "workYear_3");
+		conditonMap.put("2~3年", "workYear_4");
+		conditonMap.put("3~5年", "workYear_5");
+		conditonMap.put("5~8年", "workYear_6");
+		conditonMap.put("8~10年", "workYear_7");
+		conditonMap.put("10年以上", "workYear_8");
+		//公司性质
+		conditonMap.put("内资", "companyType_1");
+		conditonMap.put("国有全资", "companyType_2");
+		conditonMap.put("集体全资", "companyType_3");
+		conditonMap.put("股份合作", "companyType_3");
+		conditonMap.put("联营", "companyType_4");
+		conditonMap.put("国有联营", "companyType_5");
+		conditonMap.put("国有与集体联营", "companyType_6");
+		conditonMap.put("其他联营", "companyType_7");
+		conditonMap.put("有限责任（公司）", "companyType_8");
+	}
 	private static Log log = LogFactory.getLog(ControllerSearch.class);
 	@Resource
 	private EtechService etechService;
@@ -62,54 +121,59 @@ public class ControllerSearch {
 		
 		return "occupationIntroduction/search";
 	}
+	
 	@RequestMapping(value="/advanceSearchByContision")
 	public String advanceSearch(String data,String keyword,String majorTypeId,String workTypeId,
 			String area,String type,HttpServletRequest request,HttpSession session){
 
 		// 第一组：发布日期 第二组:起薪范围 第三组：工作性质
 		// 第三组：学历性质 第四组:工作年限 第五组：公司性质
-		String issueTime="";
-		String salaryRange="";
-		String workType="";
-		String eduRequire="";
-		String workYear="";
-		String companyType="";
+		String issueTime="issueTime";
+		String salaryRange="salaryRange";
+		String workType="workType";
+		String eduRequire="eduRequire";
+		String workYear="workYear";
+		String companyType="companyType";
 		if (!StringUtils.isEmpty(data)) {
 			log.debug("search data:"+data);
 			String[] split = data.split("-");
-			int length=split.length;
-			// length 长度=6
-			if(length-5>0){
-			  // 公司性质
-			  companyType=split[5];
+			for (String key : split) {
+				// 进行条件映射
+				if(!StringUtils.isEmpty(conditonMap.get(key))){
+					String value=conditonMap.get(key).replaceAll("_[0-9]+", "");
+					if(value.equals(issueTime)){
+						issueTime=key;
+					}else if(value.equals(salaryRange)) {
+						salaryRange=key;
+					}else if(value.equals(workType)){
+						workType=key;
+					}else if(value.equals(eduRequire)){
+						eduRequire=key;
+					}else if (value.equals(workYear)) {
+						workYear=key;
+					}else if (value.equals(companyType)) {
+						companyType=key;
+					}
+				}
 			}
-			// length 长度=5
-			if(length-4>0){
-				// 工作年限
-				workYear=split[4];
-			}
-			// length 长度=4
-			if(length-3>0){
-				// 学历要求
-				eduRequire=split[3];
-			}
-			// length 长度=3
-			if(length-2>0){
-				// 工作性质
-				workType=split[2];
-			}
-			// length长度等于2
-			if(length-1>0){
-				//起薪范围
-			  salaryRange=split[1];
-			  log.debug("salaryRange:"+salaryRange);
-			}
-			// length长度等于1
-			if(length-1>=0){
-				// 发布日期
-				issueTime=split[0];
-				log.debug("issueTime:"+issueTime);
-			}
+		}
+		if(issueTime.equals("issueTime")){
+			issueTime="";
+		}
+		if(salaryRange.equals("salaryRange")){
+			salaryRange="";
+		}
+		if(workType.equals("workType")){
+			workType="";
+		}
+		if(eduRequire.equals("eduRequire")){
+			eduRequire="";
+		}
+		if(workYear.equals("workYear")){
+			workYear="";
+		}
+		if(companyType.equals("companyType")){
+			companyType="";
 		}
 		if (!StringUtils.isEmpty(majorTypeId)) {
 			// 获取对象
