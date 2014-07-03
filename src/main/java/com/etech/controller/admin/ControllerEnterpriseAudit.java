@@ -49,7 +49,7 @@ public class ControllerEnterpriseAudit {
 	public String newsListView(HttpServletRequest request) {
 		log.debug("current controller is newsListView !");
 		//查询待审核的企业用户
-		String hql="FROM TentUser user where user.status=0 and user.disable=0";
+		String hql="FROM TentUser user where user.status=0 and user.disable=0 order by user.editDate desc";
 		@SuppressWarnings("unchecked")
 		List<TentUser> userList=(List<TentUser>) etechService.findListByHQL(hql);
 		request.setAttribute("enterpriseTentUsers", userList);

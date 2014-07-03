@@ -604,7 +604,7 @@
 						});
 			           
 			        },
-			        Cancel: function() {
+			        '取消': function() {
 			            $(this).dialog('close');
 			        }
 			    }
@@ -644,15 +644,16 @@
     
     $().ready(function(){
     	 
-    	 var countchange=0;
-    	$("textarea,input[type=text],select").change(function() {
+    	var countchange=0;
+    	$(":input").change(function() {
     		var oldvalue=$(this).attr("oldvalue");
-    		if(oldvalue!=""){
+    		if(oldvalue!=""&&oldvalue!=undefined){
     			countchange++;
 	    		if(countchange==1){
 	    			alert("修改企业基本信息，需管理员重新审核！");
 	    		}
 	    		var value=$(this).val();
+	    		
 	    		// 监听是否发生改变。
 	    		if(oldvalue!=value){
 	    			infochange++;
@@ -1185,9 +1186,9 @@
 							<input type="hidden" name="loginName" value="${sessionUser.loginName}">
 							<input type="hidden" name="password" value="">
 								<tr>
-									<td>单位全称:</td>
+									<td><font color="red">*</font>单位全称:</td>
 									<td style="padding-right: 80px;"><input type="text" oldvalue="${sessionUser.fullName}" value="${sessionUser.fullName}" id="fullName" name="fullName"></td>
-									<td>单位性质:</td>
+									<td><font color="red">*</font>单位性质:</td>
 									<td>
 										<select id="unitType" name="unitType" style="width: 182px;" oldvalue="${sessionUser.unitType}">
 											<option value="">请选择..</option>
@@ -1199,9 +1200,9 @@
 									</td>
 								</tr>
 								<tr>
-									<td>单位简称:</td>
+									<td><font color="red">*</font>单位简称:</td>
 									<td><input type="text" id="shorName" value="${sessionUser.shorName}" name="shorName" oldvalue="${sessionUser.shorName}"></td>
-									<td>隶属关系:</td>
+									<td><font color="red">*</font>隶属关系:</td>
 									<td>
 										<select id="relationship" name="relationship" style="width: 182px;" oldvalue="${sessionUser.relationship}">
 											<option value="">请选择..</option>
@@ -1216,7 +1217,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td>经济类型:</td>
+									<td><font color="red">*</font>经济类型:</td>
 									<td>
 										<select id="economicType" name="economicType" style="width: 182px;" oldvalue="${sessionUser.economicType}">
 											<option value="">请选择..</option>
@@ -1231,11 +1232,11 @@
 											<option value="其它">其它</option>
 										</select>
 									</td>
-									<td>法人代表:</td>
+									<td><font color="red">*</font>法人代表:</td>
 									<td><input type="text" value="${sessionUser.legalMan}" id="legalMan" name="legalMan" oldvalue="${sessionUser.legalMan}"></td>
 								</tr>
 								<tr>
-									<td>所属地区:</td>
+									<td><font color="red">*</font>所属地区:</td>
 									<td>
 										<input type="text" name="area" value="${sessionUser.area}" oldvalue="${sessionUser.area}" class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off">
 									<!--////////////////////////////////////////////////////////////////////////-->
@@ -1288,35 +1289,35 @@
 										</div>
 									<!--////////////////////////////////////////////////////////////////////////-->
 									</td>
-									<td>行业:</td>
+									<td><font color="red">*</font>行业:</td>
 									<td><input type="text"  value="${sessionUser.trade}" id="trade" name="trade" oldvalue="${sessionUser.trade}"></td>
 								</tr>
 								<tr>
-									<td>注册资金:</td>
+									<td><font color="red">*</font>注册资金:</td>
 									<td><input type="text"  value="${sessionUser.regMoney}" oldvalue="${sessionUser.regMoney}" id="regMoney" name="regMoney" ><span style="padding:0;margin-left:-35px;color:#000000;">万元</span></td>
-									<td>详细地址:</td>
+									<td><font color="red">*</font>详细地址:</td>
 									<td><input type="text"  value="${sessionUser.detailAddress}" oldvalue="${sessionUser.detailAddress}" id="detailAddress" name="detailAddress"></td>
 								</tr>
 								<tr>
-									<td>联系人:</td>
+									<td><font color="red">*</font>联系人:</td>
 									<td><input type="text"  value="${sessionUser.contacts}" oldvalue="${sessionUser.contacts}" id="contacts" name="contacts"></td>
-									<td>通讯地址:</td>
+									<td><font color="red">*</font>通讯地址:</td>
 									<td><input type="text"  value="${sessionUser.address}" oldvalue="${sessionUser.address}" id="address" name="address"></td>
 								</tr>
 								<tr>
-									<td>邮编:</td>
+									<td><font color="red">*</font>邮编:</td>
 									<td><input type="text"  value="${sessionUser.zip}" oldvalue="${sessionUser.zip}" id="zip" name="zip"></td>
-									<td>手机:</td>
+									<td><font color="red">*</font>手机:</td>
 									<td><input type="text"  value="${sessionUser.phoneNum}" oldvalue="${sessionUser.phoneNum}" id="phoneNum" name="phoneNum" minlegnth="11" maxlength="11" onkeyup="value=this.value.replace(/\D+/g,'')"></td>
 								</tr>
 								<tr>
-									<td>电话/传真:</td>
+									<td><font color="red">*</font>电话/传真:</td>
 									<td><input type="text"  value="${sessionUser.phoneFax}" oldvalue="${sessionUser.phoneFax}" id="phoneFax" name="phoneFax"></td>
-									<td>网址:</td>
+									<td><font color="red">&nbsp;&nbsp;</font>网址:</td>
 									<td><input type="text"  value="${sessionUser.webSite}" oldvalue="${sessionUser.webSite}" id="webSite" name="webSite"></td>
 								</tr>
 								<tr>
-									<td style="vertical-align: top;">单位简介:</td>
+									<td style="vertical-align: top;"><font color="red">*</font>单位简介:</td>
 									<td colspan="3"><textArea cols="50" rows="5"  name="introduce" id="introduce" style="resize:none;" oldvalue="${sessionUser.introduce}">${sessionUser.introduce}</textArea></td>
 								</tr>
 							</form>
@@ -1531,7 +1532,7 @@
 								[#if recruit.sex=="man"&&recruit.sex!="woman"]男[#elseif recruit.sex=="woman"]女[#else]不限[/#if]
 								</td>
 								<td>${recruit.eduLevel}</td>
-								<td>${recruit.age}</td>
+								<td>[#if recruit.age!=""]${recruit.age}[#else]不限[/#if]</td>
 								<td>
 								[#if recruit.status=="0"&&recruit.status!="1"]<font color="red">审核中</font>[#elseif recruit.status=="1"]<font color="green">已通过审核</font>[/#if]
 								</td>
@@ -1702,7 +1703,7 @@
 									<!--////////////////////////////////////////////////////////////////////////-->
 									</td>
 									<td>年龄:</td>
-									<td><input type="text" id="age1" name="age" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3" value="23"></td>
+									<td><input type="text" id="age1" name="age" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"</td>
 								</tr>
 								<tr>
 									<td>身高:</td>

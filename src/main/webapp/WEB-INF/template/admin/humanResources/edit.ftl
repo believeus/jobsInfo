@@ -58,8 +58,6 @@
 	
 <script type="text/javascript">
 
-		// 查看是否发生改变。
-    	var infochange=0;
     	
     	// 查看电子图是否有改变。
     	var changex=0;
@@ -76,22 +74,7 @@ $().ready(function() {
 	var $browserButton = $("#browserButton");
 	
 	
-	 var countchange=0;
-    	$("textarea,input[type=text],select").change(function() {
-    		countchange++;
-    		if(countchange==1){
-    			alert("修改企业基本信息，需管理员重新审核！");
-    		}
-    		var oldvalue=$(this).attr("oldvalue");
-    		var value=$(this).val();
-    		// 监听是否发生改变。
-    		if(oldvalue!=value){
-    			infochange++;
-    		}else{
-    			infochange--;
-    		}
-    	});
-	
+	 
 	// "类型"修改
 	$type.change(function() {
 		if ($type.val() == "text") {
@@ -167,9 +150,6 @@ $().ready(function() {
 	    		});
 	    		// 判断是否完全通过。
 	    		if(tag==false){
-	    			if(infochange!=0||changex==1){
-						$("#status").val(0);
-					}
 					form.submit();
 		   		}
     	  }
@@ -204,9 +184,9 @@ $().ready(function() {
 					<input type="hidden" name="loginName" value="${tentUsers.loginName}">
 					<input type="hidden" name="password" value="${tentUsers.password}">
 					<tr>
-						<td>单位全称:</td>
+						<td><font color="red">*</font>单位全称:</td>
 						<td style="padding-right: 80px;"><input type="text" value="${tentUsers.fullName}" oldvalue="${tentUsers.fullName}" id="fullName" name="fullName"></td>
-						<td>单位性质:</td>
+						<td><font color="red">*</font>单位性质:</td>
 						<td>
 							<select id="unitType" name="unitType" style="width: 182px;" oldvalue="${tentUsers.unitType}">
 								<option value="">请选择..</option>
@@ -218,9 +198,9 @@ $().ready(function() {
 						</td>
 					</tr>
 					<tr>
-						<td>单位简称:</td>
+						<td><font color="red">*</font>单位简称:</td>
 						<td><input type="text" id="shorName" value="${tentUsers.shorName}" name="shorName" oldvalue="${tentUsers.shorName}"></td>
-						<td>隶属关系:</td>
+						<td><font color="red">*</font>隶属关系:</td>
 						<td>
 							<select id="relationship" name="relationship" style="width: 182px;" oldvalue="${tentUsers.relationship}">
 								<option value="">请选择..</option>
@@ -235,7 +215,7 @@ $().ready(function() {
 						</td>
 					</tr>
 					<tr>
-						<td>经济类型:</td>
+						<td><font color="red">*</font>经济类型:</td>
 						<td>
 							<select id="economicType" name="economicType" style="width: 182px;" oldvalue="${tentUsers.economicType}">
 								<option value="">请选择..</option>
@@ -250,11 +230,11 @@ $().ready(function() {
 								<option value="其它">其它</option>
 							</select>
 						</td>
-						<td>法人代表:</td>
+						<td><font color="red">*</font>法人代表:</td>
 						<td><input type="text" value="${tentUsers.legalMan}" id="legalMan" name="legalMan" oldvalue="${tentUsers.legalMan}"></td>
 					</tr>
 					<tr>
-						<td>所属地区:</td>
+						<td><font color="red">*</font>所属地区:</td>
 						<td>
 							<input type="text" name="area" value="${tentUsers.area}" oldvalue="${tentUsers.area}" class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1">
 							<!--////////////////////////////////////////////////////////////////////////-->
@@ -307,36 +287,36 @@ $().ready(function() {
 								</div>
 							<!--////////////////////////////////////////////////////////////////////////-->
 						</td>
-						<td>行业:</td>
+						<td><font color="red">*</font>行业:</td>
 						<td><input type="text"  value="${tentUsers.trade}" id="trade" name="trade" oldvalue="${tentUsers.trade}"></td>
 					</tr>
 					<tr>
-						<td>注册资金:</td>
-						<td><input type="text"  value="${tentUsers.regMoney}" id="regMoney" name="regMoney" oldvalue="${tentUsers.regMoney}"></td>
-						<td>详细地址:</td>
+						<td><font color="red">*</font>注册资金:</td>
+						<td><input type="text"  value="${tentUsers.regMoney}" id="regMoney" name="regMoney" oldvalue="${tentUsers.regMoney}"><span style="padding:0;margin-left:-35px;color:#000000;">万元</span></td>
+						<td><font color="red">*</font>详细地址:</td>
 						<td><input type="text"  value="${tentUsers.detailAddress}" id="detailAddress" name="detailAddress" oldvalue="${tentUsers.detailAddress}"></td>
 					</tr>
 					<tr>
-						<td>联系人:</td>
+						<td><font color="red">*</font>联系人:</td>
 						<td><input type="text"  value="${tentUsers.contacts}" id="contacts" name="contacts" oldvalue="${tentUsers.contacts}"></td>
-						<td>通讯地址:</td>
+						<td><font color="red">*</font>通讯地址:</td>
 						<td><input type="text"  value="${tentUsers.address}" id="address" name="address" oldavalue="${tentUsers.address}"></td>
 					</tr>
 					<tr>
-						<td>邮编:</td>
+						<td><font color="red">*</font>邮编:</td>
 						<td><input type="text"  value="${tentUsers.zip}" id="zip" name="zip" oldvalue="${tentUsers.zip}"></td>
-						<td>手机:</td>
+						<td><font color="red">*</font>手机:</td>
 						<td><input type="text"  value="${tentUsers.phoneNum}" id="phoneNum" name="phoneNum" oldvalue="${tentUsers.phoneNum}"></td>
 					</tr>
 					<tr>
-						<td>电话/传真:</td>
+						<td><font color="red">*</font>电话/传真:</td>
 						<td><input type="text"  value="${tentUsers.phoneFax}" id="phoneFax" name="phoneFax" oldvalue="${tentUsers.phoneFax}"></td>
 						<td>网址:</td>
 						<td><input type="text"  value="${tentUsers.webSite}" id="webSite" name="webSite" oldvalue="${tentUsers.webSite}"></td>
 					</tr>
 					<tr>
-						<td style="vertical-align: top;">单位简介:</td>
-						<td colspan="3"><textArea cols="50" rows="5"  name="introduce" id="introduce" style="resize:none;" value="${tentUsers.introduce}">${tentUsers.introduce}</textArea></td>
+						<td style="vertical-align: top;"><font color="red">*</font>单位简介:</td>
+						<td colspan="3"><textArea cols="50" rows="5"  name="introduce" id="introduce" style="resize:none;" oldvalue="${tentUsers.introduce}">${tentUsers.introduce}</textArea></td>
 					</tr>
 						<tr>
 							<td style="vertical-align: top;">企业电子图:</td>

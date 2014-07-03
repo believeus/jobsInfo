@@ -51,7 +51,7 @@ public class ControllerEnterpriseList {
 	public String newsListView(HttpServletRequest request) {
 		log.debug("current controller is newsListView !");
 		//查找审核列表
-		String hql="FROM TentUser user where user.status=1 and user.disable=0";
+		String hql="FROM TentUser user where user.status=1 and user.disable=0 order by user.editDate desc";
 		List<TentUser> userList=(List<TentUser>) etechService.findListByHQL(hql);
 		request.setAttribute("enterpriseTentUsers",userList);
 		return "admin/humanResources/list";

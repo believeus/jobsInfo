@@ -155,14 +155,8 @@ $().ready(function() {
 		//封装ajax信息提交
 		function submitJobs(){
 				var tag=false;
-	    		if($("#worknum1").val() == ""){
-	    			alert("请输入招聘人数");
-	    			tag=true;
-	    		}else if($("#selectJobshidden1").val() == ""){
+	    		if($("#selectJobshidden1").val() == ""){
 	    			alert("请选择工种");
-	    			tag=true;
-	    		}else if($("#selectSpecialtyhidden1").val() == ""){
-	    			alert("请选择专业");
 	    			tag=true;
 	    		}else if($("#workspace1").val() == ""){
 	    			alert("请输入工作地点");
@@ -170,11 +164,16 @@ $().ready(function() {
 	    		}else{
 		    		if(tag==false){
 		    			showdiv();
-		    			var viewData=new Date($("#beginDate").val().replace(/-/g,",")).getTime();
-						$("#viewData").val(viewData);
+		    			if($("#beginDate").val()!=""){
+							var viewData=new Date($("#beginDate").val().replace(/-/g,",")).getTime();
+							$("#viewData").val(viewData);
+						}else{
+							$("#viewData").remove();
+						}
 						$(form).submit();  
 	    			}
 	    		}
+				  
 			}
 });
 </script>
@@ -236,12 +235,16 @@ $().ready(function() {
 						<div class="topnav">
 							<a id="selectSkillSpecialty1" href="javascript:void(0);" class="as">
 								<span >
-									[#assign name=recruit.majorType.name]
-									[#if name?length > 15]
-										${name?string?substring(0,15)}...
-									[#else]
-										${name}
-									[/#if]
+									[#assign name=recruit.majorType.name] 
+									 [#if name!=""]
+									 	[#if name?length > 15]
+											${name?string?substring(0,15)}...
+										[#else]
+											${name}
+										[/#if]
+									 [#else]
+										选择专业
+									 [/#if]
 								</span>		
 							</a>	
 						</div>

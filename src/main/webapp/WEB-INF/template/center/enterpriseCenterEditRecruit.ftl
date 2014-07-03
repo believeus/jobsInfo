@@ -395,14 +395,8 @@
     	$("#savaJobs").click(function() {
     	    var tag=false;
     	    var value = "#bj";
-    		if($("#worknum1").val() == ""){
-    			alert("请输入招聘人数");
-    			tag=true;
-    		}else if($("#selectJobshidden1").val() == ""){
+    		if($("#selectJobshidden1").val() == ""){
     			alert("请选择工种");
-    			tag=true;
-    		}else if($("#selectSpecialtyhidden1").val() == ""){
-    			alert("请选择专业");
     			tag=true;
     		}else if($("#workspace1").val() == ""){
     			alert("请输入工作地点");

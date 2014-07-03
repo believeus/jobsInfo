@@ -35,7 +35,7 @@ public class ControllerStationList {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
 		
-		String hql = "From Trecruit trecruit where trecruit.entUser.disable='0' order by id desc";
+		String hql = "From Trecruit trecruit where trecruit.status=1 and trecruit.entUser.disable='0' order by trecruit.editTime desc";
 		@SuppressWarnings("unchecked")
 		List<Trecruit> trecruits = (List<Trecruit>) etechService.findListByHQL(hql);
 		request.setAttribute("recruitList", trecruits);

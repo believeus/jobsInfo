@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.etech.entity.TcomUser;
-import com.etech.entity.TentUser;
 import com.etech.service.EtechService;
 import com.etech.util.JsonOutToBrower;
 
@@ -38,8 +37,7 @@ public class ControllerJobSeekers {
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
-		log.debug("current controller is admin/JobSeekers/list !");
-		String hql="FROM TcomUser user where user.disable=0";
+		String hql="FROM TcomUser user where user.disable=0 order by user.editDate desc";
 		@SuppressWarnings("unchecked")
 		List<TcomUser> userList=(List<TcomUser>) etechService.findListByHQL(hql);
 		request.setAttribute("userList", userList);
@@ -94,7 +92,6 @@ public class ControllerJobSeekers {
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.GET)
 	public String saveNewsView(){
-		
 		return "redirect:/admin/jobSeekersList/list.jhtml";
 	}
 	/**
@@ -113,6 +110,7 @@ public class ControllerJobSeekers {
 		}
 		formUser.setRoles(comUser.getRoles());
 		formUser.setComInfo(comUser.getComInfo());
+		formUser.setEditDate(System.currentTimeMillis());
 		etechService.merge(formUser);
 		return "redirect:/admin/jobSeekersList/list.jhtml";
 	}

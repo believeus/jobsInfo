@@ -103,7 +103,7 @@ $().ready(function() {
 					${recruit.workspace}
 				</td>
 				<td>
-					${recruit.viewData?number_to_date} ${recruit.viewData?number_to_time}
+					[#if recruit.viewData!=0]${recruit.viewData?number_to_date} ${recruit.viewData?number_to_time}[/#if]
 				</td>
 				<td>
 					<a href="edit.jhtml?id=${recruit.id}">[修改]</a>

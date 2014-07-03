@@ -123,8 +123,8 @@ $().ready(function() {
 				<tr>
 					<th>二女户:</th>
 					<td>
-						<input type="radio"  name="twoGirl" value="是" [#if user.twoGirl=="1"]checked="true"[#elseif user.twoGirl!="0"]checked="true"[/#if] style="width:0">是
-						<input type="radio"  name="twoGirl" value="否" [#if user.twoGirl=="0"]checked="true"[/#if]style="width:0">否
+						<input type="radio"  name="twoGirl" value="1" [#if user.twoGirl=="1"]checked="true"[#elseif user.twoGirl!="0"]checked="true"[/#if] style="width:10px">是
+						<input type="radio"  name="twoGirl" value="0" [#if user.twoGirl=="0"]checked="true"[/#if]style="width:10px">否
 					</td>
 				</tr>
 				<tr>
@@ -194,8 +194,8 @@ $().ready(function() {
 				<tr>
 					<th>独生子女:</th>
 					<td>
-						<input type="radio" name="singleChild" value="是" [#if user.singleChild=="1"]checked="true"[#elseif user.singleChild!="0"]checked="true"[/#if] style="width:0">是
-						<input type="radio" name="singleChild" value="否" [#if user.singleChild=="0"]checked="true"[/#if]style="width:0">否
+						<input type="radio" name="singleChild" value="1" [#if user.singleChild=="1"]checked="true"[#elseif user.singleChild!="0"]checked="true"[/#if] style="width:10px">是
+						<input type="radio" name="singleChild" value="0" [#if user.singleChild=="0"]checked="true"[/#if]style="width:10px	">否
 					</td>
 				</tr>
 				<tr>
