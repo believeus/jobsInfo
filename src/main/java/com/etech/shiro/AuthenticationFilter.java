@@ -38,7 +38,7 @@ public class AuthenticationFilter extends FormAuthenticationFilter {
 			String username=request.getParameter("loginName");
 			TbaseUser sessionUser = (TbaseUser)etechService.findObjectByProperty(TbaseUser.class, "loginName", username);
 			String refered=request.getHeader("Referer");
-			if (refered.contains("/admin/login.jhtml")) {
+			if (!StringUtils.isEmpty(refered)&&refered.contains("/admin/login.jhtml")) {
 				if(!(sessionUser instanceof Tadmin)||StringUtils.isEmpty(username)){
 					StringBuilder script=new StringBuilder();
 					script.append("<script>").append("top.location.href='/admin/login.jhtml'").append("</script>");
