@@ -87,7 +87,13 @@ $().ready(function() {
 			[#list roles as role]
 				<tr>
 				<td>
-					<input type="checkbox" name="ids" value="${role.id}" />
+					[#if role.id ==1]
+					[#elseif role.id == 2]
+					[#elseif role.id == 3]
+					[#elseif role.id == 4]
+					[#else]
+					 <input type="checkbox" name="ids" value="${role.id}" />
+					[/#if]
 				</td>
 				<td>
 					${role.roleName}

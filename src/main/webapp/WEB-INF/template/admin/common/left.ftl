@@ -193,70 +193,80 @@ $(function(){
 						<a target="main" href="/admin/ruanjianDownLoad/list.jhtml">软件下载</a>
 					</li>
        			 </ul>
-   			 [/@shiro.hasPermission]
-			<h1>幻灯片</h1>
+   			 [/@shiro.hasPermission] 
+   			 [@shiro.hasPermission name="slide:view"]
+			 <h1>幻灯片</h1>
         		<ul style="display: none;" class="MM">
 					<li>
 						<a target="main" href="/admin/slide/list.jhtml">幻灯片</a>
 					</li>
    			 	</ul>
+   			 [/@shiro.hasPermission]
+   			[@shiro.hasPermission name="service:view"]
 			<h1>服务功能</h1>
-        		<ul style="display: none;" class="MM">
-					<li>
-						<a target="main" href="/admin/busHandle/list.jhtml">业务办理</a>
-					</li>
-					<li>
-						<a target="main" href="/admin/mailBox/list.jhtml">局长信箱</a>
-					</li>
-					<li>
-						<a target="main" href="/admin/forum/list.jhtml">网站论坛</a>
-					</li>
-					<li>
-						<a target="main" href="/admin/links/list.jhtml">友情链接</a>
-					</li>
-      			</ul>
+        	<ul style="display: none;" class="MM">
+			  <li>
+				 <a target="main" href="/admin/busHandle/list.jhtml">业务办理</a>
+			  </li>
+			  <li>
+				<a target="main" href="/admin/mailBox/list.jhtml">局长信箱</a>
+			  </li>
+			  <li>
+				<a target="main" href="/admin/forum/list.jhtml">网站论坛</a>
+			  </li>
+			  <li>
+				<a target="main" href="/admin/links/list.jhtml">友情链接</a>
+			  </li>
+      		</ul>
+      		[/@shiro.hasPermission]
   			</div>
   			<div style="height:auto;width:180px;">
 	   		<p style="height:17px;background: #3f97c9;font-size: 16px;margin: 0;padding: 8px;text-align: center;font-size:19px;color:#ffffff;">
 	   			人力资源业务管理
    			</p>
+   			
+   			[@shiro.hasPermission name="content:view"]
 			<h1>内容审核</h1>
-        		<ul style="display: none;" class="MM">
-					<li>
-						<a target="main" href="/admin/enterpriseAudit/list.jhtml">企业审核列表</a>
-					</li>
-					<li>
-						<a target="main" href="/admin/stationAudit/list.jhtml">招聘岗位审核列表</a>
-					</li>
-      			</ul>
+        	<ul style="display: none;" class="MM">
+			  <li>
+				<a target="main" href="/admin/enterpriseAudit/list.jhtml">企业审核列表</a>
+			  </li>
+			  <li>
+				<a target="main" href="/admin/stationAudit/list.jhtml">招聘岗位审核列表</a>
+			  </li>
+      		</ul>
+      		[/@shiro.hasPermission]
+      		
+      	    [@shiro.hasPermission name="resource:view"]
 			<h1>资源管理</h1>
-        		<ul style="display: none;" class="MM">
-					<li>
-						<a target="main" href="/admin/enterpriseList/list.jhtml">企业列表</a>
-					</li>
-					<li>
-						<a target="main" href="/admin/jobSeekersList/list.jhtml">求职者列表</a>
-					</li>
-					<li>
-						<a target="main" href="/admin/stationList/list.jhtml">招聘岗位列表</a>
-					</li>
-      			</ul>
+        	<ul style="display: none;" class="MM">
+			  <li>
+				 <a target="main" href="/admin/enterpriseList/list.jhtml">企业列表</a>
+			  </li>
+			  <li>
+				 <a target="main" href="/admin/jobSeekersList/list.jhtml">求职者列表</a>
+			  </li>
+			  <li>
+				<a target="main" href="/admin/stationList/list.jhtml">招聘岗位列表</a>
+			  </li>
+      		</ul>
+      		[/@shiro.hasPermission]
   			</div>
   			<div style="height:auto;width:180px;">
 	   		<p style="height:17px;background: #3f97c9;font-size: 16px;margin: 0;padding: 8px;text-align: center;font-size:19px;color:#ffffff;">系统管理</p>
   			<h1>系统设置</h1>
-       			 <ul style="display: none;" class="MM">
-       			 	[@shiro.hasPermission name="adminList:view"]
-						<li>
-							<a target="main" href="/admin/list.jhtml">管理员管理</a>
-						</li>
-					[/@shiro.hasPermission]
-					[@shiro.hasPermission name="admin:group"]
-						<li>
-							<a target="main" href="/admin/power/list.jhtml">权限分组</a>
-						</li>
-					[/@shiro.hasPermission]
-       			 </ul>
+   			 <ul style="display: none;" class="MM">
+   			 	[@shiro.hasPermission name="adminList:view"]
+					<li>
+						<a target="main" href="/admin/list.jhtml">管理员管理</a>
+					</li>
+				[/@shiro.hasPermission]
+				[@shiro.hasPermission name="admin:group"]
+					<li>
+						<a target="main" href="/admin/power/list.jhtml">权限分组</a>
+					</li>
+				[/@shiro.hasPermission]
+   			 </ul>
 			</div>
 		</div>
     </td>
