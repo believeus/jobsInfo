@@ -67,7 +67,6 @@ $().ready(function() {
 		<input type="hidden" name="freeTrain" value="${user.freeTrain}" id="freeTrain"/>
 		<input type="hidden" name="freeIntro" value="${user.freeTrain}" id="freeIntro"/>
 		<input type="hidden" name="imgHead" value="${user.imgHead}" id="imgHead"/>
-	
 		<table class="input">
 				<tr>
 					<th>姓名:</th>
@@ -166,7 +165,7 @@ $().ready(function() {
 				</tr>
 				<tr>
 					<th>身高:</th>
-					<td><input type="text" id="height" name="height" value="${user.height}" placeholder="cm"></td>
+					<td><input type="text" id="height" name="height" value="${user.height}"><span style="margin-left:-25px;">cm</span></td>
 				</tr>
 				<tr>
 					<th>健康状况:</th>

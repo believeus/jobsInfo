@@ -1238,7 +1238,7 @@
 								<tr>
 									<td><font color="red">*</font>所属地区:</td>
 									<td>
-										<input type="text" name="area" value="${sessionUser.area}" oldvalue="${sessionUser.area}" class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off">
+										<input type="text" id="area" name="area" value="${sessionUser.area}" oldvalue="${sessionUser.area}" class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off">
 									<!--////////////////////////////////////////////////////////////////////////-->
 										<div class="provinceCityAll">
 										  <div class="tabs clearfix">
@@ -1569,7 +1569,7 @@
 									<td><input type="text" id="worknum1" name="worknum" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"></td>
 								</tr>
 								<tr>
-									<td>工种:</td>
+									<td><span style="padding:0;">*</span>工种:</td>
 									<td>
 									<input type="hidden" value="" id="selectJobshidden1" name="workTypeId"/>
 									<div class="topnav">
@@ -1649,7 +1649,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td>工作地点:</td>
+									<td><span style="padding:0;">*</span>工作地点:</td>
 									<td>
 										<input type="text" name="workspace"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" name="expectArea">
 									<!--////////////////////////////////////////////////////////////////////////-->

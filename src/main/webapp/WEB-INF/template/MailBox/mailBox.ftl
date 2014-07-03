@@ -172,12 +172,12 @@ textarea{
 					[#list notices as notice]
 					[#if notice_index <8]
 						<li><a href="/publicityInfo.jhtml?id=${notice.id}">
-							[#if notice.title?length > 13]
-								${notice.title?string?substring(0,13)}...
+							[#if notice.title?length > 8]
+								${notice.title?string?substring(0,8)}...
 							[#else]
 								${notice.title}
 							[/#if]
-					</a><span>${notice.createTime?number_to_datetime}</span></li>
+					</a><span>${notice.editTime?number_to_datetime}</span></li>
 					[/#if]
 					[/#list]
 				</ul>
@@ -187,15 +187,11 @@ textarea{
 			<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 			<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 45px;"><hr style="border:1px dashed #e4e4e4;"></div>
 			<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml">更多>></a></div>
-			[#list subjectReport as sReport]
-				[#if sReport_index <5]
-	            	<div class="zti_im">
-	            		<a href="/special.jhtml?id=${sReport.id}">
-	            			<img src="${sReport.imgpath}" width="222" height="62"/>
-	        			</a>
-	    			</div>
-           		[/#if]
-			[/#list]
+			<div class="zhuanti_list">
+				[#list subjectReport as sReport]
+					<a href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:222px;height:62px;margin-top:7px;"></a>
+				[/#list]
+			</div>
 		</div>
     </div>
     <div style="width:750px; float:left; margin-left:10px;">

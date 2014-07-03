@@ -339,49 +339,58 @@
 			</div>
 			<div class="xinwen">
 				<div style="padding-left: 20px;margin-bottom:20px;margin-top:10px;">
-					[#list news as new]
-						[#if new_index==0]
-							<h2 style="margin: 0px; font-size: 21px; font-weight: bold;"><a href="/newsInfo.jhtml?id=${new.id}" title="${new.title}">
-							[#if new.title?length > 15]
-								${new.title?string?substring(0,15)}...
-							[#else]
-								${new.title}
-							[/#if]
-							</a></h2>
-							<p style="color:#2B8BDF;font-size:13px;">
-								${new.title}
-							</p>
-						[/#if]
-						[/#list]
-				</div>
-				<div style="padding-left: 20px;">
-					[#list news as new]
-						[#if new_index==1]	
-							<h2 style="margin: 0px; font-size: 21px; font-weight: bold;"><a href="/newsInfo.jhtml?id=${new.id}">
-							[#if new.title?length > 15]
-								${new.title?string?substring(0,15)}...
-							[#else]
-								${new.title}
-							[/#if]</a></h2>
-							<p style="color:#2B8BDF;font-size:12px;">
-							${new.title}
-							</p>
-						[/#if]
-						[/#list]
+					[#list newsTop as new]
+					[#if new_index < 2]
+						<h2 style="margin: 0px; font-size: 21px; font-weight: bold;">
+							<a 
+								[#if new.type = 0]
+									href="/newsInfo.jhtml?id=${new.id}"
+								[#elseif new.type = 1]
+									href="/workInfo.jhtml?id=${new.id}"
+								[#elseif new.type = 3]
+									href="/imgShow.jhtml?id=${new.id}"
+								[#elseif new.type = 4]
+									href="/videosInfo.jhtml?id=${new.id}"
+								[/#if]
+							>
+								[#if new.title?length > 16]
+									${new.title?string?substring(0,15)}...
+								[#else]
+									${new.title}
+								[/#if]
+							</a>
+						</h2>
+						<div style="color:#2B8BDF;margin:10px 0;font-size:13px;">
+							${new.title}	
+						</div>
+					[/#if]
+					[/#list]
 				</div>
 				<hr style="margin-left: 10px; margin-right: 10px; border: 1px dashed #e4e4e4;">
 				<ul class="xinwen_ul" style="padding-left: 25px;">
-					[#list news as new]
-					[#if new_index > 1 && new_index <6]	
-						<li class="xinwen_ul_li"><a href="/newsInfo.jhtml?id=${new.id}">
-						[#if new.title?length > 16]
-							${new.title?string?substring(0,16)}...
-						[#else]
-							${new.title}
+					[#list newsTop as new]
+						[#if new_index > 1 && new_index < 6]	
+							<li class="xinwen_ul_li">
+								<a 
+									[#if new.type = 0]
+										href="/newsInfo.jhtml?id=${new.id}"
+									[#elseif new.type = 1]
+										href="/workInfo.jhtml?id=${new.id}"
+									[#elseif new.type = 3]
+										href="/imgShow.jhtml?id=${new.id}"
+									[#elseif new.type = 4]
+										href="/videosInfo.jhtml?id=${new.id}"
+									[/#if]
+								>
+								[#if new.title?length > 16]
+									${new.title?string?substring(0,16)}...
+								[#else]
+									${new.title}
+								[/#if]
+								</a>
+							</li>
 						[/#if]
-						</a></li>
-					[/#if]
-					[/#list]
+						[/#list]
 				</ul>
 			</div>
 			<div class="biaoti">
@@ -408,8 +417,8 @@
 									[#list zhaopList as zhaop]
 									[#if zhaop_index <6]
 										<li class="xinxi_1_li">
-											<a href="/enterpriseInformation.jhtml?id=${zhaop.entUser.id}">${zhaop.company}</a>&nbsp;&nbsp;
-											<a href="/enterpriseInformation.jhtml?id=${zhaop.entUser.id}#zw">[#if zhaop.workType.name?length >13]${zhaop.workType.name?string?substring(0,13)}...[#else]${zhaop.workType.name}[/#if]</a>
+											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}">${zhaop.company}</a>&nbsp;&nbsp;
+											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zw">[#if zhaop.workType.name?length >13]${zhaop.workType.name?string?substring(0,13)}...[#else]${zhaop.workType.name}[/#if]</a>
 											<span class="xinxi_1_span">${zhaop.editTime?number_to_datetime}</span>
 
 										</li>
@@ -448,7 +457,17 @@
 									[#list qiuzhiList as qiuzhi]
 									[#if qiuzhi_index <6]
 										<li class="xinxi_1_li">
-											<a href="/personalResume.jhtml?id=${qiuzhi.id}">${qiuzhi.trueName}&nbsp;&nbsp;[#if qiuzhi.sex == 'man']男[#else]女[/#if]&nbsp;&nbsp;${qiuzhi.eduLevel}&nbsp;&nbsp;${qiuzhi.workType.name}</a>
+											<a href="/personalResume.jhtml?id=${qiuzhi.id}">${qiuzhi.trueName}&nbsp;&nbsp;[#if qiuzhi.sex == 'man']男[#elseif qiuzhi.sex == 'woman']女[#else]不限[/#if]&nbsp;&nbsp;${qiuzhi.eduLevel}&nbsp;&nbsp;
+												[#list qiuzhi.comInfo as comInfo]
+													[#if comInfo_index=0]
+														[#if comInfo.workType.name?length > 9]
+															${comInfo.workType.name?string?substring(0,8)}...
+														[#else]
+															${comInfo.workType.name}
+														[/#if]
+													[/#if]
+												[/#list]
+											</a>
 											<span class="xinxi_1_span">${qiuzhi.createDate?number_to_datetime}</span>
 										</li>
 									[/#if]
@@ -491,12 +510,12 @@
 					[#list notices as notice]
 						[#if notice_index <8]
 						<li class="gonggao_li"><a href="/publicityInfo.jhtml?id=${notice.id}">
-							[#if notice.title?length > 13]
-								${notice.title?string?substring(0,13)}...
+							[#if notice.title?length > 10]
+								${notice.title?string?substring(0,10)}...
 							[#else]
 								${notice.title}
 							[/#if]
-							</a><span class="gonggao_span">${notice.createTime?number_to_datetime}</span>
+							</a><span class="gonggao_span">${notice.editTime?number_to_datetime}</span>
 						</li>
 						[/#if]
 					[/#list]
@@ -618,9 +637,8 @@
 					.piclist{ height:70px;position:absolute; left:0px; top:0px;padding:0;margin:0;}
 					.piclist li{ background:#eee; margin-right:20px; padding:5px; float:left;}
 					.swaplist{ position:absolute; left:-3000px; top:0px}
-					.og_prev,.og_next{ width:30px; height:50px; background:url(http://www.codefans.net/jscss/demoimg/201401/icon.png) no-repeat; background:url(http://www.codefans.net/jscss/demoimg/201401/icon_ie6.png) no-repeat\9; position:absolute; top:10px; z-index:99; cursor:pointer;filter:alpha(opacity=70); opacity:0.7;}
-					.og_prev{ background-position:0 -60px; left:4px;}
-					.og_next{ background-position:0 0; right:4px;}
+					.og_prev{ width:22px; height:50px; background:url(/resource/public/images/right.jpg); position:absolute; top:10px;left:960px; z-index:99; cursor:pointer;filter:alpha(opacity=70); opacity:0.7;}
+					.og_next{ width:22px; height:50px; background:url(/resource/public/images/left.jpg); position:absolute; top:10px;left:5px; z-index:99; cursor:pointer;filter:alpha(opacity=70); opacity:0.7;}
 				</style>
 				<script type="text/javascript">
 					$(document).ready(function(e) {

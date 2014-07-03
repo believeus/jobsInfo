@@ -44,27 +44,27 @@ public class ControllerIndex {
 			}
 		}
 		//工作动态
-		String hql="From TdataCenter dataCenter where dataCenter.type='1'";
+		String hql="From TdataCenter dataCenter where dataCenter.type='1' order by id desc";
 		List<TdataCenter> works = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("works",works ); 
 		
 		//新闻动态
-		hql="From TdataCenter dataCenter where dataCenter.type='0' and dataCenter.top='1' order by editTime desc";
+		hql="From TdataCenter dataCenter where dataCenter.type='0' order by editTime desc";
 		List<TdataCenter> news = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("news",news ); 
 		
 		// 公告公示
-		hql="From TdataCenter dataCenter where dataCenter.type='2'";
+		hql="From TdataCenter dataCenter where dataCenter.type='2' order by id desc";
 		List<TdataCenter> notices = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("notices",notices ); 
 		
 		//国家法律法规
-		hql="From TdataCenter dataCenter where dataCenter.type='10'";
+		hql="From TdataCenter dataCenter where dataCenter.type='10' order by id desc";
 		List<TdataCenter> countryLawDataList = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("countryLawDataList",countryLawDataList ); 
 		
 		// 专题报道
-		hql="From TdataCenter dataCenter where dataCenter.type='5'";
+		hql="From TdataCenter dataCenter where dataCenter.type='5' order by id desc";
 		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("subjectReport", subjectReport); 
 		
@@ -74,24 +74,29 @@ public class ControllerIndex {
 		session.setAttribute("slide", slide); 
 		
 		// 友情链接
-		hql="From TdataCenter dataCenter where dataCenter.type='24'";
+		hql="From TdataCenter dataCenter where dataCenter.type='24' order by id desc";
 		List<TdataCenter> links = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("links", links); 
 		
 		//招聘信息
-		hql = "From Trecruit trecruit where trecruit.status='1' and  trecruit.isview='发布' order by id asc";
+		hql = "From Trecruit trecruit where trecruit.status='1' and  trecruit.isview='发布' order by id desc";
 		List<Trecruit> zhaopList = (List<Trecruit>)etechService.findListByHQL(hql);
 		session.setAttribute("zhaopList", zhaopList); 
 		
 		//求职信息
-		hql = "From TcomUser tcomUser where tcomUser.disable='0' order by id asc";
+		hql = "From TcomUser tcomUser where tcomUser.disable='0' order by id desc";
 		List<TcomUser> qiuzhiList = (List<TcomUser>)etechService.findListByHQL(hql);
 		session.setAttribute("qiuzhiList", qiuzhiList); 
 		
 		//图片新闻
-		hql = "From TdataCenter tdataCenter where tdataCenter.type='3' order by id asc";
+		hql = "From TdataCenter tdataCenter where tdataCenter.type='3' order by id desc";
 		List<TdataCenter> imgs = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("imgs", imgs); 
+		
+		//置顶内容 ：新闻动态、工作动态、图片新闻、视频新闻
+		hql="From TdataCenter dataCenter where dataCenter.top='1' order by id desc";
+		List<TdataCenter> dataCenters = (List<TdataCenter>)etechService.findListByHQL(hql);
+		request.setAttribute("newsTop", dataCenters);
 		
 		/*End Author:wuqiwei Data:2014-06-11 AddReason:shiro登录成功之后会跳转到主页面,此处控制后台登录后进入后台主页面*/
 		log.debug("current controller is defaultIndex !");

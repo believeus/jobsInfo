@@ -66,13 +66,14 @@
 	//给所有页面BODY加背景色
 	 window.onload=addColor();
 	 function addColor(){
-	 	document.body.style.background = "#FFFBF6";
+	 	if(window.location.pathname != "/imgShow.jhtml"){
+		 	document.body.style.background = "#FFFBF6";
+	 	}
 	 }
 
 	$().ready(function(){
 		//$("body").css("background","#FFFBF6");
 		
-		//alert(window.location.pathname);
 		$(".nav a").each(function(){
 			if($(this).attr("href") == window.location.pathname){
 				$(this).addClass("nav_current");

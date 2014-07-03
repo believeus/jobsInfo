@@ -137,17 +137,21 @@
 				[#list imgs as img]
 				[#if img_index <12]
 					<div class="img_list">
-						<p><a href="/imgShow.jhtml?id=${img.id}"><img src="${img.imgpath}" width="170" height="110"></a></p>
+						<p>
+							<a href="/imgShow.jhtml?id=${img.id}" title="${img.title}">
+								<img src="${img.imgpath}" width="170" height="110">
+							</a>
+						</p>
 						<p style="padding:0 5px;text-align:center;color:#3A71AA;font-size:14px;margin-bottom:0;">
-							<a href="/imgShow.jhtml?id=${img.id}">
-								[#if img.title?length > 27]
-									${img.title?string?substring(0,27)}...
+							<a href="/imgShow.jhtml?id=${img.id}" title="${img.title}">
+								[#if img.title?length > 13]
+									${img.title?string?substring(0,13)}...
 								[#else]
 									${img.title}
 								[/#if]
 							</a>
 						</p>
-						<p style="margin-top:0;">[${img.createTime?number_to_datetime}]</p>
+						<p style="margin-top:0;">[${img.editTime?number_to_datetime}]</p>
 					</div>
 				[/#if]
 				[/#list]

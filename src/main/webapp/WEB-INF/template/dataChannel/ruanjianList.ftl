@@ -133,7 +133,7 @@
 					[#list ruanjianList as ruanjian]
 					<li>
 						<a href="/ruanjian.jhtml?id=${ruanjian.id}">${ruanjian.title}</a>
-						<span>${ruanjian.createTime?number_to_datetime}</span>
+						<span>${ruanjian.editTime?number_to_datetime}</span>
 					</li>
 					[/#list]
 				</ul>

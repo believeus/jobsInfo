@@ -33,7 +33,7 @@ public class ControllerIntroduction extends ControllerCRUD{
 		List<?> dataCenters = super.listDataInfo(request,EtechGobal.introduction);
 		request.setAttribute("dataCenters",dataCenters);
 		request.setAttribute("size",dataCenters.size());
-		return "admin/leader/list";
+		return "admin/guide/list";
 	}
 	
 	/**
@@ -45,7 +45,7 @@ public class ControllerIntroduction extends ControllerCRUD{
 	@RequestMapping("/delete")
 	public String removeNews(HttpServletRequest request,HttpServletResponse response){
 		super.deleteDataInfo(request,response);
-		return "redirect:/admin/leader/list.jhtml";
+		return "redirect:/admin/introduction/list.jhtml";
 	}
 	
 	/**
@@ -56,7 +56,7 @@ public class ControllerIntroduction extends ControllerCRUD{
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
 		request.setAttribute("type",EtechGobal.introduction);
-		return "admin/leader/add";
+		return "admin/guide/add";
 	}
 	/**
 	 * 编辑机构简介
@@ -69,7 +69,7 @@ public class ControllerIntroduction extends ControllerCRUD{
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
 		request.setAttribute("type",EtechGobal.introduction);
-		return "admin/leader/edit";
+		return "admin/guide/edit";
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public class ControllerIntroduction extends ControllerCRUD{
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
-		return "redirect:/admin/leader/list.jhtml";
+		return "redirect:/admin/introduction/list.jhtml";
 	}
 	/**
 	 * 修改机构简介
@@ -88,6 +88,6 @@ public class ControllerIntroduction extends ControllerCRUD{
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);
-		return "redirect:/admin/leader/list.jhtml";
+		return "redirect:/admin/introduction/list.jhtml";
 	}
 }

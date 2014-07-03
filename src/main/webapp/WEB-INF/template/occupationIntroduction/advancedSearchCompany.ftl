@@ -350,11 +350,11 @@
 						<td style="padding-right: 20px; padding-left: 10px;">最新消息：</td>
 						[#list notices as notices]
 						[#if notices_index <4]
-							<td style="padding-right: 20px;">${notices.createTime?number_to_datetime}</td>
+							<td style="padding-right: 20px;">${notices.editTime?number_to_datetime}</td>
 							<td style="padding-right: 40px;">
 								<a href="/publicityInfo.jhtml?id=${notices.id}" title="${notices.title}">
-									[#if notices.title?length > 15]
-										${notices.title?string?substring(0,15)}...
+									[#if notices.title?length > 5]
+										${notices.title?string?substring(0,5)}...
 									[#else]
 										${notices.title}
 									[/#if]

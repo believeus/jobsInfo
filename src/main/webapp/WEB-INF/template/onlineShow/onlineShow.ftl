@@ -113,30 +113,23 @@ a:link{
                 	<table id="tab_1" style="width:100%; border-collapse:collapse;">
                       <tr>
                         <td>发布：</td>
-                        <td style="width:235px;">${vedio.createTime?number_to_datetime}</td>
-                        <td>标签：</td>
-                        <td>磁悬浮列车</td>
-                      </tr>
-                      <tr>
+                        <td>${vedio.editTime?number_to_datetime}</td>
                         <td>来源：</td>
                         <td>潜江市公共就业服务网</td>
-                        <td>时长：</td>
-                        <td>5分26秒</td>
                       </tr>
                       <tr>
                         <td>简介：</td>
                         <td colspan="3">
-                        	[#if vedio.content?length >20]
-	                    		${vedio.content?string?substring(0,20)}...
+                        	<span title="${vedio.content}">
+                        	[#if vedio.content?length >80]
+	                    		${vedio.content?string?substring(0,80)}...
 	                    	[#else]
 	                    		${vedio.content}
 	                    	[/#if]
+	                    	</span>
                         </td>
                       </tr>
                     </table>
-                </div>
-                <div style="float:left; margin-top:25px; color:#666;">
-                	<p>展开信息<img src="/resource/public/images/jiantou.jpg" /></p>
                 </div>
             </div>
         </div>
@@ -199,9 +192,9 @@ a:link{
 	    				</a>
 	    			</p>
 	                <p>
-	                	<a href="/imgShow.jhtml?id=${img.id}">
-	                		[#if img.title?length >35]
-	                			${img.title?string?substring(0,35)}...
+	                	<a href="/imgShow.jhtml?id=${img.id}" title="${img.title}">
+	                		[#if img.title?length >8]
+	                			${img.title?string?substring(0,8)}...
 	                		[#else]
 	                			${img.title}
 	                		[/#if]

@@ -455,7 +455,7 @@
 									<td>联系人:</td>
 									<td>${entUser.contacts}</td>
 									<td>通讯地址:</td>
-									<td>${entUser.detailAddress}</td>
+									<td>${entUser.address}</td>
 								</tr>
 								<tr>
 									<td>邮编:</td>
@@ -525,11 +525,11 @@
 							[#if vedio_index=0]
 								<div style="width:600px;height:auto;margin-left:auto;margin-right:auto;">
 									<embed width="585" height="432" bgcolor="#000000" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all"
-										 [#if tentImgVedio?exists] 111
+										 [#if tentImgVedio?exists]
 										 	src="/${tentImgVedio.vedioUrl}"
-										 [#elseif vedio.vedioUrl?exists] 222
+										 [#elseif vedio.vedioUrl?exists]
 										 	 	src="/${vedio.vedioUrl}"
-								 	 	 [#else] 333
+								 	 	 [#else]
 									 	 	 	src="http://p.you.video.sina.com.cn/swf/bokePlayer20140616_V4_1_42_49.swf"
 							 	 	 	 [/#if] 
 						 	 	 	 type="application/x-shockwave-flash"/>
@@ -584,7 +584,7 @@
 							[#if trecruitList?exists && trecruitList?size > 0]
 								[#list trecruitList as trecruit]
 								<tr>
-									<td>${trecruit.workType.name}</td>
+									<td><a href="/enterpriseInformation.jhtml?id=${trecruit.entUser.id}#zw" target="_blank" title="${trecruit.workType.name}">${trecruit.workType.name}</a></td>
 									<td>${trecruit.worknum}人</td>
 									<td>${trecruit.workspace}</td>
 									<td>${trecruit.eduLevel}</td>
@@ -618,7 +618,7 @@
 									<td>工种:</td>
 									<td>${trecruit.workType.name}</td>
 									<td>性别:</td>
-									<td>[#if trecruit.sex == "woman"]女[#elseif trecruit.sex == "man"]男[/#if]</td>
+									<td>[#if trecruit.sex == "woman"]女[#elseif trecruit.sex == "man"]男[#else]不限[/#if]</td>
 								</tr>
 								<tr>
 									<td>人数:</td>

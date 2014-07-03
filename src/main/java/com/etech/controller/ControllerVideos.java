@@ -41,7 +41,7 @@ public class ControllerVideos {
 		
 		request.setAttribute("imgVedio", imgVedio);
 		
-		String hql="From TdataCenter dataCenter where dataCenter.type='4'";
+		String hql="From TdataCenter dataCenter where dataCenter.type='4' order by id desc";
 		List<TdataCenter> videolList = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
 		request.setAttribute("videolList", videolList);
 		return "infoCenter/videosInfo";
@@ -50,7 +50,7 @@ public class ControllerVideos {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/videosList", method = RequestMethod.GET)
 	public String videosList(HttpSession session) {
-		String hql="From TdataCenter dataCenter where dataCenter.type='4'";
+		String hql="From TdataCenter dataCenter where dataCenter.type='4' order by id desc";
 		List<TdataCenter> videos = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
 		session.setAttribute("videos", videos);
 		return "infoCenter/videosList";

@@ -126,7 +126,7 @@
 					[#list notices as notice]
 						[#if notice_index <8]
 						<li>
-							<a href="/publicityInfo.jhtml?id=${notice.id}">${notice.title}</a><span>${notice.createTime?number_to_datetime}</span>
+							<a href="/publicityInfo.jhtml?id=${notice.id}">${notice.title}</a><span>${notice.editTime?number_to_datetime}</span>
 						</li>
 						[/#if]
 					[/#list]

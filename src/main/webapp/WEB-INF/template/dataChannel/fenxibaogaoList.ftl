@@ -118,7 +118,7 @@
 					[#list analysisreport as analysisreport]
 					<li>
 						<a href="/report.jhtml?id=${analysisreport.id}">${analysisreport.title}</a>
-						<span>${analysisreport.createTime?number_to_datetime}</span>
+						<span>${analysisreport.editTime?number_to_datetime}</span>
 					</li>
 					[/#list]
 				</ul>

@@ -105,7 +105,7 @@ $().ready(function() {
 			</tr>
 			<tr>
 				<th><span class="requiredField">*</span>视频文件:</th>
-				<td>
+				<td colspan="3">
 				<input type="file" name="file" onchange="checkV(this)">
 				<script type="text/javascript">
 				 function checkV(file) {
@@ -127,7 +127,7 @@ $().ready(function() {
 					内容:
 				</th>
 				<td colspan="3">
-					<textarea id="editor" name="content" class="editor"></textarea>
+					<textarea id="" name="content" class="" style="width: 727px; height: 100px;"></textarea>
 				</td>
 			</tr>
 			<tr>

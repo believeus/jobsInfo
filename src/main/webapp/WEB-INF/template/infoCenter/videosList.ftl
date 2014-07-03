@@ -154,15 +154,20 @@
 				[#list videos as video]
 					<div class="velist">
 						<p style="margin-top: 3px; margin-bottom: 0px;">
-							<a href="/videosInfo.jhtml?id=${video.id}">
+							<a href="/videosInfo.jhtml?id=${video.id}" title="${video.title}">
 								<img [#if video.imgpath?exists]src="${video.imgpath}"[#else]src="/group/M00/01/21/6551-A40C-4FDA-8D55-87265167B506.jpg"[/#if] width="195" height="130">
 							</a>
 						</p>
-						<div class="middle-money">2分30秒</div>
 						<p style="padding:10px 5px;text-align:left;color:#3A71AA;font-size:14px;margin:0;text-align:center;">
-							<a href="/videosInfo.jhtml">${video.title}</a>
+							<a href="/videosInfo.jhtml?id=${video.id}" title="${video.title}">
+								[#if video.title?length > 13]
+									${video.title?string?substring(0,13)}...
+								[#else]
+									${video.title}
+								[/#if]
+							</a>
 						</p>
-						<p style="margin-top:0;">[${video.createTime?number_to_datetime}]</p>
+						<p style="margin-top:0;">[${video.editTime?number_to_datetime}]</p>
 					</div>
 				[/#list]
 			</div>

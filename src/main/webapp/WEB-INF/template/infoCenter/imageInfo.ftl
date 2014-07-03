@@ -20,7 +20,7 @@ $(document).ready(function(){
 </script>
 </head>
 
-<body>
+<body bgcolor="#000000;">
 [#include "/include/header.ftl" /]
 <div class="img_title">
 	<div style="height:50px;line-height:50px;background:#3D3D3D;padding-left:20px;">
@@ -30,19 +30,15 @@ $(document).ready(function(){
 		</p>
 	</div>
 	<h1 style="color:#FFFFFF;text-align:center;">${data.title}</h1>
-	<p style="color:#FFFFFF;text-align:center;">${data.createTime?number_to_datetime}</p>
+	<p style="color:#FFFFFF;text-align:center;">${data.editTime?number_to_datetime}</p>
 </div>
 <div id="photos" class="galleryview">
 	[#list pathList as path]
 	  <div class="panel">
-	     	<img src="${path}" /> 
+	     	<img src="${path}" width="950"/> 
 	    <div class="panel-overlay">
 	      	<div style="text-align:left;padding:0 12px;">
-	      		[#if data.content?length > 50]
-					${data.content?string?substring(0,50)}...
-				[#else]
-					${data.content}
-				[/#if]
+				${data.content}
 	  		</div>
 	    </div>
 	  </div>

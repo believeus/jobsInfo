@@ -103,7 +103,7 @@
 					<a href="">${data.title}</a>
 				</div>
 				<div class="zt_time">
-					[${data.createTime?number_to_datetime}]
+					[${data.editTime?number_to_datetime}]
 				</div>
 				<div class="zt_img">
 					<a href=""><img style="height:66px;width:222px" src="${data.imgpath}" ></a>

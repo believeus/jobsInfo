@@ -225,7 +225,7 @@
 		    height: 80px;
 		    padding: 0 15px;
 		    width: 160px;
-		    text-align:center;
+		    text-align:left;
 		}
 		.jianli{
 			width:950px;
@@ -335,11 +335,11 @@
 					<td style="padding-right: 20px; padding-left: 10px;">最新消息：</td>
 					[#list notices as notices]
 					[#if notices_index <4]
-						<td style="padding-right: 20px;">${notices.createTime?number_to_datetime}</td>
+						<td style="padding-right: 20px;">${notices.editTime?number_to_datetime}</td>
 						<td style="padding-right: 40px;">
 							<a href="/publicityInfo.jhtml?id=8" title="${notices.title}">
-								[#if notices.title?length > 15]
-									${notices.title?string?substring(0,15)}...
+								[#if notices.title?length > 4]
+									${notices.title?string?substring(0,4)}...
 								[#else]
 									${notices.title}
 								[/#if]
@@ -438,7 +438,7 @@
 					<form action="/advanceSearchByContision.jhtml" method="post">
 						<input id="stype" type="hidden" name="type" value="">
 						<div style="width: 380px; margin-left: auto; margin-right: auto; margin-top: 20px;">
-							<input type="text" value="" placeholder="请输入查询内容..." style="width: 360px;">
+							<input type="text" value="" placeholder="请输入查询内容..." style="width: 360px;margin-bottom:15px;">
 							<input type="text" name="expectArea" id="start1" placeholder="选择城市" autocomplete="off" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" style="width:151px;">
 							<input type="submit" value="搜索" style="cursor:pointer;border-radius:4px;width:100px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
 							<input type="button" value="高级搜索" onclick="javascript:window.location.href='/jobAdvancedSearch.jhtml'" style="cursor:pointer;border-radius:4px;width:100px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
@@ -514,7 +514,7 @@
 									${zph.title}
 								[/#if]
 							</a>
-							<span>${zph.createTime?number_to_datetime}</span></li>
+							<span>${zph.editTime?number_to_datetime}</span></li>
 					[/#if]
 					[/#list]
 				</ul>
@@ -551,7 +551,7 @@
 				<span style="color: #817f80;font-size: 19px;font-weight: bold;line-height: 38px;margin-left: 10px;">名企招聘</span>
 			</div>
 			[#list headImgs as headImg]
-				<a href="/enterpriseInformation.jhtml?id=${headImg.entUser.id}">
+				<a href="/enterpriseInformation.jhtml?id=${headImg.entUser.id}" title="${headImg.entUser.fullName}">
 					<img src="${headImg.url}" width="195" height="33">
 				</a>
 			[/#list]
@@ -572,11 +572,11 @@
 							[/#if]
 						</a>
 					</p>
-					<p style="margin:0">招聘：
+					<p style="margin:0">招聘:
 						<span>
 							<a style="color:#FF7800;" href="/enterpriseInformation.jhtml?id=${zhaop.id}#zw" title="${zhaop.workType.name}">
-								[#if zhaop.workType.name?length > 7]
-									${zhaop.workType.name?string?substring(0,7)}...
+								[#if zhaop.workType.name?length > 6]
+									${zhaop.workType.name?string?substring(0,6)}...
 								[#else]
 									${zhaop.workType.name}
 								[/#if]
@@ -641,13 +641,13 @@
 						[#if qzzd_index < 6]
 							<li>
 								<a href="/qiuzhizhidao.jhtml?id=${qzzd.id}" title="${qzzd.title}">
-									[#if qzzd.title?length > 7]
-										${qzzd.title?string?substring(0,6)}...
+									[#if qzzd.title?length > 5]
+										${qzzd.title?string?substring(0,5)}...
 									[#else]
 										${qzzd.title}
 									[/#if]
 								</a>
-							<span style="float:right;">${qzzd.createTime?number_to_datetime}</span></li>
+							<span style="float:right;">${qzzd.editTime?number_to_datetime}</span></li>
 						[/#if]
 						[/#list]
 					</ul>
@@ -667,13 +667,13 @@
 						[#list jianlizhinanService as jlzn]
 							<li>
 								<a href="/jianlizhinan.jhtml?id=${jlzn.id}" title="${jlzn.title}">
-									[#if jlzn.title?length > 7]
-										${jlzn.title?string?substring(0,7)}...
+									[#if jlzn.title?length > 5]
+										${jlzn.title?string?substring(0,5)}...
 									[#else]
 										${jlzn.title}
 									[/#if]
 								</a>
-							<span style="float:right;">${jlzn.createTime?number_to_datetime}</span></li>
+							<span style="float:right;">${jlzn.editTime?number_to_datetime}</span></li>
 						[/#list]
 					</ul>
 				</div>
@@ -692,13 +692,13 @@
 						[#list mianshibaodianService as msbd]
 							<li>
 								<a href="/mianshibaodian.jhtml?id=${msbd.id}" title="${msbd.title}">
-									[#if msbd.title?length > 7]
-										${msbd.title?string?substring(0,7)}...
+									[#if msbd.title?length > 5]
+										${msbd.title?string?substring(0,5)}...
 									[#else]
 										${msbd.title}
 									[/#if]
 								</a>
-							<span style="float:right;">${msbd.createTime?number_to_datetime}</span></li>
+							<span style="float:right;">${msbd.editTime?number_to_datetime}</span></li>
 						[/#list]
 					</ul>
 				</div>

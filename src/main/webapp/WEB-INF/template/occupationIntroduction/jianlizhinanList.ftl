@@ -129,7 +129,7 @@
 				<ul>
 					[#list jianlizhinanService as jlzn]
 					<li>
-						<a href="/jianlizhinan.jhtml?id=${jlzn.id}">${jlzn.title}</a><span>${jlzn.createTime?number_to_datetime}</span>
+						<a href="/jianlizhinan.jhtml?id=${jlzn.id}">${jlzn.title}</a><span>${jlzn.editTime?number_to_datetime}</span>
 					</li>
 					[/#list]
 				</ul>

@@ -129,7 +129,7 @@
 				<ul>
 					[#list zhaopinhuiService as zph]
 					<li>
-						<a href="/jianlizhinan.jhtml?id=${zph.id}">${zph.title}</a><span>${zph.createTime?number_to_datetime}</span>
+						<a href="/jianlizhinan.jhtml?id=${zph.id}">${zph.title}</a><span>${zph.editTime?number_to_datetime}</span>
 					</li>
 					[/#list]
 				</ul>

@@ -118,7 +118,7 @@
 					[#list wagePriceGuide as wagePriceGuide]
 						<li>
 							<a href="/guidance.jhtml?id=${wagePriceGuide.id}">${wagePriceGuide.title}</a>
-							<span>${wagePriceGuide.createTime?number_to_datetime}</span>
+							<span>${wagePriceGuide.editTime?number_to_datetime}</span>
 						</li>
 					[/#list]
 				</ul>

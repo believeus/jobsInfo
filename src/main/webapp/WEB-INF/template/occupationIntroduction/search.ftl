@@ -148,7 +148,7 @@
 							[#else]
 								${notice.title}
 							[/#if]
-						</a><span>${notice.createTime?number_to_datetime}</span></li>
+						</a><span>${notice.editTime?number_to_datetime}</span></li>
 					[/#if]
 					[/#list]
 				</ul>

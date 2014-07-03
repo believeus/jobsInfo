@@ -129,7 +129,7 @@
 				<ul>
 					[#list mianshibaodianService as msbd]
 					<li>
-						<a href="/mianshibaodian.jhtml?id=${msbd.id}">${msbd.title}</a><span>${msbd.createTime?number_to_datetime}</span>
+						<a href="/mianshibaodian.jhtml?id=${msbd.id}">${msbd.title}</a><span>${msbd.editTime?number_to_datetime}</span>
 					</li>
 					[/#list]
 				</ul>

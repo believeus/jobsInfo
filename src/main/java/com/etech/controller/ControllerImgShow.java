@@ -42,11 +42,11 @@ public class ControllerImgShow {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/imagesList", method = RequestMethod.GET)
 	public String imgsList(HttpSession session) {
-		String hql="From TdataCenter dataCenter where dataCenter.type='3'";
+		String hql="From TdataCenter dataCenter where dataCenter.type='3' order by id desc";
 		List<TdataCenter> imgs = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
 		session.setAttribute("imgs", imgs);
 		
-		hql="From TdataCenter dataCenter where dataCenter.type='5'";
+		hql="From TdataCenter dataCenter where dataCenter.type='5' order by id desc";
 		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("subjectReport", subjectReport);
 		

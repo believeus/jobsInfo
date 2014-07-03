@@ -125,7 +125,7 @@
 				<ul>
 					[#list works as work]
 					<li>
-						<a href="/workInfo.jhtml?id=${work.id}">${work.title}</a><span>${work.createTime?number_to_datetime}</span>
+						<a href="/workInfo.jhtml?id=${work.id}">${work.title}</a><span>${work.editTime?number_to_datetime}</span>
 					</li>
 					[/#list]
 				</ul>

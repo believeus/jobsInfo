@@ -31,10 +31,11 @@ public class ControllerEnterpriseInformation {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/enterpriseInformation", method = RequestMethod.GET)
 	public String policyAdviceView(HttpSession session,Integer id,String vid,HttpServletRequest request) {
-		
+		//id 招聘信息id
+		//eid = trecruit.getEntUser().getId() 企业id
 		Trecruit trecruit = (Trecruit)etechService.findObjectById(Trecruit.class, id);
 		session.setAttribute("trecruit", trecruit);
-		TentUser tentUser = (TentUser)etechService.findObjectById(TentUser.class, id);
+		TentUser tentUser = (TentUser)etechService.findObjectById(TentUser.class, trecruit.getEntUser().getId());
 		session.setAttribute("entUser", tentUser);
 		if (vid != null) {//点击视频
 			TentImgVedio tentImgVedio = (TentImgVedio)etechService.findObjectById(TentImgVedio.class, Integer.parseInt(vid));
@@ -42,15 +43,15 @@ public class ControllerEnterpriseInformation {
 		}
 		
 		//招聘信息
-		List<Trecruit>trecruitList = (List<Trecruit>)etechService.getListByProperty(Trecruit.class, "entUser.id", id);
+		List<Trecruit> trecruitList = (List<Trecruit>)etechService.getListByProperty(Trecruit.class, "entUser.id", trecruit.getEntUser().getId());
 		request.setAttribute("trecruitList", trecruitList);
-		String hql="From TentImgVedio vedio where vedio.type='1'";
+		String hql="From TentImgVedio vedio where vedio.type='1' and vedio.entUser.id='"+trecruit.getEntUser().getId()+"'";
 		List<TentImgVedio> vedios = (List<TentImgVedio>)etechService.findListByHQL(hql);
 		request.setAttribute("vedios", vedios);
-		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+id+"  and info.type='2'";
+		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+trecruit.getEntUser().getId()+"  and info.type='2'";
 		List<TentImgVedio> Maps=(List<TentImgVedio>)etechService.findListByHQL(hql);
 		request.setAttribute("Maps", Maps);
-		hql="From Trecruit recruit left join fetch recruit.entUser as user where  user.id='"+id+"'";
+		hql="From Trecruit recruit left join fetch recruit.entUser as user where  user.id='"+trecruit.getEntUser().getId()+"'";
 		List<Trecruit> recruits = (List<Trecruit>)etechService.findListByHQL(hql);
 		List<TcomUser> talentRecommend =(List<TcomUser>)enterpriseUserService.talentRecommend(recruits);
 		request.setAttribute("talentRecommend", talentRecommend);

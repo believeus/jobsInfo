@@ -100,7 +100,7 @@
 					<a href="/special.jhtml?id=${spceila.id}">${spceila.title}</a>
 				</div>
 				<div class="zt_time">
-					[${spceila.createTime?number_to_datetime}]
+					[${spceila.editTime?number_to_datetime}]
 				</div>
 				<div class="zt_img">
 					<a href="/special.jhtml?id=${spceila.id}"><img style="height:66px;width:222px" src="${spceila.imgpath}" ></a>

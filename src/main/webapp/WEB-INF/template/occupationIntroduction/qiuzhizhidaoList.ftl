@@ -129,7 +129,7 @@
 				<ul>
 					[#list qiuzhizhidaoService as qzzd]
 					<li>
-						<a href="/qiuzhizhidao.jhtml?id=${qzzd.id}">${qzzd.title}</a><span>${qzzd.createTime?number_to_datetime}</span>
+						<a href="/qiuzhizhidao.jhtml?id=${qzzd.id}">${qzzd.title}</a><span>${qzzd.editTime?number_to_datetime}</span>
 					</li>
 					[/#list]
 				</ul>

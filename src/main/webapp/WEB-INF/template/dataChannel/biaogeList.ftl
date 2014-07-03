@@ -133,7 +133,7 @@
 					[#list biaogeList as biaoge]
 					<li>
 						<a href="/biaoge.jhtml?id=${biaoge.id}">${biaoge.title}</a>
-						<span>${biaoge.createTime?number_to_datetime}</span>
+						<span>${biaoge.editTime?number_to_datetime}</span>
 					</li>
 					[/#list]
 				</ul>

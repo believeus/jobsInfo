@@ -123,6 +123,23 @@ public class ControllerCenter {
 		request.setAttribute("recruit",recruit);
 		return "center/enterpriseCenterEditRecruit";
 	}
+	// 编辑志愿
+	@RequestMapping(value="/editVolunteer")
+	public String editVolunteer(int id,HttpServletRequest request){
+		TcomInfo conInfo=(TcomInfo)etechService.findObjectById(TcomInfo.class, id);
+		request.setAttribute("conInfo",conInfo);
+		return "center/personalCenterEditVolunteer";
+	}
+	//删除志愿
+	@RequestMapping(value = "/enterprise-user/center/delete-volunteer")
+	public void deleteVolunteer(String id,HttpServletResponse response){
+		etechService.deleteObjectById(TcomInfo.class, Integer.valueOf(id));
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("message", "success");
+		JsonOutToBrower.out(map, response);
+	}
+	
+	
 	public String submitEditRecruit(Trecruit formRecruit){
 		etechService.merge(formRecruit);
 		return "redirect:/enterprise-user/center";

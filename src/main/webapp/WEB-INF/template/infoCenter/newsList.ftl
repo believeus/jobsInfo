@@ -126,7 +126,7 @@
 				<ul>
 					[#list news as new]
 					<li>
-						<a href="/newsInfo.jhtml?id=${new.id}">${new.title}</a><span>${new.createTime?number_to_datetime}</span>
+						<a href="/newsInfo.jhtml?id=${new.id}">${new.title}</a><span>${new.editTime?number_to_datetime}</span>
 					</li>
 					[/#list]
 				</ul>

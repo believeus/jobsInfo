@@ -71,13 +71,13 @@ a:link{
            		[#if notice_index <8]
 					<li>
 						<a href="/publicityInfo.jhtml?id=${notice.id}">
-						[#if notice.title?length > 13]
-							${notice.title?string?substring(0,13)}...
+						[#if notice.title?length > 8]
+							${notice.title?string?substring(0,8)}...
 						[#else]
 							${notice.title}
 						[/#if]
 						</a>
-						<span>${notice.createTime?number_to_datetime}</span>
+						<span>${notice.editTime?number_to_datetime}</span>
 					</li>
 				[/#if]
 				[/#list]
@@ -115,7 +115,7 @@ a:link{
                       [#list analysisreport as aReport]
                         <li>
                           <div style="width:375px; display:inline-block;"><a href="/report.jhtml?id=${aReport.id}">${aReport.title}</a></div>
-                          <span>${aReport.createTime?number_to_datetime}</span>
+                          <span>${aReport.editTime?number_to_datetime}</span>
                         </li>
                       [/#list]
                       </ul>
@@ -132,7 +132,7 @@ a:link{
                       [#list wagePriceGuide as wagePriceGuide]
                         <li>
                           <div style="width:375px; display:inline-block;"><a href="/guidance.jhtml?id=${wagePriceGuide.id}">${wagePriceGuide.title}</a></div>
-                          <span>${wagePriceGuide.createTime?number_to_datetime}</span>
+                          <span>${wagePriceGuide.editTime?number_to_datetime}</span>
                         </li>
                       [/#list]
                       </ul>

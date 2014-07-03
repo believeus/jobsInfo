@@ -188,7 +188,7 @@ $().ready(function() {
 	<form id="inputForm" novalidate="novalidate"  action="/admin/stationAudit/update.jhtml" method="post">
 		<input type="hidden" name="id" value="${recruit.id}"/>
 		<input type="hidden" name="status" value="${recruit.status}"/>
-		<input type="hidden" name="createTime" value="${recruit.createTime}"/>
+		<input type="hidden" name="editTime" value="${recruit.editTime}"/>
 		<input type="hidden" name="userId" value="${recruit.entUser.id}"/>
 		<input type="hidden" name="viewData" value="" id="viewData">
 		<input type="hidden" name="isview" value="${recruit.isview}">

@@ -133,7 +133,7 @@
 					[#list ziliaoList as ziliao]
 					<li>
 						<a href="/ziliao.jhtml?id=${ziliao.id}">${ziliao.title}</a>
-						<span>${ziliao.createTime?number_to_datetime}</span>
+						<span>${ziliao.editTime?number_to_datetime}</span>
 					</li>
 					[/#list]
 				</ul>

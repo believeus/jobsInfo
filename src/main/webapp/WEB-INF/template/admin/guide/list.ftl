@@ -18,15 +18,15 @@ $().ready(function() {
 </head>
 <body>
 	<div class="path">
-		<a href="/admin/common/main.jhtml">首页</a> &raquo; 幻灯片列表 <span>共${dataCenters?size}条记录</span>
+		<a href="/admin/common/main.jhtml">首页</a> &raquo; 内容列表 <span>共${dataCenters?size}条记录</span>
 	</div>
 	<form id="listForm" action="list.jhtml" method="get">
 		<div class="bar">
-		[#if size <2]
-			<a href="add.jhtml" class="iconButton">
-				<span class="addIcon">&nbsp;</span>添加
-			</a>
-		[/#if]
+			[#if size < 1]
+				<a href="add.jhtml" class="iconButton">
+					<span class="addIcon">&nbsp;</span>添加
+				</a>
+			[/#if]
 			<div class="buttonWrap">
 				<a href="javascript:;" id="deleteButton" class="iconButton disabled">
 					<span class="deleteIcon">&nbsp;</span>删除
@@ -77,36 +77,29 @@ $().ready(function() {
 					<input type="checkbox" id="selectAll" />
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="title">排序编号</a>
+					<a href="javascript:;" class="sort" name="title">编号</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="adPosition">幻灯片标题</a>
+					<a href="javascript:;" class="sort" name="adPosition">标题</a>
 				</th>
-				<!--<th>
-					<a href="javascript:;" class="sort" name="endDate">排序</a>
-				</th>-->
 				<th>
 					<a href="#"  class="sort">操作</a>
 				</th>
 			</tr>
 			
-			[#list dataCenters as center]
+			[#list dataCenters as mail]
 			<tr>
 				<td>
-					<input type="checkbox" name="ids" value="${center.id}" />
+					<input type="checkbox" name="ids" value="${mail.id}" />
 				</td>
 				<td>
-					<span title="${center.id}">${center.id}</span>
+					<span title="${mail.id}">${mail.id}</span>
 				</td>
 				<td>
-					${center.title}
+					${mail.title}
 				</td>
-				<!--<td>
-					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
-					<a href="" style="text-decoration:underline;">降</a>
-				</td>-->
 				<td>
-					<a href="edit.jhtml?id=${center.id}">[修改]</a>
+					<a href="edit.jhtml?id=${mail.id}">[修改]</a>
 				</td>
 			</tr>
 			[/#list]

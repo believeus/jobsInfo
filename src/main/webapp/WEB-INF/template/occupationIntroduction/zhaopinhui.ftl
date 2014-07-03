@@ -118,7 +118,7 @@
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<h2 style="text-align:center;font-weight:normal;">${data.title}</h2>
-				<p style="text-align:center;">来源：潜江公共就业服务网 发布时间：${data.createTime?number_to_datetime} </p>
+				<p style="text-align:center;">来源：潜江公共就业服务网 发布时间：${data.editTime?number_to_datetime} </p>
 				<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">
 				<p style="text-align: center;">
 					${data.content}

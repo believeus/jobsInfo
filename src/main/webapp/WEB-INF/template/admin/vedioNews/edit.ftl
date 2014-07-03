@@ -146,7 +146,7 @@ $().ready(function() {
 					内容:
 				</th>
 				<td colspan="3">
-					<textarea id="editor" name="content" class="editor">${dataCenter.content}</textarea>
+					<textarea id="" name="content" class="" style="width: 727px; height: 100px;">${dataCenter.content}</textarea>
 				</td>
 			</tr>
 			<tr>

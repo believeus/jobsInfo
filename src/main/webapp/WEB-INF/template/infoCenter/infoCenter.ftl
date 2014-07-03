@@ -191,13 +191,13 @@
 				<ul style="padding-left:25px;">
 					[#list notices as notice]
 						[#if notice_index <8]
-							<li class="gonggao_li"><a href="/publicityInfo.jhtml?id=${notice.id}">
-							[#if notice.title?length > 13]
-								${notice.title?string?substring(0,13)}...
+							<li class="gonggao_li"><a href="/publicityInfo.jhtml?id=${notice.id}" title="${notice.title}">
+							[#if notice.title?length > 10]
+								${notice.title?string?substring(0,10)}...
 							[#else]
 								${notice.title}
 							[/#if]
-							</a><span class="gonggao_span">${notice.createTime?number_to_datetime}</span></li>
+							</a><span class="gonggao_span">${notice.editTime?number_to_datetime}</span></li>
 						[/#if]
 					[/#list]
 				</ul>
@@ -225,7 +225,7 @@
 							<li>4</li>
 						</ul>
 						<div id="banner_list">
-							[#list imgs as img]
+							[#list news as img]
 								<a href="/newsInfo.jhtml?id=${img.id}" target="_blank"><img src="${img.imgpath}" width="314" height="236" title="this is a beautiful girl!" alt="
 								[#if img.title?length > 18]
 									${img.title?string?substring(0,18)}...
@@ -233,56 +233,62 @@
 									${img.title}
 								[/#if]" /></a>
 							[/#list]
-							<a href="/newsInfo.jhtml" target="_blank"><img width="314" height="236" src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第二届潜江创业培训研讨会召开" /></a>
-							<a href="/newsInfo.jhtml" target="_blank"><img width="314" height="236" src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第三届潜江创业培训研讨会召开" /></a>
-							<a href="/newsInfo.jhtml" target="_blank"><img width="314" height="236" src="/resource/public/images/u6_normal_03.gif" title="this is a beautiful girl!" alt="第四届潜江创业培训研讨会召开" /></a>
 						</div>
 					</div>
 					<!--***************************************************************-->
 				</div>
 				<div class="xinwen">
 					<div style="padding-left: 20px;margin-bottom:20px;margin-top:10px;">
-						[#list news as new]
-						[#if new_index==0]
-							<h2 style="margin: 0px; font-size: 21px; font-weight: bold;"><a href="/newsInfo.jhtml?id=${new.id}">
-							[#if new.title?length > 16]
-								${new.title?string?substring(0,15)}...
-							[#else]
-								${new.title}
-							[/#if]
-							</a></h2>
-							<div style="color:#2B8BDF;margin-top:10px;font-size:13px;">
+						[#list newsTop as new]
+						[#if new_index < 2]
+							<h2 style="margin: 0px; font-size: 21px; font-weight: bold;">
+								<a 
+									[#if new.type = 0]
+										href="/newsInfo.jhtml?id=${new.id}"
+									[#elseif new.type = 1]
+										href="/workInfo.jhtml?id=${new.id}"
+									[#elseif new.type = 3]
+										href="/imgShow.jhtml?id=${new.id}"
+									[#elseif new.type = 4]
+										href="/videosInfo.jhtml?id=${new.id}"
+									[/#if]
+								>
+									[#if new.title?length > 16]
+										${new.title?string?substring(0,15)}...
+									[#else]
+										${new.title}
+									[/#if]
+								</a>
+							</h2>
+							<div style="color:#2B8BDF;margin:10px 0;font-size:13px;">
 								${new.title}	
-							</div>
-						[/#if]
-						[/#list]
-					</div>
-					<div style="padding-left: 20px;">
-						[#list news as new]
-						[#if new_index==1]	
-							<h2 style="margin: 0px; font-size: 21px; font-weight: bold;"><a href="/newsInfo.jhtml?id=${new.id}">
-							[#if new.title?length > 16]
-								${new.title?string?substring(0,15)}...
-							[#else]
-								${new.title}
-							[/#if]</a></h2>
-							<div style="color:#2B8BDF;margin-top:10px;font-size:12px;">
-								${new.title}
 							</div>
 						[/#if]
 						[/#list]
 					</div>
 					<hr style="margin-left: 10px; margin-right: 10px; border: 1px dashed #e4e4e4;">
 					<ul class="xinwen_ul" style="padding-left: 25px;">
-						[#list news as new]
+						[#list newsTop as new]
 						[#if new_index > 1 && new_index < 6]	
-							<li class="xinwen_ul_li"><a href="/newsInfo.jhtml?id=${new.id}">
-							[#if new.title?length > 16]
-								${new.title?string?substring(0,16)}...
-							[#else]
-								${new.title}
-							[/#if]
-							</a></li>
+							<li class="xinwen_ul_li">
+								<a 
+									[#if new.type = 0]
+										href="/newsInfo.jhtml?id=${new.id}"
+									[#elseif new.type = 1]
+										href="/workInfo.jhtml?id=${new.id}"
+									[#elseif new.type = 3]
+										href="/imgShow.jhtml?id=${new.id}"
+									[#elseif new.type = 4]
+										href="/videosInfo.jhtml?id=${new.id}"
+									[/#if]
+								>
+								[#if new.title?length > 16]
+									${new.title?string?substring(0,16)}...
+								[#else]
+									${new.title}
+								[/#if]
+								</a>
+							</li>
 						[/#if]
 						[/#list]
 					</ul>
@@ -326,7 +332,7 @@
 										${new.title}
 									[/#if]
 									</a>
-									<span class="j_main_right_2_1_span">${new.createTime?number_to_datetime}</span>
+									<span class="j_main_right_2_1_span">${new.editTime?number_to_datetime}</span>
 								</li>
 							[/#if]
 						[/#list]
@@ -415,12 +421,18 @@
 					[#if img_index <=3]
 						<div class="tupian_1" [#if !img_has_next && img_index= 3] style="margin-top: -3px;"[/#if]>
 							<p class="tupian_p">
-								<a href="/imgShow.jhtml" title="${img.title}">
+								<a href="/imgShow.jhtml?id=${img.id}" title="${img.title}">
 									<img src="${img.imgpath}" width="220" height="105">
 								</a>
 							</p>
 							<p class="tupian_p">
-								<a href="/imgShow.jhtml" title="${img.title}">${img.title}</a>
+								<a href="/imgShow.jhtml?id=${img.id}" title="${img.title}">
+									[#if img.title?length >13]
+										${img.title?string?substring(0,13)}...
+									[#else]
+										${img.title}
+									[/#if]
+								</a>
 							</p>
 						</div>
 					[/#if]

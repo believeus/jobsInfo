@@ -64,7 +64,7 @@ $().ready(function() {
 	
 	<form id="inputForm" action="/admin/mailBox/update.jhtml" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="${mailBox.id}"/>
-		<input type="hidden" name="" value="${mailBox.createTime}"/>
+		<input type="hidden" name="" value="${mailBox.editTime?number_to_datetime}"/>
     	<input type="hidden" name="status" value="0"/>
     	<div>
 			<table class="input" cellspacing="0"> 

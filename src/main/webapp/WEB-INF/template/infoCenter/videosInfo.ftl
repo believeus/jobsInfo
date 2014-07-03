@@ -76,30 +76,23 @@
                 	<table style="width:100%; border-collapse:collapse;" id="tab_1">
                       <tbody><tr>
                         <td>发布：</td>
-                        <td style="width:235px;">${imgVedio.createTime?number_to_datetime}</td>
-                        <td>标签：</td>
-                        <td>磁悬浮列车</td>
-                      </tr>
-                      <tr>
+                        <td>${imgVedio.editTime?number_to_datetime}</td>
                         <td>来源：</td>
                         <td>潜江市公共就业服务网</td>
-                        <td>时长：</td>
-                        <td>5分26秒</td>
                       </tr>
                       <tr>
                         <td>简介：</td>
                         <td colspan="3">
-                        	[#if imgVedio.content?length >20]
-	                    		${imgVedio.content?string?substring(0,20)}...
+                        	<span title="${imgVedio.content}">
+                        	[#if imgVedio.content?length >80]
+	                    		${imgVedio.content?string?substring(0,80)}...
 	                    	[#else]
 	                    		${imgVedio.content}
 	                    	[/#if]
+	                    	</span>
                         </td>
                       </tr>
                     </tbody></table>
-                </div>
-                <div style="float:left; margin-top:25px; color:#666;">
-                	<p>展开信息<img src="/resource/public/images/jiantou.jpg"></p>
                 </div>
                 <div style="clear:left;"></div>
             </div>

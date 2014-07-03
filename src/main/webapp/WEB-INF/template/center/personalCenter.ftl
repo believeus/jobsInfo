@@ -161,6 +161,16 @@
 		input[type="radio"] {
 			width: 10px !important;
 		}
+		
+		.tzhiyuan th {
+		    width: 100px;
+		    padding:5px;
+		}
+		.tzhiyuan td {
+		    font-size: 12px;
+		    line-height:25px;
+		    border-bottom:1px dashed #e4e4e4;
+		}
     </style>
     <script type="text/javascript">
      	// 图片上传
@@ -234,6 +244,38 @@
 			});
 			
 		}
+		
+		//删除志愿
+		function showDialog_V(id,object){
+			$("#dialog_V").dialog({
+			    bgiframe: true,
+			    resizable: false,
+			    modal: true,
+			    buttons: {
+			        '确定': function() {
+			        	$(this).dialog('close');
+			        	$.ajax({
+							url: "/enterprise-user/center/delete-volunteer.jhtml",
+							type: "POST",
+							data: {'id':id},
+							dataType: "json",
+							cache: false,
+							success: function(data) {
+								 if(data.message=="success"){								 
+								 	$(object).parent().parent().remove();
+								 }
+							}
+						});
+			           
+			        },
+			        '取消': function() {
+			            $(this).dialog('close');
+			        }
+			    }
+			});
+			
+		}
+		
 		
 	    		// 删除信息
 		    	function deleteDiv(object,type,tag){
@@ -680,8 +722,7 @@
 								</td>
 								<td>择业地区:</td>
 								<td>
-									<input type="text" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" autocomplete="off" id="start1" name="expectArea">
-									<input class="residency" type="hidden" value="" name="residency" id="residency">
+									<input type="text" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" autocomplete="off" id="" name="expectArea">
 									<!--////////////////////////////////////////////////////////////////////////-->
 										<div class="provinceCityAll">
 										  <div class="tabs clearfix">
@@ -731,7 +772,6 @@
 										  </div>
 										</div>
 									<!--////////////////////////////////////////////////////////////////////////-->
-									
 								</td>
 							</tr>
 							<tr>
@@ -749,7 +789,6 @@
 								</td>
 								<td>月薪要求:</td>
 								<td style="padding-right:70px;">
-									
 									<select id="expectSalaryVolunteer1" name="expectSalary">
 										<option value="1000以下">1000以下</option>
 										<option value="1000~1999">1000~1999</option>
@@ -960,33 +999,6 @@
 					});
 		    	[/#if]	
 				
-				[#if volunteers?size>0]
-		    		[#list volunteers as volunteer]
-		    			$("#workWay"+${volunteer_index+1}).val("${volunteer.workWay}");
-		    			$("#expectSalaryVolunteer"+${volunteer_index+1}).val("${volunteer.expectSalary}");
-		    			var html ='<div id="xmenuVolunteerSpecialty'+${volunteer_index+1}+'" class="xmenu" style="display: none;">'+Specialty +'</div>'+
-						  '<div id="xmenuVolunteerJobs'+${volunteer_index+1}+'" class="xmenu" style="display: none;">'+Jobs +'</div>';
-						$("#conentDiv").parent().append(html);
-		    			//志愿专业
-						$("#selectVolunteerSpecialty"+${volunteer_index+1}).xMenu({	
-							width :600,	
-							eventType: "click", //事件类型 支持focus click hover
-							dropmenu:"#xmenuVolunteerSpecialty"+${volunteer_index+1},//弹出层
-							emptytext:"选择专业",
-							hiddenID : "selectVolunteerSpecialtyhidden"+${volunteer_index+1},//隐藏域ID
-							value : "${volunteer.majorType.id}"	
-						});
-						// 志愿工种
-						$("#selectVolunteerJobs"+${volunteer_index+1}).xMenu({	
-							width :600,	
-							eventType: "click", //事件类型 支持focus click hover
-							dropmenu:"#xmenuVolunteerJobs"+${volunteer_index+1},//弹出层
-							emptytext:"选择工种",
-							hiddenID : "selectVolunteerJobshidden"+${volunteer_index+1},//隐藏域ID	
-							value : "${volunteer.workType.id}"
-						});
-		    		[/#list]
-		    	[#else]
 		    		var html ='<div id="xmenuVolunteerSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'+
 						  '<div id="xmenuVolunteerJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>';
 						$("#conentDiv").parent().append(html);
@@ -1006,7 +1018,6 @@
 						emptytext:"选择工种",
 						hiddenID : "selectVolunteerJobshidden1"//隐藏域ID	
 					});
-		    	[/#if]	
 				
 					
 				$("#phoneNum").blur(function(){
@@ -1136,6 +1147,37 @@
     				 
     			}
     			
+  			
+		  			function showDialog(id,object){
+					$("#dialog").dialog({
+					    bgiframe: true,
+					    resizable: false,
+					    modal: true,
+					    buttons: {
+					        '确定': function() {
+					        	$(this).dialog('close');
+					        	$.ajax({
+									url: "/enterprise-user/center/delete-recruit.jhtml",
+									type: "POST",
+									data: {'id':id},
+									dataType: "json",
+									cache: false,
+									success: function(data) {
+										 if(data.message=="success"){								 
+										 	$(object).parent().parent().remove();
+										 }
+									}
+								});
+					           
+					        },
+					        '取消': function() {
+					            $(this).dialog('close');
+					        }
+					    }
+					});
+					
+				}
+  			
   			
 				// ajax 提交验证和保存，先提交图片再提交个人信息。
 				function submitValid(submitx){
@@ -1381,8 +1423,8 @@
 								<tr>
 									<td>二女户:</td>
 									<td>
-										<input type="radio"  name="twoGirl" value="1" [#if sessionUser.twoGirl=="1"]checked="true"[#elseif sessionUser.twoGirl!="0"]checked="true"[/#if] style="width:0">是
-										<input type="radio"  name="twoGirl" value="0" [#if sessionUser.twoGirl=="0"]checked="true"[/#if]style="width:0">否
+										<input type="radio"  name="twoGirl" value="1" [#if sessionUser.twoGirl=="1"]checked="true"[#elseif sessionUser.twoGirl!="0"]checked="true"[/#if] style="width:10px">是
+										<input type="radio"  name="twoGirl" value="0" [#if sessionUser.twoGirl=="0"]checked="true"[/#if]style="width:10px">否
 									</td>
 								</tr>
 							</table>
@@ -1892,161 +1934,73 @@
 				</div>
 				
 				<div id="select_zhuti" style="width:728px;height:auto;;overflow:hidden;display:none;">
+					<div class="tzhiyuan" style="height: auto; text-align: center; border: 1px solid #e4e4e4; margin: 5px 20px; width: 685px;">
+						<table cellspacing="0">
+							<tr style="background:#F0F0F0;">
+								<th>专业</th>
+								<th>工种</th>
+								<th>择业地区</th>
+								<th>月薪要求</th>
+								<th>工作性质</th>
+								<th>其他要求</th>
+								<th>操作</th>
+							</tr>
+							[#list volunteers as volunteer]
+							[#if volunteer.infoType == 4]
+							
+							<tr>
+								<td>
+									[#if volunteer.majorType.name?length > 7]
+										${volunteer.majorType.name?string?substring(0,7)}...
+									[#else]
+										${volunteer.majorType.name}
+									[/#if]
+								</td>
+								<td>
+									[#if volunteer.workType.name?length > 7]
+										${volunteer.workType.name?string?substring(0,7)}...
+									[#else]
+										${volunteer.workType.name}
+									[/#if]
+								</td>
+								<td>
+									[#if volunteer.expectArea?length > 7]
+										${volunteer.expectArea?string?substring(0,7)}...
+									[#else]
+										${volunteer.expectArea}
+									[/#if]
+								</td>
+								<td>${volunteer.expectSalary}</td>
+								<td>${volunteer.workWay}</td>
+								<td>
+									[#if volunteer.note?length > 7]
+										${volunteer.note?string?substring(0,7)}...
+									[#else]
+										${volunteer.note}
+									[/#if]
+								</td>
+								<td>
+									<a href="/editVolunteer.jhtml?id=${volunteer.id}">编辑</a>
+									<a href="javascript:void(0)" onclick="showDialog_V(${volunteer.id},this)">删除</a>
+									<div id="dialog_V" title="&nbsp;" style="display: none;">
+										<p style="text-align: center;">确定要删除吗？</p>
+									</div>
+								</td>
+							</tr>
+							[/#if]
+							[/#list]
+						</table>
+					</div>
+					
 					<div style="height: 30px; width: 728px;">
 						<span style="float:left;">选择志愿</span>
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
-						<div style="float: left; width: 50px; margin-left: 20px;">
-							<input id="add_zhiyuan" type="button" value="添加" style="cursor:pointer;width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
-						</div>
 					</div>
 					<div class="zhiyuan">
-					[#if volunteers?size>0]
-					[#list volunteers as volunteer]
-						<div class="zhiyuan_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
-						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="VolunteerForm${volunteer_index+1}">	
-						<table>
-							<tr>
-								<td rowspan="4" style="background:#DCDCDC;color:#FE7200;">${volunteer_index+1}</td>
-								<td>专业:</td>
-								<td>
-									<input type="hidden" value="${volunteer.majorType.id}" id="selectVolunteerSpecialtyhidden${volunteer_index+1}" name="majorTypeId"/>
-									<input type="hidden" value="4" name="infoType">
-									<input type="hidden" value="${volunteer.id}" name="id">
-									<div class="topnav">
-										<a id="selectVolunteerSpecialty${volunteer_index+1}" href="javascript:void(0);" class="as">
-											<span >
-												[#assign name=volunteer.majorType.name]
-												[#if name!=""]
-													[#if name?length > 15]
-														${name?string?substring(0,15)}...
-													[#else]
-														${name}
-													[/#if]
-												[#else]
-													选择专业
-												[/#if]
-											</span>		
-										</a>	
-									</div>
-								</td>
-								<td>择业地区:</td>
-								<td>
-									<input type="text"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2" value="${volunteer.expectArea}" autocomplete="off" id="start${volunteer_index+1}" name="expectArea">
-									<!--////////////////////////////////////////////////////////////////////////-->
-										<div class="provinceCityAll">
-										  <div class="tabs clearfix">
-										    <ul class="">
-										      <li><a href="javascript:" class="current" tb="hotCityAll">热门城市</a></li>
-										      <li><a href="javascript:" tb="provinceAll">省份</a></li>
-										      <li><a href="javascript:" tb="cityAll" id="cityAll">城市</a></li>
-										      <li><a href="javascript:" tb="countyAll" id="countyAll">区县</a></li>
-										    </ul>
-										  </div>
-										  <div class="con">
-										    <div class="hotCityAll invis">
-										      <div class="pre"><a></a></div>
-										      <div class="list">
-										        <ul>
-										         
-										        </ul>
-										      </div>
-										      <div class="next"><a class="can"></a></div>
-										    </div>
-										    <div class="provinceAll invis">
-										      <div class="pre"><a></a></div>
-										      <div class="list">
-										        <ul>
-										        
-										        </ul>
-										      </div>
-										      <div class="next"><a class="can"></a></div>
-										    </div>
-										    <div class="cityAll invis">
-										      <div class="pre"><a></a></div>
-										      <div class="list">
-										        <ul>
-										          
-										        </ul>
-										      </div>
-										      <div class="next"><a class="can"></a></div>
-										    </div>
-										    <div class="countyAll invis">
-										      <div class="pre"><a></a></div>
-										      <div class="list">
-										        <ul>
-										        </ul>
-										      </div>
-										      <div class="next"><a class="can"></a></div>
-										    </div>
-										  </div>
-										</div>
-									<!--////////////////////////////////////////////////////////////////////////-->
-									
-								</td>
-							</tr>
-							<tr>
-								
-								<td>工种:</td>
-								<td>
-									<input type="hidden" value="${volunteer.workType.id}" id="selectVolunteerJobshidden${volunteer_index+1}" name="workTypeId"/>
-									<div class="topnav">
-										<a id="selectVolunteerJobs${volunteer_index+1}" href="javascript:void(0);" class="as">
-											<span >
-												[#assign name=volunteer.workType.name]
-												[#if name!=""]
-													[#if name?length > 15]
-														${name?string?substring(0,15)}...
-													[#else]
-														${name}
-													[/#if]
-												[#else]
-													选择专业
-												[/#if]
-											</span>		
-										</a>	
-									</div>
-								</td>
-								<td>月薪要求:</td>
-								<td style="padding-right:70px;">
-									
-									<select id="expectSalaryVolunteer${volunteer_index+1}" name="expectSalary" value="${volunteer.expectSalary}">
-										<option value="1000以下">1000以下</option>
-										<option value="1000~1999">1000~1999</option>
-										<option value="2000~2999">2000~2999</option>
-										<option value="3000~3999">3000~3999</option>
-										<option value="4000~4999">4000~4999</option>
-										<option value="5000以上">5000以上</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td>工作性质</td>
-								<td colspan="3">
-									<select id="workWay${volunteer_index+1}" name="workWay" value="${volunteer.workWay}">
-										<option value="全职">全职</option>
-										<option value="兼职">兼职</option>
-										<option value="实习">实习</option>
-										<option value="小时工">小时工</option>
-										<option value="全职/兼职/实习即可">全职/兼职/实习即可</option>
-										<option value="就业见习">就业见习</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td>其他要求:</td>
-								<td colspan="3"><textArea cols="50" name="note" id="noteVolunteer${volunteer_index+1}"  style="resize:none;">${volunteer.note}</textArea></td>
-								<td rowspan="3"><a class="delete_zhiyuan" href="javascript:void(0);" onclick="deleteDiv(this,4,${volunteer_index+1})" style="margin-top:35px;float:right;">删除</a></td>
-							</tr>
-						</table>
-						</form>
-					</div>
-					[/#list]
-					[#else]
 						<div class="zhiyuan_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="VolunteerForm1">	
 						<table>
 							<tr>
-								<td rowspan="4" style="background:#DCDCDC;color:#FE7200;">1</td>
 								<td>专业:</td>
 								<td>
 									<input type="hidden" value="" id="selectVolunteerSpecialtyhidden1" name="majorTypeId"/>
@@ -2156,12 +2110,10 @@
 							<tr>
 								<td>其他要求:</td>
 								<td colspan="3"><textArea cols="50" name="note" id="noteVolunteer1" style="resize:none;"></textArea></td>
-								<td rowspan="3"><a class="delete_zhiyuan" href="javascript:void(0);"  onclick="deleteDiv(this,4,1)" style="margin-top:35px;float:right;">删除</a></td>
 							</tr>
 						</table>
 						</form>
 					</div>
-					[/#if]
 					
 					</div>
 					<p style="text-align:center;">
@@ -2218,7 +2170,6 @@
 	<!-- alpha div end -->
 	<div id="sublist" class="sublist" style="display:none"></div>
 	
-	<script type="text/javascript" src="/resource/public/areaSelect/city_func.js"></script>
 	<script src="/resource/public/selectArea/js/public.js"></script>
 	[#include "/include/footer.ftl" /]
 </body>

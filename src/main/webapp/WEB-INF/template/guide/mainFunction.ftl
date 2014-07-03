@@ -86,6 +86,9 @@
 		.current_li a{
 			color:#FFFFFF;
 		}
+		.zhuanti_list{
+			height:425px;
+		}
 		.zhuanti_list a {
 		    margin-left: 0;
 		}
@@ -124,11 +127,11 @@
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				[#list datas as data]
 				<h2 style="text-align:center;font-weight:normal;">${data.title}</h2>
-				<p class="j_main_right_2_p" style="text-align:center;">来源：潜江公共就业服务网 发布时间：${data.createTime?number_to_datetime}&nbsp;${data.createTime?number_to_time} </p>
+				<p class="j_main_right_2_p" style="text-align:center;">来源：潜江公共就业服务网 发布时间：${data.editTime?number_to_datetime}&nbsp;${data.editTime?number_to_time} </p>
 				<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">
-				<p class="j_main_right_2_p" style="text-align: center;">
+				<div class="j_main_right_2_p" style="">
 					${data.content}
-				</p>
+				</div>
 				[/#list]
 				<!--
 					<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">

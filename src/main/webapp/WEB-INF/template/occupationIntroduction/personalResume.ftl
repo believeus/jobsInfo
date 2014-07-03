@@ -157,6 +157,11 @@
 		    width: 153px;
 		    padding: 5px 10px;
 		    font-size:12px;
+		    border-bottom:1px dashed #E4E4E4;
+		}
+		.xuexi_div span{
+			color:#000000;
+			padding:0;
 		}
 		.gongzuo_div td {
 		    text-align: center;
@@ -172,6 +177,7 @@
 		    font-size: 12px;
 		    padding: 5px;
 		    text-align: center;
+		    border-bottom:1px dashed #E4E4E4;
 		}
 		.btn_login {
 		    background: none repeat scroll 0 0 #b2e85c;
@@ -186,6 +192,10 @@
 			text-align: center;
 		    width: 153px;
 		    padding: 5px 10px;
+		}
+		.zhiyuan_div span{
+			color:#000000;
+			padding:0;
 		}
     </style>
 </head>
@@ -380,7 +390,13 @@
 								</tr>
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;">二女户:</td>
-									<td>${tcomUser.twoGirl}</td>
+									<td>
+										[#if tcomUser.twoGirl = 1]
+											是
+										[#elseif tcomUser.twoGirl = 0]
+											否
+										[/#if]
+									</td>
 									<td style="background: #EEEEEE; text-align: right;">文化程度:</td>
 									<td>${tcomUser.eduLevel}</td>
 								</tr>
@@ -418,11 +434,23 @@
 									<td style="background: #EEEEEE; text-align: right;">个人特长:</td>
 									<td>${tcomUser.strongPoint}</td>
 									<td style="background: #EEEEEE; text-align: right;">独生子女:</td>
-									<td>${tcomUser.singleChild}</td>
+									<td>
+										[#if tcomUser.singleChild = 1]
+											是
+										[#elseif tcomUser.singleChild = 0]
+											否
+										[/#if]
+									</td>
 								</tr>
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;">联系电话:</td>
-									<td colspan="3">${tcomUser.phoneNum}</td>
+									<td colspan="3">
+										[#if sessionUser?exists]
+											${tcomUser.phoneNum}
+										[#else]
+											<a href="/">登录后可以查看联系方式</a>
+										[/#if]
+									</td>
 								</tr>
 							</table>
 						</div>
@@ -448,11 +476,41 @@
 								[#list tcomUser.comInfo as comInfo]
 								[#if comInfo.infoType == 4]
 								<tr>
-									<td>${comInfo.majorType.name}</td>
-									<td>${comInfo.workType.name}</td>
-									<td>${comInfo.expectSalary}</td>
-									<td>${comInfo.expectArea}</td>
-									<td>[#if comInfo.note?exists && comInfo.infoType==4]${comInfo.note}[#else]无[/#if]</td>
+									<td><span title="${comInfo.majorType.name}">
+										[#if comInfo.majorType.name?length > 8]
+											${comInfo.majorType.name?string?substring(0,8)}...
+										[#else]
+											${comInfo.majorType.name}
+										[/#if]
+									</span></td>
+									<td><span title="${comInfo.workType.name}">
+										[#if comInfo.workType.name?length > 8]
+											${comInfo.workType.name?string?substring(0,8)}...
+										[#else]
+											${comInfo.workType.name}
+										[/#if]
+									</span></td>
+									<td><span title="${comInfo.expectSalary}">${comInfo.expectSalary}</span></td>
+									<td><span title="${comInfo.expectArea}">
+										[#if comInfo.expectArea?length > 8]
+											${comInfo.expectArea?string?substring(0,8)}...
+										[#else]
+											${comInfo.expectArea}
+										[/#if]
+									</span></td>
+									<td>
+										[#if comInfo.note?exists && comInfo.infoType==4]
+											<span title="${comInfo.note}">
+												[#if comInfo.note?length > 10]
+													${comInfo.note?string?substring(0,10)}...
+												[#else]
+													${comInfo.note}
+												[/#if]
+											</span>
+										[#else]
+											无
+										[/#if]
+									</td>
 								</tr>
 								[/#if]
 								[/#list]
@@ -477,23 +535,41 @@
 								[#list tcomUser.comInfo as comInfo]
 								[#if comInfo.infoType == 1]
 								<tr>
-									<td>${comInfo.majorType.name}</td>
-									<td>
+									<td><span title="${comInfo.majorType.name}">
+										[#if comInfo.majorType.name?length > 8]
+											${comInfo.majorType.name?string?substring(0,8)}...
+										[#else]
+											${comInfo.majorType.name}
+										[/#if]
+									</span></td>
+									<td><span title="${comInfo.workType.name}">
 										[#if comInfo.workType.name?length > 8]
 											${comInfo.workType.name?string?substring(0,8)}...
 										[#else]
 											${comInfo.workType.name}
 										[/#if]
-									</td>
-									<td>
-										[#if comInfo.workType.name?length > 8]
+									</span></td>
+									<td><span title="${comInfo.skillLevel}">
+										[#if comInfo.skillLevel?length > 8]
 											${comInfo.skillLevel?string?substring(0,8)}...
 										[#else]
 											${comInfo.skillLevel}
 										[/#if]
+									</span></td>
+									<td><span title="${comInfo.workingLife}">${comInfo.workingLife}</span></td>
+									<td>
+										[#if comInfo.note?exists && comInfo.infoType==1]
+											<span title="${comInfo.note}">
+												[#if comInfo.note?length > 8]
+													${comInfo.note?string?substring(0,8)}...
+												[#else]
+													${comInfo.note}
+												[/#if]
+											</span>
+										[#else]
+											无
+										[/#if]
 									</td>
-									<td>${comInfo.workingLife}</td>
-									<td>[#if comInfo.note?exists && comInfo.infoType==1]${comInfo.note}[#else]无[/#if]</td>
 								</tr>
 								[/#if]
 								[/#list]
@@ -525,9 +601,27 @@
 										${comInfo.beginData?number_to_datetime}---${comInfo.endData?number_to_datetime}
 									[/#if]
 								</td>
-								<td>求职者未填写</td>
-								<td>${comInfo.dept}</td>
-								<td>${comInfo.majorType.name}</td>
+								<td><span title="${comInfo.workspace}">
+									[#if comInfo.workspace?length > 8]
+										${comInfo.workspace?string?substring(0,8)}...
+									[#else]
+										${comInfo.workspace}
+									[/#if]
+								</span></td>
+								<td><span title="${comInfo.dept}">
+									[#if comInfo.dept?length > 8]
+										${comInfo.dept?string?substring(0,8)}...
+									[#else]
+										${comInfo.dept}
+									[/#if]
+								</span></td>
+								<td><span title="${comInfo.majorType.name}">
+									[#if comInfo.majorType.name?length > 8]
+										${comInfo.majorType.name?string?substring(0,8)}...
+									[#else]
+										${comInfo.majorType.name}
+									[/#if]
+								</span></td>
 							</tr>
 							[/#if]
 							[/#list]
@@ -559,10 +653,40 @@
 										${comInfo.beginData?number_to_datetime}---${comInfo.endData?number_to_datetime}
 									[/#if]
 								</td>
-								<td>${comInfo.workspace}</td>
-								<td>${comInfo.duty}</td>
-								<td>${comInfo.workType.name}</td>
-								<td>[#if comInfo.note?exists && comInfo.infoType==3]${comInfo.note}[#else]无[/#if]</td>
+								<td><span title="${comInfo.workspace}">
+									[#if comInfo.workspace?length > 8]
+										${comInfo.workspace?string?substring(0,8)}...
+									[#else]
+										${comInfo.workspace}
+									[/#if]
+								</span></td>
+								<td><span title="${comInfo.duty}">
+									[#if comInfo.duty?length > 8]
+										${comInfo.duty?string?substring(0,8)}...
+									[#else]
+										${comInfo.duty}
+									[/#if]
+								</span></td>
+								<td><span title="${comInfo.workType.name}">
+									[#if comInfo.workType.name?length > 8]
+										${comInfo.workType.name?string?substring(0,8)}...
+									[#else]
+										${comInfo.workType.name}
+									[/#if]
+								</span></td>
+								<td>
+									[#if comInfo.note?exists && comInfo.infoType==3]
+										<span title="${comInfo.note}">
+											[#if comInfo.note?length > 8]
+												${comInfo.note?string?substring(0,8)}...
+											[#else]
+												${comInfo.note}
+											[/#if]
+										</span>
+									[#else]
+										无
+									[/#if]
+								</td>
 							</tr>
 							[/#if]
 							[/#list]
