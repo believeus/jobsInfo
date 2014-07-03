@@ -1,5 +1,6 @@
 package com.etech.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -96,7 +97,21 @@ public class ControllerIndex {
 		//置顶内容 ：新闻动态、工作动态、图片新闻、视频新闻
 		hql="From TdataCenter dataCenter where dataCenter.top='1' order by id desc";
 		List<TdataCenter> dataCenters = (List<TdataCenter>)etechService.findListByHQL(hql);
-		request.setAttribute("newsTop", dataCenters);
+		List<TdataCenter> dataCenterList=new ArrayList<TdataCenter>();
+		/**Begin Author:wuqiwei Data:2014:07-13 AddReason:去除html标签*/
+		for (TdataCenter tdataCenter : dataCenters) {
+			try {
+				TdataCenter dataCenter=(TdataCenter) tdataCenter.clone();
+				if(!StringUtils.isEmpty(dataCenter.getContent())){
+					dataCenter.getContent().replaceAll("[a-z<>A-Z/=\".]+", "");
+					dataCenterList.add(dataCenter);
+				}
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
+		}
+		/**End Author:wuqiwei Data:2014:07-13 AddReason:去除html标签*/
+		request.setAttribute("newsTop", dataCenterList);
 		
 		/*End Author:wuqiwei Data:2014-06-11 AddReason:shiro登录成功之后会跳转到主页面,此处控制后台登录后进入后台主页面*/
 		log.debug("current controller is defaultIndex !");

@@ -149,6 +149,7 @@ public class ControllerCRUD {
 			formDataCenter.setImgpath(dataCenter.getImgpath());
 		}
 		formDataCenter.setEditTime(System.currentTimeMillis());
+		formDataCenter.setCreateTime(dataCenter.getCreateTime());
 		BeanUtils.copyProperties(formDataCenter, dataCenter);
 		etechService.merge(dataCenter);
 	}
