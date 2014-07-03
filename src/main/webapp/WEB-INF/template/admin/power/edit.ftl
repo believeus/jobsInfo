@@ -42,8 +42,9 @@ $().ready(function() {
 	$("input[id='views']").each(function(){
 		if($(this).is(":checked")!=true){
 			var id=$(this).val().split(":")[0];
-			$("#"+id).find("tr").each(function(){
-				$(this).attr("style","display:none");
+			// 设置 checkbox 为不可点击
+			$("#"+id).find("tr input").each(function(){
+				$(this).attr("disabled",true);
 			})
 		}
 	})
@@ -51,13 +52,17 @@ $().ready(function() {
 		// 判断是否是选中状态 true:是 false:否
 		if($(this).is(":checked")!=true){
 			var id=$(this).val().split(":")[0];
+			// 设置 checkbox 为不勾选。
 			$("#"+id).find("input:checked").each(function(){
 				$(this).attr("checked",false);
 			})
+			$("#"+id).find("tr input").each(function(){
+				$(this).attr("disabled",true);
+			})
 		}else{
 			var id=$(this).val().split(":")[0];
-			$("#"+id).find("tr").each(function(){
-				$(this).attr("style","");
+			$("#"+id).find("tr input").each(function(){
+				$(this).attr("disabled",false);
 			})
 		}
 	
