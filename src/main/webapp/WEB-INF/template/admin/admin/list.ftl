@@ -100,7 +100,9 @@ $().ready(function() {
 			[#list admins as admin]
 				<tr>
 					<td>
-						<input type="checkbox" name="id" value="${admin.id}" />
+					    [#if admin.id !=1]
+						 <input type="checkbox" name="id" value="${admin.id}" />
+						[/#if]
 					</td>
 					<td>
 						${admin.loginName}
