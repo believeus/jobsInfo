@@ -127,7 +127,7 @@ public class ControllerAdmin{
 			String password=DigestUtils.md5Hex(editAdmin.getPassword());
 			editAdmin.setPassword(password);
 		}
-		
+		dbAdmin.setEditDate(System.currentTimeMillis());
 		dbAdmin.setLoginName(editAdmin.getLoginName());
 		dbAdmin.setPassword(editAdmin.getPassword());
 		dbAdmin.setEmail(editAdmin.getEmail());
