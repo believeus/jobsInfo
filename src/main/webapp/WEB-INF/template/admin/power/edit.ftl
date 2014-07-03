@@ -23,6 +23,7 @@ $().ready(function() {
 	var $browserButton = $("#browserButton");
 	var $selectAll = $("#selectAll");
 	
+	// 设置已有的值是选中状态。
 	[#list authorities as authoritie]
 		$("input[value='${authoritie.authName}']").attr("checked",true);		
 	[/#list]
@@ -38,6 +39,29 @@ $().ready(function() {
 		}
 	});
 	
+	$("input[id='views']").each(function(){
+		if($(this).is(":checked")!=true){
+			var id=$(this).val().split(":")[0];
+			$("#"+id).find("tr").each(function(){
+				$(this).attr("style","display:none");
+			})
+		}
+	})
+	$("input[id='views']").change(function(){
+		// 判断是否是选中状态 true:是 false:否
+		if($(this).is(":checked")!=true){
+			var id=$(this).val().split(":")[0];
+			$("#"+id).find("input:checked").each(function(){
+				$(this).attr("checked",false);
+			})
+		}else{
+			var id=$(this).val().split(":")[0];
+			$("#"+id).find("tr").each(function(){
+				$(this).attr("style","");
+			})
+		}
+	
+	})
 	
 	
 	// "类型"修改
@@ -56,10 +80,6 @@ $().ready(function() {
 		}
 	});
 	
-	// 表单验证
-	$inputForm.validate({
-		
-	});
 	
 });
 </script>
@@ -82,24 +102,24 @@ $().ready(function() {
 		<table class="input">
 			<tr>
 				<td>
-					<p>资讯中心<input type="checkbox" name="authority" value="infocenter:view"/>查看</p>
+					<p>资讯中心<input type="checkbox" name="authority" id="views" value="infocenter:view"/>查看</p>
 				</td>
 				<td>
-					<p>工作指南 <input type="checkbox" name="authority" value="workguide:view"/>查看</p>
+					<p>工作指南 <input type="checkbox" name="authority" id="views" value="workguide:view"/>查看</p>
 				</td>
 				<td>
-					<p>就业服务 <input type="checkbox" name="authority" value="jobserver:view"/>查看</p>
+					<p>就业服务 <input type="checkbox" name="authority" id="views"  value="jobserver:view"/>查看</p>
 				</td>
 				<td>
-					<p>政策咨询<input type="checkbox" name="authority" value="policy:view"/>查看</p>
+					<p>政策咨询<input type="checkbox" name="authority" id="views" value="policy:view"/>查看</p>
 				</td>
 				<td>
-					<p>数据频道	<input type="checkbox" name="authority" value="datachannel:view"/>查看</p>
+					<p>数据频道	<input type="checkbox" name="authority" id="views"  value="datachannel:view"/>查看</p>
 				</td>
 			</tr>
 			<tr class="liebiao">
 				<td>
-					<table>
+					<table  id="infocenter">
 						<tr>
 							<td>
 								<p>新闻动态</p>
@@ -163,7 +183,7 @@ $().ready(function() {
 					</table>
 				</td>
 				<td style="vertical-align:top;">
-					<table>
+					<table id="workguide">
 						<tr>
 							<td>
 								<p>机构简介</p>
@@ -206,7 +226,7 @@ $().ready(function() {
 					</table>
 				</td>
 				<td>
-					<table>
+					<table id="jobserver">
 						<tr>
 							<td>
 								<p>公示公告</p>
@@ -265,7 +285,7 @@ $().ready(function() {
 					</table>
 				</td>
 				<td style="vertical-align:top;">
-					<table>
+					<table id="policy">
 						<tr>
 							<td>
 								<p>国家法律法规</p>
@@ -315,7 +335,7 @@ $().ready(function() {
 					</table>
 				</td>
 				<td style="vertical-align:top;">
-					<table>
+					<table id="datachannel">
 						<tr>
 							<td>
 								<p>供求分析报告</p>
@@ -376,22 +396,22 @@ $().ready(function() {
 			</tr>
 			<tr>
 				<td>
-					<p>幻灯片<input type="checkbox" name="authority" value="slide:view"/>查看</p>
+					<p>幻灯片<input type="checkbox" name="authority" id="views" value="slide:view"/>查看</p>
 				</td>
 				<td>
-					<p>服务功能<input type="checkbox" name="authority" value="service:view"/>查看</p>
+					<p>服务功能<input type="checkbox" name="authority" id="views"  value="service:view"/>查看</p>
 				</td>
 				<td>
-					<p>内容审核<input type="checkbox" name="authority" value="content:view"/>查看</p>
+					<p>内容审核<input type="checkbox" name="authority" id="views"  value="content:view"/>查看</p>
 				</td>
 				<td>
-					<p>资源审核<input type="checkbox" name="authority" value="resource:view"/>查看</p>
+					<p>资源审核<input type="checkbox" name="authority" id="views" value="resource:view"/>查看</p>
 				</td>
 			</tr>
 			
 			<tr class="liebiao">
 				<td>
-					<table>
+					<table id="slide">
 						<tr>
 							<td style="vertical-align:top;">
 								<p>幻灯片</p>
@@ -405,7 +425,7 @@ $().ready(function() {
 					</table>
 				</td>
 				<td style="vertical-align:top;">
-					<table>
+					<table id="service">
 						<tr>
 							<td>
 								<p>业务办理</p>
@@ -455,7 +475,7 @@ $().ready(function() {
 					</table>
 				</td>
 				<td>
-					<table>
+					<table id="content">
 						<tr>
 							<td>
 								<p>企业审核</p>
@@ -489,7 +509,7 @@ $().ready(function() {
 					</table>
 				</td>
 				<td style="vertical-align:top;">
-					<table>
+					<table id="resource">
 						<tr>
 							<td>
 								<p>企业</p>
