@@ -15,6 +15,8 @@ import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.Query;
+import org.apache.lucene.search.Sort;
+import org.apache.lucene.search.SortField;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.search.TermRangeQuery;
@@ -126,6 +128,8 @@ public class JobSearchService {
 				booleanQuery.add(queryParser, Occur.MUST);
 			}
 			FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(booleanQuery, Trecruit.class);
+			// 根据时间进行排序
+			fullTextQuery.setSort(new Sort(new SortField("editTime", SortField.LONG,true)));
 			int total=fullTextQuery.getResultSize();
 			// 分页
 			if (currentPage > ((int) Math.ceil((float) total / perCount))) {

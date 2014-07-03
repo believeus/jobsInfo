@@ -2,6 +2,7 @@ package com.etech.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -199,12 +200,18 @@ public class ControllerSearch {
 		List<TdataCenter> notices = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("notices",notices ); 
 		
-		// 岗位搜索和公司搜索
-		if ("position".equals(type)||"company".equals(type)) {
-			log.debug("根据关键字搜索招聘岗位");
+		// 岗位搜索和
+		if ("position".equals(type)) {
+			log.debug("根据关键字和条件搜索招聘岗位");
 			List<Trecruit> recruitList=(List<Trecruit>)jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
 			request.setAttribute("recruitList", recruitList);
-			return "occupationIntroduction/advancedSearch";
+			return "occupationIntroduction/advancedSearchJob";
+		//公司搜索
+		}else if ("company".equals(type)) {
+			log.debug("根据关键字和条件搜索公司");
+			List<Trecruit> recruitList=(List<Trecruit>)jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
+			request.setAttribute("recruitList", recruitList);
+			return "occupationIntroduction/advancedSearchCompany";
 		// 简历搜索
 		}else{
 			log.debug("简历搜索");
@@ -214,13 +221,72 @@ public class ControllerSearch {
 		}
 		
 	}
-	/**高级搜索*/
-	@RequestMapping(value = "/advancedSearch")
-	public String advancedSearchView() {
-		return "occupationIntroduction/advancedSearch";		
+	/**高级搜索页,默认搜索职位信息*/
+	@RequestMapping(value = "/jobAdvancedSearch")
+	public String jobAdvancedSearchView(HttpServletRequest request) {
+		// 当前是第几页
+		int pageNo=0;
+		// 每页几行
+		int pageSize=20;
+		if(!StringUtils.isEmpty(request.getParameter("pageNo"))){
+			pageNo=Integer.valueOf(request.getParameter("pageNo"));
+		}
+		if(!StringUtils.isEmpty(request.getParameter("pageSize"))){
+			pageSize=Integer.valueOf(request.getParameter("pageSize"));
+		}
+		//搜索招聘职位
+		String hql="from Trecruit recruit order by recruit.editTime desc";
+		@SuppressWarnings("unchecked")
+		List<Trecruit> recruitList= (List<Trecruit>)etechService.findObjectList(hql, pageNo, pageSize, Trecruit.class);
+		Collections.shuffle(recruitList);
+		request.setAttribute("recruitList", recruitList);
+		request.setAttribute("location", "position");
+		return "occupationIntroduction/advancedSearchJob";
 	}
-	
-	//
+	// 简历搜索
+	@RequestMapping(value = "/resumeAdvancedSearch")
+	public String resumeAdvancedSearchView(HttpServletRequest request) {
+		// 当前是第几页
+		int pageNo=0;
+		// 每页几行
+		int pageSize=20;
+		if(!StringUtils.isEmpty(request.getParameter("pageNo"))){
+			pageNo=Integer.valueOf(request.getParameter("pageNo"));
+		}
+		if(!StringUtils.isEmpty(request.getParameter("pageSize"))){
+			pageSize=Integer.valueOf(request.getParameter("pageSize"));
+		}
+		//搜索简历
+		String hql="from TcomInfo comInfo order by comInfo.editDate desc";
+		@SuppressWarnings("unchecked")
+		List<TcomInfo> comInfoList= (List<TcomInfo>)etechService.findObjectList(hql, pageNo, pageSize, TcomInfo.class);
+		Collections.shuffle(comInfoList);
+		request.setAttribute("comInfoList", comInfoList);
+		request.setAttribute("location", "resume");
+		return "occupationIntroduction/advancedSearchResume";
+	}
+	//搜索公司
+		@RequestMapping(value = "/companyAdvancedSearch")
+		public String companyAdvancedSearch(HttpServletRequest request) {
+			// 当前是第几页
+			int pageNo=0;
+			// 每页几行
+			int pageSize=20;
+			if(!StringUtils.isEmpty(request.getParameter("pageNo"))){
+				pageNo=Integer.valueOf(request.getParameter("pageNo"));
+			}
+			if(!StringUtils.isEmpty(request.getParameter("pageSize"))){
+				pageSize=Integer.valueOf(request.getParameter("pageSize"));
+			}
+			//搜索职位
+			String hql="from Trecruit recruit order by recruit.editTime desc";
+			@SuppressWarnings("unchecked")
+			List<Trecruit> recruitList= (List<Trecruit>)etechService.findObjectList(hql, pageNo, pageSize, Trecruit.class);
+			Collections.shuffle(recruitList);
+			request.setAttribute("recruitList", recruitList);
+			request.setAttribute("location", "company");
+			return "occupationIntroduction/advancedSearchCompany";
+		}
 	@RequestMapping(value="/searchPolicyAdvice",method = RequestMethod.POST)
 	public String searchPolicyAdvice(HttpServletRequest request){
 		int currentPage=Integer.parseInt(request.getParameter("currentPage"));

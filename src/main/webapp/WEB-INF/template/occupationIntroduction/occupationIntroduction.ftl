@@ -441,7 +441,7 @@
 							<input type="text" value="" placeholder="请输入查询内容..." style="width: 360px;">
 							<input type="text" name="expectArea" id="start1" placeholder="选择城市" autocomplete="off" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" style="width:151px;">
 							<input type="submit" value="搜索" style="cursor:pointer;border-radius:4px;width:100px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
-							<input type="button" value="高级搜索" onclick="javascript:window.location.href='/advancedSearch.jhtml'" style="cursor:pointer;border-radius:4px;width:100px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
+							<input type="button" value="高级搜索" onclick="javascript:window.location.href='/jobAdvancedSearch.jhtml'" style="cursor:pointer;border-radius:4px;width:100px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
 							<p>搜索热词：
 								<span><a href="/advanceSearchByContision.jhtml?keyword='软件工程师'&type='position'">软件工程师</a></span>
 								<span><a href="/advanceSearchByContision.jhtml?keyword='建筑工程师'&type='position'">建筑工程师</a></span>

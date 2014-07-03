@@ -6,8 +6,8 @@
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-1.7.2.min.js"></script>
+    <link href="/resource/public/selectArea/css/cityLayout.css" type="text/css" rel="stylesheet">
    	<link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
-   	<link href="/resource/public/selectArea/css/cityLayout.css" type="text/css" rel="stylesheet">
     <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="/resource/public/areaSelect/css.css" />
 	<script type="text/javascript" src="/resource/public/areaSelect/drag.js"></script>
@@ -118,7 +118,7 @@
 		}
 		.t_table th {
 		    padding: 5px;
-		    width: 239px;
+		    width: 194px;
 		}
 		.t_table tr {
 		    line-height: 35px;
@@ -368,10 +368,10 @@
 			<form id="infoForm" novalidate="novalidate"  action="/advanceSearchByContision.jhtml"  method="post" >
 			<input type="hidden" name="data" value="" id="data">
 			<script>
-			$(function(){
-			        $("#type").val("${location}");
+				$(function(){
+					$("#type").val("${location}");
 					$("#type").change(function(){
-					  if($("#keyword").val()==""){
+					 if($("#keyword").val()==""){
 					    // 搜索职位
 						if($(this).val()=="position"){
 						  top.location.href="/jobAdvancedSearch.jhtml";
@@ -382,7 +382,7 @@
 						}else if($(this).val()=="company"){
 						  top.location.href="/companyAdvancedSearch.jhtml";
 						}
-					  }
+					}
 					});
 				});
 			</script>
@@ -390,7 +390,7 @@
 				<table style="background: #60B732; border-radius: 4px; margin: 5px 25px;">
 					<tr>
 						<td>
-							<select id="type" name="type" style="color:#868686;" value="${location}">
+							<select id="type" name="type" style="color:#868686;">
 								<option value="position">职位搜索</option>
 								<option value="resume" >简历搜索</option>
 								<option value="company">公司搜索</option>
@@ -572,7 +572,24 @@
 						</ul>
 					</div>
 				</div>
-				
+				<div style="width: 996px; height: 30px;margin-bottom:25px;background:#FFF1DA;">
+					<div class="j_main_right_2_1">
+						<span style="font-weight: bold;">公司性质</span><span style="color: blue; float: right;"><a style="color: blue; font-size: 12px;" href="">不限</a></span>
+					</div>
+					<div class="j_main_right_2_2">
+						<ul>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="5" id="内资0_5" name="内资">内资</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="5" id="国有全资_5" name="国有全资">国有全资</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="5" id="集体全资_5" name="集体全资">集体全资</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="5" id="股份合作_5" name="股份合作">股份合作</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="5" id="联营_5" name="联营">联营</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="5" id="国有联营_5" name="国有联营">国有联营</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="5" id="国有与集体联营_5" name="国有与集体联营">国有与集体联营</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="5" id="其他联营_5" name="其他联营">其他联营</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="5" id="有限责任（公司）_5" name="有限责任（公司）">有限责任（公司）</a></li>
+						</ul>
+					</div>
+				</div>
 			</div>
 			</form>
 			<p class="selected">您选择的是：
@@ -606,17 +623,19 @@
 			<div class="t_table" style="">
 				<table cellspacing="0">
 					<tr style="background: url(/resource/public/images/bg-image.png); line-height: 30px;">
-						<th>姓名</th>
-						<th>工种</th>
+						<th>公司名称</th>
+						<th>岗位名称</th>
 						<th>月薪范围</th>
-						<th>择业地区</th>
+						<th>招聘人数</th>
+						<th>发布时间</th>
 					</tr>
-					[#list comInfoList as info]
+					[#list recruitList as recruit]
 					<tr>
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">${info.loginName}</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">${info.jobPost}</a></td>
-						<td style="color:#0101FF;">${info.expectSalary}</td>
-						<td>${info.expectArea}</td>
+						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">${recruit.company}</a></td>
+						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">${recruit.jobPost}</a></td>
+						<td style="color:#0101FF;">${recruit.salary}</td>
+						<td>${recruit.worknum}</td>
+						<td>${recruit.editTime?number_to_date} ${recruit.editTime?number_to_time}</td>
 					</tr>
 				   [/#list]
 				</table>
@@ -656,13 +675,18 @@
 	<div id="maskLayer" style="display:none">
 	<div id="alphadiv" style="filter:alpha(opacity=50);-moz-opacity:0.5;opacity:0.5"></div>
 		<div id="drag">
-			<h3 id="drag_h"></h3>
-			<div id="drag_con"></div><!-- drag_con end -->
+			<h3 id="drag_h"><b>请选择居住地</b><span onclick="boxAlpha()">关闭</span></h3>
+			<div id="drag_con">
+				<div id="residencyAlpha" class="residencyAlpha">
+					<div id="maincity" class="maincity"></div>
+					<div id="allProv" class="allProv"></div>
+				</div>
+			</div><!-- drag_con end -->
 		</div>
 	</div><!-- maskLayer end -->
 	</div>
 	<!-- alpha div end -->
-	<div id="sublist" style="display:none"></div>
+	<div id="sublist" class="sublist" style="display:none"></div>
 	
 	[#include "/include/footer.ftl" /]
 	<script src="/resource/public/selectArea/js/public.js"></script>

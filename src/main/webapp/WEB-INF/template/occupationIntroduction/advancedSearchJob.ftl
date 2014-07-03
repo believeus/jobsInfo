@@ -367,11 +367,30 @@
 			</div>
 			<form id="infoForm" novalidate="novalidate"  action="/advanceSearchByContision.jhtml"  method="post" >
 			<input type="hidden" name="data" value="" id="data">
+			<script>
+				$(function(){
+				    $("#type").val("${location}");
+					$("#type").change(function(){
+					 if($("#keyword").val()==""){
+					    // 搜索职位
+						if($(this).val()=="position"){
+						  top.location.href="/jobAdvancedSearch.jhtml";
+						// 搜索简历
+						}else if($(this).val()=="resume"){
+						  top.location.href="/resumeAdvancedSearch.jhtml";
+						// 搜索公司
+						}else if($(this).val()=="company"){
+						  top.location.href="/companyAdvancedSearch.jhtml";
+						}
+					}
+					});
+				});
+			</script>
 			<div id="tag" class="j_main_right_2" style="border:1px solid #E4925A;border-radius:4px;">
 				<table style="background: #60B732; border-radius: 4px; margin: 5px 25px;">
 					<tr>
 						<td>
-							<select name="type" style="color:#868686;">
+							<select id="type" name="type" style="color:#868686;" value="${location}" >
 								<option value="position">职位搜索</option>
 								<option value="resume" >简历搜索</option>
 								<option value="company">公司搜索</option>
