@@ -44,6 +44,8 @@ public class ControllerVideos {
 		String hql="From TdataCenter dataCenter where dataCenter.type='4' order by id desc";
 		List<TdataCenter> videolList = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
 		request.setAttribute("videolList", videolList);
+		String host=request.getHeader("Host");
+		request.setAttribute("host", host);
 		return "infoCenter/videosInfo";
 	}
 	

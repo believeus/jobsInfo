@@ -524,15 +524,16 @@
 						[#list vedios as vedio]
 							[#if vedio_index=0]
 								<div style="width:600px;height:auto;margin-left:auto;margin-right:auto;">
-									<embed width="585" height="432" bgcolor="#000000" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all"
-										 [#if tentImgVedio?exists]
-										 	src="/${tentImgVedio.vedioUrl}"
-										 [#elseif vedio.vedioUrl?exists]
-										 	 	src="/${vedio.vedioUrl}"
-								 	 	 [#else]
-									 	 	 	src="http://p.you.video.sina.com.cn/swf/bokePlayer20140616_V4_1_42_49.swf"
-							 	 	 	 [/#if] 
-						 	 	 	 type="application/x-shockwave-flash"/>
+									<embed src="http://www.ckplayer.com/ckplayer6.1/ckplayer.swf" 
+									 [#if tentImgVedio?exists]
+								 	     flashvars="f=http://${host}/${tentImgVedio.vedioUrl}" 
+									 [#elseif vedio.vedioUrl?exists]
+										  flashvars="f=http://${host}/${vedio.vedioUrl}" 
+									  [/#if]
+                                       quality="high" width="585" height="432" align="middle" 
+               						   allowScriptAccess="always" allowFullscreen="true" 
+              						   type="application/x-shockwave-flash"/>
+								
 									<p>视频简介：</p>
 									<div>
 										[#if tentImgVedio?exists]

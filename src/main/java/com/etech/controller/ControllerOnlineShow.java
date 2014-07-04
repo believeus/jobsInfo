@@ -46,8 +46,8 @@ public class ControllerOnlineShow {
 		hql = "From TdataCenter tdataCenter where tdataCenter.type='3' order by id asc";
 		List<TdataCenter> imgs = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("imgs", imgs); 
-		
-		
+		String host=request.getHeader("Host");
+		request.setAttribute("host", host);
 		return "onlineShow/onlineShow";
 	}
 }

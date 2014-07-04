@@ -104,7 +104,11 @@ a:link{
             <div style="width:585px; margin:0px auto;">
 	            [#list pathList as path]
 		            [#if path_index==0]
-		            	<embed width="585" height="432" bgcolor="#000000" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" src="${path}" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"/>
+		            	<embed src="http://www.ckplayer.com/ckplayer6.1/ckplayer.swf" 
+		            		   flashvars="f=http://${host}/${path}" 
+		            		   quality="high" width="585" height="432" align="middle" 
+		            		   allowScriptAccess="always" allowFullscreen="true" 
+		            		   type="application/x-shockwave-flash"/>
 		            [/#if]
 	            [/#list]
             </div>

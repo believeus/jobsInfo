@@ -67,7 +67,11 @@
         	[#list pathList as pl]
         	[#if pl_index>0]
             <div style="width:585px; margin:0px auto;">
-            	<embed width="585" height="432" flashvars="" bgcolor="#000000" quality="high" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" id="myMovie" [#if pl?exists] src="/${pl}"[#else]src="http://p.you.video.sina.com.cn/swf/bokePlayer20140616_V4_1_42_49.swf"[/#if] type="application/x-shockwave-flash" pluginspage="">
+            	<embed src="http://www.ckplayer.com/ckplayer6.1/ckplayer.swf" 
+		               flashvars="f=http://${host}/${pl}" 
+		               quality="high" width="585" height="432" align="middle" 
+		               allowScriptAccess="always" allowFullscreen="true" 
+		               type="application/x-shockwave-flash"/>
             </div>
             [/#if]
             [/#list]

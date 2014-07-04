@@ -55,6 +55,8 @@ public class ControllerEnterpriseInformation {
 		List<Trecruit> recruits = (List<Trecruit>)etechService.findListByHQL(hql);
 		List<TcomUser> talentRecommend =(List<TcomUser>)enterpriseUserService.talentRecommend(recruits);
 		request.setAttribute("talentRecommend", talentRecommend);
+		String host=request.getHeader("Host");
+		request.setAttribute("host", host);
 		return "occupationIntroduction/enterpriseInformation";
 	}
 }

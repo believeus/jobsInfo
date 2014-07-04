@@ -1,22 +1,18 @@
 package com.etech.shiro;
 
 
-import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.springframework.util.StringUtils;
-
 import com.etech.entity.Tadmin;
 import com.etech.entity.TbaseUser;
 import com.etech.service.EtechService;
