@@ -903,7 +903,7 @@ span.loadingBar {
 div.pagination {
 	height: 20px;
 	float: right;
-	padding: 10px 0px;
+	padding: 20px 50px 20px 0;
 }
 
 div.pagination a, div.pagination span {

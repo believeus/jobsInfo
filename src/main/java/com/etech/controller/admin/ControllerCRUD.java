@@ -2,6 +2,8 @@ package com.etech.controller.admin;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +27,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.etech.entity.TdataCenter;
 import com.etech.service.EtechService;
 import com.etech.util.JsonOutToBrower;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 @Component
 public class ControllerCRUD {
@@ -179,6 +183,23 @@ public class ControllerCRUD {
 		List<?> dataCenters = (List<TdataCenter>)etechService.findObjectList(hql, 1, 15, TdataCenter.class);
 		return dataCenters;
 	}
+	
+	// 分页信息列表
+	public Page<?> pageDataInfo(HttpServletRequest request,int type,Pageable pageable) throws UnsupportedEncodingException {
+		String hql="";
+		String searchValue = request.getParameter("searchValue");
+		if (!StringUtils.isEmpty(searchValue)) {
+			searchValue=URLDecoder.decode(searchValue, "utf-8");
+			log.debug("根据title查询："+searchValue);
+			hql="From TdataCenter center where center.type='"+type+"' and title like '%"+searchValue+"%' order by editTime desc";
+			request.setAttribute("searchValue", searchValue);
+		}else {
+			hql="From TdataCenter center where center.type='"+type+"' order by editTime desc";			
+		}
+		Page<?> page = etechService.getPage(hql, pageable);
+		return page;
+	}
+		
 	// 置顶
 	public boolean top(int id){
 		etechService.updata(TdataCenter.class, "id", id,"top", 1);

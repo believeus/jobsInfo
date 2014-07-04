@@ -1,4 +1,3 @@
-<input type="hidden" id="pageSize" name="pageSize" value="2" />
 [#if totalPages > 1]
 	<div class="pagination">
 		[#if isFirst]
@@ -35,7 +34,7 @@
 			<a class="lastPage" href="javascript: $.pageSkip(${lastPageNumber});">&nbsp;</a>
 		[/#if]
 		<span class="pageSkip">
-			共${totalPages}页 到第<input onpaste="return false;" maxlength="9" value="${pageNumber}" name="pageNumber" id="pageNumber">页<button type="submit">确定</button>
+			共${totalPages}页 到第<input onpaste="return false;" maxlength="9" value="${pageNumber}" name="pageNumber" id="pageNumber">页<button type="submit"></button>
 		</span>
 	</div>
 [/#if]

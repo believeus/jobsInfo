@@ -134,6 +134,7 @@ public class ControllerPower {
 		return "redirect:list.jhtml";
 	}
 	
+	@SuppressWarnings("unchecked")
 	@RequiresPermissions("admin:groupDelete")
 	@RequestMapping("/delete")
 	public void delete(Long[] ids,HttpServletResponse response){

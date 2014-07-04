@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.etech.dao.EtechComDao;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 @Service
 public class EtechService {
@@ -75,5 +77,9 @@ public class EtechService {
 
 	public Object findObjectByHql(String hql) {
 		return etechComDao.getObjectByHQL(hql);
+	}
+	@SuppressWarnings("rawtypes")
+	public Page getPage(String hql, Pageable pageable){
+		return etechComDao.getPage(hql, pageable);
 	}
 }

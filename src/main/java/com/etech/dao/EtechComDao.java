@@ -38,6 +38,8 @@ import org.springframework.util.ReflectionUtils;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import com.etech.entity.TdataCenter;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 @Repository
 public class EtechComDao extends HibernateDaoSupport {
@@ -398,4 +400,29 @@ public class EtechComDao extends HibernateDaoSupport {
 			
 		});
 	}
+	
+	/* Begin Author:wuhuanrong Date:2014-07-04 AddReason:根据hql语句对数据进行分页 */
+	@SuppressWarnings("rawtypes")
+	public Page getPage(final String hql, final Pageable pageable) {
+		return ((Page) getHibernateTemplate().execute(new HibernateCallback<Object>() { 
+
+			@SuppressWarnings("unchecked")
+			@Override
+			public Page doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				Query query = session.createQuery(hql);
+				long total = query.list().size();
+				int totalPages = (int) Math.ceil((double) total / (double) pageable.getPageSize());
+				if (totalPages < pageable.getPageNumber()) {
+					pageable.setPageNumber(totalPages);
+				}
+				
+				query.setFirstResult((pageable.getPageNumber() - 1) * pageable.getPageSize());
+				query.setMaxResults(pageable.getPageSize());
+				return new Page(query.list(), total, pageable);
+			}
+			 
+		}));
+	}
+	/* End Author:wuqiwei Date:2013-04-06 AddReason:根据hql语句对数据进行分页  */
 }
