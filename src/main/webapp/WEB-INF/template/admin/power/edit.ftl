@@ -39,34 +39,58 @@ $().ready(function() {
 		}
 	});
 	
+	// 初始化checkbox  为不可点击。
 	$("input[id='views']").each(function(){
 		if($(this).is(":checked")!=true){
 			var id=$(this).val().split(":")[0];
 			// 设置 checkbox 为不可点击
 			$("#"+id).find("tr input").each(function(){
 				$(this).attr("disabled",true);
-			})
+			});
+			$("input[value='"+id+"']").attr("disabled",true);
 		}
 	})
+	// 监听查看checkbox 
 	$("input[id='views']").change(function(){
 		// 判断是否是选中状态 true:是 false:否
 		if($(this).is(":checked")!=true){
 			var id=$(this).val().split(":")[0];
 			// 设置 checkbox 为不勾选。
 			$("#"+id).find("input:checked").each(function(){
-				$(this).attr("checked",false);
+				$(this).prop("checked",false);
 			})
 			$("#"+id).find("tr input").each(function(){
-				$(this).attr("disabled",true);
+				$(this).prop("disabled",true);
 			})
+			$("input[value='"+id+"']").attr("checked",false);
+			$("input[value='"+id+"']").attr("disabled",true);
 		}else{
 			var id=$(this).val().split(":")[0];
 			$("#"+id).find("tr input").each(function(){
 				$(this).attr("disabled",false);
 			})
+			$("input[value='"+id+"']").attr("disabled",false);
 		}
 	
 	})
+	
+	// 监听单个模块的全选
+	$("input[id='selectAllOne']").change(function(){
+		// 判断是否是选中状态 true:是 false:否
+		if($(this).is(":checked")!=true){
+			$("#"+$(this).val()).find("tr input").each(function(){
+					// 设置为不选中状态
+					$(this).prop("checked",false);
+			})
+		}else{
+			$("#"+$(this).val()).find("tr input").each(function(){
+					// 设置为选中状态
+					$(this).prop("checked",true);
+			})
+		}
+		
+	})
+	
 	
 	
 	// "类型"修改
@@ -107,19 +131,29 @@ $().ready(function() {
 		<table class="input">
 			<tr>
 				<td>
-					<p>资讯中心<input type="checkbox" name="authority" id="views" value="infocenter:view"/>查看</p>
+					<p>资讯中心<input type="checkbox" name="authority" id="views" value="infocenter:view"/>查看
+					<input type="checkbox" id="selectAllOne" value="infocenter"/>全选
+					</p>
 				</td>
 				<td>
-					<p>工作指南 <input type="checkbox" name="authority" id="views" value="workguide:view"/>查看</p>
+					<p>工作指南 <input type="checkbox" name="authority" id="views" value="workguide:view"/>查看
+					<input type="checkbox" id="selectAllOne" value="workguide"/>全选
+					</p>
 				</td>
 				<td>
-					<p>就业服务 <input type="checkbox" name="authority" id="views"  value="jobserver:view"/>查看</p>
+					<p>就业服务 <input type="checkbox" name="authority" id="views"  value="jobserver:view"/>查看
+					<input type="checkbox" id="selectAllOne" value="jobserver"/>全选
+					</p>
 				</td>
 				<td>
-					<p>政策咨询<input type="checkbox" name="authority" id="views" value="policy:view"/>查看</p>
+					<p>政策咨询<input type="checkbox" name="authority" id="views" value="policy:view"/>查看
+					<input type="checkbox" id="selectAllOne" value="policy"/>全选
+					</p>
 				</td>
 				<td>
-					<p>数据频道	<input type="checkbox" name="authority" id="views"  value="datachannel:view"/>查看</p>
+					<p>数据频道	<input type="checkbox" name="authority" id="views"  value="datachannel:view"/>查看
+					<input type="checkbox" id="selectAllOne" value="datachannel"/>全选
+					</p>
 				</td>
 			</tr>
 			<tr class="liebiao">
@@ -401,16 +435,24 @@ $().ready(function() {
 			</tr>
 			<tr>
 				<td>
-					<p>幻灯片<input type="checkbox" name="authority" id="views" value="slide:view"/>查看</p>
+					<p>幻灯片<input type="checkbox" name="authority" id="views" value="slide:view"/>查看
+					<input type="checkbox" id="selectAllOne" value="slide"/>全选
+					</p>
 				</td>
 				<td>
-					<p>服务功能<input type="checkbox" name="authority" id="views"  value="service:view"/>查看</p>
+					<p>服务功能<input type="checkbox" name="authority" id="views"  value="service:view"/>查看
+					<input type="checkbox" id="selectAllOne" value="service"/>全选
+					</p>
 				</td>
 				<td>
-					<p>内容审核<input type="checkbox" name="authority" id="views"  value="content:view"/>查看</p>
+					<p>内容审核<input type="checkbox" name="authority" id="views"  value="content:view"/>查看
+					<input type="checkbox" id="selectAllOne" value="content"/>全选
+					</p>
 				</td>
 				<td>
-					<p>资源审核<input type="checkbox" name="authority" id="views" value="resource:view"/>查看</p>
+					<p>资源审核<input type="checkbox" name="authority" id="views" value="resource:view"/>查看
+					<input type="checkbox" id="selectAllOne" value="resource"/>全选
+					</p>
 				</td>
 			</tr>
 			

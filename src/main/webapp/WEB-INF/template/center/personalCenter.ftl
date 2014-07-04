@@ -483,7 +483,7 @@
 							<tr>
 								<td>起始时间:</td>
 								<td colspan="3">
-								<input type="text" name="beginDateLearning'+a+'" id="beginDateLearning'+a+'" eidLearning="beginDateLearning'+a+'" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: \'#F{$dp.$D(endDateLearning'+a+')}\'});" />
+								<input type="text" name="beginDateLearning'+a+'" id="beginDateLearning'+a+'" eidLearning="beginDateLearning'+a+'" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: new Date()});"  />
 								结束时间: <input type="text" name="endDateLearning'+a+'" id="endDateLearning'+a+'" eidLearning="endDateLearning'+a+'" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: \'#F{$dp.$D(beginDateLearning'+a+')}\'});"/>
 								<input type="hidden" name="beginData" value=""/>
 								<input type="hidden" name="endData" value=""/>
@@ -647,7 +647,7 @@
 							<tr>
 								<td>起始时间:</td>
 								<td colspan="3">
-								<input type="text" id="beginDateWork'+c+'" name="beginDateWork'+c+'" eidWork="beginDateWork'+c+'" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string("yyyy-MM-dd"))!}"  onfocus="WdatePicker({maxDate: \'#F{$dp.$D(endDateWork'+c+')}\'});" />
+								<input type="text" id="beginDateWork'+c+'" name="beginDateWork'+c+'" eidWork="beginDateWork'+c+'" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string("yyyy-MM-dd"))!}"  onfocus="WdatePicker({maxDate: new Date()});"  />
 								结束时间: <input type="text" id="endDateWork'+c+'" eidWork="endDateWork'+c+'" name="endDateWork'+c+'" style="width:100px;height:25px"class="text Wdate"value="${(endDate?string("yyyy-MM-dd"))!}"  onfocus="WdatePicker({minDate: \'#F{$dp.$D(beginDateWork'+c+')}\'});" />
 								<input type="hidden" name="beginData" value=""/>
 								<input type="hidden" name="endData" value=""/>
@@ -1699,7 +1699,7 @@
 							<tr>
 								<td>起始时间:</td>
 								<td colspan="2"><!--${(beginDate?string('yyyy-MM-dd'))!} ${(endDate?string('yyyy-MM-dd'))!}-->
-								<input type="text" name="beginDateLearning${learning_index+1}" id="beginDateLearning${learning_index+1}"  eidLearning="beginDateLearning${learning_index+1}" style="width:100px;height:25px" class="text Wdate" value="2012-01-23" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDateLearning${learning_index+1}\')}'});" />
+								<input type="text" name="beginDateLearning${learning_index+1}" id="beginDateLearning${learning_index+1}"  eidLearning="beginDateLearning${learning_index+1}" style="width:100px;height:25px" class="text Wdate" value="2012-01-23" onfocus="WdatePicker({maxDate: new Date()});"  />
 								结束时间: <input type="text"  name="endDateLearning${learning_index+1}" id="endDateLearning${learning_index+1}" eidLearning="endDateLearning${learning_index+1}" style="width:100px;height:25px" class="text Wdate" value="2120-05-21" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDateLearning${learning_index+1}\')}'});" />
 								<input type="hidden" name="beginData" value=""/>
 								<input type="hidden" name="endData" value=""/>
@@ -1756,7 +1756,7 @@
 							<tr>
 								<td>起始时间:</td>
 								<td colspan="2">
-								<input type="text" name="beginDateLearning1" id="beginDateLearning1"  eidLearning="beginDateLearning1" style="width:100px;height:25px" class="text Wdate" value="${(beginDateLearning1?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDateLearning1\')}'});" />
+								<input type="text" name="beginDateLearning1" id="beginDateLearning1"  eidLearning="beginDateLearning1" style="width:100px;height:25px" class="text Wdate" value="${(beginDateLearning1?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: new Date()});" />
 								结束时间: <input type="text"  name="endDateLearning1" id="endDateLearning1" eidLearning="endDateLearning1" style="width:100px;height:25px" class="text Wdate" value="${(endDateLearning1?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDateLearning1\')}'});" />
 								<input type="hidden" name="beginData" value=""/>
 								<input type="hidden" name="endData" value=""/>
@@ -1814,7 +1814,7 @@
 							<tr>
 								<td>起始时间:</td>
 								<td colspan="2">
-								<input type="text" eidWork="beginDateWork${work_index+1}" id="beginDateWork${work_index+1}" name="beginDateWork${work_index+1}" style="width:100px;height:25px" class="text Wdate" value="1990-01-01" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDateWork${work_index+1}\')}'});" />
+								<input type="text" eidWork="beginDateWork${work_index+1}" id="beginDateWork${work_index+1}" name="beginDateWork${work_index+1}" style="width:100px;height:25px" class="text Wdate" value="1990-01-01" onfocus="WdatePicker({maxDate: new Date()});" />
 								结束时间: <input type="text" eidWork="endDateWork${work_index+1}" id="endDateWork${work_index+1}" name="endDateWork${work_index+1}" style="width:100px;height:25px" class="text Wdate" value="1990-01-01" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDateWork${work_index+1}\')}'});" />
 								<input type="hidden" name="beginData" value=""/>
 								<input type="hidden" name="endData" value=""/>
@@ -1872,7 +1872,7 @@
 							<tr>
 								<td>起始时间:</td>
 								<td colspan="2">
-								<input type="text" eidWork="beginDateWork1" id="beginDateWork1" name="beginDateWork1" style="width:100px;height:25px" class="text Wdate" value="${(beginDateWork1?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDateWork1\')}'});" />
+								<input type="text" eidWork="beginDateWork1" id="beginDateWork1" name="beginDateWork1" style="width:100px;height:25px" class="text Wdate" value="${(beginDateWork1?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: new Date()});" />
 								结束时间: <input type="text" eidWork="endDateWork1" id="endDateWork1" name="endDateWork1" style="width:100px;height:25px" class="text Wdate" value="${(endDateWork1?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDateWork1\')}'});" />
 								<input type="hidden" name="beginData" value=""/>
 								<input type="hidden" name="endData" value=""/>
