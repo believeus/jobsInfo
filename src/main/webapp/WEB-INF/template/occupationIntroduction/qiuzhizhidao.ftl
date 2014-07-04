@@ -67,7 +67,7 @@
 			height:auto;
 			margin-top:10px;
 		}
-		.j_main_right_2 p{
+		.j_main_right_2_p{
 			padding:0 40px;
 			font-size:13px;
 		}
@@ -100,7 +100,7 @@
 					<li><a href="/mianshibaodianList.jhtml">面试宝典</a></li>
 				</ul>
 			</div>
-			<div class="j_main_left_1" style="margin-top:10px;height:400px;text-align:center;">
+			<div class="j_main_left_1" style="margin-top: 10px; text-align: center; height: 445px;">
 				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml" style="margin-left:0;">更多>></a></div>
@@ -120,7 +120,7 @@
 				<h2 style="text-align:center;font-weight:normal;">${data.title}</h2>
 				<p style="text-align:center;">来源：潜江公共就业服务网 发布时间：${data.editTime?number_to_datetime} </p>
 				<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">
-				<div style="">
+				<div class="j_main_right_2_p" style="">
 					${data.content}
 				</div>
 				<!--

@@ -101,6 +101,7 @@ $().ready(function() {
 							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
 							<input type="hidden" id="filename0" name="filename0">
 						</span>
+						<label style="color:#0000FF;position:relative;top:100px;left:10px;">(建议尺寸：大图:宽548px*高85px,小图:宽165px*高85px)</label>
 					</div>
 					<style type="text/css">
 						.brandImg span{

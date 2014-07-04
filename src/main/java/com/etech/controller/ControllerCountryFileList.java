@@ -25,7 +25,7 @@ public class ControllerCountryFileList {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/countryFileList", method = RequestMethod.GET)
 	public String policyAdviceView(HttpServletRequest request) {
-		String hql="from TdataCenter as dataCenter where dataCenter.type='"+EtechGobal.countryFile+"' order by dataCenter.editTime desc";
+		String hql="from TdataCenter as dataCenter where dataCenter.type='"+EtechGobal.countryFile+"' order by dataCenter.editTime,dataCenter.id desc";
 		List<TdataCenter>  dataCenterList=(List<TdataCenter>) etechService.findListByHQL(hql, 15);
 		request.setAttribute("dataCenterList", dataCenterList);
 		

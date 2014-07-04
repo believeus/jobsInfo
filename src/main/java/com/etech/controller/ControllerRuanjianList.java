@@ -28,7 +28,7 @@ public class ControllerRuanjianList {
 	public String newsListView(HttpSession session) {
 		
 		//软件下载
-		String hql="From TdataCenter dataCenter where dataCenter.type='29'";
+		String hql="From TdataCenter dataCenter where dataCenter.type='29' order by id desc";
 		@SuppressWarnings("unchecked")
 		List<TdataCenter> ruanjianList = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("ruanjianList", ruanjianList);

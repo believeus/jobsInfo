@@ -36,6 +36,7 @@ public class ControllerCRUD {
 	// 保存信息
 	public void savaDataInfo(HttpServletRequest request) {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		
 		String storepath = "";
 		int count=0;
 		Map<String, MultipartFile> files = multipartRequest.getFileMap();
@@ -173,7 +174,7 @@ public class ControllerCRUD {
 	// 信息列表
 	public List<?> listDataInfo(HttpServletRequest request,int type) {
 		// 查询新闻动态
-		String hql="From TdataCenter center where center.type='"+type+"' order by editTime desc";
+		String hql="From TdataCenter center where center.type='"+type+"' order by id desc";
 		@SuppressWarnings("unchecked")
 		List<?> dataCenters = (List<TdataCenter>)etechService.findObjectList(hql, 1, 15, TdataCenter.class);
 		return dataCenters;

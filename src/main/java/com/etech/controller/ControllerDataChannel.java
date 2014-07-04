@@ -34,22 +34,22 @@ public class ControllerDataChannel {
 	public String dataChanelView(HttpServletRequest request) {
 		
 		//公告公示
-		String hql="From TdataCenter dataCenter where dataCenter.type='2'";
+		String hql="From TdataCenter dataCenter where dataCenter.type='2' order by id desc";
 		List<TdataCenter> notices = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("notices",notices );
 		
 		//专题
-		hql="From TdataCenter dataCenter where dataCenter.type='5'";
+		hql="From TdataCenter dataCenter where dataCenter.type='5' order by id desc";
 		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("subjectReport", subjectReport);
 		
 		//供求分析报告
-		hql="From TdataCenter dataCenter where dataCenter.type='14'";
+		hql="From TdataCenter dataCenter where dataCenter.type='14' order by id desc";
 		List<TdataCenter> analysisreport = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("analysisreport", analysisreport);
 		
 		//工资指导价位
-		hql="From TdataCenter dataCenter where dataCenter.type='15'";
+		hql="From TdataCenter dataCenter where dataCenter.type='15' order by id desc";
 		List<TdataCenter> wagePriceGuide = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("wagePriceGuide", wagePriceGuide);
 		
@@ -75,7 +75,7 @@ public class ControllerDataChannel {
 		request.setAttribute("supply", supply);
 		
 		//下载
-		hql="From TdataCenter dataCenter where dataCenter.type='18'";
+		hql="From TdataCenter dataCenter where dataCenter.type='18' order by id desc";
 		List<TdataCenter> downLoad = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("downLoad", downLoad);
 		

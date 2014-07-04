@@ -1,11 +1,13 @@
 package com.etech.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -27,7 +29,21 @@ public class ControllerInfoCenter {
 		//置顶内容 ：新闻动态、工作动态、图片新闻、视频新闻
 		hql="From TdataCenter dataCenter where dataCenter.top='1' order by id desc";
 		List<TdataCenter> dataCenters = (List<TdataCenter>)etechService.findListByHQL(hql);
-		request.setAttribute("newsTop", dataCenters);
+		List<TdataCenter> dataCenterList=new ArrayList<TdataCenter>();
+		/**Begin Author:wuqiwei Data:2014:07-13 AddReason:去除html标签*/
+		for (TdataCenter tdataCenter : dataCenters) {
+			try {
+				TdataCenter dataCenter=(TdataCenter) tdataCenter.clone();
+				if(!StringUtils.isEmpty(dataCenter.getContent())){
+					dataCenter.setContent(dataCenter.getContent().replaceAll("<[^>]+>", ""));
+					dataCenterList.add(dataCenter);
+				}
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
+		}
+		/**End Author:wuqiwei Data:2014:07-13 AddReason:去除html标签*/
+		request.setAttribute("newsTop", dataCenterList);
 		
 		hql="From TdataCenter dataCenter where dataCenter.type='1' order by id desc";
 		List<TdataCenter> works = (List<TdataCenter>)etechService.findListByHQL(hql);

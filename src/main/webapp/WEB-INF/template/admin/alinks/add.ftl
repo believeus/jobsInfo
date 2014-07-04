@@ -74,7 +74,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>链接:
 				</th>
 				<td>
-					<input type="text" name="alink" class="text" maxlength="200" />
+					<input type="text" name="alink" class="text" maxlength="200" value="http://"/>
 				</td>
 			</tr>
 			

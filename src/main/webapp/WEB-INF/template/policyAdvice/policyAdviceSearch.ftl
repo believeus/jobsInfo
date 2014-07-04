@@ -145,7 +145,7 @@
 					<li><a href="/cityFileList.jhtml">地方相关文件</a></li>
 				</ul>
 			</div>
-			<div class="j_main_left_1" style="margin-top:10px;height:400px;text-align:center;">
+			<div class="j_main_left_1" style="margin-top: 10px; text-align: center; height: 445px;">
 				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml" style="margin-left:0;">更多>></a></div>

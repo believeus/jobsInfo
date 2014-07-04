@@ -29,7 +29,7 @@ public class ControllerBiaogeList {
 	public String newsListView(HttpSession session) {
 		
 		//表格下载
-		String hql="From TdataCenter dataCenter where dataCenter.type='28'";
+		String hql="From TdataCenter dataCenter where dataCenter.type='28' order by id desc";
 		@SuppressWarnings("unchecked")
 		List<TdataCenter> biaogeList = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("biaogeList", biaogeList);

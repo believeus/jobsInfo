@@ -448,7 +448,7 @@
 										[#if sessionUser?exists]
 											${tcomUser.phoneNum}
 										[#else]
-											<a href="/">登录后可以查看联系方式</a>
+											<a style="color:red;" href="/">登录后可以查看联系方式</a>
 										[/#if]
 									</td>
 								</tr>

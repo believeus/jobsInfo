@@ -32,7 +32,7 @@ public class ControllerMonthSupplyList extends ControllerCRUD{
 	public String newsListView(HttpServletRequest request) {
 		List<?> dataCenters = super.listDataInfo(request,EtechGobal.monthSupplyList);
 		request.setAttribute("dataCenters",dataCenters);
-		return "admin/dataChannel/list";
+		return "admin/rankList/list";
 	}
 	
 	/**
@@ -55,7 +55,7 @@ public class ControllerMonthSupplyList extends ControllerCRUD{
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
 		request.setAttribute("type",EtechGobal.monthSupplyList);
-		return "admin/dataChannel/add";
+		return "admin/rankList/add";
 	}
 	/**
 	 * 编辑月供给排行
@@ -68,7 +68,7 @@ public class ControllerMonthSupplyList extends ControllerCRUD{
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
 		request.setAttribute("type",EtechGobal.monthSupplyList);
-		return "admin/dataChannel/edit";
+		return "admin/rankList/edit";
 	}
 	
 	/**

@@ -26,11 +26,11 @@ public class ControllerCountryLawList {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/countryLawList", method = RequestMethod.GET)
 	public String policyAdviceView(HttpServletRequest request) {
-		String hql="From TdataCenter as dataCenter where dataCenter.type='"+EtechGobal.countryLaw+"' order by dataCenter.editTime";
+		String hql="From TdataCenter as dataCenter where dataCenter.type='"+EtechGobal.countryLaw+"' order by dataCenter.id desc";
 		List<TdataCenter> dataCenterList = (List<TdataCenter>)etechService.findListByHQL(hql, 20);
 		request.setAttribute("dataCenterList", dataCenterList);
 		
-		hql="From TdataCenter dataCenter where dataCenter.type='5'";
+		hql="From TdataCenter dataCenter where dataCenter.type='5' order by dataCenter.id desc";
 		List<TdataCenter> spceilas = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
 		request.setAttribute("spceilas", spceilas);
 		

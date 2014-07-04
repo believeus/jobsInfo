@@ -99,7 +99,7 @@ $().ready(function() {
 							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
 							<input type="hidden" id="filename0" name="filename0">
 						</span>
-						<label style="color:#0000FF;position:relative;top:100px;left:10px;">(建议尺寸：大图:w548px*h85px,小图:w165px*h85)</label>
+						<label style="color:#0000FF;position:relative;top:100px;left:10px;">(建议尺寸：大图:宽548px*高85px,小图:宽165px*高85px)</label>
 					</div>
 					<style type="text/css">
 						.brandImg span{
@@ -145,7 +145,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>外链接:
 				</th>
 				<td>
-					<input type="text" name="alink" class="text" maxlength="200" />
+					<input type="text" name="alink" class="text" maxlength="200" value="http://"/>
 				</td>
 			</tr>
 			<tr>

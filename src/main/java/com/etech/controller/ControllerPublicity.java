@@ -31,7 +31,7 @@ public class ControllerPublicity {
 	@SuppressWarnings({ "unchecked" })
 	@RequestMapping(value = "/publicityList", method = RequestMethod.GET)
 	public String publictityList(HttpSession session) {
-		String hql="From TdataCenter dataCenter where dataCenter.type='2'";
+		String hql="From TdataCenter dataCenter where dataCenter.type='2' order by id desc";
 		List<TdataCenter> notices = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
 		session.setAttribute("notices", notices);
 		return "infoCenter/publicityList";

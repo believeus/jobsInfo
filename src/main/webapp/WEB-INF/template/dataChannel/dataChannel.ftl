@@ -70,7 +70,7 @@ a:link{
            		[#list notices as notice]
            		[#if notice_index <8]
 					<li>
-						<a href="/publicityInfo.jhtml?id=${notice.id}">
+						<a href="/publicityInfo.jhtml?id=${notice.id}" title="${notice.title}">
 						[#if notice.title?length > 8]
 							${notice.title?string?substring(0,8)}...
 						[#else]
@@ -113,10 +113,20 @@ a:link{
                     <div class="gg">
                       <ul style="font-size:13px; letter-spacing:0px;">
                       [#list analysisreport as aReport]
+                      [#if aReport_index < 9 ]
                         <li>
-                          <div style="width:375px; display:inline-block;"><a href="/report.jhtml?id=${aReport.id}">${aReport.title}</a></div>
-                          <span>${aReport.editTime?number_to_datetime}</span>
+                          	<div style="width:375px; display:inline-block;">
+	                          	<a href="/report.jhtml?id=${aReport.id}" title="${aReport.title}">
+	                          		[#if aReport.title?length > 25 ]
+		                          		${aReport.title?string?substring(0,25)}...
+	                          		[#else]
+		                          		${aReport.title}
+	                          		[/#if] 
+	                      		</a>
+                  			</div>
+                          	<span>${aReport.editTime?number_to_datetime}</span>
                         </li>
+                        [/#if]
                       [/#list]
                       </ul>
                     </div>	
@@ -130,10 +140,20 @@ a:link{
                      <div class="gg">
                       <ul style="font-size:13px; letter-spacing:0px;">
                       [#list wagePriceGuide as wagePriceGuide]
+                      [#if wagePriceGuide_index < 9 ]
                         <li>
-                          <div style="width:375px; display:inline-block;"><a href="/guidance.jhtml?id=${wagePriceGuide.id}">${wagePriceGuide.title}</a></div>
+                          	<div style="width:375px; display:inline-block;">
+	                          	<a href="/guidance.jhtml?id=${wagePriceGuide.id}" title="${wagePriceGuide.title}">
+	                          		[#if wagePriceGuide.title?length > 25 ]
+		                          		${wagePriceGuide.title?string?substring(0,25)}...
+	                          		[#else]
+		                          		${wagePriceGuide.title}
+	                          		[/#if] 
+	                      		</a>
+                  			</div>
                           <span>${wagePriceGuide.editTime?number_to_datetime}</span>
                         </li>
+                      [/#if]
                       [/#list]
                       </ul>
                     </div>   

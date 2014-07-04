@@ -32,6 +32,7 @@ public class ControllerSlide extends ControllerCRUD{
 	public String newsListView(HttpServletRequest request) {
 		List<?> dataCenters = super.listDataInfo(request,EtechGobal.slide);
 		request.setAttribute("dataCenters",dataCenters);
+		request.setAttribute("size",dataCenters.size());
 		return "admin/slide/list";
 	}
 	

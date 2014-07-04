@@ -194,6 +194,16 @@
 		#loginForm tr {
 		    line-height: 35px;
 		}
+		.jiuye_1_list{
+		    float: left;
+		    height: 80px;
+		    margin-bottom: 15px;
+		    margin-right: 6px;
+		    width: 100px;
+		}
+		.jiuye_1_list img {
+		    border-radius: 5px;
+		}
     </style>
     <style type="text/css">
 		#banner {position:relative; width:314px; height:286px; overflow:hidden;}
@@ -361,8 +371,8 @@
 							</a>
 						</h2>
 						<div style="color:#2B8BDF;margin:10px 0;font-size:13px;height:20px;">
-							[#if new.content?length > 25]
-								${new.content?string?substring(0,25)}...
+							[#if new.content?length > 35]
+								${new.content?string?substring(0,35)}...
 							[#else]
 								${new.content}
 							[/#if]
@@ -400,7 +410,7 @@
 			<div class="biaoti">
 				[#list slide as slide]
 					[#if slide_index<2]
-					<a href="${slide.alink}" title="${slide.title}">
+					<a href="${slide.alink}" title="${slide.title}" target="_blank">
 						<img src="${slide.imgpath}" [#if slide_index=0] style="width: 543px;height:85px;"[#elseif slide_index=1]style="width: 165px;height:85px;"[/#if]>
 					</a>
 					[/#if]
@@ -438,7 +448,17 @@
 									[#list countryLawDataList as countryLawData]
 										[#if countryLawData_index <6]
 											<li  class="xinxi_1_li">
-												<a href="/countryLaw.jhtml?id=${countryLawData.id}">
+												<a 
+													[#if countryLawData.type == 10]
+														href="/countryLaw.jhtml?id=${countryLawData.id}"
+													[#elseif countryLawData.type == 11]
+														href="/countryFile.jhtml?id=${countryLawData.id}"
+													[#elseif countryLawData.type == 12]
+														href="/cityLaw.jhtml?id=${countryLawData.id}"
+													[#elseif countryLawData.type == 13]
+														href="/cityFile.jhtml?id=${countryLawData.id}"
+													[/#if]
+												>
 													[#if countryLawData.title?length > 15]
 														${countryLawData.title?string?substring(0,15)}...
 													[#else]
@@ -459,22 +479,21 @@
 								<p class="xinxi_1_p"><span style="margin-left:30px;float:none;">求职信息</span></p>
 								<ul style="padding-left:25px;">
 									[#list qiuzhiList as qiuzhi]
-									[#if qiuzhi_index <6]
-										<li class="xinxi_1_li">
-											<a href="/personalResume.jhtml?id=${qiuzhi.id}">${qiuzhi.trueName}&nbsp;&nbsp;[#if qiuzhi.sex == 'man']男[#elseif qiuzhi.sex == 'woman']女[#else]不限[/#if]&nbsp;&nbsp;${qiuzhi.eduLevel}&nbsp;&nbsp;
-												[#list qiuzhi.comInfo as comInfo]
-													[#if comInfo_index=0]
+										[#list qiuzhi.comInfo as comInfo]
+											[#if comInfo_index<6 && comInfo.infoType == 4]
+												<li class="xinxi_1_li">
+													<a href="/personalResume.jhtml?id=${comInfo.comUser.id}" title="${comInfo.workType.name}">
+														${qiuzhi.trueName}&nbsp;&nbsp;[#if qiuzhi.sex == 'man']男[#elseif qiuzhi.sex == 'woman']女[#else]不限[/#if]&nbsp;&nbsp;${qiuzhi.eduLevel}&nbsp;&nbsp;
 														[#if comInfo.workType.name?length > 9]
 															${comInfo.workType.name?string?substring(0,8)}...
 														[#else]
 															${comInfo.workType.name}
 														[/#if]
-													[/#if]
-												[/#list]
-											</a>
-											<span class="xinxi_1_span">${qiuzhi.createDate?number_to_datetime}</span>
-										</li>
-									[/#if]
+													</a>
+													<span class="xinxi_1_span">${qiuzhi.createDate?number_to_datetime}</span>
+												</li>
+											[/#if]
+										[/#list]
 									[/#list]
 								</ul>
 							</div>
@@ -592,20 +611,15 @@
 					就业业务办理
 				</p>
 				<div class="jiuye_1">
-					<table>
-						<tr>
-							<td><div style=""></div></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-						</tr>
-					</table>
+					[#list busHandles as busHandle]
+					[#if busHandle_index < 6]
+					<div class="jiuye_1_list" [#if (busHandle_index+1)%2 ==0] style="margin-right:0px;margin-left:10px;"[/#if]>
+						<a href="${busHandle.alink}" title="${busHandle.title}" target="_blank">
+							<img src="${busHandle.imgpath}" width="101" height="82">
+						</a>
+					</div>
+					[/#if]
+					[/#list]
 				</div>	
 			</div>
 		</div>
@@ -761,7 +775,7 @@
 			<div style="width: 850px; float: right; margin-right: 25px;margin-top:11px;">
 				[#list links as links]
 					<span class="yqlj">
-						<a class="yqlj_a" href="http://${links.alink}" title="${links.title}" target="_blank">${links.title}</a>
+						<a class="yqlj_a" href="${links.alink}" title="${links.title}" target="_blank">${links.title}</a>
 					</span>
 				[/#list]
 			</div>

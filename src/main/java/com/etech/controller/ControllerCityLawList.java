@@ -27,7 +27,7 @@ public class ControllerCityLawList {
 	@RequestMapping(value = "/cityLawList", method = RequestMethod.GET)
 	public String policyAdviceView(HttpServletRequest request) {
 		log.debug("current controller is policyAdviceView !");
-		String hql="from TdataCenter as dataCenter where dataCenter.type='"+EtechGobal.cityLaw+"' order by dataCenter.editTime desc";
+		String hql="from TdataCenter as dataCenter where dataCenter.type='"+EtechGobal.cityLaw+"' order by dataCenter.editTime,dataCenter.id desc";
 		List<TdataCenter>  dataCenterList=(List<TdataCenter>) etechService.findListByHQL(hql, 15);
 		request.setAttribute("dataCenterList", dataCenterList);
 		

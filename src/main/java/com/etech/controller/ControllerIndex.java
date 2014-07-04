@@ -60,7 +60,7 @@ public class ControllerIndex {
 		session.setAttribute("notices",notices ); 
 		
 		//国家法律法规
-		hql="From TdataCenter dataCenter where dataCenter.type='10' order by id desc";
+		hql="From TdataCenter dataCenter where dataCenter.type='10' or dataCenter.type='11' or dataCenter.type='12' or dataCenter.type='13' order by editTime desc";
 		List<TdataCenter> countryLawDataList = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("countryLawDataList",countryLawDataList ); 
 		
@@ -94,6 +94,11 @@ public class ControllerIndex {
 		List<TdataCenter> imgs = (List<TdataCenter>)etechService.findListByHQL(hql);
 		session.setAttribute("imgs", imgs); 
 		
+		//业务办理
+		hql = "From TdataCenter tdataCenter where tdataCenter.type='21' order by id desc";
+		List<TdataCenter> busHandles = (List<TdataCenter>)etechService.findListByHQL(hql);
+		session.setAttribute("busHandles", busHandles); 
+		
 		//置顶内容 ：新闻动态、工作动态、图片新闻、视频新闻
 		hql="From TdataCenter dataCenter where dataCenter.top='1' order by id desc";
 		List<TdataCenter> dataCenters = (List<TdataCenter>)etechService.findListByHQL(hql);
@@ -103,9 +108,9 @@ public class ControllerIndex {
 			try {
 				TdataCenter dataCenter=(TdataCenter) tdataCenter.clone();
 				if(!StringUtils.isEmpty(dataCenter.getContent())){
-					log.debug(dataCenter.getContent());
+					//log.debug(dataCenter.getContent());
 					dataCenter.setContent(dataCenter.getContent().replaceAll("<[^>]+>", ""));
-					log.debug(dataCenter.getContent());
+					//log.debug(dataCenter.getContent());
 					dataCenterList.add(dataCenter);
 				}
 			} catch (CloneNotSupportedException e) {

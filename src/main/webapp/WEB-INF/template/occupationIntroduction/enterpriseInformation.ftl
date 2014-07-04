@@ -415,10 +415,10 @@
 									<td rowspan="2" colspan="2">
 										[#if Maps?size>0]
 											[#list Maps as map]
-												<img width="260px" height="30px" src="/${map.url}" name="url" id="${map.id}"/>
+												<img width="195" height="33" src="/${map.url}" name="url" id="${map.id}"/>
 											[/#list]
 										[#else]
-											<img src="/resource/public/images/zt_topImg.png" width="260px" height="30px"/>
+											<img src="/resource/public/images/zt_topImg.png" width="195" height="33"/>
 											<span style="color:#000000;font-size:12px;">默认企业电子图</span>
 										[/#if]
 									</td>
@@ -463,7 +463,7 @@
 										[#if "${sessionUser?exists}"]
 											${entUser.zip}
 										[#else]
-											<a href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
+											<a style="color:red;" href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
 										[/#if]
 									</td>
 									<td>手机:</td>
@@ -471,7 +471,7 @@
 										[#if "${sessionUser?exists}"]
 											${entUser.phoneFax}
 										[#else]
-											<a href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
+											<a style="color:red;" href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
 										[/#if]
 									</td>
 								</tr>
@@ -481,7 +481,7 @@
 										[#if "${sessionUser?exists}"]
 											${entUser.phoneFax}
 										[#else]
-											<a href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
+											<a style="color:red;" href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
 										[/#if]
 									</td>
 									<td>网址:</td>
@@ -585,7 +585,7 @@
 							[#if trecruitList?exists && trecruitList?size > 0]
 								[#list trecruitList as trecruit]
 								<tr>
-									<td><a href="/enterpriseInformation.jhtml?id=${trecruit.entUser.id}#zw" target="_blank" title="${trecruit.workType.name}">${trecruit.workType.name}</a></td>
+									<td><a href="/enterpriseInformation.jhtml?id=${trecruit.id}#zw" target="_blank" title="${trecruit.workType.name}">${trecruit.workType.name}</a></td>
 									<td>${trecruit.worknum}人</td>
 									<td>${trecruit.workspace}</td>
 									<td>${trecruit.eduLevel}</td>
@@ -667,7 +667,7 @@
 								[#if "${sessionUser?exists}"]
 									${trecruit.entUser.phoneFax}
 								[#else]
-									<a href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
+									<a style="color:red;" href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
 								[/#if]
 							</p>
 							<h4>公司地点：</h4>
@@ -675,7 +675,7 @@
 								[#if "${sessionUser?exists}"]
 									${trecruit.entUser.detailAddress}
 								[#else]
-									<a href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
+									<a style="color:red;" href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
 								[/#if]
 							</p>
 						</div>

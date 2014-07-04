@@ -44,7 +44,7 @@ public class ControllerPolicyAdvice {
 		return "policyAdvice/policyAdvice";
 	}
 	private List<TdataCenter> findListByHQL(String type){
-		String hql="From TdataCenter as dataCenter where type='"+type+"' order by dataCenter.top,dataCenter.editTime desc";
+		String hql="From TdataCenter as dataCenter where type='"+type+"' order by dataCenter.top,dataCenter.id,dataCenter.editTime desc";
 		log.debug(hql);
 		@SuppressWarnings("unchecked")
 		List<TdataCenter> dataCenterList = (List<TdataCenter>)etechService.findListByHQL(hql, 6);

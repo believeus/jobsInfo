@@ -597,30 +597,29 @@
 			<img src="/resource/public/images/zuixinjianli.png">
 			<div class="jianli">
 				[#list qiuzhiList as qiuzhi]
-					<div class="jianli_list">
-						<span class="jianli_name">
-							<a style="color:#FF7800;" href="/personalResume.jhtml?id=${qiuzhi.id}">[#if qiuzhi.trueName?exists] ${qiuzhi.trueName} [#else] 匿名 [/#if]</a>
-						</span>
-						<span class="jianli_xinxi">
-							&nbsp;&nbsp;[#if qiuzhi.sex == 'man']男[#else]女[/#if]
-							&nbsp;&nbsp;
-							[#if qiuzhi.eduLevel?exists]
-								${qiuzhi.eduLevel}
-							[#else]
-								大学
-							[/#if]
-							&nbsp;&nbsp;
-							[#if qiuzhi.comInfo?size != 0]
-								[#list qiuzhi.comInfo as comInfo]
-									[#if comInfo_index =0]
-										${comInfo.workType.name} ...
-									[/#if]
-								[/#list]
-							[#else]
-								中学教师，小学教师
-							[/#if]
-						</span>
-					</div>
+					[#list qiuzhi.comInfo as comInfo]
+						[#if comInfo.infoType == 4]
+						<div class="jianli_list">
+							<span class="jianli_name">
+								<a style="color:#FF7800;" href="/personalResume.jhtml?id=${qiuzhi.id}">
+									[#if qiuzhi.trueName?exists] ${qiuzhi.trueName} [#else] 匿名 [/#if]
+								</a>
+							</span>
+							<span class="jianli_xinxi">
+								&nbsp;&nbsp;
+								[#if qiuzhi.sex == 'man']男[#else]女[/#if]
+								&nbsp;&nbsp;
+								[#if qiuzhi.eduLevel?exists]${qiuzhi.eduLevel}[#else]大学[/#if]
+								&nbsp;&nbsp;
+								[#if comInfo.workType.name?length > 9]
+									${comInfo.workType.name?string?substring(0,8)}...
+								[#else]
+									${comInfo.workType.name}
+								[/#if]
+							</span>
+						</div>
+						[/#if]
+					[/#list]
 				[/#list]
 			</div>
 		</div>
