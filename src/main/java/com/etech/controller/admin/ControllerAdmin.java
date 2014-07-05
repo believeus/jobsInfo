@@ -112,6 +112,7 @@ public class ControllerAdmin{
 	 * 更新
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@RequiresPermissions("admin:modify")
 	public String update(Tadmin editAdmin,int roleId) {
 		log.debug("roleId:"+roleId);
 		log.debug("loginName:"+editAdmin.getLoginName());
@@ -140,7 +141,6 @@ public class ControllerAdmin{
 	 * 列表
 	 */
 	@SuppressWarnings("unchecked")
-	@RequiresPermissions("adminList:view")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(HttpServletRequest request) {
 		String hql="FROM Tadmin admin where admin.disable=0 order by admin.editDate desc";

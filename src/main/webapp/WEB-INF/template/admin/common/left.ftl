@@ -256,19 +256,17 @@ $(function(){
   			</div>
   			<div style="height:auto;width:180px;">
 	   		<p style="height:17px;background: #3f97c9;font-size: 16px;margin: 0;padding: 8px;text-align: center;font-size:19px;color:#ffffff;">系统管理</p>
+  			[@shiro.hasPermission name="systemSetting:view"]
   			<h1>系统设置</h1>
-   			 <ul style="display: none;" class="MM">
-   			 	[@shiro.hasPermission name="adminList:view"]
-					<li>
-						<a target="main" href="/admin/list.jhtml">管理员管理</a>
-					</li>
-				[/@shiro.hasPermission]
-				[@shiro.hasPermission name="admin:group"]
-					<li>
-						<a target="main" href="/admin/power/list.jhtml">权限分组</a>
-					</li>
-				[/@shiro.hasPermission]
-   			 </ul>
+   			<ul style="display: none;" class="MM">
+			  <li>
+				<a target="main" href="/admin/list.jhtml">管理员管理</a>
+			  </li>
+			  <li>
+				<a target="main" href="/admin/power/list.jhtml">权限分组</a>
+			  </li>
+   			</ul>
+   			[/@shiro.hasPermission]
 			</div>
 		</div>
     </td>

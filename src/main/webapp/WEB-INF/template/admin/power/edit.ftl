@@ -455,8 +455,8 @@ $().ready(function() {
 					</p>
 				</td>
 				<td>
-					<p>管理员列表<input type="checkbox" name="authority" id="views" value="admin:view">查看
-					<input type="checkbox" id="selectAllOne" value="admin"/>全选
+					<p>系统设置<input type="checkbox" name="authority" id="views" value="systemSetting:view">查看
+					<input type="checkbox" id="selectAllOne" value="systemSetting"/>全选
 					</p>
 				</td>
 			</tr>
@@ -601,32 +601,24 @@ $().ready(function() {
 					</table>
 				</td>
 				<td style="vertical-align:top;">
-					<table id="admin">
+					<table id="systemSetting">
 						<tr>
 							<td>
-								<p>管理员列表</p>
-								<p>
-									<input type="checkbox" name="authority" value="adminList:modify">修改
-									<input type="checkbox" name="authority" value="adminList:delete">删除
-								</p>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<p>角色</p>
-								<p>
-									<input type="checkbox" name="authority" value="admin:group">创建
-									<input type="checkbox" name="authority" value="admin:groupDelete">删除
-								</p>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<p>管理员</p>
+								<p>管理员管理</p>
 								<p>
 									<input type="checkbox" name="authority" value="admin:create">添加
 									<input type="checkbox" name="authority" value="admin:modify">修改
 									<input type="checkbox" name="authority" value="admin:delete">删除
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>角色管理</p>
+								<p>
+									<input type="checkbox" name="authority" value="role:create">添加
+								    <input type="checkbox" name="authority" value="role:modify">修改
+									<input type="checkbox" name="authority" value="role:delete">删除
 								</p>
 							</td>
 						</tr>

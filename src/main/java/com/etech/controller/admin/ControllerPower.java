@@ -45,7 +45,6 @@ public class ControllerPower {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	@RequiresPermissions("admin:group")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
 		String hql="FROM Trole role where role.disable=0 order by role.editDate desc";
@@ -74,6 +73,7 @@ public class ControllerPower {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	@RequiresPermissions("role:create")
 	public String addNewsView() {
 		log.debug("current controller is newsListView !");
 		return "admin/power/add";
@@ -83,6 +83,7 @@ public class ControllerPower {
 	 * @return
 	 */
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	@RequiresPermissions("role:modify")
 	public String editNewsView(int id,HttpServletRequest request) {
 		request.setAttribute("roleId", id);
 		Trole role=(Trole)etechService.findObjectById(Trole.class, id);
@@ -135,7 +136,7 @@ public class ControllerPower {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@RequiresPermissions("admin:groupDelete")
+	@RequiresPermissions("role:delete")
 	@RequestMapping("/delete")
 	public void delete(Long[] ids,HttpServletResponse response){
 		String roleIds = Arrays.toString(ids).replace("[","(").replace("]", ")");
