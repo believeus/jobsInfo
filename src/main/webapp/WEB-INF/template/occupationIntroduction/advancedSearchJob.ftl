@@ -353,8 +353,8 @@
 							<td style="padding-right: 20px;">${notices.editTime?number_to_datetime}</td>
 							<td style="padding-right: 40px;">
 								<a href="/publicityInfo.jhtml?id=${notices.id}" title="${notices.title}">
-									[#if notices.title?length > 15]
-										${notices.title?string?substring(0,15)}...
+									[#if notices.title?length > 6]
+										${notices.title?string?substring(0,6)}...
 									[#else]
 										${notices.title}
 									[/#if]
@@ -434,7 +434,7 @@
 							</div>
 						</td>
 						<td>
-							<input type="text" name="expectArea" id="start1" value="选择城市" autocomplete="off" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" style="width:auto;min-width:150px;">
+							<input type="text" name="expectArea" id="start1" value="选择城市" autocomplete="off" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" style="width:auto;min-width:150px;" readonly="readonly">
 							<!--/////地区插件///////////////////////////////////////////////////////////////////-->
 								<div class="provinceCityAll">
 								  <div class="tabs clearfix">

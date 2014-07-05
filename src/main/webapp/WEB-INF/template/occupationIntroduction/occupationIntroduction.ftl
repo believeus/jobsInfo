@@ -5,11 +5,11 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="/resource/public/selectArea/css/css.css" type="text/css" rel="stylesheet">
     <link href="/resource/public/selectArea/css/cityLayout.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/resource/public/areaSelect/css.css" />
     <script type="text/javascript" src="/resource/public/js/jquery.js"></script>
-	 <script type="text/javascript" src="/resource/public/resources/scripts/jquery.validate.js"></script>
-	 <script type="text/javascript" src="/resource/public/js/Etech.js"></script>
+	<script type="text/javascript" src="/resource/public/resources/scripts/jquery.validate.js"></script>
+	<script type="text/javascript" src="/resource/public/js/Etech.js"></script>
     <style type="text/css">
     	.j_main{
     		width:1000px;
@@ -424,9 +424,9 @@
 						<input id="stype" type="hidden" name="type" value="">
 						<div style="width: 380px; margin-left: auto; margin-right: auto; margin-top: 20px;">
 							<input type="text" value="" placeholder="请输入查询内容..." style="width: 360px;margin-bottom:15px;">
-							<input type="text" name="expectArea" id="start1" placeholder="选择城市" autocomplete="off" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" style="width:151px;">
-							<input type="submit" value="搜索" style="cursor:pointer;border-radius:4px;width:100px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
-							<input type="button" value="高级搜索" onclick="javascript:window.location.href='/jobAdvancedSearch.jhtml'" style="cursor:pointer;border-radius:4px;width:100px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
+							<input type="text" name="expectArea" id="start1" placeholder="选择城市" autocomplete="off" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" style="width:151px;" readonly="readonly">
+							<input type="submit" value="搜索" style="cursor:pointer;border-radius:4px;width:85px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
+							<input type="button" value="高级搜索" onclick="javascript:window.location.href='/jobAdvancedSearch.jhtml'" style="cursor:pointer;border-radius:4px;width:90px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
 							<p>搜索热词：
 								<span><a href="/advanceSearchByContision.jhtml?keyword='软件工程师'&type='position'">软件工程师</a></span>
 								<span><a href="/advanceSearchByContision.jhtml?keyword='建筑工程师'&type='position'">建筑工程师</a></span>
@@ -438,7 +438,7 @@
 				</div>
 				<!--/////地区插件///////////////////////////////////////////////////////////////////-->
 					<div class="provinceCityAll">
-					  <div class="tabs clearfix">
+					  <div class="tabs clearfix" style="overflow:hidden;">
 					    <ul class="">
 					      <li><a href="javascript:" class="current" tb="hotCityAll">热门城市</a></li>
 					      <li><a href="javascript:" tb="provinceAll">省份</a></li>
@@ -535,12 +535,10 @@
 			<div style="width:994px;height:37px; background:url(/resource/public/images/intro.png);border: 1px solid #e4e4e4;">
 				<span style="color: #817f80;font-size: 19px;font-weight: bold;line-height: 38px;margin-left: 10px;">名企招聘</span>
 			</div>
-			[#list headImgs as headImg]
-				[#list headImg.entUser.recruit as recruit]
-				<a href="/enterpriseInformation.jhtml?id=${recruit.id}" title="${headImg.entUser.fullName}">
-					<img src="${headImg.url}" width="195" height="33">
+			[#list enterpriseHeaderImgs as headImg]
+				<a href="${headImg.alink}" title="${headImg.title}">
+					<img src="${headImg.imgpath}" width="195" height="33">
 				</a>
-				[/#list]
 			[/#list]
 		</div>
 		<div class="j_main_6">

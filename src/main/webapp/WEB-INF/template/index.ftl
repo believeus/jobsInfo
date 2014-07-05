@@ -624,7 +624,6 @@
 			</div>
 		</div>
 		<div class="zhuanti">
-			<div>
 				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 808px;"><hr style="border:1px dashed #e4e4e4;"></div>
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml">更多>></a></div>
@@ -649,98 +648,56 @@
 				
 				-->
 				<style type="text/css">
-					.box{ width:980px;position:relative; overflow:hidden; height:100%;right:0;top:0;}
-					.picbox{ width:980px; height:70px; overflow:hidden; position:relative;}
-					.picbox li{list-style:none;}
-					.piclist{ height:70px;position:absolute; left:0px; top:0px;padding:0;margin:0;}
-					.piclist li{ background:#eee; margin-right:20px; padding:5px; float:left;}
-					.swaplist{ position:absolute; left:-3000px; top:0px}
-					.og_prev{ width:22px; height:50px; background:url(/resource/public/images/right.jpg); position:absolute; top:10px;left:960px; z-index:99; cursor:pointer;filter:alpha(opacity=70); opacity:0.7;}
-					.og_next{ width:22px; height:50px; background:url(/resource/public/images/left.jpg); position:absolute; top:10px;left:5px; z-index:99; cursor:pointer;filter:alpha(opacity=70); opacity:0.7;}
+					#demo {
+						background: #FFF;
+						overflow:hidden;
+						border: 1px dashed #CCC;
+						width: 980px;
+						margin-left:8px;
+					}
+					#demo img {
+						border: 3px solid #F2F2F2;
+					}
+					#indemo {
+						float: left;
+						width: 800%;
+					}
+					#demo1 {
+						float: left;
+					}
+					#demo2 {
+						float: left;
+					}
 				</style>
-				<script type="text/javascript">
-					$(document).ready(function(e) {
-						/***不需要自动滚动，去掉即可***/
-						time = window.setInterval(function(){
-							$('.og_prev').click();
-						},5000);
-						/***不需要自动滚动，去掉即可***/
-						linum = $('.mainlist li').length;//图片数量
-						w = linum * 250;//ul宽度
-						$('.piclist').css('width', w + 'px');//ul宽度
-						$('.swaplist').html($('.mainlist').html());//复制内容
-						$('.og_next').click(function(){
-							if($('.swaplist,.mainlist').is(':animated')){
-								$('.swaplist,.mainlist').stop(true,true);
-							}
-							if($('.mainlist li').length>4){//多于4张图片
-								ml = parseInt($('.mainlist').css('left'));//默认图片ul位置
-								sl = parseInt($('.swaplist').css('left'));//交换图片ul位置
-								if(ml<=0 && ml>w*-1){//默认图片显示时
-									$('.swaplist').css({left: '1000px'});//交换图片放在显示区域右侧
-									$('.mainlist').animate({left: ml - 1000 + 'px'},'slow');//默认图片滚动
-									if(ml==(w-1000)*-1){//默认图片最后一屏时
-										$('.swaplist').animate({left: '0px'},'slow');//交换图片滚动
-									}
-								}else{//交换图片显示时
-									$('.mainlist').css({left: '1000px'})//默认图片放在显示区域右
-									$('.swaplist').animate({left: sl - 1000 + 'px'},'slow');//交换图片滚动
-									if(sl==(w-1000)*-1){//交换图片最后一屏时
-										$('.mainlist').animate({left: '0px'},'slow');//默认图片滚动
-									}
-								}
-							}
-						})
-						$('.og_prev').click(function(){
-					
-							if($('.swaplist,.mainlist').is(':animated')){
-								$('.swaplist,.mainlist').stop(true,true);
-							}
-							if($('.mainlist li').length>4){
-								ml = parseInt($('.mainlist').css('left'));
-								sl = parseInt($('.swaplist').css('left'));
-								if(ml<=0 && ml>w*-1){
-									$('.swaplist').css({left: w * -1 + 'px'});
-									$('.mainlist').animate({left: ml + 1000 + 'px'},'slow');
-									if(ml==0){
-										$('.swaplist').animate({left: (w - 1000) * -1 + 'px'},'slow');
-									}
-								}else{
-									$('.mainlist').css({left: (w - 1000) * -1 + 'px'});
-									$('.swaplist').animate({left: sl + 1000 + 'px'},'slow');
-									if(sl==0){
-										$('.mainlist').animate({left: '0px'},'slow');
-									}
-								}
-							}
-						})
-					});
-					$(document).ready(function(){
-						$('.og_prev,.og_next').hover(function(){
-								$(this).fadeTo('fast',1);
-							},function(){
-								$(this).fadeTo('fast',0.7);
-						})
-					})
-					</script>
-				<div class="box" id="box">
-					<div class="picbox">
-						<ul class="piclist mainlist">
+				<div id="demo">
+					<div id="indemo">
+						<div id="demo1">
 							[#list subjectReport as sReport]
-								<li>
-									<a href="/special.jhtml?id=${sReport.id}">
-										<img src="${sReport.imgpath}" width="220" height="62">
-									</a>
-								</li>
+								<a href="/special.jhtml?id=${sReport.id}" title="${sReport.title}">
+									<img src="${sReport.imgpath}" border="0" width="220" height="62"/>
+								</a>
 							[/#list]
-						</ul>
-				        <ul class="piclist swaplist"></ul>
+						</div>
+						<div id="demo2"></div>
 					</div>
-					<div class="og_prev"></div>
-					<div class="og_next"></div>
 				</div>
-				
-			</div>
+				<script type="text/javascript">
+					var speed=10;
+					var tab=document.getElementById("demo");
+					var tab1=document.getElementById("demo1");
+					var tab2=document.getElementById("demo2");
+					tab2.innerHTML=tab1.innerHTML;
+					function Marquee(){
+						if(tab2.offsetWidth-tab.scrollLeft<=0)
+							tab.scrollLeft-=tab1.offsetWidth
+						else{
+							tab.scrollLeft++;
+						}
+					}
+					var MyMar=setInterval(Marquee,speed);
+					tab.onmouseover=function() {clearInterval(MyMar)};
+					tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
+				</script>
 		</div>
 		<div class="tupian">
 			<div style="width:1000px;height:38px;background:url(/resource/public/images/zhizuo-_01.png);">

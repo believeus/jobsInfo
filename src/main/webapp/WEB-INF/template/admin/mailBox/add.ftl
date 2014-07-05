@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>编辑 - Powered By e3dmall</title>
+<title>添加新闻 - Powered By e3dmall</title>
 <meta name="author" content="e3dmall Team" />
 <meta name="copyright" content="e3dmall" />
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
@@ -14,11 +14,7 @@
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
 <script type="text/javascript">
 $().ready(function() {
-	$("#province").val("${mailBox.province}");
-	$("#city").val("${mailBox.city}");
-	$("#county").val("${mailBox.county}");
-	$("#job").val("${mailBox.job}")
-	$("$sex")
+
 	var $inputForm = $("#inputForm");
 	var $type = $("#type");
 	var $contentTr = $("#contentTr");
@@ -50,7 +46,8 @@ $().ready(function() {
 			title: "required",
 			adPositionId: "required",
 			path: "required",
-			order: "digits"
+			order: "digits",
+			alink:"required"
 		}
 	});
 	
@@ -59,10 +56,9 @@ $().ready(function() {
 </head>
 <body>
 	<div class="path">
-		<a href="/admin/common/main.jhtml">首页</a> &raquo; 编辑内容
+		<a href="/admin/common/main.jhtml">首页</a> &raquo; 添加内容
 	</div>
 	<form id="inputForm" action="save.jhtml" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="id" value="${mailBox.id}">
 		<input type="hidden" name="type" value="${type}">
 		<table class="input">
 			<tr>
@@ -70,7 +66,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>局长邮箱地址:
 				</th>
 				<td>
-					<input type="text" name="title" class="text" maxlength="200" value="${mailBox.alink}"/>
+					<input type="text" name="alink" class="text" maxlength="200" />
 				</td>
 			</tr>
 			<tr>
@@ -84,6 +80,5 @@ $().ready(function() {
 			</tr>
 		</table>
 	</form>
-	
 </body>
 </html>

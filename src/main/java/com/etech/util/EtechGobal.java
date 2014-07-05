@@ -88,6 +88,9 @@ public class EtechGobal {
 	// 友情链接
 	public static final int links=24;
 	
+	// 企业电子图
+	public static final int enterpriseHeaderImg=30;
+	
 	// 置顶
 	public static final int top=1;
 	//不置顶

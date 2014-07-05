@@ -1238,7 +1238,7 @@
 								<tr>
 									<td><font color="red">*</font>所属地区:</td>
 									<td>
-										<input type="text" id="area" name="area" value="${sessionUser.area}" oldvalue="${sessionUser.area}" class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off">
+										<input type="text" id="area" name="area" value="${sessionUser.area}" oldvalue="${sessionUser.area}" class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" readonly="readonly">
 									<!--////////////////////////////////////////////////////////////////////////-->
 										<div class="provinceCityAll">
 										  <div class="tabs clearfix">
@@ -1651,7 +1651,7 @@
 								<tr>
 									<td><span style="padding:0;">*</span>工作地点:</td>
 									<td>
-										<input type="text" name="workspace"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" name="expectArea">
+										<input type="text" name="workspace"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" name="expectArea" readonly="readonly">
 									<!--////////////////////////////////////////////////////////////////////////-->
 										<div class="provinceCityAll">
 										  <div class="tabs clearfix">

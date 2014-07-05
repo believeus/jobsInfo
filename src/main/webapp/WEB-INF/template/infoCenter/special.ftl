@@ -100,7 +100,13 @@
 					专题
 				</div>
 				<div class="zt_title">
-					<a href="">${data.title}</a>
+					<a href="/special.jhtml?id=${data.id}" title="${data.title}">
+						[#if data.title?length > 20]
+							${data.title?string?substring(0,20)}...
+						[#else]
+							${data.title}
+						[/#if]
+					</a>
 				</div>
 				<div class="zt_time">
 					[${data.editTime?number_to_datetime}]

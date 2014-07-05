@@ -246,6 +246,9 @@ $(function(){
 				 <a target="main" href="/admin/enterpriseList/list.jhtml">企业列表</a>
 			  </li>
 			  <li>
+				 <a target="main" href="/admin/enterpriseHeaderImg/list.jhtml">企业电子图列表</a>
+			  </li>
+			  <li>
 				 <a target="main" href="/admin/jobSeekersList/list.jhtml">求职者列表</a>
 			  </li>
 			  <li>

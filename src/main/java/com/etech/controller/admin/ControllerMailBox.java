@@ -1,5 +1,6 @@
 package com.etech.controller.admin;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,12 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.etech.entity.TdataCenter;
 import com.etech.entity.TmailBox;
 import com.etech.service.EtechService;
 import com.etech.util.EtechGobal;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 /**
  * 局长信箱
@@ -26,12 +31,19 @@ public class ControllerMailBox extends ControllerCRUD{
 	/**
 	 * 局长信箱列表
 	 * @return
+	 * @throws UnsupportedEncodingException 
 	 */
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String newsListView(HttpServletRequest request) {
-		List<TmailBox> mailBoxList=(List<TmailBox>)etechService.getListByClass(TmailBox.class, 20);
-		request.setAttribute("mailBoxList",mailBoxList);
+	public String newsListView(HttpServletRequest request) throws UnsupportedEncodingException {
+		String pageNumber = request.getParameter("pageNumber");
+		// 如果为空，则设置为1
+		if (StringUtils.isEmpty(pageNumber)) {
+			pageNumber="1";
+		}
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
+		Page<?> page = super.pageDataInfo(request,EtechGobal.mailBox,pageable);
+		request.setAttribute("mailBoxList",page);
+		request.setAttribute("size",page.getContent().size());
 		return "/admin/mailBox/list";
 	}
 	
@@ -65,7 +77,7 @@ public class ControllerMailBox extends ControllerCRUD{
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
-		TmailBox mailBox=(TmailBox)etechService.findObjectById(TmailBox.class, id);
+		TdataCenter mailBox=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("mailBox", mailBox);
 		return "admin/mailBox/edit";
 	}

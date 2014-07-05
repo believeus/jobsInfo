@@ -97,7 +97,13 @@
 					专题
 				</div>
 				<div class="zt_title">
-					<a href="/special.jhtml?id=${spceila.id}">${spceila.title}</a>
+					<a href="/special.jhtml?id=${spceila.id}">
+						[#if spceila.title?length > 20]
+							${spceila.title?string?substring(0,20)}...
+						[#else]
+							${spceila.title}
+						[/#if]
+					</a>
 				</div>
 				<div class="zt_time">
 					[${spceila.editTime?number_to_datetime}]

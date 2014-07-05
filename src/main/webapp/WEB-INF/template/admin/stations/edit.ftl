@@ -299,7 +299,7 @@ $().ready(function() {
 				<tr>
 					<th>工作地点:</th>
 					<td>
-						<input type="text" name="workspace" value="${recruit.workspace}"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" name="expectArea">
+						<input type="text" name="workspace" value="${recruit.workspace}"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" name="expectArea" readonly="readonly">
 							<!--////////////////////////////////////////////////////////////////////////-->
 								<div class="provinceCityAll">
 								  <div class="tabs clearfix">

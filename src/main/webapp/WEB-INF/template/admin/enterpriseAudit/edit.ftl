@@ -235,7 +235,7 @@ $().ready(function() {
 					<tr>
 						<td><font color="red">*</font>所属地区:</td>
 						<td>
-							<input type="text" name="area" value="${tentUsers.area}" oldvalue="${tentUsers.area}" class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1">
+							<input type="text" name="area" value="${tentUsers.area}" oldvalue="${tentUsers.area}" class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" readonly="readonly">
 							<!--////////////////////////////////////////////////////////////////////////-->
 								<div class="provinceCityAll">
 								  <div class="tabs clearfix">
