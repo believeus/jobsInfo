@@ -191,7 +191,7 @@ public class ControllerCRUD {
 		Page<?> page = etechService.getPage(hql, pageable);
 		return page;
 	}
-		
+	
 	// 置顶
 	public boolean top(int id){
 		etechService.updata(TdataCenter.class, "id", id,"top", 1);

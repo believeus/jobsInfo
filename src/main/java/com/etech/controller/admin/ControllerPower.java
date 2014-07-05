@@ -29,6 +29,8 @@ import com.etech.entity.TbaseUser;
 import com.etech.entity.Trole;
 import com.etech.service.EtechService;
 import com.etech.util.JsonOutToBrower;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 /**
  * 权限分组
@@ -43,14 +45,29 @@ public class ControllerPower {
 	/**
 	 * 权限列表
 	 * @return
+	 * @throws UnsupportedEncodingException 
 	 */
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String newsListView(HttpServletRequest request) {
-		String hql="FROM Trole role where role.disable=0 order by role.editDate desc";
-		List<Trole> roles = (List<Trole>)etechService.findListByHQL(hql);
-		log.debug("role size:"+roles.size());
-		request.setAttribute("roles", roles);
+	public String newsListView(HttpServletRequest request) throws UnsupportedEncodingException {
+		String hql="";
+		String pageNumber = request.getParameter("pageNumber");
+		// 如果为空，则设置为1
+		if (StringUtils.isEmpty(pageNumber)) {
+			pageNumber="1";
+		}
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),2);
+		String searchValue = request.getParameter("searchValue");
+		if (!StringUtils.isEmpty(searchValue)) {
+			searchValue=URLDecoder.decode(searchValue, "utf-8");
+			log.debug("根据管理员名称查询："+searchValue);
+			hql="FROM Trole role where role.disable=0 and role.roleName like '%"+searchValue+"%' order by role.editDate desc";
+			request.setAttribute("searchValue", searchValue);
+		}else {
+			hql="FROM Trole role where role.disable=0 order by role.editDate desc";
+		}
+		//查询待审核的企业用户
+		Page<?> page = etechService.getPage(hql, pageable);
+		request.setAttribute("roles", page);
 		return "admin/power/list";
 	}
 	

@@ -1,8 +1,9 @@
 package com.etech.controller.admin;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -13,6 +14,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,6 +23,8 @@ import com.etech.entity.TmajorType;
 import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
 import com.etech.util.JsonOutToBrower;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 /**
  * 岗位审核
@@ -34,16 +38,29 @@ public class ControllerStationAudit {
 	/**
 	 * 岗位审核列表
 	 * @return
+	 * @throws UnsupportedEncodingException 
 	 */
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String newsListView(HttpServletRequest request) {
-		log.debug("current controller is newsListView !");
-		String hql = "From Trecruit trecruit where trecruit.status=0 and trecruit.entUser.disable='0' order by trecruit.editTime desc";
-		List<Trecruit> trecruits = (List<Trecruit>) etechService.findListByHQL(hql);
-		request.setAttribute("recruitList", trecruits);
-		//List<Trecruit> recruitList=(List<Trecruit>)etechService.getListByProperty(Trecruit.class, "status", 0,15);
-		//request.setAttribute("recruitList", recruitList);
+	@RequestMapping(value = "/list")
+	public String newsListView(HttpServletRequest request) throws UnsupportedEncodingException {
+		String hql="";
+		String pageNumber = request.getParameter("pageNumber");
+		// 如果为空，则设置为1
+		if (StringUtils.isEmpty(pageNumber)) {
+			pageNumber="1";
+		}
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),2);
+		String searchValue = request.getParameter("searchValue");
+		if (!StringUtils.isEmpty(searchValue)) {
+			searchValue=URLDecoder.decode(searchValue, "utf-8");
+			log.debug("根据工种名称查询："+searchValue);
+			hql="From Trecruit trecruit  where trecruit.status=0 and trecruit.entUser.disable='0' and trecruit.workType.name like '%"+searchValue+"%'  order by trecruit.editTime desc";
+			request.setAttribute("searchValue", searchValue);
+		}else {
+			hql="From Trecruit trecruit where trecruit.status=0 and trecruit.entUser.disable='0' order by trecruit.editTime desc";
+		}
+		//查询待审核的企业用户
+		Page<?> page = etechService.getPage(hql, pageable);
+		request.setAttribute("recruitList", page);
 		return "admin/stationsAudit/list";
 	}
 	

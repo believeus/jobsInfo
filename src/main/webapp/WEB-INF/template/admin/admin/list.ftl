@@ -19,7 +19,7 @@ $().ready(function() {
 </head>
 <body>
 	<div class="path">
-		<a href="/admin/common/main.jhtml">首页</a> &raquo; 管理员列表 <span>共99条记录</span>
+		<a href="/admin/common/main.jhtml">首页</a> &raquo; 管理员列表 <span>共${admins.total}条记录</span>
 	</div>
 	<form id="listForm" action="list.jhtml" method="get">
 		<div class="bar">
@@ -33,27 +33,6 @@ $().ready(function() {
 				<a href="javascript:;" id="refreshButton" class="iconButton">
 					<span class="refreshIcon">&nbsp;</span>刷新
 				</a>
-				<div class="menuWrap">
-					<a href="javascript:;" id="pageSizeSelect" class="button">
-						每页显示<span class="arrow">&nbsp;</span>
-					</a>
-					<div class="popupMenu">
-						<ul id="pageSizeOption">
-							<li>
-								<a href="javascript:;"[#if page.pageSize == 10] class="current"[/#if] val="10">10</a>
-							</li>
-							<li>
-								<a href="javascript:;"[#if page.pageSize == 20] class="current"[/#if] val="20">20</a>
-							</li>
-							<li>
-								<a href="javascript:;"[#if page.pageSize == 50] class="current"[/#if] val="50">50</a>
-							</li>
-							<li>
-								<a href="javascript:;"[#if page.pageSize == 100] class="current"[/#if] val="100">100</a>
-							</li>
-						</ul>
-					</div>
-				</div>
 			</div>
 			<div class="menuWrap">
 				<div class="search">
@@ -64,13 +43,7 @@ $().ready(function() {
 				<div class="popupMenu">
 					<ul id="searchPropertyOption">
 						<li>
-							<a href="javascript:;"[#if page.searchProperty == "username"] class="current"[/#if] val="username">用户名</a>
-						</li>
-						<li>
-							<a href="javascript:;"[#if page.searchProperty == "email"] class="current"[/#if] val="email">电子邮件</a>
-						</li>
-						<li>
-							<a href="javascript:;"[#if page.searchProperty == "name"] class="current"[/#if] val="name">姓名</a>
+							<a href="javascript:;" class="current" val="username">管理员登录名</a>
 						</li>
 					</ul>
 				</div>
@@ -97,7 +70,7 @@ $().ready(function() {
 					<span>操作</span>
 				</th>
 			</tr>
-			[#list admins as admin]
+			[#list admins.content as admin]
 				<tr>
 					<td>
 					    [#if admin.id !=1]
@@ -122,6 +95,9 @@ $().ready(function() {
 				</tr>
 			[/#list]
 		</table>
+		[@pagination pageNumber = admins.pageNumber totalPages = admins.totalPages]
+			[#include "/include/pagination.ftl"]
+		[/@pagination]
 	</form>
 </body>
 </html>

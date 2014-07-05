@@ -2,6 +2,8 @@ package com.etech.controller.admin;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +30,8 @@ import com.etech.entity.TentImgVedio;
 import com.etech.entity.TentUser;
 import com.etech.service.EtechService;
 import com.etech.util.JsonOutToBrower;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 /**
  * 企业列表
@@ -45,15 +49,30 @@ public class ControllerEnterpriseList {
 	/**
 	 * 企业列表
 	 * @return
+	 * @throws UnsupportedEncodingException 
 	 */
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String newsListView(HttpServletRequest request) {
-		log.debug("current controller is newsListView !");
-		//查找审核列表
-		String hql="FROM TentUser user where user.status=1 and user.disable=0 order by user.editDate desc";
-		List<TentUser> userList=(List<TentUser>) etechService.findListByHQL(hql);
-		request.setAttribute("enterpriseTentUsers",userList);
+	@RequestMapping(value = "/list")
+	public String newsListView(HttpServletRequest request) throws UnsupportedEncodingException {
+		//查询已审核的企业用户
+		String hql="";
+		String pageNumber = request.getParameter("pageNumber");
+		// 如果为空，则设置为1
+		if (StringUtils.isEmpty(pageNumber)) {
+			pageNumber="1";
+		}
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),2);
+		String searchValue = request.getParameter("searchValue");
+		if (!StringUtils.isEmpty(searchValue)) {
+			searchValue=URLDecoder.decode(searchValue, "utf-8");
+			log.debug("根据公司名称查询："+searchValue);
+			hql="FROM TentUser user where user.status=1 and user.disable=0 and user.fullName like '%"+searchValue+"%' order by user.editDate desc";
+			request.setAttribute("searchValue", searchValue);
+		}else {
+			hql="FROM TentUser user where user.status=1 and user.disable=0 order by user.editDate desc";
+		}
+		
+		Page<?> page = etechService.getPage(hql, pageable);
+		request.setAttribute("enterpriseTentUsers", page);
 		return "admin/humanResources/list";
 	}
 	/**

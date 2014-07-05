@@ -1,8 +1,9 @@
 package com.etech.controller.admin;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.etech.entity.TcomUser;
 import com.etech.service.EtechService;
 import com.etech.util.JsonOutToBrower;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 /**
  * 求职者
@@ -34,13 +37,29 @@ public class ControllerJobSeekers {
 	/**
 	 * 求职者列表
 	 * @return
+	 * @throws UnsupportedEncodingException 
 	 */
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String newsListView(HttpServletRequest request) {
-		String hql="FROM TcomUser user where user.disable=0 order by user.editDate desc";
-		@SuppressWarnings("unchecked")
-		List<TcomUser> userList=(List<TcomUser>) etechService.findListByHQL(hql);
-		request.setAttribute("userList", userList);
+	@RequestMapping(value = "/list")
+	public String newsListView(HttpServletRequest request) throws UnsupportedEncodingException {
+		String hql="";
+		String pageNumber = request.getParameter("pageNumber");
+		// 如果为空，则设置为1
+		if (StringUtils.isEmpty(pageNumber)) {
+			pageNumber="1";
+		}
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),2);
+		String searchValue = request.getParameter("searchValue");
+		if (!StringUtils.isEmpty(searchValue)) {
+			searchValue=URLDecoder.decode(searchValue, "utf-8");
+			log.debug("根据求职者名称查询："+searchValue);
+			 hql="FROM TcomUser user where user.disable=0 and user.loginName like '%"+searchValue+"%' order by user.editDate desc";
+			request.setAttribute("searchValue", searchValue);
+		}else {
+			 hql="FROM TcomUser user where user.disable=0 order by user.editDate desc";
+		}
+		//查询待审核的企业用户
+		Page<?> page = etechService.getPage(hql, pageable);
+		request.setAttribute("userList", page);
 		return "admin/JobSeekers/list";
 	}
 	

@@ -18,7 +18,7 @@ $().ready(function() {
 </head>
 <body>
 	<div class="path">
-		<a href="/admin/common/main.jhtml">首页</a> &raquo; 权限列表 <span>共99条记录</span>
+		<a href="/admin/common/main.jhtml">首页</a> &raquo; 权限列表 <span>共${roles.total}条记录</span>
 	</div>
 	<form id="listForm" action="list.jhtml" method="get">
 		<div class="bar">
@@ -32,38 +32,17 @@ $().ready(function() {
 				<a href="javascript:;" id="refreshButton" class="iconButton">
 					<span class="refreshIcon">&nbsp;</span>刷新
 				</a>
-				<div class="menuWrap">
-					<a href="javascript:;" id="pageSizeSelect" class="button">
-						每页显示<span class="arrow">&nbsp;</span>
-					</a>
-					<div class="popupMenu">
-						<ul id="pageSizeOption">
-							<li>
-								<a href="javascript:;"[#if page.pageSize == 10] class="current"[/#if] val="10">10</a>
-							</li>
-							<li>
-								<a href="javascript:;"[#if page.pageSize == 20] class="current"[/#if] val="20">20</a>
-							</li>
-							<li>
-								<a href="javascript:;"[#if page.pageSize == 50] class="current"[/#if] val="50">50</a>
-							</li>
-							<li>
-								<a href="javascript:;"[#if page.pageSize == 100] class="current"[/#if] val="100">100</a>
-							</li>
-						</ul>
-					</div>
-				</div>
 			</div>
 			<div class="menuWrap">
 				<div class="search">
 					<span id="searchPropertySelect" class="arrow">&nbsp;</span>
-					<input type="text" id="searchValue" name="searchValue" value="${page.searchValue}" maxlength="200" />
+					<input type="text" id="searchValue" name="searchValue" value="${searchValue}" maxlength="200" />
 					<button type="submit">&nbsp;</button>
 				</div>
 				<div class="popupMenu">
 					<ul id="searchPropertyOption">
 						<li>
-							<a href="javascript:;"[#if page.searchProperty == "title"] class="current"[/#if] val="title">标题</a>
+							<a href="javascript:;" class="current" val="title">角色名称</a>
 						</li>
 					</ul>
 				</div>
@@ -84,7 +63,7 @@ $().ready(function() {
 					<a href="#"  class="sort">操作</a>
 				</th>
 			</tr>
-			[#list roles as role]
+			[#list roles.content as role]
 				<tr>
 				<td>
 					[#if role.id ==1]
@@ -110,10 +89,10 @@ $().ready(function() {
 				</td>
 			</tr>
 			[/#list]
-			
-			
-			
 		</table>
+		[@pagination pageNumber = roles.pageNumber totalPages = roles.totalPages]
+			[#include "/include/pagination.ftl"]
+		[/@pagination]
 	</form>
 </body>
 </html>

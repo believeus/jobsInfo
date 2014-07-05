@@ -1,5 +1,7 @@
 package com.etech.controller.admin;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -28,6 +30,8 @@ import com.etech.entity.TbaseUser;
 import com.etech.entity.Trole;
 import com.etech.service.EtechService;
 import com.etech.util.JsonOutToBrower;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 /**
  * Controller - 管理员
@@ -85,6 +89,7 @@ public class ControllerAdmin{
 		admin.setPassword(password);
 		admin.setRoles(roles);
 		admin.setCreateDate(System.currentTimeMillis());
+		admin.setEditDate(System.currentTimeMillis());
 		admin.setLastLoginData(System.currentTimeMillis());
 		etechService.merge(admin);
 		return "redirect:list.jhtml";
@@ -139,13 +144,29 @@ public class ControllerAdmin{
 
 	/**
 	 * 列表
+	 * @throws UnsupportedEncodingException 
 	 */
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(HttpServletRequest request) {
-		String hql="FROM Tadmin admin where admin.disable=0 order by admin.editDate desc";
-		List<Tadmin> admins = (List<Tadmin>)etechService.findListByHQL(hql);
-		request.setAttribute("admins", admins);
+	@RequestMapping(value = "/list")
+	public String list(HttpServletRequest request) throws UnsupportedEncodingException {
+		String hql="";
+		String pageNumber = request.getParameter("pageNumber");
+		// 如果为空，则设置为1
+		if (StringUtils.isEmpty(pageNumber)) {
+			pageNumber="1";
+		}
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),2);
+		String searchValue = request.getParameter("searchValue");
+		if (!StringUtils.isEmpty(searchValue)) {
+			searchValue=URLDecoder.decode(searchValue, "utf-8");
+			log.debug("根据管理员名称查询："+searchValue);
+			 hql="FROM Tadmin admin where admin.disable=0 and admin.loginName like '%"+searchValue+"%' order by admin.editDate desc";
+			request.setAttribute("searchValue", searchValue);
+		}else {
+			hql="FROM Tadmin admin where admin.disable=0 order by admin.editDate desc";
+		}
+		//查询待审核的企业用户
+		Page<?> page = etechService.getPage(hql, pageable);
+		request.setAttribute("admins", page);
 		return "/admin/admin/list";
 	}
 	@RequiresPermissions("admin:delete")

@@ -22,7 +22,7 @@ $().ready(function() {
 	</div>
 	<form id="listForm" action="list.jhtml" method="get">
 		<div class="bar">
-		[#if size <2]
+		[#if dataCenters.content?size <2]
 			<a href="add.jhtml" class="iconButton">
 				<span class="addIcon">&nbsp;</span>添加
 			</a>
