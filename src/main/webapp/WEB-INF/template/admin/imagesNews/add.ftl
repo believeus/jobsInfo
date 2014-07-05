@@ -24,8 +24,11 @@
 				}					
 			} else {
 				$(object).closest("div").parent().parent().remove();
+				a--;
 			}
 		}
+		var a = 1;
+		
 $().ready(function() {
 
 	var $inputForm = $("#inputForm");
@@ -53,19 +56,7 @@ $().ready(function() {
 		}
 	});
 	
-	// 表单验证
-	$inputForm.validate({
-		rules: {
-			title: "required",
-			adPositionId: "required",
-			path: "required",
-			order: "digits"
-		}
-	});
 	
-	
-	
-	var a = 1;
 	
 	$("#add_imgs").click(function(){
 		[@compress single_line = true]
