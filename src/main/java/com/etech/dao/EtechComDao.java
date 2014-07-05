@@ -325,6 +325,7 @@ public class EtechComDao extends HibernateDaoSupport {
 			TdataCenter data=null;
 			try {
 				data = (TdataCenter) dataCenter.clone();
+				data.setContent(data.getContent().replaceAll("<[^>]+>", ""));
 				highlightResult.add(data);
 			} catch (CloneNotSupportedException e) {
 				e.printStackTrace();
