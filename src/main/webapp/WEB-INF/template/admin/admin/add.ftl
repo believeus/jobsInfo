@@ -45,6 +45,7 @@ $().ready(function() {
 		rules: {
 			loginName: {
 				required:true,
+				pattern: /^[a-zA-Z0-9]+$/,
 				remote:{
 					url:"/admin/check_username.jhtml",
 					cache:false
@@ -62,6 +63,7 @@ $().ready(function() {
 		},
 		messages: {
 			loginName:{
+				pattern: "只能是字母和数字组合",
 				remote:"用户名已经存在"
 			},
 			email:{

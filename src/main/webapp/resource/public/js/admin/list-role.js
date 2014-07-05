@@ -11,7 +11,6 @@ $().ready( function() {
 	var $moreOperation = $("#moreOperation");
 	var $searchPropertySelect = $("#searchPropertySelect");
 	var $searchPropertyOption = $("#searchPropertyOption a");
-	var $searchValue = $("#searchValue");
 	//var $listTable = $("#listTable");
 	var $selectAll = $("#selectAll");
 	var $ids = $("#listTable input[name='ids']");
@@ -211,11 +210,14 @@ $().ready( function() {
 	
 	// 表单提交
 	$listForm.submit(function() {
+		var searchValue=$("#searchValue").val();
+		if(searchValue!=""){
+			// 会乱码，所有要编码
+			searchValue=encodeURI(searchValue);
+			$("#searchValue").val(searchValue);
+		}
 		if (!/^\d*[1-9]\d*$/.test($pageNumber.val())) {
 			$pageNumber.val("1");
-		}
-		if ($searchValue.size() > 0 && $searchValue.val() != "" && $searchProperty.val() == "") {
-			$searchProperty.val($searchPropertyOption.eq(0).attr("val"));
 		}
 	});
 	
