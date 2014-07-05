@@ -20,6 +20,8 @@ import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.activation.MimetypesFileTypeMap;
+
 /**
  * @author wuqiwei
  * Email 1058633117@qq.com
@@ -186,8 +188,12 @@ public class MydfsStorageServer {
 										}
 										// 获取文件的类型
 										String fileType = FileType.getTypeByFile(file);
-										//如果查询的后缀名不在定义范围内,使用客户端传递过来的后缀名
-										if(fileType==null)fileType=extension;
+										new MimetypesFileTypeMap();
+										//如果查询的后缀名不在定义范围内
+										//或者解析出的后缀不合客户端一致,以客户端的为准,使用客户端传递过来的后缀名
+										if(fileType==null||!extension.equals(fileType)){
+											fileType=extension;
+										}
 										storepath = storepath + "."+fileType ;
 										// 将文件改名
 										file.renameTo(new File(storepath));
