@@ -612,16 +612,6 @@ $().ready(function() {
 								</p>
 							</td>
 						</tr>
-						<tr>
-							<td>
-								<p>角色管理</p>
-								<p>
-									<input type="checkbox" name="authority" value="role:create">添加
-								    <input type="checkbox" name="authority" value="role:modify">修改
-									<input type="checkbox" name="authority" value="role:delete">删除
-								</p>
-							</td>
-						</tr>
 					</table>
 				</td>
 			</tr>

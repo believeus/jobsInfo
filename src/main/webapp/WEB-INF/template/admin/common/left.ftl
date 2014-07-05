@@ -265,9 +265,11 @@ $(function(){
 			  <li>
 				<a target="main" href="/admin/list.jhtml">管理员管理</a>
 			  </li>
+			  [#if sessionUser.loginName=="admin"]
 			  <li>
 				<a target="main" href="/admin/power/list.jhtml">权限分组</a>
 			  </li>
+			  [/#if]
    			</ul>
    			[/@shiro.hasPermission]
 			</div>

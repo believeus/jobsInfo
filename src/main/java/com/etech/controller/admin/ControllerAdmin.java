@@ -13,6 +13,7 @@ import java.util.Set;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
@@ -148,6 +149,8 @@ public class ControllerAdmin{
 	 */
 	@RequestMapping(value = "/list")
 	public String list(HttpServletRequest request) throws UnsupportedEncodingException {
+		HttpSession session = request.getSession();
+		Tadmin admin=(Tadmin)session.getAttribute("sessionUser");
 		String hql="";
 		String pageNumber = request.getParameter("pageNumber");
 		// 如果为空，则设置为1
@@ -159,10 +162,21 @@ public class ControllerAdmin{
 		if (!StringUtils.isEmpty(searchValue)) {
 			searchValue=URLDecoder.decode(searchValue, "utf-8");
 			log.debug("根据管理员名称查询："+searchValue);
+			if(admin.getLoginName().equals("admin")){
 			 hql="FROM Tadmin admin where admin.disable=0 and admin.loginName like '%"+searchValue+"%' order by admin.editDate desc";
-			request.setAttribute("searchValue", searchValue);
+			 request.setAttribute("searchValue", searchValue);
+			}else {
+			  hql="FROM Tadmin admin where admin.disable=0 and admin.id='"+ admin.getId()+"'";
+			  request.setAttribute("searchValue", searchValue);
+			}
 		}else {
-			hql="FROM Tadmin admin where admin.disable=0 order by admin.editDate desc";
+			// 只有管理员能看到其他管理员
+			if(admin.getLoginName().equals("admin")){
+				hql="FROM Tadmin admin where admin.disable=0  order by admin.editDate desc";
+			// 其他管理员只能看到自己
+			}else {
+				hql="FROM Tadmin admin where admin.disable=0 and admin.id='"+admin.getId()+"'";
+			}
 		}
 		//查询待审核的企业用户
 		Page<?> page = etechService.getPage(hql, pageable);
