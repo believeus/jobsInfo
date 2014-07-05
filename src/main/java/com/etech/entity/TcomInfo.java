@@ -195,7 +195,7 @@ public class TcomInfo extends TbaseEntity implements Serializable {
 	}
 
 	@NotNull
-	@Field(store = Store.YES, index = Index.TOKENIZED)
+	@Field(store = Store.YES, index = Index.UN_TOKENIZED)
 	public Integer getInfoType() {
 		return infoType;
 	}
@@ -204,7 +204,7 @@ public class TcomInfo extends TbaseEntity implements Serializable {
 		this.infoType = infoType;
 	}
 
-	@Field(store = Store.YES, index = Index.TOKENIZED)
+	@Field(store = Store.YES, index = Index.UN_TOKENIZED)
 	public long getEditDate() {
 		return editDate;
 	}
@@ -213,7 +213,7 @@ public class TcomInfo extends TbaseEntity implements Serializable {
 		this.editDate = editDate;
 	}
 
-	@Field(store = Store.YES, index = Index.TOKENIZED)
+	@Field(store = Store.YES, index = Index.UN_TOKENIZED)
 	public long getCreateDate() {
 		return createDate;
 	}

@@ -610,13 +610,15 @@
 						<th>工种</th>
 						<th>月薪范围</th>
 						<th>择业地区</th>
+						<th>发布时间</th>
 					</tr>
 					[#list comInfoList as info]
 					<tr>
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml#zw">${info.loginName}</a></td>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml">${info.jobPost}</a></td>
+						<td><a style="color:#0101FF;" href="/personalResume.jhtml?id=${info.comUser.id}">${info.loginName}</a></td>
+						<td><a style="color:#0101FF" >${info.jobPost}</a></td>
 						<td style="color:#0101FF;">${info.expectSalary}</td>
 						<td>${info.expectArea}</td>
+						<td>${info.editDate?number_to_date} ${info.editDate?number_to_time}</td>
 					</tr>
 				   [/#list]
 				</table>

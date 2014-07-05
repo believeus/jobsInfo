@@ -238,7 +238,6 @@ public class ControllerSearch {
 		String hql="from Trecruit recruit order by recruit.editTime desc";
 		@SuppressWarnings("unchecked")
 		List<Trecruit> recruitList= (List<Trecruit>)etechService.findObjectList(hql, pageNo, pageSize, Trecruit.class);
-		Collections.shuffle(recruitList);
 		request.setAttribute("recruitList", recruitList);
 		request.setAttribute("location", "position");
 		return "occupationIntroduction/advancedSearchJob";
@@ -257,10 +256,9 @@ public class ControllerSearch {
 			pageSize=Integer.valueOf(request.getParameter("pageSize"));
 		}
 		//搜索简历
-		String hql="from TcomInfo comInfo order by comInfo.editDate desc";
+		String hql="from TcomInfo comInfo where comInfo.infoType=4  order by comInfo.editDate desc";
 		@SuppressWarnings("unchecked")
 		List<TcomInfo> comInfoList= (List<TcomInfo>)etechService.findObjectList(hql, pageNo, pageSize, TcomInfo.class);
-		Collections.shuffle(comInfoList);
 		request.setAttribute("comInfoList", comInfoList);
 		request.setAttribute("location", "resume");
 		return "occupationIntroduction/advancedSearchResume";

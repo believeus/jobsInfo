@@ -249,7 +249,7 @@ public class Trecruit extends TbaseEntity implements Serializable {
 		this.createTime = createTime;
 	}
 
-	@Field(store=Store.YES,index = Index.TOKENIZED)
+	@Field(store=Store.YES,index = Index.UN_TOKENIZED)
 	public long getEditTime() {
 		return editTime;
 	}
