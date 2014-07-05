@@ -12,6 +12,8 @@ import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.Query;
+import org.apache.lucene.search.Sort;
+import org.apache.lucene.search.SortField;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.search.TermRangeQuery;
@@ -36,9 +38,6 @@ public class PolicyAdviceService {
 	@SuppressWarnings("unchecked")
 	public List<TdataCenter> searchPolicyAdvice(TdataCenter formDataCenter,Long beginData,Long endDate,int currentPage,int perCount){
 		List<TdataCenter> dataCenterList=null;
-		if(StringUtils.isEmpty(formDataCenter.getTitle())){
-			return dataCenterList;
-		}
 		log.debug("title:"+formDataCenter.getTitle());
 		log.debug("beginData:"+beginData);
 		log.debug("endDate:"+endDate);
@@ -51,10 +50,13 @@ public class PolicyAdviceService {
 			tx.begin();
 			// 用BooleanQuery来做搜索条件的组合，即多条件查询
 			BooleanQuery booleanQuery = new BooleanQuery();
-			// 从title和content中查询关键字
-			MultiFieldQueryParser parser = new MultiFieldQueryParser(Version.LUCENE_36, new String[]{"title","content"}, new IKAnalyzer());
-			parser.setDefaultOperator(QueryParser.OR_OPERATOR);
-			Query titleAndContentQuery = parser.parse(formDataCenter.getTitle());
+			if(!StringUtils.isEmpty(formDataCenter.getTitle())){
+				// 从title和content中查询关键字
+				MultiFieldQueryParser parser = new MultiFieldQueryParser(Version.LUCENE_36, new String[]{"title","content"}, new IKAnalyzer());
+				parser.setDefaultOperator(QueryParser.OR_OPERATOR);
+				Query titleAndContentQuery = parser.parse(formDataCenter.getTitle());
+				booleanQuery.add(titleAndContentQuery, Occur.MUST);
+			}
 			
 			// 精确查询powerLevel
 			int powerLevel=formDataCenter.getPowerLevel();
@@ -81,9 +83,9 @@ public class PolicyAdviceService {
 			//查询  国家法规 国家文件 地方法规 地方文件
 			TermRangeQuery advicePolicyQuery=new TermRangeQuery("type", "10", "13", true,true);
 			booleanQuery.add(advicePolicyQuery,Occur.MUST);
-			booleanQuery.add(titleAndContentQuery, Occur.MUST);
 			
 			FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(booleanQuery, TdataCenter.class);
+			fullTextQuery.setSort(new Sort(new SortField("editTime", SortField.LONG,true)));
 			int total=fullTextQuery.getResultSize();
 			// 分页
 			if (currentPage > ((int) Math.ceil((float) total / perCount))) {

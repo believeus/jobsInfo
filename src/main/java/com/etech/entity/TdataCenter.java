@@ -46,7 +46,7 @@ public class TdataCenter extends TbaseEntity implements Cloneable{
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	@Field(store=Store.YES,index = Index.TOKENIZED)
+	@Field(store=Store.YES,index = Index.UN_TOKENIZED)
 	public int getType() {
 		return type;
 	}
@@ -73,7 +73,7 @@ public class TdataCenter extends TbaseEntity implements Cloneable{
 	public void setCreateTime(long createTime) {
 		this.createTime = createTime;
 	}
-	@Field(store=Store.YES,index = Index.TOKENIZED)
+	@Field(store=Store.YES,index = Index.UN_TOKENIZED)
 	public long getEditTime() {
 		return editTime;
 	}
@@ -99,14 +99,14 @@ public class TdataCenter extends TbaseEntity implements Cloneable{
 	public void setClickNum(int clickNum) {
 		this.clickNum = clickNum;
 	}
-	@Field(store=Store.YES,index = Index.TOKENIZED)
+	@Field(store=Store.YES,index = Index.UN_TOKENIZED)
 	public int getPowerLevel() {
 		return powerLevel;
 	}
 	public void setPowerLevel(int powerLevel) {
 		this.powerLevel = powerLevel;
 	}
-	@Field(store=Store.YES,index = Index.TOKENIZED)
+	@Field(store=Store.YES,index = Index.UN_TOKENIZED)
 	public int getPowerProperty() {
 		return powerProperty;
 	}
