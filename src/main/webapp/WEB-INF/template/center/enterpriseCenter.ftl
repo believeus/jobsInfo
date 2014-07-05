@@ -314,7 +314,7 @@
 	   // 检查视频格式
 	  function checkV(file) {
 	   if(!(/(?:flv)$/i.test(file.value))) {
-		  alert("只允许上传swf和flv 格式的视频");
+		  alert("只允许上传flv 格式的视频");
 		  if(window.ActiveXObject) {//for IE
 				file.select();//select the file ,and clear selection
 			    document.selection.clear();

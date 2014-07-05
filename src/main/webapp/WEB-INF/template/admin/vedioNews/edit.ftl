@@ -96,6 +96,7 @@ $().ready(function() {
 					 [/#if]
 					 [#assign num=num+1]					
 					[/#list]
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">注:只允许上传 gif/jpg/jpeg/bmp/png 格式的视频截图</font>
 					<script type="text/javascript">
 				 	function checkI(file) {
  				  	 if(!(/(?:gif|jpg|jpeg|bmp|png)$/i.test(file.value))) {
@@ -124,10 +125,11 @@ $().ready(function() {
 					 	<a href="/${value}" title="点击查看" target="_blank">点击查看</a>		 	
 					 [/#if]
 				[/#list]
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">注:只允许上传flv 格式的视频</font>
 				<script type="text/javascript">
 				 function checkV(file) {
  				   if(!(/(?:flv)$/i.test(file.value))) {
-      				  alert("只允许上传swf和flv 格式的视频");
+      				  alert("只允许上传flv 格式的视频");
        				  if(window.ActiveXObject) {//for IE
         					file.select();//select the file ,and clear selection
           				    document.selection.clear();

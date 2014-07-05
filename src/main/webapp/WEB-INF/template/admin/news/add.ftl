@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" charset="UTF-8" content="text/html; charset=utf-8" />
 <title>添加新闻 - Powered By e3dmall</title>
 <meta name="author" content="e3dmall Team" />
 <meta name="copyright" content="e3dmall" />
@@ -9,12 +9,17 @@
 <link href="/resource/public/js/admin/themes/default/default.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/resource/public/js/admin/jquery.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/jquery.validate.js"></script>
-<script type="text/javascript" src="/resource/public/js/admin/kindeditor.js"></script>
+<script type="text/javascript" src="/resource/public/js/admin/ueditor.config.js"></script>
+<script type="text/javascript" src="/resource/public/js/admin/ueditor.all.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
 <script type="text/javascript">
 $().ready(function() {
+	
 
+	
+	
+	
 	var $inputForm = $("#inputForm");
 	var $type = $("#type");
 	var $contentTr = $("#contentTr");
@@ -157,7 +162,7 @@ $().ready(function() {
 					内容:
 				</th>
 				<td colspan="3">
-					<textarea id="editor" name="content" class="editor"></textarea>
+					<textarea id="editor" name="content" ></textarea>
 				</td>
 			</tr>
 			<tr>
