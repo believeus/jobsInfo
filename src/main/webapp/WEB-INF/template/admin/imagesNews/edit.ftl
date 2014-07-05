@@ -112,8 +112,8 @@
 						deleteImg(value);					
 				}
 				$(object).closest("div").parent().parent().remove();
+				a--;
 			}
-			a--;
 		}
 		
 	var a = 0;
