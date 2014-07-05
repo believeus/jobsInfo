@@ -34,8 +34,11 @@ public class ControllerEnterpriseInformation {
 		//id 招聘信息id
 		//eid = trecruit.getEntUser().getId() 企业id
 		Trecruit trecruit = (Trecruit)etechService.findObjectById(Trecruit.class, id);
+		TentUser tentUser = new TentUser();
+		if (trecruit != null) {
+			tentUser = (TentUser)etechService.findObjectById(TentUser.class, trecruit.getEntUser().getId());
+		}
 		session.setAttribute("trecruit", trecruit);
-		TentUser tentUser = (TentUser)etechService.findObjectById(TentUser.class, trecruit.getEntUser().getId());
 		session.setAttribute("entUser", tentUser);
 		if (vid != null) {//点击视频
 			TentImgVedio tentImgVedio = (TentImgVedio)etechService.findObjectById(TentImgVedio.class, Integer.parseInt(vid));

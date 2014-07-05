@@ -60,6 +60,9 @@
 		height:35px;
 		color:#ededa2 !important;
 	}
+	.j_main_right_2_p img{
+		width:640px;
+	}
 </style>
 <!--IE-->
 <script type="text/javascript">

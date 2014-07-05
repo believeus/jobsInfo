@@ -140,7 +140,7 @@ a:link{
         [/#if]
         [/#list]
       	<div style="float:left; margin-top:15px; width:399px;">
-        	<h3 style="margin-left:15px;">视频列表</h3>
+        	<h3 style="margin-left:15px;">视频列表</h3><span style="position: relative; left: 345px; top: -35px;"><a href="/videosList.jhtml">更多>></a></span>
             <div>
               <ul id="ul_1">
               	[#list vedios as vedio]

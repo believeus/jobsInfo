@@ -39,7 +39,7 @@
     	.j_main_3{
     		width:998px;
     		height:200px;
-    		margin-top: 2px;
+    		margin-top: 10px;
     	}
     	.j_main_3_1{
     		border: 1px solid #E4630F;
@@ -350,21 +350,6 @@
 				</tr>
 			</table>
 		</div>
-		<div class="j_main_2">
-			<table align="left"  style="font-size: 13px; padding: 4px;">
-				<tr>
-					<td style="padding-right: 10px;">地区频道：</td>
-					<td style=""><a href="/advanceSearchByContision.jhtml?area='湖北'&type='position'">湖北</a></td>
-					<td style=""><a href="/advanceSearchByContision.jhtml?area='武汉'&type='position'">武汉</a></td>
-					<td style=""><a href="/advanceSearchByContision.jhtml?area='潜江'&type='position'">潜江</a></td>
-					<td style=""><a href="/advanceSearchByContision.jhtml?area='荆州'&type='position'">荆州</a></td>
-					<td style=""><a href="/advanceSearchByContision.jhtml?area='天门'&type='position'">天门</a></td>
-					<td style=""><a href="/advanceSearchByContision.jhtml?area='十堰'&type='position'">十堰</a></td>
-					<td style=""><a href="/advanceSearchByContision.jhtml?area='黄石'&type='position'">黄石</a></td>
-					<td style=""><a href="/advanceSearchByContision.jhtml?area='襄阳'&type='position'">襄阳</a></td>
-				</tr>
-			</table>	
-		</div>
 		<div class="j_main_3" >
 		[#if sessionUser?exists]
 			<!--登录后的界面begin-->
@@ -551,9 +536,11 @@
 				<span style="color: #817f80;font-size: 19px;font-weight: bold;line-height: 38px;margin-left: 10px;">名企招聘</span>
 			</div>
 			[#list headImgs as headImg]
-				<a href="/enterpriseInformation.jhtml?id=${headImg.entUser.id}" title="${headImg.entUser.fullName}">
+				[#list headImg.entUser.recruit as recruit]
+				<a href="/enterpriseInformation.jhtml?id=${recruit.id}" title="${headImg.entUser.fullName}">
 					<img src="${headImg.url}" width="195" height="33">
 				</a>
+				[/#list]
 			[/#list]
 		</div>
 		<div class="j_main_6">

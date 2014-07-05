@@ -18,7 +18,7 @@ $().ready(function() {
 </head>
 <body>
 	<div class="path">
-		<a href="/admin/common/main.jhtml">首页</a> &raquo; 内容列表 <span>共99条记录</span>
+		<a href="/admin/common/main.jhtml">首页</a> &raquo; 内容列表 <span>共${recruitList?size}条记录</span>
 	</div>
 	<form id="listForm" action="list.jhtml" method="get">
 		<div class="bar">
@@ -81,7 +81,7 @@ $().ready(function() {
 					<a href="javascript:;" class="sort" name="type">工作地点</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="endDate">面试时间</a>
+					<a href="javascript:;" class="sort" name="endDate">工种</a>
 				</th>
 				<th>
 					<a href="#"  class="sort">操作</a>
@@ -103,7 +103,7 @@ $().ready(function() {
 					${recruit.workspace}
 				</td>
 				<td>
-					[#if recruit.viewData!=0]${recruit.viewData?number_to_date} ${recruit.viewData?number_to_time}[/#if]
+					${recruit.workType.name}
 				</td>
 				<td>
 					<a href="edit.jhtml?id=${recruit.id}">[修改]</a>

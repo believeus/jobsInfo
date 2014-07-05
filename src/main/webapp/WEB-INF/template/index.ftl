@@ -371,8 +371,8 @@
 							</a>
 						</h2>
 						<div style="color:#2B8BDF;margin:10px 0;font-size:13px;height:20px;">
-							[#if new.content?length > 35]
-								${new.content?string?substring(0,35)}...
+							[#if new.content?length > 30]
+								${new.content?string?substring(0,30)}...
 							[#else]
 								${new.content}
 							[/#if]

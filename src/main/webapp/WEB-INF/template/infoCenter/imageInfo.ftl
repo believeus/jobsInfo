@@ -23,7 +23,7 @@ $(document).ready(function(){
 <body bgcolor="#000000;">
 [#include "/include/header.ftl" /]
 <div class="img_title">
-	<div style="height:50px;line-height:50px;background:#3D3D3D;padding-left:20px;">
+	<div style="height:50px;line-height:50px;padding-left:20px;">
 		<p style="color:#FFFFFF;font-weight:bold;">
 			<img width="20" height="18" src="/resource/public/images/6-01.png">
 			潜江公共就业服务网>资讯中心>图片新闻
@@ -37,8 +37,12 @@ $(document).ready(function(){
 	  <div class="panel">
 	     	<img src="${path}" width="950"/> 
 	    <div class="panel-overlay">
-	      	<div style="text-align:left;padding:0 12px;">
-				${data.content}
+	      	<div style="text-align:left;padding:0 15px;">
+				[#if data.content?length > 170 ]
+					${data.content?string?substring(0,170)}...
+				[#else]
+					${data.content}
+				[/#if]
 	  		</div>
 	    </div>
 	  </div>

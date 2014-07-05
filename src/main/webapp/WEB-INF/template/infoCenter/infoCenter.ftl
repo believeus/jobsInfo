@@ -207,9 +207,9 @@
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml">更多>></a></div>
 				[#list subjectReport as sReport]
-					<a style="margin-left:0;" href="/special.jhtml?id=${sReport.id}" title="${sReport.title}">
-						<img src="${sReport.imgpath}" style="width:222px;height:66px;margin-top:6px;">
-					</a>
+				[#if sReport_index <6]
+					<a style="margin-left:0;" href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:222px;height:66px;margin-top:6px;"></a>
+				[/#if]
 				[/#list]
 			</div>
 		</div>
@@ -320,7 +320,11 @@
 							[/#if]
 						</a></p>
 						<div style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;">
-							${new.title}
+							[#if new.content?length > 35]
+								${new.content?string?substring(0,35)}...
+							[#else]
+								${new.content}
+							[/#if]
 							<span style="text-align: right;float:right;"><a class="j_main_right_2_1_p_a" href="/newsInfo.jhtml?id=${new.id}">[详细]</a></span>
 						</div>
 					</div>
@@ -356,14 +360,18 @@
 						<img src="${work.imgpath}" style="float:left;width:120px;height:100px;">
 						<p style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;font-size:16px;color:#C42D3E;">
 							<a style="color:#C42D3E;" href="/workInfo.jhtml?id=${work.id}">
-						[#if work.title?length > 22]
+							[#if work.title?length > 22]
 								${work.title?string?substring(0,22)}...
 							[#else]
 								${work.title}
 							[/#if]
 							</a></p>
 						<div style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;">
-							${work.title}
+							[#if work.content?length > 30]
+								${work.content?string?substring(0,30)}...
+							[#else]
+								${work.content}
+							[/#if]
 							<span style="text-align: right;float:right;"><a class="j_main_right_2_1_p_a" href="/workInfo.jhtml?id=${work.id}">[详细]</a></span>
 						</div>
 					</div>

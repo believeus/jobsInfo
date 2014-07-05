@@ -31,9 +31,10 @@ public class ControllerOnlineShow {
 		log.debug("current controller is imgShowView !");
 		
 		//视频新闻
-		String hql="From TdataCenter dataCenter where dataCenter.type='4'";
+		String hql="From TdataCenter dataCenter where dataCenter.type='4' order by id desc";
 		List<String> pathList = new ArrayList<String>();
 		List<TdataCenter> vedios = (List<TdataCenter>)etechService.findListByHQL(hql);
+		log.debug(hql);
 		for (TdataCenter tdataCenter : vedios) {
 			String[] paths = tdataCenter.getImgpath().split("#");
 			String vpath = paths[1];
@@ -43,7 +44,7 @@ public class ControllerOnlineShow {
 		request.setAttribute("vedios", vedios);
 		
 		//图片新闻
-		hql = "From TdataCenter tdataCenter where tdataCenter.type='3' order by id asc";
+		hql = "From TdataCenter tdataCenter where tdataCenter.type='3' order by id desc";
 		List<TdataCenter> imgs = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("imgs", imgs); 
 		String host=request.getHeader("Host");

@@ -143,8 +143,8 @@
 					[#list notices as notice]
 					[#if notice_index <8]
 						<li><a href="/publicityInfo.jhtml?id=${notice.id}">
-							[#if notice.title?length > 13]
-								${notice.title?string?substring(0,13)}...
+							[#if notice.title?length > 8]
+								${notice.title?string?substring(0,8)}...
 							[#else]
 								${notice.title}
 							[/#if]
@@ -153,12 +153,14 @@
 					[/#list]
 				</ul>
 			</div>
-			<div class="j_main_left_1" style="margin-top:10px;height:405px;text-align:center;border:1px solid #E4E4E4;">
+			<div class="j_main_left_1" style="margin-top:10px;height:435px;text-align:center;border:1px solid #E4E4E4;">
 				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml">更多>></a></div>
 				[#list spceilas as sReport]
-					<a style="margin-left:0;" href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:222px;height:66px;margin-top:7px;"></a>
+				[#if sReport_index <5]
+					<a style="margin-left:0;" href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:222px;height:66px;margin-top:6px;"></a>
+				[/#if]
 				[/#list]
 			</div>
 		</div>

@@ -454,6 +454,11 @@ $().ready(function() {
 					<input type="checkbox" id="selectAllOne" value="resource"/>全选
 					</p>
 				</td>
+				<td>
+					<p>管理员列表<input type="checkbox" name="authority" id="views" value="admin:view">查看
+					<input type="checkbox" id="selectAllOne" value="admin"/>全选
+					</p>
+				</td>
 			</tr>
 			
 			<tr class="liebiao">
@@ -595,26 +600,40 @@ $().ready(function() {
 						</tr>
 					</table>
 				</td>
+				<td style="vertical-align:top;">
+					<table id="admin">
+						<tr>
+							<td>
+								<p>管理员列表</p>
+								<p>
+									<input type="checkbox" name="authority" value="adminList:modify">修改
+									<input type="checkbox" name="authority" value="adminList:delete">删除
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>角色</p>
+								<p>
+									<input type="checkbox" name="authority" value="admin:group">创建
+									<input type="checkbox" name="authority" value="admin:groupDelete">删除
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>管理员</p>
+								<p>
+									<input type="checkbox" name="authority" value="admin:create">添加
+									<input type="checkbox" name="authority" value="admin:modify">修改
+									<input type="checkbox" name="authority" value="admin:delete">删除
+								</p>
+							</td>
+						</tr>
+					</table>
+				</td>
 			</tr>
 			
-			<tr>
-				<td colspan="5">系统管理设置</td>
-			</tr>
-			<tr>
-				<td colspan="5">
-					<input type="checkbox" name="authority" value="adminList:view">查看管理员列表
-					<input type="checkbox" name="authority" value="admin:group">创建角色
-					<input type="checkbox" name="authority" value="admin:groupDelete">删除角色
-					<input type="checkbox" name="authority" value="admin:create">添加管理员
-					<input type="checkbox" name="authority" value="admin:modify">修改管理员
-					<input type="checkbox" name="authority" value="admin:delete">删除管理员
-				</td>
-			</tr>
-			<tr>
-				<td colspan="5">
-					<input type="checkbox" id="selectAll">全选
-				</td>
-			</tr>
 			<tr>
 				<td colspan="5">
 					<input type="submit" class="button" value="提交" />

@@ -100,7 +100,7 @@ public class ControllerIndex {
 		session.setAttribute("busHandles", busHandles); 
 		
 		//置顶内容 ：新闻动态、工作动态、图片新闻、视频新闻
-		hql="From TdataCenter dataCenter where dataCenter.top='1' order by id desc";
+		hql="From TdataCenter dataCenter where dataCenter.top='1' order by editTime desc";
 		List<TdataCenter> dataCenters = (List<TdataCenter>)etechService.findListByHQL(hql);
 		List<TdataCenter> dataCenterList=new ArrayList<TdataCenter>();
 		/**Begin Author:wuqiwei Data:2014:07-13 AddReason:去除html标签*/
