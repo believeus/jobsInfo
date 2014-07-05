@@ -18,11 +18,11 @@ $().ready(function() {
 </head>
 <body>
 	<div class="path">
-		<a href="/admin/common/main.jhtml">首页</a> &raquo; 内容列表 <span>共${dataCenters?size}条记录</span>
+		<a href="/admin/common/main.jhtml">首页</a> &raquo; 内容列表 <span>共${dataCenters.total}条记录</span>
 	</div>
 	<form id="listForm" action="list.jhtml" method="get">
 		<div class="bar">
-			[#if size < 1]
+			[#if dataCenters.total < 1]
 				<a href="add.jhtml" class="iconButton">
 					<span class="addIcon">&nbsp;</span>添加
 				</a>
@@ -34,41 +34,6 @@ $().ready(function() {
 				<a href="javascript:;" id="refreshButton" class="iconButton">
 					<span class="refreshIcon">&nbsp;</span>刷新
 				</a>
-				<div class="menuWrap">
-					<a href="javascript:;" id="pageSizeSelect" class="button">
-						每页显示<span class="arrow">&nbsp;</span>
-					</a>
-					<div class="popupMenu">
-						<ul id="pageSizeOption">
-							<li>
-								<a href="javascript:;"[#if page.pageSize == 10] class="current"[/#if] val="10">10</a>
-							</li>
-							<li>
-								<a href="javascript:;"[#if page.pageSize == 20] class="current"[/#if] val="20">20</a>
-							</li>
-							<li>
-								<a href="javascript:;"[#if page.pageSize == 50] class="current"[/#if] val="50">50</a>
-							</li>
-							<li>
-								<a href="javascript:;"[#if page.pageSize == 100] class="current"[/#if] val="100">100</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="menuWrap">
-				<div class="search">
-					<span id="searchPropertySelect" class="arrow">&nbsp;</span>
-					<input type="text" id="searchValue" name="searchValue" value="${page.searchValue}" maxlength="200" />
-					<button type="submit">&nbsp;</button>
-				</div>
-				<div class="popupMenu">
-					<ul id="searchPropertyOption">
-						<li>
-							<a href="javascript:;"[#if page.searchProperty == "title"] class="current"[/#if] val="title">标题</a>
-						</li>
-					</ul>
-				</div>
 			</div>
 		</div>
 		<table id="listTable" class="list">
@@ -87,7 +52,7 @@ $().ready(function() {
 				</th>
 			</tr>
 			
-			[#list dataCenters as mail]
+			[#list dataCenters.content as mail]
 			<tr>
 				<td>
 					<input type="checkbox" name="ids" value="${mail.id}" />
@@ -103,8 +68,10 @@ $().ready(function() {
 				</td>
 			</tr>
 			[/#list]
-			
 		</table>
+		[@pagination pageNumber = dataCenters.pageNumber totalPages = dataCenters.totalPages]
+			[#include "/include/pagination.ftl"]
+		[/@pagination]
 	</form>
 </body>
 </html>

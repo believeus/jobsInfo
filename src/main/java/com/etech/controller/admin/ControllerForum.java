@@ -30,7 +30,7 @@ public class ControllerForum extends ControllerCRUD{
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
-		List<?> dataCenters = super.listDataInfo(request,EtechGobal.forum);
+		List<?> dataCenters = null;//super.listDataInfo(request,EtechGobal.forum);
 		request.setAttribute("dataCenters",dataCenters);
 		return "admin/service/list";
 	}

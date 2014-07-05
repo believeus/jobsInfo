@@ -1,18 +1,12 @@
 $().ready( function() {
 	var $listForm = $("#listForm");
-	//var $pageTotal = $("#pageTotal");
 	var $deleteButton = $("#deleteButton");
 	var $refreshButton = $("#refreshButton");
 	var $pageSizeSelect = $("#pageSizeSelect");
 	var $shopSelect = $("#shopSelect");
 	var $pageSizeOption = $("#pageSizeOption a");
-	var $shopidOption = $("#shopidOption a");
-	var $shopId = $("#shopId");
-	var $moreOperation = $("#moreOperation");
 	var $searchPropertySelect = $("#searchPropertySelect");
 	var $searchPropertyOption = $("#searchPropertyOption a");
-	var $searchValue = $("#searchValue");
-	//var $listTable = $("#listTable");
 	var $selectAll = $("#selectAll");
 	var $ids = $("#listTable input[name='ids']");
 	var $contentRow = $("#listTable tr:gt(0)");
@@ -93,27 +87,7 @@ $().ready( function() {
 			$popupMenu.hide();
 		});
 	});
-	//选择店铺
-	$shopidOption.click( function() {
-		var $this = $(this);
-		$shopId.val($this.attr("val"));
-		$listForm.submit();
-		return false;
-	});
 	
-	
-	
-	// 更多选项
-	$moreOperation.mouseover( function() {
-		var $this = $(this);
-		var offset = $this.offset();
-		var $menuWrap = $this.closest("div.menuWrap");
-		var $popupMenu = $menuWrap.children("div.popupMenu");
-		$popupMenu.css({left: offset.left, top: offset.top + $this.height() + 2}).show();
-		$menuWrap.mouseleave(function() {
-			$popupMenu.hide();
-		});
-	});
 	
 	// 搜索选项
 	$searchPropertySelect.mouseover( function() {
@@ -211,11 +185,14 @@ $().ready( function() {
 	
 	// 表单提交
 	$listForm.submit(function() {
+		var searchValue=$("#searchValue").val();
+		if(searchValue!=""){
+			// 会乱码，所有要编码
+			searchValue=encodeURI(searchValue);
+			$("#searchValue").val(searchValue);
+		}
 		if (!/^\d*[1-9]\d*$/.test($pageNumber.val())) {
 			$pageNumber.val("1");
-		}
-		if ($searchValue.size() > 0 && $searchValue.val() != "" && $searchProperty.val() == "") {
-			$searchProperty.val($searchPropertyOption.eq(0).attr("val"));
 		}
 	});
 	

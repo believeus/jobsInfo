@@ -29,41 +29,6 @@ $().ready(function() {
 				<a href="javascript:;" id="refreshButton" class="iconButton">
 					<span class="refreshIcon">&nbsp;</span>刷新
 				</a>
-				<div class="menuWrap">
-					<a href="javascript:;" id="pageSizeSelect" class="button">
-						每页显示<span class="arrow">&nbsp;</span>
-					</a>
-					<div class="popupMenu">
-						<ul id="pageSizeOption">
-							<li>
-								<a href="javascript:;"[#if page.pageSize == 10] class="current"[/#if] val="10">10</a>
-							</li>
-							<li>
-								<a href="javascript:;"[#if page.pageSize == 20] class="current"[/#if] val="20">20</a>
-							</li>
-							<li>
-								<a href="javascript:;"[#if page.pageSize == 50] class="current"[/#if] val="50">50</a>
-							</li>
-							<li>
-								<a href="javascript:;"[#if page.pageSize == 100] class="current"[/#if] val="100">100</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="menuWrap">
-				<div class="search">
-					<span id="searchPropertySelect" class="arrow">&nbsp;</span>
-					<input type="text" id="searchValue" name="searchValue" value="${page.searchValue}" maxlength="200" />
-					<button type="submit">&nbsp;</button>
-				</div>
-				<div class="popupMenu">
-					<ul id="searchPropertyOption">
-						<li>
-							<a href="javascript:;"[#if page.searchProperty == "title"] class="current"[/#if] val="title">标题</a>
-						</li>
-					</ul>
-				</div>
 			</div>
 		</div>
 		<table id="listTable" class="list">

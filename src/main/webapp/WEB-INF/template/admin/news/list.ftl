@@ -19,7 +19,7 @@ $().ready(function() {
 </head>
 <body>
 	<div class="path">
-		<a href="/admin/common/main.jhtml">首页</a> &raquo; 内容列表 <span>共${dataCenters?size}条记录</span>
+		<a href="/admin/common/main.jhtml">首页</a> &raquo; 内容列表 <span>共${dataCenters.total}条记录</span>
 	</div>
 	<form id="listForm" action="newsList.jhtml">
 		<div class="bar">

@@ -426,5 +426,5 @@ public class EtechComDao extends HibernateDaoSupport {
 			 
 		}));
 	}
-	/* End Author:wuqiwei Date:2013-04-06 AddReason:根据hql语句对数据进行分页  */
+	/* End Author:wuhuanrong Date:2014-07-04 AddReason:根据hql语句对数据进行分页  */
 }

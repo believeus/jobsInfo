@@ -175,14 +175,6 @@ public class ControllerCRUD {
 		map.put("type", "success");
 		JsonOutToBrower.out(map, response);
 	}
-	// 信息列表
-	public List<?> listDataInfo(HttpServletRequest request,int type) {
-		// 查询新闻动态
-		String hql="From TdataCenter center where center.type='"+type+"' order by id desc";
-		@SuppressWarnings("unchecked")
-		List<?> dataCenters = (List<TdataCenter>)etechService.findObjectList(hql, 1, 15, TdataCenter.class);
-		return dataCenters;
-	}
 	
 	// 分页信息列表
 	public Page<?> pageDataInfo(HttpServletRequest request,int type,Pageable pageable) throws UnsupportedEncodingException {

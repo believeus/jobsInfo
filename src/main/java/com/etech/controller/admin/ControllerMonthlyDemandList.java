@@ -1,6 +1,5 @@
 package com.etech.controller.admin;
 
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -30,8 +29,7 @@ public class ControllerMonthlyDemandList extends ControllerCRUD{
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
-		List<?> dataCenters = super.listDataInfo(request,EtechGobal.monthlyDemandList);
-		request.setAttribute("dataCenters",dataCenters);
+		
 		return "admin/rankList/list";
 	}
 	

@@ -1,21 +1,22 @@
 package com.etech.controller.admin;
 
-import java.util.List;
+import java.io.UnsupportedEncodingException;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.etech.entity.TdataCenter;
 import com.etech.service.EtechService;
 import com.etech.util.EtechGobal;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 /**
  * 资料下载
@@ -23,18 +24,24 @@ import com.etech.util.EtechGobal;
 @Controller
 @RequestMapping("/admin/ziliaoDownLoad")
 public class ControllerZiliaoDownLoad extends ControllerCRUD{
-	private static Log log = LogFactory.getLog(ControllerZiliaoDownLoad.class);
 
 	@Resource
 	private EtechService etechService;
 	/**
 	 * 资料下载列表
 	 * @return
+	 * @throws UnsupportedEncodingException 
 	 */
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String newsListView(HttpServletRequest request) {
-		List<?> dataCenters = super.listDataInfo(request,EtechGobal.ziliao);
-		request.setAttribute("dataCenters",dataCenters);
+	@RequestMapping(value = "/list")
+	public String newsListView(HttpServletRequest request) throws UnsupportedEncodingException {
+		String pageNumber = request.getParameter("pageNumber");
+		// 如果为空，则设置为1
+		if (StringUtils.isEmpty(pageNumber)) {
+			pageNumber="1";
+		}
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
+		Page<?> page = super.pageDataInfo(request,EtechGobal.ziliao,pageable);
+		request.setAttribute("dataCenters",page);
 		return "admin/downLoad/list";
 	}
 	

@@ -29,7 +29,7 @@ public class ControllerBaseMessage extends ControllerCRUD{
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
-		List<?> dataCenters = super.listDataInfo(request,EtechGobal.baseMessage);
+		List<?> dataCenters = null;//super.listDataInfo(request,EtechGobal.baseMessage);
 		request.setAttribute("dataCenters",dataCenters);
 		return "admin/baseMessage/list";
 	}

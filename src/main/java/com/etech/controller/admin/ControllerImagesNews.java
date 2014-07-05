@@ -1,5 +1,6 @@
 package com.etech.controller.admin;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.etech.entity.TdataCenter;
 import com.etech.service.EtechService;
 import com.etech.util.EtechGobal;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 /**
  * 图片新闻
@@ -30,11 +33,18 @@ public class ControllerImagesNews extends ControllerCRUD{
 	/**
 	 * 图片新闻列表
 	 * @return
+	 * @throws UnsupportedEncodingException 
 	 */
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String newsListView(HttpServletRequest request) {
-		List<?> dataCenters = super.listDataInfo(request,EtechGobal.newsImg);
-		request.setAttribute("dataCenters",dataCenters);
+	@RequestMapping(value = "/list")
+	public String newsListView(HttpServletRequest request) throws UnsupportedEncodingException {
+		String pageNumber = request.getParameter("pageNumber");
+		// 如果为空，则设置为1
+		if (StringUtils.isEmpty(pageNumber)) {
+			pageNumber="1";
+		}
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
+		Page<?> page = super.pageDataInfo(request,EtechGobal.newsImg,pageable);
+		request.setAttribute("dataCenters",page);
 		return "admin/imagesNews/list";
 	}
 	
