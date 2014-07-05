@@ -109,7 +109,7 @@ $().ready(function() {
 				<input type="file" name="file" onchange="checkV(this)">
 				<script type="text/javascript">
 				 function checkV(file) {
- 				   if(!(/(?:swf|flv|mp4|avi)$/i.test(file.value))) {
+ 				   if(!(/(?:flv)$/i.test(file.value))) {
       				  alert("只允许上传swf和flv 格式的视频");
        				  if(window.ActiveXObject) {//for IE
         					file.select();//select the file ,and clear selection
