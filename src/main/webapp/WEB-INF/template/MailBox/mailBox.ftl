@@ -206,8 +206,10 @@ textarea{
 			<span>局长信箱</span>
         </div>
         <div style="width:750px;height:678px;border:1px solid #E4E4E4;margin-top:10px;">
-        	<div style="height: 40px; font-size: 16px; width: 240px; padding: 10px; margin: 30px;">
-        		局长信箱地址:<span style="color:#0000FF;text-decoration:underline;">qjrs@qj.gov.cn</span>
+        	<div style="height: 40px; font-size: 16px; width: 540px; padding: 10px; margin: 30px;">
+        	[#list mailbox as mailbox]
+        		局长信箱地址:<span style="color:#0000FF;text-decoration:underline;">${mailbox.alink}</span>
+        	[/#list]
         	</div>
         </div>
 	</div>

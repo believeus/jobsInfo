@@ -61,7 +61,7 @@ $().ready(function() {
 	<div class="path">
 		<a href="/admin/common/main.jhtml">首页</a> &raquo; 编辑内容
 	</div>
-	<form id="inputForm" action="save.jhtml" method="post" enctype="multipart/form-data">
+	<form id="inputForm" action="update.jhtml" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="${mailBox.id}">
 		<input type="hidden" name="type" value="${type}">
 		<table class="input">
@@ -70,7 +70,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>局长邮箱地址:
 				</th>
 				<td>
-					<input type="text" name="title" class="text" maxlength="200" value="${mailBox.alink}"/>
+					<input type="text" name="alink" class="text" maxlength="200" value="${mailBox.alink}"/>
 				</td>
 			</tr>
 			<tr>

@@ -211,11 +211,9 @@ $(function(){
 			  <li>
 				<a target="main" href="/admin/mailBox/list.jhtml">局长信箱</a>
 			  </li>
-			  <!--
-				  <li>
-					<a target="main" href="/admin/forum/list.jhtml">网站论坛</a>
-				  </li>
-			  -->
+			  <li>
+				<a target="main" href="javascript:void(0);">网站论坛</a>
+			  </li>
 			  <li>
 				<a target="main" href="/admin/links/list.jhtml">友情链接</a>
 			  </li>

@@ -129,7 +129,6 @@
     		line-height:30px;
     	}
     	.biaoti{
-    		border: 1px solid #E4E4E4;
 		    display: inline-block;
 		    height: 85px;
 		    margin-bottom: 5px;
@@ -648,26 +647,11 @@
 				
 				-->
 				<style type="text/css">
-					#demo {
-						background: #FFF;
-						overflow:hidden;
-						border: 1px dashed #CCC;
-						width: 980px;
-						margin-left:8px;
-					}
-					#demo img {
-						border: 3px solid #F2F2F2;
-					}
-					#indemo {
-						float: left;
-						width: 800%;
-					}
-					#demo1 {
-						float: left;
-					}
-					#demo2 {
-						float: left;
-					}
+					#demo {background: #FFF;overflow:hidden;border: 1px dashed #CCC;width: 980px;margin-left:8px;}
+					#demo img {border: 3px solid #F2F2F2;}
+					#indemo {float: left;width: 800%;}
+					#demo1 {float: left;}
+					#demo2 {float: left;}
 				</style>
 				<div id="demo">
 					<div id="indemo">

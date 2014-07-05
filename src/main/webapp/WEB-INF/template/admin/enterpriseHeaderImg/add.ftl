@@ -94,32 +94,31 @@ $().ready(function() {
 								<span>
 									<a onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
 								</span>
-								<img style="width:190px;height:120px" src="" name="img"/>
+								<img style="width:195px;height:33px" src="" name="img"/>
 							</div>
 							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
 							<input type="hidden" id="filename0" name="filename0">
 						</span>
-						<label style="color:#0000FF;position:relative;top:100px;left:10px;">(建议尺寸：宽195px*高33px)</label>
+						<label style="color:#0000FF;position:relative;left:10px;">(建议尺寸：宽195px*高33px)</label>
 					</div>
 					<style type="text/css">
 						.brandImg span{
 							display:block;
 							position:absolute;
 							top:0px;left:0px;
-							width:200px;
-							height:130px;
+							width:195px;
+							height:33px;
 						}
-						
 						.brandImg{
 							border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
 						    border-radius: 2px 2px 2px 2px;
 						    border-style: solid;
 						    border-width: 1px;
 						    background-color: #666666;
-						    width:192px;height:122px;
+						    width:195px;
+						    height:33px;
 						    position:relative;
 						}
-						
 						.brandImg span:hover{
 							background-color:#FFFFFF;
 						    opacity: 0.7;
@@ -127,15 +126,11 @@ $().ready(function() {
 						    -moz-opacity:0.5;
 						    -khtml-opacity: 0.5;
 						}
-						
 						.brandImg span a{
 							display:block;
 							position:absolute;
-							top:50px;left:50px;
-						}
-						
-						.deleteProductImage:hover{
-							color:#C9033B !important;
+							left:50px;
+							color:#FFFFFF;
 						}
 					</style>
 				</td>
@@ -145,7 +140,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>企业链接:
 				</th>
 				<td>
-					<input type="text" name="alink" class="text" maxlength="200" value=""/><lable style="color:#0000FF;">(请从前台复制链接，以免写错。如：/enterpriseInformation.jhtml?id=1)</label>
+					<input type="text" name="alink" class="text" maxlength="200" value=""/><lable style="color:#0000FF;margin-left:10px;">(请从前台复制链接，以免写错。如：/enterpriseInformation.jhtml?id=1)</label>
 				</td>
 			</tr>
 			<tr>

@@ -96,20 +96,20 @@ $().ready(function() {
 									<a onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
 								</span>
 								<input type="hidden" name="imgpath" value="${dataCenter.imgpath}">
-								<img style="width:190px;height:120px" [#if dataCenter.imgpath?exists] src="/${dataCenter.imgpath}" [#else]src="/resource/public/images/bg.png"[/#if] name="img"/>
+								<img style="width:195px;height:33px" [#if dataCenter.imgpath?exists] src="/${dataCenter.imgpath}" [#else]src="/resource/public/images/bg.png"[/#if] name="img"/>
 							</div>
 							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
 							<input type="hidden" id="filename0" name="filename0">
 						</span>
-						<label style="color:#0000FF;position:relative;top:100px;left:10px;">(建议尺寸：宽195px*高33px)</label>
+						<label style="color:#0000FF;position:relative;left:10px;">(建议尺寸：宽195px*高33px)</label>
 					</div>
 					<style type="text/css">
 						.brandImg span{
 							display:block;
 							position:absolute;
 							top:0px;left:0px;
-							width:200px;
-							height:130px;
+							width:195px;
+							height:33px;
 						}
 						
 						.brandImg{
@@ -118,7 +118,8 @@ $().ready(function() {
 						    border-style: solid;
 						    border-width: 1px;
 						    background-color: #666666;
-						    width:192px;height:122px;
+						    width:195px;
+						    height:33px;
 						    position:relative;
 						}
 						
@@ -133,11 +134,7 @@ $().ready(function() {
 						.brandImg span a{
 							display:block;
 							position:absolute;
-							top:50px;left:50px;
-						}
-						
-						.deleteProductImage:hover{
-							color:#C9033B !important;
+							left:50px;
 						}
 					</style>
 				</td>

@@ -345,25 +345,44 @@
 	<div class="j_main w">
 		<div class="j_main_right">
 			<div class="j_main_1">
-				<table align="left"  style="font-size: 13px; padding: 4px;">
-					<tr>
-						<td style="padding-right: 20px; padding-left: 10px;">最新消息：</td>
-						[#list notices as notices]
-						[#if notices_index <4]
-							<td style="padding-right: 20px;">${notices.editTime?number_to_datetime}</td>
-							<td style="padding-right: 40px;">
-								<a href="/publicityInfo.jhtml?id=${notices.id}" title="${notices.title}">
-									[#if notices.title?length > 6]
-										${notices.title?string?substring(0,6)}...
-									[#else]
-										${notices.title}
-									[/#if]
+				<style type="text/css">
+					#demo {overflow:hidden;width: 885px;margin-left:8px;float:left;height:30px;line-height:30px;}
+					#demo img {border: 3px solid #F2F2F2;}
+					#indemo {float: left;width: 800%;}
+					#demo1 {float: left;}
+					#demo2 {float: left;}
+				</style>
+				<div style="padding-left: 10px;width:70px;height:30px;line-height:30px;;float:left;">最新消息：</div>
+				<div id="demo">
+					<div id="indemo">
+						<div id="demo1">
+							[#list notices as notices]
+								<span style="font-size:12px;margin-right:5px;">${notices.editTime?number_to_datetime}</span>
+								<a style="margin-right:10px;color:red;" href="/publicityInfo.jhtml?id=${notices.id}" title="${notices.title}">
+									${notices.title}
 								</a>
-							</td>
-						[/#if]
-						[/#list]
-					</tr>
-				</table>
+							[/#list]
+						</div>
+						<div id="demo2"></div>
+					</div>
+				</div>
+				<script type="text/javascript">
+					var speed=20;
+					var tab=document.getElementById("demo");
+					var tab1=document.getElementById("demo1");
+					var tab2=document.getElementById("demo2");
+					tab2.innerHTML=tab1.innerHTML;
+					function Marquee(){
+						if(tab2.offsetWidth-tab.scrollLeft<=0)
+							tab.scrollLeft-=tab1.offsetWidth
+						else{
+							tab.scrollLeft++;
+						}
+					}
+					var MyMar=setInterval(Marquee,speed);
+					tab.onmouseover=function() {clearInterval(MyMar)};
+					tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
+				</script>
 			</div>
 			<form id="infoForm" novalidate="novalidate"  action="/advanceSearchByContision.jhtml"  method="post" >
 			<input type="hidden" name="data" value="" id="data">

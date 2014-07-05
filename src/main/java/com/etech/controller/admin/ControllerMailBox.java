@@ -79,6 +79,7 @@ public class ControllerMailBox extends ControllerCRUD{
 		int id=Integer.parseInt(request.getParameter("id"));
 		TdataCenter mailBox=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("mailBox", mailBox);
+		request.setAttribute("type",EtechGobal.mailBox);
 		return "admin/mailBox/edit";
 	}
 	
@@ -96,17 +97,8 @@ public class ControllerMailBox extends ControllerCRUD{
 	 * @return
 	 */
 	@RequestMapping(value = "/update")
-	public String updateNewsView(TmailBox mailBox){
-		mailBox.setEditTime(System.currentTimeMillis());
-		// 设置审核通过
-		mailBox.setStatus("1");
-		etechService.merge(mailBox);
-		return "redirect:/admin/mailBox/list.jhtml";
-	}
-	@RequestMapping(value="/review")
-	public String review(Integer id){
-		//更改审核通过状态
-		etechService.updata(TmailBox.class, "id", id, "status","1");
+	public String updateNewsView(TdataCenter mailBox,HttpServletRequest request){
+		super.updataDataInfo(mailBox, request);
 		return "redirect:/admin/mailBox/list.jhtml";
 	}
 }

@@ -36,6 +36,9 @@ public class ControllerMailBox {
 		hql="From TdataCenter dataCenter where dataCenter.type='2'";
 		List<TdataCenter> notices = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("notices",notices ); 
+		hql="From TdataCenter dataCenter where dataCenter.type='22'";
+		List<TdataCenter> mailbox = (List<TdataCenter>)etechService.findListByHQL(hql);
+		request.setAttribute("mailbox",mailbox ); 
 		return "MailBox/mailBox";
 	}
 	@RequestMapping("/savaMailBox")

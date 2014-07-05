@@ -49,7 +49,7 @@ public class ControllerCRUD {
 			try {
 				inputStream = file.getInputStream();
 				if(inputStream.available()==0){
-					storepath="/group/M00/01/21/6551-A40C-4FDA-8D55-87265167B506.jpg";
+					storepath="/resource/public/images/6551-A40C-4FDA-8D55-87265167B506.jpg";
 					break;
 				}
 				count++;

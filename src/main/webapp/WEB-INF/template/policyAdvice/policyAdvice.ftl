@@ -230,7 +230,7 @@
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
 										[#list cityLawDataList as cityLawData]
-										<li><a href="/countryLaw.jhtml?id=${cityLawData.id}">${cityLawData.title}</a><span style="">${cityLawData.editTime?number_to_datetime}</span></li>
+										<li><a href="/cityLaw.jhtml?id=${cityLawData.id}">${cityLawData.title}</a><span style="">${cityLawData.editTime?number_to_datetime}</span></li>
 										[/#list]
 									</ul>
 								</div>
@@ -247,7 +247,7 @@
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
 										[#list countryFileDataList as countryFileData]
-										 <li><a href="/countryLaw.jhtml?id=${countryFileData.id}">${countryFileData.title}</a><span style="">
+										 <li><a href="/countryFile.jhtml?id=${countryFileData.id}">${countryFileData.title}</a><span style="">
 										  	${countryFileData.editTime?number_to_datetime}</span></li>
 										[/#list]
 									</ul>
@@ -263,7 +263,7 @@
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
 										[#list cityFileDataList as cityFileData]
-										<li><a href="/countryLaw.jhtml?id=${cityFileData.id}">${cityFileData.title}</a><span style="">${cityFileData.editTime?number_to_datetime}</span></li>
+										<li><a href="/cityFile.jhtml?id=${cityFileData.id}">${cityFileData.title}</a><span style="">${cityFileData.editTime?number_to_datetime}</span></li>
 										[/#list]
 									</ul>
 								</div>
