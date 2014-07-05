@@ -632,7 +632,11 @@
 					[#list recruitList as recruit]
 					<tr>
 					   
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml?id=${recruit.entUser.id}">${recruit.jobPost}</a></td>
+						<td>
+						   <a style="color:#0101FF;" href="/enterpriseInformation.jhtml?id=${recruit.entUser.id}#zw">
+						     ${recruit.jobPost}
+						    </a>
+						</td>
 						<td><a style="color:#0101FF"  href="/enterpriseInformation.jhtml?id=${recruit.entUser.id}">${recruit.company}</a></td>
 						<td style="color:#0101FF;">${recruit.salary}</td>
 						<td>${recruit.worknum}</td>
