@@ -176,8 +176,13 @@
 						<img style="width: 660px;" src="/resource/public/images/line.png">
 						[#list tdataCenterList as datacenter]
 						<div class="j_main_right_3">
-							<p><a href="#" style="color:#0017ff;text-decoration:underline;">${datacenter.title}</a></p>
+							<p><a href="/newsInfo.jhtml?id=${datacenter.id}" style="color:#0017ff;text-decoration:underline;">${datacenter.title}</a></p>
+							[#if datacenter.content?length > 100]
+								${datacenter.content?string?substring(0,100)}...
+							[#else]
 							<p>${datacenter.content}</p>
+							[/#if]
+							
 						</div>
 						[/#list]
 						<img style="width: 660px;" src="/resource/public/images/line.png">
