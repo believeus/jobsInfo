@@ -35,6 +35,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ReflectionUtils;
+import org.springframework.util.StringUtils;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import com.etech.entity.TdataCenter;
@@ -173,6 +174,7 @@ public class EtechComDao extends HibernateDaoSupport {
 
 	/** Begin Author:wuqiwei Data:2014-05-12 AddReason:根据属性获取对象 */
 	public Object getObjectByProperty(Class<?> clazz,final Object property, final Object value) {
+		if(StringUtils.isEmpty(value)){return null;}
 		final String hql = "from " + clazz.getName() + " as entity where entity."+ property + " =:value";
 		log.debug("current hql:" + hql);
 		return this.getHibernateTemplate().execute(

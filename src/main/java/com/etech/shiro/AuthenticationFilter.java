@@ -1,13 +1,12 @@
 package com.etech.shiro;
 
-
-import java.io.PrintWriter;
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -16,32 +15,53 @@ import org.springframework.util.StringUtils;
 import com.etech.entity.Tadmin;
 import com.etech.entity.TbaseUser;
 import com.etech.service.EtechService;
+import com.etech.util.Location;
 
 
 public class AuthenticationFilter extends FormAuthenticationFilter {
 	@Resource
 	private EtechService etechService;
+	private static final Log log=LogFactory.getLog(AuthenticationFilter.class);
 	public AuthenticationFilter() {
 	}
 
 	// 判断请求是否被拒绝
 	@Override
-	protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) {
+	protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse response) {
 		try {
 			HttpServletRequest request = (HttpServletRequest) servletRequest;
-			HttpServletResponse response = (HttpServletResponse) servletResponse;
 			/**Begin Author:wuqiwei Data:2014-07-03 AddReason:后台登录如果使用的不是管理员帐号登录跳转到管理员登录页面*/
 			String username=request.getParameter("loginName");
+			String password=request.getParameter("password");
 			TbaseUser sessionUser = (TbaseUser)etechService.findObjectByProperty(TbaseUser.class, "loginName", username);
 			String refered=request.getHeader("Referer");
-			if (!StringUtils.isEmpty(refered)&&refered.contains("/admin/login.jhtml")) {
-				if(!(sessionUser instanceof Tadmin)||StringUtils.isEmpty(username)){
-					StringBuilder script=new StringBuilder();
-					script.append("<script>").append("top.location.href='/admin/login.jhtml'").append("</script>");
-					PrintWriter pw = new PrintWriter(servletResponse.getOutputStream());
-					pw.write(script.toString());
-					pw.close();
+			log.debug("refer:"+refered);
+			// 用户名不存在
+			if(StringUtils.isEmpty(sessionUser)){
+				// 通过后台登录
+				if (!StringUtils.isEmpty(refered)&&refered.contains("/admin/login.jhtml")) {
+					String uri="/admin/login.jhtml";
+					Location.uri(response,uri);
 					return false;
+				// 从前台登录
+				}else {
+					return super.onAccessDenied(request, response);
+				}
+			}
+			if (!StringUtils.isEmpty(refered)&&refered.contains("/admin/login.jhtml")) {
+				if(!(sessionUser instanceof Tadmin)){
+					String uri="/admin/login.jhtml";
+					Location.uri(response,uri);
+					return false;
+				//登录是管理员
+				}else if((sessionUser instanceof Tadmin)){
+					// 密码md5加密
+					password=DigestUtils.md5Hex(password);
+					if(!password.equals(sessionUser.getPassword())){
+						String uri="/admin/login.jhtml";
+						Location.uri(response,uri);
+						return false;
+					}
 				}
 			}
 			/**End Author:wuqiwei Data:2014-07-03 AddReason:后台登录如果使用的不是管理员帐号登录跳转到管理员登录页面*/
@@ -51,7 +71,6 @@ public class AuthenticationFilter extends FormAuthenticationFilter {
 		}
 		return false;
 	}
-
 
 	// 提交表单的时候如果没有被拒绝创建调用
 	@Override
