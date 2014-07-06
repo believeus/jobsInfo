@@ -205,18 +205,21 @@ public class ControllerSearch {
 			log.debug("根据关键字和条件搜索招聘岗位");
 			List<Trecruit> recruitList=(List<Trecruit>)jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
 			request.setAttribute("recruitList", recruitList);
+			request.setAttribute("location", "position");
 			return "occupationIntroduction/advancedSearchJob";
 		//公司搜索
 		}else if ("company".equals(type)) {
 			log.debug("根据关键字和条件搜索公司");
 			List<Trecruit> recruitList=(List<Trecruit>)jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
 			request.setAttribute("recruitList", recruitList);
+			request.setAttribute("location", "company");
 			return "occupationIntroduction/advancedSearchCompany";
 		// 简历搜索
 		}else{
 			log.debug("简历搜索");
 			List<TcomInfo> comInfoList = resumeSearchService.search(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
 			request.setAttribute("comInfoList", comInfoList);
+			request.setAttribute("location", "resume");
 			return "occupationIntroduction/advancedSearchResume";
 		}
 		

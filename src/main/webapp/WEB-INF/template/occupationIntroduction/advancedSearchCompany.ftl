@@ -144,6 +144,9 @@
 		    line-height: 21px;
 		    cursor:pointer;
 		}
+		.currentC{
+			color:blue
+		}
     </style>
 </head>
 <body>
@@ -211,7 +214,7 @@
 		function Aclick(obj){
 			$this=$(obj);
 			// 得到当前a标签id值
-			var aId=$this.attr("name");
+			var aId=$this.attr("id");
 			// 判断是否在同一组
 			var group=$this.attr("group");
 			// 判断当前连接的class 是否是选中的状态
@@ -275,23 +278,42 @@
 		}
 		$().ready(function(){
 			
+			
 			// 条件组合显示
 			var strdata="${data}";
+			if(strdata==""){
+				$("a[name='不限']").each(function(){
+					$(this).attr("class","currentC");
+				})
+			}
 			strdata=strdata.split("-");
-			for(var i=0;i<strdata.length;i++){
-				var reg=new RegExp("~","g"); 
-				strdata[i]=strdata[i].replace(reg,"-");
+			var myarray=new Array(6);
+			for(var i=0;i<6;i++){
+			  if(strdata[i]!=""&&strdata[i]!=undefined){
 				var str=strdata[i].split("_")[0];
+				var sgroup=strdata[i].split("_")[1];
 				if(str!=""){
 					// 添加class 为当前所选的。
-					$("#"+strdata[i]).attr("class","current");
-					var html='<span><a href="javascript:void(0);" onclick="javascript:Aclick(this);" class="current" >'
+					myarray[sgroup]=sgroup;
+					$("a[name='"+str+"']").attr("class","currentC");
+					var html='<span><a href="javascript:void(0);" class="none" onclick="javascript:Aclick(this);" group="'+sgroup+'" id="'+strdata[i]+'" name="'+str+'" >'
 					+str+
 					'<span style="color: #E4925A;font-size: 17px;margin-left: 10px;">&times;</span></a></span>	';
 					$(".selected").append(html);
 				}
-				
+			  }
 			}
+			
+			 $.each(myarray,function(n,value) {
+			 	if(value==undefined){
+			 		$("a[group='"+n+"']").each(function(){
+					  	if($(this).attr("name")=="不限"){
+					  		$(this).attr("class","currentC");
+					  	}
+					 })
+			 	}
+			 })
+			 
 			// 关键字显示
 			$("#keyword").val("${keyword}");
 			
@@ -509,7 +531,7 @@
 				</table>
 				<div style="width: 996px; height: 30px;">
 					<div class="j_main_right_2_1">
-						<span style="font-weight: bold;">发布日期</span><span style="color: blue; float: right;"><a style="color: blue; font-size: 12px;" href="">不限</a></span>
+						<span style="font-weight: bold;">发布日期</span><span style="color: blue; float: right;"><a group="0" name="不限" id="" href="javascript:void(0);" onclick="javascript:Aclick(this);">不限</a></span>
 					</div>
 					<div class="j_main_right_2_2">
 						<ul>
@@ -517,7 +539,7 @@
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近3天_0" name="近3天">近3天</a></li>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近7天_0" name="近7天">近7天</a></li>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近15天_0" name="近15天">近15天</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近30_0" name="近30">近30天</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近30天_0" name="近30天">近30天</a></li>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近60天_0" name="近60天">近60天</a></li>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近60天以上_0" name="近60天以上">近60天以上</a></li>
 						</ul>
@@ -525,22 +547,22 @@
 				</div>
 				<div style="width: 996px; height: 30px;background:#FFF1DA;">
 					<div class="j_main_right_2_1">
-						<span style="font-weight: bold;">起薪范围</span><span style="color: blue; float: right;"><a style="color: blue; font-size: 12px;" href="">不限</a></span>
+						<span style="font-weight: bold;">起薪范围</span><span style="color: blue; float: right;"><a group="1" name="不限" id="" href="javascript:void(0);" onclick="javascript:Aclick(this);">不限</a></span>
 					</div>
 					<div class="j_main_right_2_2">
 						<ul>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="1000以下_1" name="1000以下">1000以下</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="1000-1999_1" name="1000~1999">1000~1999</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="2000-2999_1" name="2000~2999">2000~2999</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="3000-3999_1" name="3000~3999"> 3000~3999</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="4000-4999_1" name="4000~4999">4000~4999</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="1000~1999_1" name="1000~1999">1000~1999</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="2000~2999_1" name="2000~2999">2000~2999</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="3000~3999_1" name="3000~3999"> 3000~3999</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="4000~4999_1" name="4000~4999">4000~4999</a></li>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="1" id="5000以上_1" name="5000以上">5000以上</a></li>
 						</ul>
 					</div>
 				</div>
 				<div style="width: 996px; height: 30px;">
 					<div class="j_main_right_2_1">
-						<span style="font-weight: bold;">工作性质</span><span style="color: blue; float: right;"><a style="color: blue; font-size: 12px;" href="">不限</a></span>
+						<span style="font-weight: bold;">工作性质</span><span style="color: blue; float: right;"><a group="2" name="不限" id="" href="javascript:void(0);" onclick="javascript:Aclick(this);">不限</a></span>
 					</div>
 					<div class="j_main_right_2_2">
 						<ul>
@@ -549,14 +571,14 @@
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="实习_2" name="实习">实习</a></li>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="临时_2" name="临时">临时</a></li>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="小时工_2" name="小时工">小时工</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="全职/兼职/实习均可" name="全职/兼职/实习均可_2">全职/兼职/实习均可</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="全职/兼职/实习均可_2" name="全职/兼职/实习均可">全职/兼职/实习均可</a></li>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="2" id="就业见习_2" name="就业见习">就业见习</a></li>
 						</ul>
 					</div>
 				</div>
 				<div style="width: 996px; height: 30px;background:#FFF1DA;">
 					<div class="j_main_right_2_1">
-						<span style="font-weight: bold;">学历要求</span><span style="color: blue; float: right;"><a style="color: blue; font-size: 12px;" href="">不限</a></span>
+						<span style="font-weight: bold;">学历要求</span><span style="color: blue; float: right;"><a group="3" name="不限" id="" href="javascript:void(0);" onclick="javascript:Aclick(this);">不限</a></span>
 					</div>
 					<div class="j_main_right_2_2">
 						<ul>
@@ -576,24 +598,24 @@
 				</div>
 				<div style="width: 996px; height: 30px;">
 					<div class="j_main_right_2_1">
-						<span style="font-weight: bold;">工作年限</span><span style="color: blue; float: right;"><a style="color: blue; font-size: 12px;" href="">不限</a></span>
+						<span style="font-weight: bold;">工作年限</span><span style="color: blue; float: right;"><a group="4" name="不限" id="" href="javascript:void(0);" onclick="javascript:Aclick(this);">不限</a></span>
 					</div>
 					<div class="j_main_right_2_2">
 						<ul>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="在读学生_4" name="在读学生_4">在读学生</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="应届毕业生_4" name="应届毕业生_4">应届毕业生</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="1-2年_4" name="1~2年">1~2年</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="2-3年_4" name="2~3年">2~3年</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="3-5年_4" name="3~5年">3~5年</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="5-8年_4" name="5~8年">5~8年</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="8-10年_4" name="8~10年">8~10年</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="在读学生_4" name="在读学生">在读学生</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="应届毕业生_4" name="应届毕业生">应届毕业生</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="1~2年_4" name="1~2年">1~2年</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="2~3年_4" name="2~3年">2~3年</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="3~5年_4" name="3~5年">3~5年</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="5~8年_4" name="5~8年">5~8年</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="8~10年_4" name="8~10年">8~10年</a></li>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="4" id="10年以上_4" name="10年以上">10年以上</a></li>
 						</ul>
 					</div>
 				</div>
 				<div style="width: 996px; height: 30px;margin-bottom:25px;background:#FFF1DA;">
 					<div class="j_main_right_2_1">
-						<span style="font-weight: bold;">公司性质</span><span style="color: blue; float: right;"><a style="color: blue; font-size: 12px;" href="">不限</a></span>
+						<span style="font-weight: bold;">公司性质</span><span style="color: blue; float: right;"><a group="5" name="不限" id="" href="javascript:void(0);" onclick="javascript:Aclick(this);">不限</a></span>
 					</div>
 					<div class="j_main_right_2_2">
 						<ul>
