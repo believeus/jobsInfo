@@ -107,11 +107,13 @@ public class ControllerWork extends ControllerCRUD {
 	@RequestMapping(value="/workTop")
 	public String newsTop(int id){
 		super.top(id);
+		etechService.updata(TdataCenter.class, "id", id, "editTime", System.currentTimeMillis());
 		return "redirect:/admin/work/list.jhtml";
 	}
 	@RequestMapping(value="/unWorkTop")
 	public String unNewsTop(int id){
 		super.unTop(id);
+		etechService.updata(TdataCenter.class, "id", id, "editTime", System.currentTimeMillis());
 		return "redirect:/admin/work/list.jhtml";
 	}
 }

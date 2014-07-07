@@ -121,7 +121,7 @@
 			<div class="j_main_right_1">
 				<p>
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-					所在位置 > 工作指南 > 主要职能
+					所在位置 > <a href="/organization.jhtml" title="工作指南">工作指南</a> > <a href="/mainFunction.jhtml" title="主要职能">主要职能</a>
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">

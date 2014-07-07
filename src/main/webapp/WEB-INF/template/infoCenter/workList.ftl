@@ -5,6 +5,9 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="/resource/public/css/common.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/resource/public/js/admin/jquery.js"></script>
+	<script type="text/javascript" src="/resource/public/js/admin/list.js"></script>
     <style type="text/css">
    		.j_main{
     		width:1000px;
@@ -120,31 +123,22 @@
 			<div class="j_main_right_1">
 				<p>
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-					所在位置 > 资讯中心
+					所在位置 > <a href="/infoCenter.jhtml" title="资讯中心">资讯中心</a>(<span>共${works.total}条记录</span>)
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
+			 <form id="listForm" action="workList.jhtml">
 				<ul>
-					[#list works as work]
+					[#list works.content as work]
 					<li>
 						<a href="/workInfo.jhtml?id=${work.id}">${work.title}</a><span>${work.editTime?number_to_datetime}</span>
 					</li>
 					[/#list]
 				</ul>
-				<p style="padding-left:25px;">
-					<a href="">首页</a>
-					<a href="">上一页</a>
-					<a href="">下一页</a>
-					<a href="">末页</a>
-					<select name="">
-						<option value="">1</option>
-						<option value="">2</option>
-						<option value="">3</option>
-						<option value="">4</option>
-						<option value="">5</option>
-					</select>
-					共<font color="red">5</font>页<font color="red">51</font>条
-				</p>
+				[@pagination pageNumber = works.pageNumber totalPages = works.totalPages]
+					[#include "/include/pagination.ftl"]
+				[/@pagination]
+				</form>
 			</div>
 		</div>
 	</div>

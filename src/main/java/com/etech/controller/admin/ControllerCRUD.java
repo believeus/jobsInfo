@@ -186,7 +186,7 @@ public class ControllerCRUD {
 			hql="From TdataCenter center where center.type='"+type+"' and title like '%"+searchValue+"%' order by editTime desc";
 			request.setAttribute("searchValue", searchValue);
 		}else {
-			hql="From TdataCenter center where center.type='"+type+"' order by editTime desc";			
+			hql="From TdataCenter center where center.type='"+type+"' order by center.top desc,center.editTime desc";			
 		}
 		Page<?> page = etechService.getPage(hql, pageable);
 		return page;

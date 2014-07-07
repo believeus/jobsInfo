@@ -125,7 +125,7 @@
 			<div class="j_main_right_1">
 				<p>
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-					所在位置 > 资讯中心
+					所在位置 > <a href="/infoCenter.jhtml" title="资讯中心">资讯中心</a>
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">

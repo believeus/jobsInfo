@@ -122,7 +122,7 @@
 			<div class="j_main_right_1">
 				<p>
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-					所在位置 > 工作指南 > 机构简介
+					所在位置 > <a href="/organization.jhtml" title="工作指南">工作指南</a> > <a href="/organization.jhtml" title="机构简介">机构简介</a>
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">

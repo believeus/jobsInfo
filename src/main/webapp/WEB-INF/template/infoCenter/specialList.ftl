@@ -5,7 +5,9 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <script src="/resource/public/resources/scripts/jquery-1.10.2.min.js"></script>
+    <link href="/resource/public/css/common.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/resource/public/js/admin/jquery.js"></script>
+	<script type="text/javascript" src="/resource/public/js/admin/list.js"></script>
 	 <script type="text/javascript" src="/resource/public/resources/scripts/jquery.validate.js"></script>
 	 <script type="text/javascript" src="/resource/public/js/Etech.js"></script>
     <style type="text/css">
@@ -88,10 +90,11 @@
 	<div class="j_main w">
 		<div class="j_main_1">
 			<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-left: 10px; margin-right: 10px; margin-top: 6px;">
-			所在位置 > 专题报道
+			所在位置 > <a href="/specialList.jhtml" title="专题报道">专题报道</a>(<span>共${spceilas.total}条记录</span>)
 		</div>
 		<div class="j_main_2">
-			[#list spceilas as spceila]
+		<form id="listForm" action="specialList.jhtml">
+			[#list spceilas.content as spceila]
 			<div class="j_main_2_1">
 				<div class="zt" style="">
 					专题
@@ -113,35 +116,10 @@
 				</div>
 			</div>
 			[/#list]
-			<img style="padding: 0px 20px; width: 920px; margin-left: 15px;" src="/resource/public/images/line.png">
-			<div class="paixu" style="margin-top:30px;">
-				<ul style="float: right; margin: 0px 40px 0px 0px;">
-					<li>
-						<a href="">上一页</a>
-					</li>
-					<li>
-						<a href="">1</a>
-					</li>
-					<li>
-						<a href="">2</a>
-					</li>
-					<li>
-						<a href="">3</a>
-					</li>
-					<li>
-						<a href="">4</a>
-					</li>
-					<li>
-						<a href="">5</a>
-					</li>
-					<li>
-						<a href="">下一页</a>
-					</li>
-					<li style="margin-left: 20px;">
-						<a href="#">Top</a>
-					</li>
-				</ul>
-			</div>
+			[@pagination pageNumber = spceilas.pageNumber totalPages = spceilas.totalPages]
+				[#include "/include/pagination.ftl"]
+			[/@pagination]
+		</form>
 		</div>
 	</div>
 	[#include "/include/footer.ftl" /]

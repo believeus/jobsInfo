@@ -5,6 +5,9 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="/resource/public/css/common.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/resource/public/js/admin/jquery.js"></script>
+	<script type="text/javascript" src="/resource/public/js/admin/list.js"></script>
     <style type="text/css">
    		.j_main{
     		width:1000px;
@@ -130,13 +133,13 @@
 			<div class="j_main_right_1">
 				<p class="j_main_right_1_p">
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-					所在位置 > 工作指南 > 局领导
+					所在位置 > <a href="/organization.jhtml" title="工作指南">工作指南</a> > <a href="/leader.jhtml" title="局领导">局领导</a>(<span>共${datas.total}条记录</span>)
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
+			<form id="listForm" action="leader.jhtml">
 				<div class="j_main_right_2_1">
-				
-					[#list datas as data]
+					[#list datas.content as data]
 					<div class="j_main_right_2_1_1" style="margin-bottom:10px;">
 						<div class="" style="height: 130px; float: left; margin-left: 25px; width: 100px; margin-top: 10px;">
 							<img src="${data.imgpath}" width="95" height="130">
@@ -149,6 +152,10 @@
 					</div>
 					[/#list]
 				</div>
+				[@pagination pageNumber = datas.pageNumber totalPages = datas.totalPages]
+					[#include "/include/pagination.ftl"]
+				[/@pagination]
+			</form>
 			</div>
 		</div>
 	</div>

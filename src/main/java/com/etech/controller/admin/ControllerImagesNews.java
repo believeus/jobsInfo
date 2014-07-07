@@ -120,11 +120,13 @@ public class ControllerImagesNews extends ControllerCRUD{
 	@RequestMapping(value="/imagesNewsTop")
 	public String newsTop(int id){
 		super.top(id);
+		etechService.updata(TdataCenter.class, "id", id, "editTime", System.currentTimeMillis());
 		return "redirect:/admin/imagesNews/list.jhtml";
 	}
 	@RequestMapping(value="/unImagesNewsTop")
 	public String unNewsTop(int id){
 		super.unTop(id);
+		etechService.updata(TdataCenter.class, "id", id, "editTime", System.currentTimeMillis());
 		return "redirect:/admin/imagesNews/list.jhtml";
 	}
 }

@@ -5,7 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
+    <link href="/resource/public/css/common.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/resource/public/js/admin/jquery.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/list.js"></script>
     
@@ -125,7 +125,7 @@
 			<div class="j_main_right_1">
 				<p>
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-					所在位置 > 资讯中心&nbsp;&nbsp;<span>共${news.total}条记录</span>
+					所在位置 > <a href="/infoCenter.jhtml" title="资讯中心">资讯中心</a>&nbsp;&nbsp;<span>共${news.total}条记录</span>
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">

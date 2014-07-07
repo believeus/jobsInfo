@@ -32,7 +32,6 @@ public class ControllerDemandList {
 		int pageSize=20;
 		if(!StringUtils.isEmpty(request.getParameter("pageNo"))){
 			 pageNo= Integer.parseInt(request.getParameter("pageNo"));
-			
 		}
 		if(!StringUtils.isEmpty(request.getParameter("pageSize"))){
 			 pageSize = Integer.parseInt(request.getParameter("pageSize"));

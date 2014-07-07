@@ -3,14 +3,17 @@ package com.etech.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.etech.entity.TdataCenter;
 import com.etech.service.EtechService;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 /**
  * 工作指南
@@ -23,38 +26,45 @@ public class ControllerJobGuide {
 
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/organization", method = RequestMethod.GET)
-	public String organizationView(HttpSession session) {
-		String hql="From TdataCenter dataCenter where dataCenter.type='6'";
+	public String organizationView(HttpServletRequest request) {
+		String hql="From TdataCenter dataCenter where dataCenter.type='6' order by dataCenter.editTime desc";
 		List<TdataCenter> datas = (List<TdataCenter>)etechService.findListByHQL(hql, 1);
-		session.setAttribute("datas", datas);
-		getSubjectReport(session); 
+		request.setAttribute("datas", datas);
+		getSubjectReport(request); 
 		return "guide/organization";
 	}
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/mainFunction", method = RequestMethod.GET)
-	public String mainFunctioView(HttpSession session) {
-		String hql="From TdataCenter dataCenter where dataCenter.type='7'";
+	public String mainFunctioView(HttpServletRequest request) {
+		String hql="From TdataCenter dataCenter where dataCenter.type='7' order by dataCenter.editTime desc";
 		List<TdataCenter> datas = (List<TdataCenter>)etechService.findListByHQL(hql, 1);
-		session.setAttribute("datas", datas);
-		getSubjectReport(session);
+		request.setAttribute("datas", datas);
+		getSubjectReport(request);
 		return "guide/mainFunction";
 	}
 	
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/leader", method = RequestMethod.GET)
-	public String leaderView(HttpSession session) {
-		String hql="From TdataCenter dataCenter where dataCenter.type='8'";
-		List<TdataCenter> datas = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
-		session.setAttribute("datas", datas);
-		getSubjectReport(session); 
+	public String leaderView(HttpServletRequest request) {
+		
+		String pageNumber = request.getParameter("pageNumber");
+		// 如果为空，则设置为1
+		if (StringUtils.isEmpty(pageNumber)) {
+			pageNumber="1";
+		}
+		
+		String hql="From TdataCenter dataCenter where dataCenter.type='8' order by dataCenter.editTime desc";
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
+		Page<?> page = etechService.getPage(hql, pageable);
+		request.setAttribute("datas", page);
+		getSubjectReport(request); 
 		return "guide/leader";
 	}
 	
 	@SuppressWarnings("unchecked")
-	private void getSubjectReport(HttpSession session){
-		String hql="From TdataCenter dataCenter where dataCenter.type='5'";
+	private void getSubjectReport(HttpServletRequest request){
+		String hql="From TdataCenter dataCenter where dataCenter.type='5' order by dataCenter.editTime desc";
 		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
-		session.setAttribute("subjectReport", subjectReport); // 专题报道
+		request.setAttribute("subjectReport", subjectReport); // 专题报道
 	}
 }

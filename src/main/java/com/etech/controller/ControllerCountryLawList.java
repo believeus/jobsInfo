@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.etech.entity.TdataCenter;
 import com.etech.service.EtechService;
 import com.etech.util.EtechGobal;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 /**
  * 国家法律法规列表
@@ -26,11 +29,19 @@ public class ControllerCountryLawList {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/countryLawList", method = RequestMethod.GET)
 	public String policyAdviceView(HttpServletRequest request) {
-		String hql="From TdataCenter as dataCenter where dataCenter.type='"+EtechGobal.countryLaw+"' order by dataCenter.id desc";
-		List<TdataCenter> dataCenterList = (List<TdataCenter>)etechService.findListByHQL(hql, 20);
-		request.setAttribute("dataCenterList", dataCenterList);
 		
-		hql="From TdataCenter dataCenter where dataCenter.type='5' order by dataCenter.id desc";
+		String pageNumber = request.getParameter("pageNumber");
+		// 如果为空，则设置为1
+		if (StringUtils.isEmpty(pageNumber)) {
+			pageNumber="1";
+		}
+		
+		String hql="From TdataCenter as dataCenter where dataCenter.type='"+EtechGobal.countryLaw+"' order by dataCenter.editTime desc";
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
+		Page<?> page = etechService.getPage(hql, pageable);
+		request.setAttribute("dataCenterList", page);
+		
+		hql="From TdataCenter dataCenter where dataCenter.type='5' order by dataCenter.editTime desc";
 		List<TdataCenter> spceilas = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
 		request.setAttribute("spceilas", spceilas);
 		

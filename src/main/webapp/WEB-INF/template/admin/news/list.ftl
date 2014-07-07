@@ -55,13 +55,13 @@ $().ready(function() {
 					<input type="checkbox" id="selectAll" />
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="title">排序编号</a>
+					<a href="javascript:;" class="sort" name="id">排序编号</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="adPosition">标题</a>
+					<a href="javascript:;" class="sort" name="title">标题</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="type">置顶</a>
+					<a href="javascript:;" class="sort" name="top">置顶</a>
 				</th>
 				<th>
 					<a href="#"  class="sort">操作</a>

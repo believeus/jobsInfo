@@ -5,6 +5,9 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="/resource/public/css/common.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/resource/public/js/admin/jquery.js"></script>
+	<script type="text/javascript" src="/resource/public/js/admin/list.js"></script>
     <style type="text/css">
    		.j_main{
     		width:1000px;
@@ -149,11 +152,12 @@
 			<div class="j_main_right_1">
 				<p>
 					<img style="float: left; margin-right: 10px;" src="/resource/public/images/sanjiaojian.png">
-					所在位置 > 资讯中心
+					所在位置 > <a href="/infoCenter.jhtml" title="资讯中心">资讯中心</a>(<span>共${videos.total}条记录</span>)
 				</p>
 			</div>
+		<form id="listForm" action="videosList.jhtml">
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
-				[#list videos as video]
+				[#list videos.content as video]
 					<div class="velist">
 						<p style="margin-top: 3px; margin-bottom: 0px;">
 							<a href="/videosInfo.jhtml?id=${video.id}" title="${video.title}">
@@ -173,6 +177,10 @@
 					</div>
 				[/#list]
 			</div>
+			[@pagination pageNumber = videos.pageNumber totalPages = videos.totalPages]
+				[#include "/include/pagination.ftl"]
+			[/@pagination]
+		</form>
 		</div>
 	</div>
 	[#include "/include/footer.ftl" /]

@@ -29,7 +29,7 @@ public class ControllerNews {
 	@RequestMapping(value = "/newsInfo", method = RequestMethod.GET)
 	public String newsInfoView(HttpSession session,Integer id,HttpServletRequest request) {
 		TdataCenter dataCenter = (TdataCenter)etechService.findObjectById(TdataCenter.class, id);
-		request.setAttribute("data", dataCenter); 
+		request.setAttribute("data", dataCenter);
 		
 		// 专题
 		String hql="From TdataCenter dataCenter where dataCenter.type='5'";

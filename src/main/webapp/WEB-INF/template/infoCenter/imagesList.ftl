@@ -5,6 +5,9 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="/resource/public/css/common.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/resource/public/js/admin/jquery.js"></script>
+	<script type="text/javascript" src="/resource/public/js/admin/list.js"></script>
     <style type="text/css">
    		.j_main{
     		width:1000px;
@@ -132,32 +135,38 @@
 			<div class="j_main_right_1">
 				<p>
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-					所在位置 > 资讯中心
+					所在位置 > <a href="/infoCenter.jhtml" title="资讯中心">资讯中心</a>(<span>共${imgs.total}条记录</span>)
 				</p>
 			</div>
-			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
-				[#list imgs as img]
-				[#if img_index <12]
-					<div class="img_list">
-						<p>
-							<a href="/imgShow.jhtml?id=${img.id}" title="${img.title}">
-								<img src="${img.imgpath}" width="170" height="110">
-							</a>
-						</p>
-						<p style="padding:0 5px;text-align:center;color:#3A71AA;font-size:14px;margin-bottom:0;">
-							<a href="/imgShow.jhtml?id=${img.id}" title="${img.title}">
-								[#if img.title?length > 13]
-									${img.title?string?substring(0,13)}...
-								[#else]
-									${img.title}
-								[/#if]
-							</a>
-						</p>
-						<p style="margin-top:0;">[${img.editTime?number_to_datetime}]</p>
-					</div>
-				[/#if]
-				[/#list]
-			</div>
+			<form id="listForm" action="imagesList.jhtml">
+				<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
+					[#list imgs.content as img]
+					[#if img_index <12]
+						<div class="img_list">
+							<p>
+								<a href="/imgShow.jhtml?id=${img.id}" title="${img.title}">
+									<img src="${img.imgpath}" width="170" height="110">
+								</a>
+							</p>
+							<p style="padding:0 5px;text-align:center;color:#3A71AA;font-size:14px;margin-bottom:0;">
+								<a href="/imgShow.jhtml?id=${img.id}" title="${img.title}">
+									[#if img.title?length > 13]
+										${img.title?string?substring(0,13)}...
+									[#else]
+										${img.title}
+									[/#if]
+								</a>
+							</p>
+							<p style="margin-top:0;">[${img.editTime?number_to_datetime}]</p>
+						</div>
+					[/#if]
+					[/#list]
+					
+				</div>
+				[@pagination pageNumber = imgs.pageNumber totalPages = imgs.totalPages]
+						[#include "/include/pagination.ftl"]
+				[/@pagination]
+			</form>
 		</div>
 	</div>
 	[#include "/include/footer.ftl" /]

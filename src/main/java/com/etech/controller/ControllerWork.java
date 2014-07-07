@@ -1,16 +1,18 @@
 package com.etech.controller;
 
-import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.etech.entity.TdataCenter;
 import com.etech.service.EtechService;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 /**
  * 工作动态详情
@@ -22,18 +24,23 @@ public class ControllerWork {
 	private EtechService etechService;
 	
 	@RequestMapping(value = "/workInfo", method = RequestMethod.GET)
-	public String workInfoView(HttpSession session,Integer id) {
+	public String workInfoView(Integer id,HttpServletRequest request) {
 		TdataCenter dataCenter = (TdataCenter)etechService.findObjectById(TdataCenter.class, id);
-		session.setAttribute("data", dataCenter);
+		request.setAttribute("data", dataCenter);
 		return "infoCenter/workInfo";
 	}
 	
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/workList", method = RequestMethod.GET)
-	public String worksList(HttpSession session) {
-		String hql="From TdataCenter dataCenter where dataCenter.type='1' order by id desc";
-		List<TdataCenter> works = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
-		session.setAttribute("works", works);
+	@RequestMapping(value = "/workList")
+	public String worksList(HttpServletRequest request) {
+		String pageNumber = request.getParameter("pageNumber");
+		// 如果为空，则设置为1
+		if (StringUtils.isEmpty(pageNumber)) {
+			pageNumber="1";
+		}
+		String hql="From TdataCenter dataCenter where dataCenter.type='1' order by dataCenter.editTime desc";
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
+		Page<?> page = etechService.getPage(hql, pageable);
+		request.setAttribute("works",page);
 		return "infoCenter/workList";
 	}
 }
