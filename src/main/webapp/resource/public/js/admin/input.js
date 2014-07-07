@@ -9,10 +9,6 @@
 
 $().ready( function() {
 	
-
-	// 使用ueditor编辑器
-	var ue = UE.getEditor('editor');
-	
 	var $backButton = $("#backButton");
 	
 	if ($.tools != null) {
@@ -87,7 +83,6 @@ $().ready( function() {
 
 });
 
-
 // 编辑器
 if(typeof(KindEditor) != "undefined") {
 	KindEditor.ready(function(K) {
@@ -122,5 +117,4 @@ if(typeof(KindEditor) != "undefined") {
 			}
 		});
 	});
-	
 }
