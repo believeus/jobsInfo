@@ -1,23 +1,18 @@
 package com.etech.controller;
 
+import java.util.Calendar;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.etech.entity.TcomInfo;
 import com.etech.entity.TdataCenter;
 import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
-import com.etech.util.TimeUtils;
 
 /**
  * 数据频道
@@ -53,11 +48,16 @@ public class ControllerDataChannel {
 		List<TdataCenter> wagePriceGuide = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("wagePriceGuide", wagePriceGuide);
 		
-		// 获取一个月的毫秒数
-		long oneMonthTimeMillis=TimeUtils.getOneMonthTimeMillis();
-		// 当前时间
-		long endTime=System.currentTimeMillis();
-		long beginTime=endTime-oneMonthTimeMillis;
+		 //获取当前月第一天：
+        Calendar c = Calendar.getInstance();   
+        c.add(Calendar.MONTH, 0);
+        c.set(Calendar.DAY_OF_MONTH,1);//设置为1号,当前日期既为本月第一天
+        long beginTime=c.getTimeInMillis();
+       
+        //获取当前月最后一天
+        Calendar ca = Calendar.getInstance();   
+        ca.set(Calendar.DAY_OF_MONTH, ca.getActualMaximum(Calendar.DAY_OF_MONTH)); 
+        long endTime=ca.getTimeInMillis();
 		//需求排行
 		hql="from Trecruit recruit left join fetch recruit.workType "
 		   + "where recruit.editTime >="+beginTime+" and recruit.editTime <="+endTime +" "
