@@ -173,7 +173,7 @@ $().ready(function() {
 								<a class="click_upimgs" onclick="file'+a+'.click()" href="javascript:void(0);">点击上传图片</a>
 							</span>
 							<img style="width:190px;height:120px" src="/resource/public/images/bg.png" name="img"/>
-							<a class="delete_pic" href="javascript:void(0);" onclick="delete_pic(this,no)">删除</a>
+							<a class="delete_pic" href="javascript:void(0);" onclick="delete_pic(this,'+a+')">删除</a>
 						</div>
 						<input type="file" style="display:none" id="file'+a+'" name="file'+a+'" onchange="filename'+a+'.value=this.value;loadImgFast(this,'+a+')">
 						<input type="hidden" id="filename'+a+'" name="filename'+a+'">
@@ -220,15 +220,10 @@ $().ready(function() {
 					<div class="img_list">
 						<span style="float:left">
 							<div class="brandImg">
-								<span>
-									<a onclick="file${url_index}.click()" href="javascript:void(0)">点击上传图片</a>
-								</span>
-								<input type="hidden" name="imgpath" value="${url}"/>
 								<img style="width:190px;height:120px" [#if url?exists] src="/${url}" [#else]src="/resource/public/images/bg.png"[/#if] value="${url}"/>
 								<a class="delete_pic" href="javascript:void(0);" onclick="delete_pic(this,'${url}')">删除</a>
 							</div>
-							<input type="file" style="display:none" id="file${url_index}" name="file${url_index}" onchange="filename${url_index}.value=this.value;loadImgFast(this,${url_index})">
-							<input type="hidden" id="filename${url_index}" name="filename${url_index}">
+							<input type="file" style="display:none" id="file" name="file" >
 						</span>
 					</div>
 					[/#if]

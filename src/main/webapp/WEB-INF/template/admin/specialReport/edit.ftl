@@ -13,6 +13,14 @@
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
 <script type="text/javascript">
+function delete_pic(object,id){		
+		// 获取图片是否有值
+		if($(object).closest("div").parent().find("img").attr("src")!="/resource/public/images/bg.png"){
+			// 清空图片和描述
+			$(object).closest("div").parent().find("img").attr("src","/resource/public/images/bg.png");
+		}					
+}
+
 $().ready(function() {
 
 	var $inputForm = $("#inputForm");
@@ -95,19 +103,42 @@ $().ready(function() {
 					</script>
 					
 					<div>
+						[#list dataCenter.imgpath?string?split("#") as url]   
 						<span style="float:left">
 							<div class="brandImg">
 								<span>
-									<a onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
+									<a onclick="file${url_index}.click()"  class="click_upimgs" href="javascript:return false;">点击上传图片</a>
 								</span>
-								<input type="hidden" name="imgpath" value="${dataCenter.imgpath}">
-								<img style="width:190px;height:120px" [#if dataCenter.imgpath?exists] src="/${dataCenter.imgpath}" [#else]src="/resource/public/images/bg.png"[/#if] name="img"/>
+								<input type="hidden" name="imgpath" value="${url}">
+								<img style="width:190px;height:120px" [#if dataCenter.imgpath!="/resource/public/images/6551-A40C-4FDA-8D55-87265167B506.jpg"] src="/${url}" [#else]src="${url}"[/#if] name="img"/>
+								<a class="delete_pic" href="javascript:void(0);" onclick="delete_pic(this,${url_index});">清空</a>
 							</div>
-							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
-							<input type="hidden" id="filename0" name="filename0">
+							<input type="file" style="display:none" id="file${url_index}" name="file${url_index}" onchange="filename${url_index}.value=this.value;loadImgFast(this,${url_index})">
+							<input type="hidden" id="filename${url_index}" name="filename${url_index}">
 						</span>
+						[/#list]
+						[#if dataCenter.imgpath?string?split("#")?size==1]
+							<span style="float:left">
+							<div class="brandImg">
+								<span>
+									<a class="click_upimgs" onclick="file1.click()" href="javascript:void(0);">点击上传图片</a>
+								</span>
+								<img style="width:190px;height:120px" src="/resource/public/images/bg.png" name="img"/>
+								<a class="delete_pic" href="javascript:void(0);" onclick="delete_pic(this,1);">清空</a>
+							</div>
+							<input type="file" style="display:none" id="file1" name="file1" onchange="filename1.value=this.value;loadImgFast(this,1)">
+							<input type="hidden" id="filename1" name="filename1">
+						</span>
+						[/#if]
 					</div>
+					<label style="color:#0000FF;float:right;position:relative;right:120px;top:60px;">
+					说明：首张图片为大图，其余为小图，不上传图片则设置默认图片。<br/>
+					(建议图片尺寸:大图:宽1000px*高179px，小图:宽222px*高66px)</label>
 					<style type="text/css">
+						.delete_pic{
+							color:#FFFFFF;
+							font-size:16px;
+						}
 						.brandImg span{
 							display:block;
 							position:absolute;
@@ -122,8 +153,9 @@ $().ready(function() {
 						    border-style: solid;
 						    border-width: 1px;
 						    background-color: #666666;
-						    width:192px;height:122px;
+						    width:192px;height:150px;
 						    position:relative;
+						    text-align:center;
 						}
 						
 						.brandImg span:hover{

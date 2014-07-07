@@ -14,17 +14,13 @@
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
 <script type="text/javascript">
 function delete_pic(object,id){		
-	if ($(".delete_pic").size() <= 1) {
-		alert("必须至少保留一张空图片");				
 		// 获取图片是否有值
 		if($(object).closest("div").parent().find("img").attr("src")!="/resource/public/images/bg.png"){
 			// 清空图片和描述
 			$(object).closest("div").parent().find("img").attr("src","/resource/public/images/bg.png");
 		}					
-	} else {
-		$(object).closest("div").parent().parent().remove();
-	}
 }
+
 $().ready(function() {
 
 	var $inputForm = $("#inputForm");
@@ -52,42 +48,6 @@ $().ready(function() {
 		}
 	});
 	
-	// 表单验证
-	$inputForm.validate({
-		rules: {
-			title: "required",
-			adPositionId: "required",
-			path: "required",
-			order: "digits"
-		}
-	});
-	
-	var a = 1;
-	
-	$("#add_imgs").click(function(){
-		[@compress single_line = true]
-			var html =
-				'<div class="img_list">
-					<span style="float:left">
-						<div class="brandImg">
-							<span>
-								<a class="click_upimgs" onclick="file'+a+'.click()" href="javascript:void(0);">点击上传图片</a>
-							</span>
-							<img style="width:190px;height:120px" src="/resource/public/images/bg.png" name="img"/>
-							<a class="delete_pic" href="javascript:void(0);" onclick="delete_pic(this,'+a+');">删除</a>
-						</div>
-						<input type="file" style="display:none" id="file'+a+'" name="file'+a+'" onchange="filename'+a+'.value=this.value;loadImgFast(this,'+a+')">
-						<input type="hidden" id="filename'+a+'" name="filename'+a+'">
-					</span>
-				</div>';
-		[/@compress]
-		if($(".img_list").size() >=2){
-			alert("最多添加2张图片");
-		}else{
-			$(".img_list").parent().append(html);
-		}
-		a++;
-	});
 });
 </script>
 </head>
@@ -115,7 +75,6 @@ $().ready(function() {
 			<tr id="pathTr">
 				<th>
 					<span class="requiredField">*</span>相关图片:</br>
-					<input id="add_imgs" type="button" value="添加图片" style="font-size: 10px; width: 60px;cursor:pointer;">
 				</th>
 				<td colspan="3">
 					<script type="text/javascript">
@@ -138,14 +97,29 @@ $().ready(function() {
 								<span>
 									<a onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
 								</span>
-								<img style="width:190px;height:120px" src="" name="img"/>
-								<a class="delete_pic" href="javascript:void(0);" onclick="delete_pic(this,0);">删除</a>
+								<img style="width:190px;height:120px" src="/resource/public/images/bg.png" name="img"/>
+								<a class="delete_pic" href="javascript:void(0);" onclick="delete_pic(this,0);">清空</a>
 							</div>
 							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
 							<input type="hidden" id="filename0" name="filename0">
 						</span>
+						<div class="img_list">
+						<span style="float:left">
+							<div class="brandImg">
+								<span>
+									<a class="click_upimgs" onclick="file1.click()" href="javascript:void(0);">点击上传图片</a>
+								</span>
+								<img style="width:190px;height:120px" src="/resource/public/images/bg.png" name="img"/>
+								<a class="delete_pic" href="javascript:void(0);" onclick="delete_pic(this,1);">清空</a>
+							</div>
+							<input type="file" style="display:none" id="file1" name="file1" onchange="filename1.value=this.value;loadImgFast(this,1)">
+							<input type="hidden" id="filename1" name="filename1">
+						</span>
+				</div>
 					</div>
-					<label style="color:#0000FF;float:right;position:relative;right:200px;top:60px;">(建议图片尺寸:大图:宽1000px*高179px，小图:宽222px*高66px)</label>
+					<label style="color:#0000FF;float:right;position:relative;right:120px;top:60px;">
+					说明：首张图片为大图，其余为小图，不上传图片则设置默认图片。<br/>
+					(建议图片尺寸:大图:宽1000px*高179px，小图:宽222px*高66px)</label>
 					<style type="text/css">
 						.delete_pic{
 							color:#FFFFFF;
