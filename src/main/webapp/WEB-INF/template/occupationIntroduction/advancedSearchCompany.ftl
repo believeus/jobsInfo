@@ -668,6 +668,7 @@
 						<th>岗位名称</th>
 						<th>月薪范围</th>
 						<th>招聘人数</th>
+						<th>工作地点</th>
 						<th>发布时间</th>
 					</tr>
 					[#list recruitList as recruit]
@@ -676,6 +677,7 @@
 						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml?id=${recruit.entUser.id}#zw">${recruit.jobPost}</a></td>
 						<td style="color:#0101FF;">${recruit.salary}</td>
 						<td>${recruit.worknum}</td>
+						<td>${recruit.workspace}</td>
 						<td>${recruit.editTime?number_to_date} ${recruit.editTime?number_to_time}</td>
 					</tr>
 				   [/#list]

@@ -245,7 +245,7 @@
 	[#include "/include/header.ftl" /]
 	<script style="text/javascript">
 		    $().ready(function() {
-		    
+		    	
 		    	$("#gangwei").click(function(){
 		    		$("#gongsi").removeClass("current");
 		    		$("#gangwei").addClass("current");
@@ -440,10 +440,10 @@
 				</div>
 				<div style="width:457px;height:156px;background:#FFF1DA;border:1px solid #E45900;">
 					<form action="/advanceSearchByContision.jhtml" method="post">
-						<input id="stype" type="hidden" name="type" value="">
+						<input id="stype"  type="hidden" name="type" value="position">
 						<div style="width: 380px; margin-left: auto; margin-right: auto; margin-top: 20px;">
-							<input type="text" value="" placeholder="请输入查询内容..." style="width: 360px;margin-bottom:15px;">
-							<input type="text" name="expectArea" id="start1" placeholder="选择城市" autocomplete="off" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" style="width:151px;" readonly="readonly">
+							<input type="text" name="keyword" value="" placeholder="请输入查询内容..." style="width: 360px;margin-bottom:15px;">
+							<input type="text" name="area" id="start1" placeholder="选择城市" autocomplete="off" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" style="width:151px;" readonly="readonly">
 							<input type="submit" value="搜索" style="cursor:pointer;border-radius:4px;width:85px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
 							<input type="button" value="高级搜索" onclick="javascript:window.location.href='/jobAdvancedSearch.jhtml'" style="cursor:pointer;border-radius:4px;width:90px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
 							<p>搜索热词：
