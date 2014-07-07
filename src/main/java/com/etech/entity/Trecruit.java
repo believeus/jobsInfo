@@ -184,6 +184,7 @@ public class Trecruit extends TbaseEntity implements Serializable {
 		this.workWay = workWay;
 	}
 
+	@Field(store=Store.YES,index=Index.TOKENIZED)
 	public String getWorkspace() {
 		return workspace;
 	}

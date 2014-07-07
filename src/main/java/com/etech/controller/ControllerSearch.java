@@ -188,9 +188,7 @@ public class ControllerSearch {
 			// 获取字符串
 			request.setAttribute("workValue",workValue.getName());
 		}
-		if (area!=null) {
-			
-		}
+		
 		request.setAttribute("data", data);
 		request.setAttribute("keyword", keyword);
 		request.setAttribute("majorTypeId", majorTypeId);

@@ -14,6 +14,7 @@ import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.BooleanQuery;
+import org.apache.lucene.search.FuzzyQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.SortField;
@@ -98,7 +99,7 @@ public class JobSearchService {
 				TermQuery workyearQuery=new TermQuery(new Term("workyear",workYear));
 				booleanQuery.add(workyearQuery,Occur.MUST);
 			}
-			
+		
 			// 公司性质
 			if(!StringUtils.isEmpty(companyType)){
 				log.debug("companyType:"+companyType);
@@ -116,7 +117,9 @@ public class JobSearchService {
 			// 工作地点
 			if(!StringUtils.isEmpty(area)){
 				log.debug("area:"+area);
-				TermQuery workspaceQuery=new TermQuery(new Term("workspace",area));
+				MultiFieldQueryParser parser = new MultiFieldQueryParser(Version.LUCENE_36, new String[]{"workspace"}, new IKAnalyzer());
+				parser.setDefaultOperator(QueryParser.OR_OPERATOR);
+				Query workspaceQuery = parser.parse(area);
 				booleanQuery.add(workspaceQuery, Occur.MUST);
 			}
 			// 专业
