@@ -152,7 +152,7 @@
 			<div class="j_main_right_1">
 				<p>
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-					所在位置 > 政策咨询
+					所在位置 > <a href="/policyAdvice.jhtml" title="政策咨询">政策咨询</a>
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;width:727px;">

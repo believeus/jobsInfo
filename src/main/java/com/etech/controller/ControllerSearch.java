@@ -309,6 +309,12 @@ public class ControllerSearch {
 			formDataCenter.setPowerProperty(Integer.parseInt(powerProperty));
 			List<TdataCenter> dataCenterList = policyAdviceService.searchPolicyAdvice(formDataCenter,beginDate,endDate,currentPage,perCount);
 			request.setAttribute("dataCenterList", dataCenterList);
+			
+			// 专题报道
+			String hql="From TdataCenter dataCenter where dataCenter.type='5' order by editTime desc";
+			@SuppressWarnings("unchecked")
+			List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
+			request.setAttribute("subjectReport", subjectReport);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

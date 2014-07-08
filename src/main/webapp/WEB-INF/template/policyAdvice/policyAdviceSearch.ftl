@@ -160,7 +160,7 @@
 			<div class="j_main_right_1">
 				<p>
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-					所在位置 > 政策咨询
+					所在位置 > <a href="/policyAdvice.jhtml" title="政策咨询">政策咨询</a>
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;width:727px;">
@@ -214,6 +214,7 @@
 				</table>
 			</form>
 				<div style="border:1px solid #e4e4e4;" class="j_main_right_2">
+				
 					<ul>
 						[#list dataCenterList as dataCenter]
 						<li>
@@ -221,20 +222,7 @@
 						</li>
 						[/#list]
 					</ul>
-					<p style="padding-left:25px;">
-						<a href="">首页</a>
-						<a href="">上一页</a>
-						<a href="">下一页</a>
-						<a href="">末页</a>
-						<select name="">
-							<option value="">1</option>
-							<option value="">2</option>
-							<option value="">3</option>
-							<option value="">4</option>
-							<option value="">5</option>
-						</select>
-						共<font color="red">5</font>页<font color="red">51</font>条
-					</p>
+					
 				</div>
 			</div>
 		</div>

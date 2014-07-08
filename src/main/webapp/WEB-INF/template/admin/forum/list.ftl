@@ -1,4 +1,3 @@
-[#assign shiro=JspTaglibs["/WEB-INF/tld/shiro.tld"] /]
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -23,15 +22,15 @@ $().ready(function() {
 	</div>
 	<form id="listForm" action="list.jhtml" method="get">
 		<div class="bar">
-			[#if dataCenters.total <6]
+			[#if 1 < 0 ]
 			<a href="add.jhtml" class="iconButton">
 				<span class="addIcon">&nbsp;</span>添加
 			</a>
 			[/#if]
-		<div class="buttonWrap">
-			<a href="javascript:;" id="deleteButton" class="iconButton disabled">
-				<span class="deleteIcon">&nbsp;</span>删除
-			</a>
+			<div class="buttonWrap">
+				<a href="javascript:;" id="deleteButton" class="iconButton disabled">
+					<span class="deleteIcon">&nbsp;</span>删除
+				</a>
 				<a href="javascript:;" id="refreshButton" class="iconButton">
 					<span class="refreshIcon">&nbsp;</span>刷新
 				</a>
@@ -57,7 +56,7 @@ $().ready(function() {
 					<input type="checkbox" id="selectAll" />
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="title">排序编号</a>
+					<a href="javascript:;" class="sort" name="title">编号</a>
 				</th>
 				<th>
 					<a href="javascript:;" class="sort" name="adPosition">标题</a>
@@ -66,19 +65,24 @@ $().ready(function() {
 					<a href="#"  class="sort">操作</a>
 				</th>
 			</tr>
-			[#list dataCenters.content as center]
+			
+			<tr>
+				<td colspan="4">暂无此功能</td>
+			</tr>
+			
+			[#list dataCenters.content as mail]
 			<tr>
 				<td>
-					<input type="checkbox" name="ids" value="${center.id}" />
+					<input type="checkbox" name="ids" value="${mail.id}" />
 				</td>
 				<td>
-					<span title="${center.id}">${center.id}</span>
+					<span title="${mail.id}">${mail.id}</span>
 				</td>
 				<td>
-					${center.title}
+					${mail.title}
 				</td>
 				<td>
-					<a href="edit.jhtml?id=${center.id}">[修改]</a>
+					<a href="edit.jhtml?id=${mail.id}">[修改]</a>
 				</td>
 			</tr>
 			[/#list]

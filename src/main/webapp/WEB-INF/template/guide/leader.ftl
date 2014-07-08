@@ -118,13 +118,15 @@
 					<li class="current_li"><a href="/leader.jhtml">局领导</a></li>
 				</ul>
 			</div>
-			<div class="j_main_left_1" style="margin-top: 10px; text-align: center; height: 445px;">
+			<div class="j_main_left_1" style="margin-top: 10px; text-align: center; height: 425px;">
 				<div style="width:99px;float:left;"><img src="/resource/public/images/zhizuo-_03.png" style="padding: 5px;"></div>
 				<div style="line-height: 34px; height: 34px; margin-left: 10px; margin-top: 15px; float: left; margin-right: 10px; width: 60px;"><hr style="border:1px dashed #e4e4e4;"></div>
 				<div style="width: 70px; float: left; line-height: 45px;"><a href="/specialList.jhtml" style="margin-left:0;">更多>></a></div>
 				<div class="zhuanti_list">
 				[#list subjectReport as sReport]
+				[#if sReport_index <5]
 					<a href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:222px;height:62px;margin-top:7px;"></a>
+				[/#if]
 				[/#list]
 				</div>
 			</div>
@@ -145,9 +147,15 @@
 							<img src="${data.imgpath}" width="95" height="130">
 						</div>
 						<div class="" style="height: 130px; float: left; margin-left: 10px; width: 585px; margin-top: 10px;">
-							<p class="j_main_right_2_p">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：${data.author}</p>
-							<p class="j_main_right_2_p">职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务：${data.title}</p>
-							<p class="j_main_right_2_p">分管范围：${data.content}</p>
+							<p class="j_main_right_2_p">姓名：${data.author}</p>
+							<p class="j_main_right_2_p">职务：${data.title}</p>
+							<p class="j_main_right_2_p">分管范围：
+								<span title="${data.content}">[#if data.content?length >100]
+									${data.content?string?substring(0,100)}...
+								[#else]
+									${data.content}
+								[/#if]</span>
+							</p>
 						</div>
 					</div>
 					[/#list]

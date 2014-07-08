@@ -105,7 +105,7 @@
 					<li><a href="/zhidaojiaweiList.jhtml">全市工资指导价位</a></li>
 					<li><a href="/xuqiupaihangList.jhtml">职业需求排行</a></li>
 					<li><a href="/gongjipaihangList.jhtml">职业供给排行</a></li>
-					<li style=""><a href="/xiazai.jhtml">下载中心</a></li>
+					<li style=""><a href="/ziliaoList.jhtml">下载中心</a></li>
 				</ul>
 			</div>
 		</div>

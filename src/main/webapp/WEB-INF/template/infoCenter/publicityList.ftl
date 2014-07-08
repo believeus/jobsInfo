@@ -131,7 +131,7 @@
 					<ul>
 						[#list datas.content as work]
 						<li>
-							<a href="/workInfo.jhtml?id=${work.id}">${work.title}</a><span>${work.editTime?number_to_datetime}</span>
+							<a href="/publicityInfo.jhtml?id=${work.id}">${work.title}</a><span>${work.editTime?number_to_datetime}</span>
 						</li>
 						[/#list]
 					</ul>

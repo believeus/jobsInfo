@@ -46,9 +46,10 @@ public class ControllerEnterpriseInformation {
 		}
 		
 		//招聘信息
-		List<Trecruit> trecruitList = (List<Trecruit>)etechService.getListByProperty(Trecruit.class, "entUser.id", trecruit.getEntUser().getId());
+		String hql = "From Trecruit recruit where recruit.entUser.id='"+trecruit.getEntUser().getId()+"' and recruit.entUser.disable='0' and recruit.status='1' and  recruit.isview='发布'";
+		List<Trecruit> trecruitList = (List<Trecruit>)etechService.findListByHQL(hql);
 		request.setAttribute("trecruitList", trecruitList);
-		String hql="From TentImgVedio vedio where vedio.type='1' and vedio.entUser.id='"+trecruit.getEntUser().getId()+"'";
+		hql="From TentImgVedio vedio where vedio.type='1' and vedio.entUser.id='"+trecruit.getEntUser().getId()+"'";
 		List<TentImgVedio> vedios = (List<TentImgVedio>)etechService.findListByHQL(hql);
 		request.setAttribute("vedios", vedios);
 		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+trecruit.getEntUser().getId()+"  and info.type='2'";

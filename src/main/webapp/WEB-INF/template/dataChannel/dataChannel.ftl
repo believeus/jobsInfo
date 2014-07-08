@@ -100,7 +100,7 @@ a:link{
         	<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-top: 7px; margin-right: 10px;">
         	<span>所在位置</span>
             <span>></span>
-			<span>数据频道</span>
+			<span><a href="/dataChannel.jhtml" title="数据频道">数据频道</a></span>
         </div>
         <div style="width:748px; height:765px; border:1px solid #e4e4e4; margin-top:10px;background:#FFFFFF;">
         	<div style="float:left;">
@@ -162,7 +162,7 @@ a:link{
                     <div class="middle_">
                     	<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-top: 7px; margin-left: 10px;">
                         <div style="margin:8px; width:405px; display:inline-block">相关下载</div>
-                        <a href="/xiazai.jhtml" style="vertical-align:middle; font-size:13px;">更多</a>
+                        <a href="/ziliaoList.jhtml" style="vertical-align:middle; font-size:13px;">更多</a>
                     </div>
                      <div class="gg">
                       <ul style="font-size:13px; letter-spacing:0px;">

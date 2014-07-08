@@ -106,7 +106,7 @@
 					<li><a href="/zhidaojiaweiList.jhtml">全市工资指导价位</a></li>
 					<li class="current_li"><a href="/xuqiupaihangList.jhtml">职业需求排行</a></li>
 					<li><a href="/gongjipaihangList.jhtml">职业供给排行</a></li>
-					<li style=""><a href="/xiazai.jhtml">下载中心</a></li>
+					<li style=""><a href="/ziliaoList.jhtml">下载中心</a></li>
 				</ul>
 			</div>
 		</div>
@@ -114,12 +114,12 @@
 			<div class="j_main_right_1">
 				<p>
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-					所在位置 > 数据频道
+					所在位置 > <a href="/dataChannel.jhtml" title="数据频道">数据频道</a>
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 				<h2 style="text-align:center;font-weight:normal;">${data.author}</h2>
-				<p style="text-align:center;">来源：潜江公共就业服务网 发布时间：${data.editTime?number_to_datetime} </p>
+				<p style="text-align:center;">来源：[#if data.title?exists]${data.author}[#else]潜江公共就业服务网[/#if] 发布时间：${data.editTime?number_to_datetime} </p>
 				<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">
 				<p style="text-align: center;">
 					${data.content}

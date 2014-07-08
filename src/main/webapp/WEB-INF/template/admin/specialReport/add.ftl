@@ -48,6 +48,16 @@ $().ready(function() {
 		}
 	});
 	
+	// 表单验证
+	$inputForm.validate({
+		rules: {
+			title: "required",
+			author: "required",
+			img: "required"
+		}
+	});
+	
+	
 });
 </script>
 </head>

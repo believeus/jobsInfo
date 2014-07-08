@@ -144,13 +144,13 @@ a:link{
             <div>
               <ul id="ul_1">
               	[#list vedios as vedio]
-              	[#if vedio_index<=4]
+              	[#if vedio_index<4]
 	                <li>
 	                  <div class="div1">
 	                  	<a href="/videosInfo.jhtml?id=${vedio.id}">
 	                  		[#list vedio.imgpath?string?split("#") as path]
 	  						[#if path_index ==0]
-	                  			<img src="${path}" width="120" height="90"/>
+	                  			<img src="${path}" width="120" height="90" title="${vedio.title}"/>
 	                  		[/#if]
 	                  		[/#list]
                   		</a>
@@ -167,7 +167,7 @@ a:link{
 	                    <p>
 	                    	<span>${vedio.editTime?number_to_datetime}</span>
 	                        <span>播放：</span>
-	                        <span>426.467</span>
+	                        <span>${(random/(vedio_index+1))?string("0.##")}</span>
 	                    </p>
 	                  </div>
 	                </li>

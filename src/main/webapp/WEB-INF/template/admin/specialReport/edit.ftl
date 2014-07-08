@@ -52,9 +52,8 @@ $().ready(function() {
 	$inputForm.validate({
 		rules: {
 			title: "required",
-			adPositionId: "required",
-			path: "required",
-			order: "digits"
+			author: "required",
+			img: "required"
 		}
 	});
 	

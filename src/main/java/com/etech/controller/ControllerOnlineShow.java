@@ -2,10 +2,12 @@ package com.etech.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.bcel.generic.NEW;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -49,6 +51,7 @@ public class ControllerOnlineShow {
 		request.setAttribute("imgs", imgs); 
 		String host=request.getHeader("Host");
 		request.setAttribute("host", host);
+		request.setAttribute("random", new Random().nextInt(9999)+1);
 		return "onlineShow/onlineShow";
 	}
 }

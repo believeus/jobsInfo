@@ -57,7 +57,7 @@ $().ready(function() {
 					<a href="javascript:;" class="sort" name="title">排序编号</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="adPosition">内容标题</a>
+					<a href="javascript:;" class="sort" name="adPosition">职务</a>
 				</th>
 				<th>
 					<a href="#"  class="sort">操作</a>

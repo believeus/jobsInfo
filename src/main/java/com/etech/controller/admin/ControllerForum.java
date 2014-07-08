@@ -32,7 +32,7 @@ public class ControllerForum extends ControllerCRUD{
 	public String newsListView(HttpServletRequest request) {
 		List<?> dataCenters = null;//super.listDataInfo(request,EtechGobal.forum);
 		request.setAttribute("dataCenters",dataCenters);
-		return "admin/service/list";
+		return "admin/forum/list";
 	}
 	
 	/**
@@ -55,7 +55,7 @@ public class ControllerForum extends ControllerCRUD{
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addNewsView(HttpServletRequest request) {
 		request.setAttribute("type",EtechGobal.forum);
-		return "admin/service/add";
+		return "admin/forum/add";
 	}
 	/**
 	 * 编辑网站论坛
@@ -68,7 +68,7 @@ public class ControllerForum extends ControllerCRUD{
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("dataCenter", dataCenter);
 		request.setAttribute("type",EtechGobal.forum);
-		return "admin/service/edit";
+		return "admin/forum/edit";
 	}
 	
 	/**

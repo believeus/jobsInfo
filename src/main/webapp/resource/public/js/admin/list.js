@@ -207,7 +207,7 @@ $().ready( function() {
 	if (location.search != "") {
 		addCookie("listQuery", location.search);
 	} else {
-		removeCookie("listQuery");
+		//removeCookie("listQuery");
 	}
 
 });

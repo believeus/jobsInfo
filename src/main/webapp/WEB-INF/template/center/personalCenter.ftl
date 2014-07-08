@@ -364,6 +364,7 @@
 	    	
 	    	   // ajax 提交验证和登录。
 		    	function deleteIds(value){
+		    		
 		    		//alert(value+"=value");
 	    			if($("#deleteids").length>0){
 		    			var ids=$("#deleteids").val();
@@ -1131,6 +1132,7 @@
     			}
     			
     			function submitVolunteer(){
+    			
     					var value= "#zy";
     				  //alert("xxxxxxxx选择志愿xxxxxxx");
     				  // 获取form表单个数
@@ -1249,8 +1251,16 @@
 				});
 				//保存志愿。
 				$("#saveVolunteer").click(function() {
-						showdiv();
-						submitVolunteer();
+					if($("#start1").val()==""){
+		    			alert("请选择地区");
+		    			return false;
+		    		}else if($("#selectVolunteerJobshidden1").val()==""){
+		    			alert("请选择工种");
+		    			return false;
+		    		}
+			
+					showdiv();
+					submitVolunteer();
 				});
 				
 				// 修改密码
@@ -2017,7 +2027,7 @@
 										</a>	
 									</div>
 								</td>
-								<td>择业地区:</td>
+								<td><font color="red">*</font>择业地区:</td>
 								<td>
 									<input type="text"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" name="expectArea" readonly="readonly">
 									<!--////////////////////////////////////////////////////////////////////////-->
@@ -2074,7 +2084,7 @@
 							</tr>
 							<tr>
 								
-								<td>工种:</td>
+								<td><font color="red">*</font>工种:</td>
 								<td>
 									<input type="hidden" value="" id="selectVolunteerJobshidden1" name="workTypeId"/>
 									<div class="topnav">

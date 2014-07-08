@@ -1,6 +1,5 @@
 package com.etech.controller;
 
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +11,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 /**
  * 职位需求排行列表
@@ -24,23 +24,31 @@ public class ControllerDemandList {
 	@Resource
 	private EtechService etechService;
 	private static Log log=LogFactory.getLog(ControllerDemandList.class);
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/xuqiupaihangList", method = RequestMethod.GET)
 	public String newsListView(HttpServletRequest request) {
 		// 当前页
-		int pageNo=0;
-		int pageSize=20;
-		if(!StringUtils.isEmpty(request.getParameter("pageNo"))){
-			 pageNo= Integer.parseInt(request.getParameter("pageNo"));
+	//	int pageNo=0;
+	//	int pageSize=20;
+		
+		String pageNumber = request.getParameter("pageNumber");
+		// 如果为空，则设置为1
+		if (StringUtils.isEmpty(pageNumber)) {
+			pageNumber="1";
 		}
-		if(!StringUtils.isEmpty(request.getParameter("pageSize"))){
-			 pageSize = Integer.parseInt(request.getParameter("pageSize"));
-		}
+		
+	//	if(!StringUtils.isEmpty(request.getParameter("pageNo"))){
+	//		 pageNo= Integer.parseInt(request.getParameter("pageNo"));
+	//	}
+	//	if(!StringUtils.isEmpty(request.getParameter("pageSize"))){
+	//		 pageSize = Integer.parseInt(request.getParameter("pageSize"));
+	//	}
 		// 每页多少行数据
 		String hql = "from Trecruit recruit left join fetch recruit.workType "+ "group by FROM_UNIXTIME(recruit.editTime/1000, '%Y-%m') order by FROM_UNIXTIME(recruit.editTime/1000, '%Y-%m') desc";
 		log.debug(hql);
-		List<Trecruit> monthlyDemandList = (List<Trecruit>) etechService.findObjectList(hql, pageNo, pageSize, Trecruit.class);
-		request.setAttribute("monthlyDemandList", monthlyDemandList);
+	//	List<Trecruit> monthlyDemandList = (List<Trecruit>) etechService.findObjectList(hql, pageNo, pageSize, Trecruit.class);
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
+		Page<?> page = etechService.getPage(hql, pageable);
+		request.setAttribute("monthlyDemandList", page);
 		return "dataChannel/xuqiupaihangList";
 	}
 }

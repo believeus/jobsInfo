@@ -80,7 +80,7 @@ public class ControllerIndex {
 		session.setAttribute("links", links); 
 		
 		//招聘信息
-		hql = "From Trecruit trecruit where trecruit.status='1' and  trecruit.isview='发布' order by id desc";
+		hql = "From Trecruit trecruit where trecruit.status='1' and  trecruit.isview='发布' and trecruit.entUser.disable='0' order by id desc";
 		List<Trecruit> zhaopList = (List<Trecruit>)etechService.findListByHQL(hql);
 		session.setAttribute("zhaopList", zhaopList); 
 		
@@ -108,9 +108,7 @@ public class ControllerIndex {
 			try {
 				TdataCenter dataCenter=(TdataCenter) tdataCenter.clone();
 				if(!StringUtils.isEmpty(dataCenter.getContent())){
-					//log.debug(dataCenter.getContent());
 					dataCenter.setContent(dataCenter.getContent().replaceAll("<[^>]+>", ""));
-					//log.debug(dataCenter.getContent());
 					dataCenterList.add(dataCenter);
 				}
 			} catch (CloneNotSupportedException e) {

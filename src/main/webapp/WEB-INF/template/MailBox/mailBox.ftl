@@ -201,11 +201,9 @@ textarea{
         	<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-left: 10px; margin-top: 7px; margin-right: 10px;">
         	<span>所在位置</span>
             <span>></span>
-        	<span>服务功能</span>
-            <span>></span>
-			<span>局长信箱</span>
+			<span><a href="/mailBox.jhtml" title="局长信箱">局长信箱</a></span>
         </div>
-        <div style="width:750px;height:678px;border:1px solid #E4E4E4;margin-top:10px;">
+        <div style="width:750px;height:678px;border:1px solid #E4E4E4;margin-top:10px;background:url(/resource/public/images/mailbox_bg.png);">
         	<div style="height: 40px; font-size: 16px; width: 540px; padding: 10px; margin: 30px;">
         	[#list mailbox as mailbox]
         		局长信箱地址:<span style="color:#0000FF;text-decoration:underline;">${mailbox.alink}</span>

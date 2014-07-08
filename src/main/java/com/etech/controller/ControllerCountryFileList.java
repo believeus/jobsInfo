@@ -5,8 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +20,6 @@ import com.etech.util.Pageable;
  * */
 @Controller
 public class ControllerCountryFileList {
-	private static Log log = LogFactory.getLog(ControllerCountryFileList.class);
 	@Resource
 	private EtechService etechService;
 	@SuppressWarnings("unchecked")

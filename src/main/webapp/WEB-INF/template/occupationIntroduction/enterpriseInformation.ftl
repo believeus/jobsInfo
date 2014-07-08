@@ -161,7 +161,7 @@
 		    height: 190px;
 		    width: 160px;
 		    background:#FFFFFF;
-		    margin-right:10px;
+		    margin-right:7px;
 		}
 		.qiyepic p{
 			margin:0;
@@ -506,7 +506,7 @@
 					<div style="width:670px;height:auto;overflow:hidden;margin:0 20px;margin-bottom:15px;padding:10px;">
 						[#list entUser.imgVedios as imgVedio]
 						[#if imgVedio.type == 0]
-						<div class="qiyepic" [#if (imgVedio_index+1)%4==0] style="margin-right:0;"[/#if]>
+						<div class="qiyepic">
 							<p><img src="${imgVedio.url}" width="160" height="130"/></p>
 							<p style="margin-top: -5px;background:#EEEEEE;padding:5px;color:#555555;">
 								${imgVedio.descption}
