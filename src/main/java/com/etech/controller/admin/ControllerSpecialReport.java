@@ -87,7 +87,7 @@ public class ControllerSpecialReport extends ControllerCRUD{
 	 */
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
-		super.savaDataInfo(request);
+		super.savaDataInfoforsp(request);
 		return "redirect:/admin/specialReport/list.jhtml";
 	}
 	/**
@@ -96,7 +96,7 @@ public class ControllerSpecialReport extends ControllerCRUD{
 	 */
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
-		super.updataDataInfo(editDataCenter, request);
+		super.updataDataInfoforsp(editDataCenter, request);
 		return "redirect:/admin/specialReport/list.jhtml";
 	}
 }

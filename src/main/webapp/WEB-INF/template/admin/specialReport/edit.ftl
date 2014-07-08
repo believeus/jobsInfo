@@ -67,6 +67,8 @@ $().ready(function() {
 	<form id="inputForm" action="update.jhtml" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="${dataCenter.id}"/>
 		<input type="hidden" name="type" value="${type}"/>
+		<input type="hidden" name="imgpath" value="${dataCenter.imgpath}">
+		
 		<table class="input">
 			<tr>
 				<th>
@@ -102,33 +104,21 @@ $().ready(function() {
 					</script>
 					
 					<div>
-						[#list dataCenter.imgpath?string?split("#") as url]   
+						[#list dataCenter.imgpath?string?split("#") as url] 
+						[#if url!=""]
 						<span style="float:left">
 							<div class="brandImg">
 								<span>
 									<a onclick="file${url_index}.click()"  class="click_upimgs" href="javascript:return false;">点击上传图片</a>
 								</span>
-								<input type="hidden" name="imgpath" value="${url}">
 								<img style="width:190px;height:120px" [#if dataCenter.imgpath!="/resource/public/images/6551-A40C-4FDA-8D55-87265167B506.jpg"] src="/${url}" [#else]src="${url}"[/#if] name="img"/>
 								<a class="delete_pic" href="javascript:void(0);" onclick="delete_pic(this,${url_index});">清空</a>
 							</div>
 							<input type="file" style="display:none" id="file${url_index}" name="file${url_index}" onchange="filename${url_index}.value=this.value;loadImgFast(this,${url_index})">
 							<input type="hidden" id="filename${url_index}" name="filename${url_index}">
 						</span>
+						[/#if]  
 						[/#list]
-						[#if dataCenter.imgpath?string?split("#")?size==1]
-							<span style="float:left">
-							<div class="brandImg">
-								<span>
-									<a class="click_upimgs" onclick="file1.click()" href="javascript:void(0);">点击上传图片</a>
-								</span>
-								<img style="width:190px;height:120px" src="/resource/public/images/bg.png" name="img"/>
-								<a class="delete_pic" href="javascript:void(0);" onclick="delete_pic(this,1);">清空</a>
-							</div>
-							<input type="file" style="display:none" id="file1" name="file1" onchange="filename1.value=this.value;loadImgFast(this,1)">
-							<input type="hidden" id="filename1" name="filename1">
-						</span>
-						[/#if]
 					</div>
 					<label style="color:#0000FF;float:right;position:relative;right:120px;top:60px;">
 					说明：首张图片为大图，其余为小图，不上传图片则设置默认图片。<br/>
