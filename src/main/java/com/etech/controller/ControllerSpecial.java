@@ -1,5 +1,7 @@
 package com.etech.controller;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -29,6 +31,12 @@ public class ControllerSpecial {
 	public String specialView(HttpSession session,Integer id) {
 		TdataCenter dataCenter = (TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		session.setAttribute("data", dataCenter); 
+		String[] pathStrings =  dataCenter.getImgpath().split("#");
+		List<String> pathList = new ArrayList<String>();
+		for (int i = 0; i < pathStrings.length; i++) {
+			pathList.add(pathStrings[i]);
+			session.setAttribute("paths", pathList); 
+		}
 		return "infoCenter/special";
 	}
 	

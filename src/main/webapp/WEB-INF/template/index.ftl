@@ -663,7 +663,11 @@
 						<div id="demo1">
 							[#list subjectReport as sReport]
 								<a href="/special.jhtml?id=${sReport.id}" title="${sReport.title}">
-									<img src="${sReport.imgpath}" border="0" width="220" height="62"/>
+								[#list sReport.imgpath?split("#") as path]
+								[#if path_index ==1]
+									<img src="${path}" border="0" width="220" height="62"/>
+								[/#if]
+								[/#list]
 								</a>
 							[/#list]
 						</div>

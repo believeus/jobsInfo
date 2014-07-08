@@ -26,7 +26,7 @@ $(document).ready(function(){
 	<div style="height:50px;line-height:50px;padding-left:20px;">
 		<p style="color:#FFFFFF;font-weight:bold;">
 			<img width="20" height="18" src="/resource/public/images/6-01.png">
-			潜江公共就业服务网>资讯中心>图片新闻
+			潜江公共就业服务网><a style="color:#FFFFFF;" href="/infoCenter.jhtml" title="资讯中心">资讯中心</a>
 		</p>
 	</div>
 	<h1 style="color:#FFFFFF;text-align:center;">${data.title}</h1>

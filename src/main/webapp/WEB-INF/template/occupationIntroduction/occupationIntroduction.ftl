@@ -640,7 +640,7 @@
 					</a>
 				</div>
 				<div style="width: 320px; height: 150px;border:1px solid #e4e4e4;margin-top:-5px;">
-					<img style="float: left; margin-top: 2px;" src="/resource/public/images/meinv.png">
+					<img style="float: left; margin-top: 2px;" src="/resource/public/images/qiuzhi.jpg">
 					<ul  style="float: left; padding-left: 10px; margin: 5px;width:175px;">
 						[#list qiuzhizhidaoService as qzzd]
 						[#if qzzd_index < 6]
@@ -667,7 +667,7 @@
 					</a>
 				</div>
 				<div style="width: 320px; height: 150px;border:1px solid #e4e4e4;margin-top:-5px;">
-					<img style="float: left; margin-top: 2px;" src="/resource/public/images/meinv.png">
+					<img style="float: left; margin-top: 2px;" src="/resource/public/images/jianli.jpg">
 					<ul  style="float: left; padding-left: 10px; margin: 5px;width:175px;">
 						[#list jianlizhinanService as jlzn]
 							<li>
@@ -692,7 +692,7 @@
 					</a>
 				</div>
 				<div style="width: 320px; height: 150px;border:1px solid #e4e4e4;margin-top:-5px;">
-					<img style="float: left; margin-top: 2px;" src="/resource/public/images/meinv.png">
+					<img style="float: left; margin-top: 2px;" src="/resource/public/images/mianshi.jpg">
 					<ul  style="float: left; padding-left: 10px; margin: 5px;width:175px;">
 						[#list mianshibaodianService as msbd]
 							<li>

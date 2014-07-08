@@ -87,12 +87,16 @@
 <body>
 	[#include "/include/header.ftl" /]
 	<div style="width:1000px;;height:179px;margin-left:auto;margin-right:auto;">
-		<img src="/resource/public/images/zt_topImg.png">
+	[#list paths as path]
+	[#if path_index ==0]
+		<img src="${path}" width="1000" height="179">
+	[/#if]
+	[/#list]
 	</div>
 	<div class="j_main w">
 		<div class="j_main_1">
 			<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-left: 10px; margin-right: 10px; margin-top: 6px;">
-			所在位置 > 专题报道
+			所在位置 > <a href="/specialList.jhtml" title="专题报道">专题报道</a>
 		</div>
 		<div class="j_main_2">
 			<div class="j_main_2_1">
@@ -112,7 +116,13 @@
 					[${data.editTime?number_to_datetime}]
 				</div>
 				<div class="zt_img">
-					<a href=""><img style="height:66px;width:222px" src="${data.imgpath}" ></a>
+					<a href="">
+						[#list paths as path]
+						[#if path_index ==1]
+							<img style="height:66px;width:222px" src="${path}" >
+						[/#if]
+						[/#list]
+					</a>
 				</div>
 			</div>
 			<div class="j_main_3">
