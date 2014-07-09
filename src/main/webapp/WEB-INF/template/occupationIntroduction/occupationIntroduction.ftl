@@ -611,7 +611,7 @@
 									[#if qiuzhi.trueName?exists] ${qiuzhi.trueName} [#else] 匿名 [/#if]
 								</a>
 							</span>
-							<span class="jianli_xinxi">
+							<span class="jianli_xinxi" title="${comInfo.workType.name}">
 								&nbsp;&nbsp;
 								[#if qiuzhi.sex == 'man']男[#else]女[/#if]
 								&nbsp;&nbsp;

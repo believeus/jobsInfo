@@ -112,7 +112,7 @@
 					[${spceila.editTime?number_to_datetime}]
 				</div>
 				<div class="zt_img">
-					<a href="/special.jhtml?id=${spceila.id}"><img style="height:66px;width:222px" src="${spceila.imgpath}" ></a>
+					<a href="/special.jhtml?id=${spceila.id}"><img style="height:66px;width:222px" src="${spceila.imgpath?split("#")[1]}" ></a>
 				</div>
 			</div>
 			[/#list]
