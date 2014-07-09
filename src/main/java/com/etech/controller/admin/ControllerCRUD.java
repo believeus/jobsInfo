@@ -404,4 +404,90 @@ public class ControllerCRUD {
 		
 		etechService.merge(dataCenter);
 	}
+	// 保存信息 文件下载
+	public void savaDataInfofordl(HttpServletRequest request) {
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		
+		String storepath = "";
+		Map<String, MultipartFile> files = multipartRequest.getFileMap();
+		for (MultipartFile file : files.values()) {
+			InputStream inputStream;
+			try {
+				inputStream = file.getInputStream();
+				if(inputStream.available()==0){
+					storepath="/resource/public/images/6551-A40C-4FDA-8D55-87265167B506.jpg";
+					break;
+				}
+				Assert.assertNotNull("upload file InputStream is null", inputStream);
+				String originName=file.getOriginalFilename();
+				String extention = originName.substring(originName.lastIndexOf(".") + 1);
+				log.debug("upload file stuffix:"+extention);
+				storepath=originName+"#";
+				storepath += mydfsTrackerServer.upload(inputStream, extention);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		TdataCenter center=new TdataCenter();
+		int type=0;
+		if(!StringUtils.isEmpty(request.getParameter("type"))){
+			type=Integer.parseInt(request.getParameter("type"));
+		}
+		
+		String title=request.getParameter("title");
+		String author=request.getParameter("author");
+		/**Begin Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
+		String content=request.getParameter("content");
+		/**End Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
+		String top=request.getParameter("top");
+		String alink=request.getParameter("alink");
+		if (top == null) {
+			top = "0";
+		}
+		center.setType(type);
+		center.setTitle(title);
+		center.setAuthor(author);
+		center.setContent(content);
+		center.setEditTime(System.currentTimeMillis());
+		center.setTop(Integer.valueOf(top));
+		center.setAlink(alink);
+		if(!StringUtils.isEmpty(storepath)){
+			center.setImgpath(storepath);
+		}
+		center.setCreateTime(System.currentTimeMillis());
+		etechService.merge(center);
+	}
+	// 更新信息 文件下载
+	public void updataDataInfofordl(TdataCenter formDataCenter,HttpServletRequest request) {
+		
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		String storepath = "";
+		Map<String, MultipartFile> files = multipartRequest.getFileMap();
+		for (MultipartFile file : files.values()) {
+			InputStream inputStream;
+			try {
+				inputStream = file.getInputStream();
+				if(inputStream.available()==0){
+				}else {					
+					Assert.assertNotNull("upload file InputStream is null", inputStream);
+					String originName=file.getOriginalFilename();
+					String extention = originName.substring(originName.lastIndexOf(".") + 1);
+					log.debug("upload file stuffix:"+extention);
+					storepath = originName+"#";
+					storepath += mydfsTrackerServer.upload(inputStream, extention);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, formDataCenter.getId());
+		formDataCenter.setImgpath(storepath);
+		if(StringUtils.isEmpty(storepath)) {
+			formDataCenter.setImgpath(dataCenter.getImgpath());
+		}
+		formDataCenter.setEditTime(System.currentTimeMillis());
+		formDataCenter.setCreateTime(dataCenter.getCreateTime());
+		BeanUtils.copyProperties(formDataCenter, dataCenter);
+		etechService.merge(dataCenter);
+	}
 }

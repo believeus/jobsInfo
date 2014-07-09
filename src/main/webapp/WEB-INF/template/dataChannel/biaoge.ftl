@@ -139,7 +139,7 @@
 				<p style="text-align: center;">
 					${data.content}
 				</p>
-				<p><a href="${data.imgpath}" title="点击下载" style="color:#0000FF;">附件：${data.title}</a></p>
+				<p><a href="${data.imgpath?string?split("#")[1]}" title="点击下载" style="color:#0000FF;">附件：${data.imgpath?string?split("#")[0]}</a></p>
 			</div>
 		</div>
 	</div>

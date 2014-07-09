@@ -87,7 +87,7 @@ public class ControllerBiaogeDownLoad extends ControllerCRUD{
 	 */
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
-		super.savaDataInfo(request);
+		super.savaDataInfofordl(request);
 		return "redirect:/admin/biaogeDownLoad/list.jhtml";
 	}
 	/**
@@ -96,7 +96,7 @@ public class ControllerBiaogeDownLoad extends ControllerCRUD{
 	 */
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
-		super.updataDataInfo(editDataCenter, request);
+		super.updataDataInfofordl(editDataCenter, request);
 		return "redirect:/admin/biaogeDownLoad/list.jhtml";
 	}
 }

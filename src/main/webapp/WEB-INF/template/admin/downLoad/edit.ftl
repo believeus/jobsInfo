@@ -44,7 +44,7 @@ $().ready(function() {
 	$inputForm.validate({
 		rules: {
 			title: "required",
-			adPositionId: "required",
+			author: "required",
 			order: "digits"
 		}
 	});
@@ -59,8 +59,6 @@ $().ready(function() {
 	<form id="inputForm" action="update.jhtml" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="${dataCenter.id}"/>
 		<input type="hidden" name="type" value="${type}"/>
-		<input type="hidden" name="suffix" value="" id="suffix">
-		<input type="hidden" name="oldUrl" value="${dataCenter.imgpath}">
 		<table class="input">
 			<tr>
 				<th>
@@ -79,11 +77,9 @@ $().ready(function() {
 			<tr>
 				<th><span class="requiredField">*</span>选择文件:</th>
 				<td>
-				<input type="file" name="fileV" >
+				<input type="file" name="file" >
 				已上传文件：
-				[#list dataCenter.imgpath?string?split("#") as value]   
-				 	<a href="/${value}" title="点击查看" target="_blank">点击查看</a>		 	
-				[/#list]
+				 	<a href="/${dataCenter.imgpath?string?split("#")[1]}" title="点击查看" target="_blank">${dataCenter.imgpath?string?split("#")[0]}</a>		 	
 				<script type="text/javascript">
 				 function checkV(file) {
  				   if(!(/(?:rar|zip|7z)$/i.test(file.value))) {
