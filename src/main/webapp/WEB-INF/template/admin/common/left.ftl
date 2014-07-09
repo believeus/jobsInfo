@@ -174,10 +174,10 @@ $(function(){
 						<a target="main" href="/admin/wagePriceGuide/list.jhtml">工资指导价位</a>
 					</li>
 					<li>
-						<a target="main" href="/admin/monthlyDemandList/list.jhtml">本月需求排行</a>
+						<a target="main" href="/admin/monthlyDemandList/list.jhtml">需求排行</a>
 					</li>
 					<li>
-						<a target="main" href="/admin/monthSupplyList/list.jhtml">本月供给排行</a>
+						<a target="main" href="/admin/monthSupplyList/list.jhtml">供给排行</a>
 					</li>
        			 </ul>
     		[/@shiro.hasPermission]

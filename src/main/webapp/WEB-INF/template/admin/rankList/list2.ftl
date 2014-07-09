@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>新闻列表 - Powered By e3dmall</title>
+<title>列表 - Powered By e3dmall</title>
 <meta name="author" content="e3dmall Team" />
 <meta name="copyright" content="e3dmall" />
 <link href="/resource/public/js/admin/common.css" rel="stylesheet" type="text/css" />
@@ -18,7 +18,7 @@ $().ready(function() {
 </head>
 <body>
 	<div class="path">
-		<a href="/admin/common/main.jhtml">首页</a> &raquo; 内容列表 <span>共${monthlyDemandList.total}条记录</span>
+		<a href="/admin/common/main.jhtml">首页</a> &raquo; 内容列表 <span>共${monthSupplyList.total}条记录</span>
 	</div>
 	<form id="listForm" action="list.jhtml" method="get">
 		<div class="bar">
@@ -54,19 +54,19 @@ $().ready(function() {
 					<a href="javascript:;" class="sort" name="adPosition">操作</a>
 				</th>
 			</tr>
-			[#list monthlyDemandList.content as center]
+			[#list monthSupplyList.content as center]
 			<tr>
 				<td>
 					<span title="${center.id}">${center.id}</span>
 				</td>
 				<td>
-					${center.editTime?number_to_datetime?string?substring(0,7)?replace("-","年")}月
+					${center.editDate?number_to_datetime?string?substring(0,7)?replace("-","年")}月
 				</td>
 				<td>
-					<a href="/admin/monthlyDemandList/monthyDemandList.jhtml">[查看]</a>
+					<a href="/admin/monthSupplyList/monthySupplyList.jhtml">[查看]</a>
 				</td>
 			</tr>
-			[/#list] 
+			[/#list]
 		</table>
 	</form>
 </body>
