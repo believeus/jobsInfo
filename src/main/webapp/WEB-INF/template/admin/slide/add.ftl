@@ -43,11 +43,11 @@ $().ready(function() {
 	// 表单验证
 	$inputForm.validate({
 		rules: {
-			title: "required",
+			title1: "required",
 			title2: "required",
-			img: "required",
+			img1: "required",
 			img2: "required",
-			alink:"required",
+			alink1:"required",
 			alink2:"required"
 		}
 	});
@@ -67,7 +67,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>标题1:
 				</th>
 				<td>
-					<input type="text" name="title" class="text" maxlength="200" />
+					<input type="text" name="title1" class="text" maxlength="200" />
 				</td>
 				<th>
 					<span class="requiredField">*</span>标题2:
@@ -81,11 +81,11 @@ $().ready(function() {
 					<span class="requiredField">*</span>图片1:
 				</th>
 				<td>
-					<input type="file" name="img"><label style="color:#0000FF;">宽543px*高85px</label>
+					<input type="file" name="img1"><br/><label style="color:#0000FF;">宽543px*高85px</label>
 				</td>
 				<th><span class="requiredField">*</span>图片2</th>
 				<td>
-					<input type="file" name="img2"><label style="color:#0000FF;">宽165px*高85px</label>
+					<input type="file" name="img2"><br/><label style="color:#0000FF;">宽165px*高85px</label>
 				</td>
 			</tr>
 			<tr>
@@ -93,7 +93,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>外链接1:
 				</th>
 				<td>
-					<input type="text" name="alink" class="text" maxlength="200" value="http://"/>
+					<input type="text" name="alink1" class="text" maxlength="200" value="http://"/>
 				</td>
 				<th>
 					<span class="requiredField">*</span>外链接2:

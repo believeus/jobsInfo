@@ -96,7 +96,7 @@ public class ControllerSlide extends ControllerCRUD{
 	 */
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
-		super.savaDataInfo(request);
+		super.savaDataInfoforsd(request);
 		return "redirect:/admin/slide/list.jhtml";
 	}
 	/**
@@ -105,7 +105,7 @@ public class ControllerSlide extends ControllerCRUD{
 	 */
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
-		super.updataDataInfo(editDataCenter, request);
+		super.updataDataInfoforsd(editDataCenter, request);
 		return "redirect:/admin/slide/list.jhtml";
 	}
 }

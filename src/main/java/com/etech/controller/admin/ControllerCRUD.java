@@ -319,4 +319,89 @@ public class ControllerCRUD {
 		BeanUtils.copyProperties(formDataCenter, dataCenter);
 		etechService.merge(dataCenter);
 	}
+	// 保存信息 幻灯片
+	public void savaDataInfoforsd(HttpServletRequest request) {
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		String storepath = "";
+		String[] strings=new String[2];
+		int count=0;
+		Map<String, MultipartFile> files = multipartRequest.getFileMap();
+		for (MultipartFile file : files.values()) {
+			InputStream inputStream;
+			try {
+				inputStream = file.getInputStream();
+				if(inputStream.available()==0){
+					storepath="resource/public/images/6551-A40C-4FDA-8D55-87265167B506.jpg";
+					strings[count++]=storepath;
+				}else {
+					Assert.assertNotNull("upload file InputStream is null", inputStream);
+					String originName=file.getOriginalFilename();
+					String extention = originName.substring(originName.lastIndexOf(".") + 1);
+					log.debug("upload file stuffix:"+extention);
+					storepath = mydfsTrackerServer.upload(inputStream, extention);
+					strings[count++]=storepath;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		int type=Integer.parseInt(request.getParameter("type"));
+		String title1=request.getParameter("title1");
+		String alink1=request.getParameter("alink1");
+		String title2=request.getParameter("title2");
+		String alink2=request.getParameter("alink2");
+		TdataCenter center=new TdataCenter();
+		center.setType(type);
+		center.setTitle(title1+"#"+title2);
+		center.setAlink(alink1+"#"+alink2);
+		center.setAuthor("");
+		center.setContent("");
+		center.setTop(0);
+		center.setImgpath(strings[0]+"#"+strings[1]);
+		center.setCreateTime(System.currentTimeMillis());
+		center.setEditTime(System.currentTimeMillis());		
+	
+		etechService.merge(center);
+	}
+	// 更新信息 幻灯片
+	public void updataDataInfoforsd(TdataCenter formDataCenter,HttpServletRequest request) {
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		String storepath = "";
+		Map<String, MultipartFile> files = multipartRequest.getFileMap();
+		String[] strings=formDataCenter.getImgpath().split("#");
+		int count=0;
+		for (MultipartFile file : files.values()) {
+			InputStream inputStream;
+			try {
+				inputStream = file.getInputStream();
+				if(inputStream.available()==0){
+					if (StringUtils.isEmpty(strings[count])) {
+						storepath="resource/public/images/6551-A40C-4FDA-8D55-87265167B506.jpg";
+						strings[count]=storepath;						
+					}
+				}else {					
+					Assert.assertNotNull("upload file InputStream is null", inputStream);
+					String originName=file.getOriginalFilename();
+					String extention = originName.substring(originName.lastIndexOf(".") + 1);
+					log.debug("upload file stuffix:"+extention);
+					storepath += mydfsTrackerServer.upload(inputStream, extention);
+					strings[count]=storepath;
+				}
+				count++;
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, formDataCenter.getId());
+		String title1=request.getParameter("title1");
+		String alink1=request.getParameter("alink1");
+		String title2=request.getParameter("title2");
+		String alink2=request.getParameter("alink2");
+		dataCenter.setTitle(title1+"#"+title2);
+		dataCenter.setAlink(alink1+"#"+alink2);
+		dataCenter.setImgpath(strings[0]+"#"+strings[1]);
+		dataCenter.setEditTime(System.currentTimeMillis());
+		
+		etechService.merge(dataCenter);
+	}
 }

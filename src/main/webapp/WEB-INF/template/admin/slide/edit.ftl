@@ -43,11 +43,10 @@ $().ready(function() {
 	// 表单验证
 	$inputForm.validate({
 		rules: {
-			title: "required",
-			adPositionId: "required",
-			path: "required",
-			order: "digits",
-			alink: "required"
+			title1: "required",
+			title2: "required",
+			alink1:"required",
+			alink2:"required"
 		}
 	});
 	
@@ -60,14 +59,14 @@ $().ready(function() {
 	</div>
 	<form id="inputForm" action="update.jhtml" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="${dataCenter.id}">
-		<input type="hidden" name="type" value="${type}"/>
+		<input type="hidden" name="imgpath" value="${dataCenter.imgpath}"/>
 		<table class="input">
 			<tr>
 				<th>
 					<span class="requiredField">*</span>标题1:
 				</th>
 				<td>
-					<input type="text" name="title" class="text" maxlength="200" value="${dataCenter.title?string?split("#")[0]}"/>
+					<input type="text" name="title1" class="text" maxlength="200" value="${dataCenter.title?string?split("#")[0]}"/>
 				</td>
 				<th>
 					<span class="requiredField">*</span>标题2:
@@ -81,13 +80,21 @@ $().ready(function() {
 					<span class="requiredField">*</span>图片1:
 				</th>
 				<td>
-					<input type="file" name="img" value="${dataCenter.imgpath?string?split("#")[0]}">
-					<label style="color:#0000FF;">宽543px*高85px</label>
+					<input type="file" name="img1">
+					<br/>
+					<a href="/${dataCenter.imgpath?string?split("#")[0]}" title="点击查看">
+						<img src="/${dataCenter.imgpath?string?split("#")[0]}" style="width:192px;height:30px">
+					</a>
+					<br/><label style="color:#0000FF;">宽543px*高85px</label>
 				</td>
 				<th><span class="requiredField">*</span>图片2</th>
 				<td>
-					<input type="file" name="img2" value="${dataCenter.imgpath?string?split("#")[1]}">
-					<label style="color:#0000FF;">宽165px*高85px</label>
+					<input type="file" name="img2">
+					<br/>
+					<a href="/${dataCenter.imgpath?string?split("#")[1]}" title="点击查看">
+						<img src="/${dataCenter.imgpath?string?split("#")[1]}" style="width:192px;height:30px">
+					</a>
+					<br/><label style="color:#0000FF;">宽165px*高85px</label>
 				</td>
 			</tr>
 			<tr>
@@ -95,13 +102,13 @@ $().ready(function() {
 					<span class="requiredField">*</span>外链接1:
 				</th>
 				<td>
-					<input type="text" name="alink" class="text" maxlength="200" value="${dataCenter.alink?string?split("#")[0]}"/>
+					<input type="text" name="alink1" class="text" maxlength="200" value="${dataCenter.alink?string?split("#")[0]}"/>
 				</td>
 				<th>
 					<span class="requiredField">*</span>外链接2:
 				</th>
 				<td>
-					<input type="text" name="alink2" class="text" maxlength="200" value="${dataCenter.alink?string?split("#")[0]}"/>
+					<input type="text" name="alink2" class="text" maxlength="200" value="${dataCenter.alink?string?split("#")[1]}"/>
 				</td>
 			</tr>
 			<tr>
