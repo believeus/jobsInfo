@@ -29,15 +29,19 @@ import org.springframework.util.StringUtils;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import com.etech.entity.TdataCenter;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 @Service
 public class PolicyAdviceService {
 	private static final Log log=LogFactory.getLog(PolicyAdviceService.class);
 	@Resource
 	private SessionFactory sessionFactory;
-	@SuppressWarnings("unchecked")
-	public List<TdataCenter> searchPolicyAdvice(TdataCenter formDataCenter,Long beginData,Long endDate,int currentPage,int perCount){
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Page searchPolicyAdvicePage(TdataCenter formDataCenter,Long beginData,Long endDate,Pageable pageable){
 		List<TdataCenter> dataCenterList=null;
+		int total=0;
 		log.debug("title:"+formDataCenter.getTitle());
 		log.debug("beginData:"+beginData);
 		log.debug("endDate:"+endDate);
@@ -86,23 +90,21 @@ public class PolicyAdviceService {
 			
 			FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(booleanQuery, TdataCenter.class);
 			fullTextQuery.setSort(new Sort(new SortField("editTime", SortField.LONG,true)));
-			int total=fullTextQuery.getResultSize();
-			// 分页
-			if (currentPage > ((int) Math.ceil((float) total / perCount))) {
-				currentPage = (int) Math.ceil((float) total/ perCount);
+			total=fullTextQuery.getResultSize();
+			
+			int totalPages = (int) Math.ceil((double) total / (double) pageable.getPageSize());
+			if (totalPages < pageable.getPageNumber()) {
+				pageable.setPageNumber(totalPages);
 			}
-			// 如果当前页小于第一页则等于第一页
-			if (currentPage < 1) {
-				currentPage = 1;
-			}
-			fullTextQuery.setFirstResult(perCount * (currentPage - 1));
-			fullTextQuery.setMaxResults(perCount);
+			
+			fullTextQuery.setFirstResult((pageable.getPageNumber() - 1) * pageable.getPageSize());
+			fullTextQuery.setMaxResults(pageable.getPageSize());
 			log.debug("fullTextQuery:"+fullTextQuery);
 			dataCenterList=fullTextQuery.list();
 			tx.commit();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return dataCenterList;
+		return new Page(dataCenterList, total, pageable);
 	}
 }

@@ -27,6 +27,8 @@ import com.etech.service.EtechService;
 import com.etech.service.JobSearchService;
 import com.etech.service.PolicyAdviceService;
 import com.etech.service.ResumeSearchService;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 /**
  * 搜索
@@ -123,6 +125,7 @@ public class ControllerSearch {
 		return "occupationIntroduction/search";
 	}
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/advanceSearchByContision")
 	public String advanceSearch(String data,String keyword,String majorTypeId,String workTypeId,
 			String area,String type,HttpServletRequest request,HttpSession session){
@@ -200,7 +203,6 @@ public class ControllerSearch {
 		request.setAttribute("workTypeId", workTypeId);
 		request.setAttribute("area", area);
 		String hql="From TdataCenter dataCenter where dataCenter.type='2'";
-		@SuppressWarnings("unchecked")
 		List<TdataCenter> notices = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("notices",notices ); 
 		
@@ -341,8 +343,6 @@ public class ControllerSearch {
 		}
 	@RequestMapping(value="/searchPolicyAdvice",method = RequestMethod.POST)
 	public String searchPolicyAdvice(HttpServletRequest request){
-		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
-		int perCount=Integer.parseInt(request.getParameter("perCount"));
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			Long beginDate=null;
@@ -360,7 +360,13 @@ public class ControllerSearch {
 			formDataCenter.setTitle(title);
 			formDataCenter.setPowerLevel(Integer.parseInt(powerLevel));
 			formDataCenter.setPowerProperty(Integer.parseInt(powerProperty));
-			List<TdataCenter> dataCenterList = policyAdviceService.searchPolicyAdvice(formDataCenter,beginDate,endDate,currentPage,perCount);
+			String pageNumber = request.getParameter("pageNumber");
+			// 如果为空，则设置为1
+			if (StringUtils.isEmpty(pageNumber)) {
+				pageNumber="1";
+			}
+			Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
+			Page<?>  dataCenterList = policyAdviceService.searchPolicyAdvicePage(formDataCenter,beginDate,endDate,pageable);
 			request.setAttribute("dataCenterList", dataCenterList);
 			
 			// 专题报道

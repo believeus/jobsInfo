@@ -6,6 +6,8 @@
     <meta http-equiv="imagetoolbar" content="no"/>
     <script src="/resource/public/resources/scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="/resource/public/js/datePicker/WdatePicker.js"></script>
+     <link href="/resource/public/css/common.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/resource/public/js/admin/list.js"></script>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <style type="text/css">
    		.j_main{
@@ -164,7 +166,7 @@
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;width:727px;">
-			  	<form method="post" action="/searchPolicyAdvice.jhtml">
+			  	<form method="post" action="/searchPolicyAdvice.jhtml" id="listForm">
 		  		<input type="hidden" name="currentPage" value="0" />
 		  		<input type="hidden" name="perCount" value="25"/>
 				<table style="background:#F2F2F2;border: 3px solid #FFFFFF; padding: 10px 0; width: 700px; margin-left: auto; margin-right: auto; margin-top: 10px;">
@@ -212,19 +214,21 @@
 						<td>
 					</tr>
 				</table>
-			</form>
 				<div style="border:1px solid #e4e4e4;" class="j_main_right_2">
-				
+					<span>共${dataCenterList.total}条数据</span>
 					<ul>
-						[#list dataCenterList as dataCenter]
+						[#list dataCenterList.content as dataCenter]
 						<li>
 							<a href="/newsInfo.jhtml?id=${dataCenter.id}">${dataCenter.title}</a><span>${dataCenter.editTime?number_to_date} ${dataCenter.editTime?number_to_time}</span>
 						</li>
 						[/#list]
 					</ul>
-					
 				</div>
+				[@pagination pageNumber = dataCenterList.pageNumber totalPages = dataCenterList.totalPages]
+					[#include "/include/pagination.ftl"]
+				[/@pagination]
 			</div>
+		</form>
 		</div>
 	</div>
 	[#include "/include/footer.ftl" /]
