@@ -52,6 +52,9 @@ a:link{
     border-bottom: 1px dashed #FF7800;
     line-height:31px;
 }
+.gongji a:hover{
+	text-decoration:none;
+}
 </style>
 
 </head>
@@ -189,11 +192,20 @@ a:link{
                 <div class="gg" style="">
                   <ul class="gongji" style="font-size:13px; letter-spacing:0px; list-style-type:none;margin:0;padding-left:15px;padding-right:15px;">
                     [#list supply as supply]
+                    [#if supply_index <10]
 	                    <li>
 	                      	<div>
-		                      	<a style="color:#fe0002;" href="javascript:void(0)">${supply.jobPost}</a>
+		                      	<a style="color:#fe0002;" title="${supply.jobPost}">
+		                      		${supply_index+1}、
+		                      		[#if supply.jobPost?length >11]
+		                      			${supply.jobPost?string?substring(0,11)}...
+		                      		[#else]
+			                      		${supply.jobPost}
+		                      		[/#if]
+	                      		</a>
                       		</div>
 	                    </li>
+                    [/#if]
                     [/#list]
                   </ul>
                 </div>     
@@ -208,11 +220,20 @@ a:link{
                 <div class="gg">
                   <ul class="gongji" style="font-size:13px; letter-spacing:0px; list-style-type:none;margin:0;padding-left:15px;padding-right:15px;">
                     [#list demand as demand]
+                    [#if demand_index <10]
 	                    <li>
 	                      	<div>
-		                      	<a  style="color:#fe0002;" href="javascript:void(0)">${demand.workType.name}</a>
+		                      	<a style="color:#fe0002;" title="${demand.workType.name}">
+		                      		${demand_index+1}、
+		                      		[#if demand.workType.name?length >11]
+		                      			${demand.workType.name?string?substring(0,11)}...
+	                      			[#else]
+	                      				${demand.workType.name}
+                      				[/#if]
+	                      		</a>
                       		</div>
 	                    </li>
+                    [/#if]
                     [/#list]
                   </ul>
                 </div>     
