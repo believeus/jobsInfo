@@ -113,7 +113,7 @@ public class ControllerSearch {
 		if (StringUtils.isEmpty(pageNumber)) {
 			pageNumber="1";
 		}
-		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),2);
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		Page<?> tdataCenterList = etechService.search(TdataCenter.class, key, new String[]{"title","content"},pageable);
 		request.setAttribute("tdataCenterList", tdataCenterList);
 		request.setAttribute("key", key);
