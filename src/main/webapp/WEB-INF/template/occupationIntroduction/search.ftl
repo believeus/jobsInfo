@@ -5,6 +5,9 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script src="/resource/public/resources/scripts/jquery-1.10.2.min.js"></script>
+     <link href="/resource/public/css/common.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/resource/public/js/admin/list.js"></script>
     <style type="text/css">
    		.j_main{
     		width:1000px;
@@ -168,13 +171,15 @@
 			<div class="j_main_right_1">
 				<p style="background: url(/resource/public/images/background_b.png);border: 1px solid #E4E4E4;font-size: 13px;line-height: 28px;margin: 5px 0;">
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-left: 2px; margin-top: 2px; margin-right: 5px;">
-					所在位置 > 全文检索
+					所在位置 > 全文检索共${tdataCenterList.total}条记录
 				</p>
 				<div class="j_main_right_2">
+				<form method="post" action="/search.jhtml" id="listForm">
+					<input type="hidden" name="key" value="${key}">
 					<div class="j_main_right_2_1">
 						<h2 style="margin-top: 10px; margin-bottom: 0px; font-weight: normal;">全文检索</h2>
 						<img style="width: 660px;" src="/resource/public/images/line.png">
-						[#list tdataCenterList as datacenter]
+						[#list tdataCenterList.content as datacenter]
 						<div class="j_main_right_3">
 							<p><a href="/newsInfo.jhtml?id=${datacenter.id}" style="color:#0017ff;text-decoration:underline;">${datacenter.title}</a></p>
 							[#if datacenter.content?length > 100]
@@ -186,21 +191,11 @@
 						</div>
 						[/#list]
 						<img style="width: 660px;" src="/resource/public/images/line.png">
-						<p style="padding-left:25px;">
-							<a href="#">首页</a>
-							<a href="#">上一页</a>
-							<a href="#">下一页</a>
-							<a href="#">末页</a>
-							<select name="">
-								<option value="">1</option>
-								<option value="">2</option>
-								<option value="">3</option>
-								<option value="">4</option>
-								<option value="">5</option>
-							</select>
-							共<font color="red">5</font>页<font color="red">51</font>条
-						</p>
+						[@pagination pageNumber = tdataCenterList.pageNumber totalPages = tdataCenterList.totalPages]
+							[#include "/include/pagination.ftl"]
+						[/@pagination]
 					</div>
+				</form>
 				</div>
 			</div>
 		</div>

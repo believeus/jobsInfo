@@ -102,17 +102,22 @@ public class ControllerSearch {
 	@Resource
 	private ResumeSearchService resumeSearchService;
 	/**简单搜索*/
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked" })
 	@RequestMapping(value = "/search")
 	public String searchView(HttpServletRequest request) {
 		String key = request.getParameter("key");
-		int currentpage=Integer.parseInt(request.getParameter("currentpage"));
-		int perCount=Integer.parseInt(request.getParameter("perCount"));
 		log.debug("search key:"+key);
 		Assert.assertNotNull(key);
-		List<TdataCenter> tdataCenterList = (List<TdataCenter>) etechService.search(TdataCenter.class, key, new String[]{"title","content"},currentpage,perCount);
+		String pageNumber = request.getParameter("pageNumber");
+		// 如果为空，则设置为1
+		if (StringUtils.isEmpty(pageNumber)) {
+			pageNumber="1";
+		}
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),2);
+		Page<?> tdataCenterList = etechService.search(TdataCenter.class, key, new String[]{"title","content"},pageable);
 		request.setAttribute("tdataCenterList", tdataCenterList);
-		
+		request.setAttribute("key", key);
+		// 专题报道
 		String hql="From TdataCenter dataCenter where dataCenter.type='5'";
 		List<TdataCenter> spceilas = (List<TdataCenter>)etechService.findListByHQL(hql, 10);
 		request.setAttribute("spceilas", spceilas);

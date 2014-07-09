@@ -287,10 +287,8 @@ public class EtechComDao extends HibernateDaoSupport {
 	/* End Name:wuqiwei Date:2013-11-5 07:24:40 AddReason:返回一定数量的行数 */
 
 	/* Begin Author:wuqiwei Date:2013-04-06 AddReason:使用hibernatesearch完成全文搜索 */
-	@SuppressWarnings("unchecked")
-	public  List<?> getListByHSearch(Class<?> clazz, String key,String[] properties,int currentPage,int perCount) {
-		Assert.assertTrue(currentPage>=0);
-		Assert.assertTrue(perCount>=0);
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public  Page getListByHSearchPage(Class<?> clazz, String key,String[] properties,Pageable pageable) {
 		Session session = sessionFactory.getCurrentSession();
 		FullTextSession fullTextSession = Search.getFullTextSession(session);
 		Transaction tx = fullTextSession.beginTransaction();
@@ -304,16 +302,14 @@ public class EtechComDao extends HibernateDaoSupport {
 		}
 		FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(booleanQuery, clazz);
 		int total=fullTextQuery.getResultSize();
-		// 分页
-		if (currentPage > ((int) Math.ceil((float) total / perCount))) {
-			currentPage = (int) Math.ceil((float) total/ perCount);
+		
+		int totalPages = (int) Math.ceil((double) total / (double) pageable.getPageSize());
+		if (totalPages < pageable.getPageNumber()) {
+			pageable.setPageNumber(totalPages);
 		}
-		// 如果当前页小于第一页则等于第一页
-		if (currentPage < 1) {
-			currentPage = 1;
-		}
-		fullTextQuery.setFirstResult(perCount * (currentPage - 1));
-		fullTextQuery.setMaxResults(perCount);
+		
+		fullTextQuery.setFirstResult((pageable.getPageNumber() - 1) * pageable.getPageSize());
+		fullTextQuery.setMaxResults(pageable.getPageSize());
 		
 		List<TdataCenter> list = (List<TdataCenter>) fullTextQuery.list();
 		SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<font color='red'>", "</font>");
@@ -353,7 +349,7 @@ public class EtechComDao extends HibernateDaoSupport {
 			}
 		}
 		tx.commit();
-		return highlightResult;
+		return new Page(highlightResult, total, pageable);
 	}
 	/* End Author:wuqiwei Date:2013-04-06 AddReason:使用hibernatesearch完成全文搜索 */
 

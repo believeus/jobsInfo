@@ -54,8 +54,9 @@ public class EtechService {
 	public void delete(String hql){
 		etechComDao.delete(hql);
 	}
-	public List<?> search(Class<?> clazz,String key,String[] fields,int currentPage,int perCount){
-		return etechComDao.getListByHSearch(clazz, key, fields,currentPage,perCount);
+	@SuppressWarnings("rawtypes")
+	public Page search(Class<?> clazz,String key,String[] fields,Pageable pageable){
+		return etechComDao.getListByHSearchPage(clazz, key, fields,pageable);
 	}
 	public void updata(Class<?> clazz,String property,Object value,String updateProperty,Object updateValue){
 		etechComDao.update(clazz, property, value, updateProperty, updateValue);
