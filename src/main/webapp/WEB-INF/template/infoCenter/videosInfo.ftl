@@ -56,6 +56,10 @@
 			border-top:1px solid #DCDCDC;
 			padding:0px 0px 20px 10px;	
 		}
+		.vcontent {
+		    font-size: 13px;
+		    margin-top: 10px;
+		}
     </style>
 </head>
 <body>
@@ -102,10 +106,11 @@
             </div>
         </div>
       	<div style="float:left; margin-top:15px; width:399px;">
-        	<h3 style="margin-left:15px;">视频列表</h3>
+        	<h3 style="margin-left:15px;">视频列表</h3><span style="position: relative; left: 345px; top: -35px;"><a href="/videosList.jhtml">更多>></a></span>
             <div>
               <ul id="ul_1">
       			[#list videolList as vedio]
+      			[#if vedio_index <4]
 	                <li>
 	                  <div class="div1">
 	                  	<a href="/videosInfo.jhtml?id=${vedio.id}">
@@ -128,10 +133,11 @@
 	                    <p>
 	                    	<span>${vedio.editTime?number_to_datetime}</span>
 	                        <span>播放：</span>
-	                        <span>426.467</span>
+	                        <span>${(random/(vedio_index+1))?string("0.##")}</span>
 	                    </p>
 	                  </div>
 	                </li>
+                [/#if]
                 [/#list]
               </ul>
           </div>

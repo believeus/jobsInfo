@@ -112,7 +112,7 @@
 				<div class="zhuanti_list">
 				[#list subjectReport as sReport]
 					<a class="j_main_left_1_a" href="/special.jhtml?id=${sReport.id}">
-						<img src="${sReport.imgpath}" style="width:222px;height:62px;margin-top:7px;">
+						<img src="${sReport.imgpath?string?split("#")[1]}" style="width:222px;height:62px;margin-top:7px;">
 					</a>
 				[/#list]
 				</div>

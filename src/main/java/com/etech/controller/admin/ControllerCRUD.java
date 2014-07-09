@@ -223,7 +223,7 @@ public class ControllerCRUD {
 			try {
 				inputStream = file.getInputStream();
 				if(inputStream.available()==0){
-					storepath="resource/public/images/6551-A40C-4FDA-8D55-87265167B506.jpg";
+					storepath="resource/public/images/zt_topImg.png";
 					strings[count++]=storepath;
 				}else {					
 					Assert.assertNotNull("upload file InputStream is null", inputStream);
@@ -285,7 +285,7 @@ public class ControllerCRUD {
 				inputStream = file.getInputStream();
 				if(inputStream.available()==0){
 					if (StringUtils.isEmpty(strings[count])) {
-						storepath="resource/public/images/6551-A40C-4FDA-8D55-87265167B506.jpg";
+						storepath="resource/public/images/zt_topImg.png";
 						strings[count]=storepath;						
 					}
 				}else {					

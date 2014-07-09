@@ -83,7 +83,7 @@ $().ready(function() {
 				<td>
 					<input type="file" name="img1"><br/><label style="color:#0000FF;">宽543px*高85px</label>
 				</td>
-				<th><span class="requiredField">*</span>图片2</th>
+				<th><span class="requiredField">*</span>图片2:</th>
 				<td>
 					<input type="file" name="img2"><br/><label style="color:#0000FF;">宽165px*高85px</label>
 				</td>

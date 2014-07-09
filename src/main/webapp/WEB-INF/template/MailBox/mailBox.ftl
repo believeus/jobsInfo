@@ -190,7 +190,7 @@ textarea{
 			<div class="zhuanti_list" style="height:425px;">
 				[#list subjectReport as sReport]
 				[#if sReport_index <5]
-					<a style="margin-left:0;" href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:222px;height:66px;margin-top:7px;"></a>
+					<a style="margin-left:0;" href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath?string?split("#")[1]}" style="width:222px;height:66px;margin-top:7px;"></a>
 				[/#if]
 				[/#list]
 			</div>

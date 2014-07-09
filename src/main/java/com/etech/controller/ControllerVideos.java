@@ -2,6 +2,7 @@ package com.etech.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -49,6 +50,7 @@ public class ControllerVideos {
 		request.setAttribute("videolList", videolList);
 		String host=request.getHeader("Host");
 		request.setAttribute("host", host);
+		request.setAttribute("random", new Random().nextInt(9999)+1);
 		return "infoCenter/videosInfo";
 	}
 	

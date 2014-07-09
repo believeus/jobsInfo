@@ -125,7 +125,7 @@
 				<div class="zhuanti_list">
 				[#list subjectReport as sReport]
 				[#if sReport_index <5]
-					<a href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath}" style="width:222px;height:62px;margin-top:7px;"></a>
+					<a href="/special.jhtml?id=${sReport.id}"><img src="${sReport.imgpath?string?split("#")[1]}" style="width:222px;height:62px;margin-top:7px;"></a>
 				[/#if]
 				[/#list]
 				</div>

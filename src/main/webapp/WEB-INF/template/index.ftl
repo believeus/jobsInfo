@@ -77,7 +77,7 @@
 		    font-size:13px;
     	}
     	.ad{
-    		background: url("/resource/public/images/zhuye-img_04.png");
+    		background: url(/resource/public/images/zhuye-img_04.png);
 		    height: 55px;
 		    margin-bottom: 8px;
 		    width: 726px;
@@ -408,11 +408,12 @@
 			</div>
 			<div class="biaoti">
 				[#list slide as slide]
-					[#if slide_index<2]
-					<a href="${slide.alink}" title="${slide.title}" target="_blank">
-						<img src="${slide.imgpath}" [#if slide_index=0] style="width: 543px;height:85px;"[#elseif slide_index=1]style="width: 165px;height:85px;"[/#if]>
+					<a href="${slide.alink?string?split("#")[0]}" title="${slide.title?string?split("#")[0]}" target="_blank">
+						<img src="${slide.imgpath?string?split("#")[0]}" style="width: 543px;height:85px;">
 					</a>
-					[/#if]
+					<a href="${slide.alink?string?split("#")[1]}" title="${slide.title?string?split("#")[1]}" target="_blank">
+						<img src="${slide.imgpath?string?split("#")[1]}" style="width: 165px;height:85px;">
+					</a>
 				[/#list]
 			</div>
 			<div class="ad">

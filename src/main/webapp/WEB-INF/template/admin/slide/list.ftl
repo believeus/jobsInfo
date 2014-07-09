@@ -22,7 +22,7 @@ $().ready(function() {
 	</div>
 	<form id="listForm" action="list.jhtml" method="get">
 		<div class="bar">
-		[#if dataCenters.content?size <2]
+		[#if dataCenters.total <1]
 			<a href="add.jhtml" class="iconButton">
 				<span class="addIcon">&nbsp;</span>添加
 			</a>
@@ -64,7 +64,8 @@ $().ready(function() {
 					<span title="${center.id}">${center.id}</span>
 				</td>
 				<td>
-					${center.title}
+					[${center.title?string?split("#")[0]}]
+					[${center.title?string?split("#")[1]}]
 				</td>
 				<!--<td>
 					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
