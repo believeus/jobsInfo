@@ -189,6 +189,9 @@ public class ControllerSearch {
 		if("选择城市".equals(area)){
 			area="";
 		}
+		if (StringUtils.isEmpty(data)) {
+			data="";
+		}
 		if (!StringUtils.isEmpty(majorTypeId)) {
 			// 获取对象
 			TmajorType majorValue=(TmajorType)etechService.findObjectById(TmajorType.class, Integer.valueOf(majorTypeId));

@@ -55,7 +55,7 @@ public class ControllerPower {
 		if (StringUtils.isEmpty(pageNumber)) {
 			pageNumber="1";
 		}
-		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),2);
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		String searchValue = request.getParameter("searchValue");
 		if (!StringUtils.isEmpty(searchValue)) {
 			searchValue=URLDecoder.decode(searchValue, "utf-8");
