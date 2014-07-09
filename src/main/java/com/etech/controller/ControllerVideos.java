@@ -50,7 +50,7 @@ public class ControllerVideos {
 		request.setAttribute("videolList", videolList);
 		String host=request.getHeader("Host");
 		request.setAttribute("host", host);
-		request.setAttribute("random", new Random().nextInt(9999)+1);
+		request.setAttribute("random", new Random().nextInt(100)+1);
 		return "infoCenter/videosInfo";
 	}
 	

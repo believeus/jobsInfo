@@ -152,7 +152,7 @@ $().ready(function() {
 					链接:
 				</th>
 				<td colspan="3">
-					<input class="text" type="text" name="alink" value="http://"><label style="color:blue">链接请加前缀 http:// </label>
+					<input class="text" type="text" name="alink" ><label style="color:blue">链接请加前缀 http:// </label>
 				</td>
 			</tr>
 			<tr>

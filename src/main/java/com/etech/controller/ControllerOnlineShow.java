@@ -51,7 +51,7 @@ public class ControllerOnlineShow {
 		request.setAttribute("imgs", imgs); 
 		String host=request.getHeader("Host");
 		request.setAttribute("host", host);
-		request.setAttribute("random", new Random().nextInt(9999)+1);
+		request.setAttribute("random", new Random().nextInt(100)+1);
 		return "onlineShow/onlineShow";
 	}
 }

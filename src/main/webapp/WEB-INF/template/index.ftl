@@ -173,7 +173,7 @@
 		    text-align: center;
 		}
 		.btn_login{
-			background:#b2e85c;
+			background:#6DBE3A;
 		    border: 1px solid #3eae44;
 		    border-radius: 4px;
 		    color: #fbfbfb;
@@ -537,7 +537,7 @@
 				<ul id="" style="padding-left:25px;">
 					[#list notices as notice]
 						[#if notice_index <8]
-						<li class="gonggao_li"><a href="/publicityInfo.jhtml?id=${notice.id}">
+						<li class="gonggao_li"><a href="/publicityInfo.jhtml?id=${notice.id}" title="${notice.title}">
 							[#if notice.title?length > 10]
 								${notice.title?string?substring(0,10)}...
 							[#else]
@@ -619,7 +619,7 @@
 					[#list busHandles as busHandle]
 					[#if busHandle_index < 6]
 					<div class="jiuye_1_list" [#if (busHandle_index+1)%2 ==0] style="margin-right:0px;margin-left:10px;"[/#if]>
-						<a href="${busHandle.alink}" title="${busHandle.title}" target="_blank">
+						<a [#if busHandle.alink != ""] href="${busHandle.alink}"[#else][/#if] title="${busHandle.title}" target="_blank">
 							<img src="${busHandle.imgpath}" width="101" height="82">
 						</a>
 					</div>

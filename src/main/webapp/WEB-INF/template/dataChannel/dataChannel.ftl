@@ -197,10 +197,12 @@ a:link{
 	                      	<div>
 		                      	<a style="color:#fe0002;" title="${supply.jobPost}">
 		                      		${supply_index+1}、
-		                      		[#if supply.jobPost?length >11]
-		                      			${supply.jobPost?string?substring(0,11)}...
-		                      		[#else]
-			                      		${supply.jobPost}
+		                      		[#if supply.jobPost?exists]
+			                      		[#if supply.jobPost?length >11]
+			                      			${supply.jobPost?string?substring(0,11)}...
+			                      		[#else]
+				                      		${supply.jobPost}
+			                      		[/#if]
 		                      		[/#if]
 	                      		</a>
                       		</div>
@@ -225,10 +227,12 @@ a:link{
 	                      	<div>
 		                      	<a style="color:#fe0002;" title="${demand.workType.name}">
 		                      		${demand_index+1}、
-		                      		[#if demand.workType.name?length >11]
-		                      			${demand.workType.name?string?substring(0,11)}...
-	                      			[#else]
-	                      				${demand.workType.name}
+		                      		[#if demand.workType?exists]
+			                      		[#if demand.workType.name?length >11]
+			                      			${demand.workType.name?string?substring(0,11)}...
+		                      			[#else]
+		                      				${demand.workType.name}
+	                      				[/#if]
                       				[/#if]
 	                      		</a>
                       		</div>

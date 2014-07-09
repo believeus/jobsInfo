@@ -158,14 +158,6 @@ $().ready(function() {
 			</tr>
 			<tr>
 				<th>
-					排序编号:
-				</th>
-				<td colspan="3">
-					<input type="text" name="order" class="text" maxlength="9" value="${dataCenter.id}"/>
-				</td>
-			</tr>
-			<tr>
-				<th>
 					&nbsp;
 				</th>
 				<td colspan="3">

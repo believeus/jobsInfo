@@ -4,6 +4,9 @@
 		overflow:auto;
 		font-size:14px;	
 	}
+	img{
+		border:0;
+	}
 	a{
 		text-decoration:none;
 		color:#555555;

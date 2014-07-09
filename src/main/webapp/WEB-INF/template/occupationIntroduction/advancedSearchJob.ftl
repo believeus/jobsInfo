@@ -6,12 +6,10 @@
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-1.7.2.min.js"></script>
+    <link href="/resource/public/selectArea/css/css.css" type="text/css" rel="stylesheet">
     <link href="/resource/public/selectArea/css/cityLayout.css" type="text/css" rel="stylesheet">
    	<link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
     <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="/resource/public/areaSelect/css.css" />
-	<script type="text/javascript" src="/resource/public/areaSelect/drag.js"></script>
-	<script type="text/javascript" src="/resource/public/areaSelect/city_arr.js"></script>
 	<script type="text/javascript" src="/resource/public/js/jquery.form.js"></script>
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu-search.js"></script> 
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>

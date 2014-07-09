@@ -79,6 +79,17 @@ body {
 [#include "/include/header.ftl" /]
 	<script type="text/javascript">
 		    $().ready(function() {
+		    
+		    	$("#phoneNum").blur(function(){
+					var phoneNum =$(this).val();
+					var regPartton=/^(?:13\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/; //验证手机号
+					if(!regPartton.test(phoneNum)){
+						alert("手机格式不正确！");
+						return false;
+					}
+				});
+				
+				
 					// ajax 提交验证和注册。
 		    		function submitF(submitx){
 						$.ajax({
@@ -190,8 +201,8 @@ body {
             	</span>
             </div>
             <div>
-            	<span>联系电话：</span>
-                <span><input type="" id="phoneNum" /></span>
+            	<span>手机号码：</span>
+                <span><input type="" id="phoneNum" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="11" minlegnth="11"/></span>
             </div>
             <div>
             	<span>电子邮箱：</span>

@@ -204,7 +204,7 @@
 			width:194px;
 		}
 		.btn_login{
-			background:#b2e85c;
+			background:#6DBE3A;
 		    border: 1px solid #3eae44;
 		    border-radius: 4px;
 		    color: #fbfbfb;
@@ -511,7 +511,7 @@
 					[#list zhaopinhuiService as zph]
 					[#if zph_index <6]
 						<li>
-							<a href="/zhaopinhui.jhtml?id=${zph.id}">
+							<a href="/zhaopinhui.jhtml?id=${zph.id}" title="${zph.title}">
 								[#if zph.title?length > 10]
 									${zph.title?string?substring(0,10)}...
 								[#else]

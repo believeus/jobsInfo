@@ -74,6 +74,8 @@ public class ControllerCRUD {
 		
 		String title=request.getParameter("title");
 		String author=request.getParameter("author");
+		String powerLevel = request.getParameter("powerLevel");
+		String powerProperty = request.getParameter("powerProperty");
 		/**Begin Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
 		String content=request.getParameter("content");
 		/**End Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
@@ -89,6 +91,16 @@ public class ControllerCRUD {
 		center.setEditTime(System.currentTimeMillis());
 		center.setTop(Integer.valueOf(top));
 		center.setAlink(alink);
+		if (powerLevel != null) {
+			center.setPowerLevel(Integer.parseInt(powerLevel));
+		}else {
+			center.setPowerLevel(0);
+		}
+		if (powerProperty != null) {
+			center.setPowerProperty(Integer.parseInt(powerProperty));
+		}else {
+			center.setPowerProperty(0);
+		}
 		if(!StringUtils.isEmpty(storepath)){
 			center.setImgpath(storepath);
 		}

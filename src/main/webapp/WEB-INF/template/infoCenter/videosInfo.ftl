@@ -133,7 +133,13 @@
 	                    <p>
 	                    	<span>${vedio.editTime?number_to_datetime}</span>
 	                        <span>播放：</span>
-	                        <span>${(random/(vedio_index+1))?string("0.##")}</span>
+	                        <span>
+	                        	[#if (random/(vedio_index+1)) <1]
+	                        		1314
+	                        	[#else]
+	                        		${(random/(vedio_index+1))?string("0.#")?replace(".",",")}00
+	                        	[/#if]
+	                        </span>
 	                    </p>
 	                  </div>
 	                </li>
