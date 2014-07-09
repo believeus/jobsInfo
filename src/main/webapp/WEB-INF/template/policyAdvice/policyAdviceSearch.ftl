@@ -162,7 +162,7 @@
 			<div class="j_main_right_1">
 				<p>
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
-					所在位置 > <a href="/policyAdvice.jhtml" title="政策咨询">政策咨询</a>
+					所在位置 > <a href="/policyAdvice.jhtml" title="政策咨询">政策咨询</a>(共${dataCenterList.total}条数据)
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;width:727px;">
@@ -215,7 +215,6 @@
 					</tr>
 				</table>
 				<div style="border:1px solid #e4e4e4;" class="j_main_right_2">
-					<span>共${dataCenterList.total}条数据</span>
 					<ul>
 						[#list dataCenterList.content as dataCenter]
 						<li>

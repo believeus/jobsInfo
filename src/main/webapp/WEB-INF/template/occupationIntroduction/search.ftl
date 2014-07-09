@@ -171,7 +171,7 @@
 			<div class="j_main_right_1">
 				<p style="background: url(/resource/public/images/background_b.png);border: 1px solid #E4E4E4;font-size: 13px;line-height: 28px;margin: 5px 0;">
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-left: 2px; margin-top: 2px; margin-right: 5px;">
-					所在位置 > 全文检索共${tdataCenterList.total}条记录
+					所在位置 > 全文检索(共${tdataCenterList.total}条记录)
 				</p>
 				<div class="j_main_right_2">
 				<form method="post" action="/search.jhtml" id="listForm">
