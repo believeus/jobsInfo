@@ -12,13 +12,9 @@
     <script type="text/javascript"  src="/resource/public/js/Etech.js"></script>
     <link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
     <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" /> 
-    <link rel="stylesheet" type="text/css" href="/resource/public/areaSelect/css.css" />
     <link href="/resource/public/selectArea/css/cityLayout.css" type="text/css" rel="stylesheet">
 	<link href="/resource/public/selectArea/css/css.css" type="text/css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="/resource/public/areaSelect/css.css" />
 	 <link href="/resource/public/js/jquery-ui.css" rel="stylesheet" type="text/css" /> 
-	<script type="text/javascript" src="/resource/public/areaSelect/drag.js"></script>
-	<script type="text/javascript" src="/resource/public/areaSelect/city_arr.js"></script>
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu.js"></script> 
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>
 	<script type="text/javascript" src="/resource/public/js/datePicker/WdatePicker.js"></script>
@@ -56,6 +52,7 @@
 		position:absolute;
 		top:65px;
 		left:20px;
+		color: #88BBD4;
 	}
 	
 	</style>
@@ -1522,14 +1519,15 @@
 						</div>
 						<div style="width: 150px; float: left; margin-left: 15px; height: auto; margin-top: 15px;">
 								<form novalidate="novalidate"  action="/upload.jhtml" method="post" encType="multipart/form-data" id="imageForm">
+									
 									<div class="brandImg">
-										<span>
-											<a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
-										</span>
 											<img style="width:122px;height:150px" src="[#if sessionUser.imgHead?exists]/${sessionUser.imgHead}[#else]/resource/public/images/bg.png[/#if]" name="img"/>
-											<div style="color: #000000; font-size: 12px; position: relative; padding-top: 15px; width: 122px;text-align:center;">建议图片大小：</div>
-											<div style="color: #000000; font-size: 12px; position: relative; padding: 0px; width: 122px;text-align:center;">宽122px*高150px</div>
+											<div style="color: #000000; font-size: 12px; position: relative; padding-top: 25px; width: 122px;text-align:center;top:30px">建议图片大小：</div>
+											<div style="color: #000000; font-size: 12px; position: relative; padding: 0px; width: 122px;text-align:center;top:30px">宽122px*高150px</div>
 									</div>
+										<span>
+											<a style="color:#88BBD4" onclick="file0.click()" href="javascript:void(0);" >点击上传图片</a>
+										</span>
 									<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;checkChange=1;loadImgFast(this,0)">
 									<input type="hidden" id="filename0" name="filename0">
 								</form>			
