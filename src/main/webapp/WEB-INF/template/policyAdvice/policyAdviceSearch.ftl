@@ -185,7 +185,7 @@
 						止: <input type="text" id="endDate" name="endDate" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
 						</td>
 						<td rowspan="2" style="background: url(/resource/public/images/chaxun.png); border-radius: 4px;">
-							<input type="submit" value=""  style="border: 0px none; font-size: 18px; cursor: pointer; height: 61px; width: 56px; background: none;">
+							<input id="select_p" type="submit" value=""  style="border: 0px none; font-size: 18px; cursor: pointer; height: 61px; width: 56px; background: none;">
 						</td>
 					</tr>
 					<tr>
@@ -231,5 +231,25 @@
 		</div>
 	</div>
 	[#include "/include/footer.ftl" /]
+	<script type="text/javascript">
+		$().ready(function(){
+			var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+			var isOpera = userAgent.indexOf("Opera") > -1;
+			
+			if (isOpera){return "Opera"}; //判断是否Opera浏览器
+			if (userAgent.indexOf("Firefox") > -1){//判断是否Firefox浏览器
+				//alert("Firefox浏览器");
+				$("#box").css("right","988px");
+				$("#box").css("top","50px");
+				return "FF";
+			} 
+			if (userAgent.indexOf("Safari") > -1){return "Safari";} //判断是否Safari浏览器
+			if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera){
+				//alert("IE浏览器");
+				$("#select_p").css("height","58px");
+				$("#select_p").css("width","57px");
+			} ; //判断是否IE浏览器
+		});
+	</script>
 </body>
 </html>
