@@ -410,7 +410,7 @@
 						<div class="" style="height: auto; overflow: hidden; float: left; width: 660px; margin-left: 30px; margin-top: 10px;margin-right:10px;">
 							<table>
 								<tr>
-									<td>单位全称:</td>
+									<th>单位全称:</th>
 									<td style="padding-right: 80px;">${entUser.fullName}</td>
 									<td rowspan="2" colspan="2">
 										[#if Maps?size>0]
@@ -424,41 +424,41 @@
 									</td>
 								</tr>
 								<tr>
-									<td>单位性质:</td>
+									<th>单位性质:</th>
 									<td>${entUser.unitType}</td>
 								</tr>
 								<tr>
-									<td>单位简称:</td>
+									<th>单位简称:</th>
 									<td>${entUser.shorName}</td>
-									<td>隶属关系:</td>
+									<th>隶属关系:</th>
 									<td>${entUser.relationship}</td>
 								</tr>
 								<tr>
-									<td>经济类型:</td>
+									<th>经济类型:</th>
 									<td>${entUser.economicType}</td>
-									<td>法人代表:</td>
+									<th>法人代表:</th>
 									<td>${entUser.legalMan}</td>
 								</tr>
 								<tr>
-									<td>所属地区:</td>
+									<th>所属地区:</th>
 									<td>${entUser.area}</td>
-									<td>行业:</td>
+									<th>行业:</th>
 									<td>${entUser.trade}</td>
 								</tr>
 								<tr>
-									<td>注册资金:</td>
+									<th>注册资金:</th>
 									<td>${entUser.regMoney}</td>
-									<td>详细地址:</td>
+									<th>详细地址:</th>
 									<td>${entUser.detailAddress}</td>
 								</tr>
 								<tr>
-									<td>联系人:</td>
+									<th>联系人:</th>
 									<td>${entUser.contacts}</td>
-									<td>通讯地址:</td>
+									<th>通讯地址:</th>
 									<td>${entUser.address}</td>
 								</tr>
 								<tr>
-									<td>邮编:</td>
+									<th>邮编:</th>
 									<td>
 										[#if "${sessionUser?exists}"]
 											${entUser.zip}
@@ -466,7 +466,7 @@
 											<a style="color:red;" href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
 										[/#if]
 									</td>
-									<td>手机:</td>
+									<th>手机:</th>
 									<td>
 										[#if "${sessionUser?exists}"]
 											${entUser.phoneFax}
@@ -476,7 +476,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td>电话/传真:</td>
+									<th>电话/传真:</th>
 									<td>
 										[#if "${sessionUser?exists}"]
 											${entUser.phoneFax}
@@ -484,11 +484,11 @@
 											<a style="color:red;" href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
 										[/#if]
 									</td>
-									<td>网址:</td>
+									<th>网址:</th>
 									<td>${entUser.webSite}</td>
 								</tr>
 								<tr>
-									<td style="vertical-align: top;">单位简介:</td>
+									<th style="vertical-align: top;">单位简介:</th>
 									<td colspan="3">
 										<p style="margin: 0px; width: 570px; line-height: 22px;">
 											${entUser.introduce} 
@@ -610,51 +610,51 @@
 						<div class="" style="height: auto; overflow: hidden; float: left; width: 660px; margin-left: 30px; margin-top: 10px;margin-right:10px;">
 							<table>
 								<tr>
-									<td>招聘单位:</td>
+									<th>招聘单位:</th>
 									<td style="padding-right: 80px;">${trecruit.company}</td>
-									<td>专业:</td>
+									<th>专业:</th>
 									<td>${trecruit.majorType.name}</td>
 								</tr>
 								<tr>
-									<td>工种:</td>
+									<th>工种:</th>
 									<td>${trecruit.workType.name}</td>
-									<td>性别:</td>
+									<th>性别:</th>
 									<td>[#if trecruit.sex == "woman"]女[#elseif trecruit.sex == "man"]男[#else]不限[/#if]</td>
 								</tr>
 								<tr>
-									<td>人数:</td>
+									<th>人数:</th>
 									<td>${trecruit.worknum}</td>
-									<td>技术等级:</td>
+									<th>技术等级:</th>
 									<td>${trecruit.eteLevel}</td>
 								</tr>
 								<tr>
-									<td>从事年限:</td>
+									<th>从事年限:</th>
 									<td>${trecruit.workyear}</td>
-									<td>文化程度:</td>
+									<th>文化程度:</td>
 									<td>${trecruit.eduLevel}</td>
 								</tr>
 								<tr>
-									<td>工作地点:</td>
+									<th>工作地点:</th>
 									<td>${trecruit.workspace}</td>
-									<td>年龄:</td>
+									<th>年龄:</th>
 									<td>${trecruit.age}</td>
 								</tr>
 								<tr>
-									<td>身高:</td>
+									<th>身高:</th>
 									<td>${trecruit.height}</td>
-									<td>视力:</td>
+									<th>视力:</th>
 									<td>${trecruit.eyesight}</td>
 								</tr>
 								<tr>
-									<td>薪资待遇:</td>
+									<th>薪资待遇:</th>
 									<td>${trecruit.salary}</td>
-									<td>用工形式:</td>
+									<th>用工形式:</th>
 									<td>${trecruit.workWay}</td>
 								</tr>
 								<tr>
-									<td>招聘期限:</td>
+									<th>招聘期限:</th>
 									<td>${trecruit.worklimit}</td>
-									<td>面试时间:</td>
+									<th>面试时间:</th>
 									<td></td>
 								</tr>
 							</table>

@@ -147,9 +147,9 @@
 							<img src="${data.imgpath}" width="95" height="130">
 						</div>
 						<div class="" style="height: 130px; float: left; margin-left: 10px; width: 585px; margin-top: 10px;">
-							<p class="j_main_right_2_p">姓名：${data.author}</p>
-							<p class="j_main_right_2_p">职务：${data.title}</p>
-							<p class="j_main_right_2_p">分管范围：
+							<p class="j_main_right_2_p"><font style="font-weight:bold;margin-left:28px;">姓名：</font>${data.author}</p>
+							<p class="j_main_right_2_p"><font style="font-weight:bold;margin-left:28px;">职务：</font>${data.title}</p>
+							<p class="j_main_right_2_p"><font style="font-weight:bold;">分管范围：</font>
 								<span title="${data.content}">[#if data.content?length >100]
 									${data.content?string?substring(0,100)}...
 								[#else]

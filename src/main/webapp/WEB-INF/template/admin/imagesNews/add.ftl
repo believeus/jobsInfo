@@ -75,7 +75,11 @@ $().ready(function() {
 					</span>
 				</div>';
 		[/@compress]
-		$(".img_list").parent().append(html);
+		if($(".img_list").size() < 12){
+			$(".img_list").parent().append(html);
+		}else{
+			alert("最多添加12图片");
+		}
 		a++;
 	});
 });

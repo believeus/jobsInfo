@@ -156,9 +156,12 @@ th{
 				$("#register").click(function() {
 					var loginName= $("#loginName").val();
 					var password=$("#password").val();
-					var comfirmPwd=$("#comfirmPwd").val()
+					var comfirmPwd=$("#comfirmPwd").val();
+					var trueName=$("#trueName").val();
 					if(loginName==""&&password==""&&comfirmPwd==""){
 						alert("用户名和密码和确认密码不能为空！");
+					}else if(trueName==""){
+						alert("真实姓名不能为空！");
 					}else{
 						submitF("submit");
 					}
@@ -195,7 +198,7 @@ th{
             		<td><input type="password" id="comfirmPwd" /></td>
             	</tr>
             	<tr>
-            		<th>真实姓名：</th>
+            		<th><font color="red">*</font>真实姓名：</th>
             		<td><input type="text" id="trueName" name="trueName" /></td>
             	</tr>
             	<tr>
