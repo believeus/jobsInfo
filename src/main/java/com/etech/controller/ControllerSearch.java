@@ -130,7 +130,7 @@ public class ControllerSearch {
 		return "occupationIntroduction/search";
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value="/advanceSearchByContision")
 	public String advanceSearch(String data,String keyword,String majorTypeId,String workTypeId,
 			String area,String type,HttpServletRequest request,HttpSession session){
@@ -214,10 +214,16 @@ public class ControllerSearch {
 		List<TdataCenter> notices = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("notices",notices ); 
 		
-		// 岗位搜索和
+		String pageNumber = request.getParameter("pageNumber");
+		// 如果为空，则设置为1
+		if (StringUtils.isEmpty(pageNumber)) {
+			pageNumber="1";
+		}
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
+		Page page=null;
+		// 岗位搜索
 		if ("position".equals(type)) {
 			log.debug("根据关键字和条件搜索招聘岗位");
-			List<Trecruit> recruitList=null;
 			if(StringUtils.isEmpty(issueTime)&&
 					StringUtils.isEmpty(salaryRange)&&
 					StringUtils.isEmpty(workType)&&
@@ -229,11 +235,11 @@ public class ControllerSearch {
 					"".equals(area)&&
 					StringUtils.isEmpty(companyType)){
 				hql="from Trecruit recruit order by recruit.editTime desc";
-				recruitList= (List<Trecruit>)etechService.findObjectList(hql, 1, 15, Trecruit.class);
+				page=etechService.getPage(hql, pageable);
 			}else {
-				recruitList=(List<Trecruit>)jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
+				page=jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType,pageable);
 			}
-			request.setAttribute("recruitList", recruitList);
+			request.setAttribute("recruitList", page);
 			request.setAttribute("location", "position");
 			return "occupationIntroduction/advancedSearchJob";
 		//公司搜索
@@ -251,9 +257,9 @@ public class ControllerSearch {
 					"".equals(area)&&
 					StringUtils.isEmpty(companyType)){
 				hql="from Trecruit recruit order by recruit.editTime desc";
-				recruitList= (List<Trecruit>)etechService.findObjectList(hql, 1, 15, Trecruit.class);
+				page=etechService.getPage(hql, pageable);
 			}else {
-				recruitList=(List<Trecruit>)jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
+				page=jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType,pageable);
 			}
 			request.setAttribute("recruitList", recruitList);
 			request.setAttribute("location", "company");
@@ -261,7 +267,6 @@ public class ControllerSearch {
 		// 简历搜索
 		}else{
 			log.debug("简历搜索");
-			List<TcomInfo> comInfoList=null;
 			// (issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType
 			if(StringUtils.isEmpty(issueTime)&&
 				StringUtils.isEmpty(salaryRange)&&
@@ -275,77 +280,64 @@ public class ControllerSearch {
 				StringUtils.isEmpty(companyType)){
 				//搜索简历
 				hql="from TcomInfo comInfo where comInfo.infoType=4  order by comInfo.editDate desc";
-				comInfoList= (List<TcomInfo>)etechService.findObjectList(hql, 1, 15, TcomInfo.class);
+				page=etechService.getPage(hql, pageable);
 			}else {
-				comInfoList = resumeSearchService.search(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, 0, 25);
+				page = resumeSearchService.search(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, pageable);
 			}
-			request.setAttribute("comInfoList", comInfoList);
+			request.setAttribute("comInfoList", page);
 			request.setAttribute("location", "resume");
 			return "occupationIntroduction/advancedSearchResume";
 		}
 		
 	}
 	/**高级搜索页,默认搜索职位信息*/
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/jobAdvancedSearch")
 	public String jobAdvancedSearchView(HttpServletRequest request) {
-		// 当前是第几页
-		int pageNo=0;
-		// 每页几行
-		int pageSize=20;
-		if(!StringUtils.isEmpty(request.getParameter("pageNo"))){
-			pageNo=Integer.valueOf(request.getParameter("pageNo"));
+		String pageNumber = request.getParameter("pageNumber");
+		// 如果为空，则设置为1
+		if (StringUtils.isEmpty(pageNumber)) {
+			pageNumber="1";
 		}
-		if(!StringUtils.isEmpty(request.getParameter("pageSize"))){
-			pageSize=Integer.valueOf(request.getParameter("pageSize"));
-		}
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		//搜索招聘职位
 		String hql="from Trecruit recruit order by recruit.editTime desc";
-		@SuppressWarnings("unchecked")
-		List<Trecruit> recruitList= (List<Trecruit>)etechService.findObjectList(hql, pageNo, pageSize, Trecruit.class);
-		request.setAttribute("recruitList", recruitList);
+		Page page = etechService.getPage(hql, pageable);
+		request.setAttribute("recruitList", page);
 		request.setAttribute("location", "position");
 		return "occupationIntroduction/advancedSearchJob";
 	}
 	// 简历搜索
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/resumeAdvancedSearch")
 	public String resumeAdvancedSearchView(HttpServletRequest request) {
-		// 当前是第几页
-		int pageNo=0;
-		// 每页几行
-		int pageSize=20;
-		if(!StringUtils.isEmpty(request.getParameter("pageNo"))){
-			pageNo=Integer.valueOf(request.getParameter("pageNo"));
+		String pageNumber = request.getParameter("pageNumber");
+		// 如果为空，则设置为1
+		if (StringUtils.isEmpty(pageNumber)) {
+			pageNumber="1";
 		}
-		if(!StringUtils.isEmpty(request.getParameter("pageSize"))){
-			pageSize=Integer.valueOf(request.getParameter("pageSize"));
-		}
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		//搜索简历
 		String hql="from TcomInfo comInfo where comInfo.infoType=4  order by comInfo.editDate desc";
-		@SuppressWarnings("unchecked")
-		List<TcomInfo> comInfoList= (List<TcomInfo>)etechService.findObjectList(hql, pageNo, pageSize, TcomInfo.class);
-		request.setAttribute("comInfoList", comInfoList);
+		Page page = etechService.getPage(hql, pageable);
+		request.setAttribute("comInfoList", page);
 		request.setAttribute("location", "resume");
 		return "occupationIntroduction/advancedSearchResume";
 	}
 		//搜索公司
+		@SuppressWarnings("rawtypes")
 		@RequestMapping(value = "/companyAdvancedSearch")
 		public String companyAdvancedSearch(HttpServletRequest request) {
-			// 当前是第几页
-			int pageNo=0;
-			// 每页几行
-			int pageSize=20;
-			if(!StringUtils.isEmpty(request.getParameter("pageNo"))){
-				pageNo=Integer.valueOf(request.getParameter("pageNo"));
+			String pageNumber = request.getParameter("pageNumber");
+			// 如果为空，则设置为1
+			if (StringUtils.isEmpty(pageNumber)) {
+				pageNumber="1";
 			}
-			if(!StringUtils.isEmpty(request.getParameter("pageSize"))){
-				pageSize=Integer.valueOf(request.getParameter("pageSize"));
-			}
+			Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 			//搜索公司
 			String hql="from Trecruit recruit order by recruit.editTime desc";
-			@SuppressWarnings("unchecked")
-			List<Trecruit> recruitList= (List<Trecruit>)etechService.findObjectList(hql, pageNo, pageSize, Trecruit.class);
-			Collections.shuffle(recruitList);
-			request.setAttribute("recruitList", recruitList);
+			Page page = etechService.getPage(hql, pageable);
+			request.setAttribute("recruitList", page);
 			request.setAttribute("location", "company");
 			return "occupationIntroduction/advancedSearchCompany";
 		}

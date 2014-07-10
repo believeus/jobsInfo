@@ -14,7 +14,6 @@ import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.BooleanQuery;
-import org.apache.lucene.search.FuzzyQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.SortField;
@@ -34,6 +33,8 @@ import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import com.etech.entity.TmajorType;
 import com.etech.entity.Trecruit;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 @Service
 public class JobSearchService {
@@ -42,10 +43,11 @@ public class JobSearchService {
 	private SessionFactory sessionFactory;
 	@Resource
 	private EtechService etechService;
-	@SuppressWarnings("unchecked")
-	public List<Trecruit> searchJobAdvice(String issueTime, String salaryRange,String workType, String eduRequire, String workYear,
-			String companyType,String keyword,String majorTypeId,String area,String type,int currentPage,int perCount){
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Page searchJobAdvice(String issueTime, String salaryRange,String workType, String eduRequire, String workYear,
+			String companyType,String keyword,String majorTypeId,String area,String type,Pageable pageable){
 		List<Trecruit> recruitList=null;
+		int total=0;
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			FullTextSession fullTextSession = Search.getFullTextSession(session);
@@ -133,24 +135,21 @@ public class JobSearchService {
 			FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(booleanQuery, Trecruit.class);
 			// 根据时间进行排序
 			fullTextQuery.setSort(new Sort(new SortField("editTime", SortField.LONG,true)));
-			int total=fullTextQuery.getResultSize();
-			// 分页
-			if (currentPage > ((int) Math.ceil((float) total / perCount))) {
-				currentPage = (int) Math.ceil((float) total/ perCount);
+			total=fullTextQuery.getResultSize();
+			int totalPages = (int) Math.ceil((double) total / (double) pageable.getPageSize());
+			if (totalPages < pageable.getPageNumber()) {
+				pageable.setPageNumber(totalPages);
 			}
-			// 如果当前页小于第一页则等于第一页
-			if (currentPage < 1) {
-				currentPage = 1;
-			}
-			fullTextQuery.setFirstResult(perCount * (currentPage - 1));
-			fullTextQuery.setMaxResults(perCount);
+			
+			fullTextQuery.setFirstResult((pageable.getPageNumber() - 1) * pageable.getPageSize());
+			fullTextQuery.setMaxResults(pageable.getPageSize());
 			log.debug("fullTextQuery:"+fullTextQuery);
 			recruitList=fullTextQuery.list();
 			tx.commit();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return recruitList;
+		return new Page(recruitList, total, pageable);
 	}
 	
 }

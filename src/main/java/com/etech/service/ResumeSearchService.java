@@ -34,6 +34,8 @@ import org.wltea.analyzer.lucene.IKAnalyzer;
 import com.etech.entity.TcomInfo;
 import com.etech.entity.TmajorType;
 import com.etech.util.EtechGobal;
+import com.etech.util.Page;
+import com.etech.util.Pageable;
 
 @Service
 public class ResumeSearchService {
@@ -42,10 +44,11 @@ public class ResumeSearchService {
 	private SessionFactory sessionFactory;
 	@Resource
 	private EtechService etechService;
-	@SuppressWarnings("unchecked")
-	public List<TcomInfo> search(String issueTime, String salaryRange,String workType, String eduRequire, String workYear,
-			String companyType,String keyword,String majorTypeId,String area,String type,int currentPage,int perCount){
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Page search(String issueTime, String salaryRange,String workType, String eduRequire, String workYear,
+			String companyType,String keyword,String majorTypeId,String area,String type,Pageable pageable){
 		List<TcomInfo> comInfoList=null;
+		int total=0;
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			FullTextSession fullTextSession = Search.getFullTextSession(session);
@@ -121,24 +124,21 @@ public class ResumeSearchService {
 			FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(booleanQuery, TcomInfo.class);
 			// 根据时间进行排序
 			fullTextQuery.setSort(new Sort(new SortField("editDate", SortField.LONG,true)));
-			int total=fullTextQuery.getResultSize();
-			// 分页
-			if (currentPage > ((int) Math.ceil((float) total / perCount))) {
-				currentPage = (int) Math.ceil((float) total/ perCount);
+			total=fullTextQuery.getResultSize();
+			int totalPages = (int) Math.ceil((double) total / (double) pageable.getPageSize());
+			if (totalPages < pageable.getPageNumber()) {
+				pageable.setPageNumber(totalPages);
 			}
-			// 如果当前页小于第一页则等于第一页
-			if (currentPage < 1) {
-				currentPage = 1;
-			}
-			fullTextQuery.setFirstResult(perCount * (currentPage - 1));
-			fullTextQuery.setMaxResults(perCount);
+			
+			fullTextQuery.setFirstResult((pageable.getPageNumber() - 1) * pageable.getPageSize());
+			fullTextQuery.setMaxResults(pageable.getPageSize());
 			log.debug("fullTextQuery:"+fullTextQuery);
 			comInfoList=fullTextQuery.list();
 			tx.commit();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return comInfoList;
+		return new Page(comInfoList, total, pageable);
 	}
 	
 }
