@@ -37,7 +37,9 @@ public class ControllerDemandList {
 			pageNumber="1";
 		}
 		// 每页多少行数据
-		String hql = "from Trecruit recruit left join fetch recruit.workType "+ "group by FROM_UNIXTIME(recruit.editTime/1000, '%Y-%m') order by FROM_UNIXTIME(recruit.editTime/1000, '%Y-%m') desc";
+		String hql = "from Trecruit recruit left join fetch recruit.workType "
+				    + "where recruit.status=1 and recruit.entUser.status=1 and recruit.entUser.disable=0 "
+				    + "group by FROM_UNIXTIME(recruit.editTime/1000, '%Y-%m') order by FROM_UNIXTIME(recruit.editTime/1000, '%Y-%m') desc";
 		log.debug(hql);
 		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		Page<?> page = etechService.getPage(hql, pageable);
@@ -69,6 +71,7 @@ public class ControllerDemandList {
           long endTime=cal.getTimeInMillis();
       	String hql = "from Trecruit recruit "
       			   + "where recruit.editTime >='"+beginTime+"' and recruit.editTime <='"+endTime+"' "
+      			   + "and recruit.status=1 and recruit.entUser.status=1 and recruit.entUser.disable=0 "
       			   + "group by recruit.jobPost order by count(recruit.jobPost) desc";
 		log.debug(hql);
 		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);

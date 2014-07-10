@@ -43,8 +43,9 @@ public class ControllerMonthSupplyList extends ControllerCRUD{
 		}
 		
 		// 每月供给排行
-		String hql="from TcomInfo info left join fetch info.comUser "
-				 + "where info.infoType=4 group by FROM_UNIXTIME(info.editDate/1000, '%Y-%m') order by FROM_UNIXTIME(info.editDate/1000, '%Y-%m') desc";
+		// 每月供给排行
+				String hql="from TcomInfo info left join fetch info.comUser "
+						 + "where info.infoType=4 group by FROM_UNIXTIME(info.editDate/1000, '%Y-%m') order by FROM_UNIXTIME(info.editDate/1000, '%Y-%m') desc";
 		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		Page<?> page = etechService.getPage(hql, pageable);
 		request.setAttribute("monthSupplyList", page);
@@ -65,8 +66,11 @@ public class ControllerMonthSupplyList extends ControllerCRUD{
         long endTime=ca.getTimeInMillis();
         
         //每月供给排行
-		String hql="from TcomInfo info left join fetch info.comUser "
-		  + "where info.editDate>="+beginTime+" and info.editDate<="+endTime+" group by info.workType";
+    	String hql="from  TcomInfo info "
+				  + "where info.infoType=4 and info.comUser.disable=0 "
+				  + "and info.editDate >='"+beginTime+"' "
+				  + "and info.editDate <='"+endTime+"' "
+				  + "and info.jobPost !=null group by info.jobPost order by count(info.jobPost) desc";
 		@SuppressWarnings("unchecked")
 		List<TcomInfo> supply = (List<TcomInfo>)etechService.findListByHQL(hql,10);
 		request.setAttribute("supply", supply);

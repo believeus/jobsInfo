@@ -118,13 +118,13 @@
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 			<form id="listForm" action="gongjipaihangList.jhtml">
-				<ul>
+				<ol>
 					[#list monthSupplyList.content as supply]
 						<li>
 							<a href="/gongjipaihangOrderMonth.jhtml?year=${supply.editDate?number_to_datetime?string?substring(0,4)}&month=${supply.editDate?number_to_datetime?string?substring(5,7)}">${supply.editDate?number_to_datetime?string?substring(0,7)}月供给排行</a>
 						</li>
 					[/#list]
-				</ul>
+				</ol>
 				[@pagination pageNumber = monthSupplyList.pageNumber totalPages = monthSupplyList.totalPages]
 					[#include "/include/pagination.ftl"]
 				[/@pagination]

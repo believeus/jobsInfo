@@ -1,6 +1,5 @@
 package com.etech.controller.admin;
 
-
 import java.util.Calendar;
 import java.util.List;
 
@@ -14,10 +13,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.etech.entity.TdataCenter;
 import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
-import com.etech.util.EtechGobal;
 import com.etech.util.Page;
 import com.etech.util.Pageable;
 
@@ -31,7 +28,7 @@ public class ControllerMonthlyDemandList extends ControllerCRUD{
 	@Resource
 	private EtechService etechService;
 	/**
-	 * 月需求排行列表
+	 * 每月需求排行列表
 	 * @return
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -43,8 +40,9 @@ public class ControllerMonthlyDemandList extends ControllerCRUD{
 		}
 		
 		// 每页多少行数据
-		String hql = "from Trecruit recruit left join fetch recruit.workType "+ "group by FROM_UNIXTIME(recruit.editTime/1000, '%Y-%m') order by FROM_UNIXTIME(recruit.editTime/1000, '%Y-%m') desc";
-	//	List<Trecruit> monthlyDemandList = (List<Trecruit>) etechService.findObjectList(hql, pageNo, pageSize, Trecruit.class);
+		String hql = "from Trecruit recruit left join fetch recruit.workType "
+				    + "where recruit.status=1 and recruit.entUser.status=1 and recruit.entUser.disable=0 "
+				    + "group by FROM_UNIXTIME(recruit.editTime/1000, '%Y-%m') order by FROM_UNIXTIME(recruit.editTime/1000, '%Y-%m') desc";
 		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		Page<?> page = etechService.getPage(hql, pageable);
 		request.setAttribute("monthlyDemandList", page);
@@ -68,10 +66,10 @@ public class ControllerMonthlyDemandList extends ControllerCRUD{
         ca.set(Calendar.DAY_OF_MONTH, ca.getActualMaximum(Calendar.DAY_OF_MONTH)); 
         long endTime=ca.getTimeInMillis();
 		//需求排行
-		String hql="from Trecruit recruit left join fetch recruit.workType "
-		   + "where recruit.editTime >="+beginTime+" and recruit.editTime <="+endTime +" "
-		   + "group by recruit.workType "
-		   + "order by recruit.editTime desc";
+        String hql = "from Trecruit recruit "
+   			   + "where recruit.editTime >='"+beginTime+"' and recruit.editTime <='"+endTime+"' "
+   			   + "and recruit.status=1 and recruit.entUser.status=1 and recruit.entUser.disable=0 "
+   			   + "group by recruit.jobPost order by count(recruit.jobPost) desc";
 		@SuppressWarnings("unchecked")
 		List<Trecruit> demand = (List<Trecruit>)etechService.findListByHQL(hql,10);
 		request.setAttribute("demand", demand);

@@ -118,13 +118,13 @@
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
 			<form id="listForm" action="gongjipaihangList.jhtml">
-				<ul>
+				<ol>
 					[#list monthSupplyList.content as supply]
 						<li>
 							${supply.jobPost}
 						</li>
 					[/#list]
-				</ul>
+				</ol>
 				[@pagination pageNumber = monthSupplyList.pageNumber totalPages = monthSupplyList.totalPages]
 					[#include "/include/pagination.ftl"]
 				[/@pagination]

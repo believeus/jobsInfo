@@ -70,7 +70,7 @@ public class ControllerSupplyList {
 		cal.set(Calendar.DAY_OF_MONTH, 0);
 		long endTime=cal.getTimeInMillis();
 		String hql="from  TcomInfo info "
-				  + "where info.infoType=4 "
+				  + "where info.infoType=4 and info.comUser.disable=0 "
 				  + "and info.editDate >='"+beginTime+"' "
 				  + "and info.editDate <='"+endTime+"' "
 				  + "and info.jobPost !=null group by info.jobPost order by count(info.jobPost) desc";
