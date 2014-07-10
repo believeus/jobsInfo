@@ -35,10 +35,12 @@ body {
 .xingx div{
 	height:55px;	
 }
-.xingx span:first-of-type {
-	font-size:16px;
-	width:100px;	
+.xingx span {
+	width:170px;	
 	display:inline-block;
+	color:red;
+	font-size:13px;
+	line-height:50px;
 }
 .xingx input {
 	height:32px;
@@ -47,6 +49,7 @@ body {
 	padding:0px 7px;
 	font: 14px 'Arial';
 	border-radius:3px;
+	line-height:32px;
 }
 .register input {
 	font-size:12px;
@@ -71,6 +74,15 @@ body {
     margin: 0 50px;
     padding: 20px 0;
     text-align: center;
+}
+th{
+    font-weight: normal;
+    line-height: 25px;
+    padding: 5px 10px 5px 0;
+    text-align: right;
+    white-space: nowrap;
+    width: 100px;
+    line-height:40px;
 }
 </style></head>
 
@@ -169,45 +181,47 @@ body {
     <div style="margin-top: 30px; padding: 0px 200px; width: 600px; text-align: left;">
     	<div class="xingx">
     		<p style="color: rgb(211, 54, 49); font-size: 20px; margin-bottom: 20px; margin-top: 0px; text-align: left;">欢迎个人用户注册</p>
-            <div>
-            	<span><font color="red">*</font>用户名：</span>
-                <span><input type="text"  id="loginName" name="loginName"/></span>
-            </div>
-            <div>
-            	<span><font color="red">*</font>密码：</span>
-                <span><input type="password" id="password" name="password"/></span>
-            </div>
-            <div>
-            	<span><font color="red">*</font>重复密码：</span>
-                <span><input type="password" id="comfirmPwd" /></span>
-            </div>
-            <div>
-            	<span>真实姓名：</span>
-                <span><input type="text" id="trueName" name="trueName" /></span>
-            </div>
-            <div>
-            	<span>身份证号：</span>
-                <span><input type="text" name="idcard" id="idcard" /></span>
-            </div>
-            <div style="">
-            	<span>性别：</span>
-                <span>
-                	<font>
-                	<input type="radio" id="boy" name="sex"  value="man" checked="true" style="width: 10px;height: 12px;"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                	</font>
-                	<font>
-                	<input type="radio" id="girl" name="sex" value="woman" checked="false" style="width: 10px;height: 12px;"/>女
-                	</font>
-            	</span>
-            </div>
-            <div>
-            	<span>手机号码：</span>
-                <span><input type="" id="phoneNum" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="11" minlegnth="11"/></span>
-            </div>
-            <div>
-            	<span>电子邮箱：</span>
-                <span><input type="email" id="email" /></span>
-            </div>
+            <table>
+            	<tr>
+            		<th><font color="red">*</font>用户名：</th>
+            		<td><input type="text"  id="loginName" name="loginName"/></td>
+            	</tr>
+            	<tr>
+            		<th><font color="red">*</font>密码：</th>
+            		<td><input type="password" id="password" name="password"/></td>
+            	</tr>
+            	<tr>
+            		<th><font color="red">*</font>重复密码：</th>
+            		<td><input type="password" id="comfirmPwd" /></td>
+            	</tr>
+            	<tr>
+            		<th>真实姓名：</th>
+            		<td><input type="text" id="trueName" name="trueName" /></td>
+            	</tr>
+            	<tr>
+            		<th>身份证号：</th>
+            		<td><input type="text" name="idcard" id="idcard" /></td>
+            	</tr>
+            	<tr>
+            		<th>性别：</th>
+            		<td>
+            			<input type="radio" id="boy" name="sex"  value="man" checked="true" style="width: 10px;height: 12px;border:0;"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                		<input type="radio" id="girl" name="sex" value="woman" checked="false" style="width: 10px;height: 12px;border:0;"/>女
+            		</td>
+            	</tr>
+            	<tr>
+            		<th>手机号码：</th>
+            		<td>
+            			<input type="" id="phoneNum" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="11" minlegnth="11"/>
+            		</td>
+            	</tr>
+            	<tr>
+            		<th>电子邮箱：</th>
+            		<td>
+            			<input type="email" id="email" />
+            		</td>
+            	</tr>
+            </table>
     	</div>
     </div>
 	<div class="register" style="">
