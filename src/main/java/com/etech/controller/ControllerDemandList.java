@@ -69,7 +69,7 @@ public class ControllerDemandList {
           long endTime=cal.getTimeInMillis();
       	String hql = "from Trecruit recruit "
       			   + "where recruit.editTime >='"+beginTime+"' and recruit.editTime <='"+endTime+"' "
-      			   + "group by recruit.jobPost order by sum(recruit.jobPost),recruit.editTime desc";
+      			   + "group by recruit.jobPost order by count(recruit.jobPost) desc";
 		log.debug(hql);
 		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		Page<?> page = etechService.getPage(hql, pageable);

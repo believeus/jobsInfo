@@ -2,21 +2,16 @@ package com.etech.controller;
 
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.etech.entity.TcomInfo;
 import com.etech.service.EtechService;
 import com.etech.util.Page;
 import com.etech.util.Pageable;
@@ -78,7 +73,7 @@ public class ControllerSupplyList {
 				  + "where info.infoType=4 "
 				  + "and info.editDate >='"+beginTime+"' "
 				  + "and info.editDate <='"+endTime+"' "
-				  + "and info.jobPost !=null group by info.jobPost order by sum(info.jobPost),info.editDate desc";
+				  + "and info.jobPost !=null group by info.jobPost order by count(info.jobPost) desc";
 		log.debug(hql);
 		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		Page<?> page = etechService.getPage(hql, pageable);

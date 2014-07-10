@@ -53,23 +53,25 @@ public class ControllerDataChannel {
         c.add(Calendar.MONTH, 0);
         c.set(Calendar.DAY_OF_MONTH,1);//设置为1号,当前日期既为本月第一天
         long beginTime=c.getTimeInMillis();
-       
+        System.out.println("beginTime:"+beginTime);
         //获取当前月最后一天
         Calendar ca = Calendar.getInstance();   
         ca.set(Calendar.DAY_OF_MONTH, ca.getActualMaximum(Calendar.DAY_OF_MONTH)); 
         long endTime=ca.getTimeInMillis();
+        System.out.println("endTime:"+endTime);
 		//需求排行
 		hql="from Trecruit recruit left join fetch recruit.workType "
-		   + "where recruit.editTime >="+beginTime+" and recruit.editTime <="+endTime +" "
+		   + "where recruit.editTime >="+beginTime+" and recruit.editTime <="+endTime +" and  recruit.workType!=null "
 		   + "group by recruit.workType "
-		   + "order by recruit.editTime desc";
+		   + "order by count(recruit.workType) desc";
 		log.debug(hql);
 		List<Trecruit> demand = (List<Trecruit>)etechService.findListByHQL(hql,10);
 		request.setAttribute("demand", demand);
 		
 		//每月供给排行
 		hql="from TcomInfo info left join fetch info.comUser "
-		  + "where info.editDate>="+beginTime+" and info.editDate<="+endTime+" group by info.workType";
+		  + "where info.editDate>="+beginTime+" and info.editDate<="+endTime+" "
+		  + "and info.workType!=null group by info.workType order by count(info.workType) desc";
 		log.debug(hql);
 		List<TcomInfo> supply = (List<TcomInfo>)etechService.findListByHQL(hql,10);
 		request.setAttribute("supply", supply);
