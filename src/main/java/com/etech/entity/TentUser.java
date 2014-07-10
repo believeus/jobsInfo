@@ -12,6 +12,10 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -22,6 +26,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity
 @Table
+@Indexed(index="com.etech.entity.TentUser")
 public class TentUser extends TbaseUser implements Serializable {
 	private static final long serialVersionUID = 6293704345783832975L;
 	
@@ -81,6 +86,7 @@ public class TentUser extends TbaseUser implements Serializable {
 	}
 	@NotEmpty
 	@Length(max=2)
+	@Field(index=Index.UN_TOKENIZED,store=Store.YES)
 	public String getStatus() {
 		return status;
 	}

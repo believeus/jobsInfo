@@ -15,6 +15,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -22,6 +26,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table
 /*使用继承关系创建子类表*/
 @Inheritance(strategy=InheritanceType.JOINED)
+@Indexed(index="com.etech.entity.TbaseUser")
 public class TbaseUser extends TbaseEntity implements Serializable{
 	private static final long serialVersionUID = -6040207682160417660L;
 	/** 登录名 */
@@ -152,6 +157,7 @@ public class TbaseUser extends TbaseEntity implements Serializable{
 	public void setRoles(Set<Trole> roles) {
 		this.roles = roles;
 	}
+	@Field(index=Index.UN_TOKENIZED,store=Store.YES)
 	public int getDisable() {
 		return disable;
 	}

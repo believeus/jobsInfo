@@ -223,7 +223,8 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	public void setMajorType(TmajorType majorType) {
 		this.majorType = majorType;
 	}
-
+	
+	@IndexedEmbedded
 	@ManyToOne(cascade=CascadeType.ALL,optional = false)
 	@JoinColumn(name="fk_entuUserId",referencedColumnName="id")
 	public TentUser getEntUser() {
@@ -234,6 +235,7 @@ public class Trecruit extends TbaseEntity implements Serializable {
 		this.entUser = entUser;
 	}
 
+	@Field(store=Store.YES,index = Index.UN_TOKENIZED)
 	public int getStatus() {
 		return status;
 	}

@@ -121,7 +121,7 @@
 				<ul>
 					[#list monthSupplyList.content as supply]
 						<li>
-							<a href="">${supply.editDate?number_to_datetime?string?substring(0,7)}月供给排行</a>
+							<a href="/gongjipaihangOrderMonth.jhtml?year=${supply.editDate?number_to_datetime?string?substring(0,4)}&month=${supply.editDate?number_to_datetime?string?substring(5,7)}">${supply.editDate?number_to_datetime?string?substring(0,7)}月供给排行</a>
 						</li>
 					[/#list]
 				</ul>
