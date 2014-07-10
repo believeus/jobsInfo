@@ -7,14 +7,15 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-1.7.2.min.js"></script>
    	<link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
+   	<link href="/resource/public/selectArea/css/css.css" type="text/css" rel="stylesheet">
    	<link href="/resource/public/selectArea/css/cityLayout.css" type="text/css" rel="stylesheet">
     <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="/resource/public/areaSelect/css.css" />
-	<script type="text/javascript" src="/resource/public/areaSelect/drag.js"></script>
-	<script type="text/javascript" src="/resource/public/areaSelect/city_arr.js"></script>
 	<script type="text/javascript" src="/resource/public/js/jquery.form.js"></script>
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu-search.js"></script> 
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>
+	<script type="text/javascript" src="/resource/public/js/admin/jquery.validate.js"></script>
+	<link href="/resource/public/css/common.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/resource/public/js/admin/list.js"></script>
     <style type="text/css">
    		.j_main{
     		width:1000px;
@@ -250,7 +251,7 @@
 				}
 				// 发送form表单提交。
 				$("#data").val(data);
-				$("#infoForm").submit();
+				$("#listForm").submit();
 	        	
 			// 是选中状态的时候
 			}else{
@@ -267,7 +268,7 @@
 					}
 				} 
 				$("#data").val(data);
-				$("#infoForm").submit();
+				$("#listForm").submit();
 			}
 		}
 		function changeKeyword(value,object){
@@ -277,7 +278,6 @@
 			}
 		}
 		$().ready(function(){
-			
 			
 			// 条件组合显示
 			var strdata="${data}";
@@ -360,6 +360,18 @@
 						hiddenID : "selectJobshidden1"//隐藏域ID	
 			});
 			[/#if]
+			
+			// form 表单提交之前
+			$("#listForm").validate({
+				submitHandler: function(form) {  
+					if($("#data").val()==""&&$("#keyword").val()==""&&$("#selectSpecialty1").val()==""&&$("#selectJobs1").val()==""&&$("#start1").val()=="选择城市"){
+						if(strdata==""){
+							$("#listForm").attr("action","/resumeAdvancedSearch.jhtml");
+						}
+					}
+					form.submit();
+				}
+			});
 		
 		})
 	</script>
@@ -406,7 +418,7 @@
 					tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
 				</script>
 			</div>
-			<form id="infoForm" novalidate="novalidate"  action="/advanceSearchByContision.jhtml"  method="post" >
+			<form id="listForm" novalidate="novalidate"  action="/advanceSearchByContision.jhtml"  method="post" >
 			<input type="hidden" name="data" value="" id="data">
 			<script>
 			$(function(){
@@ -597,34 +609,13 @@
 					</div>
 				</div>
 			</div>
-			</form>
 			<p class="selected">您选择的是：
 			</p>
 			
 			<div class="paixu">
-				<ul class="fenye" style="float: right; margin: 0px;">
-					<li>
-						<a href="">上一页</a>
-					</li>
-					<li>
-						<a href="">1</a>
-					</li>
-					<li>
-						<a href="">2</a>
-					</li>
-					<li>
-						<a href="">3</a>
-					</li>
-					<li>
-						<a href="">4</a>
-					</li>
-					<li>
-						<a href="">5</a>
-					</li>
-					<li>
-						<a href="">下一页</a>
-					</li>
-				</ul>
+				<span class="fenye" style="float: right; margin: 0px;">
+				共${comInfoList.total}条记录
+				</span>
 			</div>
 			<div class="t_table" style="">
 				<table cellspacing="0">
@@ -635,7 +626,7 @@
 						<th>择业地区</th>
 						<th>发布时间</th>
 					</tr>
-					[#list comInfoList as info]
+					[#list comInfoList.content as info]
 					<tr>
 						<td><a style="color:#0101FF;" href="/personalResume.jhtml?id=${info.comUser.id}">${info.loginName}</a></td>
 						<td><a style="color:#0101FF" >${info.jobPost}</a></td>
@@ -646,33 +637,11 @@
 				   [/#list]
 				</table>
 				<div class="paixu" style="margin-top:30px;">
-					<ul class="fenye" style="float: right; margin: 0px 40px 0px 0px;">
-						<li>
-							<a href="">上一页</a>
-						</li>
-						<li>
-							<a href="">1</a>
-						</li>
-						<li>
-							<a href="">2</a>
-						</li>
-						<li>
-							<a href="">3</a>
-						</li>
-						<li>
-							<a href="">4</a>
-						</li>
-						<li>
-							<a href="">5</a>
-						</li>
-						<li>
-							<a href="">下一页</a>
-						</li>
-						<li style="margin-left: 20px;">
-							<a href="#">Top</a>
-						</li>
-					</ul>
+					[@pagination pageNumber = comInfoList.pageNumber totalPages = comInfoList.totalPages]
+						[#include "/include/pagination.ftl"]
+					[/@pagination]
 				</div>
+				</form>
 			</div>
 		</div>
 	</div>

@@ -9,12 +9,11 @@
     <link href="/resource/public/selectArea/css/cityLayout.css" type="text/css" rel="stylesheet">
    	<link href="/resource/public/js/jquery-X-Menu/css/xmenu.css" rel="stylesheet" type="text/css" />  
     <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="/resource/public/areaSelect/css.css" />
-	<script type="text/javascript" src="/resource/public/areaSelect/drag.js"></script>
-	<script type="text/javascript" src="/resource/public/areaSelect/city_arr.js"></script>
+    <link href="/resource/public/selectArea/css/css.css" type="text/css" rel="stylesheet">
 	<script type="text/javascript" src="/resource/public/js/jquery.form.js"></script>
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu-search.js"></script> 
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>
+	<script type="text/javascript" src="/resource/public/js/admin/jquery.validate.js"></script>
 	<link href="/resource/public/css/common.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="/resource/public/js/admin/list.js"></script>
     <style type="text/css">
@@ -362,6 +361,18 @@
 						hiddenID : "selectJobshidden1"//隐藏域ID	
 			});
 			[/#if]
+			
+			// form 表单提交之前
+			$("#listForm").validate({
+				submitHandler: function(form) {  
+					if($("#data").val()==""&&$("#keyword").val()==""&&$("#selectSpecialty1").val()==""&&$("#selectJobs1").val()==""&&$("#start1").val()=="选择城市"){
+						if(strdata==""){
+							$("#listForm").attr("action","/companyAdvancedSearch.jhtml");
+						}
+					}
+					form.submit();
+				}
+			});
 		
 		})
 	</script>
@@ -638,10 +649,9 @@
 			</p>
 			
 			<div class="paixu">
+				<span class="fenye" style="float: right; margin: 0px;">
 				共${recruitList.total}条记录
-				[@pagination pageNumber = recruitList.pageNumber totalPages = recruitList.totalPages]
-					[#include "/include/pagination.ftl"]
-				[/@pagination]
+				</span>
 			</div>
 			<div class="t_table" style="">
 				<table cellspacing="0">
