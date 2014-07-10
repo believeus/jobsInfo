@@ -130,7 +130,7 @@ $().ready(function() {
 				</th>
 				<td colspan="3">
 					<input type="submit" class="button" value="提交" />
-					<input type="button" id="backButton" class="button" value="返回" />
+					<input type="button" id="" class="button" value="返回" onClick="javascript:window.history.back();"/>
 				</td>
 			</tr>
 		</table>

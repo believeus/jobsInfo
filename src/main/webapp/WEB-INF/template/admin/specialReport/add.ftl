@@ -53,10 +53,9 @@ $().ready(function() {
 		rules: {
 			title: "required",
 			author: "required",
-			img: "required"
+			filename1: "required"
 		}
 	});
-	
 	
 });
 </script>
@@ -102,7 +101,7 @@ $().ready(function() {
 					</script>
 					
 					<div class="img_list">
-						<span style="float:left">
+						<span style="float:left;border:1px solid #E4E4E4;">
 							<div class="brandImg">
 								<span>
 									<a onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
@@ -113,8 +112,9 @@ $().ready(function() {
 							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
 							<input type="hidden" id="filename0" name="filename0">
 						</span>
-						<div class="img_list">
-						<span style="float:left">
+					</div>
+					<div class="img_list">
+						<span style="float:left;border:1px solid #E4E4E4;">
 							<div class="brandImg">
 								<span>
 									<a class="click_upimgs" onclick="file1.click()" href="javascript:void(0);">点击上传图片</a>
@@ -125,7 +125,6 @@ $().ready(function() {
 							<input type="file" style="display:none" id="file1" name="file1" onchange="filename1.value=this.value;loadImgFast(this,1)">
 							<input type="hidden" id="filename1" name="filename1">
 						</span>
-				</div>
 					</div>
 					<label style="color:#0000FF;float:right;position:relative;right:120px;top:60px;">
 					说明：首张图片为大图，其余为小图，不上传图片则设置默认图片。<br/>
