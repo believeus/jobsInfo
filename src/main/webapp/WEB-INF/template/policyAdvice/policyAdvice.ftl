@@ -215,7 +215,16 @@
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
 										[#list countryLawDataList as countryLawData]
-										<li><a href="/countryLaw.jhtml?id=${countryLawData.id}">${countryLawData.title}</a><span style="">${countryLawData.editTime?number_to_datetime}</span></li>
+										<li>
+											<a href="/countryLaw.jhtml?id=${countryLawData.id}" title="${countryLawData.title}">
+												[#if countryLawData.title?length >15 ]
+													${countryLawData.title?string?substring(0,15)}...
+												[#else]
+													${countryLawData.title}
+												[/#if]
+											</a>
+											<span style="">${countryLawData.editTime?number_to_datetime}</span>
+										</li>
 										[/#list]
 									</ul>
 								</div>
@@ -230,7 +239,16 @@
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
 										[#list cityLawDataList as cityLawData]
-										<li><a href="/cityLaw.jhtml?id=${cityLawData.id}">${cityLawData.title}</a><span style="">${cityLawData.editTime?number_to_datetime}</span></li>
+										<li>
+											<a href="/cityLaw.jhtml?id=${cityLawData.id}" title="${cityLawData.title}">
+												[#if cityLawData.title?length >15 ]
+													${cityLawData.title?string?substring(0,15)}...
+												[#else]
+													${cityLawData.title}
+												[/#if]
+											</a>
+											<span style="">${cityLawData.editTime?number_to_datetime}</span>
+										</li>
 										[/#list]
 									</ul>
 								</div>
@@ -247,8 +265,18 @@
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
 										[#list countryFileDataList as countryFileData]
-										 <li><a href="/countryFile.jhtml?id=${countryFileData.id}">${countryFileData.title}</a><span style="">
-										  	${countryFileData.editTime?number_to_datetime}</span></li>
+										 <li>
+										 	<a href="/countryFile.jhtml?id=${countryFileData.id}" title="${countryFileData.title}">
+										 		[#if countryFileData.title?length >15 ]
+													${countryFileData.title?string?substring(0,15)}...
+												[#else]
+													${countryFileData.title}
+												[/#if]
+									 		</a>
+									 		<span style="">
+										  		${countryFileData.editTime?number_to_datetime}
+									  		</span>
+								  		</li>
 										[/#list]
 									</ul>
 								</div>
@@ -263,7 +291,16 @@
 								<div class="j_main_right_3_1">
 									<ul style="padding-left:10px;margin:0;">
 										[#list cityFileDataList as cityFileData]
-										<li><a href="/cityFile.jhtml?id=${cityFileData.id}">${cityFileData.title}</a><span style="">${cityFileData.editTime?number_to_datetime}</span></li>
+										<li>
+											<a href="/cityFile.jhtml?id=${cityFileData.id}" title="${cityFileData.title}">
+												[#if cityFileData.title?length >15 ]
+													${cityFileData.title?string?substring(0,15)}...
+												[#else]
+													${cityFileData.title}
+												[/#if]
+											</a>
+											<span style="">${cityFileData.editTime?number_to_datetime}</span>
+										</li>
 										[/#list]
 									</ul>
 								</div>

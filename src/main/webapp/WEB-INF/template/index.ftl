@@ -484,6 +484,7 @@
 								<p class="xinxi_1_p"><span style="margin-left:30px;float:none;">求职信息</span></p>
 								<ul style="padding-left:25px;">
 									[#list qiuzhiList as qiuzhi]
+									[#if qiuzhi_index<6]
 										[#list qiuzhi.comInfo as comInfo]
 											[#if comInfo_index<6 && comInfo.infoType == 4]
 												<li class="xinxi_1_li">
@@ -499,6 +500,7 @@
 												</li>
 											[/#if]
 										[/#list]
+									[/#if]
 									[/#list]
 								</ul>
 							</div>
