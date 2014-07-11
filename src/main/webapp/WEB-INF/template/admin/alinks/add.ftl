@@ -44,7 +44,7 @@ $().ready(function() {
 	$inputForm.validate({
 		rules: {
 			title: "required",
-			adPositionId: "required",
+			alink: "required",
 			path: "required",
 			order: "digits",
 			author:"required"
@@ -74,7 +74,7 @@ $().ready(function() {
 					<span class="requiredField">*</span>链接:
 				</th>
 				<td>
-					<input type="text" name="alink" class="text" maxlength="200" value="http://"/>
+					<input type="text" name="alink" class="text" maxlength="200"/>
 				</td>
 			</tr>
 			

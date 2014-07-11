@@ -56,7 +56,15 @@ $().ready(function() {
 		}
 	});
 	
-	
+	// 表单验证
+	$inputForm.validate({
+		rules: {
+			title: "required",
+			author: "required",
+			path: "required",
+			order: "digits"
+		}
+	});
 	
 	$("#add_imgs").click(function(){
 		[@compress single_line = true]

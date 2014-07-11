@@ -44,7 +44,7 @@ $().ready(function() {
 	$inputForm.validate({
 		rules: {
 			title: "required",
-			adPositionId: "required",
+			author: "required",
 			path: "required",
 			order: "digits"
 		}

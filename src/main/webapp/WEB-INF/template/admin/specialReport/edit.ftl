@@ -117,7 +117,7 @@ $().ready(function() {
 							<input type="file" style="display:none" id="file${url_index}" name="file${url_index}" onchange="filename${url_index}.value=this.value;loadImgFast(this,${url_index})">
 							<input type="hidden" id="filename${url_index}" name="filename${url_index}">
 						</span>
-						[/#if]  
+						[/#if]
 						[/#list]
 					</div>
 					<label style="color:#0000FF;float:right;position:relative;right:120px;top:60px;">

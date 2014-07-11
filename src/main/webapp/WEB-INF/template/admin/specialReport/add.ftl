@@ -106,7 +106,7 @@ $().ready(function() {
 								<span>
 									<a onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
 								</span>
-								<img style="width:190px;height:120px" src="/resource/public/images/bg.png" name="img"/>
+								<img style="width:190px;height:120px" src="/resource/public/images/zt_topImg.png" name="img"/>
 								<a class="delete_pic" href="javascript:void(0);" onclick="delete_pic(this,0);">清空</a>
 							</div>
 							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
