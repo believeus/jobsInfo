@@ -1,13 +1,16 @@
 package com.etech.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Assert; 
@@ -15,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.etech.entity.TdataCenter;
 import com.etech.entity.TmajorType;
 import com.etech.entity.Trecruit;
@@ -129,7 +133,16 @@ public class ControllerSearch {
 	@RequestMapping(value="/advanceSearchByContision")
 	public String advanceSearch(String data,String keyword,String majorTypeId,String workTypeId,
 			String area,String type,HttpServletRequest request,HttpSession session){
-
+		if("GET".equals(request.getMethod())){
+			if(!StringUtils.isEmpty(keyword)){
+				try {
+					keyword = new String(keyword.getBytes("ISO-8859-1"),"UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+				
+			}
+		}
 		// 第一组：发布日期 第二组:起薪范围 第三组：工作性质
 		// 第三组：学历性质 第四组:工作年限 第五组：公司性质
 		String issueTime="issueTime";
@@ -229,7 +242,7 @@ public class ControllerSearch {
 					StringUtils.isEmpty(majorTypeId)&&
 					"".equals(area)&&
 					StringUtils.isEmpty(companyType)){
-				hql="from Trecruit recruit order by recruit.editTime desc";
+				hql="from Trecruit recruit where recruit.status=1 and recruit.entUser.status=1 and recruit.entUser.disable=0 order by recruit.editTime desc";
 				page=etechService.getPage(hql, pageable);
 			}else {
 				page=jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType,pageable);
@@ -251,7 +264,7 @@ public class ControllerSearch {
 					StringUtils.isEmpty(majorTypeId)&&
 					"".equals(area)&&
 					StringUtils.isEmpty(companyType)){
-				hql="from Trecruit recruit order by recruit.editTime desc";
+				hql="from Trecruit recruit where recruit.status=1 and recruit.entUser.status=1 and recruit.entUser.disable=0 order by recruit.editTime desc";
 				page=etechService.getPage(hql, pageable);
 			}else {
 				page=jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType,pageable);
@@ -274,7 +287,7 @@ public class ControllerSearch {
 				"".equals(area)&&
 				StringUtils.isEmpty(companyType)){
 				//搜索简历
-				hql="from TcomInfo comInfo where comInfo.infoType=4  order by comInfo.editDate desc";
+				hql="from TcomInfo comInfo  where comInfo.infoType=4  and comInfo.comUser.disable=0 order by comInfo.editDate desc";
 				page=etechService.getPage(hql, pageable);
 			}else {
 				page = resumeSearchService.search(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType, pageable);
@@ -296,7 +309,7 @@ public class ControllerSearch {
 		}
 		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		//搜索招聘职位
-		String hql="from Trecruit recruit order by recruit.editTime desc";
+		String hql="from Trecruit recruit where recruit.status=1 and recruit.entUser.status=1 and recruit.entUser.disable=0 order by recruit.editTime desc";
 		Page page = etechService.getPage(hql, pageable);
 		request.setAttribute("recruitList", page);
 		request.setAttribute("location", "position");
@@ -313,7 +326,7 @@ public class ControllerSearch {
 		}
 		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		//搜索简历
-		String hql="from TcomInfo comInfo where comInfo.infoType=4  order by comInfo.editDate desc";
+		String hql="from TcomInfo comInfo where comInfo.infoType=4  and comInfo.comUser.disable=0 order by comInfo.editDate desc";
 		Page page = etechService.getPage(hql, pageable);
 		request.setAttribute("comInfoList", page);
 		request.setAttribute("location", "resume");
@@ -329,8 +342,8 @@ public class ControllerSearch {
 				pageNumber="1";
 			}
 			Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
-			//搜索公司
-			String hql="from Trecruit recruit order by recruit.editTime desc";
+			//搜索公司 已被审核通过
+			String hql="from Trecruit recruit where recruit.status=1 and recruit.entUser.status=1 and recruit.entUser.disable=0 order by recruit.editTime desc";
 			Page page = etechService.getPage(hql, pageable);
 			request.setAttribute("recruitList", page);
 			request.setAttribute("location", "company");

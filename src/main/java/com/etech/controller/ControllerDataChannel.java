@@ -62,6 +62,7 @@ public class ControllerDataChannel {
 		//需求排行
 		hql="from Trecruit recruit left join fetch recruit.workType "
 		   + "where recruit.editTime >="+beginTime+" and recruit.editTime <="+endTime +" and  recruit.workType!=null "
+		   + "and recruit.status=1 and recruit.entUser.status=1 and recruit.entUser.disable=0 "
 		   + "group by recruit.workType "
 		   + "order by count(recruit.workType) desc";
 		log.debug(hql);
@@ -70,7 +71,7 @@ public class ControllerDataChannel {
 		
 		//每月供给排行
 		hql="from TcomInfo info left join fetch info.comUser "
-		  + "where info.editDate>="+beginTime+" and info.editDate<="+endTime+" "
+		  + "where info.editDate>="+beginTime+" and info.editDate<="+endTime+" and info.comUser.disable=0"
 		  + "and info.workType!=null group by info.workType order by count(info.workType) desc";
 		log.debug(hql);
 		List<TcomInfo> supply = (List<TcomInfo>)etechService.findListByHQL(hql,10);

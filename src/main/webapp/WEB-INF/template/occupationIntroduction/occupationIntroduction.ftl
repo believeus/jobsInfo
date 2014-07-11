@@ -447,10 +447,9 @@
 							<input type="submit" value="搜索" style="cursor:pointer;border-radius:4px;width:85px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
 							<input type="button" value="高级搜索" onclick="javascript:window.location.href='/jobAdvancedSearch.jhtml'" style="cursor:pointer;border-radius:4px;width:90px;height:25px;background:#6DBE3A;color:#FFFFFF;border:1px solid #1C960C;">
 							<p>搜索热词：
-								<span><a href="/advanceSearchByContision.jhtml?keyword='软件工程师'&type='position'">软件工程师</a></span>
-								<span><a href="/advanceSearchByContision.jhtml?keyword='建筑工程师'&type='position'">建筑工程师</a></span>
-								<span><a href="/advanceSearchByContision.jhtml?keyword='厨师'&type='position'">厨师</a></span>
-								<span><a href="/advanceSearchByContision.jhtml?keyword='出租车司机'&type='position'">出租车司机</a></span>
+								[#list recruitList as recruit]
+								<span><a href="/advanceSearchByContision.jhtml?keyword='${recruit.workType.name}'&type='position'">${recruit.workType.name}</a></span>
+								[/#list]
 							</p>
 						</div>
 					</form>
