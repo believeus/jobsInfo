@@ -482,14 +482,15 @@
 						<td>
 							<div class="xinxi_1">
 								<p class="xinxi_1_p"><span style="margin-left:30px;float:none;">求职信息</span></p>
-								<ul style="padding-left:25px;">
+								<ul style="padding-left:25px;" id="jobInfo">
 									[#list qiuzhiList as qiuzhi]
-									[#if qiuzhi_index<6]
 										[#list qiuzhi.comInfo as comInfo]
 											[#if comInfo_index<6 && comInfo.infoType == 4]
 												<li class="xinxi_1_li">
 													<a href="/personalResume.jhtml?id=${comInfo.comUser.id}" title="${comInfo.workType.name}">
-														${qiuzhi.trueName}&nbsp;&nbsp;[#if qiuzhi.sex == 'man']男[#elseif qiuzhi.sex == 'woman']女[#else]不限[/#if]&nbsp;&nbsp;${qiuzhi.eduLevel}&nbsp;&nbsp;
+														${qiuzhi.trueName}&nbsp;&nbsp;
+														[#if qiuzhi.sex == 'man']男[#elseif qiuzhi.sex == 'woman']女[#else]不限[/#if]&nbsp;&nbsp;
+														[#if qiuzhi.eduLevel !=""]${qiuzhi.eduLevel}[#else]不明[/#if]&nbsp;&nbsp;
 														[#if comInfo.workType.name?length > 9]
 															${comInfo.workType.name?string?substring(0,8)}...
 														[#else]
@@ -500,7 +501,6 @@
 												</li>
 											[/#if]
 										[/#list]
-									[/#if]
 									[/#list]
 								</ul>
 							</div>
@@ -737,6 +737,16 @@
 	[#include "/include/footer.ftl" /]
 <script type="text/javascript">
 	$().ready(function(){
+	
+		//js控制 “求职信息” 条数最多6条 以免超出div导致样式错乱
+		var lis = $("#jobInfo li");
+		lis.each(function(){
+			if($(this).index() > 5){
+				$(this).remove();
+			}
+		});
+	
+	
 		var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
 		var isOpera = userAgent.indexOf("Opera") > -1;
 		
