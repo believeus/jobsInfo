@@ -196,7 +196,7 @@ $().ready(function() {
 				<tr>
 					<th>招聘单位:</th>
 					<td style="padding-right:80px;">
-						<input type="text" id="company1" name="company" value="${recruit.company}"/>
+						<input type="text" id="company1" name="company" value="${recruit.company}" readonly="readonly"/>
 					</td>
 					<th>人数:</th>
 					<td><input type="text" id="worknum1" name="worknum" value="${recruit.worknum}"/></td>
@@ -221,7 +221,7 @@ $().ready(function() {
 					<th>性别:</th>
 					<td>
 						<select id="sex1" name="sex" style="width: 183px;">
-							<option value="">请选择..</option>
+							<option value="">不限</option>
 							<option value="woman">男</option>
 							<option value="man">女</option>
 						</select>
@@ -252,7 +252,7 @@ $().ready(function() {
 					<th>技术等级:</th>
 					<td>
 						<select style="width:183px;" name="eteLevel" id="eteLevel1" value="${recruit.eteLevel}">
-							<option value="">请选择..</option>
+							<option value="">不限</option>
 							<option value="职业资格一级（高级技师）">职业资格一级（高级技师）</option>
 							<option value="职业资格二级（技师）">职业资格二级（技师）</option>
 							<option value="职业资格三级（高级）">职业资格三级（高级）</option>

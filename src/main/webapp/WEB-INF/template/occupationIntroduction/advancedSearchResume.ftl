@@ -629,7 +629,7 @@
 					</tr>
 					[#list comInfoList.content as info]
 					<tr>
-						<td><a style="color:#0101FF;" href="/personalResume.jhtml?id=${info.comUser.id}">${info.loginName}</a></td>
+						<td><a style="color:#0101FF;" href="/personalResume.jhtml?id=${info.comUser.id}">${info.comUser.trueName}</a></td>
 						<td><a style="color:#0101FF" >${info.jobPost}</a></td>
 						<td style="color:#0101FF;">${info.expectSalary}</td>
 						<td>${info.expectArea}</td>

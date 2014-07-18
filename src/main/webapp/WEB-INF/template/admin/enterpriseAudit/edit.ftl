@@ -22,7 +22,7 @@
 	    border-style: solid;
 	    border-width: 1px;
 	    background-color: #666666;
-	    width:260px !important;height:30px !important;
+	    width:190px !important;height:48px !important;
 	    position:relative;
 	}
 	
@@ -30,8 +30,8 @@
 		display:block;
 		position:absolute;
 		top:0px;left:0px;
-		width:240px !important;
-		height:30px !important;
+		width:190px !important;
+		height:48px !important;
 	}
 	
 	#Img span:hover{
@@ -45,8 +45,8 @@
 	#Img span a{
 		display:block;
 		position:absolute;
-		top:0px !important;
-		left:90px !important;
+		top:10px !important;
+		left:50px !important;
 	}
 	.list li {
 	    line-height: 23px;
@@ -184,10 +184,10 @@ $().ready(function() {
 					<input type="hidden" name="password" value="${tentUsers.password}">
 					<tr>
 						<td><font color="red">*</font>单位全称:</td>
-						<td style="padding-right: 80px;"><input type="text" value="${tentUsers.fullName}" oldvalue="${tentUsers.fullName}" id="fullName" name="fullName"></td>
+						<td style="padding-right: 80px;"><input type="text" value="${tentUsers.fullName}" oldvalue="${tentUsers.fullName}" id="fullName" name="fullName" readonly="readonly"></td>
 						<td><font color="red">*</font>单位性质:</td>
 						<td>
-							<select id="unitType" name="unitType" style="width: 182px;" oldvalue="${tentUsers.unitType}">
+							<select id="unitType" name="unitType" style="width: 235px;" oldvalue="${tentUsers.unitType}">
 								<option value="">请选择..</option>
 								<option value="企业">企业</option>
 								<option value="党政机关">党政机关</option>
@@ -201,7 +201,7 @@ $().ready(function() {
 						<td><input type="text" id="shorName" value="${tentUsers.shorName}" name="shorName" oldvalue="${tentUsers.shorName}"></td>
 						<td><font color="red">*</font>隶属关系:</td>
 						<td>
-							<select id="relationship" name="relationship" style="width: 182px;" oldvalue="${tentUsers.relationship}">
+							<select id="relationship" name="relationship" style="width: 235px;" oldvalue="${tentUsers.relationship}">
 								<option value="">请选择..</option>
 								<option value="中央">中央</option>
 								<option value="省">省</option>
@@ -216,7 +216,7 @@ $().ready(function() {
 					<tr>
 						<td><font color="red">*</font>经济类型:</td>
 						<td>
-							<select id="economicType" name="economicType" style="width: 182px;" oldvalue="${tentUsers.economicType}">
+							<select id="economicType" name="economicType" style="width: 235px;" oldvalue="${tentUsers.economicType}">
 								<option value="">请选择..</option>
 								<option value="国有">国有</option>
 								<option value="集体">集体</option>
@@ -235,7 +235,7 @@ $().ready(function() {
 					<tr>
 						<td><font color="red">*</font>所属地区:</td>
 						<td>
-							<input type="text" name="area" value="${tentUsers.area}" oldvalue="${tentUsers.area}" class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" readonly="readonly">
+							<input type="text" name="area" value="${tentUsers.area}" oldvalue="${tentUsers.area}" class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" readonly="readonly" style="width:230px !important;">
 							<!--////////////////////////////////////////////////////////////////////////-->
 								<div class="provinceCityAll">
 								  <div class="tabs clearfix">
@@ -326,7 +326,7 @@ $().ready(function() {
 									<div class="brandImg" id="Img">
 										<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
 										</span>
-											<img width="260px" height="30px" src="/${map.url}" name="url" id="${map.id}"/>
+											<img width="190px" height="48px" src="/${map.url}" name="url" id="${map.id}"/>
 											<input type="hidden" name="MapId" value="${map.id}">
 									</div>
 									<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">
@@ -336,7 +336,7 @@ $().ready(function() {
 								<div class="brandImg" id="Img">
 									<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
 									</span>
-										<img width="260px" height="30px" src="/resource/public/images/bg.png" name="url" id="0"/>
+										<img width="190px" height="48px" src="/resource/public/images/bg.png" name="url" id="0"/>
 								</div>
 								<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">
 								<input type="hidden" id="filename0" name="filename0">

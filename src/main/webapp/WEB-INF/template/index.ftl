@@ -490,7 +490,7 @@
 													<a href="/personalResume.jhtml?id=${comInfo.comUser.id}" title="${comInfo.workType.name}">
 														${qiuzhi.trueName}&nbsp;&nbsp;
 														[#if qiuzhi.sex == 'man']男[#elseif qiuzhi.sex == 'woman']女[#else]不限[/#if]&nbsp;&nbsp;
-														[#if qiuzhi.eduLevel !=""]${qiuzhi.eduLevel}[#else]不明[/#if]&nbsp;&nbsp;
+														[#if qiuzhi.eduLevel !=""]${qiuzhi.eduLevel}[#else]&nbsp;&nbsp;[/#if]&nbsp;&nbsp;
 														[#if comInfo.workType.name?length > 9]
 															${comInfo.workType.name?string?substring(0,8)}...
 														[#else]

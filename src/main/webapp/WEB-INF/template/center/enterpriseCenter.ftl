@@ -239,7 +239,7 @@
 	    border-style: solid;
 	    border-width: 1px;
 	    background-color: #666666;
-	    width:260px !important;height:30px !important;
+	    width:190px !important;height:48px !important;
 	    position:relative;
 	}
 	
@@ -247,8 +247,8 @@
 		display:block;
 		position:absolute;
 		top:0px;left:0px;
-		width:240px !important;
-		height:30px !important;
+		width:190px !important;
+		height:48px !important;
 	}
 	
 	#Img span:hover{
@@ -262,8 +262,8 @@
 	#Img span a{
 		display:block;
 		position:absolute;
-		top:0px !important;
-		left:90px !important;
+		top:10px !important;
+		left:50px !important;
 	}
 	
 	</style>
@@ -650,7 +650,7 @@
     		if(oldvalue!=""&&oldvalue!=undefined){
     			countchange++;
 	    		if(countchange==1){
-	    			alert("修改企业基本信息，需管理员重新审核！");
+	    			confirm("修改企业基本信息，需管理员重新审核！");
 	    		}
 	    		var value=$(this).val();
 	    		
@@ -1329,12 +1329,12 @@
 										[#if Maps?size>0]
 											[#list Maps as map]
 											<div class="brandImg" id="Img">
-												<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
+												<span style="padding-left:0;"><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
 												</span>
-													<img width="260px" height="30px" src="/${map.url}" name="url" id="${map.id}"/>
+													<img width="190px" height="48px" src="/${map.url}" name="url" id="${map.id}"/>
 													<input type="hidden" name="id" value="${map.id}">
 													<div style="height: 20px; position: relative; width: 230px; left: 270px; font-size: 12px; top: -30px;">
-														建议图片尺寸：宽240px*高30px
+														建议图片尺寸：宽190px*高48px
 													</div>
 											</div>
 											<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">
@@ -1342,11 +1342,11 @@
 											[/#list]
 										[#else]
 										<div class="brandImg" id="Img">
-											<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
+											<span style="padding-left:0;"><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
 											</span>
-												<img width="260px" height="30px" src="/resource/public/images/bg.png" name="url" id="0"/>
+												<img width="190px" height="48px" src="/resource/public/images/bg.png" name="url" id="0"/>
 												<div style="height: 20px; position: relative; width: 230px; left: 270px; font-size: 12px; top: -30px;">
-														建议图片尺寸：宽240px*高30px
+														建议图片尺寸：宽190px*高48px
 												</div>
 										</div>
 										<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">

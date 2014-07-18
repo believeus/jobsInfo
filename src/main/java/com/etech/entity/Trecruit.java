@@ -72,6 +72,7 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	/**是否审核通过 0:审核中 1:审核通过*/
 	@Column(nullable=true)
 	private int status;
+	/** 是否发布 */
 	private String isview;
 	/**专业类型*/
 	private TmajorType majorType;

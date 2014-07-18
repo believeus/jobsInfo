@@ -241,7 +241,7 @@ $().ready(function() {
 					<tr>
 						<td>经济类型:</td>
 						<td>
-							<select id="economicType" name="economicType" style="width: 182px;">
+							<select id="economicType" name="economicType" style="width: 235px;">
 								<option value="">请选择..</option>
 								<option value="国有">国有</option>
 								<option value="集体">集体</option>

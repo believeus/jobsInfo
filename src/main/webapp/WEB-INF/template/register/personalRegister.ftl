@@ -158,10 +158,13 @@ th{
 					var password=$("#password").val();
 					var comfirmPwd=$("#comfirmPwd").val();
 					var trueName=$("#trueName").val();
+					var phoneNum=$("#phoneNum").val();
 					if(loginName==""&&password==""&&comfirmPwd==""){
 						alert("用户名和密码和确认密码不能为空！");
 					}else if(trueName==""){
 						alert("真实姓名不能为空！");
+					}else if(phoneNum==""){
+						alert("手机号码不能为空！");
 					}else{
 						submitF("submit");
 					}
@@ -213,7 +216,7 @@ th{
             		</td>
             	</tr>
             	<tr>
-            		<th>手机号码：</th>
+            		<th><font color="red">*</font>手机号码：</th>
             		<td>
             			<input type="" id="phoneNum" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="11" minlegnth="11"/>
             		</td>

@@ -214,13 +214,16 @@
 			color:#FFFFFF;
 		}
 		.btn_login {
-		    background: none repeat scroll 0 0 #b2e85c;
+		    background: none repeat scroll 0 0 #6dbe3a;
 		    border: 1px solid #3eae44;
 		    border-radius: 4px;
 		    color: #fbfbfb;
 		    cursor: pointer;
 		    margin-right: 10px;
 		    width: 60px;
+		}
+		#zhiwei_xinxi th {
+		    text-align: right;
 		}
     </style>
     
@@ -376,7 +379,7 @@
 				<p style="background: #EE981F; text-align: center; margin: 5px; padding: 5px; border-radius: 5px; border: 0px none; color: #FFFFFF;">人才推荐</p>
 				[#list talentRecommend as user]
 				<div class="j_main_left_1_1">
-					<p><a target="_blank" style="color: blue;" href="/personalResume.jhtml?id=${user.id}">${user.loginName}</a></p>
+					<p><a target="_blank" style="color: blue;" href="/personalResume.jhtml?id=${user.id}">${user.trueName}</a></p>
 					<p style="color: blue;font-weight:bold;">${user.comInfo[0].workType.name}</p>
 					<p>薪资待遇：面议</p>
 					<p>学历：${user.eduLevel}</p>
@@ -577,7 +580,7 @@
 							<tr style="background:#F0F0F0;">
 								<th>职位名称</th>
 								<th>招聘人数</th>
-								<th>工作地区</th>
+								<th style="width:120px;">工作地区</th>
 								<th>学历要求</th>
 								<th>发布日期</th>
 								<th>截至日期</th>
