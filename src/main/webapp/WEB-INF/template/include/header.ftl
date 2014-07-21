@@ -3,6 +3,7 @@
 		margin:0 auto;
 		overflow:auto;
 		font-size:14px;	
+		font-weight:bold;
 	}
 	img{
 		border:0;
@@ -66,6 +67,9 @@
 	.j_main_right_2_p img{
 		width:640px;
 	}
+	.j_main_left_1 span{
+		font-size:12px !important;
+	}
 </style>
 <!--IE-->
 <script type="text/javascript">
@@ -104,7 +108,7 @@
 				<a href="/policyAdvice.jhtml" title="">政策咨询</a>
 				<a href="/dataChannel.jhtml" title="">数据频道</a>
 				<a href="/onlineShow.jhtml" title="">网上展示厅</a>
-				<div style="float: right; width: 300px; margin-top: 10px;text-align:right;">
+				<div style="float: right; width: 305px; margin-top: 10px;text-align:right;">
 					<form action="/search.jhtml" method="post">
 						<span style="color:#FFFFFF;">全文检索：</span>
 						<input type="hidden" name="currentpage" value="0"/>

@@ -362,7 +362,7 @@
 									href="/videosInfo.jhtml?id=${new.id}"
 								[/#if]
 							>
-								[#if new.title?length > 16]
+								[#if new.title?length > 15]
 									${new.title?string?substring(0,15)}...
 								[#else]
 									${new.title}
@@ -370,8 +370,8 @@
 							</a>
 						</h2>
 						<div style="color:#2B8BDF;margin:10px 0;font-size:13px;height:20px;">
-							[#if new.content?length > 30]
-								${new.content?string?substring(0,30)}...
+							[#if new.content?length > 28]
+								${new.content?string?substring(0,28)}...
 							[#else]
 								${new.content}
 							[/#if]
@@ -433,8 +433,8 @@
 										<li class="xinxi_1_li">
 											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}">${zhaop.company}</a>&nbsp;&nbsp;
 											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zw" title="${zhaop.workType.name}">
-												[#if zhaop.workType.name?length >11]
-													${zhaop.workType.name?string?substring(0,11)}...
+												[#if zhaop.workType.name?length >8]
+													${zhaop.workType.name?string?substring(0,8)}...
 												[#else]
 													${zhaop.workType.name}
 												[/#if]
@@ -491,8 +491,8 @@
 														${qiuzhi.trueName}&nbsp;&nbsp;
 														[#if qiuzhi.sex == 'man']男[#elseif qiuzhi.sex == 'woman']女[#else]不限[/#if]&nbsp;&nbsp;
 														[#if qiuzhi.eduLevel !=""]${qiuzhi.eduLevel}[#else]&nbsp;&nbsp;[/#if]&nbsp;&nbsp;
-														[#if comInfo.workType.name?length > 9]
-															${comInfo.workType.name?string?substring(0,8)}...
+														[#if comInfo.workType.name?length > 6]
+															${comInfo.workType.name?string?substring(0,6)}...
 														[#else]
 															${comInfo.workType.name}
 														[/#if]

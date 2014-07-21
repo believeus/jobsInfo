@@ -337,7 +337,7 @@
 				#demo1 {float: left;}
 				#demo2 {float: left;}
 			</style>
-			<div style="padding-left: 10px;width:70px;height:30px;line-height:30px;;float:left;">最新消息：</div>
+			<div style="padding-left: 10px;width:70px;height:30px;line-height:30px;;float:left;font-size:13px;">最新消息：</div>
 			<div id="demo">
 				<div id="indemo">
 					<div id="demo1">
@@ -511,8 +511,8 @@
 					[#if zph_index <6]
 						<li>
 							<a href="/zhaopinhui.jhtml?id=${zph.id}" title="${zph.title}">
-								[#if zph.title?length > 10]
-									${zph.title?string?substring(0,10)}...
+								[#if zph.title?length > 8]
+									${zph.title?string?substring(0,8)}...
 								[#else]
 									${zph.title}
 								[/#if]

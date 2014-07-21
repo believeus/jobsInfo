@@ -558,7 +558,7 @@
 									[#list vedios as vedio]
 										[#if vedio_index<6]
 										<td>
-											<a href="/enterpriseInformation.jhtml?id=${entUser.id}&vid=${vedio.id}#qysp">
+											<a href="/enterpriseInformation.jhtml?id=${trecruit.id}&vid=${vedio.id}#qysp">
 												<img src="${vedio.url}" width="100" height="70">
 											</a>
 										</td>
@@ -580,7 +580,7 @@
 							<tr style="background:#F0F0F0;">
 								<th>职位名称</th>
 								<th>招聘人数</th>
-								<th style="width:120px;">工作地区</th>
+								<th style="width:140px;">工作地区</th>
 								<th>学历要求</th>
 								<th>发布日期</th>
 								<th>截至日期</th>
@@ -588,7 +588,15 @@
 							[#if trecruitList?exists && trecruitList?size > 0]
 								[#list trecruitList as trecruit]
 								<tr>
-									<td><a href="/enterpriseInformation.jhtml?id=${trecruit.id}#zw" target="_blank" title="${trecruit.workType.name}">${trecruit.workType.name}</a></td>
+									<td>
+										<a href="/enterpriseInformation.jhtml?id=${trecruit.id}#zw" target="_blank" title="${trecruit.workType.name}">
+											[#if trecruit.workType.name?length > 6]
+												${trecruit.workType.name?string?substring(0,6)}...
+											[#else]
+												${trecruit.workType.name}
+											[/#if]
+										</a>
+									</td>
 									<td>${trecruit.worknum}人</td>
 									<td>${trecruit.workspace}</td>
 									<td>${trecruit.eduLevel}</td>

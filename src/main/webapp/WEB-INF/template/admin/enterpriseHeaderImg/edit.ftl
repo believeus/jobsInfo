@@ -9,7 +9,7 @@
 <link href="/resource/public/js/admin/themes/default/default.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/resource/public/js/admin/jquery.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/jquery.validate.js"></script>
-<script type="text/javascript" src="/resource/public/js/admin/kindeditor.js"></script>
+<script type="text/javascript" src="/resource/public/js/admin/ueditor1_2_6_2/ueditor.config.js"></script><script type="text/javascript" src="/resource/public/js/admin/ueditor1_2_6_2/ueditor.all.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
 <script type="text/javascript">
@@ -96,20 +96,20 @@ $().ready(function() {
 									<a onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
 								</span>
 								<input type="hidden" name="imgpath" value="${dataCenter.imgpath}">
-								<img style="width:195px;height:33px" [#if dataCenter.imgpath?exists] src="/${dataCenter.imgpath}" [#else]src="/resource/public/images/bg.png"[/#if] name="img"/>
+								<img style="width:190px;height:48px" [#if dataCenter.imgpath?exists] src="/${dataCenter.imgpath}" [#else]src="/resource/public/images/bg.png"[/#if] name="img"/>
 							</div>
 							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
 							<input type="hidden" id="filename0" name="filename0">
 						</span>
-						<label style="color:#0000FF;position:relative;left:10px;">(建议尺寸：宽195px*高33px)</label>
+						<label style="color:#0000FF;position:relative;left:10px;">(建议尺寸：宽190px*高48px)</label>
 					</div>
 					<style type="text/css">
 						.brandImg span{
 							display:block;
 							position:absolute;
 							top:0px;left:0px;
-							width:195px;
-							height:33px;
+							width:190px;
+							height:48px;
 						}
 						
 						.brandImg{
@@ -118,8 +118,8 @@ $().ready(function() {
 						    border-style: solid;
 						    border-width: 1px;
 						    background-color: #666666;
-						    width:195px;
-						    height:33px;
+						    width:190px;
+						    height:48px;
 						    position:relative;
 						}
 						
@@ -135,6 +135,7 @@ $().ready(function() {
 							display:block;
 							position:absolute;
 							left:50px;
+							top:10px;
 						}
 					</style>
 				</td>

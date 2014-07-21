@@ -387,7 +387,7 @@
 					#demo1 {float: left;}
 					#demo2 {float: left;}
 				</style>
-				<div style="padding-left: 10px;width:70px;height:30px;line-height:30px;;float:left;">最新消息：</div>
+				<div style="padding-left: 10px;width:70px;height:30px;line-height:30px;;float:left;font-size:13px;">最新消息：</div>
 				<div id="demo">
 					<div id="indemo">
 						<div id="demo1">

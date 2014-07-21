@@ -241,6 +241,7 @@
 				//alert("Firefox浏览器");
 				$("#box").css("right","988px");
 				$("#box").css("top","50px");
+				$("#select_p").css("width","59px");
 				return "FF";
 			} 
 			if (userAgent.indexOf("Safari") > -1){return "Safari";} //判断是否Safari浏览器

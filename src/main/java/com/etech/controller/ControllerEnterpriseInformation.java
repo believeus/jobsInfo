@@ -44,21 +44,36 @@ public class ControllerEnterpriseInformation {
 			TentImgVedio tentImgVedio = (TentImgVedio)etechService.findObjectById(TentImgVedio.class, Integer.parseInt(vid));
 			session.setAttribute("tentImgVedio", tentImgVedio);
 		}
-		
+		String hql = "";
 		//招聘信息
-		String hql = "From Trecruit recruit where recruit.entUser.id='"+trecruit.getEntUser().getId()+"' and recruit.entUser.disable='0' and recruit.status='1' and  recruit.isview='发布'";
-		List<Trecruit> trecruitList = (List<Trecruit>)etechService.findListByHQL(hql);
-		request.setAttribute("trecruitList", trecruitList);
-		hql="From TentImgVedio vedio where vedio.type='1' and vedio.entUser.id='"+trecruit.getEntUser().getId()+"'";
-		List<TentImgVedio> vedios = (List<TentImgVedio>)etechService.findListByHQL(hql);
-		request.setAttribute("vedios", vedios);
-		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+trecruit.getEntUser().getId()+"  and info.type='2'";
-		List<TentImgVedio> Maps=(List<TentImgVedio>)etechService.findListByHQL(hql);
-		request.setAttribute("Maps", Maps);
-		hql="From Trecruit recruit left join fetch recruit.entUser as user where  user.id='"+trecruit.getEntUser().getId()+"'";
-		List<Trecruit> recruits = (List<Trecruit>)etechService.findListByHQL(hql);
-		List<TcomUser> talentRecommend =(List<TcomUser>)enterpriseUserService.talentRecommend(recruits);
-		request.setAttribute("talentRecommend", talentRecommend);
+		List<Trecruit> trecruitList = null ;
+		List<TentImgVedio> vedios = null;
+		List<TentImgVedio> Maps = null;
+		List<TcomUser> talentRecommend = null;
+		if (trecruit != null) {
+			hql = "From Trecruit recruit where recruit.entUser.id='"+trecruit.getEntUser().getId()+"' and recruit.entUser.disable='0' and recruit.status='1' and  recruit.isview='发布'";
+			trecruitList = (List<Trecruit>)etechService.findListByHQL(hql);
+			request.setAttribute("trecruitList", trecruitList);
+			//
+			hql="From TentImgVedio vedio where vedio.type='1' and vedio.entUser.id='"+trecruit.getEntUser().getId()+"'";
+			vedios = (List<TentImgVedio>)etechService.findListByHQL(hql);
+			request.setAttribute("vedios", vedios);
+			//
+			hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+trecruit.getEntUser().getId()+"  and info.type='2'";
+			Maps = (List<TentImgVedio>)etechService.findListByHQL(hql);
+			request.setAttribute("Maps", Maps);
+			//
+			hql="From Trecruit recruit left join fetch recruit.entUser as user where  user.id='"+trecruit.getEntUser().getId()+"'";
+			List<Trecruit> recruits = (List<Trecruit>)etechService.findListByHQL(hql);
+			talentRecommend =(List<TcomUser>)enterpriseUserService.talentRecommend(recruits);
+			request.setAttribute("talentRecommend", talentRecommend);
+		}else{
+			request.setAttribute("trecruitList", trecruitList);
+			request.setAttribute("vedios", vedios);
+			request.setAttribute("Maps", Maps);
+			request.setAttribute("talentRecommend", talentRecommend);
+			
+		}
 		String host=request.getHeader("Host");
 		request.setAttribute("host", host);
 		return "occupationIntroduction/enterpriseInformation";

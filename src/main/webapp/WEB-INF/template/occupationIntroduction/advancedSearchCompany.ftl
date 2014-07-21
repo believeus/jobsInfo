@@ -387,7 +387,7 @@
 					#demo1 {float: left;}
 					#demo2 {float: left;}
 				</style>
-				<div style="padding-left: 10px;width:70px;height:30px;line-height:30px;;float:left;">最新消息：</div>
+				<div style="padding-left: 10px;width:70px;height:30px;line-height:30px;;float:left;font-size:13px;">最新消息：</div>
 				<div id="demo">
 					<div id="indemo">
 						<div id="demo1">
@@ -665,8 +665,8 @@
 					</tr>
 					[#list recruitList.content as recruit]
 					<tr>
-						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml?id=${recruit.entUser.id}">${recruit.company}</a></td>
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml?id=${recruit.entUser.id}#zw">${recruit.jobPost}</a></td>
+						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml?id=${recruit.id}">${recruit.company}</a></td>
+						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml?id=${recruit.id}#zw">${recruit.jobPost}</a></td>
 						<td style="color:#0101FF;">${recruit.salary}</td>
 						<td>${recruit.worknum}</td>
 						<td>${recruit.workspace}</td>

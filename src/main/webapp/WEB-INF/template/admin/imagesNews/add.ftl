@@ -10,7 +10,7 @@
 <script type="text/javascript" src="/resource/public/js/jquery.js"></script>
 <script type="text/javascript" src="/resource/public/js/jquery.form.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/jquery.validate.js"></script>
-<script type="text/javascript" src="/resource/public/js/admin/kindeditor.js"></script>
+<script type="text/javascript" src="/resource/public/js/admin/ueditor1_2_6_2/ueditor.config.js"></script><script type="text/javascript" src="/resource/public/js/admin/ueditor1_2_6_2/ueditor.all.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
 <script type="text/javascript">
@@ -200,7 +200,7 @@ $().ready(function() {
 					内容:
 				</th>
 				<td colspan="3">
-					<textarea id="editor" name="content" class="editor"></textarea>
+					<textarea id="editor" name="content" class="" style="width:80%;height:90px;"></textarea>
 				</td>
 			</tr>
 			<tr>

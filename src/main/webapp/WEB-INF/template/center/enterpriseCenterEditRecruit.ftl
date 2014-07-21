@@ -645,7 +645,7 @@
 								</tr>
 								<tr>
 									<td>身高:</td>
-									<td><input type="text" value="${recruit.height}" id="height1" name="height" placeholder="cm" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"><span style="margin-left:-25px;color:#000000;padding:0;">cm</span></td>
+									<td><input type="text" value="${recruit.height}" id="height1" name="height" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"><span style="margin-left:-25px;color:#000000;padding:0;">cm</span></td>
 									<td>视力:</td>
 									<td><input type="text" value="${recruit.eyesight}" id="eyesight1" name="eyesight" onkeyup="value=this.value.replace(/\D+\./g,'')" maxlength="3"></td>
 								</tr>

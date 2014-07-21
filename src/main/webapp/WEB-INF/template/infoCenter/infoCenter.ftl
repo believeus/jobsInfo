@@ -320,8 +320,8 @@
 							[/#if]
 						</a></p>
 						<div style="font-size: 13px;float:left;width:195px;margin-left:15px;margin-top:0;">
-							[#if new.content?length > 35]
-								${new.content?string?substring(0,35)}...
+							[#if new.content?length > 20]
+								${new.content?string?substring(0,20)}...
 							[#else]
 								${new.content}
 							[/#if]
