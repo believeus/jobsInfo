@@ -137,6 +137,8 @@
     		width:998px;
     		height:auto;
     		margin-top: 10px;
+		height:196px; /*2014-07-17 北科*/
+		overflow:hidden; /*2014-07-17 北科*/
     	}
     	.j_main_6{
     		width:998px;
@@ -204,12 +206,12 @@
 			width:194px;
 		}
 		.btn_login{
-			background:#6DBE3A;
+			/*background:#6DBE3A;
 		    border: 1px solid #3eae44;
 		    border-radius: 4px;
 		    color: #fbfbfb;
 		    margin-right: 10px;
-		    width: 60px;
+		    width: 60px;*/
 		    cursor:pointer;
 		}
 		.new_intro{
@@ -329,7 +331,7 @@
 			})
 	</script>
 	<div class="j_main w">
-		<div class="j_main_1" >
+		<div class="j_main_1">
 			<style type="text/css">
 				#demo {overflow:hidden;width: 885px;margin-left:8px;float:left;height:30px;line-height:30px;}
 				#demo img {border: 3px solid #F2F2F2;}
@@ -337,7 +339,7 @@
 				#demo1 {float: left;}
 				#demo2 {float: left;}
 			</style>
-			<div style="padding-left: 10px;width:70px;height:30px;line-height:30px;;float:left;font-size:13px;">最新消息：</div>
+			<div style="padding-left: 10px;width:70px;height:30px;line-height:30px;;float:left;">最新消息：</div>
 			<div id="demo">
 				<div id="indemo">
 					<div id="demo1">
@@ -372,58 +374,58 @@
 		<div class="j_main_3" >
 		[#if sessionUser?exists]
 			<!--登录后的界面begin-->
-			<div class="j_main_3_1" style="display:block;">
-				<table style="padding: 6px 19px 19px;">
-					<tr>
+			<div class="j_main_3_1" style="display:block;width:260px;height:198px;background:url(/resource/public/images/zyjsyhdl.png) no-repeat;">
+				<table style="margin:50px 0 0 15px" border="0">
+					<!--<tr>
 						<td colspan="2" align="center" style="background:url(/resource/public/images/beijingse.png);color:#FFFFFF;border-radius:4px;">用户登录</td>
+					</tr>-->
+					<tr>
+						<td height="40" align="center" width="30"><img src="/resource/public/images/zyjs_ico.png" /></td>
+						<td style="font-family:'黑体';font-size:17px;color:#ef4300;">${sessionUser.loginName}</td>
+						<td style="font-family:'黑体';font-size:17px;color:#858585;">，欢迎您登录！</td>
 					</tr>
 					<tr>
-						<td colspan="2"><font color="red" size="2">${sessionUser.loginName}</font>，欢迎您登录！</td>
+						<td height="40" align="center"><img src="/resource/public/images/zyjs_sj.png" /></td>
+						<td align="center" style="font-family:'黑体';font-size:12px;color:#858585;">上次登录</td>
+						<td style="font-family:'黑体';font-size:12px;color:#858585;">${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}</td>
 					</tr>
 					<tr>
-						<td colspan="2">上次登录时间:
-						 <span style="font-size:13px">
-						  	${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
-						 </span>
-						</td>
-					</tr>
-					<tr>
-						<td align="center" colspan="2" style="padding-top: 20px;">
-							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;"
+						<td align="center" colspan="3" height="55">
+							<input type="button" style=" width:113px; height:37px;background:url(/resource/public/images/ggw-yhdlh.png) no-repeat;border:0;color:#ffffff;font-size:16px;font-family:'黑体';font-weight:bold;"
 							value="[#if sessionUser.class.name == "com.etech.entity.TcomUser"]个人中心[#elseif sessionUser.class.name == "com.etech.entity.TentUser"]企业中心[#else]管理员后台[/#if]"
 							onclick="javascript:[#if sessionUser.class.name == "com.etech.entity.TcomUser"]window.location.href='/common-user/center.jhtml';[#elseif sessionUser.class.name == "com.etech.entity.TentUser"] window.location.href='/enterprise-user/center.jhtml';[#else]window.location.href='/admin/common/main.jhtml';[/#if]" 
 							>
-							<input id="logout" type="button" style="background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" value="退出">
+							<input id="logout" type="button" style="background:url(/resource/public/images/zyjs_tc.png) no-repeat; width:104px;height:37px;border:0;" value="">
 						</td>
 					</tr>
 				</table>
 			</div>
 			<!--登录后的界面end-->
 		[#else]
-			<div class="j_main_3_1" style="display:block;">
+			<div class="j_main_3_1" style="display:block;width:260px;height:198px;background:url(/resource/public/images/zyjsyhdl.png) no-repeat;;">
 				<form id="loginForm" action="/" method="post">
-				<table style="padding: 6px 19px 19px;">
-					<tr>
+				<table style="margin:50px 0 0 15px;" border="0">
+					<!--<tr>
 						<td colspan="2" align="center" style="background:url(/resource/public/images/beijingse.png);color:#FFFFFF;border-radius:4px;">用户登录</td>
-					</tr>
+					</tr>-->
 					<tr>
 						<td>用户名:</td>
-						<td><input id="loginName" type="text" autocomplete="off" style="width:150px" name="loginName"></td>
+						<td><input id="loginName" type="text" autocomplete="off" style="width:150px;height:19px;border:1px solid #a8a8a8;" name="loginName"></td>
 					</tr>
 					<tr>
 						<td>密&nbsp;&nbsp;&nbsp;码:</td>
-						<td><input id="password" type="password" autocomplete="off" style="width:150px" name="password"></td>
+						<td><input id="password" type="password" autocomplete="off" style="width:150px;height:19px;border:1px solid #a8a8a8;" name="password"></td>
 					</tr>
 					<tr>
-						<td align="center" colspan="2">
-							<label><input type="radio" name="userType" checked="ture" value="commonUser">个人用户</label>
+						<td align="left" colspan="2">
+							<label style="margin-left:15px;margin-right:40px;"><input type="radio" name="userType" checked="ture" value="commonUser">个人用户</label>
 							<label><input type="radio" name="userType" value="enterpriseUser">企业用户</label>
 						</td>
 					</tr>
 					<tr>
 						<td align="center" colspan="2">
-							<input class="btn_login" type="button" id="login" style="margin-right: 10px;" value="登录">
-							<input class="btn_login" type="button" id="register" value="注册">
+							<input class="btn_login" type="button" id="login" value="" style="background:url(/resource/public/images/zyjs_dl.png) no-repeat;width:113px;height:37px;border:0;">
+							<input class="btn_login" type="button" id="register" value="" style="background:url(/resource/public/images/zc.png) no-repeat;width:104px;height:37px;border:0;">
 						</td>
 					</tr>
 				</table>
@@ -504,15 +506,15 @@
 					</div>
 				<!--////////////////////////////////////////////////////////////////////////-->
 			</div>
-			<div class="j_main_3_3">
-				<p style="background:url(/resource/public/images/beijingse.png)">招聘会</p>
-				<ul style="padding-left:15px;margin:0;">
+			<div class="j_main_3_3" style="background:url(/resource/public/images/zyjszph.png) no-repeat;width:253px;height:200px;border:0;)">
+				<!--<p style="background:url(/resource/public/images/beijingse.png)">招聘会</p>-->
+				<ul style="height:150px; margin:45px 0 0 15px; overflow:hidden;">
 					[#list zhaopinhuiService as zph]
 					[#if zph_index <6]
 						<li>
 							<a href="/zhaopinhui.jhtml?id=${zph.id}" title="${zph.title}">
-								[#if zph.title?length > 8]
-									${zph.title?string?substring(0,8)}...
+								[#if zph.title?length > 10]
+									${zph.title?string?substring(0,10)}...
 								[#else]
 									${zph.title}
 								[/#if]
@@ -549,23 +551,11 @@
 				</div>
 			</div>
 		-->
-		<div class="j_main_5">
-			<div style="width:994px;height:37px; background:url(/resource/public/images/intro.png);border: 1px solid #e4e4e4;">
-				<span style="color: #817f80;font-size: 19px;font-weight: bold;line-height: 38px;margin-left: 10px;">名企招聘</span>
-			</div>
-			[#list enterpriseHeaderImgs as headImg]
-				[#if headImg_index <50 ]
-					<a href="${headImg.alink}" title="${headImg.title}">
-						<img src="${headImg.imgpath}" width="195" height="33" style="margin-bottom:5px;">
-					</a>
-				[/#if]
-			[/#list]
-		</div>
 		<div class="j_main_6">
 			<div class="j_main_6_1" style="background:url(/resource/public/images/intro.png);">
 				<span style="color: #817f80;font-size: 19px;font-weight: bold;line-height: 38px;margin-left: 10px;">最新职业介绍</span>
 			</div>
-			<div class="new_intro">
+			<div class="new_intro" style="padding-top:5px;">
 				[#list zhaopList as zhaop]
 				<div class="new_intro_list">
 					<p>
@@ -600,7 +590,7 @@
 		
 		<div class="zuixinjianli" style="width:997px;height:auto;border:1px solid #e4e4e4;background:#FFFFFF;">
 			<img src="/resource/public/images/zuixinjianli.png">
-			<div class="jianli">
+			<div class="jianli" style="padding-top:5px;">
 				[#list qiuzhiList as qiuzhi]
 					[#list qiuzhi.comInfo as comInfo]
 						[#if comInfo.infoType == 4]
@@ -627,6 +617,19 @@
 					[/#list]
 				[/#list]
 			</div>
+		</div>
+		<!--名企招聘-->
+		<div class="j_main_5">
+			<div style="width:994px;height:37px; background:url(/resource/public/images/intro.png);border: 1px solid #e4e4e4;">
+				<span style="color: #817f80;font-size: 19px;font-weight: bold;line-height: 38px;margin-left: 10px;">名企招聘</span>
+			</div>
+			[#list enterpriseHeaderImgs as headImg]
+				[#if headImg_index <50 ]
+					<a href="${headImg.alink}" title="${headImg.title}">
+						<img src="${headImg.imgpath}" width="195" height="48" style="margin-bottom:5px;"><!--高度修改前33，修改后48 2014-07-18 北科-->
+					</a>
+				[/#if]
+			[/#list]
 		</div>
 		
 		<div class="j_main_7">

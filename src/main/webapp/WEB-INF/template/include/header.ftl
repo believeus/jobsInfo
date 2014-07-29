@@ -1,9 +1,10 @@
 <style type="text/css">
+	*{margin:0;padding:0;}
 	body{
 		margin:0 auto;
 		overflow:auto;
 		font-size:14px;	
-		font-weight:bold;
+		font-family:"黑体"; /*2014-07-18 北科*/
 	}
 	img{
 		border:0;
@@ -28,13 +29,16 @@
 	.j_head{
 		width:100%;
 		height:163px;
+		height:198px;
 		background:url(/resource/public/images/zhuye-img_01.gif);
 	}
 	.j_head_pic{
 		width:1283px;
 		height:127px;
+		height:162px;
 		margin-left:auto;
-		margin-right:auto;
+		margin-right:auto;	
+		
 	}
 	.j_head_nav{
 		width:100%;
@@ -67,9 +71,6 @@
 	.j_main_right_2_p img{
 		width:640px;
 	}
-	.j_main_left_1 span{
-		font-size:12px !important;
-	}
 </style>
 <!--IE-->
 <script type="text/javascript">
@@ -93,10 +94,10 @@
 	});
 </script>
 <div style="width:100%;margin-bottom:5px;">
-	<div class="j_head">
+	<div class="j_head" style="">
 		<div style="width:100%;background:#DC6D0E;">
 			<div class="j_head_pic">
-				<embed width="100%" height="127" bgcolor="" quality="high" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" id="myMovie" src="/resource/public/images/boner2.swf" type="application/x-shockwave-flash" pluginspage="">
+				<embed  width="100%" height="162px" bgcolor="" quality="high" allowfullscreen="true" wmode="transparent" allowscriptaccess="always" allownetworking="all" id="myMovie" src="/resource/public/images/boner2.swf" type="application/x-shockwave-flash" pluginspage="">
 			</div>
 		</div>
 		<div class="j_head_nav">
@@ -108,7 +109,7 @@
 				<a href="/policyAdvice.jhtml" title="">政策咨询</a>
 				<a href="/dataChannel.jhtml" title="">数据频道</a>
 				<a href="/onlineShow.jhtml" title="">网上展示厅</a>
-				<div style="float: right; width: 305px; margin-top: 10px;text-align:right;">
+				<div style="float: right; width: 300px; margin-top: 10px;text-align:right;">
 					<form action="/search.jhtml" method="post">
 						<span style="color:#FFFFFF;">全文检索：</span>
 						<input type="hidden" name="currentpage" value="0"/>

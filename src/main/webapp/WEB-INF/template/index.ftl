@@ -177,7 +177,7 @@
 		    border: 1px solid #3eae44;
 		    border-radius: 4px;
 		    color: #fbfbfb;
-		    margin-right: 10px;
+		    /*margin-right: 10px;*/
 		    width: 60px;
 		    cursor:pointer;
 		}
@@ -362,7 +362,7 @@
 									href="/videosInfo.jhtml?id=${new.id}"
 								[/#if]
 							>
-								[#if new.title?length > 15]
+								[#if new.title?length > 16]
 									${new.title?string?substring(0,15)}...
 								[#else]
 									${new.title}
@@ -370,8 +370,8 @@
 							</a>
 						</h2>
 						<div style="color:#2B8BDF;margin:10px 0;font-size:13px;height:20px;">
-							[#if new.content?length > 28]
-								${new.content?string?substring(0,28)}...
+							[#if new.content?length > 30]
+								${new.content?string?substring(0,30)}...
 							[#else]
 								${new.content}
 							[/#if]
@@ -433,8 +433,8 @@
 										<li class="xinxi_1_li">
 											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}">${zhaop.company}</a>&nbsp;&nbsp;
 											<a href="/enterpriseInformation.jhtml?id=${zhaop.id}#zw" title="${zhaop.workType.name}">
-												[#if zhaop.workType.name?length >8]
-													${zhaop.workType.name?string?substring(0,8)}...
+												[#if zhaop.workType.name?length >11]
+													${zhaop.workType.name?string?substring(0,11)}...
 												[#else]
 													${zhaop.workType.name}
 												[/#if]
@@ -490,9 +490,9 @@
 													<a href="/personalResume.jhtml?id=${comInfo.comUser.id}" title="${comInfo.workType.name}">
 														${qiuzhi.trueName}&nbsp;&nbsp;
 														[#if qiuzhi.sex == 'man']男[#elseif qiuzhi.sex == 'woman']女[#else]不限[/#if]&nbsp;&nbsp;
-														[#if qiuzhi.eduLevel !=""]${qiuzhi.eduLevel}[#else]&nbsp;&nbsp;[/#if]&nbsp;&nbsp;
-														[#if comInfo.workType.name?length > 6]
-															${comInfo.workType.name?string?substring(0,6)}...
+														[#if qiuzhi.eduLevel !=""]${qiuzhi.eduLevel}[#else]不明[/#if]&nbsp;&nbsp;
+														[#if comInfo.workType.name?length > 9]
+															${comInfo.workType.name?string?substring(0,8)}...
 														[#else]
 															${comInfo.workType.name}
 														[/#if]
@@ -553,58 +553,58 @@
 			</div>
 			
 			[#if sessionUser?exists]
-				<div class="denglu" id="denglu2">
-				<table style="padding:19px;">
-					<tr class="denglu_tr">
+				<div class="denglu" id="denglu2" style="background:url(/resource/public/images/ggwsydl.png) no-repeat;width:260px;height:222px;border:1px solid #f2c49f;">
+				<table style="margin-top:55px;margin-left:15px;" border="0">
+					<!--<tr class="denglu_tr">
 						<td colspan="2" align="center" style="background:url(/resource/public/images/beijingse.png);line-height:28px;color:#FFFFFF;border-radius:4px;">用户登录</td>
+					</tr>-->
+					<tr class="denglu_tr">
+						 <td height="45" width="30" align="center" ><img src="/resource/public/images/dlr.png" /></td>
+						 <td align="center" style="color:#ef4300;font-family:'黑体';font-size:17px;">${sessionUser.loginName}</td>
+						 <td style="color:#858585;font-family:'黑体';font-size:17px;">，欢迎您登录！</td>
 					</tr>
 					<tr class="denglu_tr">
-						<td colspan="2"><font color="red" size="2">${sessionUser.loginName}</font>，欢迎您登录！</td>
+						 <td align="center"><img src="/resource/public/images/dlsj.png" /></td>
+						<td height="45" align="center" style="color:#858585;font-family:'宋体';font-size:12px;">上次登录</td>
+						<td style="color:#858585;font-family:'宋体';font-size:12px;">${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
 					</tr>
 					<tr class="denglu_tr">
-						<td colspan="2">上次登录时间:
-						  <span style="font-size:13px">
-							${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
-						  </span>
-						 </td>
-					</tr>
-					<tr class="denglu_tr">
-						<td align="center" colspan="2" style="padding-top: 5px;">
-							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" 
+						<td align="center" height="45" colspan="3" style="padding-top: 0px;">
+							<input type="button" style="background:url(/resource/public/images/ggw-yhdlh.png) no-repeat; width:113px;height:37px;border:0;color:#ffffff;font-size:16px;font-family:'黑体';font-weight:bold;" 
 							value="[#if sessionUser.class.name == "com.etech.entity.TcomUser"]个人中心[#elseif sessionUser.class.name == "com.etech.entity.TentUser"]企业中心[#else]管理员后台[/#if]"
 							onclick="javascript:[#if sessionUser.class.name == "com.etech.entity.TcomUser"]window.location.href='/common-user/center.jhtml';[#elseif sessionUser.class.name == "com.etech.entity.TentUser"] window.location.href='/enterprise-user/center.jhtml';[#else]window.location.href='/admin/common/main.jhtml';[/#if]" 
 							>
-							<input id="logout" type="button" style="background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 90px;" value="退出">
+							<input id="logout" type="button" style="background:url(/resource/public/images/tc.png) no-repeat;border:0; width: 104px;height:37px;" value="">
 						</td>
 					</tr>
 				</table>
 			</div>
 			[#else]
-				<div class="denglu" id="denglu1">
-				<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);">
+				<div class="denglu" id="denglu1" style="background:url(/resource/public/images/ggwsydl.png) no-repeat;width:260px;height:222px;border:1px solid #f2c49f;">
+				<!--<p style="margin:0;padding:5px;padding-left:20px;background:url(/resource/public/images/111.png);">
 					<img src="/resource/public/images/sanjiaojian.png" style="float: left; margin-right: 10px;">
 					会员登录
-				</p>
+				</p>-->
 				<form id="loginForm" action="/" method="post">
-				<table style="padding:19px;">
+				<table style=" margin-top:50px;margin-left:15px;">
 					<tr>
-						<td>用户名:</td>
-						<td><input id="loginName" type="text" name="loginName"  autocomplete="off" style="width:150px"></td>
+						<td height="35">用户名:</td>
+						<td><input id="loginName" type="text" name="loginName"  autocomplete="off" style="width:150px;height:19px;border:1px solid #a8a8a8;"></td>
 					</tr>
 					<tr>
-						<td>密&nbsp;&nbsp;&nbsp;码:</td>
-						<td><input id="password" type="password" name="password" autocomplete="off" style="width:150px"></td>
+						<td height="35">密&nbsp;&nbsp;&nbsp;码:</td>
+						<td><input id="password" type="password" name="password" autocomplete="off" style="width:150px;height:19px;border:1px solid #a8a8a8;"></td>
 					</tr>
 					<tr>
-						<td colspan="2" align="center">
-							<label><input type="radio" name="userType" checked="ture" value="commonUser">个人用户</label>
+						<td colspan="2" align="left" height="45">
+							<label style="margin-left:20px;margin-right:35px;"><input type="radio" name="userType" checked="ture" value="commonUser">个人用户</label>
 							<label><input type="radio" name="userType" value="enterpriseUser">企业用户</label>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
-							<input class="btn_login" type="button" id="login" value="登录" style="margin-right: 10px;">
-							<input class="btn_login" type="button" id="register" value="注册">
+							<input class="btn_login" type="button" id="login" value="" style="background:url(/resource/public/images/dl.png) no-repeat;width:113px;height:37px;border:0;">
+							<input class="btn_login" type="button" id="register" value="" style="background:url(/resource/public/images/zc.png) no-repeat;width:104px;height:37px;border:0;">
 						</td>
 					</tr>
 				</table>
