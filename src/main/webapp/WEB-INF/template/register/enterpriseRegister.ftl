@@ -8,6 +8,7 @@
 body {
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:13px;	
+	font-family:"黑体";
 }
 .top_title input{
 	border: medium none;
@@ -45,6 +46,7 @@ body {
 .xingx input {
 	height:32px;
 	width:285px;
+	width:200px;
 	border:1px solid #C0C0C0;
 	padding:0px 7px;
 	font: 14px 'Arial';
@@ -111,6 +113,7 @@ th{
 							success: function(data) {
 									// 如果注册成功，则进行跳转
 									if(data.message=="success"){
+										alert("注册后需管理员审核,审核通过后可查看所有信息和发布招聘信息"); // 2014-07-17 北科
 										$("#registerForm").attr("action","/");
 										$("#registerForm").submit();
 									}else{
@@ -176,6 +179,12 @@ th{
            			<td><input type="text"  id="fullName" name="fullName"/></td>
            		</tr>
            		<tr>
+           			<th><font color="red">*</font>手机号：</th>
+           			<td>
+           			<input type="" id="phoneNum" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="11" minlegnth="11"/>
+           			</td>
+           		</tr>
+           		<tr>
            			<th>法人：</th>
            			<td><input type="" id="LegalMan" /></td>
            		</tr>
@@ -183,12 +192,7 @@ th{
            			<th>联系人：</th>
            			<td><input type="" id="cpContacts" /></td>
            		</tr>
-           		<tr>
-           			<th>手机号：</th>
-           			<td>
-           			<input type="" id="phoneNum" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="11" minlegnth="11"/>
-           			</td>
-           		</tr>
+           		
            	</table>
     	</div>
     </div>

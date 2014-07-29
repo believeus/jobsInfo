@@ -96,6 +96,7 @@
 			background: url(/resource/public/images/background_b.png);
 		    border: 1px solid #e4e4e4;
 		    font-size:13px;
+		  font-family:"黑体"; /*2014-07-18 北科*/
 		}
 		.j_main_right_2{
 			width:728px;
@@ -116,11 +117,13 @@
 		    text-align: center;
 		    width: 130px;
 		    float:left;
+		    font-family:"黑体"; /*2014-07-18 北科*/
 		}
 		.j_main_right_2_1_2{
 		    text-align: center;
 		    line-height: 30px;
 		    font-size: 16px;
+		    font-family:"黑体"; /*2014-07-18 北科*/
 			height: 30px;
 			width: 130px;
 		    float:left;
@@ -150,6 +153,7 @@
 		.list input {
 		    width: 45px;
 		    font-size:13px;
+		    font-family:"黑体"; /*2014-07-18 北科*/
 		}
 		.currentSwich{
 			background:#E36510;
@@ -374,6 +378,7 @@
 							success: function(data) {
 								location.href="/common-user/center.jhtml" +value;
 								location.reload(true);
+								$("#trueName").attr("disabled","disabled");//测试
 							}
 						})
 	    			}else{
@@ -1221,9 +1226,7 @@
 		        				if(data.message == "success" && $("#submit").val() == "submit"){
 									submitSkill();
 								}else if(data.message!="finish"){
-									$("#"+data.property).val("");	
-									$("#"+data.property).focus();		
-									alert(data.message);	
+									alert(data.message);								
 								}
 						     }
 			        	});
@@ -1307,27 +1310,27 @@
 	[#include "/include/header.ftl" /]
 	<div class="j_main w">
 		<div class="j_main_left">
-			<div class="j_main_left_1" style="border:0;height:auto;border:1px solid #E4630F;border-radius:4px;">
-				<table style="padding: 6px 19px 19px;">
-					<tr>
+			<div class="j_main_left_1" style="background:url(/resource/public/images/ggwsydl.png) no-repeat; width:258px; height:222px;border:1px solid #f2c49f;">
+				<table style="margin:55px 0 0 15px;" border="0">
+					<!--<tr>
 						<td colspan="2" align="center" style="background:#EE981F;color:#FFFFFF;border-radius:4px;">用户登录</td>
+					</tr>-->
+					<tr>
+						<td height="45" align="center" width="30"><img src="/resource/public/images/dlr.png" /></td>
+						<td style="font-family:'黑体';font-size:17px;color:#ef4300;">${sessionUser.loginName}</td>
+						<td style="font-family:'黑体';font-size:17px;color:#858585;">，欢迎您登录！</td>
 					</tr>
 					<tr>
-						<td colspan="2"><font color="red" size="2">${sessionUser.loginName}</font>，欢迎您登录！</td>
+						<td height="45" align="center"><img src="/resource/public/images/dlsj.png" /></td>
+						<td style="font-family:'宋体';font-size:12px;color:#858585;">上次登录</td>
+						<td style="font-family:'宋体';font-size:12px;color:#858585;">${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}</td>
 					</tr>
 					<tr>
-						<td colspan="2">上次登录时间:
-							<span style="font-size:13px;float:left;">
-								${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
-							</span>
-						</td>
-					</tr>
-					<tr>
-						<td align="center" colspan="2" style="padding-top: 20px;">
-							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 75px;height:27px;" value="个人中心"
+						<td align="center" colspan="3" height="60">
+							<input type="button" style="background:url(/resource/public/images/ggw-yhdlh.png) no-repeat; width:113px;height:37px;border:0;color:#ffffff;font-size:16px;font-weight:bold;font-family:'黑体';" value="个人中心"
 							onclick="javascript:[#if sessionUser.class.name == "com.etech.entity.TcomUser"]window.location.href='/common-user/center.jhtml';[#else] window.location.href='/enterprise-user/center.jhtml';[/#if]" 
 							>
-							<input type="button" onclick="Etech.logout();" style="background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 75px;height:27px;" value="退出">
+							<input type="button" onclick="Etech.logout();" style="width:104px;height:37px; background:url(/resource/public/images/tc.png) no-repeat;border:0;">
 						</td>
 					</tr>
 				</table>
@@ -1385,15 +1388,15 @@
 								<tr>
 									<td>姓名:</td>
 									<td>
-									<label> ${sessionUser.trueName}</label>
-									<input type="hidden" id="trueName" name="trueName" value="${sessionUser.trueName}">
+									<label>${sessionUser.trueName}</label>
+									<input type="hidden" id="trueName" readonly="readonly" name="trueName" value="${sessionUser.trueName}">
 									</td>
 								</tr>
 								<tr>
 									<td>登录名:</td>
 									<td>
-									<label> ${sessionUser.loginName}</label>
-									<input type="hidden" id="loginName" name="loginName" value="${sessionUser.loginName}">
+									<label>${sessionUser.loginName}</label>
+									<input type="hidden" id="loginName" readonly="readonly" name="loginName" value="${sessionUser.loginName}">
 									</td>
 								</tr>
 								<tr>
@@ -1463,7 +1466,9 @@
 								</tr>
 								<tr>
 									<td>密码:</td>
-									<td><label>不填</label></td>
+									<td>
+									<label>不填</label>
+									<input type="hidden" id="password"  name="password" placeholder="不填" readonly="readonly"></td>
 								</tr>
 								<tr>
 									<td>身份证号:</td>
@@ -1528,8 +1533,8 @@
 						<div style="width: 150px; float: left; margin-left: 15px; height: auto; margin-top: 15px;">
 								<form novalidate="novalidate"  action="/upload.jhtml" method="post" encType="multipart/form-data" id="imageForm">
 									
-									<div class="brandImg">
-											<img style="width:122px;height:150px" src="[#if sessionUser.imgHead?exists]/${sessionUser.imgHead}[#else]/resource/public/images/bg.png[/#if]" name="img"/>
+									<div class="Img">
+											<img style="width:122px;height:150px" src="[#if sessionUser.imgHead!=""]/${sessionUser.imgHead}[#else]/resource/public/images/bg1.png[/#if]" name="img"/>
 											<div style="color: #000000; font-size: 12px; position: relative; padding-top: 25px; width: 122px;text-align:center;top:30px">建议图片大小：</div>
 											<div style="color: #000000; font-size: 12px; position: relative; padding: 0px; width: 122px;text-align:center;top:30px">宽122px*高150px</div>
 									</div>
@@ -1557,7 +1562,7 @@
 					[#list skills as skill]
 						<div class="jineng_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="SkillForm${skill_index+1}">						
-						<table>
+						<table >
 						
 							<tr>
 								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">${skill_index+1}</td>
@@ -1681,7 +1686,7 @@
 									</div>
 								</td>
 								<td>从事年限:</td>
-								<td><input type="text" id="workingLifeSkill1" name="workingLife">
+								<td><input type="text" id="workingLifeSkill1" name="workingLife">&nbsp;年
 								</td>
 							</tr>
 							<tr>
@@ -2151,14 +2156,14 @@
 		.beian_winBG {MARGIN-TOP: -100px; LEFT: 50%; MARGIN-LEFT: -190px; WIDTH: 376px; POSITION: absolute; TOP: 50%; HEIGHT:200px;border:#666666 1px solid;z-index: 1000;}
 		#divOneStep{background-color: #fbfbfb; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 0 1px #fff inset; margin: 0 auto; padding: 20px 75px; position: relative;text-align: left;width: 240px;}
 		.pass_text{border: 1px solid #e3e3e3; border-radius: 3px;height: 30px; margin-bottom: 20px;padding-left: 10px;width: 210px;}
-		.btn_submit{background-color: #ff6c1e; border: 1px solid #ef5f06; border-radius: 3px;color: #fff;cursor: pointer;font-size: 14px;font-weight: bold;margin-bottom: 35px; margin-top: 1px;padding: 8px 22px;text-align: left;}
+		.btn_submit{background-color: #ff6c1e; border: 1px solid #ef5f06; border-radius: 3px;color: #fff;cursor: pointer;font-size: 14px;font-weight: bold;margin-bottom: 35px; margin-top: 1px;padding: 8px 22px;text-align: left;font-family:"黑体"; /*2014-07-18 北科*/}
 	</style>
 	<div id="alert_win" style="display:none;">
 		<div id="mask" style="top:0;left:0;position: absolute;z-index:1000;" class="bg"></div>
 		<DIV class=beian_winBG id=beian_popup><!--弹出框-->
 			<div id="divOneStep" style="z-index:1002;height:140px;">
 				<div style="width:100%;height:30px;light-height:30px;text-align:right;">
-					<a style="font-size: 20px; position: relative; top: -15px; padding: 6px; left: 70px;" href="javascript:;" onClick="alert_win.style.display='none';">&times;</a>
+					<a style="font-size: 20px;font-family:'黑体'; position: relative; top: -15px; padding: 6px; left: 70px;" href="javascript:;" onClick="alert_win.style.display='none';">&times;</a>
 				</div>
 				<div id="need">
 					<form action="/user/center/updatepd.jhtml" method="post" id="pdFrom">

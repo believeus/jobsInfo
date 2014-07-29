@@ -87,6 +87,7 @@
 			background: url(/resource/public/images/background_b.png);
 		    border: 1px solid #e4e4e4;
 		    font-size:13px;
+		    font-family:"黑体"; /*2014-07-18 北科*/
 		}
 		.j_main_right_2{
 			width:728px;
@@ -102,6 +103,7 @@
 		}
 		.j_main_right_2_1_1{
 		    font-size: 16px;
+		    font-family:"黑体"; /*2014-07-18 北科*/
 		    height: 30px;
 		    line-height: 30px;
 		    text-align: center;
@@ -112,6 +114,7 @@
 		    text-align: center;
 		    line-height: 30px;
 		    font-size: 16px;
+		    font-family:"黑体"; /*2014-07-18 北科*/
 			height: 30px;
 			width: 130px;
 		    float:left;
@@ -166,6 +169,7 @@
 		.qiyepic textarea{
 			border: 0 none;
 		    font-size: 13px;
+		  font-family:"黑体"; /*2014-07-18 北科*/
 		    height: 39px;
 		    resize: none;
 		    width: 158px;
@@ -239,7 +243,7 @@
 	    border-style: solid;
 	    border-width: 1px;
 	    background-color: #666666;
-	    width:190px !important;height:48px !important;
+	    width:260px !important;height:30px !important;
 	    position:relative;
 	}
 	
@@ -247,8 +251,8 @@
 		display:block;
 		position:absolute;
 		top:0px;left:0px;
-		width:190px !important;
-		height:48px !important;
+		width:240px !important;
+		height:30px !important;
 	}
 	
 	#Img span:hover{
@@ -262,8 +266,8 @@
 	#Img span a{
 		display:block;
 		position:absolute;
-		top:10px !important;
-		left:50px !important;
+		top:0px !important;
+		left:90px !important;
 	}
 	
 	</style>
@@ -650,7 +654,7 @@
     		if(oldvalue!=""&&oldvalue!=undefined){
     			countchange++;
 	    		if(countchange==1){
-	    			confirm("修改企业基本信息，需管理员重新审核！");
+	    			alert("修改企业基本信息，需管理员重新审核！");
 	    		}
 	    		var value=$(this).val();
 	    		
@@ -1114,27 +1118,28 @@
 	[#include "/include/header.ftl" /]
 	<div class="j_main w">
 		<div class="j_main_left">
-			<div class="j_main_left_1" style="border:0;height:auto;border:1px solid #E4630F;border-radius:4px;">
-				<table style="padding: 6px 19px 19px;">
-					<tr>
+			<div class="j_main_left_1" style="background:url(/resource/public/images/ggwsydl.png) no-repeat; width:258px; height:222px;border:1px solid #f2c49f;">
+				<table style="margin:55px 0 0 15px;" border="0">
+					<!--<tr>
 						<td colspan="2" align="center" style="background:#EE981F;color:#FFFFFF;border-radius:4px;">用户登录</td>
+					</tr>-->
+					<tr>
+						<td height="45" align="center" width="30"><img src="/resource/public/images/dlr.png" /></td>
+						<td style="font-family:'黑体';font-size:17px;color:#ef4300;">${sessionUser.loginName}</td>
+						<td style="font-family:'黑体';font-size:17px;color:#858585;">，欢迎您登录！</td>
 					</tr>
 					<tr>
-						<td colspan="2"><font color="red" size="2">${sessionUser.loginName}</font>，欢迎您登录！</td>
+						<td height="45" align="center"><img src="/resource/public/images/dlsj.png" /></td>
+						<td style="font-family:'宋体';font-size:12px;color:#858585;">上次登录</td>
+						<td style="font-family:'宋体';font-size:12px;color:#858585;">${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}</td>
+					
 					</tr>
 					<tr>
-						<td colspan="2">上次登录时间:
-							<span style="font-size:13px;float:left;">
-								${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
-							</span>
-						</td>
-					</tr>
-					<tr>
-						<td align="center" colspan="2" style="padding-top: 20px;">
-							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 75px;height:27px;" value="企业中心"
+						<td align="center" colspan="3" height="60">
+							<input type="button" style="background:url(/resource/public/images/ggw-yhdlh.png) no-repeat; width:113px;height:37px;border:0;color:#ffffff;font-size:16px;font-weight:bold;font-family:'黑体';" value="企业中心"
 							onclick="javascript:[#if sessionUser.class.name == "com.etech.entity.TcomUser"]window.location.href='/common-user/center.jhtml';[#else] window.location.href='/enterprise-user/center.jhtml';[/#if]" 
 							>
-							<input type="button" onclick="Etech.logout();" style="background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 75px;height:27px;" value="退出">
+							<input type="button" onclick="Etech.logout();" style="width:104px;height:37px; background:url(/resource/public/images/tc.png) no-repeat;border:0;" value="">
 						</td>
 					</tr>
 				</table>
@@ -1329,12 +1334,12 @@
 										[#if Maps?size>0]
 											[#list Maps as map]
 											<div class="brandImg" id="Img">
-												<span style="padding-left:0;"><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
+												<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
 												</span>
-													<img width="190px" height="48px" src="/${map.url}" name="url" id="${map.id}"/>
+													<img width="260px" height="30px" src="/${map.url}" name="url" id="${map.id}"/>
 													<input type="hidden" name="id" value="${map.id}">
 													<div style="height: 20px; position: relative; width: 230px; left: 270px; font-size: 12px; top: -30px;">
-														建议图片尺寸：宽190px*高48px
+														建议图片尺寸：宽240px*高30px
 													</div>
 											</div>
 											<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">
@@ -1342,11 +1347,11 @@
 											[/#list]
 										[#else]
 										<div class="brandImg" id="Img">
-											<span style="padding-left:0;"><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
+											<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
 											</span>
-												<img width="190px" height="48px" src="/resource/public/images/bg.png" name="url" id="0"/>
+												<img width="260px" height="30px" src="/resource/public/images/bg1.png" name="url" id="0"/>
 												<div style="height: 20px; position: relative; width: 230px; left: 270px; font-size: 12px; top: -30px;">
-														建议图片尺寸：宽190px*高48px
+														建议图片尺寸：宽240px*高30px
 												</div>
 										</div>
 										<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">
@@ -1395,7 +1400,7 @@
 								<p>
 									<div class="brandImg">
 										<span><a onclick="file1.click()" href="javascript:void(0);">点击上传图片</a></span>
-										<img style="width:160px;height:145px" src="/resource/public/images/bg.png" />
+										<img style="width:160px;height:145px" src="/resource/public/images/bg1.png" />
 									</div>
 									<input type="file" style="display:none" id="file1" name="file1" onchange="filename1.value=this.value;loadImgFast(this,1)">
 									<input type="hidden" id="filename1" name="filename1">
@@ -1560,7 +1565,7 @@
 					<form novalidate="novalidate"  action="/enterprise-user/center/submit-recruit.jhtml"  method="post" id="jobsForm1">
 						<input type="hidden" name="status" value="0">
 						<input type="hidden" name="viewData" value="" id="viewData">
-						<input type="hidden" name="isview" value="未发布">
+						<input type="hidden" name="isview" value="不发布">
 							<table>
 								<tr>
 									<td>招聘单位:</td>
@@ -1777,14 +1782,14 @@
 		.beian_winBG {MARGIN-TOP: -100px; LEFT: 50%; MARGIN-LEFT: -190px; WIDTH: 376px; POSITION: absolute; TOP: 50%; HEIGHT:200px;border:#666666 1px solid;z-index: 1000;}
 		#divOneStep{background-color: #fbfbfb; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 0 1px #fff inset; margin: 0 auto; padding: 20px 75px; position: relative;text-align: left;width: 240px;}
 		.pass_text{border: 1px solid #e3e3e3; border-radius: 3px;height: 30px; margin-bottom: 20px;padding-left: 10px;width: 210px;}
-		.btn_submit{background-color: #ff6c1e; border: 1px solid #ef5f06; border-radius: 3px;color: #fff;cursor: pointer;font-size: 14px;font-weight: bold;margin-bottom: 35px; margin-top: 1px;padding: 8px 22px;text-align: left;}
+		.btn_submit{background-color: #ff6c1e; border: 1px solid #ef5f06; border-radius: 3px;color: #fff;cursor: pointer;font-size: 14px;font-weight: bold;margin-bottom: 35px; margin-top: 1px;padding: 8px 22px;text-align: left;font-family:"黑体"; /*2014-07-18 北科*/}
 	</style>
 	<div id="alert_win" style="display:none;">
 		<div id="mask" style="top:0;left:0;position: absolute;z-index:1000;" class="bg"></div>
 		<DIV class=beian_winBG id=beian_popup><!--弹出框-->
 			<div id="divOneStep" style="z-index:1002;height:140px;">
 				<div style="width:100%;height:30px;light-height:30px;text-align:right;">
-					<a style="font-size: 20px; position: relative; top: -15px; padding: 6px; left: 70px;" href="javascript:;" onClick="alert_win.style.display='none';">&times;</a>
+					<a style="font-size: 20px;font-family:"黑体";  position: relative; top: -15px; padding: 6px; left: 70px;" href="javascript:;" onClick="alert_win.style.display='none';">&times;</a>
 				</div>
 				<div id="need">
 					<form action="/user/center/updatepd.jhtml" method="post" id="pdFrom">

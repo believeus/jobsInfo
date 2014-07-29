@@ -7,7 +7,8 @@
 <style type="text/css">
 body {
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:13px;	
+	font-size:13px;
+	font-family:"黑体";/*2014-07-17 北科*/
 }
 .top_title input{
 	border: medium none;
@@ -39,12 +40,14 @@ body {
 	width:170px;	
 	display:inline-block;
 	color:red;
-	font-size:13px;
+	/*font-size:13px;*/
+	
 	line-height:50px;
 }
 .xingx input {
 	height:32px;
-	width:285px;
+	/*width:268px;*/
+	width:200px;
 	border:1px solid #C0C0C0;
 	padding:0px 7px;
 	font: 14px 'Arial';
