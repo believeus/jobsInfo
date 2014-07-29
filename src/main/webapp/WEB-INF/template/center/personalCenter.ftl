@@ -484,22 +484,22 @@
 								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">'+a+'</td>
 							</tr>
 							<tr>
-								<td>起始时间:</td>
+								<td><font color="red">起始时间:</font></td>
 								<td colspan="3">
 								<input type="text" name="beginDateLearning'+a+'" id="beginDateLearning'+a+'" eidLearning="beginDateLearning'+a+'" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: new Date()});"  />
-								结束时间: <input type="text" name="endDateLearning'+a+'" id="endDateLearning'+a+'" eidLearning="endDateLearning'+a+'" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: \'#F{$dp.$D(beginDateLearning'+a+')}\'});"/>
+								<font color="red">结束时间:</font> <input type="text" name="endDateLearning'+a+'" id="endDateLearning'+a+'" eidLearning="endDateLearning'+a+'" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: \'#F{$dp.$D(beginDateLearning'+a+')}\'});"/>
 								<input type="hidden" name="beginData" value=""/>
 								<input type="hidden" name="endData" value=""/>
 								</td>
 							</tr>
 							<tr>
-								<td>学校名称:</td>
+								<td><font color="red">学校名称:</font></td>
 								<td style="padding-right:100px;"><input type="text" id="schoolLearning'+a+'" name="workspace"></td>
 								<td>系别:</td>
 								<td><input type="text" id="deptLearning'+a+'" name="dept"> </td>
 							</tr>
 							<tr>
-								<td>专业:</td>
+								<td><font color="red">专业：</font></td>
 								<td colspan="3">
 									<input type="hidden" value="" id="selectLearningSpecialtyhidden'+a+'" name="majorTypeId" value=""/>
 									<input type="hidden" value="2" name="infoType">
@@ -556,7 +556,7 @@
 								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">'+b+'</td>
 							</tr>
 							<tr>
-								<td>专业：</td>
+								<td><font color="red">专业：</font></td>
 								<td>
 									<input type="hidden" id="selectSkillSpecialtyhidden'+b+'" value="" name="majorTypeId">
 									
@@ -648,18 +648,18 @@
 								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">'+c+'</td>
 							</tr>
 							<tr>
-								<td>起始时间:</td>
+								<td><font color="red">起始时间:</font></td>
 								<td colspan="3">
 								<input type="text" id="beginDateWork'+c+'" name="beginDateWork'+c+'" eidWork="beginDateWork'+c+'" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string("yyyy-MM-dd"))!}"  onfocus="WdatePicker({maxDate: new Date()});"  />
-								结束时间: <input type="text" id="endDateWork'+c+'" eidWork="endDateWork'+c+'" name="endDateWork'+c+'" style="width:100px;height:25px"class="text Wdate"value="${(endDate?string("yyyy-MM-dd"))!}"  onfocus="WdatePicker({minDate: \'#F{$dp.$D(beginDateWork'+c+')}\'});" />
+								<font color="red">结束时间:</font> <input type="text" id="endDateWork'+c+'" eidWork="endDateWork'+c+'" name="endDateWork'+c+'" style="width:100px;height:25px"class="text Wdate"value="${(endDate?string("yyyy-MM-dd"))!}"  onfocus="WdatePicker({minDate: \'#F{$dp.$D(beginDateWork'+c+')}\'});" />
 								<input type="hidden" name="beginData" value=""/>
 								<input type="hidden" name="endData" value=""/>
 								</td>	
 							</tr>
 							<tr>
-								<td>工作单位:</td>
+								<td><font color="red">工作单位:</font></td>
 								<td style="padding-right:100px;"><input type="text" id="workspaceWork'+c+'" name="workspace"></td>
-								<td>职务:</td>
+								<td><font color="red">职务:</font></td>
 								<td><input type="text" id="dutyWork'+c+'" name="duty"></td>
 							</tr>
 							<tr>
@@ -715,7 +715,7 @@
 						<table>
 							<tr>
 								<td rowspan="4" style="background:#DCDCDC;color:#FE7200;">'+d+'</td>
-								<td>专业:</td>
+								<td><font color="red">专业：</font></td>
 								<td>
 									<input type="hidden" value="" id="selectVolunteerSpecialtyhidden'+d+'" name="majorTypeId"/>
 									<input type="hidden" value="4" name="infoType">
@@ -1232,7 +1232,7 @@
 			        	});
 				}
 		    	// 用户名验证。
-				$("#loginName,#idcard").change(function(){
+				$("#idcard").change(function(){
 					submitInfo("nosubmit");
 				});
 				
@@ -1550,9 +1550,9 @@
 							<p style="text-align: center;">确定要删除吗？</p>
 					</div>
 					<div style="height: 30px; width: 728px;">
-						<span style="float:left;">具备技能
+						<span style="float:left;">具备技能&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">(红色字体为必填项)</font>
 						</span>
-						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
+						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 405px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 						<div style="float: left; width: 50px; margin-left: 20px;">
 							<input id="add_jineng" type="button" value="添加" style="cursor:pointer;width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
 						</div>
@@ -1568,7 +1568,7 @@
 								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">${skill_index+1}</td>
 							</tr>
 							<tr>
-								<td>专业：</td>
+								<td><font color="red">专业：</font></td>
 								<td>
 									<input type="hidden" id="selectSkillSpecialtyhidden${skill_index+1}" name="majorTypeId" value="${skill.majorType.id}"/>
 									<input type="hidden" value="1" name="infoType">
@@ -1649,7 +1649,7 @@
 								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">1</td>
 							</tr>
 							<tr>
-								<td>专业：</td>
+								<td><font color="red">专业：</font></td>
 								<td>
 									<input type="hidden" value="" id="selectSkillSpecialtyhidden1" name="majorTypeId"/>
 										<input type="hidden" value="1" name="infoType">
@@ -1701,8 +1701,8 @@
 					</div>
 					
 					<div style="height: 30px; width: 728px;">
-						<span style="float:left;">学习经历</span>
-						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
+						<span style="float:left;">学习经历&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">(红色字体为必填项)</font></span>
+						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 405px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 						<div style="float: left; width: 50px; margin-left: 20px;">
 							<input id="add_xuexi" type="button" value="添加" style="cursor:pointer;width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
 						</div>
@@ -1718,10 +1718,10 @@
 								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">${learning_index+1}</td>
 							</tr>
 							<tr>
-								<td>起始时间:</td>
+								<td><font color="red">起始时间:</font></td>
 								<td colspan="2"><!--${(beginDate?string('yyyy-MM-dd'))!} ${(endDate?string('yyyy-MM-dd'))!}-->
 								<input type="text" name="beginDateLearning${learning_index+1}" id="beginDateLearning${learning_index+1}"  eidLearning="beginDateLearning${learning_index+1}" style="width:100px;height:25px" class="text Wdate" value="2012-01-23" onfocus="WdatePicker({maxDate: new Date()});"  />
-								结束时间: <input type="text"  name="endDateLearning${learning_index+1}" id="endDateLearning${learning_index+1}" eidLearning="endDateLearning${learning_index+1}" style="width:100px;height:25px" class="text Wdate" value="2120-05-21" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDateLearning${learning_index+1}\')}'});" />
+								<font color="red">结束时间:</font> <input type="text"  name="endDateLearning${learning_index+1}" id="endDateLearning${learning_index+1}" eidLearning="endDateLearning${learning_index+1}" style="width:100px;height:25px" class="text Wdate" value="2120-05-21" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDateLearning${learning_index+1}\')}'});" />
 								<input type="hidden" name="beginData" value=""/>
 								<input type="hidden" name="endData" value=""/>
 								</td>
@@ -1732,14 +1732,14 @@
 								[/#if]
 							</tr>
 							<tr>
-								<td>学校名称:</td>
+								<td><font color="red">学校名称:</font></td>
 								<td style="padding-right:100px;">
 								<input type="text" id="schoolLearning${learning_index+1}" name="workspace"  value="${learning.workspace}"></td>
 								<td>系别:</td>
 								<td><input type="text" id="deptLearning${learning_index+1}" name="dept" value="${learning.dept}"></td>
 							</tr>
 							<tr>
-								<td>专业:</td>
+								<td><font color="red">专业：</font></td>
 								<td colspan="3">
 									<input type="hidden" value="${learning.majorType.id}" id="selectLearningSpecialtyhidden${learning_index+1}" name="majorTypeId"/>
 									<input type="hidden" value="2" name="infoType">
@@ -1775,10 +1775,10 @@
 								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">1</td>
 							</tr>
 							<tr>
-								<td>起始时间:</td>
+								<td><font color="red">起始时间:</font></td>
 								<td colspan="2">
 								<input type="text" name="beginDateLearning1" id="beginDateLearning1"  eidLearning="beginDateLearning1" style="width:100px;height:25px" class="text Wdate" value="${(beginDateLearning1?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: new Date()});" />
-								结束时间: <input type="text"  name="endDateLearning1" id="endDateLearning1" eidLearning="endDateLearning1" style="width:100px;height:25px" class="text Wdate" value="${(endDateLearning1?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDateLearning1\')}'});" />
+								<font color="red">结束时间:</font> <input type="text"  name="endDateLearning1" id="endDateLearning1" eidLearning="endDateLearning1" style="width:100px;height:25px" class="text Wdate" value="${(endDateLearning1?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDateLearning1\')}'});" />
 								<input type="hidden" name="beginData" value=""/>
 								<input type="hidden" name="endData" value=""/>
 								</td>
@@ -1787,14 +1787,14 @@
 								</td>
 							</tr>
 							<tr>
-								<td>学校名称:</td>
+								<td><font color="red">学校名称:</font></td>
 								<td style="padding-right:100px;">
 								<input type="text" id="schoolLearning1" name="workspace"></td>
 								<td>系别:</td>
 								<td><input type="text" id="deptLearning1" name="dept" ></td>
 							</tr>
 							<tr>
-								<td>专业:</td>
+								<td><font color="red">专业：</font></td>
 								<td colspan="3">
 									<input type="hidden" value="" id="selectLearningSpecialtyhidden1" name="majorTypeId"/>
 									<input type="hidden" value="2" name="infoType">
@@ -1817,8 +1817,8 @@
 					</div>
 					
 					<div style="height: 30px; width: 728px;">
-						<span style="float:left;">工作经历</span>
-						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
+						<span style="float:left;">工作经历&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">(红色字体为必填项)</font></span>
+						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 405px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 						<div style="float: left; width: 50px; margin-left: 20px;">
 							<input id="add_gongzuo" type="button" value="添加" style="cursor:pointer;width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
 						</div>
@@ -1833,10 +1833,10 @@
 								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">${work_index+1}</td>
 							</tr>
 							<tr>
-								<td>起始时间:</td>
+								<td><font color="red">起始时间:</font></td>
 								<td colspan="2">
 								<input type="text" eidWork="beginDateWork${work_index+1}" id="beginDateWork${work_index+1}" name="beginDateWork${work_index+1}" style="width:100px;height:25px" class="text Wdate" value="1990-01-01" onfocus="WdatePicker({maxDate: new Date()});" />
-								结束时间: <input type="text" eidWork="endDateWork${work_index+1}" id="endDateWork${work_index+1}" name="endDateWork${work_index+1}" style="width:100px;height:25px" class="text Wdate" value="1990-01-01" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDateWork${work_index+1}\')}'});" />
+								<font color="red">结束时间:</font> <input type="text" eidWork="endDateWork${work_index+1}" id="endDateWork${work_index+1}" name="endDateWork${work_index+1}" style="width:100px;height:25px" class="text Wdate" value="1990-01-01" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDateWork${work_index+1}\')}'});" />
 								<input type="hidden" name="beginData" value=""/>
 								<input type="hidden" name="endData" value=""/>
 								</td>
@@ -1847,9 +1847,9 @@
 								[/#if]
 							</tr>
 							<tr>
-								<td>工作单位:</td>
+								<td><font color="red">工作单位:</font></td>
 								<td style="padding-right:100px;"><input type="text" id="workspaceWork${work_index+1}" name="workspace" value="${work.workspace}"></td>
-								<td>职务:</td>
+								<td><font color="red">职务:</font></td>
 								<td><input type="text" id="dutyWork${work_index+1}" name="duty" value="${work.duty}"></td>
 							</tr>
 							<tr>
@@ -1891,10 +1891,10 @@
 								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">1</td>
 							</tr>
 							<tr>
-								<td>起始时间:</td>
+								<td><font color="red">起始时间:</font></td>
 								<td colspan="2">
 								<input type="text" eidWork="beginDateWork1" id="beginDateWork1" name="beginDateWork1" style="width:100px;height:25px" class="text Wdate" value="${(beginDateWork1?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: new Date()});" />
-								结束时间: <input type="text" eidWork="endDateWork1" id="endDateWork1" name="endDateWork1" style="width:100px;height:25px" class="text Wdate" value="${(endDateWork1?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDateWork1\')}'});" />
+								<font color="red">结束时间:</font> <input type="text" eidWork="endDateWork1" id="endDateWork1" name="endDateWork1" style="width:100px;height:25px" class="text Wdate" value="${(endDateWork1?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDateWork1\')}'});" />
 								<input type="hidden" name="beginData" value=""/>
 								<input type="hidden" name="endData" value=""/>
 								</td>
@@ -1903,9 +1903,9 @@
 								</td>
 							</tr>
 							<tr>
-								<td>工作单位:</td>
+								<td><font color="red">工作单位:</font></td>
 								<td style="padding-right:100px;"><input type="text" id="workspaceWork1" name="workspace"></td>
-								<td>职务:</td>
+								<td><font color="red">职务:</font></td>
 								<td><input type="text" id="dutyWork1" name="duty"></td>
 							</tr>
 							<tr>
@@ -2018,15 +2018,15 @@
 					</div>
 					
 					<div style="height: 30px; width: 728px;">
-						<span style="float:left;">添加选择志愿</span>
-						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
+						<span style="float:left;">添加选择志愿&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">(红色字体为必填项)</font></span>
+						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 405px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 					</div>
 					<div class="zhiyuan">
 						<div class="zhiyuan_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="VolunteerForm1">	
 						<table>
 							<tr>
-								<td>专业:</td>
+								<td>&nbsp;&nbsp;专业：</td>
 								<td>
 									<input type="hidden" value="" id="selectVolunteerSpecialtyhidden1" name="majorTypeId"/>
 									<input type="hidden" value="4" name="infoType">
