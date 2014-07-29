@@ -100,7 +100,7 @@ th{
 								loginName: $("#loginName").val(),
 								password:$("#password").val(),
 								comfirmPwd:$("#comfirmPwd").val(),
-								fullName:$("#cpName").val(),
+								fullName:$("#fullName").val(),
 								legalMan:$("#LegalMan").val(),
 								contacts:$("#cpContacts").val(),
 								phoneNum:$("#phoneNum").val(),
@@ -123,7 +123,7 @@ th{
 					}
 					
 				// 用户名验证。
-				$("#loginName,#password,#comfirmPwd,#cpName").change(function(){
+				$("#loginName,#password,#comfirmPwd,#fullName,#phoneNum").change(function(){
 					submitF("nosubmit");
 				});
 				
@@ -132,10 +132,10 @@ th{
 					var loginName= $("#loginName").val();
 					var password=$("#password").val();
 					var comfirmPwd=$("#comfirmPwd").val();
-					var cpName=$("#cpName").val();
+					var fullName=$("#fullName").val();
 					if(loginName==""&&password==""&&comfirmPwd==""){
 						alert("用户名密码和确认密码及企业名称不能为空！");
-					}else if(cpName==""){
+					}else if(fullName==""){
 						alert("企业名称不能为空！");
 					}else{
 						submitF("submit");
@@ -173,7 +173,7 @@ th{
            		</tr>
            		<tr>
            			<th><font color="red">*</font>企业名称：</th>
-           			<td><input type="text"  id="cpName" name="fullName"/></td>
+           			<td><input type="text"  id="fullName" name="fullName"/></td>
            		</tr>
            		<tr>
            			<th>法人：</th>
@@ -185,7 +185,9 @@ th{
            		</tr>
            		<tr>
            			<th>手机号：</th>
-           			<td><input type="" id="phoneNum" /></td>
+           			<td>
+           			<input type="" id="phoneNum" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="11" minlegnth="11"/>
+           			</td>
            		</tr>
            	</table>
     	</div>

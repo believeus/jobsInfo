@@ -60,6 +60,16 @@ public class ControllerRegister {
 			message.put("message", "该用户已被删除或被禁用,不能注册");
 			JsonOutToBrower.out(message, response);
 		}
+		// 判断用户是否存在
+		if (!StringUtils.isEmpty(regUser.getLoginName())) {
+			TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TbaseUser.class, EtechGobal.loginName, regUser.getLoginName());
+			if (!StringUtils.isEmpty(user)) {
+				message.put("property","loginName");
+				message.put("message","用户名已存在");
+				JsonOutToBrower.out(message, response);
+				return;
+			}
+		}
 		// 用户注册
 		if(StringUtils.isEmpty(sessionUser)){
 			if(StringUtils.isEmpty(regUser.getPassword())){
@@ -229,6 +239,13 @@ public class ControllerRegister {
 			JsonOutToBrower.out(message, response);
 			return;
 		}
+		TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TbaseUser.class, EtechGobal.loginName, regUser.getLoginName());
+		if (!StringUtils.isEmpty(user)) {
+			message.put("property","loginName");
+			message.put("message","用户名已存在");
+			JsonOutToBrower.out(message, response);
+			return;
+		}
 		if(StringUtils.isEmpty(regUser.getPassword())){
 			message.put("property","password");
 			message.put("message","密码必填!");
@@ -241,12 +258,20 @@ public class ControllerRegister {
 			JsonOutToBrower.out(message, response);
 			return;
 		}
-		TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TbaseUser.class, EtechGobal.loginName, regUser.getLoginName());
-		if (!StringUtils.isEmpty(user)) {
-			message.put("property","loginName");
-			message.put("message","用户名已存在");
+		if(StringUtils.isEmpty(regUser.getFullName())){
+			message.put("property","fullName");
+			message.put("message","企业名称必填!");
 			JsonOutToBrower.out(message, response);
 			return;
+		}
+		if (!StringUtils.isEmpty(regUser.getPhoneNum())) {
+			boolean m = regUser.getPhoneNum().matches("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
+			if (m==false) {
+				message.put("property","phoneNum");
+				message.put("message","手机号码格式不正确！");
+				JsonOutToBrower.out(message, response);
+				return;					
+			}
 		}
 		if(!StringUtils.isEmpty(submit)&&submit.equals("submit")){
 			String password = DigestUtils.md5Hex(regUser.getPassword());

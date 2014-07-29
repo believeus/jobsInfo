@@ -121,7 +121,6 @@ th{
 											$("#boy").parent().show();
 											$("#boy").attr("checked",true);
 										}else if(data.sex == "woman"){
-											alert(data.sex);
 											$("#boy").parent().hide();
 											$("#girl").parent().show();
 											$("#girl").attr("checked",true);
@@ -196,22 +195,23 @@ th{
             		<td><input type="text" id="trueName" name="trueName" /></td>
             	</tr>
             	<tr>
+            		<th><font color="red">*</font>手机号码：</th>
+            		<td>
+            			<input type="" id="phoneNum" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="11" minlegnth="11"/>
+            		</td>
+            	</tr>
+            	<tr>
             		<th>身份证号：</th>
             		<td><input type="text" name="idcard" id="idcard" /></td>
             	</tr>
             	<tr>
             		<th>性别：</th>
             		<td>
-            			<input type="radio" id="boy" name="sex"  value="man" checked="true" style="width: 10px;height: 12px;border:0;"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                		<input type="radio" id="girl" name="sex" value="woman" checked="false" style="width: 10px;height: 12px;border:0;"/>女
+            			<label><input type="radio" id="boy" name="sex"  value="man" checked="true" style="width: 10px;height: 12px;border:0;"/>男&nbsp;&nbsp;</label>
+                		<label><input type="radio" id="girl" name="sex" value="woman" checked="false" style="width: 10px;height: 12px;border:0;"/>&nbsp;&nbsp;女</label>
             		</td>
             	</tr>
-            	<tr>
-            		<th><font color="red">*</font>手机号码：</th>
-            		<td>
-            			<input type="" id="phoneNum" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="11" minlegnth="11"/>
-            		</td>
-            	</tr>
+            	
             	<tr>
             		<th>电子邮箱：</th>
             		<td>
