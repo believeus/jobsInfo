@@ -1221,7 +1221,9 @@
 		        				if(data.message == "success" && $("#submit").val() == "submit"){
 									submitSkill();
 								}else if(data.message!="finish"){
-									alert(data.message);								
+									$("#"+data.property).val("");	
+									$("#"+data.property).focus();		
+									alert(data.message);	
 								}
 						     }
 			        	});
@@ -1382,11 +1384,17 @@
 							<table>
 								<tr>
 									<td>姓名:</td>
-									<td><input type="text" id="trueName" name="trueName" value="${sessionUser.trueName}"></td>
+									<td>
+									<label> ${sessionUser.trueName}</label>
+									<input type="hidden" id="trueName" name="trueName" value="${sessionUser.trueName}">
+									</td>
 								</tr>
 								<tr>
 									<td>登录名:</td>
-									<td><input type="text" id="loginName" name="loginName" value="${sessionUser.loginName}"></td>
+									<td>
+									<label> ${sessionUser.loginName}</label>
+									<input type="hidden" id="loginName" name="loginName" value="${sessionUser.loginName}">
+									</td>
 								</tr>
 								<tr>
 									<td>年龄:</td>
@@ -1455,7 +1463,7 @@
 								</tr>
 								<tr>
 									<td>密码:</td>
-									<td><input type="text" id="password"  name="password" placeholder="不填" readonly="readonly"></td>
+									<td><label>不填</label></td>
 								</tr>
 								<tr>
 									<td>身份证号:</td>
@@ -2155,7 +2163,7 @@
 				<div id="need">
 					<form action="/user/center/updatepd.jhtml" method="post" id="pdFrom">
 						<input type="hidden" name="id" value="${sessionUser.id}">
-						<input class="pass_text" type="text" autocomplete="off" name="password" placeholder="新密码"><br/>
+						<input class="pass_text" type="password" autocomplete="off" name="password" placeholder="新密码"><br/>
 						<input class="btn_submit" type="button" value="确定" id="btn_pd">
 						<input type="reset" value="重置" class="btn_submit" style="margin-left: 50px;">
 					</form>

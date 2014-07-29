@@ -264,7 +264,12 @@ public class ControllerRegister {
 			JsonOutToBrower.out(message, response);
 			return;
 		}
-		if (!StringUtils.isEmpty(regUser.getPhoneNum())) {
+		if (StringUtils.isEmpty(regUser.getPhoneNum())) {
+			message.put("property","phoneNum");
+			message.put("message","手机号码不能为空！");
+			JsonOutToBrower.out(message, response);
+			return;
+		}else {
 			boolean m = regUser.getPhoneNum().matches("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
 			if (m==false) {
 				message.put("property","phoneNum");
