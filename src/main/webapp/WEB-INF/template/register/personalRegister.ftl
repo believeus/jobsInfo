@@ -92,16 +92,6 @@ th{
 	<script type="text/javascript">
 		    $().ready(function() {
 		    
-		    	$("#phoneNum").blur(function(){
-					var phoneNum =$(this).val();
-					var regPartton=/^(?:13\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/; //验证手机号
-					if(!regPartton.test(phoneNum)){
-						alert("手机格式不正确！");
-						return false;
-					}
-				});
-				
-				
 					// ajax 提交验证和注册。
 		    		function submitF(submitx){
 						$.ajax({
@@ -131,6 +121,7 @@ th{
 											$("#boy").parent().show();
 											$("#boy").attr("checked",true);
 										}else if(data.sex == "woman"){
+											alert(data.sex);
 											$("#boy").parent().hide();
 											$("#girl").parent().show();
 											$("#girl").attr("checked",true);
@@ -148,7 +139,7 @@ th{
 					}
 					
 				// 用户名验证。
-				$("#loginName,#idcard,#password,#comfirmPwd,#phoneNum,#email").change(function(){
+				$("#loginName,#idcard,#password,#comfirmPwd,#phoneNum,#trueName").change(function(){
 					submitF("nosubmit");
 				});
 				

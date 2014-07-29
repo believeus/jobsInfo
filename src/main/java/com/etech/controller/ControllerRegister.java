@@ -40,7 +40,7 @@ public class ControllerRegister {
 	
 	/** Begin Author:wuqiwei Data:2014=05-26 Email:1058633117@qq.com AddReason:ajax判断一般用户的ajax验证*/
 	@RequestMapping(value="/ajaxComValidReg")
-	public void ajaxComValidReg(TcomUser regUser,String submit,String comfirmPwd,String cpName,HttpSession session,HttpServletResponse response){
+	public void ajaxComValidReg(TcomUser regUser,String submit,String comfirmPwd,String cpName,String trueName,String phoneNum,HttpSession session,HttpServletResponse response){
 		log.debug("current regUser reginName:"+regUser.getLoginName());
 		TbaseUser sessionUser = (TbaseUser)session.getAttribute("sessionUser");
 		Map<String, Object> message=new HashMap<String, Object>();
@@ -80,6 +80,27 @@ public class ControllerRegister {
 				JsonOutToBrower.out(message, response);
 				return;
 			}
+			if (StringUtils.isEmpty(trueName)) {
+				message.put("property","trueName");
+				message.put("message","真实姓名不能为空！");
+				JsonOutToBrower.out(message, response);
+				return;
+			}
+			if (StringUtils.isEmpty(phoneNum)) {
+				message.put("property","phoneNum");
+				message.put("message","手机号码不能为空！");
+				JsonOutToBrower.out(message, response);
+				return;
+			}else {
+				boolean m = phoneNum.matches("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
+				if (m==false) {
+					message.put("property","phoneNum");
+					message.put("message","手机号码格式不正确！");
+					JsonOutToBrower.out(message, response);
+					return;					
+				}
+			}
+			
 		}
 		log.debug("Idcard:"+regUser.getIdcard());
 		if(!StringUtils.isEmpty(regUser.getIdcard())){
