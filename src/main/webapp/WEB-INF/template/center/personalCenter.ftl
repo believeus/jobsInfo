@@ -182,6 +182,7 @@
 		function loadImgFast(img,i){
 				if (img.files && img.files[0]){
 					var reader = new FileReader();
+					$()
 					reader.onload = function(evt){$(".brandImg:eq("+i+") img")[0].src = evt.target.result;}
 		            reader.readAsDataURL(img.files[0]);	
 				}else if(window.navigator.userAgent.indexOf("MSIE")>=1){
@@ -475,6 +476,15 @@
 						
     		//添加学习经历
     		$("#add_xuexi").click(function(){
+    			// 获取必填项是否有值。
+    			var beginDateLearning=$("#beginDateLearning"+(a-1)).val();
+    			var endDateLearning=$("#endDateLearning"+(a-1)).val();
+    			var schoolLearning=$("#schoolLearning"+(a-1)).val();
+    			var selectLearningSpecialtyhidden=$("#selectLearningSpecialtyhidden"+(a-1)).val();
+    			if(beginDateLearning==""||endDateLearning==""||schoolLearning==""||selectLearningSpecialtyhidden==""){
+    				alert("请完整填写必填项！");
+    				return false;
+    			};
     			[@compress single_line = true]
     				var trHtml = 
     				'<div class="xuexi_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
@@ -547,6 +557,12 @@
     		
     		//添加具备技能
     		$("#add_jineng").click(function(){
+    			// 获取必填项是否有值。
+    			var Specialty=$("#selectSkillSpecialty"+(b-1)).find("span").text();
+    			if(Specialty=="选择专业"){
+    				alert("请完整填写必填项！");
+    				return false;
+    			};
     			[@compress single_line = true]
     				var trHtml = 
 					'<div class="jineng_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
@@ -639,6 +655,15 @@
     		
     		//添加工作经历
     		$("#add_gongzuo").click(function(){
+    			// 获取必填项是否有值。
+    			var beginDateWork=$("#beginDateWork"+(c-1)).val();
+    			var endDateWork=$("#endDateWork"+(c-1)).val();
+    			var workspaceWork=$("#workspaceWork"+(c-1)).val();
+    			var dutyWork=$("#dutyWork"+(c-1)).val();
+    			if(beginDateWork==""||endDateWork==""||workspaceWork==""||dutyWork==""){
+    				alert("请完整填写必填项！");
+    				return false;
+    			};
     			[@compress single_line = true]
     				var trHtml = 
     				'<div class="gongzuo_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
@@ -1225,14 +1250,41 @@
 						     success: function(data){
 		        				if(data.message == "success" && $("#submit").val() == "submit"){
 									submitSkill();
-								}else if(data.message!="finish"){
-									alert(data.message);								
+								}else if(data.property=="idcardIsNull"){
+									// 设置年龄和性别为可填写。
+									$("#ageH").attr("style","");
+									$("#ageS").attr("style","display: none");
+									$("#sexH").attr("style","");
+									$("#sexS").attr("style","display: none");
+								}else if(data.property!="idcardIsNull"&&data.property!="idcard"){
+									// 设置年龄和性别为可填写。
+									$("#ageH").attr("style","display: none");
+									$("#ageS").attr("style","");
+									$("#sexH").attr("style","display: none");
+									$("#sexS").attr("style","");
+									var sex="男";
+									if(data.sex=="woman"){
+										sex="女";
+									}
+									$("#ageH").find("input").val(data.age);
+									$("#ageS").find("input").val(data.age);
+									$("#ageS").find("label").html(data.age);
+									$("#sexH").find("input").val(data.sex);
+									$("#sexS").find("input").val(data.sex);
+									$("#sexS").find("label").html(sex);
+									$("#age").val(data.age);
+									$("#sex").val(data.sex);
+								}
+								if(data.message!=""||data.property=="idcard"||data.property=="idcardIsNull"){
+									if(data.message!="finish"&&data.message != "success" ){
+										alert(data.message);										
+									}								
 								}
 						     }
 			        	});
 				}
 		    	// 用户名验证。
-				$("#idcard").change(function(){
+				$("#idcard,#phoneNum").change(function(){
 					submitInfo("nosubmit");
 				});
 				
@@ -1401,7 +1453,13 @@
 								</tr>
 								<tr>
 									<td>年龄:</td>
-									<td><input type="text" id="age" name="age" value="${sessionUser.age}" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"></td>
+									<td id="ageS" [#if sessionUser.idcard!=""]style=""[#else]style="display: none"[/#if]>
+										<label>${sessionUser.age}</label>
+									</td>
+									<td id="ageH" [#if sessionUser.idcard!=""]style="display: none"[#else]style=""[/#if]>
+										<input type="text" id="age" name="age" value="${sessionUser.age}"  onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3">
+									</td>
+									
 								</tr>
 								<tr>
 									<td>民族:</td>
@@ -1456,7 +1514,12 @@
 							<table>
 								<tr>
 									<td>性别:</td>
-									<td>
+									<td id="sexS" [#if sessionUser.idcard!=""]style=""[#else]style="display: none"[/#if]>
+										<label>
+										[#if sessionUser.sex=="woman"]女[#else]男[/#if]
+										</label>
+									</td>
+									<td id="sexH" [#if sessionUser.idcard!=""]style="display: none"[#else]style=""[/#if]>
 										<select id="sex" name="sex" style="width:158px;">
 											<option value="">请选择..</option>
 											<option value="man">男</option>
@@ -1533,7 +1596,7 @@
 						<div style="width: 150px; float: left; margin-left: 15px; height: auto; margin-top: 15px;">
 								<form novalidate="novalidate"  action="/upload.jhtml" method="post" encType="multipart/form-data" id="imageForm">
 									
-									<div class="Img">
+									<div class="brandImg">
 											<img style="width:122px;height:150px" src="[#if sessionUser.imgHead!=""]/${sessionUser.imgHead}[#else]/resource/public/images/bg1.png[/#if]" name="img"/>
 											<div style="color: #000000; font-size: 12px; position: relative; padding-top: 25px; width: 122px;text-align:center;top:30px">建议图片大小：</div>
 											<div style="color: #000000; font-size: 12px; position: relative; padding: 0px; width: 122px;text-align:center;top:30px">宽122px*高150px</div>
@@ -2026,7 +2089,7 @@
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="VolunteerForm1">	
 						<table>
 							<tr>
-								<td>&nbsp;&nbsp;专业：</td>
+								<td>专业：</td>
 								<td>
 									<input type="hidden" value="" id="selectVolunteerSpecialtyhidden1" name="majorTypeId"/>
 									<input type="hidden" value="4" name="infoType">
@@ -2038,7 +2101,7 @@
 										</a>	
 									</div>
 								</td>
-								<td><font color="red">*</font>择业地区:</td>
+								<td><font color="red">择业地区:</font></td>
 								<td>
 									<input type="text"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" name="expectArea" readonly="readonly">
 									<!--////////////////////////////////////////////////////////////////////////-->
@@ -2095,7 +2158,7 @@
 							</tr>
 							<tr>
 								
-								<td><font color="red">*</font>工种:</td>
+								<td><font color="red">工种:</font></td>
 								<td>
 									<input type="hidden" value="" id="selectVolunteerJobshidden1" name="workTypeId"/>
 									<div class="topnav">

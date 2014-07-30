@@ -413,15 +413,15 @@
 									<td>${tcomUser.health}</td>
 								</tr>
 								<tr>
-									<td style="background: #EEEEEE; text-align: right;">政治面貌:</td>
+									<td style="background: #EEEEEE; text-align: right;width:65px">政治面貌:</td>
 									<td>${tcomUser.polity}</td>
-									<td style="background: #EEEEEE; text-align: right;">家庭详细地址:</td>
+									<td style="background: #EEEEEE; text-align: right;width:90px;">家庭详细地址:</td>
 									<td>${tcomUser.address}</td>
 								</tr>
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;">婚姻状况:</td>
 									<td>${tcomUser.marriage}</td>
-									<td style="background: #EEEEEE; text-align: right;">原工作单位:</td>
+									<td style="background: #EEEEEE; text-align: right;width:90px;">原工作单位:</td>
 									<td>${tcomUser.workspace}</td>
 								</tr>
 								<tr>
@@ -455,7 +455,7 @@
 							</table>
 						</div>
 						<div style="width: 150px; float: left; margin-left: 15px; height: auto; margin-top: 15px;">
-							<img style="width:122px;height:150px;border:1px solid #e4e4e4;" src="${tcomUser.imgHead}" name="img"/>
+							<img style="width:122px;height:150px;border:1px solid #e4e4e4;" src="[#if tcomUser.imgHead!=""]${tcomUser.imgHead}[#else]/resource/public/images/bg1.png[/#if]" name="img"/>
 						</div>
 					</div>
 					

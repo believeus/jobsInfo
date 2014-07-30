@@ -365,6 +365,13 @@
 		
 		//保存志愿。
 		$("#saveVolunteer").click(function() {
+				if($("#start1").val()==""){
+		    			alert("请选择地区");
+		    			return false;
+	    		}else if($("#selectVolunteerJobshidden1").val()==""){
+	    			alert("请选择工种");
+	    			return false;
+	    		}
 				showdiv();
 				submitVolunteer();
 		});
@@ -470,7 +477,7 @@
 										</a>	
 									</div>
 								</td>
-								<td>择业地区:</td>
+								<td><font color="red">择业地区:</font></td>
 								<td>
 									<input type="text"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" name="expectArea" value="${conInfo.expectArea}" readonly="readonly">
 									<!--////////////////////////////////////////////////////////////////////////-->
@@ -527,7 +534,7 @@
 							</tr>
 							<tr>
 								
-								<td>工种:</td>
+								<td><font color="red">工种:</font></td>
 								<td>
 									<input type="hidden" value="" id="selectVolunteerJobshidden1" name="workTypeId"/>
 									<div class="topnav">
