@@ -177,11 +177,13 @@ public class ControllerCenter {
 				comInfo.setMajorType(majorType);
 			}
 			// 设置编辑时间
+			comInfo.setCreateDate(System.currentTimeMillis());
 			comInfo.setEditDate(System.currentTimeMillis());
-			etechService.merge(comInfo);
+			etechService.saveOrUpdata(comInfo);
+			System.out.println("xxxx");
 			map.put("message", "success");
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			ex.printStackTrace(); 
 			map.put("message", "error");
 		}
 	}

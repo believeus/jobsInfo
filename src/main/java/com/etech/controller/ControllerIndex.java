@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.etech.entity.Tadmin;
 import com.etech.entity.TbaseUser;
-import com.etech.entity.TcomUser;
+import com.etech.entity.TcomInfo;
 import com.etech.entity.TdataCenter;
 import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
@@ -85,8 +85,8 @@ public class ControllerIndex {
 		session.setAttribute("zhaopList", zhaopList); 
 		
 		//求职信息
-		hql = "From TcomUser tcomUser where tcomUser.disable='0' order by id desc";
-		List<TcomUser> qiuzhiList = (List<TcomUser>)etechService.findListByHQL(hql);
+		hql	= "From TcomInfo tcomInfo where tcomInfo.comUser.disable='0' order by tcomInfo.editDate desc";
+		List<TcomInfo> qiuzhiList = (List<TcomInfo>)etechService.findListByHQL(hql,4);
 		session.setAttribute("qiuzhiList", qiuzhiList); 
 		
 		//图片新闻
