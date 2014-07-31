@@ -173,7 +173,7 @@ public class TcomInfo extends TbaseEntity implements Serializable {
 	}
 
 	@IndexedEmbedded
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_workTypeId", referencedColumnName = "id")
 	public TmajorType getWorkType() {
 		return workType;
@@ -184,7 +184,7 @@ public class TcomInfo extends TbaseEntity implements Serializable {
 	}
 
 	@IndexedEmbedded
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_majorTypeId", referencedColumnName = "id")
 	public TmajorType getMajorType() {
 		return majorType;

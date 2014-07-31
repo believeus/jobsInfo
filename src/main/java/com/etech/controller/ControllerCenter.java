@@ -164,9 +164,12 @@ public class ControllerCenter {
 	public void submitComInfo(TcomInfo comInfo, Integer workTypeId,
 			Integer majorTypeId,HttpServletResponse response,
 			HttpSession session) {
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			TcomUser sessionUser = (TcomUser) session.getAttribute("sessionUser");
+			sessionUser.setEditDate(System.currentTimeMillis());
+			etechService.saveOrUpdata(sessionUser);
 			comInfo.setComUser(sessionUser);
 			if (workTypeId != null) {
 				TmajorType workType = (TmajorType) etechService.findObjectById(TmajorType.class, workTypeId);
@@ -180,7 +183,6 @@ public class ControllerCenter {
 			comInfo.setCreateDate(System.currentTimeMillis());
 			comInfo.setEditDate(System.currentTimeMillis());
 			etechService.saveOrUpdata(comInfo);
-			System.out.println("xxxx");
 			map.put("message", "success");
 		} catch (Exception ex) {
 			ex.printStackTrace(); 
