@@ -2,14 +2,17 @@ package com.etech.controller;
 
 import java.util.Calendar;
 import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.etech.entity.TcomUser;
+
+import com.etech.entity.TcomInfo;
 import com.etech.entity.TdataCenter;
 import com.etech.entity.TentImgVedio;
 import com.etech.entity.Trecruit;
@@ -64,8 +67,8 @@ public class ControllerJobIntroduce {
 		request.setAttribute("zhaopList", zhaopList); 
 		
 		//求职信息   所属企业没有被删除的disable='0'
-		hql = "From TcomUser tcomUser where tcomUser.disable='0' order by id desc";
-		List<TcomUser> qiuzhiList = (List<TcomUser>)etechService.findListByHQL(hql);
+		hql	= "From TcomInfo tcomInfo where tcomInfo.comUser.disable='0' and tcomInfo.infoType='4' order by tcomInfo.editDate desc";
+		List<TcomInfo> qiuzhiList = (List<TcomInfo>)etechService.findListByHQL(hql);
 		request.setAttribute("qiuzhiList", qiuzhiList); 
 		
 		//企业图片

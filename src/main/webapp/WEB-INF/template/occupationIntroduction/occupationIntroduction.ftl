@@ -591,20 +591,18 @@
 		<div class="zuixinjianli" style="width:997px;height:auto;border:1px solid #e4e4e4;background:#FFFFFF;">
 			<img src="/resource/public/images/zuixinjianli.png">
 			<div class="jianli" style="padding-top:5px;">
-				[#list qiuzhiList as qiuzhi]
-					[#list qiuzhi.comInfo as comInfo]
-						[#if comInfo.infoType == 4]
+				[#list qiuzhiList as comInfo]
 						<div class="jianli_list">
 							<span class="jianli_name">
-								<a style="color:#FF7800;" href="/personalResume.jhtml?id=${qiuzhi.id}">
-									[#if qiuzhi.trueName?exists] ${qiuzhi.trueName} [#else] 匿名 [/#if]
+								<a style="color:#FF7800;" href="/personalResume.jhtml?id=${comInfo.comUser.id}">
+									[#if comInfo.comUser.trueName?exists] ${comInfo.comUser.trueName} [#else] 匿名 [/#if]
 								</a>
 							</span>
 							<span class="jianli_xinxi" title="${comInfo.workType.name}">
 								&nbsp;&nbsp;
-								[#if qiuzhi.sex == 'man']男[#else]女[/#if]
+								[#if comInfo.comUser.sex == 'man']男[#else]女[/#if]
 								&nbsp;&nbsp;
-								[#if qiuzhi.eduLevel?exists]${qiuzhi.eduLevel}[#else]大学[/#if]
+								[#if comInfo.comUser.eduLevel?exists]${qiuzhi.eduLevel}[#else]大学[/#if]
 								&nbsp;&nbsp;
 								[#if comInfo.workType.name?length > 9]
 									${comInfo.workType.name?string?substring(0,8)}...
@@ -613,8 +611,6 @@
 								[/#if]
 							</span>
 						</div>
-						[/#if]
-					[/#list]
 				[/#list]
 			</div>
 		</div>

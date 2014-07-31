@@ -483,24 +483,20 @@
 							<div class="xinxi_1">
 								<p class="xinxi_1_p"><span style="margin-left:30px;float:none;">求职信息</span></p>
 								<ul style="padding-left:25px;" id="jobInfo">
-									[#list qiuzhiList as qiuzhi]
-										[#list qiuzhi.comInfo as comInfo]
-											[#if comInfo_index<6 && comInfo.infoType == 4]
-												<li class="xinxi_1_li">
-													<a href="/personalResume.jhtml?id=${comInfo.comUser.id}" title="${comInfo.workType.name}">
-														${qiuzhi.trueName}&nbsp;&nbsp;
-														[#if qiuzhi.sex == 'man']男[#elseif qiuzhi.sex == 'woman']女[#else]不限[/#if]&nbsp;&nbsp;
-														[#if qiuzhi.eduLevel !=""]${qiuzhi.eduLevel}[/#if]&nbsp;&nbsp;
-														[#if comInfo.workType.name?length > 9]
-															${comInfo.workType.name?string?substring(0,8)}...
-														[#else]
-															${comInfo.workType.name}
-														[/#if]
-													</a>
-													<span class="xinxi_1_span">${qiuzhi.createDate?number_to_datetime}</span>
-												</li>
-											[/#if]
-										[/#list]
+									[#list qiuzhiList as comInfo]
+										<li class="xinxi_1_li">
+											<a href="/personalResume.jhtml?id=${comInfo.comUser.id}" title="${comInfo.workType.name}">
+												${comInfo.comUser.trueName}&nbsp;&nbsp;
+												[#if comInfo.comUser.sex == 'man']男[#elseif comInfo.comUser.sex == 'woman']女[#else]不限[/#if]&nbsp;&nbsp;
+												[#if comInfo.comUser.eduLevel !=""]${qiuzhi.eduLevel}[/#if]&nbsp;&nbsp;
+												[#if comInfo.workType.name?length > 9]
+													${comInfo.workType.name?string?substring(0,8)}...
+												[#else]
+													${comInfo.workType.name}
+												[/#if]
+											</a>
+											<span class="xinxi_1_span">${comInfo.editDate?number_to_datetime}</span>
+										</li>
 									[/#list]
 								</ul>
 							</div>

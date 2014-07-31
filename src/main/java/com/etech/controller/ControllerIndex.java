@@ -80,12 +80,12 @@ public class ControllerIndex {
 		session.setAttribute("links", links); 
 		
 		//招聘信息
-		hql = "From Trecruit trecruit where trecruit.status='1' and  trecruit.isview='发布' and trecruit.entUser.disable='0' order by id desc";
+		hql = "From Trecruit trecruit where trecruit.status='1' and  trecruit.isview='发布' and trecruit.entUser.disable='0' order by trecruit.editTime desc";
 		List<Trecruit> zhaopList = (List<Trecruit>)etechService.findListByHQL(hql);
 		session.setAttribute("zhaopList", zhaopList); 
 		
 		//求职信息
-		hql	= "From TcomInfo tcomInfo where tcomInfo.comUser.disable='0' order by tcomInfo.editDate desc";
+		hql	= "From TcomInfo tcomInfo where tcomInfo.comUser.disable='0' and tcomInfo.infoType='4' order by tcomInfo.editDate desc";
 		List<TcomInfo> qiuzhiList = (List<TcomInfo>)etechService.findListByHQL(hql,4);
 		session.setAttribute("qiuzhiList", qiuzhiList); 
 		
