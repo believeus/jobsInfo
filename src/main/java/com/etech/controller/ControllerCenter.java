@@ -345,7 +345,11 @@ public class ControllerCenter {
 	public void submitRecruit(Trecruit recruit,Integer workTypeId,
 			Integer majorTypeId,HttpSession session,HttpServletResponse response) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		TentUser entUser=(TentUser)session.getAttribute("sessionUser");
+		Integer userId=((TentUser)session.getAttribute("sessionUser")).getId();
+		TentUser entUser=(TentUser)etechService.findObjectById(TentUser.class, userId);
+		entUser.setEditDate(System.currentTimeMillis());
+		etechService.saveOrUpdata(entUser);
+		session.setAttribute("sessionUser", entUser);
 		recruit.setEntUser(entUser);
 		//创建时间
 		recruit.setCreateTime(System.currentTimeMillis());
@@ -372,8 +376,14 @@ public class ControllerCenter {
 	
 	
 	@RequestMapping(value = "/enterprise-user/center/change-recruit")
-	public void changeRecruit(String id,HttpServletResponse response){
-		Trecruit recruit= (Trecruit)etechService.findObjectById(Trecruit.class, Integer.valueOf(id));
+	public void changeRecruit(Integer id,HttpSession session,HttpServletResponse response){
+		
+		Trecruit recruit= (Trecruit)etechService.findObjectById(Trecruit.class, id);
+		Integer userId=((TentUser)session.getAttribute("sessionUser")).getId();
+		TentUser entUser=(TentUser)etechService.findObjectById(TentUser.class, userId);
+		entUser.setEditDate(System.currentTimeMillis());
+		etechService.saveOrUpdata(entUser);
+		session.setAttribute("sessionUser", entUser);
 		String isview = recruit.getIsview();
 		String info="";
 		if (isview.equals("发布")) {
@@ -389,7 +399,11 @@ public class ControllerCenter {
 		JsonOutToBrower.out(map, response);
 	}
 	@RequestMapping(value = "/enterprise-user/center/delete-recruit")
-	public void deleteRecruit(String id,HttpServletResponse response){
+	public void deleteRecruit(String id,HttpSession session,HttpServletResponse response){
+		TentUser entUser=(TentUser)session.getAttribute("sessionUser");
+		entUser.setEditDate(System.currentTimeMillis());
+		etechService.saveOrUpdata(entUser);
+		session.setAttribute("sessionUser", entUser);
 		etechService.deleteObjectById(Trecruit.class, Integer.valueOf(id));
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("message", "success");

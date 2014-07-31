@@ -39,7 +39,6 @@ public class TbaseUser extends TbaseEntity implements Serializable{
 	private long createDate;
 	/**上次登录时间*/
 	private long lastLoginData;
-	private long currentLoginData;
 	/** 用户登录密码 */
 	private String password;
 	/**确定密码*/
@@ -165,18 +164,4 @@ public class TbaseUser extends TbaseEntity implements Serializable{
 	public void setDisable(int disable) {
 		this.disable = disable;
 	}
-	/**
-	 * @return the currentLoginData
-	 */
-	public long getCurrentLoginData() {
-		return currentLoginData;
-	}
-	/**
-	 * @param currentLoginData the currentLoginData to set
-	 */
-	public void setCurrentLoginData(long currentLoginData) {
-		this.currentLoginData = currentLoginData;
-	}
-	
-	
 }
