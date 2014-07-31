@@ -243,7 +243,7 @@
 	    border-style: solid;
 	    border-width: 1px;
 	    background-color: #666666;
-	    width:260px !important;height:30px !important;
+	    width:190px !important;height:48px !important;
 	    position:relative;
 	}
 	
@@ -251,8 +251,8 @@
 		display:block;
 		position:absolute;
 		top:0px;left:0px;
-		width:240px !important;
-		height:30px !important;
+		width:170px !important;
+		height:48px !important;
 	}
 	
 	#Img span:hover{
@@ -266,8 +266,8 @@
 	#Img span a{
 		display:block;
 		position:absolute;
-		top:0px !important;
-		left:90px !important;
+		top:10px !important;
+		left:50px !important;
 	}
 	
 	</style>
@@ -331,6 +331,32 @@
 										
 	
 	<script type="text/javascript" charset="UTF-8">
+				function showDialogSave(){
+					$("#dialog").dialog({
+					    bgiframe: true,
+					    resizable: false,
+					    modal: true,
+					    buttons: {
+					        '确定': function() {
+					        	//提交
+					        	$("#InfoForm").ajaxSubmit({
+					            	 type: "post",
+								     url: "/enterprise/submit-account-Info.jhtml",
+								     dataType: "json",
+								     success: function(data){
+								     	submitMap();
+								     }
+				        		});	
+					           
+					        },
+					        '取消': function() {
+					            location.reload(true);
+					        }
+					    }
+					});
+					
+				}
+		
 				// 删除企业视频
 				function deleteVIds(id){
 					var deleteVedios = $("#deleteVedios");
@@ -460,6 +486,7 @@
 					$(object).closest("div").parent().find("img").attr("src","/resource/public/images/bg.png");
 					$(object).closest("div").parent().find("textarea").text("");
 					$(object).closest("div").parent().find("input[name='id']").remove();
+					$(object).closest("div").parent().find("input[name='url']").remove();
 					if(id!=0){
 						deleteImg(id);					
 					}
@@ -485,6 +512,17 @@
 						deleteVIds(id);
 						//清空，加载一个新的视频。
 						$("#vedioForm"+formId).html(htmlx);
+					}else{
+						// 清空图片
+						var file = $("#vedioForm"+formId).find("[name='fileImg']");
+						file.after(file.clone().val(""));
+						file.remove(); 
+						// 清空视频
+						var filev = $("#vedioForm"+formId).find("[name='fileVedio']");
+						filev.after(filev.clone().val(""));
+						filev.remove(); 
+						// 清空文本框
+						$("#vedioForm"+formId).find("[name='descption']").val("");
 					}
 				} else {
 					if(id!=0){
@@ -519,11 +557,20 @@
 		
 		// ajax 提交验证和保存。
 		function submitInfo(){
-			if(infochange!=0||changex==1){
+			var infochange=0;
+			$(":input").each(function() {
+				var checkstatus=$(this).attr("check");
+				if(checkstatus==1){
+					infochange=1;				
+				}
+			})
+			if(infochange!=0){
+			    // 设置弹出框确认保存和取消
 				$("#status").val(0);
-			}
-			//alert(" 信息提交");
-			$("#InfoForm").ajaxSubmit({
+			    showDialogSave();
+			}else{
+				showdiv();
+	        	$("#InfoForm").ajaxSubmit({
 	            	 type: "post",
 				     url: "/enterprise/submit-account-Info.jhtml",
 				     dataType: "json",
@@ -531,6 +578,7 @@
 				     	submitMap();
 				     }
         		});	
+			}
 		}
 		
 		
@@ -640,32 +688,20 @@
     	
     	var sum=1;
     	
-    	// 查看是否发生改变。
-    	var infochange=0;
-    	
     	// 查看电子图是否有改变。
     	var changex=0;
     
     $().ready(function(){
     	 
-    	var countchange=0;
-    	$(":input").change(function() {
+    	$("#fullName,#shorName,#area,#regMoney,#contacts,#zip,#phoneFax,#introduce,#legalMan,#trade,#detailAddress,#address,#phoneNum").change(function() {
     		var oldvalue=$(this).attr("oldvalue");
-    		if(oldvalue!=""&&oldvalue!=undefined){
-    			countchange++;
-	    		if(countchange==1){
-	    			alert("修改企业基本信息，需管理员重新审核！");
-	    		}
-	    		var value=$(this).val();
-	    		
+	    	var value=$(this).val();
 	    		// 监听是否发生改变。
 	    		if(oldvalue!=value){
-	    			infochange++;
+	    			$(this).attr("check",1);
 	    		}else{
-	    			infochange--;
+	    			$(this).attr("check",0);
 	    		}
-    		}
-    		
     	});
 
     
@@ -978,7 +1014,7 @@
     		
     		if($("#fullName").val() == ""){
     			alert("请输入单位全称");
-    		}else if($("#shorName").val() == ""){
+    		} else if($("#shorName").val() == ""){
     			alert("请输入单位简称");
     		}else if($("#legalMan").val() == ""){
     			alert("请输入法人代表");
@@ -1048,11 +1084,9 @@
 		   			}
 		   			// 在所有条件通过的条件下提交
 	   				if(tag==false&&count==v){
-	   					showdiv();
 						submitInfo();
 	   				}
 		   		  }else{
-		   		  	showdiv();
     			  	submitInfo();
 		   		  }
     			}
@@ -1180,6 +1214,9 @@
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 525px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 						<div style="float: left; width: 50px; margin-left: 20px;">
 							<input id="update_mima" type="button" value="修改密码" onClick="alert_win.style.display='block';" style="cursor:pointer;width: 80px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
+						</div>
+						<div id="dialog" title="&nbsp;" style="display: none;">
+							<p style="text-align: center;">修改企业基本信息，需要管理员重新审核，且审核未通过前不能进行招聘信的相关操作！ 是否要继续保存？</p>
 						</div>
 					</div>
 					<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
@@ -1336,10 +1373,10 @@
 											<div class="brandImg" id="Img">
 												<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
 												</span>
-													<img width="260px" height="30px" src="/${map.url}" name="url" id="${map.id}"/>
+													<img width="190px" height="48px" src="/${map.url}" name="url" id="${map.id}"/>
 													<input type="hidden" name="id" value="${map.id}">
-													<div style="height: 20px; position: relative; width: 230px; left: 270px; font-size: 12px; top: -30px;">
-														建议图片尺寸：宽240px*高30px
+													<div style="height: 2px; position: relative; width: 230px; left: 230px; font-size: 12px; top: -36px;">
+														建议图片尺寸：宽190px*高48px
 													</div>
 											</div>
 											<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">
@@ -1349,9 +1386,9 @@
 										<div class="brandImg" id="Img">
 											<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
 											</span>
-												<img width="260px" height="30px" src="/resource/public/images/bg1.png" name="url" id="0"/>
-												<div style="height: 20px; position: relative; width: 230px; left: 270px; font-size: 12px; top: -30px;">
-														建议图片尺寸：宽240px*高30px
+												<img width="190px" height="48px" src="/resource/public/images/bg.png" name="url" id="0"/>
+												<div style="height: 2px; position: relative; width: 230px; left: 230px; font-size: 12px; top: -36px;">
+														建议图片尺寸：宽190px*高48px
 												</div>
 										</div>
 										<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">
@@ -1400,7 +1437,7 @@
 								<p>
 									<div class="brandImg">
 										<span><a onclick="file1.click()" href="javascript:void(0);">点击上传图片</a></span>
-										<img style="width:160px;height:145px" src="/resource/public/images/bg1.png" />
+										<img style="width:160px;height:145px" src="/resource/public/images/bg.png" />
 									</div>
 									<input type="file" style="display:none" id="file1" name="file1" onchange="filename1.value=this.value;loadImgFast(this,1)">
 									<input type="hidden" id="filename1" name="filename1">
@@ -1565,11 +1602,14 @@
 					<form novalidate="novalidate"  action="/enterprise-user/center/submit-recruit.jhtml"  method="post" id="jobsForm1">
 						<input type="hidden" name="status" value="0">
 						<input type="hidden" name="viewData" value="" id="viewData">
-						<input type="hidden" name="isview" value="不发布">
+						<input type="hidden" name="isview" value="发布">
 							<table>
 								<tr>
 									<td>招聘单位:</td>
-									<td style="padding-right:80px;"><input type="text" id="company1" name="company" value="${sessionUser.fullName}" readonly="readonly"></td>
+									<td style="padding-right:80px;">
+									<label>&nbsp;&nbsp;&nbsp;&nbsp;${sessionUser.fullName}</label>
+									<input type="hidden" id="company1" name="company" value="${sessionUser.fullName}" readonly="readonly">
+									</td>
 									<td>人数:</td>
 									<td><input type="text" id="worknum1" name="worknum" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"></td>
 								</tr>
@@ -1794,7 +1834,7 @@
 				<div id="need">
 					<form action="/user/center/updatepd.jhtml" method="post" id="pdFrom">
 						<input type="hidden" name="id" value="${sessionUser.id}">
-						<input class="pass_text" type="text"  autocomplete="off" name="password" placeholder="新密码"><br/>
+						<input class="pass_text" type="password"  autocomplete="off" name="password" placeholder="新密码"><br/>
 						<input class="btn_submit" type="button" value="确定" id="btn_pd">
 						<input type="reset" value="重置" class="btn_submit" style="margin-left: 50px;">
 					</form>

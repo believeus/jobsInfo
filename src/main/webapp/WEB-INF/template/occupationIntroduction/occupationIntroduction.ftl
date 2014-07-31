@@ -622,7 +622,7 @@
 			[#list enterpriseHeaderImgs as headImg]
 				[#if headImg_index <50 ]
 					<a href="${headImg.alink}" title="${headImg.title}">
-						<img src="${headImg.imgpath}" width="195" height="48" style="margin-bottom:5px;"><!--高度修改前33，修改后48 2014-07-18 北科-->
+						<img src="${headImg.imgpath}" width="190" height="48" style="margin-bottom:5px;"><!--高度修改前33，修改后48 2014-07-18 北科-->
 					</a>
 				[/#if]
 			[/#list]

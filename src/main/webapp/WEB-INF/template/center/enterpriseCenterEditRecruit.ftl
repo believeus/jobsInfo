@@ -414,27 +414,28 @@
 	[#include "/include/header.ftl" /]
 	<div class="j_main w">
 		<div class="j_main_left">
-			<div class="j_main_left_1" style="border:0;height:auto;border:1px solid #E4630F;border-radius:4px;">
-				<table style="padding: 6px 19px 19px;">
-					<tr>
+			<div class="j_main_left_1" style="background:url(/resource/public/images/ggwsydl.png) no-repeat; width:258px; height:222px;border:1px solid #f2c49f;">
+				<table style="margin:55px 0 0 15px;" border="0">
+					<!--<tr>
 						<td colspan="2" align="center" style="background:#EE981F;color:#FFFFFF;border-radius:4px;">用户登录</td>
+					</tr>-->
+					<tr>
+						<td height="45" align="center" width="30"><img src="/resource/public/images/dlr.png" /></td>
+						<td style="font-family:'黑体';font-size:17px;color:#ef4300;">${sessionUser.loginName}</td>
+						<td style="font-family:'黑体';font-size:17px;color:#858585;">，欢迎您登录！</td>
 					</tr>
 					<tr>
-						<td colspan="2"><font color="red" size="2">${sessionUser.loginName}</font>，欢迎您登录！</td>
+						<td height="45" align="center"><img src="/resource/public/images/dlsj.png" /></td>
+						<td style="font-family:'宋体';font-size:12px;color:#858585;">上次登录</td>
+						<td style="font-family:'宋体';font-size:12px;color:#858585;">${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}</td>
+					
 					</tr>
 					<tr>
-						<td colspan="2">上次登录时间:
-							<span style="font-size:13px;float:left;">
-								${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
-							</span>
-						</td>
-					</tr>
-					<tr>
-						<td align="center" colspan="2" style="padding-top: 20px;">
-							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 75px;height:27px;" value="企业中心"
+						<td align="center" colspan="3" height="60">
+							<input type="button" style="background:url(/resource/public/images/ggw-yhdlh.png) no-repeat; width:113px;height:37px;border:0;color:#ffffff;font-size:16px;font-weight:bold;font-family:'黑体';" value="企业中心"
 							onclick="javascript:[#if sessionUser.class.name == "com.etech.entity.TcomUser"]window.location.href='/common-user/center.jhtml';[#else] window.location.href='/enterprise-user/center.jhtml';[/#if]" 
 							>
-							<input type="button" onclick="Etech.logout();" style="background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 75px;height:27px;" value="退出">
+							<input type="button" onclick="Etech.logout();" style="width:104px;height:37px; background:url(/resource/public/images/tc.png) no-repeat;border:0;" value="">
 						</td>
 					</tr>
 				</table>
@@ -484,7 +485,10 @@
 							<table>
 								<tr>
 									<td>招聘单位:</td>
-									<td style="padding-right:80px;"><input type="text" id="company1" name="company" value="${recruit.company}" readonly="readonly"></td>
+									<td style="padding-right:80px;">
+									<label>&nbsp;&nbsp;&nbsp;&nbsp;${sessionUser.fullName}</label>
+									<input type="hidden" id="company1" name="company" value="${recruit.company}" readonly="readonly">
+									</td>
 									<td>人数:</td>
 									<td><input value="${recruit.worknum}" type="text" id="worknum1" name="worknum" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"></td>
 								</tr>
