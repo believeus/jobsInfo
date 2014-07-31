@@ -89,10 +89,12 @@ public class AuthenticationFilter extends FormAuthenticationFilter {
 		TokenAuthentication authenticationToken = (TokenAuthentication) token;
 		String username = authenticationToken.getUsername();
 		TbaseUser sessionUser = (TbaseUser)etechService.findObjectByProperty(TbaseUser.class, "loginName", username);
-		// 更新登录时间
-		sessionUser.setLastLoginData(System.currentTimeMillis());
-		etechService.merge(sessionUser);
 		session.setAttribute("sessionUser",sessionUser);
+		
+		// 更新登录时间
+		TbaseUser baseUser=(TbaseUser)etechService.findObjectByProperty(TbaseUser.class, "loginName", username);
+		baseUser.setLastLoginData(System.currentTimeMillis());
+		etechService.merge(baseUser);
 		return super.onLoginSuccess(token, subject, servletRequest, servletResponse);
 	}
 }
