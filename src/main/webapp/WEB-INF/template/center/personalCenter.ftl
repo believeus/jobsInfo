@@ -1860,6 +1860,46 @@
 								<td><font color="red">专业：</font></td>
 								<td colspan="3">
 									<input type="hidden" value="" id="selectLearningSpecialtyhidden1" name="majorTypeId"/>
+									<script>
+									  $(function(){
+									    $("#xmenuLearningSpecialty1 li").click(function(){
+										   $("#selectLearningSpecialty1 span").text($(this).text());
+										   $("#selectLearningSpecialtyhidden1").val($(this).attr("rel"));
+										   $("#xmenuLearningSpecialty1").hide();
+										});
+									   $(document).on("click","#xmenuLearningSpecialty2 li",function(){
+									       $("#selectLearningSpecialty2 span").text($(this).text());
+										   $("#selectLearningSpecialtyhidden2").val($(this).attr("rel"));
+										   $("#xmenuLearningSpecialty2").hide();
+									   
+									   });
+									   $(document).on("click","#xmenuLearningSpecialty3 li",function(){
+									       $("#selectLearningSpecialty3 span").text($(this).text());
+										   $("#selectLearningSpecialtyhidden3").val($(this).attr("rel"));
+										   $("#xmenuLearningSpecialty3").hide();
+									   
+									   });
+									   $(document).on("click","#xmenuLearningSpecialty4 li",function(){
+									       $("#selectLearningSpecialty4 span").text($(this).text());
+										   $("#selectLearningSpecialtyhidden4").val($(this).attr("rel"));
+										   $("#xmenuLearningSpecialty4").hide();
+									   
+									   });
+									   $(document).on("click","#xmenuLearningSpecialty5 li",function(){
+									       $("#selectLearningSpecialty5 span").text($(this).text());
+										   $("#selectLearningSpecialtyhidden5").val($(this).attr("rel"));
+										   $("#xmenuLearningSpecialty5").hide();
+									   
+									   });
+									   $(document).on("click","#xmenuLearningSpecialty6 li",function(){
+									       $("#selectLearningSpecialty6 span").text($(this).text());
+										   $("#selectLearningSpecialtyhidden6").val($(this).attr("rel"));
+										   $("#xmenuLearningSpecialty6").hide();
+									   
+									   });
+									  
+									  });
+									</script>
 									<input type="hidden" value="2" name="infoType">
 									<div class="topnav">
 										<a id="selectLearningSpecialty1" href="javascript:void(0);" class="as">
@@ -1975,6 +2015,41 @@
 								<td>工种:</td>
 								<td>
 									<input type="hidden" value="" id="selectWorkJobhidden1" name="workTypeId"/>
+									<script>
+										$(function(){
+											 $("#xmenuWorkJob1 li").click(function(){
+                                                 $("#selectWorkJob1 span").text($(this).text());
+                                                 $("#selectWorkJobhidden1").val($(this).attr("rel"));
+                                                 $("#xmenuWorkJob1").hide();
+                                             });
+											$(document).on("click","#xmenuWorkJob2 li",function(){
+											    $("#selectWorkJob2 span").text($(this).text());
+                                                $("#selectWorkJobhidden2").val($(this).attr("rel"));
+                                                $("#xmenuWorkJob2").hide();
+                                            });
+											$(document).on("click","#xmenuWorkJob3 li",function(){
+											    $("#selectWorkJob3 span").text($(this).text());
+                                                $("#selectWorkJobhidden3").val($(this).attr("rel"));
+                                                $("#xmenuWorkJob3").hide();
+                                            });
+                                            $(document).on("click","#xmenuWorkJob4 li",function(){
+											    $("#selectWorkJob4 span").text($(this).text());
+                                                $("#selectWorkJobhidden4").val($(this).attr("rel"));
+                                                $("#xmenuWorkJob4").hide();
+                                            });
+                                            $(document).on("click","#xmenuWorkJob5 li",function(){
+											    $("#selectWorkJob5 span").text($(this).text());
+                                                $("#selectWorkJobhidden5").val($(this).attr("rel"));
+                                                $("#xmenuWorkJob5").hide();
+                                            });
+                                            $(document).on("click","#xmenuWorkJob6 li",function(){
+											    $("#selectWorkJob6 span").text($(this).text());
+                                                $("#selectWorkJobhidden6").val($(this).attr("rel"));
+                                                $("#xmenuWorkJob6").hide();
+                                            });
+										
+										});
+									</script>
 									<input type="hidden" value="3" name="infoType">
 									<div class="topnav">
 										<a id="selectWorkJob1" href="javascript:void(0);" class="as">
@@ -2092,6 +2167,15 @@
 								<td>专业：</td>
 								<td>
 									<input type="hidden" value="" id="selectVolunteerSpecialtyhidden1" name="majorTypeId"/>
+									<script>
+									   $(function(){
+									     $("#xmenuVolunteerSpecialty1 li").click(function(){
+									     $("#selectVolunteerSpecialty1 span").text($(this).text());
+										 $("#selectVolunteerSpecialtyhidden1").val($(this).attr("rel"));
+										 $("#xmenuVolunteerSpecialty1").hide();	   
+										});		
+									  });
+									</script>
 									<input type="hidden" value="4" name="infoType">
 									<div class="topnav">
 										<a id="selectVolunteerSpecialty1" href="javascript:void(0);" class="as">
@@ -2161,6 +2245,15 @@
 								<td><font color="red">工种:</font></td>
 								<td>
 									<input type="hidden" value="" id="selectVolunteerJobshidden1" name="workTypeId"/>
+									<script>
+									   $(function(){
+									     $("#xmenuVolunteerJobs1 li").click(function(){
+									     $("#selectVolunteerJobs1 span").text($(this).text());
+										 $("#selectVolunteerJobshidden1").val($(this).attr("rel"));
+										 $("#xmenuVolunteerJobs1").hide();	   
+										});
+									  });
+									</script>
 									<div class="topnav">
 										<a id="selectVolunteerJobs1" href="javascript:void(0);" class="as">
 											<span >

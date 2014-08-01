@@ -496,6 +496,15 @@
 									<td>工种:</td>
 									<td>
 									<input type="hidden" value="" id="selectJobshidden1" name="workTypeId"/>
+									<script>
+											$(function(){
+											  $("#xmenuJobs1 li").click(function(){
+											      $("#selectJobshidden1").val(($(this).attr("rel")));
+											      $("#selectJobs1 > span").text($(this).text());
+											      $("#xmenuJobs1").hide();
+											   });
+											});
+										</script>
 									<div class="topnav">
 										<a id="selectJobs1" href="javascript:void(0);" class="as">
 											<span >
@@ -526,7 +535,19 @@
 									<td>专业:</td>
 									<td>
 									<input type="hidden" value="" id="selectSpecialtyhidden1" name="majorTypeId"/>
+									<script>
+											$(function(){
+											  $("#xmenuSpecialty1 li").click(function(){
+											   $("#selectSpecialty1 span").text($(this).text());
+											   $("#selectSpecialtyhidden1").val($(this).attr("rel"));
+											   $("#xmenuSpecialty1").hide();
+											   
+											  });
+											
+											});
+										</script>
 									<div class="topnav">
+									
 										<a id="selectSpecialty1" href="javascript:void(0);" class="as">
 											<span >
 											[#assign name=recruit.majorType.name] 

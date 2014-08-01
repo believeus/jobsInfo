@@ -1618,8 +1618,17 @@
 									<td>
 									<input type="hidden" value="" id="selectJobshidden1" name="workTypeId"/>
 									<div class="topnav">
+										<script>
+											$(function(){
+											   $("#xmenuJobs1 li").click(function(){
+											      $("#selectJobshidden1").val(($(this).attr("rel")));
+											      $("#selectJobs1 > span").text($(this).text());
+											      $("#xmenuJobs1").hide();
+											   });
+											});
+										</script>
 										<a id="selectJobs1" href="javascript:void(0);" class="as">
-											<span >
+											<span>
 												选择工种
 											</span>		
 										</a>	
@@ -1639,6 +1648,17 @@
 									<td>
 									<input type="hidden" value="" id="selectSpecialtyhidden1" name="majorTypeId"/>
 									<div class="topnav">
+										<script>
+											$(function(){
+											  $("#xmenuSpecialty1 li").click(function(){
+											   $("#selectSpecialty1 span").text($(this).text());
+											   $("#selectSpecialtyhidden1").val($(this).attr("rel"));
+											   $("#xmenuSpecialty1").hide();
+											   
+											  });
+											
+											});
+										</script>
 										<a id="selectSpecialty1" href="javascript:void(0);" class="as">
 											<span >
 												选择专业
