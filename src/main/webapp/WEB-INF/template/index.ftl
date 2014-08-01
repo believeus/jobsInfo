@@ -533,11 +533,13 @@
 					</tr>
 					<tr class="denglu_tr">
 						<td align="center" height="45" colspan="3" style="padding-top: 0px;">
+						<div>
 							<input type="button" style="background:url(/resource/public/images/ggw-yhdlh.png) no-repeat; width:113px;height:37px;border:0;color:#ffffff;font-size:16px;font-family:'黑体';font-weight:bold;" 
 							value="[#if sessionUser.class.name == "com.etech.entity.TcomUser"]个人中心[#elseif sessionUser.class.name == "com.etech.entity.TentUser"]企业中心[#else]管理员后台[/#if]"
 							onclick="javascript:[#if sessionUser.class.name == "com.etech.entity.TcomUser"]window.location.href='/common-user/center.jhtml';[#elseif sessionUser.class.name == "com.etech.entity.TentUser"] window.location.href='/enterprise-user/center.jhtml';[#else]window.location.href='/admin/common/main.jhtml';[/#if]" 
 							>
 							<input id="logout" type="button" style="background:url(/resource/public/images/tc.png) no-repeat;border:0; width: 104px;height:37px;" value="">
+						</div>
 						</td>
 					</tr>
 				</table>

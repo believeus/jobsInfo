@@ -225,6 +225,9 @@
 		#zhiwei_xinxi th {
 		    text-align: right;
 		}
+		#base_xinxi th {
+		    text-align: left;
+		}
     </style>
     
 </head>

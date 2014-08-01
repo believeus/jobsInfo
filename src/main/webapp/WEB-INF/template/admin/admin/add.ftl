@@ -80,7 +80,7 @@ $().ready(function() {
 </head>
 <body>
 	<div class="path">
-		<a href="/admin/common/main.jhtml">首页</a> &raquo; 添加内容
+		<a href="/admin/common/main.jhtml" target="_parent">首页</a> &raquo; 添加内容
 	</div>
 	<form id="inputForm" action="save.jhtml" method="post">
 		<table class="input">

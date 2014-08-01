@@ -64,7 +64,7 @@
 </head>
 <body>
 	[#include "/include/header.ftl" /]
-	<div style="border-width: 1px; border-right: 1px solid rgb(220, 220, 220); border-style: none solid solid; border-color: rgb(220, 220, 220); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; width: 1000px; margin: -5px auto auto;">
+	<div style="background:#FFFFFF;border-width: 1px; border-right: 1px solid rgb(220, 220, 220); border-style: none solid solid; border-color: rgb(220, 220, 220); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; width: 1000px; margin: -5px auto auto;">
 	<div style="">
     	<div style="float:left; margin:10px auto; border-right:1px solid #DCDCDC; width:600px;">
         	<h2 style="margin-left:30px;">${imgVedio.title}</h2>

@@ -1616,7 +1616,7 @@
 						<span style="float:left;">具备技能&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">(红色字体为必填项)</font>
 						</span>
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 405px; float: left; margin-left: 10px; margin-top: 9px;"></div>
-						<div class="add_s" style="float: left; width: 50px; margin-left: 20px;">
+						<div class="add_s" style="float: left; width: 50px; margin-left: 15px;">
 							<input id="add_jineng" type="button" value="添加" style="cursor:pointer;width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
 						</div>
 					</div>
@@ -1766,7 +1766,7 @@
 					<div style="height: 30px; width: 728px;">
 						<span style="float:left;">学习经历&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">(红色字体为必填项)</font></span>
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 405px; float: left; margin-left: 10px; margin-top: 9px;"></div>
-						<div class="add_s" style="float: left; width: 50px; margin-left: 20px;">
+						<div class="add_s" style="float: left; width: 50px; margin-left: 15px;">
 							<input id="add_xuexi" type="button" value="添加" style="cursor:pointer;width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
 						</div>
 					</div>
@@ -1882,7 +1882,7 @@
 					<div style="height: 30px; width: 728px;">
 						<span style="float:left;">工作经历&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">(红色字体为必填项)</font></span>
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 405px; float: left; margin-left: 10px; margin-top: 9px;"></div>
-						<div class="add_s" style="float: left; width: 50px; margin-left: 20px;">
+						<div class="add_s" style="float: left; width: 50px; margin-left: 15px;">
 							<input id="add_gongzuo" type="button" value="添加" style="cursor:pointer;width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
 						</div>
 					</div>
