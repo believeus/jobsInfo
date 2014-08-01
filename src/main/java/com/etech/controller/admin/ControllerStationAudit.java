@@ -129,8 +129,10 @@ public class ControllerStationAudit {
 	@RequestMapping(value = "/review", method = RequestMethod.GET)
 	public String review(HttpServletRequest request){
 		String id=request.getParameter("id");
+		Trecruit recruit=(Trecruit)etechService.findObjectById(Trecruit.class, Integer.parseInt(id));
 		int review=1;
-		etechService.updata(Trecruit.class, "id", Integer.parseInt(id), "status", review);
+		recruit.setStatus(review);
+		etechService.saveOrUpdata(recruit);
 		return "redirect:/admin/stationAudit/list.jhtml";
 	}
 }
