@@ -1159,8 +1159,8 @@
 					</tr>-->
 					<tr>
 						<td height="45" align="center" width="30"><img src="/resource/public/images/dlr.png" /></td>
-						<td style="font-family:'黑体';font-size:17px;color:#ef4300;">${sessionUser.loginName}</td>
-						<td style="font-family:'黑体';font-size:17px;color:#858585;">，欢迎您登录！</td>
+						<td style="font-family:'黑体';font-size:14px;color:#ef4300;">${sessionUser.loginName}</td>
+						<td style="font-family:'黑体';font-size:12px;color:#858585;">，欢迎您登录！</td>
 					</tr>
 					<tr>
 						<td height="45" align="center"><img src="/resource/public/images/dlsj.png" /></td>

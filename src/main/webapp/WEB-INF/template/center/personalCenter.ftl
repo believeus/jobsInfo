@@ -606,7 +606,7 @@
 									</div>
 								</td>
 								<td>从事年限:</td>
-								<td><input type="text" name="workingLife" id="workingLifeSkill'+b+'"></td>
+								<td><input type="text" name="workingLife" id="workingLifeSkill'+b+'">年</td>
 							</tr>
 							<tr>
 								<td>说明:</td>
@@ -1535,7 +1535,7 @@
 								</tr>
 								<tr>
 									<td>身份证号:</td>
-									<td><input type="text" id="idcard" name="idcard" value="${sessionUser.idcard}"  onkeyup="value=this.value.replace(/\D+x/g,'')" minlength="15" minlength="18"></td>
+									<td><input type="text" id="idcard" name="idcard" value="${sessionUser.idcard}"  onkeyup="value=this.value.replace(/\D+/g,'')" minlength="15" minlength="18"></td>
 								</tr>
 								<tr>
 									<td>文化程度:</td>
@@ -1593,7 +1593,7 @@
 							</table>
 							</form>
 						</div>
-						<div style="width: 150px; float: left; margin-left: 15px; height: auto; margin-top: 15px;">
+						<div id="add_header" style="width: 150px; float: left; margin-left: 15px; height: auto; margin-top: 15px;">
 								<form novalidate="novalidate"  action="/upload.jhtml" method="post" encType="multipart/form-data" id="imageForm">
 									
 									<div class="brandImg">
@@ -1616,7 +1616,7 @@
 						<span style="float:left;">具备技能&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">(红色字体为必填项)</font>
 						</span>
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 405px; float: left; margin-left: 10px; margin-top: 9px;"></div>
-						<div style="float: left; width: 50px; margin-left: 20px;">
+						<div class="add_s" style="float: left; width: 50px; margin-left: 20px;">
 							<input id="add_jineng" type="button" value="添加" style="cursor:pointer;width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
 						</div>
 					</div>
@@ -1688,7 +1688,7 @@
 									</div>
 								</td>
 								<td>从事年限:</td>
-								<td><input type="text" id="workingLifeSkill${skill_index+1}" name="workingLife" value="${skill.workingLife}">
+								<td><input type="text" id="workingLifeSkill${skill_index+1}" name="workingLife" value="${skill.workingLife}">年
 								</td>
 							</tr>
 							<tr>
@@ -1766,7 +1766,7 @@
 					<div style="height: 30px; width: 728px;">
 						<span style="float:left;">学习经历&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">(红色字体为必填项)</font></span>
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 405px; float: left; margin-left: 10px; margin-top: 9px;"></div>
-						<div style="float: left; width: 50px; margin-left: 20px;">
+						<div class="add_s" style="float: left; width: 50px; margin-left: 20px;">
 							<input id="add_xuexi" type="button" value="添加" style="cursor:pointer;width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
 						</div>
 					</div>
@@ -1882,7 +1882,7 @@
 					<div style="height: 30px; width: 728px;">
 						<span style="float:left;">工作经历&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">(红色字体为必填项)</font></span>
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 405px; float: left; margin-left: 10px; margin-top: 9px;"></div>
-						<div style="float: left; width: 50px; margin-left: 20px;">
+						<div class="add_s" style="float: left; width: 50px; margin-left: 20px;">
 							<input id="add_gongzuo" type="button" value="添加" style="cursor:pointer;width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
 						</div>
 					</div>
@@ -2260,5 +2260,27 @@
 	
 	<script src="/resource/public/selectArea/js/public.js"></script>
 	[#include "/include/footer.ftl" /]
+	<script type="text/javascript">
+		$().ready(function(){
+			var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+			var isOpera = userAgent.indexOf("Opera") > -1;
+			
+			if (isOpera){return "Opera"}; //判断是否Opera浏览器
+			if (userAgent.indexOf("Firefox") > -1){//判断是否Firefox浏览器
+				//alert("Firefox浏览器");
+				$("#box").css("right","988px");
+				$("#box").css("top","50px");
+				return "FF";
+			} 
+			if (userAgent.indexOf("Safari") > -1){return "Safari";} //判断是否Safari浏览器
+			if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera){
+				//alert("IE浏览器");
+				$("#add_header").css("display","inline-block");
+				$("#add_header").css("float","none");
+				$(".add_s").css("display","inline-block");
+				$(".add_s").css("margin-left","0");
+			} ; //判断是否IE浏览器
+		});
+	</script>
 </body>
 </html>

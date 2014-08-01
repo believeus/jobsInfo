@@ -347,44 +347,11 @@
 				
 			</div>
 			<div class="xinwen">
-				<div style="padding-left: 20px;margin-bottom:20px;margin-top:10px;">
-					[#list newsTop as new]
-					[#if new_index < 2]
-						<h2 style="margin: 0px; font-size: 21px; font-weight: bold;">
-							<a 
-								[#if new.type = 0]
-									href="/newsInfo.jhtml?id=${new.id}"
-								[#elseif new.type = 1]
-									href="/workInfo.jhtml?id=${new.id}"
-								[#elseif new.type = 3]
-									href="/imgShow.jhtml?id=${new.id}"
-								[#elseif new.type = 4]
-									href="/videosInfo.jhtml?id=${new.id}"
-								[/#if]
-							>
-								[#if new.title?length > 16]
-									${new.title?string?substring(0,15)}...
-								[#else]
-									${new.title}
-								[/#if]
-							</a>
-						</h2>
-						<div style="color:#2B8BDF;margin:10px 0;font-size:13px;height:20px;">
-							[#if new.content?length > 30]
-								${new.content?string?substring(0,30)}...
-							[#else]
-								${new.content}
-							[/#if]
-						</div>
-					[/#if]
-					[/#list]
-				</div>
-				<hr style="margin-left: 10px; margin-right: 10px; border: 1px dashed #e4e4e4;">
 				<ul class="xinwen_ul" style="padding-left: 25px;">
 					[#list newsTop as new]
-						[#if new_index > 1 && new_index < 6]	
+						[#if new_index > 1 && new_index < 12]	
 							<li class="xinwen_ul_li">
-								<a 
+								<a title="${new.title}" 
 									[#if new.type = 0]
 										href="/newsInfo.jhtml?id=${new.id}"
 									[#elseif new.type = 1]
@@ -556,8 +523,8 @@
 					</tr>-->
 					<tr class="denglu_tr">
 						 <td height="45" width="30" align="center" ><img src="/resource/public/images/dlr.png" /></td>
-						 <td align="center" style="color:#ef4300;font-family:'黑体';font-size:17px;">${sessionUser.loginName}</td>
-						 <td style="color:#858585;font-family:'黑体';font-size:17px;">，欢迎您登录！</td>
+						 <td align="center" style="color:#ef4300;font-family:'黑体';font-size:13px;">${sessionUser.loginName}</td>
+						 <td style="color:#858585;font-family:'黑体';font-size:12px;">，欢迎您登录！</td>
 					</tr>
 					<tr class="denglu_tr">
 						 <td align="center"><img src="/resource/public/images/dlsj.png" /></td>

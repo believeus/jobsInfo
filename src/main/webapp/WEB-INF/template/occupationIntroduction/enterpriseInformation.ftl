@@ -598,7 +598,13 @@
 										</a>
 									</td>
 									<td>${trecruit.worknum}人</td>
-									<td>${trecruit.workspace}</td>
+									<td title="${trecruit.workspace}">
+										[#if trecruit.workspace?length > 9]
+											${trecruit.workspace?string?substring(0,9)}...
+										[#else]
+											${trecruit.workspace}
+										[/#if]
+									</td>
 									<td>${trecruit.eduLevel}</td>
 									<td>${trecruit.editTime?number_to_date}</td>
 									<td>${trecruit.worklimit}</td>
@@ -622,7 +628,7 @@
 							<table>
 								<tr>
 									<th>招聘单位:</th>
-									<td style="padding-right: 80px;">${trecruit.company}</td>
+									<td style="padding-right: 80px;width:180px;">${trecruit.company}</td>
 									<th>专业:</th>
 									<td>${trecruit.majorType.name}</td>
 								</tr>

@@ -95,6 +95,7 @@
 		    font-size: 14px;
 		    line-height: 35px;
 		    margin-right: 30px;
+		    margin-left:20px;
 		}
 		.j_main_right_2 span {
 		    float: right;
@@ -184,8 +185,8 @@
 						<input type="text"  id="beginDate" name="beginDate" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
 						止: <input type="text" id="endDate" name="endDate" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
 						</td>
-						<td rowspan="2" style="background: url(/resource/public/images/chaxun.png); border-radius: 4px;">
-							<input id="select_p" type="submit" value=""  style="border: 0px none; font-size: 18px; cursor: pointer; height: 61px; width: 56px; background: none;">
+						<td rowspan="2" ><!--style="background: url(/resource/public/images/chaxun.png); border-radius: 4px;"-->
+							<input id="select_p" type="submit" value="查询"  style="cursor: pointer; height: 63px; width: 63px;">
 						</td>
 					</tr>
 					<tr>
@@ -241,14 +242,11 @@
 				//alert("Firefox浏览器");
 				$("#box").css("right","988px");
 				$("#box").css("top","50px");
-				$("#select_p").css("width","59px");
 				return "FF";
 			} 
 			if (userAgent.indexOf("Safari") > -1){return "Safari";} //判断是否Safari浏览器
 			if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera){
 				//alert("IE浏览器");
-				$("#select_p").css("height","58px");
-				$("#select_p").css("width","57px");
 			} ; //判断是否IE浏览器
 		});
 	</script>
