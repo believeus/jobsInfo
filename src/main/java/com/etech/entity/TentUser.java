@@ -46,7 +46,7 @@ public class TentUser extends TbaseUser implements Serializable {
 	private String phoneFax;
 	/**法人*/
 	private String legalMan;
-	/**是否审核通过 0:审核中 1:审核通过*/
+	/**是否审核通过 0:审核中 1:审核通过 2:审核驳回*/
 	private String status;
 	/**所属地区*/
 	private String area;

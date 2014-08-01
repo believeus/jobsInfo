@@ -69,7 +69,7 @@ public class Trecruit extends TbaseEntity implements Serializable {
 	private String workspace;
 	/**备注*/
 	private String note;
-	/**是否审核通过 0:审核中 1:审核通过*/
+	/**是否审核通过 0:审核中 1:审核通过 2:审核驳回*/
 	@Column(nullable=true)
 	private int status;
 	/** 是否发布 */

@@ -155,7 +155,7 @@ $().ready(function() {
 		//封装ajax信息提交
 		function submitJobs(){
 				var tag=false;
-	    		if($("#selectJobshidden1").val() == ""){
+	    		if($("#selectSkillJobshidden1").val() == ""){
 	    			alert("请选择工种");
 	    			tag=true;
 	    		}else if($("#workspace1").val() == ""){
@@ -196,13 +196,14 @@ $().ready(function() {
 				<tr>
 					<th>招聘单位:</th>
 					<td style="padding-right:80px;">
-						<input type="text" id="company1" name="company" value="${recruit.company}" readonly="readonly"/>
+						<label>${recruit.company}</label>
+						<input type="hidden" id="company1" name="company" value="${recruit.company}" readonly="readonly"/>
 					</td>
 					<th>人数:</th>
 					<td><input type="text" id="worknum1" name="worknum" value="${recruit.worknum}"/></td>
 				</tr>
 				<tr>
-					<th>工种:</th>
+					<th><font color="red">*</font>工种:</th>
 					<td>
 						<input type="hidden" id="selectSkillJobshidden1" name="workTypeId" value="${recruit.workType.id}"/>
 						<div class="topnav">
@@ -296,7 +297,7 @@ $().ready(function() {
 					</td>
 				</tr>
 				<tr>
-					<th>工作地点:</th>
+					<th><font color="red">*</font>工作地点:</th>
 					<td>
 						<input type="text" name="workspace" value="${recruit.workspace}"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" name="expectArea" readonly="readonly">
 							<!--////////////////////////////////////////////////////////////////////////-->

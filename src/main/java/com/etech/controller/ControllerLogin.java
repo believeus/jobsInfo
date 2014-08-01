@@ -52,7 +52,7 @@ public class ControllerLogin {
 				log.debug("error loginName:" + user.getLoginName());
 				JsonOutToBrower.out(message, response);
 			}else if (sessionUser.getDisable()==1) { // 判断该用户是否被删除。
-				message.put("message", "该用户已被删除或被禁用,不能注册");
+				message.put("message", "该用户已被删除，如有疑问请联系管理员");
 				log.debug("error loginName:" + user.getLoginName());
 				JsonOutToBrower.out(message, response);
 			}else {

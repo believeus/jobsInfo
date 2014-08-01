@@ -56,7 +56,7 @@ public class ControllerStationAudit {
 			hql="From Trecruit trecruit  where trecruit.status=0 and trecruit.entUser.disable='0' and trecruit.workType.name like '%"+searchValue+"%'  order by trecruit.editTime desc";
 			request.setAttribute("searchValue", searchValue);
 		}else {
-			hql="From Trecruit trecruit where trecruit.status=0 and trecruit.entUser.disable='0' order by trecruit.editTime desc";
+			hql="From Trecruit trecruit where trecruit.status!=1 and trecruit.entUser.disable='0' order by trecruit.editTime desc";
 		}
 		//查询待审核的企业用户
 		Page<?> page = etechService.getPage(hql, pageable);
@@ -129,9 +129,9 @@ public class ControllerStationAudit {
 	@RequestMapping(value = "/review", method = RequestMethod.GET)
 	public String review(HttpServletRequest request){
 		String id=request.getParameter("id");
+		String status=request.getParameter("status");
 		Trecruit recruit=(Trecruit)etechService.findObjectById(Trecruit.class, Integer.parseInt(id));
-		int review=1;
-		recruit.setStatus(review);
+		recruit.setStatus(Integer.parseInt(status));
 		etechService.saveOrUpdata(recruit);
 		return "redirect:/admin/stationAudit/list.jhtml";
 	}

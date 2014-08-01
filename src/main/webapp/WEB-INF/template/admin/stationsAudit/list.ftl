@@ -11,7 +11,12 @@
 <script type="text/javascript" src="/resource/public/js/admin/list.js"></script>
 <script type="text/javascript">
 $().ready(function() {
-
+	$("input:radio[name^='status']").change(function(){
+		var group=$(this).attr("group");
+		var status=$("input:radio[group='"+group+"']:checked").val(); 
+		var id=$(this).attr("id");
+		location.href="review.jhtml?id="+id+"&status="+status;
+	})
 
 });
 </script>
@@ -23,9 +28,6 @@ $().ready(function() {
 	<form id="listForm" action="list.jhtml" method="get">
 		<div class="bar">
 			<div class="buttonWrap">
-				<a href="javascript:;" id="deleteButton" class="iconButton disabled">
-					<span class="deleteIcon">&nbsp;</span>删除
-				</a>
 				<a href="javascript:;" id="refreshButton" class="iconButton">
 					<span class="refreshIcon">&nbsp;</span>刷新
 				</a>
@@ -47,12 +49,6 @@ $().ready(function() {
 		</div>
 		<table id="listTable" class="list">
 			<tr>
-				<th class="check">
-					<input type="checkbox" id="selectAll" />
-				</th>
-				<th>
-					<a href="javascript:;" class="sort" name="title">排序编号</a>
-				</th>
 				<th>
 					<a href="javascript:;" class="sort" name="adPosition">内容标题</a>
 				</th>
@@ -70,12 +66,6 @@ $().ready(function() {
 			<tr>
 			[#list recruitList.content as recruit]
 				<td>
-					<input type="checkbox" name="ids" value="${recruit.id}" />
-				</td>
-				<td>
-					<span>${recruit.id}</span>
-				</td>
-				<td>
 					${recruit.company}
 				</td>
 				<td>
@@ -86,11 +76,9 @@ $().ready(function() {
 				</td>
 				<td>
 					<a href="edit.jhtml?id=${recruit.id}">[修改]</a>
-					[#if recruit.status ==0 ]
-					 <a href="review.jhtml?id=${recruit.id}"><font color="red">[请点击审核通过]</font></a>
-					[#else]
-					  <font color="green">[审核通过]</font>
-					[/#if]
+					<input type="radio"  name="status_${recruit_index}" group="${recruit_index}" value="0" id="${recruit.id}" [#if recruit.status=="0"]checked="true"[/#if]>审核中
+					<input type="radio"  name="status_${recruit_index}" group="${recruit_index}" value="1" id="${recruit.id}" [#if recruit.status=="1"]checked="true"[/#if]>审核通过
+					<input type="radio"  name="status_${recruit_index}" group="${recruit_index}" value="2" id="${recruit.id}" [#if recruit.status=="2"]checked="true"[/#if]>审核驳回
 				</td>
 			</tr>
 			[/#list]

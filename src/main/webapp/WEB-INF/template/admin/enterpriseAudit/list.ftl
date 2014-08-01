@@ -11,7 +11,12 @@
 <script type="text/javascript" src="/resource/public/js/admin/list.js"></script>
 <script type="text/javascript">
 $().ready(function() {
-
+	$("input:radio[name^='status']").change(function(){
+		var group=$(this).attr("group");
+		var status=$("input:radio[group='"+group+"']:checked").val(); 
+		var id=$(this).attr("id");
+		location.href="/admin/enterpriseAudit/review.jhtml?id="+id+"&status="+status;
+	})
 
 });
 </script>
@@ -23,9 +28,6 @@ $().ready(function() {
 	<form id="listForm" action="list.jhtml" method="get">
 		<div class="bar">
 			<div class="buttonWrap">
-				<a href="javascript:;" id="deleteButton" class="iconButton disabled">
-					<span class="deleteIcon">&nbsp;</span>删除
-				</a>
 				<a href="javascript:;" id="refreshButton" class="iconButton">
 					<span class="refreshIcon">&nbsp;</span>刷新
 				</a>
@@ -47,9 +49,6 @@ $().ready(function() {
 		</div>
 		<table id="listTable" class="list">
 			<tr>
-				<th class="check">
-					<input type="checkbox" id="selectAll" />
-				</th>
 				<th>
 					<a href="javascript:;" class="sort" name="fullName">单位全称</a>
 				</th>
@@ -70,9 +69,6 @@ $().ready(function() {
 			[#list enterpriseTentUsers.content as user]
 			<tr>
 				<td>
-					<input type="checkbox" name="ids" value="${user.id}" />
-				</td>
-				<td>
 					<span>${user.fullName}</span>
 				</td>
 				<td>
@@ -86,7 +82,9 @@ $().ready(function() {
 				</td>
 				<td>
 					<a href="/admin/enterpriseAudit/edit.jhtml?id=${user.id}">[修改]</a>
-					<a href="/admin/enterpriseAudit/review.jhtml?id=${user.id}"><font color="red">[请点击审核通过]</font></a>
+					<input type="radio"  name="status_${user_index}" group="${user_index}" value="0" id="${user.id}" [#if user.status=="0"]checked="true"[/#if]>审核中
+					<input type="radio"  name="status_${user_index}" group="${user_index}" value="1" id="${user.id}" [#if user.status=="1"]checked="true"[/#if]>审核通过
+					<input type="radio"  name="status_${user_index}" group="${user_index}" value="2" id="${user.id}" [#if user.status=="2"]checked="true"[/#if]>审核驳回
 				</td>
 			</tr>
 			[/#list]

@@ -1205,7 +1205,7 @@
 				<p>
 					<span>登记编号:0000${sessionUser.id}</span>
 					<span style="padding-right: 20px; margin-left: 90px;">更新日期:${sessionUser.editDate?number_to_datetime}&nbsp;${sessionUser.editDate?number_to_time}</span>
-					<span style="float: right; padding-right: 20px;">审核状态:[#if sessionUser.status=="0"&&sessionUser.status!="1"]<font color="#FF0000">审核中</font>[#elseif sessionUser.status=="1"]<font color="green">已通过审核</font>[/#if]</span>
+					<span style="float: right; padding-right: 20px;">审核状态:[#if sessionUser.status=="0"&&sessionUser.status!="1"]<font color="#FFC12B">审核中</font>[#elseif sessionUser.status=="1"]<font color="green">已通过审核</font>[#else]<font color="red">审核驳回</font>[/#if]</span>
 				</p>
 				
 				<div id="base_xinxi" style="width::728px;height:auto;overflow:hidden;">
@@ -1576,7 +1576,7 @@
 								<td>${recruit.eduLevel}</td>
 								<td>[#if recruit.age!=""]${recruit.age}[#else]不限[/#if]</td>
 								<td>
-								[#if recruit.status=="0"&&recruit.status!="1"]<font color="red">审核中</font>[#elseif recruit.status=="1"]<font color="green">已通过审核</font>[/#if]
+								[#if recruit.status=="0"&&recruit.status!="1"]<font color="#FFC12B">审核中</font>[#elseif recruit.status=="1"]<font color="green">已通过审核</font>[#else]<font color="red">审核驳回</font>[/#if]
 								</td>
 								<td><a href="javascript:void(0)" onclick="changeIsview(${recruit.id});" title="点击即可修改" id="isview${recruit.id}">${recruit.isview}</a></td>
 								<td><a href="/editRecruit.jhtml?id=${recruit.id}" style="margin-right: 5px;" id="editx" >编辑</a>

@@ -66,7 +66,7 @@ public class ControllerEnterpriseAudit{
 			hql="FROM TentUser user where user.status=0 and user.disable=0 and user.fullName like '%"+searchValue+"%' order by user.editDate desc";
 			request.setAttribute("searchValue", searchValue);
 		}else {
-			hql="FROM TentUser user where user.status=0 and user.disable=0 order by user.editDate desc";
+			hql="FROM TentUser user where user.status!=1 and user.disable=0 order by user.editDate desc";
 		}
 		//查询待审核的企业用户
 		Page<?> page = etechService.getPage(hql, pageable);
@@ -95,8 +95,14 @@ public class ControllerEnterpriseAudit{
 		String id=request.getParameter("id");
 		TentUser tentUsers=(TentUser)etechService.findObjectById(TentUser.class, Integer.parseInt(id));
 		request.setAttribute("tentUsers", tentUsers);
-		String hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+tentUsers.getId()+"  and info.type='2'";
+		String hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+tentUsers.getId()+"  and info.type='0'";
+		List<TentImgVedio> Imgs=(List<TentImgVedio>)etechService.findListByHQL(hql);
+		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+tentUsers.getId()+"  and info.type='1'";
+		List<TentImgVedio> Vedios=(List<TentImgVedio>)etechService.findListByHQL(hql);
+		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+tentUsers.getId()+"  and info.type='2'";
 		List<TentImgVedio> Maps=(List<TentImgVedio>)etechService.findListByHQL(hql);
+		request.setAttribute("Imgs", Imgs);
+		request.setAttribute("Vedios", Vedios);
 		request.setAttribute("Maps", Maps);
 		log.debug("current controller is editNewsView !");
 		return "admin/enterpriseAudit/edit";
@@ -131,10 +137,10 @@ public class ControllerEnterpriseAudit{
 		return "redirect:/admin/enterpriseAudit/list.jhtml";
 	}
 	@RequestMapping("/review")
-	public String review(int id){
+	public String review(int id,String status){
 		TentUser user=(TentUser)etechService.findObjectById(TentUser.class, id);
-		//设置审核通过
-		user.setStatus("1");
+		//设置审核状态
+		user.setStatus(status);
 		etechService.saveOrUpdata(user);
 		log.debug("review controller");
 		return "redirect:/admin/enterpriseAudit/list.jhtml";
@@ -144,7 +150,7 @@ public class ControllerEnterpriseAudit{
 	 * @return
 	 */
 	@RequestMapping(value = "/update")
-	public String updateNewsView(TentUser formUser,HttpServletRequest request,Integer MapId){
+	public String updateNewsView(TentUser formUser,String ids, String vIds,HttpServletRequest request,Integer MapId){
 		
 		TentUser entUser=(TentUser) etechService.findObjectById(TentUser.class,formUser.getId());
 		TentImgVedio map=null;
@@ -178,7 +184,22 @@ public class ControllerEnterpriseAudit{
 				e.printStackTrace();
 			}
 		}
+		// 删除图片
+		if (ids!=null&&!ids.equals("")) {
+			String[] split = ids.split(",");
+			for (String id : split) {
+				etechService.deleteObjectById(TentImgVedio.class, Integer.valueOf(id));
+			}
+		}
 		
+		// 删除视频
+		if (vIds!=null&&!vIds.equals("")) {
+			String[] split = vIds.split(",");
+			for (String id : split) {
+				etechService.deleteObjectById(TentImgVedio.class, Integer.valueOf(id));
+			}
+		}
+				
 		formUser.setEditDate(System.currentTimeMillis());
 		formUser.setRoles(entUser.getRoles());
 		formUser.setRecruit(entUser.getRecruit());

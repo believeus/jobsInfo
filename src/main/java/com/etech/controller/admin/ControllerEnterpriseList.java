@@ -107,6 +107,7 @@ public class ControllerEnterpriseList {
 	 * 编辑企业
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@RequiresPermissions("enterpriseList:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
@@ -116,9 +117,14 @@ public class ControllerEnterpriseList {
 		System.out.println(etechService+"=etechService");
 		TentUser tentUsers=(TentUser)etechService.findObjectById(TentUser.class, Integer.parseInt(id));
 		request.setAttribute("tentUsers", tentUsers);
-		String hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+tentUsers.getId()+"  and info.type='2'";
-		@SuppressWarnings("unchecked")
+		String hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+tentUsers.getId()+"  and info.type='0'";
+		List<TentImgVedio> Imgs=(List<TentImgVedio>)etechService.findListByHQL(hql);
+		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+tentUsers.getId()+"  and info.type='1'";
+		List<TentImgVedio> Vedios=(List<TentImgVedio>)etechService.findListByHQL(hql);
+		hql="From TentImgVedio info left join fetch info.entUser as user where user.id="+tentUsers.getId()+"  and info.type='2'";
 		List<TentImgVedio> Maps=(List<TentImgVedio>)etechService.findListByHQL(hql);
+		request.setAttribute("Imgs", Imgs);
+		request.setAttribute("Vedios", Vedios);
 		request.setAttribute("Maps", Maps);
 		log.debug("current controller is editNewsView !");
 		

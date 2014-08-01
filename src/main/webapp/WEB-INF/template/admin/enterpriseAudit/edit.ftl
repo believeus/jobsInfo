@@ -54,11 +54,57 @@
 	.list input {
 		width:80px;
 	}
+	.qiyepic {
+		border: 1px solid;
+		float: left;
+		height: 215px;
+		width: 160px;
+		background: #FFFFFF;
+		margin-right: 10px;
+		margin-bottom: 10px;
+	}
 	</style>
 	
 <script type="text/javascript">
 
+	function delete_pic(object,id){	
+		deleteImg(id);
+		$(object).closest("div").parent().remove();
+	}
+	function deleteImg(id){
+			var deleteImgs = $("#deleteImgs");
+								
+			if (deleteImgs.length > 0) { 
+		     	//对象存在的处理逻辑
+	            $("#deleteImgs").val(deleteImgs.val()+","+id);
+		    } else {
+		      	//对象不存在的处理逻辑
+		      	var html='<input id="deleteImgs" type="hidden" name="ids" value="'+id+'"/>';
+				$("#inputForm").append(html);
+		   }
+		}
+		
+	
+	function delete_vedio(object,formId,id){
+		deleteVIds(id);
+		$(object).closest("div").parent().remove();
+	}
     	
+    	// 删除企业视频
+		function deleteVIds(id){
+			var deleteVedios = $("#deleteVedios");
+						
+			if (deleteVedios.length > 0) { 
+		     	//对象存在的处理逻辑
+	            $("#deleteVedios").val(deleteVedios.val()+","+id);
+		    } else {
+		      	//对象不存在的处理逻辑
+		      	var html='<input id="deleteVedios" type="hidden" name="vIds" value="'+id+'"/>';
+				$("#inputForm").append(html);
+		   }
+		
+		}
+				
     	// 查看电子图是否有改变。
     	var changex=0;
     	
@@ -184,7 +230,10 @@ $().ready(function() {
 					<input type="hidden" name="password" value="${tentUsers.password}">
 					<tr>
 						<td><font color="red">*</font>单位全称:</td>
-						<td style="padding-right: 80px;"><input type="text" value="${tentUsers.fullName}" oldvalue="${tentUsers.fullName}" id="fullName" name="fullName" readonly="readonly"></td>
+						<td style="padding-right: 80px;">
+						<span>${tentUsers.fullName}</span>
+						<input type="hidden" value="${tentUsers.fullName}" oldvalue="${tentUsers.fullName}" id="fullName" name="fullName" readonly="readonly">
+						</td>
 						<td><font color="red">*</font>单位性质:</td>
 						<td>
 							<select id="unitType" name="unitType" style="width: 235px;" oldvalue="${tentUsers.unitType}">
@@ -328,6 +377,9 @@ $().ready(function() {
 										</span>
 											<img width="190px" height="48px" src="/${map.url}" name="url" id="${map.id}"/>
 											<input type="hidden" name="MapId" value="${map.id}">
+											<div style="height: 2px; position: relative; width: 230px; left: 230px; font-size: 12px; top: -36px;">
+													建议图片尺寸：宽190px*高48px
+											</div>
 									</div>
 									<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">
 									<input type="hidden" id="filename0" name="filename0">
@@ -337,11 +389,43 @@ $().ready(function() {
 									<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
 									</span>
 										<img width="190px" height="48px" src="/resource/public/images/bg.png" name="url" id="0"/>
+										<div style="height: 2px; position: relative; width: 230px; left: 230px; font-size: 12px; top: -36px;">
+												建议图片尺寸：宽190px*高48px
+										</div>
 								</div>
 								<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">
 								<input type="hidden" id="filename0" name="filename0">
 								[/#if]
 							</td>
+						</tr>
+						<tr>
+						<td>企业图片</td>
+						<td>
+						[#if Imgs?size>0]
+						[#list Imgs as img]
+						<div class="qiyepic" [#if img_index==3||img_index==7]style="margin-right: 0px;"[/#if]>
+							<img style="width:160px;height:145px" src="/${img.url}"/>
+							图片描述：<label>${img.descption}</label>
+							<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this,${img.id})" href="javascript:void(0);">删除</a></div>
+						</div>
+						[/#list]
+						[/#if]
+						</td>
+						</tr>
+						<tr>
+						<td>企业视频</td>
+						<td>
+						[#if Vedios?size>0]
+						[#list Vedios as vedio]
+						<div class="shipin" style="overflow:hidden;background:#EEEEEE;margin:0 0px;margin-bottom:15px;">
+							<div>已上传视频截图：<a href="/${vedio.url}" title="点击查看" target="_blank">${vedio.originName}</a></div>
+							<div>已上传视频文件：<a href="/${vedio.vedioUrl}" title="点击查看" target="_blank">${vedio.vedioName}</a></div>
+							<div>视频描述：<lable>${vedio.descption}</label></div>
+							<div  style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_vedio(this,${vedio_index+1},${vedio.id})"  href="javascript:void(0);">删除</a></div>
+						</div>
+						[/#list]
+						[/#if]
+						</td>
 						</tr>
 					<tr>
 						<th>
