@@ -22,7 +22,8 @@
             msgObj.style.position = "fixed";
             msgObj.style.backgroundImage = "url(/resource/public/images/05Wut1KvtKmALzMUAAAG-2B8lnY038.gif)";
             msgObj.style.font = "12px/1.6em Verdana, Geneva, Arial, Helvetica, sans-serif";
-            msgObj.style.border = "1px solid " + bordercolor;
+            // ie 下不行，所以忽略掉。
+            //msgObj.style.border = "1px solid " + bordercolor;
             msgObj.style.width = msgw + "px";
             msgObj.style.height = msgh + "px";
             msgObj.style.top ="45%";

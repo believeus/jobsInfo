@@ -19,43 +19,111 @@
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>
 	<script type="text/javascript" src="/resource/public/js/datePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="/resource/public/js/waitamoment.js"></script>
+	<!--[if gte IE 7]> 
+		<script type="text/javascript">   
+			$().ready(function(){
+				$("#upload_img").css("margin-top","10px");
+				$("#upload_img").css("width","122px");
+			});
+		</script>
+	<![endif]--> 
 	
-	<style type="text/css">
-	.brandImg{
-		border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
-	    border-radius: 2px 2px 2px 2px;
-	    border-style: solid;
-	    border-width: 1px;
-	    background-color: #666666;
-	    width:122px;height:150px;
-	    position:relative;
-	}
+	<!-- 预览图片 -->
+	<style type="text/css">    
+		#preview_wrapper{     
+		    display:inline-block;     
+		   	width:122px;
+		   	height:150px;    
+		    background-color:#CCC;     
+		}     
+		#preview_fake{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;     
+		}     
+		#preview{ /* 该对象用户在FF下显示预览图片 */     
+		  	width:122px;
+		   	height:150px;       
+		}   
+		#upload_img{
+			margin-top: 10px;
+			width: auto;
+		} 
+		
+	</style> 
 	
-	.brandImg span{
-		display:block;
-		position:absolute;
-		top:0px;left:0px;
-		width:100px;
-		height:150px;
-	}
-	
-	.brandImg span:hover{
-		background-color:#FFFFFF;
-	    opacity: 0.7;
-	    filter:alpha(opacity=50);
-	    -moz-opacity:0.5;
-	    -khtml-opacity: 0.5;
-	}
-	
-	.brandImg span a{
-		display:block;
-		position:absolute;
-		top:65px;
-		left:20px;
-		color: #88BBD4;
-	}
-	
-	</style>
+	<script type="text/javascript">    
+		function onUploadImgChange(sender){     
+		    if( !sender.value.match( /.jpg|.gif|.png|.bmp/i ) ){     
+		        alert('图片格式无效！');     
+		        return false;     
+		    }     
+		         
+		    var objPreview = document.getElementById( 'preview' );     
+		    var objPreviewFake = document.getElementById( 'preview_fake' );     
+		    var objPreviewSizeFake = document.getElementById( 'preview_size_fake' );    
+		         
+		    if( sender.files &&  sender.files[0] ){  
+		        var reader = new FileReader();
+				reader.onload = function(evt){objPreview.src = evt.target.result;}
+		        reader.readAsDataURL(sender.files[0]);	   
+		        
+		    }else if( objPreviewFake.filters ){    
+		        // IE7,IE8 在设置本地图片地址为 img.src 时出现莫名其妙的后果     
+		        //（相同环境有时能显示，有时不显示），因此只能用滤镜来解决     
+		             
+		        // IE7, IE8因安全性问题已无法直接通过 input[file].value 获取完整的文件路径     
+		        sender.select();     
+		        var imgSrc = document.selection.createRange().text;     
+		             
+		        objPreviewFake.filters.item(     
+		            'DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
+		        objPreviewSizeFake.filters.item(     
+		            'DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
+		             
+		        autoSizePreview( objPreviewFake,      
+		            objPreviewSizeFake.offsetWidth, objPreviewSizeFake.offsetHeight );     
+		        objPreview.style.display = 'none';     
+		    }     
+		}     
+		    
+		function onPreviewLoad(sender){    
+		    autoSizePreview( sender, sender.offsetWidth, sender.offsetHeight );     
+		}     
+		    
+		function autoSizePreview( objPre, originalWidth, originalHeight ){     
+		    var zoomParam = clacImgZoomParam( 122, 150, 122, 150 );     
+		    objPre.style.width = zoomParam.width + 'px';     
+		    objPre.style.height = zoomParam.height + 'px';     
+		   // objPre.style.marginTop = zoomParam.top + 'px';     
+		    //objPre.style.marginLeft = zoomParam.left + 'px';     
+		}     
+		    
+		function clacImgZoomParam( maxWidth, maxHeight, width, height ){     
+		    var param = { width:width, height:height, top:0, left:0 };     
+		         
+		    if( width>maxWidth || height>maxHeight ){     
+		        rateWidth = width / maxWidth;     
+		        rateHeight = height / maxHeight;     
+		             
+		        if( rateWidth > rateHeight ){     
+		            param.width =  maxWidth;     
+		            param.height = height / rateWidth;     
+		        }else{     
+		            param.width = width / rateHeight;     
+		            param.height = maxHeight;     
+		        }     
+		    }     
+		         
+		    param.left = (maxWidth - param.width) / 2;     
+		    param.top = (maxHeight - param.height) / 2;     
+		         
+		    return param;     
+		}      
+	</script>    
+
     <style type="text/css">
    		.j_main{
     		width:1000px;
@@ -176,22 +244,13 @@
 			padding:0;
 			color:#000000;
 		}
-    </style>
-    <script type="text/javascript">
-     	// 图片上传
-		function loadImgFast(img,i){
-				if (img.files && img.files[0]){
-					var reader = new FileReader();
-					$()
-					reader.onload = function(evt){$(".brandImg:eq("+i+") img")[0].src = evt.target.result;}
-		            reader.readAsDataURL(img.files[0]);	
-				}else if(window.navigator.userAgent.indexOf("MSIE")>=1){
-				   	file.select(); 
-		   			path = document.selection.createRange().text;
-		   			$(".brandImg:eq("+i+") img")[0].src = path;
-		   		} 
-			}
-	</script>
+		
+		#base_xinxi tr {
+		    line-height: 28px;
+		}
+		
+		
+		</style>
 	
     <script type="text/javascript">
     
@@ -1218,6 +1277,8 @@
 						// 上传图片，并且得到图片路径返回值。
 						if(checkChange==1){
 							$("#imageForm").ajaxSubmit(function (data) {
+								data=data.replace("<PRE>","").replace("</PRE>","");
+								alert(data);
 								var imgHead = $("#imgHead");
 								 //如果大于0 标识 id 为imgHead的对象存在，否则不存在
 								 if (imgHead.length > 0) { 
@@ -1290,6 +1351,7 @@
 				
 				// 保存其他信息。
 				$("#saveInfo").click(function() {
+					alert("xxx");
 					var loginName=$("#loginName").val();
 					var phoneNum =$("#phoneNum").val();
 					var regPartton=/^(?:13\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/; //验证手机号
@@ -1595,17 +1657,19 @@
 						</div>
 						<div id="add_header" style="width: 150px; float: left; margin-left: 15px; height: auto; margin-top: 15px;">
 								<form novalidate="novalidate"  action="/upload.jhtml" method="post" encType="multipart/form-data" id="imageForm">
-									
-									<div class="brandImg">
-											<img style="width:122px;height:150px" src="[#if sessionUser.imgHead!=""]/${sessionUser.imgHead}[#else]/resource/public/images/bg1.png[/#if]" name="img"/>
-											<div style="color: #000000; font-size: 12px; position: relative; padding-top: 25px; width: 122px;text-align:center;top:30px">建议图片大小：</div>
-											<div style="color: #000000; font-size: 12px; position: relative; padding: 0px; width: 122px;text-align:center;top:30px">宽122px*高150px</div>
-									</div>
-										<span>
-											<a style="color:#88BBD4" onclick="file0.click()" href="javascript:void(0);" >点击上传图片</a>
-										</span>
-									<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;checkChange=1;loadImgFast(this,0)">
-									<input type="hidden" id="filename0" name="filename0">
+									 <div id="preview_wrapper">    
+								        <div id="preview_fake" >    
+								       	 <img id="preview" onload="onPreviewLoad(this)" src="[#if sessionUser.imgHead!=""]/${sessionUser.imgHead}[#else]/resource/public/images/bg1.png[/#if]"/>    
+								            <!-- <img id="preview" onload="onPreviewLoad(this)" src="/resource/public/images/bg1.png"/>   -->
+								        </div>    
+								    </div>    
+								    <br/>    
+								    <input id="upload_img" type="file" name="upload_img" onchange="filename0.value=this.value;checkChange=1;onUploadImgChange(this)"/>  
+								     <div style="color: #000000; font-size: 12px; position: relative; padding-top: 25px; width: 122px;text-align:center;">建议图片大小：</div>
+             						 <div style="color: #000000; font-size: 12px; position: relative; padding: 0px; width: 122px;text-align:center;">宽122px*高150px</div>  
+								    <input type="hidden" id="filename0" name="filename0">
+								    <br/>    
+								    <img id="preview_size_fake"/>    
 								</form>			
 						</div>
 					</div>
