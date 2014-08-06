@@ -278,63 +278,7 @@
 	
 </head>
  <script text="text/javascript">
-        	[@compress single_line = true]
-    		var Specialty='<div class="select-info">	
-						<label class="top-label">已选项：</label>
-								<ul>		
-								</ul>
-								<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
-									<span class="a-btn-text">确定</span>
-								</a> 
-							</div>	
-							[@majorParentList]		
-							<dl>
-							[#list MajorParentList as majorParent]
-							<dt class="open" id="${majorParent.id}">${majorParent.name}</dt>
-							<dd>
-								<ul>
-								[@majorChildrenList parentCodeId = majorParent.codeId]
-								[#list MajorChildrenList as majorChildren]
-									<li rel="${majorChildren.id}">
-											${majorChildren.name}
-									</li>
-								[/#list]
-								[/@majorChildrenList]
-								</ul>   
-							</dd>
-							[/#list]
-							</dl>	
-							[/@majorParentList]
-							';
-							
-			var Jobs='<div class="select-info">	
-						<label class="top-label">已选项：</label>
-						<ul>		
-						</ul>
-						<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
-							<span class="a-btn-text">确定</span>
-						</a> 
-					</div>			
-					[@workParentList]		
-							<dl>
-							[#list WorkParentList as workParent]
-							<dt class="open" id="${workParent.id}">${workParent.name}</dt>
-							<dd>
-								<ul>
-								[@workChildrenList parentCodeId = workParent.codeId]
-								[#list WorkChildrenList as workChildren]
-									<li rel="${workChildren.id}">
-											${workChildren.name}
-									</li>
-								[/#list]
-								[/@workChildrenList]
-								</ul>   
-							</dd>
-							[/#list]
-							</dl>	
-							[/@workParentList]			
-				</div>';
-		[/@compress]
+        	
 		 $().ready(function(){
 		 
 		 	$("#workyear1").val("${recruit.workyear}");
@@ -344,10 +288,12 @@
 		 	$("#worklimit1").val("${recruit.worklimit}");
 		 	$("#workWay1").val("${recruit.workWay}");
 		 	
-			 // 为所有插件使用相同的模板。
-	    	var html ='<div id="xmenuSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'+
-					  '<div id="xmenuJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>';
-			$("#bianji_xinxi").parent().append(html);
+		 	var specialty=$("#Specialty").html();
+			var jobs=$("#Jobs").html();
+		 	
+			
+			$("#xmenuSpecialty1").html(specialty);
+			$("#xmenuJobs1").html(jobs);	
 			
 			// 添加弹窗控件。
 				$("#selectSpecialty1").xMenu({	
@@ -372,7 +318,7 @@
 			//封装ajax信息提交
 			function submitJobs(value){
 				if($("#beginDate").val()!=""){
-					var viewData=new Date($("#beginDate").val().replace(/-/g,",")).getTime();
+					var viewData=new Date($("#beginDate").val().replace(/-/g,"/")).getTime();
 					$("#viewData").val(viewData);
 				}else{
 					$("#viewData").remove();
@@ -737,6 +683,67 @@
 				</div>
 			</div>
 		</div>
+		<div id="xmenuSpecialty1" class="xmenu" style="display: none;"></div>
+		<div id="xmenuJobs1" class="xmenu" style="display: none;"></div>
+		<!--数据 -->
+		<div id="Specialty" class="xmenu" style="display: none;">
+				<div class="select-info">	
+					<label class="top-label">已选项：</label>
+						<ul>		
+						</ul>
+						<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
+							<span class="a-btn-text">确定</span>
+						</a> 
+				</div>	
+				[@majorParentList]		
+				<dl>
+				[#list MajorParentList as majorParent]
+					<dt class="open" id="${majorParent.id}">${majorParent.name}</dt>
+					<dd>
+						<ul>
+						[@majorChildrenList parentCodeId = majorParent.codeId]
+						[#list MajorChildrenList as majorChildren]
+							<li rel="${majorChildren.id}">
+									${majorChildren.name}
+							</li>
+						[/#list]
+						[/@majorChildrenList]
+						</ul>   
+					</dd>
+				[/#list]
+				</dl>	
+				[/@majorParentList]
+			</div>
+			<div id="Jobs" class="xmenu" style="display: none;">
+				<div class="select-info">	
+					<label class="top-label">已选项：</label>
+					<ul>		
+					</ul>
+					<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
+						<span class="a-btn-text">确定</span>
+					</a> 
+				</div>			
+					[@workParentList]		
+						<dl>
+						[#list WorkParentList as workParent]
+						<dt class="open" id="${workParent.id}">${workParent.name}</dt>
+						<dd>
+							<ul>
+							[@workChildrenList parentCodeId = workParent.codeId]
+							[#list WorkChildrenList as workChildren]
+								<li rel="${workChildren.id}">
+										${workChildren.name}
+								</li>
+							[/#list]
+							[/@workChildrenList]
+							</ul>   
+						</dd>
+						[/#list]
+						</dl>	
+					[/@workParentList]		
+			</div>
+		<!--数据-->
+		
 	</div>
 	
 	<!--修改密码弹出层********************************************-->

@@ -1374,7 +1374,7 @@
 								<tr>
 									<td>密码:</td>
 									<td>
-									<label>不填</label>
+									<label>保密</label>
 									<input type="hidden" id="password"  name="password" placeholder="不填" readonly="readonly"></td>
 								</tr>
 								<tr>
@@ -1442,7 +1442,6 @@
 									 <div id="preview_wrapper">    
 								        <div id="preview_fake" >    
 								       	 <img id="preview" onload="onPreviewLoad(this)" src="[#if sessionUser.imgHead!=""]/${sessionUser.imgHead}[#else]/resource/public/images/bg1.png[/#if]"/>    
-								            <!-- <img id="preview" onload="onPreviewLoad(this)" src="/resource/public/images/bg1.png"/>   -->
 								        </div>    
 								    </div>    
 								    <br/>    

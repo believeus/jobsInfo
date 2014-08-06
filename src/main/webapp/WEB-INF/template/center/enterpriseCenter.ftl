@@ -146,7 +146,7 @@
 		}
 		.qiyepic{
 			float: left;
-		    height: 215px;
+		    height: 274px;
 		    width: 160px;
 		    background:#FFFFFF;
 		    margin-right:10px;
@@ -203,74 +203,127 @@
 		}
     </style>
     
-    <style type="text/css">
 	
-.brandImg {
-    background-color: #666666;
-    border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
-    border-radius: 2px;
-    border-style: solid;
-    border-width: 1px;
-    height: 145px;
-    position: relative;
-    width: 160px;
-}
-.brandImg span {
-    display: block;
-    height: 145px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 140px;
-}
-.brandImg span:hover {
-    background-color: #FFFFFF;
-    opacity: 0.7;
-}
-.brandImg span a {
-    display: block;
-    left: 38px;
-    position: absolute;
-    top: 72px;
-}
+	<!-- 预览图片 -->
+	<style type="text/css">    
+		#preview_wrapper{     
+		    display:inline-block;     
+		   	width:190px;
+		   	height:48px;    
+		    background-color:#CCC;
+		    margin-top: 10px;     
+		}     
+		#preview_fake{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;     
+		}     
+		#preview{ /* 该对象用户在FF下显示预览图片 */     
+		  	width:190px;
+		   	height:48px;      
+		}   
+		#upload_img{
+			margin-top: 10px;
+			width: 160px;
+		} 
+		
+	</style> 
 	
-	</style>
+	<!-- 预览图片 -->
+	<style type="text/css">    
+		#preview_wrapper1{     
+		    display:inline-block;     
+		   	width:160px;
+		   	height:145px;    
+		    background-color:#CCC;
+		    margin-top: 10px;     
+		}     
+		#preview_fake1{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake1{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;     
+		}     
+		#preview1{ /* 该对象用户在FF下显示预览图片 */     
+		  width:160px;
+		  height:145px;   
+		}   
+		#upload_img1{
+			margin-top: 10px;
+			width: auto;
+		} 
+		
+	</style> 
 	
-    <style type="text/css">
-	#Img{
-		border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
-	    border-radius: 2px 2px 2px 2px;
-	    border-style: solid;
-	    border-width: 1px;
-	    background-color: #666666;
-	    width:190px !important;height:48px !important;
-	    position:relative;
-	}
-	
-	#Img span{
-		display:block;
-		position:absolute;
-		top:0px;left:0px;
-		width:170px !important;
-		height:48px !important;
-	}
-	
-	#Img span:hover{
-		background-color:#FFFFFF;
-	    opacity: 0.7;
-	    filter:alpha(opacity=50);
-	    -moz-opacity:0.5;
-	    -khtml-opacity: 0.5;
-	}
-	
-	#Img span a{
-		display:block;
-		position:absolute;
-		top:10px !important;
-		left:50px !important;
-	}
-	
-	</style>
+	<script type="text/javascript">    
+		function onUploadImgChange(sender,offsetWidth,offsetHeight,preview,preview_fake,preview_size_fake){     
+		    if( !sender.value.match( /.jpg|.gif|.png|.bmp/i ) ){     
+		        alert('图片格式无效！');     
+		        return false;     
+		    }     
+		         
+		    var objPreview = document.getElementById( preview );     
+		    var objPreviewFake = document.getElementById( preview_fake );     
+		    var objPreviewSizeFake = document.getElementById( preview_size_fake );    
+		         
+		    if( sender.files &&  sender.files[0] ){  
+		        var reader = new FileReader();
+				reader.onload = function(evt){objPreview.src = evt.target.result;}
+		        reader.readAsDataURL(sender.files[0]);	   
+		        
+		    }else if( objPreviewFake.filters ){    
+		        // IE7,IE8 在设置本地图片地址为 img.src 时出现莫名其妙的后果     
+		        //（相同环境有时能显示，有时不显示），因此只能用滤镜来解决     
+		             
+		        // IE7, IE8因安全性问题已无法直接通过 input[file].value 获取完整的文件路径     
+		        sender.select();     
+		        var imgSrc = document.selection.createRange().text;     
+		             
+		        objPreviewFake.filters.item(     
+		            'DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
+		        objPreviewSizeFake.filters.item(     
+		            'DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
+		             
+		        autoSizePreview( objPreviewFake,offsetWidth,offsetHeight );     
+		        objPreview.style.display = 'none';     
+		    }     
+		}     
+		    
+		function onPreviewLoad(sender,offsetWidth,offsetHeight){    
+		    autoSizePreview( sender, offsetWidth, offsetHeight );     
+		}     
+		    
+		function autoSizePreview( objPre, originalWidth, originalHeight ){     
+		    var zoomParam = clacImgZoomParam( originalWidth, originalHeight, originalWidth, originalHeight );     
+		    objPre.style.width = zoomParam.width + 'px';     
+		    objPre.style.height = zoomParam.height + 'px';     
+		}     
+		    
+		function clacImgZoomParam( maxWidth, maxHeight, width, height ){     
+		    var param = { width:width, height:height, top:0, left:0 };     
+		         
+		    if( width>maxWidth || height>maxHeight ){     
+		        rateWidth = width / maxWidth;     
+		        rateHeight = height / maxHeight;     
+		             
+		        if( rateWidth > rateHeight ){     
+		            param.width =  maxWidth;     
+		            param.height = height / rateWidth;     
+		        }else{     
+		            param.width = width / rateHeight;     
+		            param.height = maxHeight;     
+		        }     
+		    }     
+		         
+		    param.left = (maxWidth - param.width) / 2;     
+		    param.top = (maxHeight - param.height) / 2;     
+		         
+		    return param;     
+		}      
+	</script>   
 	
 	
      <script type="text/javascript">
@@ -375,64 +428,6 @@
 	</script>
 	
     <script text="text/javascript">
-    	
-        	[@compress single_line = true]
-    		var Specialty='<div class="select-info">	
-						<label class="top-label">已选项：</label>
-								<ul>		
-								</ul>
-								<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
-									<span class="a-btn-text">确定</span>
-								</a> 
-							</div>	
-							[@majorParentList]		
-							<dl>
-							[#list MajorParentList as majorParent]
-							<dt class="open" id="${majorParent.id}">${majorParent.name}</dt>
-							<dd>
-								<ul>
-								[@majorChildrenList parentCodeId = majorParent.codeId]
-								[#list MajorChildrenList as majorChildren]
-									<li rel="${majorChildren.id}">
-											${majorChildren.name}
-									</li>
-								[/#list]
-								[/@majorChildrenList]
-								</ul>   
-							</dd>
-							[/#list]
-							</dl>	
-							[/@majorParentList]
-							';
-							
-			var Jobs='<div class="select-info">	
-						<label class="top-label">已选项：</label>
-						<ul>		
-						</ul>
-						<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
-							<span class="a-btn-text">确定</span>
-						</a> 
-					</div>			
-					[@workParentList]		
-							<dl>
-							[#list WorkParentList as workParent]
-							<dt class="open" id="${workParent.id}">${workParent.name}</dt>
-							<dd>
-								<ul>
-								[@workChildrenList parentCodeId = workParent.codeId]
-								[#list WorkChildrenList as workChildren]
-									<li rel="${workChildren.id}">
-											${workChildren.name}
-									</li>
-								[/#list]
-								[/@workChildrenList]
-								</ul>   
-							</dd>
-							[/#list]
-							</dl>	
-							[/@workParentList]			
-				</div>';
-		[/@compress]
 
 		[@compress single_line = true]
     		var htmlx = '
@@ -710,11 +705,12 @@
     	$("#relationship").val("${sessionUser.relationship}");
     	$("#economicType").val("${sessionUser.economicType}");
     	
-    	// 为所有插件使用相同的模板。
-    	var html ='<div id="xmenuSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'+
-				  '<div id="xmenuJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>';
-		$("#bianji_xinxi").parent().append(html);
-		
+    	var specialty=$("#Specialty").html();
+		var jobs=$("#Jobs").html();
+			
+		$("#xmenuSpecialty1").html(specialty);
+		$("#xmenuJobs1").html(jobs);	
+    	
 		// 添加弹窗控件。
 			$("#selectSpecialty1").xMenu({	
 						width :600,	
@@ -818,163 +814,7 @@
 			v++;
     	});
     	
-    	//添加招聘信息
-    	$("#add_zhaopin").click(function(){
-    		[@compress single_line = true]
-    		var html = 
-    			'<form novalidate="novalidate"  action="/enterprise-user/center/submit-recruit.jhtml"  method="post" id="jobsForm'+b+'">
-    			 <div class="zhaopinxinxi" style="padding:10px 30px;width:650px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
-					<table>
-						<tr>
-							<td rowspan="9" style="color:#E2652E;">'+b+'</td>
-							<td>招聘单位:</td>
-							<td style="padding-right:80px;"><input type="text" name="company" ></td>
-							<td>人数:</td>
-							<td><input type="text" name="worknum" onkeyup="value=this.value.replace(/\D+/g,"")" maxlength="3"></td>
-						</tr>
-						<tr>
-							<td>工种:</td>
-							<td>
-									<input type="hidden" value="" id="selectJobshidden'+b+'" name="workTypeId"/>
-									<div class="topnav">
-										<a id="selectJobs'+b+'" href="javascript:void(0);" class="as">
-											<span >
-												选择工种
-											</span>		
-										</a>	
-									</div>
-									</td>
-							<td>性别:</td>
-							<td>
-								<select name="sex" style="width: 183px;">
-									<option value="">请选择..</option>
-									<option value="woman">女</option>
-									<option value="man">男</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td>专业:</td>
-							<td>
-								<input type="hidden" value="" id="selectSpecialtyhidden'+b+'" name="majorTypeId"/>
-								<div class="topnav">
-									<a id="selectSpecialty'+b+'" href="javascript:void(0);" class="as">
-										<span >
-											选择专业
-										</span>		
-									</a>	
-								</div>
-							</td>
-							<td>技术等级:</td>
-							<td><input type="text" name="eteLevel"></td>
-						</tr>
-						<tr>
-							<td>从事年限:</td>
-							<td><input type="text" name="workyear"></td>
-							<td>文化程度:</td>
-							<td>
-								<select name="eduLevel" style="width: 183px;">
-									<option value="">请选择..</option>
-									<option value="研究生以上">研究生以上</option>
-									<option value="博士研究生">博士研究生</option>
-									<option value="大学本科">大学本科</option>
-									<option value="大学专科">大学专科</option>
-									<option value="中专技校">中专技校</option>
-									<option value="中等专科">中等专科</option>
-									<option value="职业高中">职业高中</option>
-									<option value="技工学校">技工学校</option>
-									<option value="普通高中">普通高中</option>
-									<option value="初中及以下">初中及以下</option>
-									<option value="初级中学">初级中学</option>
-									<option value="小学">小学</option>
-									<option value="其他">其他</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td>工作地点:</td>
-							<td><input type="text" name="workspace"></td>
-							<td>年龄:</td>
-							<td><input type="text" name="age" onkeyup="value=this.value.replace(/\D+/g,"")" maxlength="3"></td>
-						</tr>
-						<tr>
-							<td>身高:</td>
-							<td><input type="text" name="height" onkeyup="value=this.value.replace(/\D+/g,"")" maxlength="3">cm</td>
-							<td>视力:</td>
-							<td><input type="text" name="eyesight" onkeyup="value=this.value.replace(/\D+./g,"")" maxlength="3"></td>
-						</tr>
-						<tr>
-							<td>薪资待遇:</td>
-							<td><input type="text" name="salary"></td>
-							<td>用工形式:</td>
-							<td>
-								<select name="workWay" style="width: 183px;">
-									<option value="">请选择..</option>
-									<option value="兼职">兼职</option>
-									<option value="全职">全职</option>
-									<option value="实习">实习</option>
-									<option value="...">...</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td>招聘期限:</td>
-							<td>
-								<select name="worklimit" style="width: 183px;">
-									<option value="三个月">三个月</option>
-									<option value="一个月">一个月</option>
-									<option value="六个月">六个月</option>
-									<option value="一年">一年</option>
-									<option value="长期">长期</option>
-								</select>
-							</td>
-							<td>面试时间:</td>
-							<td><input type="text" name="viewData" placeholder="如2014-02-28"></td>
-						</tr>
-						<tr>
-							<td style="vertical-align:top;">其他说明:</td>
-							<td colspan="3">
-								<textArea cols="" style="resize:none;" name="note"></textArea>
-							</td>
-							
-						</tr>
-					</table>
-				</div>
-				</form>';
-				var divhtml ='<div id="xmenuSpecialty'+b+'" class="xmenu" style="display: none;">'+Specialty +'</div>'+
-				  '<div id="xmenuJobs'+b+'" class="xmenu" style="display: none;">'+Jobs +'</div>';
-		
-			[/@compress]
-			
-			if($(".zhaopinxinxi").size() <5){
-				$(".zhaopinxinxi").parent().append(html);
-				$("#bianji_xinxi").parent().append(divhtml);
-			}else{
-				alert("最多添加5条数据");
-			}
-			
-			// 为新增的标签添加弹窗控件
-			$("#selectSpecialty"+b).xMenu({	
-						width :600,	
-						eventType: "click", //事件类型 支持focus click hover
-						dropmenu:"#xmenuSpecialty"+b,//弹出层
-						emptytext:"选择专业",
-						hiddenID : "selectSpecialtyhidden"+b//隐藏域ID	
-			});
-			$("#selectJobs"+b).xMenu({	
-						width :600,	
-						eventType: "click", //事件类型 支持focus click hover
-						dropmenu:"#xmenuJobs"+b,//弹出层
-						emptytext:"选择工种",
-						hiddenID : "selectJobshidden"+b//隐藏域ID	
-			});
-			
-			if($(".zhaopinxinxi").size() <5){
-				b++;
-			}
-			
-		});
-		
+    	
 		$("#phoneNum").blur(function(){
 			var phoneNum =$(this).val();
 			var regPartton=/^(?:13\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/; //验证手机号
@@ -986,7 +826,7 @@
 			//封装ajax信息提交
 		function submitJobs(value){
 			if($("#beginDate").val()!=""){
-				var viewData=new Date($("#beginDate").val().replace(/-/g,",")).getTime();
+				var viewData=new Date($("#beginDate").val().replace(/-/g,"/")).getTime();
 				$("#viewData").val(viewData);
 			}else{
 				$("#viewData").remove();
@@ -1220,7 +1060,7 @@
 						</div>
 					</div>
 					<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
-						<div class="" style="height: auto; overflow: hidden; float: left; width: 660px; margin-left: 30px; margin-top: 10px;margin-right:10px;">
+						<div class="" style="height: 480px; overflow: hidden; float: left; width: 660px; margin-left: 30px; margin-top: 10px;margin-right:10px;">
 						<table>
 						<form novalidate="novalidate"  action="/enterprise/submit-account-Info.jhtml" encType="multipart/form-data"  method="post" id="InfoForm">
 							<input type="hidden" name="id" value="${sessionUser.id}">
@@ -1364,35 +1204,41 @@
 								</tr>
 							</form>
 									<tr>
-									<td style="vertical-align: top;">企业电子图:</td>
+									<td style="vertical-align: top;padding-top: 10px;">企业电子图:</td>
 									<td colspan="2">
 									<form novalidate="novalidate"  action="/enterprise-user/center/upload.jhtml" encType="multipart/form-data"  method="post" id="MapForm">
 									<input type="hidden" name="type" value="2">
 										[#if Maps?size>0]
 											[#list Maps as map]
-											<div class="brandImg" id="Img">
-												<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
-												</span>
-													<img width="190px" height="48px" src="/${map.url}" name="url" id="${map.id}"/>
+											 <div id="preview_wrapper">    
+										        <div id="preview_fake" >    
+										            <img id="preview" onload="onPreviewLoad(this,190,48)" src="/${map.url}" name="url" id="${map.id}"/>
 													<input type="hidden" name="id" value="${map.id}">
-													<div style="height: 2px; position: relative; width: 230px; left: 230px; font-size: 12px; top: -36px;">
-														建议图片尺寸：宽190px*高48px
-													</div>
+										        </div>    
+										    </div>    
+										    <br/>    
+										    <input id="upload_img" type="file" name="upload_img" onchange="filename0.value=this.value;onUploadImgChange(this,190,48,'preview','preview_fake','preview_size_fake');changex=1;"/>  
+		             						<div style="height: 2px; position: relative; width: 230px; left: 230px; font-size: 12px; top: -74px;">
+												建议图片尺寸：宽190px*高48px
 											</div>
-											<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">
-											<input type="hidden" id="filename0" name="filename0">
+										    <input type="hidden" id="filename0" name="filename0">
+										    <br/>    
+										    <img id="preview_size_fake"/>   
 											[/#list]
 										[#else]
-										<div class="brandImg" id="Img">
-											<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
-											</span>
-												<img width="190px" height="48px" src="/resource/public/images/bg.png" name="url" id="0"/>
-												<div style="height: 2px; position: relative; width: 230px; left: 230px; font-size: 12px; top: -36px;">
-														建议图片尺寸：宽190px*高48px
-												</div>
+										 <div id="preview_wrapper">    
+									        <div id="preview_fake" >    
+									            <img id="preview" onload="onPreviewLoad(this,190,48)" src="/resource/public/images/bg.png"/>
+									        </div>    
+									    </div>    
+									    <br/>    
+									    <input id="upload_img" type="file" name="upload_img" onchange="filename0.value=this.value;onUploadImgChange(this,190,48,'preview','preview_fake','preview_size_fake');changex=1;"/>  
+	             						<div style="height: 2px; position: relative; width: 230px; left: 230px; font-size: 12px; top: -74px;">
+											建议图片尺寸：宽190px*高48px
 										</div>
-										<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">
-										<input type="hidden" id="filename0" name="filename0">
+									    <input type="hidden" id="filename0" name="filename0">
+									    <br/>    
+									    <img id="preview_size_fake"/>   
 										[/#if]
 									</form>
 									</td>
@@ -1435,12 +1281,16 @@
 							<form novalidate="novalidate"  action="/enterprise-user/center/upload.jhtml" encType="multipart/form-data"  method="post" id="ImgForm1">
 							<input type="hidden" name="type" value="0">
 								<p>
-									<div class="brandImg">
-										<span><a onclick="file1.click()" href="javascript:void(0);">点击上传图片</a></span>
-										<img style="width:160px;height:145px" src="/resource/public/images/bg.png" />
-									</div>
-									<input type="file" style="display:none" id="file1" name="file1" onchange="filename1.value=this.value;loadImgFast(this,1)">
-									<input type="hidden" id="filename1" name="filename1">
+								 <div id="preview_wrapper1">    
+								        <div id="preview_fake1" >  
+								            <img id="preview1" onload="onPreviewLoad(this,160,145)" src="/resource/public/images/bg.png"/>
+								        </div>    
+								    </div>    
+								    <br/>    
+								    <input id="upload_img1" type="file" name="upload_img" onchange="filename0.value=this.value;onUploadImgChange(this,160,145,'preview1','preview_fake1','preview_size_fake1');changex=1;"/>  
+								    <input type="hidden" id="filename0" name="filename0">
+								    <br/>    
+								    <img id="preview_size_fake1"/> 
 								</p>
 								<p><textArea placeholder="添加描述（20字以内）" maxlength="20" name="descption"></textArea></p>
 								<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this,0)" href="javascript:void(0);">删除</a></div>
@@ -1833,6 +1683,63 @@
 					</p>
 				</div>
 			</div>
+		</div>
+		
+		<div id="xmenuSpecialty1" class="xmenu" style="display: none;">
+			<div class="select-info">	
+					<label class="top-label">已选项：</label>
+						<ul>		
+						</ul>
+						<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
+							<span class="a-btn-text">确定</span>
+						</a> 
+				</div>	
+				[@majorParentList]		
+				<dl>
+				[#list MajorParentList as majorParent]
+					<dt class="open" id="${majorParent.id}">${majorParent.name}</dt>
+					<dd>
+						<ul>
+						[@majorChildrenList parentCodeId = majorParent.codeId]
+						[#list MajorChildrenList as majorChildren]
+							<li rel="${majorChildren.id}">
+									${majorChildren.name}
+							</li>
+						[/#list]
+						[/@majorChildrenList]
+						</ul>   
+					</dd>
+				[/#list]
+				</dl>	
+				[/@majorParentList]
+		</div>
+		<div id="xmenuJobs1" class="xmenu" style="display: none;">
+			<div class="select-info">	
+					<label class="top-label">已选项：</label>
+					<ul>		
+					</ul>
+					<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
+						<span class="a-btn-text">确定</span>
+					</a> 
+				</div>			
+					[@workParentList]		
+						<dl>
+						[#list WorkParentList as workParent]
+						<dt class="open" id="${workParent.id}">${workParent.name}</dt>
+						<dd>
+							<ul>
+							[@workChildrenList parentCodeId = workParent.codeId]
+							[#list WorkChildrenList as workChildren]
+								<li rel="${workChildren.id}">
+										${workChildren.name}
+								</li>
+							[/#list]
+							[/@workChildrenList]
+							</ul>   
+						</dd>
+						[/#list]
+						</dl>	
+					[/@workParentList]	
 		</div>
 	</div>
 	
