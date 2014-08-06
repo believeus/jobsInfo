@@ -169,7 +169,7 @@ public class ControllerCenter {
 		try {
 			TcomUser sessionUser = (TcomUser) session.getAttribute("sessionUser");
 			sessionUser.setEditDate(System.currentTimeMillis());
-			etechService.saveOrUpdata(sessionUser);
+			etechService.merge(sessionUser);
 			comInfo.setComUser(sessionUser);
 			if (workTypeId != null) {
 				TmajorType workType = (TmajorType) etechService.findObjectById(TmajorType.class, workTypeId);
@@ -182,7 +182,7 @@ public class ControllerCenter {
 			// 设置编辑时间
 			comInfo.setCreateDate(System.currentTimeMillis());
 			comInfo.setEditDate(System.currentTimeMillis());
-			etechService.saveOrUpdata(comInfo);
+			etechService.merge(comInfo);
 			map.put("message", "success");
 		} catch (Exception ex) {
 			ex.printStackTrace(); 

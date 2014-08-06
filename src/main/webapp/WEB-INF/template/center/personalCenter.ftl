@@ -426,7 +426,6 @@
 	    	   // ajax 提交验证和登录。
 		    	function deleteIds(value){
 		    		
-		    		//alert(value+"=value");
 	    			if($("#deleteids").length>0){
 		    			var ids=$("#deleteids").val();
 						$.ajax({
@@ -448,66 +447,11 @@
 				}
 	    	
     		
-    	[@compress single_line = true]
-    		var Specialty='<div class="select-info">	
-						<label class="top-label">已选项：</label>
-								<ul>		
-								</ul>
-								<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
-									<span class="a-btn-text">确定</span>
-								</a> 
-							</div>	
-							[@majorParentList]		
-							<dl>
-							[#list MajorParentList as majorParent]
-							<dt class="open" id="${majorParent.id}">${majorParent.name}</dt>
-							<dd>
-								<ul>
-								[@majorChildrenList parentCodeId = majorParent.codeId]
-								[#list MajorChildrenList as majorChildren]
-									<li rel="${majorChildren.id}">
-											${majorChildren.name}
-									</li>
-								[/#list]
-								[/@majorChildrenList]
-								</ul>   
-							</dd>
-							[/#list]
-							</dl>	
-							[/@majorParentList]
-							';
-							
-			var Jobs='<div class="select-info">	
-						<label class="top-label">已选项：</label>
-						<ul>		
-						</ul>
-						<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
-							<span class="a-btn-text">确定</span>
-						</a> 
-					</div>			
-					[@workParentList]		
-							<dl>
-							[#list WorkParentList as workParent]
-							<dt class="open" id="${workParent.id}">${workParent.name}</dt>
-							<dd>
-								<ul>
-								[@workChildrenList parentCodeId = workParent.codeId]
-								[#list WorkChildrenList as workChildren]
-									<li rel="${workChildren.id}">
-											${workChildren.name}
-									</li>
-								[/#list]
-								[/@workChildrenList]
-								</ul>   
-							</dd>
-							[/#list]
-							</dl>	
-							[/@workParentList]			
-				</div>';
-	[/@compress]
 						
     	
     	$().ready(function() {
+    		var specialty=$("#Specialty").html();
+			var jobs=$("#Jobs").html();
     		
     		$("#personal_xinxi").click(function(){
     			$("#personal_xinxi").removeClass("currentSwich");
@@ -533,92 +477,13 @@
     		
 		
 						
-    		//添加学习经历
-    		$("#add_xuexi").click(function(){
-    			// 获取必填项是否有值。
-    			var beginDateLearning=$("#beginDateLearning"+(a-1)).val();
-    			var endDateLearning=$("#endDateLearning"+(a-1)).val();
-    			var schoolLearning=$("#schoolLearning"+(a-1)).val();
-    			var selectLearningSpecialtyhidden=$("#selectLearningSpecialtyhidden"+(a-1)).val();
-    			if(beginDateLearning==""||endDateLearning==""||schoolLearning==""||selectLearningSpecialtyhidden==""){
-    				alert("请完整填写必填项！");
-    				return false;
-    			};
-    			[@compress single_line = true]
-    				var trHtml = 
-    				'<div class="xuexi_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
-						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="LearningForm'+a+'">	
-						<table>
-							<tr>
-								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">'+a+'</td>
-							</tr>
-							<tr>
-								<td><font color="red">起始时间:</font></td>
-								<td colspan="3">
-								<input type="text" name="beginDateLearning'+a+'" id="beginDateLearning'+a+'" eidLearning="beginDateLearning'+a+'" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: new Date()});"  />
-								<font color="red">结束时间:</font> <input type="text" name="endDateLearning'+a+'" id="endDateLearning'+a+'" eidLearning="endDateLearning'+a+'" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: \'#F{$dp.$D(beginDateLearning'+a+')}\'});"/>
-								<input type="hidden" name="beginData" value=""/>
-								<input type="hidden" name="endData" value=""/>
-								</td>
-							</tr>
-							<tr>
-								<td><font color="red">学校名称:</font></td>
-								<td style="padding-right:100px;"><input type="text" id="schoolLearning'+a+'" name="workspace"></td>
-								<td>系别:</td>
-								<td><input type="text" id="deptLearning'+a+'" name="dept"> </td>
-							</tr>
-							<tr>
-								<td><font color="red">专业：</font></td>
-								<td colspan="3">
-									<input type="hidden" value="" id="selectLearningSpecialtyhidden'+a+'" name="majorTypeId" value=""/>
-									<input type="hidden" value="2" name="infoType">
-									<input type="hidden" value="" id="LearningId'+a+'"/>
-									<div class="topnav">
-										<a id="selectLearningSpecialty'+a+'" href="javascript:void(0);" class="as">
-											<span >
-												选择专业
-											</span>		
-										</a>	
-									</div>
-								</td>
-								<td rowspan="3"><a class="delete_xuexi"  onclick="deleteDiv(this,2,'+a+')" href="javascript:void(0);">删除</a></td>
-							</tr>
-						</table>
-						</form>
-					</div>';
-					var html =
-						'<div id="xmenuLearningSpecialty'+a+'" class="xmenu" style="display: none;">'+Specialty +'</div>
-						';
-				[/@compress]
-				
-				if($(".xuexi").find("div.xuexi_div").size() <6){
-					$(".xuexi").append(trHtml);
-					$("#conentDiv").parent().append(html);
-				}else{
-					alert("最多添加6条数据");
-				}
-				
-				// 为新增的标签添加弹窗控件
-				$("#selectLearningSpecialty"+a).xMenu({	
-							width :600,	
-							eventType: "click", //事件类型 支持focus click hover
-							dropmenu:"#xmenuLearningSpecialty"+a,//弹出层
-							emptytext:"选择专业",
-							hiddenID : "selectLearningSpecialtyhidden"+a//隐藏域ID	
-				});
-				
-				
-				if($(".xuexi").find("div.xuexi_div").size() <6){
-					a ++;
-				}
-				
-    		});
+    		
     		
     		//添加具备技能
     		$("#add_jineng").click(function(){
     			// 获取必填项是否有值。
-    			var Specialty=$("#selectSkillSpecialty"+(b-1)).find("span").text();
-    			if(Specialty=="选择专业"){
+    			var specialtyx=$("#selectSkillSpecialty"+(b-1)).find("span").text();
+    			if(specialtyx=="选择专业"){
     				alert("请完整填写必填项！");
     				return false;
     			};
@@ -676,15 +541,12 @@
 						</form>
 					</div>';
 					
-					var html =
-						'<div id="xmenuSkillSpecialty'+b+'" class="xmenu" style="display: none;">'+Specialty +'</div>
-						<div id="xmenuSkillJobs'+b+'" class="xmenu" style="display: none;">'+Jobs +'</div>
-						';
 				[/@compress]
 				
 				if($(".jineng").find("div.jineng_div").size() <6){
 					$(".jineng").append(trHtml);
-					$("#conentDiv").parent().append(html);
+					$("#xmenuSkillSpecialty"+b).html(specialty);
+					$("#xmenuSkillJobs"+b).append(jobs);
 				}else{
 					alert("最多添加6条数据");
 				}
@@ -708,6 +570,84 @@
 				
 				if($(".jineng").find("div.jineng_div").size() <6){
 					b ++;
+				}
+				
+    		});
+    		
+    		//添加学习经历
+    		$("#add_xuexi").click(function(){
+    			// 获取必填项是否有值。
+    			var beginDateLearning=$("#beginDateLearning"+(a-1)).val();
+    			var endDateLearning=$("#endDateLearning"+(a-1)).val();
+    			var schoolLearning=$("#schoolLearning"+(a-1)).val();
+    			var selectLearningSpecialtyhidden=$("#selectLearningSpecialtyhidden"+(a-1)).val();
+    			if(beginDateLearning==""||endDateLearning==""||schoolLearning==""||selectLearningSpecialtyhidden==""){
+    				alert("请完整填写必填项！");
+    				return false;
+    			};
+    			[@compress single_line = true]
+    				var trHtml = 
+    				'<div class="xuexi_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="LearningForm'+a+'">	
+						<table>
+							<tr>
+								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">'+a+'</td>
+							</tr>
+							<tr>
+								<td><font color="red">起始时间:</font></td>
+								<td colspan="3">
+								<input type="text" name="beginDateLearning'+a+'" id="beginDateLearning'+a+'" eidLearning="beginDateLearning'+a+'" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: new Date()});"  />
+								<font color="red">结束时间:</font> <input type="text" name="endDateLearning'+a+'" id="endDateLearning'+a+'" eidLearning="endDateLearning'+a+'" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: \'#F{$dp.$D(beginDateLearning'+a+')}\'});"/>
+								<input type="hidden" name="beginData" value=""/>
+								<input type="hidden" name="endData" value=""/>
+								</td>
+							</tr>
+							<tr>
+								<td><font color="red">学校名称:</font></td>
+								<td style="padding-right:100px;"><input type="text" id="schoolLearning'+a+'" name="workspace"></td>
+								<td>系别:</td>
+								<td><input type="text" id="deptLearning'+a+'" name="dept"> </td>
+							</tr>
+							<tr>
+								<td><font color="red">专业：</font></td>
+								<td colspan="3">
+									<input type="hidden" value="" id="selectLearningSpecialtyhidden'+a+'" name="majorTypeId" value=""/>
+									<input type="hidden" value="2" name="infoType">
+									<input type="hidden" value="" id="LearningId'+a+'"/>
+									<div class="topnav">
+										<a id="selectLearningSpecialty'+a+'" href="javascript:void(0);" class="as">
+											<span >
+												选择专业
+											</span>		
+										</a>	
+									</div>
+								</td>
+								<td rowspan="3"><a class="delete_xuexi"  onclick="deleteDiv(this,2,'+a+')" href="javascript:void(0);">删除</a></td>
+							</tr>
+						</table>
+						</form>
+					</div>';
+				[/@compress]
+				
+				if($(".xuexi").find("div.xuexi_div").size() <6){
+					$(".xuexi").append(trHtml);
+					$("#xmenuLearningSpecialty"+a).html(specialty);
+				}else{
+					alert("最多添加6条数据");
+				}
+				
+				// 为新增的标签添加弹窗控件
+				$("#selectLearningSpecialty"+a).xMenu({	
+							width :600,	
+							eventType: "click", //事件类型 支持focus click hover
+							dropmenu:"#xmenuLearningSpecialty"+a,//弹出层
+							emptytext:"选择专业",
+							hiddenID : "selectLearningSpecialtyhidden"+a//隐藏域ID	
+				});
+				
+				
+				if($(".xuexi").find("div.xuexi_div").size() <6){
+					a ++;
 				}
 				
     		});
@@ -766,12 +706,11 @@
 						</table>
 						</form>
 					</div>';
-					var html ='<div id="xmenuWorkJob'+c+'" class="xmenu" style="display: none;">'+Jobs +'</div>';
 				[/@compress]
 				
 				if($(".gongzuo").find("div.gongzuo_div").size() <6){
 					$(".gongzuo").append(trHtml);
-					$("#conentDiv").parent().append(html);
+					$("#xmenuWorkJob"+c).html(jobs);
 				}else{
 					alert("最多添加6条数据");
 				}
@@ -790,161 +729,6 @@
 				}
     		});
     		
-    		//添加选择志愿
-    		$("#add_zhiyuan").click(function(){
-    			[@compress single_line = true]
-    				var trHtml = 
-    				'<div class="zhiyuan_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
-						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="VolunteerForm'+d+'">
-						<table>
-							<tr>
-								<td rowspan="4" style="background:#DCDCDC;color:#FE7200;">'+d+'</td>
-								<td><font color="red">专业：</font></td>
-								<td>
-									<input type="hidden" value="" id="selectVolunteerSpecialtyhidden'+d+'" name="majorTypeId"/>
-									<input type="hidden" value="4" name="infoType">
-									<div class="topnav">
-										<a id="selectVolunteerSpecialty'+d+'" href="javascript:void(0);" class="as">
-											<span >
-												选择专业
-											</span>		
-										</a>	
-									</div>
-								</td>
-								<td>择业地区:</td>
-								<td>
-									<input type="text" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" autocomplete="off" id="" name="expectArea" readonly="readonly">
-									<!--////////////////////////////////////////////////////////////////////////-->
-										<div class="provinceCityAll">
-										  <div class="tabs clearfix">
-										    <ul class="">
-										      <li><a href="javascript:" class="current" tb="hotCityAll">热门城市</a></li>
-										      <li><a href="javascript:" tb="provinceAll">省份</a></li>
-										      <li><a href="javascript:" tb="cityAll" id="cityAll">城市</a></li>
-										      <li><a href="javascript:" tb="countyAll" id="countyAll">区县</a></li>
-										    </ul>
-										  </div>
-										  <div class="con">
-										    <div class="hotCityAll invis">
-										      <div class="pre"><a></a></div>
-										      <div class="list">
-										        <ul>
-										         
-										        </ul>
-										      </div>
-										      <div class="next"><a class="can"></a></div>
-										    </div>
-										    <div class="provinceAll invis">
-										      <div class="pre"><a></a></div>
-										      <div class="list">
-										        <ul>
-										        
-										        </ul>
-										      </div>
-										      <div class="next"><a class="can"></a></div>
-										    </div>
-										    <div class="cityAll invis">
-										      <div class="pre"><a></a></div>
-										      <div class="list">
-										        <ul>
-										          
-										        </ul>
-										      </div>
-										      <div class="next"><a class="can"></a></div>
-										    </div>
-										    <div class="countyAll invis">
-										      <div class="pre"><a></a></div>
-										      <div class="list">
-										        <ul>
-										        </ul>
-										      </div>
-										      <div class="next"><a class="can"></a></div>
-										    </div>
-										  </div>
-										</div>
-									<!--////////////////////////////////////////////////////////////////////////-->
-								</td>
-							</tr>
-							<tr>
-								
-								<td>工种:</td>
-								<td>
-									<input type="hidden" value="" id="selectVolunteerJobshidden'+d+'" name="workTypeId"/>
-									<div class="topnav">
-										<a id="selectVolunteerJobs'+d+'" href="javascript:void(0);" class="as">
-											<span >
-												选择工种
-											</span>		
-										</a>	
-									</div>
-								</td>
-								<td>月薪要求:</td>
-								<td style="padding-right:70px;">
-									<select id="expectSalaryVolunteer1" name="expectSalary">
-										<option value="1000以下">1000以下</option>
-										<option value="1000~1999">1000~1999</option>
-										<option value="2000~2999">2000~2999</option>
-										<option value="3000~3999">3000~3999</option>
-										<option value="4000~4999">4000~4999</option>
-										<option value="5000以上">5000以上</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td>工作性质</td>
-								<td colspan="3">
-									<select name="workWay">
-										<option value="全职">全职</option>
-										<option value="兼职">兼职</option>
-										<option value="实习">实习</option>
-										<option value="小时工">小时工</option>
-										<option value="全职/兼职/实习即可">全职/兼职/实习即可</option>
-										<option value="就业见习">就业见习</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td>其他要求:</td>
-								<td colspan="3"><textArea cols="50" name="note" id="noteVolunteer'+d+'" style="resize:none;"></textArea></td>
-								<td rowspan="3"><a class="delete_zhiyuan"  onclick="deleteDiv(this,4,'+d+')" href="javascript:void(0);" style="margin-top:35px;float:right;">删除</a></td>
-							</tr>
-						</table>
-						</form>
-					</div>';
-					var html =
-						'<div id="xmenuVolunteerSpecialty'+d+'" class="xmenu" style="display: none;">'+Specialty +'</div>
-						<div id="xmenuVolunteerJobs'+d+'" class="xmenu" style="display: none;">'+Jobs +'</div>
-						';
-				[/@compress]
-				
-				if($(".zhiyuan").find("div.zhiyuan_div").size() <6){
-					$(".zhiyuan").append(trHtml);
-					$("#conentDiv").parent().append(html);
-				}else{
-					alert("最多添加6条数据");
-				}
-				
-				// 为新增的标签添加弹窗控件
-				$("#selectVolunteerSpecialty"+d).xMenu({	
-							width :600,	
-							eventType: "click", //事件类型 支持focus click hover
-							dropmenu:"#xmenuVolunteerSpecialty"+d,//弹出层
-							emptytext:"选择专业",
-							hiddenID : "selectVolunteerSpecialtyhidden"+d//隐藏域ID	
-				});
-				$("#selectVolunteerJobs"+d).xMenu({	
-							width :600,	
-							eventType: "click", //事件类型 支持focus click hover
-							dropmenu:"#xmenuVolunteerJobs"+d,//弹出层
-							emptytext:"选择专业",
-							hiddenID : "selectVolunteerJobshidden"+d//隐藏域ID	
-				});
-				
-				
-				if($(".zhiyuan").find("div.zhiyuan_div").size() <6){
-					d ++;
-				}
-    		});
     		
     	});
     </script>
@@ -953,6 +737,8 @@
     		
     		//检查图片是否需要重新上传。
 			var checkChange=0;
+			
+			
 		    $().ready(function() {
 		    	// 初始化一些值。设置value为用户填写过的项选中。
 		    	$("#polity").val("${sessionUser.polity}");
@@ -960,12 +746,13 @@
 		    	$("#eduLevel").val("${sessionUser.eduLevel}");
 		    	$("#health").val("${sessionUser.health}");
 		    	$("#sex").val("${sessionUser.sex}");
-		    	
+		    	var specialty=$("#Specialty").html();
+				var jobs=$("#Jobs").html();
+				
 		    	[#if skills?size>0]
 		    		[#list skills as skill]
-		    			var html='<div id="xmenuSkillSpecialty'+${skill_index+1}+'" class="xmenu" style="display: none;">'+Specialty +'</div>'
-								+'<div id="xmenuSkillJobs'+${skill_index+1}+'" class="xmenu" style="display: none;">'+Jobs +'</div>';
-						$("#conentDiv").parent().append(html);
+						$("#xmenuSkillSpecialty"+${skill_index+1}).html(specialty);
+						$("#xmenuSkillJobs"+${skill_index+1}).append(jobs);
 		    			//技能专业
 						$("#selectSkillSpecialty"+${skill_index+1}).xMenu({	
 							width :600,	
@@ -987,9 +774,8 @@
 						$("#skillLevel"+${skill_index+1}).val("${skill.skillLevel}");
 		    		[/#list]
 		    	[#else]
-		    	var html='<div id="xmenuSkillSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'
-						+'<div id="xmenuSkillJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>';
-						$("#conentDiv").parent().append(html);
+				$("#xmenuSkillSpecialty1").html(specialty);
+				$("#xmenuSkillJobs1").append(jobs);
 		    		//技能专业
 				$("#selectSkillSpecialty1").xMenu({	
 					width :600,	
@@ -1024,8 +810,8 @@
 		    	//学习经历
 		    	[#if learnings?size>0]
 		    		[#list learnings as learning]
-		    		var html ='<div id="xmenuLearningSpecialty'+${learning_index+1}+'" class="xmenu" style="display: none;">'+Specialty +'</div>';
-						$("#conentDiv").parent().append(html);
+					$("#xmenuLearningSpecialty"+${learning_index+1}).html(specialty);
+					
 		    		// 学习经历专业
 					$("#selectLearningSpecialty"+${learning_index+1}).xMenu({	
 						width :600,	
@@ -1043,8 +829,8 @@
 					}
 		    		[/#list]
 		    	[#else]
-		    		var html ='<div id="xmenuLearningSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>';
-					$("#conentDiv").parent().append(html);
+					$("#xmenuLearningSpecialty1").html(specialty);
+					
 			    	// 学习经历专业
 					$("#selectLearningSpecialty1").xMenu({	
 						width :600,	
@@ -1058,8 +844,7 @@
 		    	// 工作经验
 		    	[#if works?size>0]
 		    		[#list works as work]
-		    			var html ='<div id="xmenuWorkJob'+${work_index+1}+'" class="xmenu" style="display: none;">'+Jobs +'</div>';
-						$("#conentDiv").parent().append(html);
+						$("#xmenuWorkJob"+${work_index+1}).html(jobs);
 		    			// 工作经历工种
 						$("#selectWorkJob"+${work_index+1}).xMenu({	
 							width :600,	
@@ -1078,8 +863,7 @@
 						}
 		    		[/#list]
 		    	[#else]
-		    		var html ='<div id="xmenuWorkJob1" class="xmenu" style="display: none;">'+Jobs +'</div>';
-						$("#conentDiv").parent().append(html);
+					$("#xmenuWorkJob1").html(jobs);
 		    		// 工作经历工种
 					$("#selectWorkJob1").xMenu({	
 						width :600,	
@@ -1089,10 +873,10 @@
 						hiddenID : "selectWorkJobhidden1"//隐藏域ID	
 					});
 		    	[/#if]	
-				
-		    		var html ='<div id="xmenuVolunteerSpecialty1" class="xmenu" style="display: none;">'+Specialty +'</div>'+
-						  '<div id="xmenuVolunteerJobs1" class="xmenu" style="display: none;">'+Jobs +'</div>';
-						$("#conentDiv").parent().append(html);
+		    	
+					$("#xmenuVolunteerSpecialty1").html(specialty);
+					$("#xmenuVolunteerJobs1").html(jobs);	
+					
 		    		//志愿专业
 					$("#selectVolunteerSpecialty1").xMenu({	
 						width :600,	
@@ -1122,7 +906,7 @@
     	
     			// 提交信息列表
     			function submitSkill(){
-    				 //alert("xxxxx具备技能xxxxxxxxxx");
+    				// alert("xxxxx具备技能xxxxxxxxxx");
     				  // 获取form表单个数
     				  var size=$(".jineng").find("div.jineng_div").size();
     				  $("div.jineng_div").each(function(index){
@@ -1148,16 +932,16 @@
 		    				var tag=false;
     				  		index++;
     				  		// 转换时间类型为long类型。
-    				  		var beginDate=$("input[eidLearning='beginDateLearning"+index+"']").val();
-							var endDate=$("input[eidLearning='endDateLearning"+index+"']").val();
+    				  		var beginDate=$("#beginDateLearning"+index).val();
+							var endDate=$("#endDateLearning"+index).val();
 	    					if(beginDate!=""||endDate!=""){
-		    					beginDate=new Date(beginDate.replace(/-/g,",")).getTime();
-	    						endDate=new Date(endDate.replace(/-/g,",")).getTime(); 				
+		    					beginDate=new Date(beginDate.replace(/-/g,"/")).getTime();
+	    						endDate=new Date(endDate.replace(/-/g,"/")).getTime(); 				
 	    					}else{
 	    						tag=true;
 	    					}
-	    					$("input[name='beginData']").val(beginDate);
-	    					$("input[name='endData']").val(endDate);
+	    					$(this).find("input[name='beginData']").val(beginDate);
+	    					$(this).find("input[name='endData']").val(endDate);
 	    					if(tag==false){
 		    					$("#LearningForm"+index).ajaxSubmit({
 					            	 type: "post",
@@ -1188,17 +972,17 @@
     				  $("div.gongzuo_div").each(function(index){
 		   				    var tag=false;
     				  		index++;
-    				  		var beginDate=$("input[eidWork='beginDateWork"+index+"']").val();
-							var endDate=$("input[eidWork='endDateWork"+index+"']").val();
+    				  		var beginDate=$("#beginDateWork"+index).val();
+							var endDate=$("#endDateWork"+index).val();
 							if(beginDate!=""||endDate!=""){
-		    					beginDate=new Date(beginDate.replace(/-/g,",")).getTime();
-	    						endDate=new Date(endDate.replace(/-/g,",")).getTime(); 				
+		    					beginDate=new Date(beginDate.replace(/-/g,"/")).getTime();
+	    						endDate=new Date(endDate.replace(/-/g,"/")).getTime(); 				
 	    					}else{
 	    						tag=true;
 	    					}
 	    					if(tag==false){
-		    				  $("input[name='beginData']").val(beginDate);
-		    				  $("input[name='endData']").val(endDate);
+		    				  $(this).find("input[name='beginData']").val(beginDate);
+		    				  $(this).find("input[name='endData']").val(endDate);
 		    				  $("#WorkForm"+index).ajaxSubmit({
 					            	type: "post",
 								     url: "/common-user/center/submit-comInfo.jhtml",
@@ -1278,7 +1062,6 @@
 						if(checkChange==1){
 							$("#imageForm").ajaxSubmit(function (data) {
 								data=data.replace("<PRE>","").replace("</PRE>","");
-								alert(data);
 								var imgHead = $("#imgHead");
 								 //如果大于0 标识 id 为imgHead的对象存在，否则不存在
 								 if (imgHead.length > 0) { 
@@ -1351,7 +1134,6 @@
 				
 				// 保存其他信息。
 				$("#saveInfo").click(function() {
-					alert("xxx");
 					var loginName=$("#loginName").val();
 					var phoneNum =$("#phoneNum").val();
 					var regPartton=/^(?:13\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/; //验证手机号
@@ -1782,9 +1564,7 @@
 										<input type="hidden" value="1" name="infoType">
 									<div class="topnav">
 										<a id="selectSkillSpecialty1" href="javascript:void(0);" class="as">
-											<span >
-												选择专业
-											</span>		
+											<span>选择专业</span>		
 										</a>	
 									</div>
 								</td>
@@ -2368,6 +2148,131 @@
 				</div>
 			</div>
 		</div>
+		
+		<!--具备技能--->
+		<div id="xmenuSkillSpecialty1" class="xmenu" style="display: none;"></div>
+		<div id="xmenuSkillJobs1" class="xmenu" style="display: none;"></div>
+		
+		<div id="xmenuSkillSpecialty2" class="xmenu" style="display: none;"></div>
+		<div id="xmenuSkillJobs2" class="xmenu" style="display: none;"></div>
+		
+		<div id="xmenuSkillSpecialty3" class="xmenu" style="display: none;"></div>
+		<div id="xmenuSkillJobs3" class="xmenu" style="display: none;"></div>
+		
+		<div id="xmenuSkillSpecialty4" class="xmenu" style="display: none;"></div>
+		<div id="xmenuSkillJobs4" class="xmenu" style="display: none;"></div>
+		
+		<div id="xmenuSkillSpecialty5" class="xmenu" style="display: none;"></div>
+		<div id="xmenuSkillJobs5" class="xmenu" style="display: none;"></div>
+		
+		<div id="xmenuSkillSpecialty6" class="xmenu" style="display: none;"></div>
+		<div id="xmenuSkillJobs6" class="xmenu" style="display: none;"></div>
+		
+		<!--学习经历 -->
+		<div id="xmenuLearningSpecialty1" class="xmenu" style="display: none;"></div>
+		
+		<div id="xmenuLearningSpecialty2" class="xmenu" style="display: none;"></div>
+		
+		<div id="xmenuLearningSpecialty3" class="xmenu" style="display: none;"></div>
+		
+		<div id="xmenuLearningSpecialty4" class="xmenu" style="display: none;"></div>
+		
+		<div id="xmenuLearningSpecialty5" class="xmenu" style="display: none;"></div>
+		
+		<div id="xmenuLearningSpecialty6" class="xmenu" style="display: none;"></div>
+		
+    	
+    	<!--工作经历 -->
+    	<div id="xmenuWorkJob1" class="xmenu" style="display: none;"></div>
+    	
+    	<div id="xmenuWorkJob2" class="xmenu" style="display: none;"></div>
+    	
+    	<div id="xmenuWorkJob3" class="xmenu" style="display: none;"></div>
+    	
+    	<div id="xmenuWorkJob4" class="xmenu" style="display: none;"></div>
+    	
+    	<div id="xmenuWorkJob5" class="xmenu" style="display: none;"></div>
+    	
+    	<div id="xmenuWorkJob6" class="xmenu" style="display: none;"></div>
+    	
+    	
+    	<!-- 选择志愿-->
+    	<div id="xmenuVolunteerSpecialty1" class="xmenu" style="display: none;"></div>
+    	<div id="xmenuVolunteerJobs1" class="xmenu" style="display: none;"></div>
+    	
+    	<div id="xmenuVolunteerSpecialty2" class="xmenu" style="display: none;"></div>
+    	<div id="xmenuVolunteerJobs2" class="xmenu" style="display: none;"></div>
+    	
+    	<div id="xmenuVolunteerSpecialty3" class="xmenu" style="display: none;"></div>
+    	<div id="xmenuVolunteerJobs3" class="xmenu" style="display: none;"></div>
+    	
+    	<div id="xmenuVolunteerSpecialty4" class="xmenu" style="display: none;"></div>
+    	<div id="xmenuVolunteerJobs4" class="xmenu" style="display: none;"></div>
+    	
+    	<div id="xmenuVolunteerSpecialty5" class="xmenu" style="display: none;"></div>
+    	<div id="xmenuVolunteerJobs5" class="xmenu" style="display: none;"></div>
+    	
+    	<div id="xmenuVolunteerSpecialty6" class="xmenu" style="display: none;"></div>
+    	<div id="xmenuVolunteerJobs6" class="xmenu" style="display: none;"></div>
+    	
+		<!--数据 -->
+		<div id="Specialty" class="xmenu" style="display: none;">
+				<div class="select-info">	
+					<label class="top-label">已选项：</label>
+						<ul>		
+						</ul>
+						<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
+							<span class="a-btn-text">确定</span>
+						</a> 
+				</div>	
+				[@majorParentList]		
+				<dl>
+				[#list MajorParentList as majorParent]
+					<dt class="open" id="${majorParent.id}">${majorParent.name}</dt>
+					<dd>
+						<ul>
+						[@majorChildrenList parentCodeId = majorParent.codeId]
+						[#list MajorChildrenList as majorChildren]
+							<li rel="${majorChildren.id}">
+									${majorChildren.name}
+							</li>
+						[/#list]
+						[/@majorChildrenList]
+						</ul>   
+					</dd>
+				[/#list]
+				</dl>	
+				[/@majorParentList]
+			</div>
+			<div id="Jobs" class="xmenu" style="display: none;">
+				<div class="select-info">	
+					<label class="top-label">已选项：</label>
+					<ul>		
+					</ul>
+					<a  name="menu-confirm" href="javascript:void(0);" class="a-btn">
+						<span class="a-btn-text">确定</span>
+					</a> 
+				</div>			
+					[@workParentList]		
+						<dl>
+						[#list WorkParentList as workParent]
+						<dt class="open" id="${workParent.id}">${workParent.name}</dt>
+						<dd>
+							<ul>
+							[@workChildrenList parentCodeId = workParent.codeId]
+							[#list WorkChildrenList as workChildren]
+								<li rel="${workChildren.id}">
+										${workChildren.name}
+								</li>
+							[/#list]
+							[/@workChildrenList]
+							</ul>   
+						</dd>
+						[/#list]
+						</dl>	
+					[/@workParentList]		
+			</div>
+		<!--数据-->
 	</div>
 	
 	<!--修改密码弹出层********************************************-->
