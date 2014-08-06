@@ -11,7 +11,7 @@
     <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />
     <link href="/resource/public/selectArea/css/css.css" type="text/css" rel="stylesheet">
 	<script type="text/javascript" src="/resource/public/js/jquery.form.js"></script>
-	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu-search.js"></script> 
+	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu.js"></script> 
 	<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>
 	<script type="text/javascript" src="/resource/public/js/admin/jquery.validate.js"></script>
 	<link href="/resource/public/css/common.css" rel="stylesheet" type="text/css" />
@@ -453,6 +453,16 @@
 						<td><input type="text" placeholder="请输入关键字.." name="keyword" id="keyword"></td>
 						<td>
 							<input type="hidden" value="" id="selectSpecialtyhidden1" name="majorTypeId"/>
+							<script>
+								$(function(){
+									 $("#xmenuSpecialty1 li").click(function(){
+										   $("#selectSpecialty1 span").text($(this).text());
+										   $("#selectSpecialtyhidden1").val($(this).attr("rel"));
+										   $("#xmenuSpecialty1").hide();
+										});
+								
+								});
+							</script>
 							<div class="topnav">
 								<a id="selectSpecialty1" href="javascript:void(0);" class="as">
 									<span >
@@ -471,6 +481,17 @@
 						</td>
 						<td>
 							<input type="hidden" value="" id="selectJobshidden1" name="workTypeId"/>
+							<script>
+							$(function(){
+								 $("#xmenuJobs1 li").click(function(){
+										   $("#selectJobs1 span").text($(this).text());
+										   $("#selectJobshidden1").val($(this).attr("rel"));
+										   $("#keyword").val($(this).text());
+										   $("#xmenuJobs1").hide();
+										});
+										
+							});
+							</script>
 							<div class="topnav">
 								<a id="selectJobs1" href="javascript:void(0);" class="as">
 									<span id="changeKeyword">
@@ -661,7 +682,7 @@
 						<th>月薪范围</th>
 						<th>招聘人数</th>
 						<th>工作地点</th>
-						<th>发布时间</th>
+						<th>发布时间xx</th>
 					</tr>
 					[#list recruitList.content as recruit]
 					<tr>

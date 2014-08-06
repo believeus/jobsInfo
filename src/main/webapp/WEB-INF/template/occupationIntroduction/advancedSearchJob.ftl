@@ -456,6 +456,16 @@
 						<td><input type="text" placeholder="请输入关键字.." name="keyword" id="keyword"></td>
 						<td>
 							<input type="hidden" value="" id="selectSpecialtyhidden1" name="majorTypeId"/>
+							<script>
+								$(function(){
+									 $("#xmenuSpecialty1 li").click(function(){
+										   $("#selectSpecialty1 span").text($(this).text());
+										   $("#selectSpecialtyhidden1").val($(this).attr("rel"));
+										   $("#xmenuSpecialty1").hide();
+										});
+								
+								});
+							</script>
 							<div class="topnav">
 								<a id="selectSpecialty1" href="javascript:void(0);" class="as">
 									<span >
@@ -474,6 +484,17 @@
 						</td>
 						<td>
 							<input type="hidden" value="" id="selectJobshidden1" name="workTypeId"/>
+							<script>
+							$(function(){
+								 $("#xmenuJobs1 li").click(function(){
+										   $("#selectJobs1 span").text($(this).text());
+										   $("#selectJobshidden1").val($(this).attr("rel"));
+										   $("#keyword").val($(this).text());
+										   $("#xmenuJobs1").hide();
+										});
+										
+							});
+							</script>
 							<div class="topnav">
 								<a id="selectJobs1" href="javascript:void(0);" class="as">
 									<span id="changeKeyword">

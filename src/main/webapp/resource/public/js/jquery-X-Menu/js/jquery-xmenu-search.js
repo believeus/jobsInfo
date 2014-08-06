@@ -110,15 +110,11 @@
 							$("<li rel='"+id+"' class='current'>"+val+"</li>").appendTo($selectUl);
 							$li.addClass("current");
 							count++;
-						}else{
-							alert("最多选择1个");
 						}
 					}	
 					if($selectUl.children("li").length==0){
 						$selectinfo.hide();
 					}
-				}else{
-					alert("最多选择1个");
 				}
 			});
 			
