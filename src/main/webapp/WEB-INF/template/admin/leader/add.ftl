@@ -79,69 +79,23 @@ $().ready(function() {
 					<span class="requiredField">*</span>相关图片:
 				</th>
 				<td colspan="3">
-					<script type="text/javascript">
-					function loadImgFast(img,i){
-							if (img.files && img.files[0]){
-								var reader = new FileReader();
-								reader.onload = function(evt){$(".brandImg:eq("+i+") img")[0].src = evt.target.result;}
-					            reader.readAsDataURL(img.files[0]);	
-							}else if(window.navigator.userAgent.indexOf("MSIE")>=1){
-							   	file.select(); 
-					   			path = document.selection.createRange().text;
-					   			$(".brandImg:eq("+i+") img")[0].src = path;
-					   		} 
-						}
-					</script>
+				
 					
 					<div>
 						<span style="float:left">
-							<div class="brandImg">
-								<span>
-									<a onclick="file0.click()" href="javascript:return false;">点击上传图片</a>
-								</span>
-								<img style="width:190px;height:120px" src="" name="img"/>
-							</div>
-							<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0)">
-							<input type="hidden" id="filename0" name="filename0">
+							<div id="preview_wrapper">    
+						        <div id="preview_fake" >    
+						            <img id="preview" onload="onPreviewLoad(this,190,120)" src="/resource/public/images/bg.png"/>
+						        </div>    
+						    </div>    
+						    <br/>    
+						    <input id="upload_img" type="file" name="upload_img" onchange="filename0.value=this.value;onUploadImgChange(this,190,120,'preview','preview_fake','preview_size_fake');"/>  
+						    <input type="hidden" id="filename0" name="filename0">
+						    <br/>    
+						    <img id="preview_size_fake"/> 
 						</span>
 					</div>
-					<style type="text/css">
-						.brandImg span{
-							display:block;
-							position:absolute;
-							top:0px;left:0px;
-							width:200px;
-							height:130px;
-						}
-						
-						.brandImg{
-							border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
-						    border-radius: 2px 2px 2px 2px;
-						    border-style: solid;
-						    border-width: 1px;
-						    background-color: #666666;
-						    width:192px;height:122px;
-						    position:relative;
-						}
-						
-						.brandImg span:hover{
-							background-color:#FFFFFF;
-						    opacity: 0.7;
-						    filter:alpha(opacity=50);
-						    -moz-opacity:0.5;
-						    -khtml-opacity: 0.5;
-						}
-						
-						.brandImg span a{
-							display:block;
-							position:absolute;
-							top:50px;left:50px;
-						}
-						
-						.deleteProductImage:hover{
-							color:#C9033B !important;
-						}
-					</style>
+					
 				</td>
 			</tr>
 			<tr id="contentTr">

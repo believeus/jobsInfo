@@ -1307,3 +1307,29 @@ div.ac_results .ac_over {
 .floatleft{
 	float:left;
 }
+
+	/* 预览图片 */
+	#preview_wrapper{     
+	    display:inline-block;     
+	   	width:190px;
+	   	height:120px;    
+	   	border: 1px solid;
+	    background-color:#CCC;
+	}     
+	#preview_fake{ /* 该对象用户在IE下显示预览图片 */     
+	    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+	}     
+	#preview_size_fake{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+	    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+	    visibility:hidden;
+	    width:0;
+	   	height:0;
+	}     
+	#preview{ /* 该对象用户在FF下显示预览图片 */     
+	  	width:190px;
+	   	height:120px;     
+	}   
+	#upload_img{
+		margin-top: 10px;
+	} 
+	
