@@ -11,7 +11,8 @@
 <link href="/resource/public/selectArea/css/cityLayout.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="/resource/public/js/jquery.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/jquery.validate.js"></script>
-<script type="text/javascript" src="/resource/public/js/admin/ueditor1_2_6_2/ueditor.config.js"></script><script type="text/javascript" src="/resource/public/js/admin/ueditor1_2_6_2/ueditor.all.js"></script>
+<script type="text/javascript" src="/resource/public/js/admin/ueditor1_2_6_2/ueditor.config.js"></script>
+<script type="text/javascript" src="/resource/public/js/admin/ueditor1_2_6_2/ueditor.all.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/list.js"></script>
@@ -64,6 +65,35 @@
 		margin-bottom: 10px;
 	}
 	</style>
+	<!-- 预览图片 -->
+	<style type="text/css">    
+		#preview_wrapper1{     
+		    display:inline-block;     
+		   	width:190px;
+		   	height:48px;    
+		    background-color:#CCC;
+		    margin-top: 10px;     
+		}     
+		#preview_fake1{ /* 该对象用户在IE下显示预览图片 */   
+			border: 1px solid;    
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake1{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		}     
+		#preview1{ /* 该对象用户在FF下显示预览图片 */     
+		  	width:190px;
+		   	height:48px;      
+		}   
+		#upload_img1{
+			margin-top: 10px;
+			width: 160px;
+		} 
+		
+	</style> 
 	
 <script type="text/javascript">
 
@@ -203,20 +233,70 @@ $().ready(function() {
 	
 });
 </script>
- <script type="text/javascript">
-     	// 图片上传
-		function loadImgFast(img,i){
-				if (img.files && img.files[0]){
-					var reader = new FileReader();
-					reader.onload = function(evt){$(".brandImg:eq("+i+") img")[0].src = evt.target.result;}
-		            reader.readAsDataURL(img.files[0]);	
-				}else if(window.navigator.userAgent.indexOf("MSIE")>=1){
-				   	file.select(); 
-		   			path = document.selection.createRange().text;
-		   			$(".brandImg:eq("+i+") img")[0].src = path;
-		   		} 
-			}
-	</script>
+ <script type="text/javascript">    
+		function onUploadImgChangex(sender,offsetWidth,offsetHeight,preview,preview_fake,preview_size_fake){     
+		    if( !sender.value.match( /.jpg|.gif|.png|.bmp/i ) ){     
+		        alert('图片格式无效！');     
+		        return false;     
+		    }     
+		         
+		    
+		    var objPreview = document.getElementById( preview );     
+		    var objPreviewFake = document.getElementById( preview_fake );     
+		    var objPreviewSizeFake = document.getElementById( preview_size_fake );    
+		         
+		    if( sender.files &&  sender.files[0] ){  
+		        var reader = new FileReader();
+				reader.onload = function(evt){objPreview.src = evt.target.result;}
+		        reader.readAsDataURL(sender.files[0]);	   
+		        
+		    }else if( objPreviewFake.filters ){    
+		        // IE7,IE8 在设置本地图片地址为 img.src 时出现莫名其妙的后果     
+		        //（相同环境有时能显示，有时不显示），因此只能用滤镜来解决     
+		             
+		        // IE7, IE8因安全性问题已无法直接通过 input[file].value 获取完整的文件路径     
+		        sender.select();     
+		        var imgSrc = document.selection.createRange().text;     
+		        
+		        objPreviewFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
+		        objPreviewSizeFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
+		        autoSizePreview( objPreviewFake,offsetWidth,offsetHeight );     
+		        objPreview.style.display = 'none';     
+		    }     
+		}     
+		    
+		function onPreviewLoad(sender,offsetWidth,offsetHeight){    
+		    autoSizePreview( sender, offsetWidth, offsetHeight );     
+		}     
+		    
+		function autoSizePreview( objPre, originalWidth, originalHeight ){     
+		    var zoomParam = clacImgZoomParam( originalWidth, originalHeight, originalWidth, originalHeight );     
+		    objPre.style.width = zoomParam.width + 'px';     
+		    objPre.style.height = zoomParam.height + 'px';     
+		}     
+		    
+		function clacImgZoomParam( maxWidth, maxHeight, width, height ){     
+		    var param = { width:width, height:height, top:0, left:0 };     
+		         
+		    if( width>maxWidth || height>maxHeight ){     
+		        rateWidth = width / maxWidth;     
+		        rateHeight = height / maxHeight;     
+		             
+		        if( rateWidth > rateHeight ){     
+		            param.width =  maxWidth;     
+		            param.height = height / rateWidth;     
+		        }else{     
+		            param.width = width / rateHeight;     
+		            param.height = maxHeight;     
+		        }     
+		    }     
+		         
+		    param.left = (maxWidth - param.width) / 2;     
+		    param.top = (maxHeight - param.height) / 2;     
+		         
+		    return param;     
+		}      
+	</script>   
 </head>
 <body>
 	<div class="path">
@@ -370,31 +450,37 @@ $().ready(function() {
 							<td style="vertical-align: top;">企业电子图:</td>
 							<td>
 							<input type="hidden" name="type" value="2">
-								[#if Maps?exists&&Maps?size>0]
+								[#if Maps?size>0]
 									[#list Maps as map]
-									<div class="brandImg" id="Img">
-										<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
-										</span>
-											<img width="190px" height="48px" src="/${map.url}" name="url" id="${map.id}"/>
+									 <div id="preview_wrapper1">    
+								        <div id="preview_fake1" >    
+								            <img id="preview1" onload="onPreviewLoad(this,188,48)" src="/${map.url}" name="url" id="${map.id}"/>
 											<input type="hidden" name="MapId" value="${map.id}">
-											<div style="height: 2px; position: relative; width: 230px; left: 230px; font-size: 12px; top: -36px;">
-													建议图片尺寸：宽190px*高48px
-											</div>
+								        </div>    
+								    </div>    
+								    <br/>    
+								    <input id="upload_img1" type="file" oldvalue="${map.url}" name="upload_img" onchange="filename0.value=this.value;onUploadImgChangex(this,188,48,'preview1','preview_fake1','preview_size_fake1');changex=1;"/>  
+             						<div style="height: 2px; position: relative; width: 230px; left: 230px; font-size: 12px; top: -74px;">
+										建议图片尺寸：宽190px*高48px
 									</div>
-									<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">
-									<input type="hidden" id="filename0" name="filename0">
+								    <input type="hidden" id="filename0" name="filename0">
+								    <br/>    
+								    <img id="preview_size_fake1"/>   
 									[/#list]
 								[#else]
-								<div class="brandImg" id="Img">
-									<span><a onclick="file0.click()" href="javascript:void(0);">点击上传图片</a>
-									</span>
-										<img width="190px" height="48px" src="/resource/public/images/bg.png" name="url" id="0"/>
-										<div style="height: 2px; position: relative; width: 230px; left: 230px; font-size: 12px; top: -36px;">
-												建议图片尺寸：宽190px*高48px
-										</div>
-								</div>
-								<input type="file" style="display:none" id="file0" name="file0" onchange="filename0.value=this.value;loadImgFast(this,0);changex=1;">
-								<input type="hidden" id="filename0" name="filename0">
+									 <div id="preview_wrapper1">    
+								        <div id="preview_fake1" >    
+								            <img id="preview1" onload="onPreviewLoad(this,188,48)" src="/resource/public/images/bg.png"/>
+								        </div>    
+								    </div>    
+								    <br/>    
+								    <input id="upload_img1" type="file" oldvalue="" name="upload_img" onchange="filename0.value=this.value;onUploadImgChangex(this,188,48,'preview1','preview_fake1','preview_size_fake1');changex=1;"/>  
+	         						<div style="height: 2px; position: relative; width: 230px; left: 230px; font-size: 12px; top: -74px;">
+										建议图片尺寸：宽190px*高48px
+									</div>
+								    <input type="hidden" id="filename0" name="filename0">
+								    <br/>    
+								    <img id="preview_size_fake1"/>   
 								[/#if]
 							</td>
 						</tr>
