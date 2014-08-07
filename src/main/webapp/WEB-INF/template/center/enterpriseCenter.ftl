@@ -19,9 +19,6 @@
 	<script type="text/javascript" src="/resource/public/js/datePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="/resource/public/js/waitamoment.js"></script>
 	
-	<!--  引入文件上传组件-->
-	<link href="/resource/public/js/uploadify3.2.1/uploadify.css" rel="stylesheet"/>
-	<script src="/resource/public/js/uploadify3.2.1/jquery.uploadify.js" charset="utf-8"></script>
 
     <script type="text/javascript">
     	$().ready(function(){
@@ -156,8 +153,8 @@
 			margin:0;
 		}
 		.qiyepic img {
-		    height: 145px;
-		    width: 160px;
+		    height: 0;
+		    width: 0;
 		}
 		.qiyepic input{
 			width:163px;
@@ -218,7 +215,9 @@
 		}     
 		#preview_size_fake{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
 		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
-		    visibility:hidden;     
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
 		}     
 		#preview{ /* 该对象用户在FF下显示预览图片 */     
 		  	width:190px;
@@ -231,32 +230,6 @@
 		
 	</style> 
 	
-	<!-- 预览图片 -->
-	<style type="text/css">    
-		#preview_wrapper1{     
-		    display:inline-block;     
-		   	width:160px;
-		   	height:145px;    
-		    background-color:#CCC;
-		    margin-top: 10px;     
-		}     
-		#preview_fake1{ /* 该对象用户在IE下显示预览图片 */     
-		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
-		}     
-		#preview_size_fake1{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
-		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
-		    visibility:hidden;     
-		}     
-		#preview1{ /* 该对象用户在FF下显示预览图片 */     
-		  width:160px;
-		  height:145px;   
-		}   
-		#upload_img1{
-			margin-top: 10px;
-			width: auto;
-		} 
-		
-	</style> 
 	
 	<script type="text/javascript">    
 		function onUploadImgChange(sender,offsetWidth,offsetHeight,preview,preview_fake,preview_size_fake){     
@@ -740,15 +713,19 @@
     					<form novalidate="novalidate"  action="/enterprise-user/center/upload.jhtml" encType="multipart/form-data"  method="post" id="ImgForm'+c+'">
 						<input type="hidden" name="type" value="0">
 							<p>
-								<div class="brandImg">
-									<span><a onclick="file'+c+'.click()" href="javascript:void(0);">点击上传图片</a></span>
-									<img style="width:160px;height:145px" src="/resource/public/images/bg.png" name="img" id="0"/>
-								</div>
-								<input type="file" style="display:none" id="file'+c+'" name="file'+c+'" onchange="filename'+c+'.value=this.value;loadImgFast(this,'+c+')">
-								<input type="hidden" id="filename'+c+'" name="filename'+c+'">
+							 <div id="preview_wrapper'+c+'">    
+							        <div id="preview_fake'+c+'" >  
+							            <img id="preview'+c+'" onload="onPreviewLoad(this,160,145)" src="/resource/public/images/bg.png" id="0"/>
+							        </div>    
+							    </div>    
+							    <br/>    
+							    <input id="upload_img'+c+'" type="file" name="upload_img'+c+'" onchange="filename'+c+'.value=this.value;onUploadImgChange(this,160,145,\'preview'+c+'\',\'preview_fake'+c+'\',\'preview_size_fake'+c+'\');"/>  
+							    <input type="hidden" id="filename'+c+'" name="filename'+c+'">
+							    <br/>    
+							    <img id="preview_size_fake'+c+'"/> 
 							</p>
-							<p><textArea placeholder="添加描述（20字以内）" name="descption" maxlength="20" name="fileDes'+c+'"></textArea></p>
-							<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this,0);" href="javascript:void(0);">删除</a></div>
+							<p><textArea maxlength="20" name="descption" onblur="if(this.value ==\'\') this.value = \'添加描述(20字以内)\'" onfocus="if(this.value == \'添加描述(20字以内)\') this.value = \'\'" autocomplete="off" maxlength="20" >添加描述(20字以内)</textArea></p>
+							<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this,0)" href="javascript:void(0);">删除</a></div>
 						</form>
 						</div>
     					';
@@ -1263,16 +1240,21 @@
 						<input type="hidden" name="type" value="0">
 						<input type="hidden" name="id" value="${img.id}">
 						<input type="hidden" name="url" value="${img.url}">
-							<p>
-								<div class="brandImg">
-									<span><a onclick="file${img_index+1}.click()" href="javascript:void(0);">点击上传图片</a></span>
-									<img style="width:160px;height:145px" src="/${img.url}"/>
-								</div>
-								<input type="file" style="display:none" id="file${img_index+1}" name="file${img_index+1}" onchange="filename${img_index+1}.value=this.value;loadImgFast(this,${img_index+1})">
-								<input type="hidden" id="filename${img_index+1}" name="filename${img_index+1}">
-							</p>
-							<p><textArea placeholder="添加描述（20字以内）" maxlength="20" name="descption">${img.descption}</textArea></p>
-							<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this,${img.id})" href="javascript:void(0);">删除</a></div>
+						<p>
+						 <div id="preview_wrapper${img_index+1}">    
+						        <div id="preview_fake${img_index+1}" >  
+						            <img id="preview${img_index+1}" onload="onPreviewLoad(this,160,145)" src="/${img.url}"/>
+						        </div>    
+						    </div>    
+						    <br/>    
+						    <input id="upload_img${img_index+1}" type="file" name="upload_img${img_index+1}" onchange="filename${img_index+1}.value=this.value;onUploadImgChange(this,160,145,'preview${img_index+1}','preview_fake${img_index+1}','preview_size_fake${img_index+1}');"/>  
+						    <input type="hidden" id="filename${img_index+1}" name="filename${img_index+1}">
+						    <br/>    
+						    <img id="preview_size_fake${img_index+1}" style="dispaly:none;"/> 
+						</p>
+						<p><textArea maxlength="20" name="descption" onblur="if(this.value =='') this.value = '添加描述(20字以内)'" onfocus="if(this.value == '添加描述(20字以内)') this.value = ''" autocomplete="off" maxlength="20" >[#if img.descption==""]${img.descption}[#else]添加描述(20字以内)[/#if]</textArea></p>
+						<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this,${img.id})" href="javascript:void(0);">删除</a></div>
+				
 						</form>
 						</div>
 						[/#list]
@@ -1287,12 +1269,12 @@
 								        </div>    
 								    </div>    
 								    <br/>    
-								    <input id="upload_img1" type="file" name="upload_img" onchange="filename0.value=this.value;onUploadImgChange(this,160,145,'preview1','preview_fake1','preview_size_fake1');changex=1;"/>  
-								    <input type="hidden" id="filename0" name="filename0">
+								    <input id="upload_img1" type="file" name="upload_img1" onchange="filename1.value=this.value;onUploadImgChange(this,160,145,'preview1','preview_fake1','preview_size_fake1');"/>  
+								    <input type="hidden" id="filename1" name="filename1">
 								    <br/>    
 								    <img id="preview_size_fake1"/> 
 								</p>
-								<p><textArea placeholder="添加描述（20字以内）" maxlength="20" name="descption"></textArea></p>
+								<p><textArea maxlength="20" name="descption" onblur="if(this.value =='') this.value = '添加描述(20字以内)'" onfocus="if(this.value == '添加描述(20字以内)') this.value = ''" autocomplete="off" maxlength="20" >添加描述(20字以内)</textArea></p>
 								<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this,0)" href="javascript:void(0);">删除</a></div>
 							</form>
 						</div>
