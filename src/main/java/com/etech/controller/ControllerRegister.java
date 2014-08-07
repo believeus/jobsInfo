@@ -224,7 +224,7 @@ public class ControllerRegister {
 				Set<Trole> roles=new HashSet<Trole>();
 				roles.add(role);
 				regUser.setRoles(roles);
-				etechService.merge(regUser);
+				etechService.saveOrUpdata(regUser);
 				session.setAttribute("sessionUser", regUser);
 			// 用户编辑信息
 			}else{
