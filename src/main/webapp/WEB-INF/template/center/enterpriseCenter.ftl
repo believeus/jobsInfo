@@ -19,6 +19,13 @@
 	<script type="text/javascript" src="/resource/public/js/datePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="/resource/public/js/waitamoment.js"></script>
 	
+	<!--[if gte IE 7]> 
+		<script type="text/javascript">   
+			$().ready(function(){
+				$("#baseDiv").css("height","440px");
+			});
+		</script>
+	<![endif]--> 
 
     <script type="text/javascript">
     	$().ready(function(){
@@ -229,8 +236,88 @@
 		} 
 		
 	</style> 
+	<style type="text/css">
+		#preview_fake1{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake1{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		}  
+		
+		#preview_fake2{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake2{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		}  
+		
+		#preview_fake3{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake3{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		}  
+		
+		#preview_fake4{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake4{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		}  
+		
+		#preview_fake5{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake5{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		}  
+		
+		#preview_fake6{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake6{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		}  
+		
+		#preview_fake7{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake7{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		}  
+		
+		#preview_fake8{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake8{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		}  
 	
-	
+	</style>
 	<script type="text/javascript">    
 		function onUploadImgChange(sender,offsetWidth,offsetHeight,preview,preview_fake,preview_size_fake){     
 		    if( !sender.value.match( /.jpg|.gif|.png|.bmp/i ) ){     
@@ -256,10 +343,8 @@
 		        sender.select();     
 		        var imgSrc = document.selection.createRange().text;     
 		        
-		        console.info(objPreviewFake);
 		        objPreviewFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
 		        objPreviewSizeFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
-		        alert(imgSrc);
 		        autoSizePreview( objPreviewFake,offsetWidth,offsetHeight );     
 		        objPreview.style.display = 'none';     
 		    }     
@@ -1076,7 +1161,7 @@
 							<p style="text-align: center;">修改企业基本信息，需要管理员重新审核，且审核未通过前不能进行招聘信的相关操作！ 是否要继续保存？</p>
 						</div>
 					</div>
-					<div style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+					<div id="baseDiv" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<div class="" style="height: 480px; overflow: hidden; float: left; width: 660px; margin-left: 30px; margin-top: 10px;margin-right:10px;">
 						<table>
 						<form novalidate="novalidate"  action="/enterprise/submit-account-Info.jhtml" encType="multipart/form-data"  method="post" id="InfoForm">
