@@ -301,17 +301,6 @@
 	
      <script type="text/javascript">
      	// 图片上传
-		function loadImgFast(img,i){
-				if (img.files && img.files[0]){
-					var reader = new FileReader();
-					reader.onload = function(evt){$(".brandImg:eq("+i+") img")[0].src = evt.target.result;}
-		            reader.readAsDataURL(img.files[0]);	
-				}else if(window.navigator.userAgent.indexOf("MSIE")>=1){
-				   	file.select(); 
-		   			path = document.selection.createRange().text;
-		   			$(".brandImg:eq("+i+") img")[0].src = path;
-		   		} 
-			}
 		function deleteImg(id){
 			var deleteImgs = $("#deleteImgs");
 								
@@ -415,7 +404,7 @@
 		        	<input name="originName" type="hidden" value="" id="originName">
 						<table width="690">
 							<tr id="pathTr">
-								<th>
+								<th style="text-align: left; padding-left: 10px;">
 									视频截图:
 								</th>
 								<td >
@@ -423,13 +412,13 @@
 								</td>
 							</tr>
 							<tr>
-								<th>视频文件:</th>
+								<th style="text-align: left; padding-left: 10px;">视频文件:</th>
 								<td>
 								<input type="file" name="fileVedio" onchange="checkV(this)">
 								</td>
 							</tr>
 							<tr>
-								<td colspan="2"><textArea style="width:360px;height:60px;resize:none;" placeholder="视频介绍"></textArea></td>
+								<td colspan="2"><textArea style="width:360px;height:60px;resize:none;" onblur="if(this.value ==\'\') this.value = \'添加描述\'" onfocus="if(this.value == \'添加描述\') this.value = \'\'" autocomplete="off"name="descption" name="descption">添加描述</textArea></td>
 								<td style="vertical-align: bottom;"><a onclick="delete_vedio(this,1,0)" href="javascript:void(0);">删除</a></td>
 							</tr>
 						</table>
@@ -761,7 +750,7 @@
 	        	<input name="originName" type="hidden" value="" id="originName">
 					<table width="690">
 						<tr id="pathTr">
-							<th>
+							<th style="text-align: left; padding-left: 10px;">
 								视频截图:
 							</th>
 							<td >
@@ -769,13 +758,13 @@
 							</td>
 						</tr>
 						<tr>
-							<th>视频文件:</th>
+							<th style="text-align: left; padding-left: 10px;">视频文件:</th>
 							<td>
 							<input type="file" name="fileVedio" onchange="checkV(this)">
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2"><textArea style="width:360px;height:60px;resize:none;" placeholder="视频介绍" name="descption"></textArea></td>
+							<td colspan="2"><textArea style="width:360px;height:60px;resize:none;" onblur="if(this.value ==\'\') this.value = \'添加描述\'" onfocus="if(this.value == \'添加描述\') this.value = \'\'" autocomplete="off"name="descption" name="descption">添加描述</textArea></td>
 							<td style="vertical-align: bottom;"><a onclick="delete_vedio(this,'+v+',0)" href="javascript:void(0);">删除</a></td>
 						</tr>
 					</table>
@@ -1309,7 +1298,7 @@
 				        	<input name="originName" type="hidden" value="${vedio.originName}" id="originName">
 							<table width="690">
 								<tr id="pathTr">
-										<th>
+										<th style="text-align: left; padding-left: 10px;">
 											视频截图:
 										</th>
 										<td >
@@ -1318,14 +1307,14 @@
 										</td>
 									</tr>
 									<tr>
-										<th>视频文件:</th>
+										<th style="text-align: left; padding-left: 10px;">视频文件:</th>
 										<td>
 										<input type="file" name="fileVedio" onchange="checkV(this)">
 										<div>已上传视频文件：<a href="/${vedio.vedioUrl}" title="点击查看" target="_blank">${vedio.vedioName}</a></div>
 										</td>
 									</tr>
 								<tr>
-									<td colspan="2"><textArea style="width:360px;height:60px;resize:none;" placeholder="视频介绍" name="descption">${vedio.descption}</textArea></td>
+									<td colspan="2"><textArea style="width:360px;height:60px;resize:none;" onblur="if(this.value =='') this.value = '添加描述'" onfocus="if(this.value == '添加描述') this.value = ''" autocomplete="off"name="descption">${vedio.descption}</textArea></td>
 									<td style="vertical-align: bottom;"><a onclick="delete_vedio(this,${vedio_index+1},${vedio.id})"  href="javascript:void(0);">删除</a></td>
 								</tr>
 							</table>
@@ -1344,7 +1333,7 @@
 				        	<input name="originName" type="hidden" value="" id="originName">
 								<table width="690">
 									<tr id="pathTr">
-										<th>
+										<th style="text-align: left; padding-left: 10px;">
 											视频截图:
 										</th>
 										<td >
@@ -1352,13 +1341,13 @@
 										</td>
 									</tr>
 									<tr>
-										<th>视频文件:</th>
+										<th style="text-align: left; padding-left: 10px;">视频文件:</th>
 										<td>
 										<input type="file" name="fileVedio" onchange="checkV(this)">
 										</td>
 									</tr>
 									<tr>
-										<td colspan="2"><textArea style="width:360px;height:60px;resize:none;" placeholder="视频介绍" name="descption"></textArea></td>
+										<td colspan="2"><textArea style="width:360px;height:60px;resize:none;" onblur="if(this.value =='') this.value = '添加描述'" onfocus="if(this.value == '添加描述') this.value = ''" autocomplete="off"name="descption" name="descption">添加描述</textArea></td>
 										<td style="vertical-align: bottom;"><a onclick="delete_vedio(this,1,0)" href="javascript:void(0);">删除</a></td>
 									</tr>
 								</table>
