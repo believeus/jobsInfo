@@ -408,17 +408,17 @@
 									视频截图:
 								</th>
 								<td >
-									<input type="file" name="fileImg" onchange="checkI(this)">
+									<input type="file" name="fileImg" oldvalue="" onchange="checkI(this)">
 								</td>
 							</tr>
 							<tr>
 								<th style="text-align: left; padding-left: 10px;">视频文件:</th>
 								<td>
-								<input type="file" name="fileVedio" onchange="checkV(this)">
+								<input type="file" name="fileVedio" oldvalue="" onchange="checkV(this)">
 								</td>
 							</tr>
 							<tr>
-								<td colspan="2"><textArea style="width:360px;height:60px;resize:none;" onblur="if(this.value ==\'\') this.value = \'添加描述\'" onfocus="if(this.value == \'添加描述\') this.value = \'\'" autocomplete="off"name="descption" name="descption">添加描述</textArea></td>
+								<td colspan="2"><textArea  oldvalue="" style="width:360px;height:60px;resize:none;" onblur="if(this.value ==\'\') this.value = \'添加描述\'" onfocus="if(this.value == \'添加描述\') this.value = \'\'" autocomplete="off"name="descption" name="descption">添加描述</textArea></td>
 								<td style="vertical-align: bottom;"><a onclick="delete_vedio(this,1,0)" href="javascript:void(0);">删除</a></td>
 							</tr>
 						</table>
@@ -469,6 +469,16 @@
 						deleteVIds(id);
 						//清空，加载一个新的视频。
 						$("#vedioForm"+formId).html(htmlx);
+						// 监听文本领改变事件
+						$("#shipins textarea,#shipins input").change(function() {
+							var value=$(this).val();
+							// 监听是否发生改变。
+							if(value!=""){
+								$(this).attr("check",1);
+							}else{
+								$(this).attr("check",0);
+							}
+						});
 					}else{
 						// 清空图片
 						var file = $("#vedioForm"+formId).find("[name='fileImg']");
@@ -515,12 +525,15 @@
 		// ajax 提交验证和保存。
 		function submitInfo(){
 			var infochange=0;
-			$(":input").each(function() {
+			$("input,textarea").each(function() {
 				var checkstatus=$(this).attr("check");
 				if(checkstatus==1){
 					infochange=1;				
 				}
 			})
+			if($("#area").val()!=$("#area").attr("oldvalue")){
+				infochange=1;
+			}
 			if(infochange!=0){
 			    // 设置弹出框确认保存和取消
 				$("#status").val(0);
@@ -558,18 +571,20 @@
 		var inum=1;
 		// 上传企业图片
 		function submitImgs(){
-			   for(var i=1;i<c;i++){
-			   		$("#ImgForm"+i).ajaxSubmit({
-	            	 type: "post",
-				     url: "/enterprise-user/center/upload.jhtml",
-				     dataType: "json",
-				     success: function(data){
-				     		inum++;
-					     	if(inum==c){
-								submitVedio();				     	
-				     		}
-				    	 }
-		    		});	
+			   for(var i=1;i<8;i++){
+			      	if($("#ImgForm"+i).length > 0){
+			      		$("#ImgForm"+i).ajaxSubmit({
+			            	 type: "post",
+						     url: "/enterprise-user/center/upload.jhtml",
+						     dataType: "json",
+						     success: function(data){
+						     		inum++;
+							     	if(inum==c){
+										submitVedio();				     	
+						     		}
+						    	 }
+				    		});	
+			      	}
 			   }
 		}
 		
@@ -649,8 +664,9 @@
     	var changex=0;
     
     $().ready(function(){
-    	 
-    	$("#fullName,#shorName,#area,#regMoney,#contacts,#zip,#phoneFax,#introduce,#legalMan,#trade,#detailAddress,#address,#phoneNum").change(function() {
+    
+    	// 监听基本信息文本框的改变事件
+    	$("table input,#introduce,#economicType,#unitType,#relationship").change(function() {
     		var oldvalue=$(this).attr("oldvalue");
 	    	var value=$(this).val();
 	    		// 监听是否发生改变。
@@ -661,6 +677,18 @@
 	    		}
     	});
 
+		// 监听企业图片，视频改变事件
+		$("#qiyepics textarea,#qiyepics input,#shipins textarea,#shipins input").change(function() {
+	    	var value=$(this).val();
+    		// 监听是否发生改变。
+    		if(value!=""){
+    			$(this).attr("check",1);
+    		}else{
+    			$(this).attr("check",0);
+    		}
+	    });
+		
+		
     
     	// 初始化一些值。设置value为用户填写过的项选中。
     	$("#unitType").val("${sessionUser.unitType}");
@@ -708,12 +736,12 @@
 							        </div>    
 							    </div>    
 							    <br/>    
-							    <input id="upload_img'+c+'" type="file" name="upload_img'+c+'" onchange="filename'+c+'.value=this.value;onUploadImgChange(this,160,145,\'preview'+c+'\',\'preview_fake'+c+'\',\'preview_size_fake'+c+'\');"/>  
+							    <input id="upload_img'+c+'" type="file" oldvalue="" name="upload_img'+c+'" onchange="filename'+c+'.value=this.value;onUploadImgChange(this,160,145,\'preview'+c+'\',\'preview_fake'+c+'\',\'preview_size_fake'+c+'\');"/>  
 							    <input type="hidden" id="filename'+c+'" name="filename'+c+'">
 							    <br/>    
 							    <img id="preview_size_fake'+c+'"/> 
 							</p>
-							<p><textArea maxlength="20" name="descption" onblur="if(this.value ==\'\') this.value = \'添加描述(20字以内)\'" onfocus="if(this.value == \'添加描述(20字以内)\') this.value = \'\'" autocomplete="off" maxlength="20" >添加描述(20字以内)</textArea></p>
+							<p><textArea maxlength="20" name="descption" oldvalue="" onblur="if(this.value ==\'\') this.value = \'添加描述(20字以内)\'" onfocus="if(this.value == \'添加描述(20字以内)\') this.value = \'\'" autocomplete="off" maxlength="20" >添加描述(20字以内)</textArea></p>
 							<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this,0)" href="javascript:void(0);">删除</a></div>
 						</form>
 						</div>
@@ -728,6 +756,16 @@
 		    			$(this).css("margin-right","0px");
 		    		}
 		    	});
+		    	// 监听文本领改变事件
+				$("#qiyepics textarea,#qiyepics input").change(function() {
+			    	var value=$(this).val();
+		    		// 监听是否发生改变。
+		    		if(value!=""){
+		    			$(this).attr("check",1);
+		    		}else{
+		    			$(this).attr("check",0);
+		    		}
+			    });
 			}else{
 				alert("最多添加8条数据");
 			}
@@ -754,17 +792,17 @@
 								视频截图:
 							</th>
 							<td >
-								<input type="file" name="fileImg" onchange="checkI(this)">
+								<input type="file" name="fileImg" oldvalue="" onchange="checkI(this)">
 							</td>
 						</tr>
 						<tr>
 							<th style="text-align: left; padding-left: 10px;">视频文件:</th>
 							<td>
-							<input type="file" name="fileVedio" onchange="checkV(this)">
+							<input type="file" name="fileVedio" oldvalue="" onchange="checkV(this)">
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2"><textArea style="width:360px;height:60px;resize:none;" onblur="if(this.value ==\'\') this.value = \'添加描述\'" onfocus="if(this.value == \'添加描述\') this.value = \'\'" autocomplete="off"name="descption" name="descption">添加描述</textArea></td>
+							<td colspan="2"><textArea style="width:360px;height:60px;resize:none;" oldvalue="" onblur="if(this.value ==\'\') this.value = \'添加描述\'" onfocus="if(this.value == \'添加描述\') this.value = \'\'" autocomplete="off"name="descption" name="descption">添加描述</textArea></td>
 							<td style="vertical-align: bottom;"><a onclick="delete_vedio(this,'+v+',0)" href="javascript:void(0);">删除</a></td>
 						</tr>
 					</table>
@@ -773,6 +811,16 @@
 			[/@compress]
 			if($(".shipin").size() <3){
 				$(".shipin_parent").append(html);
+				// 监听文本领改变事件
+				$("#shipins textarea,#shipins input").change(function() {
+			    	var value=$(this).val();
+		    		// 监听是否发生改变。
+		    		if(value!=""){
+		    			$(this).attr("check",1);
+		    		}else{
+		    			$(this).attr("check",0);
+		    		}
+			    });
 			}else{
 				alert("最多添加3条数据");
 			}
@@ -1183,7 +1231,7 @@
 										        </div>    
 										    </div>    
 										    <br/>    
-										    <input id="upload_img" type="file" name="upload_img" onchange="filename0.value=this.value;onUploadImgChange(this,190,48,'preview','preview_fake','preview_size_fake');changex=1;"/>  
+										    <input id="upload_img" type="file" oldvalue="${map.url}" name="upload_img" onchange="filename0.value=this.value;onUploadImgChange(this,190,48,'preview','preview_fake','preview_size_fake');changex=1;"/>  
 		             						<div style="height: 2px; position: relative; width: 230px; left: 230px; font-size: 12px; top: -74px;">
 												建议图片尺寸：宽190px*高48px
 											</div>
@@ -1198,7 +1246,7 @@
 									        </div>    
 									    </div>    
 									    <br/>    
-									    <input id="upload_img" type="file" name="upload_img" onchange="filename0.value=this.value;onUploadImgChange(this,190,48,'preview','preview_fake','preview_size_fake');changex=1;"/>  
+									    <input id="upload_img" type="file" oldvalue="" name="upload_img" onchange="filename0.value=this.value;onUploadImgChange(this,190,48,'preview','preview_fake','preview_size_fake');changex=1;"/>  
 	             						<div style="height: 2px; position: relative; width: 230px; left: 230px; font-size: 12px; top: -74px;">
 											建议图片尺寸：宽190px*高48px
 										</div>
@@ -1220,7 +1268,7 @@
 							<input id="add_pic" type="button" value="添加" style="width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
 						</div>
 					</div>
-					<div style="width:670px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;padding:10px;">
+					<div id="qiyepics" style="width:670px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;padding:10px;">
 						
 						[#if Imgs?size>0]
 						[#list Imgs as img]
@@ -1236,12 +1284,12 @@
 						        </div>    
 						    </div>    
 						    <br/>    
-						    <input id="upload_img${img_index+1}" type="file" name="upload_img${img_index+1}" onchange="filename${img_index+1}.value=this.value;onUploadImgChange(this,160,145,'preview${img_index+1}','preview_fake${img_index+1}','preview_size_fake${img_index+1}');"/>  
+						    <input id="upload_img${img_index+1}" type="file" oldvalue="${img.url}" name="upload_img${img_index+1}" onchange="filename${img_index+1}.value=this.value;onUploadImgChange(this,160,145,'preview${img_index+1}','preview_fake${img_index+1}','preview_size_fake${img_index+1}');"/>  
 						    <input type="hidden" id="filename${img_index+1}" name="filename${img_index+1}">
 						    <br/>    
 						    <img id="preview_size_fake${img_index+1}" style="dispaly:none;"/> 
 						</p>
-						<p><textArea maxlength="20" name="descption" onblur="if(this.value =='') this.value = '添加描述(20字以内)'" onfocus="if(this.value == '添加描述(20字以内)') this.value = ''" autocomplete="off" maxlength="20" >[#if img.descption==""]${img.descption}[#else]添加描述(20字以内)[/#if]</textArea></p>
+						<p><textArea oldvalue="${img.descption}" maxlength="20" name="descption" onblur="if(this.value =='') this.value = '添加描述(20字以内)'" onfocus="if(this.value == '添加描述(20字以内)') this.value = ''" autocomplete="off" maxlength="20" >[#if img.descption!=""]${img.descption}[#else]添加描述(20字以内)[/#if]</textArea></p>
 						<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this,${img.id})" href="javascript:void(0);">删除</a></div>
 				
 						</form>
@@ -1258,12 +1306,12 @@
 								        </div>    
 								    </div>    
 								    <br/>    
-								    <input id="upload_img1" type="file" name="upload_img1" onchange="filename1.value=this.value;onUploadImgChange(this,160,145,'preview1','preview_fake1','preview_size_fake1');"/>  
+								    <input id="upload_img1" type="file" oldvalue="" name="upload_img1" onchange="filename1.value=this.value;onUploadImgChange(this,160,145,'preview1','preview_fake1','preview_size_fake1');"/>  
 								    <input type="hidden" id="filename1" name="filename1">
 								    <br/>    
 								    <img id="preview_size_fake1"/> 
 								</p>
-								<p><textArea maxlength="20" name="descption" onblur="if(this.value =='') this.value = '添加描述(20字以内)'" onfocus="if(this.value == '添加描述(20字以内)') this.value = ''" autocomplete="off" maxlength="20" >添加描述(20字以内)</textArea></p>
+								<p><textArea oldvalue="" maxlength="20" name="descption" onblur="if(this.value =='') this.value = '添加描述(20字以内)'" onfocus="if(this.value == '添加描述(20字以内)') this.value = ''" autocomplete="off" maxlength="20" >添加描述(20字以内)</textArea></p>
 								<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this,0)" href="javascript:void(0);">删除</a></div>
 							</form>
 						</div>
@@ -1278,7 +1326,7 @@
 							<input id="add_vedio" type="button" value="添加" style="width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
 						</div>
 					</div>
-					<div class="shipin_parent">
+					<div id="shipins" class="shipin_parent">
 						<div style="height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 							<font color="red" size="3">视频上传说明：</font><font color="red">总上传数量为2。一张视频截图+视频文件。<br>支持格式为：gif,jpg,jpeg,bmp,png,swf,flv。
 							</font>
@@ -1302,19 +1350,19 @@
 											视频截图:
 										</th>
 										<td >
-											<input type="file" name="fileImg" onchange="checkI(this)">
+											<input type="file" name="fileImg" oldvalue="${vedio.url}" onchange="checkI(this)">
 											<div>已上传视频截图：<a href="/${vedio.url}" title="点击查看" target="_blank">${vedio.originName}</a></div>
 										</td>
 									</tr>
 									<tr>
 										<th style="text-align: left; padding-left: 10px;">视频文件:</th>
 										<td>
-										<input type="file" name="fileVedio" onchange="checkV(this)">
+										<input type="file" name="fileVedio" oldvalue="${vedio.vedioUrl}" onchange="checkV(this)">
 										<div>已上传视频文件：<a href="/${vedio.vedioUrl}" title="点击查看" target="_blank">${vedio.vedioName}</a></div>
 										</td>
 									</tr>
 								<tr>
-									<td colspan="2"><textArea style="width:360px;height:60px;resize:none;" onblur="if(this.value =='') this.value = '添加描述'" onfocus="if(this.value == '添加描述') this.value = ''" autocomplete="off"name="descption">${vedio.descption}</textArea></td>
+									<td colspan="2"><textArea oldvalue="${vedio.descption}" style="width:360px;height:60px;resize:none;" onblur="if(this.value =='') this.value = '添加描述'" onfocus="if(this.value == '添加描述') this.value = ''" autocomplete="off"name="descption">${vedio.descption}</textArea></td>
 									<td style="vertical-align: bottom;"><a onclick="delete_vedio(this,${vedio_index+1},${vedio.id})"  href="javascript:void(0);">删除</a></td>
 								</tr>
 							</table>
@@ -1337,17 +1385,17 @@
 											视频截图:
 										</th>
 										<td >
-											<input type="file" name="fileImg" onchange="checkI(this)">
+											<input type="file" name="fileImg" oldvalue="" onchange="checkI(this)">
 										</td>
 									</tr>
 									<tr>
 										<th style="text-align: left; padding-left: 10px;">视频文件:</th>
 										<td>
-										<input type="file" name="fileVedio" onchange="checkV(this)">
+										<input type="file" name="fileVedio" oldvalue="" onchange="checkV(this)">
 										</td>
 									</tr>
 									<tr>
-										<td colspan="2"><textArea style="width:360px;height:60px;resize:none;" onblur="if(this.value =='') this.value = '添加描述'" onfocus="if(this.value == '添加描述') this.value = ''" autocomplete="off"name="descption" name="descption">添加描述</textArea></td>
+										<td colspan="2"><textArea oldvalue="" style="width:360px;height:60px;resize:none;" onblur="if(this.value =='') this.value = '添加描述'" onfocus="if(this.value == '添加描述') this.value = ''" autocomplete="off"name="descption" name="descption">添加描述</textArea></td>
 										<td style="vertical-align: bottom;"><a onclick="delete_vedio(this,1,0)" href="javascript:void(0);">删除</a></td>
 									</tr>
 								</table>
