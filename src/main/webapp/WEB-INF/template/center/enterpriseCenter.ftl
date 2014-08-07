@@ -238,6 +238,7 @@
 		        return false;     
 		    }     
 		         
+		    
 		    var objPreview = document.getElementById( preview );     
 		    var objPreviewFake = document.getElementById( preview_fake );     
 		    var objPreviewSizeFake = document.getElementById( preview_size_fake );    
@@ -254,12 +255,11 @@
 		        // IE7, IE8因安全性问题已无法直接通过 input[file].value 获取完整的文件路径     
 		        sender.select();     
 		        var imgSrc = document.selection.createRange().text;     
-		             
-		        objPreviewFake.filters.item(     
-		            'DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
-		        objPreviewSizeFake.filters.item(     
-		            'DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
-		             
+		        
+		        console.info(objPreviewFake);
+		        objPreviewFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
+		        objPreviewSizeFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
+		        alert(imgSrc);
 		        autoSizePreview( objPreviewFake,offsetWidth,offsetHeight );     
 		        objPreview.style.display = 'none';     
 		    }     
@@ -591,18 +591,21 @@
 		var vnum=0;
 		// 上传视频
 		function submitVedio(){
-			 for(var i=1;i<v;i++){
-		   		$("#vedioForm"+i).ajaxSubmit({
-            	 type: "post",
-			     url: "/enterprise-user/center/uploadVedio.jhtml",
-			     dataType: "json",
-			     success: function(data){
-			     		vnum++;
-			     		if(vnum==(v-1)){
-			     			location.reload(true);
-			     		}
-			    	 }
-	    		});	
+			 for(var i=1;i<4;i++){
+				 if($("#vedioForm"+i).length>0){
+				 	$("#vedioForm"+i).ajaxSubmit({
+		            	 type: "post",
+					     url: "/enterprise-user/center/uploadVedio.jhtml",
+					     dataType: "json",
+					     success: function(data){
+					     		vnum++;
+					     		if(vnum==(v-1)){
+					     			location.reload(true);
+					     		}
+					    	 }
+			    		});	
+				 }
+		   		
 		  	 }
 		}
 		
