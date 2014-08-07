@@ -16,7 +16,7 @@
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
 <link href="/resource/public/js/jquery-X-Menu/css/xmenu-edit.css" rel="stylesheet" type="text/css" />  
 <link href="/resource/public/js/jquery-X-Menu/css/powerFloat.css" rel="stylesheet" type="text/css" />  
-<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu-edit.js"></script> 
+<script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-xmenu.js"></script> 
 <script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-powerFloat-min.js"></script>
 <script type="text/javascript" src="/resource/public/js/datePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="/resource/public/js/waitamoment.js"></script>
@@ -204,9 +204,18 @@ $().ready(function() {
 					<td><input type="text" id="worknum1" name="worknum" value="${recruit.worknum}"/></td>
 				</tr>
 				<tr>
-					<th><font color="red">*</font>工种:</th>
+					<th><font color="red">*</font>工种xx:</th>
 					<td>
 						<input type="hidden" id="selectSkillJobshidden1" name="workTypeId" value="${recruit.workType.id}"/>
+						<script>
+					    	$(function(){
+					    	  $("#xmenuSkillJobs1 li").click(function(){
+								  $("#selectSkillJobs1 span").text($(this).text());
+								  $("#selectSkillJobshidden1").val($(this).attr("rel"));
+								  $("#xmenuSkillJobs1").hide();
+							 });
+					    	});
+					    </script>
 						<div class="topnav">
 							<a id="selectSkillJobs1" href="javascript:void(0);" class="as">
 								<span >
@@ -233,7 +242,16 @@ $().ready(function() {
 					<th>专业:</th>
 					<td>
 						<input type="hidden" id="selectSkillSpecialtyhidden1" name="majorTypeId" value="${recruit.majorType.id}"/>
-							<input type="hidden" value="1" name="infoType">
+						<script>
+					    	$(function(){
+					    	  $("#xmenuSkillSpecialty1 li").click(function(){
+								  $("#selectSkillSpecialty1 span").text($(this).text());
+								  $("#selectSkillSpecialtyhidden1").val($(this).attr("rel"));
+								  $("#xmenuSkillSpecialty1").hide();
+							 });
+					    	});
+					    </script>
+					    <input type="hidden" value="1" name="infoType">
 						<div class="topnav">
 							<a id="selectSkillSpecialty1" href="javascript:void(0);" class="as">
 								<span >

@@ -1481,6 +1481,75 @@
 									<input type="hidden" id="selectSkillSpecialtyhidden${skill_index+1}" name="majorTypeId" value="${skill.majorType.id}"/>
 									<input type="hidden" value="1" name="infoType">
 									<input type="hidden" value="${skill.id}" name="id">
+									<script>
+									  $(function(){
+									     $("#xmenuSkillSpecialty1 li").click(function(){
+										   $("#selectSkillSpecialty1 span").text($(this).text());
+										   $("#selectSkillSpecialtyhidden1").val($(this).attr("rel"));
+										   $("#xmenuSkillSpecialty1").hide();
+										});
+										$(document).on("click","#xmenuSkillSpecialty2 li",function(){
+									       $("#selectSkillSpecialty2 span").text($(this).text());
+										   $("#selectSkillSpecialtyhidden2").val($(this).attr("rel"));
+										   $("#xmenuSkillSpecialty2").hide();
+									   
+									   });
+									   $(document).on("click","#xmenuSkillSpecialty3 li",function(){
+									       $("#selectSkillSpecialty3 span").text($(this).text());
+										   $("#selectSkillSpecialtyhidden3").val($(this).attr("rel"));
+										   $("#xmenuSkillSpecialty3").hide();
+									   
+									   });
+									 $(document).on("click","#xmenuSkillSpecialty4 li",function(){
+									       $("#selectSkillSpecialty4 span").text($(this).text());
+										   $("#selectSkillSpecialtyhidden4").val($(this).attr("rel"));
+										   $("#xmenuSkillSpecialty4").hide();
+									   
+									   });
+									    $(document).on("click","#xmenuSkillSpecialty5 li",function(){
+									       $("#selectSkillSpecialty5 span").text($(this).text());
+										   $("#selectSkillSpecialtyhidden5").val($(this).attr("rel"));
+										   $("#xmenuSkillSpecialty5").hide();
+									   
+									   });
+									    $(document).on("click","#xmenuSkillSpecialty6 li",function(){
+									       $("#selectSkillSpecialty6 span").text($(this).text());
+										   $("#selectSkillSpecialtyhidden6").val($(this).attr("rel"));
+										   $("#xmenuSkillSpecialty6").hide();
+									   });
+										
+										$("#xmenuSkillJobs1 li").click(function(){
+										   $("#selectSkillJobs1 span").text($(this).text());
+										   $("#selectSkillJobshidden1").val($(this).attr("rel"));
+										   $("#xmenuSkillJobs1").hide();
+										});
+										$(document).on("click","#xmenuSkillJobs2 li",function(){
+									       $("#selectSkillJobs2 span").text($(this).text());
+										   $("#selectSkillJobshidden2").val($(this).attr("rel"));
+										   $("#xmenuSkillJobs2").hide();
+									   });
+									   $(document).on("click","#xmenuSkillJobs3 li",function(){
+									       $("#selectSkillJobs3 span").text($(this).text());
+										   $("#selectSkillJobshidden3").val($(this).attr("rel"));
+										   $("#xmenuSkillJobs3").hide();
+									   });
+									   $(document).on("click","#xmenuSkillJobs4 li",function(){
+									       $("#selectSkillJobs4 span").text($(this).text());
+										   $("#selectSkillJobshidden4").val($(this).attr("rel"));
+										   $("#xmenuSkillJobs4").hide();
+									   });
+									   $(document).on("click","#xmenuSkillJobs5 li",function(){
+									       $("#selectSkillJobs5 span").text($(this).text());
+										   $("#selectSkillJobshidden5").val($(this).attr("rel"));
+										   $("#xmenuSkillJobs5").hide();
+									   });
+									   $(document).on("click","#xmenuSkillJobs6 li",function(){
+									       $("#selectSkillJobs6 span").text($(this).text());
+										   $("#selectSkillJobshidden6").val($(this).attr("rel"));
+										   $("#xmenuSkillJobs6").hide();
+									   });
+									});
+									</script>
 									<div class="topnav">
 										<a id="selectSkillSpecialty${skill_index+1}" href="javascript:void(0);" class="as">
 											<span >
