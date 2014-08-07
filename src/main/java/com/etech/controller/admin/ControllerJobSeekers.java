@@ -5,11 +5,9 @@ import java.net.URLDecoder;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,7 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 import com.etech.entity.TcomUser;
 import com.etech.service.EtechService;
 import com.etech.util.JsonOutToBrower;
@@ -81,7 +79,14 @@ public class ControllerJobSeekers {
 		map.put("type", "success");
 		JsonOutToBrower.out(map, response);
 	}
-	
+	@RequestMapping(value="/resetUserPassword")
+	public @ResponseBody String resetUserPassword(int id){
+		TcomUser comUser=(TcomUser)etechService.findObjectById(TcomUser.class, id);
+		String password=DigestUtils.md5Hex("123456");
+		comUser.setPassword(password);
+		etechService.merge(comUser);
+		return "success";
+	}
 	/**
 	 * 添加求职者
 	 * @return

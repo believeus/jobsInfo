@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import mydfs.storage.server.MydfsTrackerServer;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -23,6 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -131,6 +133,15 @@ public class ControllerEnterpriseList {
 		return "admin/humanResources/edit";
 	}
 	
+	@RequestMapping(value="/resetPassword")
+	public @ResponseBody String resetPassword(int id){
+		TentUser entuser = (TentUser)etechService.findObjectById(TentUser.class, id);
+		String password=DigestUtils.md5Hex("123456");
+		entuser.setPassword(password);
+		etechService.saveOrUpdata(entuser);
+		log.debug("reset password success");
+		return "success";
+	}
 	/**
 	 * 保存企业
 	 * @return

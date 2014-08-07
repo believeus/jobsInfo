@@ -63,14 +63,23 @@ $().ready(function() {
 		<a href="/admin/common/main.jhtml" target="_parent">首页</a> &raquo; 编辑内容
 	</div>
 	<form id="inputForm" novalidate="novalidate"  action="update.jhtml" method="post">
-		<input type="hidden" name="id" value="${user.id}">
+		<input type="hidden" name="id" value="${user.id}" id="userId" >
 		<input type="hidden" name="freeTrain" value="${user.freeTrain}" id="freeTrain"/>
 		<input type="hidden" name="freeIntro" value="${user.freeTrain}" id="freeIntro"/>
 		<input type="hidden" name="imgHead" value="${user.imgHead}" id="imgHead"/>
 		<table class="input">
 				<tr>
+				    <script>
+						$(function(){
+						 $("#resetPwd").click(function(){
+							$.post("/admin/jobSeekersList/resetUserPassword.jhtml",{"id":$("#userId").val()},function(){
+						  	  alert("密码更改成功！");
+						    });
+						 });
+						});
+					</script>
 					<th>姓名:</th>
-					<td><input type="text" id="trueName" name="trueName" value="${user.trueName}"></td>
+					<td><input type="text" id="trueName" name="trueName" value="${user.trueName}"><input type="button" id="resetPwd" value="密码重置"/><span>重置后密码为：123456</span></td>
 				</tr>
 				<tr>
 					<th>登录名:</th>

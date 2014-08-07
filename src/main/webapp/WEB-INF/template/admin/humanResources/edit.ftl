@@ -224,10 +224,27 @@ $().ready(function() {
 	</div>			
 		<table class="input">
 			<form id="inputForm" novalidate="novalidate"  action="/admin/enterpriseAudit/update.jhtml" encType="multipart/form-data"   method="post">
-					<input type="hidden" name="id" value="${tentUsers.id}">
+					<input type="hidden" name="id" value="${tentUsers.id}" id="userId">
 					<input type="hidden" id="status" name="status" value="${tentUsers.status}">
 					<input type="hidden" name="loginName" value="${tentUsers.loginName}">
 					<input type="hidden" name="password" value="${tentUsers.password}">
+					<tr>
+					    <td><font color="red">*</font>登录名:</td>
+						<td style="padding-right: 80px;">
+						<span>${tentUsers.loginName}</span>
+						<input type="hidden" value="${tentUsers.loginName}" oldvalue="${tentUsers.loginName}" id="loginName" name="loginName" readonly="readonly">
+						</td>
+						<script>
+							$(function(){
+							 $("#resetPwd").click(function(){
+								$.post("/admin/enterpriseList/resetPassword.jhtml",{"id":$("#userId").val()},function(){
+							  	  alert("密码更改成功！");
+							    });
+							 });
+							});
+						</script>
+						<td><input type="button" value="密码重置" id="resetPwd"/><span>重置密码后密码为：123456</span></td>
+					</tr>
 					<tr>
 						<td><font color="red">*</font>单位全称:</td>
 						<td style="padding-right: 80px;">
