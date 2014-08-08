@@ -428,7 +428,7 @@
 				$(function(){
 				    $("#type").val("${location}");
 					$("#type").change(function(){
-					 if($("#keyword").val()==""){
+					 //if($("#keyword").val()==""){
 					    // 搜索职位
 						if($(this).val()=="position"){
 						  top.location.href="/jobAdvancedSearch.jhtml";
@@ -439,7 +439,7 @@
 						}else if($(this).val()=="company"){
 						  top.location.href="/companyAdvancedSearch.jhtml";
 						}
-					}
+					//}
 					});
 				});
 			</script>

@@ -425,7 +425,7 @@
 				$(function(){
 					$("#type").val("${location}");
 					$("#type").change(function(){
-					 if($("#keyword").val()==""){
+					// if($("#keyword").val()==""){
 					    // 搜索职位
 						if($(this).val()=="position"){
 						  top.location.href="/jobAdvancedSearch.jhtml";
@@ -436,7 +436,7 @@
 						}else if($(this).val()=="company"){
 						  top.location.href="/companyAdvancedSearch.jhtml";
 						}
-					}
+					//}
 					});
 				});
 			</script>
@@ -677,7 +677,7 @@
 			<div class="t_table" style="">
 				<table cellspacing="0">
 					<tr style="background: url(/resource/public/images/bg-image.png); line-height: 30px;">
-						<th>公司名称</th>
+						<th>公司名称xx</th>
 						<th>岗位名称</th>
 						<th>月薪范围</th>
 						<th>招聘人数</th>

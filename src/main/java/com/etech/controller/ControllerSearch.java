@@ -269,7 +269,7 @@ public class ControllerSearch {
 			}else {
 				page=jobSearchService.searchJobAdvice(issueTime, salaryRange, workType, eduRequire, workYear, companyType, keyword, majorTypeId, area, companyType,pageable);
 			}
-			request.setAttribute("recruitList", recruitList);
+			request.setAttribute("recruitList", page);
 			request.setAttribute("location", "company");
 			return "occupationIntroduction/advancedSearchCompany";
 		// 简历搜索
