@@ -224,8 +224,9 @@ public class ControllerCenter {
 			entUser.setRoles(sessionUser.getRoles());
 			log.debug("create date:"+sessionUser.getCreateDate());
 			entUser.setCreateDate(sessionUser.getCreateDate());
+			entUser.setLastLoginData(sessionUser.getLastLoginData());
 			entUser.setEditDate(System.currentTimeMillis());
-			// 将注编辑的数据复制给sessionUser
+			// 将编辑的数据复制给sessionUser
 			BeanUtils.copyProperties(sessionUser, entUser);
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
@@ -248,7 +249,6 @@ public class ControllerCenter {
 				etechService.deleteObjectById(TentImgVedio.class, Integer.valueOf(id));
 			}
 		}
-		
 		etechService.saveOrUpdata(sessionUser);
 		session.setAttribute("sessionUser", sessionUser);
 		map.put("message", "success");

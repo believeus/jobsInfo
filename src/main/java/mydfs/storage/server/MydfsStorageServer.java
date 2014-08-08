@@ -133,7 +133,7 @@ public class MydfsStorageServer {
 									if(status.equals("receive")){
 										// 读取到请求的url
 										String url = datais.readUTF();
-										Pattern regex = Pattern.compile("/[A-Z0-9]{2}/[A-Z0-9]{2}/[A-Za-z0-9-]+\\.[a-z]+");
+										Pattern regex = Pattern.compile("/[A-Z0-9]{2}/[A-Z0-9]{2}/[A-Za-z0-9-]+\\.[a-zA-Z]+");
 										Matcher matcher = regex.matcher(url);
 										if(matcher.find()){
 											String storepath=basepath+matcher.group();

@@ -677,14 +677,15 @@
 			<div class="t_table" style="">
 				<table cellspacing="0">
 					<tr style="background: url(/resource/public/images/bg-image.png); line-height: 30px;">
-						<th>公司名称xx</th>
+						<th>公司名称</th>
 						<th>岗位名称</th>
 						<th>月薪范围</th>
 						<th>招聘人数</th>
 						<th>工作地点</th>
-						<th>发布时间xx</th>
+						<th>发布时间</th>
 					</tr>
 					[#list recruitList.content as recruit]
+					[#if recruit.entUser.status==1 && recruit.entUser.disable==0]
 					<tr>
 						<td><a style="color:#0101FF" href="/enterpriseInformation.jhtml?id=${recruit.id}">${recruit.company}</a></td>
 						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml?id=${recruit.id}#zw">${recruit.jobPost}</a></td>
@@ -693,6 +694,7 @@
 						<td>${recruit.workspace}</td>
 						<td>${recruit.editTime?number_to_date} ${recruit.editTime?number_to_time}</td>
 					</tr>
+					[/#if]
 				   [/#list]
 				</table>
 				<div class="paixu" style="margin-top:30px;">

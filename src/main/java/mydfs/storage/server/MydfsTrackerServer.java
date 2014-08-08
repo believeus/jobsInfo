@@ -168,9 +168,5 @@ public class MydfsTrackerServer {
 		}
 		return success;
 	}
-	public static void main(String[] args) throws FileNotFoundException {
-		MydfsTrackerServer mydfsTrackerServer=new MydfsTrackerServer("192.168.1.120", 9999);
-		InputStream inputStream=new FileInputStream(new File("/home/wuqiwei/dengni37.jpg"));
-		mydfsTrackerServer.upload(inputStream, "jpg");
-	}
+	
 }

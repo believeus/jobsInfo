@@ -688,8 +688,8 @@
 						<th>发布时间</th>
 					</tr>
 					[#list recruitList.content as recruit]
+					[#if recruit.entUser.status==1 && recruit.entUser.disable==0]
 					<tr>
-					   
 						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml?id=${recruit.id}#zw">${recruit.jobPost}</a></td>
 						<td><a style="color:#0101FF"  href="/enterpriseInformation.jhtml?id=${recruit.id}">${recruit.company}</a></td>
 						<td style="color:#0101FF;">${recruit.salary}</td>
@@ -697,6 +697,7 @@
 						<td>${recruit.workspace}</td>
 						<td>${recruit.editTime?number_to_date} ${recruit.editTime?number_to_time}</td>
 					</tr>
+					[/#if]
 				   [/#list]
 				</table>
 				<div class="paixu" style="margin-top:30px;">

@@ -135,12 +135,7 @@ public class JobSearchService {
 			// 查需该招聘信息已被审核通过
 			TermQuery recruitReviewSuccess=new TermQuery(new Term("status","1"));
 			booleanQuery.add(recruitReviewSuccess, Occur.MUST);
-			//该企业被审核通过
-			TermQuery entepriseReviewSuccess=new TermQuery(new Term("entUser.status", "1"));
-			booleanQuery.add(entepriseReviewSuccess,Occur.MUST);
-			// 该企业信息没有被禁用
-			TermQuery noDisable=new TermQuery(new Term("entUser.disable","0"));
-			booleanQuery.add(noDisable, Occur.MUST);
+			
 			FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(booleanQuery, Trecruit.class);
 			// 根据时间进行排序
 			fullTextQuery.setSort(new Sort(new SortField("editTime", SortField.LONG,true)));
