@@ -223,7 +223,7 @@
 		    width: 60px;
 		}
 		#zhiwei_xinxi th {
-		    text-align: right;
+		    text-align: left;
 		}
 		#base_xinxi th {
 		    text-align: left;

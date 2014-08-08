@@ -35,7 +35,11 @@ $(document).ready(function(){
 <div id="photos" class="galleryview">
 	[#list pathList as path]
 	  <div class="panel">
-	     	<img src="${path}"/> 
+	  	[#if data.width > data.height ]
+	     	<img src="${path}" width="800"/> 
+	    [#else]
+	     	<img src="${path}" height="575"/> 
+    	[/#if]
 	    <div class="panel-overlay">
 	      	<div style="text-align:left;padding:0 15px;">
 				[#if data.content?length > 170 ]

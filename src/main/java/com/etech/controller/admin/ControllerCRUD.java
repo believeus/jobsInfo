@@ -1,5 +1,6 @@
 package com.etech.controller.admin;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -42,12 +44,16 @@ public class ControllerCRUD {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		
 		String storepath = "";
+		BufferedImage bi;
+		int width = 800;
+		int height = 575;
 		int count=0;
 		Map<String, MultipartFile> files = multipartRequest.getFileMap();
 		for (MultipartFile file : files.values()) {
 			InputStream inputStream;
 			try {
 				inputStream = file.getInputStream();
+				
 				if(inputStream.available()==0){
 					storepath="/resource/public/images/6551-A40C-4FDA-8D55-87265167B506.jpg";
 					break;
@@ -62,6 +68,10 @@ public class ControllerCRUD {
 				}
 				storepath += mydfsTrackerServer.upload(inputStream, extention);
 				
+				bi = ImageIO.read(file.getInputStream());
+				width = bi.getWidth();
+				height = bi.getHeight();
+				System.out.println(width+"==="+height);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -91,6 +101,8 @@ public class ControllerCRUD {
 		center.setEditTime(System.currentTimeMillis());
 		center.setTop(Integer.valueOf(top));
 		center.setAlink(alink);
+		center.setWidth(width);
+		center.setHeight(height);
 		if (powerLevel != null) {
 			center.setPowerLevel(Integer.parseInt(powerLevel));
 		}else {
@@ -118,6 +130,9 @@ public class ControllerCRUD {
 		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		String storepath = "";
+		BufferedImage bi;
+		int width = 800;
+		int height = 575;
 		Map<String, MultipartFile> files = multipartRequest.getFileMap();
 		int count=0;
 		for (MultipartFile file : files.values()) {
@@ -135,6 +150,10 @@ public class ControllerCRUD {
 						storepath += "#";
 					}
 					storepath += mydfsTrackerServer.upload(inputStream, extention);
+					bi = ImageIO.read(file.getInputStream());
+					width = bi.getWidth();
+					height = bi.getHeight();
+					System.out.println(width+"==="+height);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -167,6 +186,8 @@ public class ControllerCRUD {
 		}
 		formDataCenter.setEditTime(System.currentTimeMillis());
 		formDataCenter.setCreateTime(dataCenter.getCreateTime());
+		formDataCenter.setWidth(width);
+		formDataCenter.setHeight(height);
 		BeanUtils.copyProperties(formDataCenter, dataCenter);
 		etechService.merge(dataCenter);
 	}

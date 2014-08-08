@@ -40,6 +40,8 @@ public class ControllerImgShow {
 		session.setAttribute("pathList", pathList);
 		session.setAttribute("size", pathList.size());
 		
+		System.out.println(dataCenter.getWidth()+"---"+dataCenter.getHeight());
+		
 		return "infoCenter/imageInfo";
 	}
 	

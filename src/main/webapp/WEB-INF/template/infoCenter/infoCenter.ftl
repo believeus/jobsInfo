@@ -255,8 +255,8 @@
 										href="/videosInfo.jhtml?id=${new.id}"
 									[/#if]
 								>
-								[#if new.title?length > 16]
-									${new.title?string?substring(0,16)}...
+								[#if new.title?length > 25]
+									${new.title?string?substring(0,25)}...
 								[#else]
 									${new.title}
 								[/#if]

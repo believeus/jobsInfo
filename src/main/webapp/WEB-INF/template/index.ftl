@@ -362,8 +362,8 @@
 										href="/videosInfo.jhtml?id=${new.id}"
 									[/#if]
 								>
-								[#if new.title?length > 16]
-									${new.title?string?substring(0,16)}...
+								[#if new.title?length > 25]
+									${new.title?string?substring(0,25)}...
 								[#else]
 									${new.title}
 								[/#if]
@@ -521,25 +521,23 @@
 					<!--<tr class="denglu_tr">
 						<td colspan="2" align="center" style="background:url(/resource/public/images/beijingse.png);line-height:28px;color:#FFFFFF;border-radius:4px;">用户登录</td>
 					</tr>-->
-					<tr class="denglu_tr">
+					<tr>
 						 <td height="45" width="30" align="center" ><img src="/resource/public/images/dlr.png" /></td>
-						 <td align="center" style="color:#ef4300;font-family:'黑体';font-size:13px;">${sessionUser.loginName}</td>
-						 <td style="color:#858585;font-family:'黑体';font-size:12px;">，欢迎您登录！</td>
+						 <td align="center" style="color:#ef4300;font-family:'黑体';font-size:17px;">${sessionUser.loginName}</td>
+						 <td style="color:#858585;font-family:'黑体';font-size:17px;">，欢迎您登录！</td>
 					</tr>
-					<tr class="denglu_tr">
+					<tr>
 						 <td align="center"><img src="/resource/public/images/dlsj.png" /></td>
 						<td height="45" align="center" style="color:#858585;font-family:'宋体';font-size:12px;">上次登录</td>
 						<td style="color:#858585;font-family:'宋体';font-size:12px;">${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
 					</tr>
-					<tr class="denglu_tr">
-						<td align="center" height="45" colspan="3" style="padding-top: 0px;">
-						<div>
+					<tr>
+						<td align="center" height="60" colspan="3">
 							<input type="button" style="background:url(/resource/public/images/ggw-yhdlh.png) no-repeat; width:113px;height:37px;border:0;color:#ffffff;font-size:16px;font-family:'黑体';font-weight:bold;" 
 							value="[#if sessionUser.class.name == "com.etech.entity.TcomUser"]个人中心[#elseif sessionUser.class.name == "com.etech.entity.TentUser"]企业中心[#else]管理员后台[/#if]"
 							onclick="javascript:[#if sessionUser.class.name == "com.etech.entity.TcomUser"]window.location.href='/common-user/center.jhtml';[#elseif sessionUser.class.name == "com.etech.entity.TentUser"] window.location.href='/enterprise-user/center.jhtml';[#else]window.location.href='/admin/common/main.jhtml';[/#if]" 
 							>
 							<input id="logout" type="button" style="background:url(/resource/public/images/tc.png) no-repeat;border:0; width: 104px;height:37px;" value="">
-						</div>
 						</td>
 					</tr>
 				</table>
