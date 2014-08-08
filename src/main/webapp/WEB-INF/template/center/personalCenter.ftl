@@ -567,6 +567,31 @@
 							hiddenID : "selectSkillJobshidden"+b//隐藏域ID	
 				});
 				
+				// 绑定工种
+				 var xmenulijobs="#xmenuSkillJobs"+b+" li";
+				 var selectjobs="#selectSkillJobs"+b;
+				 var selectjobshidden="#selectSkillJobshidden"+b;
+				 var xmenuSkillJobs="#xmenuSkillJobs"+b;
+				 
+				 $(xmenulijobs).click(function(){	
+				 	 	$(selectjobs).find("span").text($(this).text());
+				   		$(selectjobshidden).val($(this).attr("rel"));
+				   		$(xmenuSkillJobs).hide();
+				 
+				 })
+				 
+				 //绑定专业
+				 var xmenuliSpecialty="#xmenuSkillSpecialty"+b+" li";
+				 var selectSpecialty="#selectSkillSpecialty"+b;
+				 var selectSpecialtyhidden="#selectSkillSpecialtyhidden"+b;
+				 var xmenuSkillSpecialty="#xmenuSkillSpecialty"+b;
+				 
+				 $(xmenuliSpecialty).click(function(){	
+				 	 	$(selectSpecialty).find("span").text($(this).text());
+				   		$(selectSpecialtyhidden).val($(this).attr("rel"));
+				   		$(xmenuSkillSpecialty).hide();
+				 
+				 })
 				
 				if($(".jineng").find("div.jineng_div").size() <6){
 					b ++;
@@ -645,6 +670,18 @@
 							hiddenID : "selectLearningSpecialtyhidden"+a//隐藏域ID	
 				});
 				
+				 //绑定专业
+				 var xmenuliSpecialty="#xmenuLearningSpecialty"+a+" li";
+				 var selectSpecialty="#selectLearningSpecialty"+a;
+				 var selectSpecialtyhidden="#selectLearningSpecialtyhidden"+a;
+				 var xmenuSkillSpecialty="#xmenuLearningSpecialty"+a;
+				 
+				 $(xmenuliSpecialty).click(function(){	
+				 	 	$(selectSpecialty).find("span").text($(this).text());
+				   		$(selectSpecialtyhidden).val($(this).attr("rel"));
+				   		$(xmenuSkillSpecialty).hide();
+				 
+				 })
 				
 				if($(".xuexi").find("div.xuexi_div").size() <6){
 					a ++;
@@ -724,6 +761,19 @@
 							hiddenID : "selectWorkJobhidden"+c//隐藏域ID	
 				});
 				
+				// 绑定工种
+				 var xmenuliWorks="#xmenuWorkJob"+c+" li";
+				 var selectWorks="#selectWorkJob"+c;
+				 var selectWorkshidden="#selectWorkJobhidden"+c;
+				 var xmenuWorks="#xmenuWorkJob"+c;
+				 
+				 $(xmenuliWorks).click(function(){	
+				 	 	$(selectWorks).find("span").text($(this).text());
+				   		$(selectWorkshidden).val($(this).attr("rel"));
+				   		$(xmenuWorks).hide();
+				 
+				 })
+				
 				if($(".gongzuo").find("div.gongzuo_div").size() <6){
 					c ++;
 				}
@@ -772,6 +822,21 @@
 							value : "${skill.workType.id}"
 						});
 						$("#skillLevel"+${skill_index+1}).val("${skill.skillLevel}");
+								
+						 $(document).on("click","#xmenuSkillSpecialty${skill_index+1} li",function(){
+					       $("#selectSkillSpecialty${skill_index+1} span").text($(this).text());
+						   $("#selectSkillSpecialtyhidden${skill_index+1}").val($(this).attr("rel"));
+						   $("#xmenuSkillSpecialty${skill_index+1}").hide();
+					   
+					   });
+					   
+					   $(document).on("click","#xmenuSkillJobs${skill_index+1} li",function(){
+					       $("#selectSkillJobs${skill_index+1} span").text($(this).text());
+						   $("#selectSkillJobshidden${skill_index+1}").val($(this).attr("rel"));
+						   $("#xmenuSkillJobs${skill_index+1}").hide();
+					   
+					   });
+			   
 		    		[/#list]
 		    	[#else]
 				$("#xmenuSkillSpecialty1").html(specialty);
@@ -792,6 +857,21 @@
 					emptytext:"选择工种",
 					hiddenID : "selectSkillJobshidden1"//隐藏域ID	
 				});
+				
+			   $(document).on("click","#xmenuSkillSpecialty1 li",function(){
+			       $("#selectSkillSpecialty1 span").text($(this).text());
+				   $("#selectSkillSpecialtyhidden1").val($(this).attr("rel"));
+				   $("#xmenuSkillSpecialty1").hide();
+			   
+			   });
+			   
+			    $(document).on("click","#xmenuSkillJobs1 li",function(){
+			       $("#selectSkillJobs1 span").text($(this).text());
+				   $("#selectSkillJobshidden1").val($(this).attr("rel"));
+				   $("#xmenuSkillJobs1").hide();
+			   
+			   });
+			   
 		    	[/#if]
 		    	
 		    	// long 类型转时间类型
@@ -827,6 +907,14 @@
     					$("input[eidLearning='beginDateLearning"+${learning_index+1}+"']").val(long_to_date(${learning.beginData}));
 						$("input[eidLearning='endDateLearning"+${learning_index+1}+"']").val(long_to_date(${learning.endData}));		
 					}
+					
+					$(document).on("click","#xmenuLearningSpecialty${learning_index+1} li",function(){
+				       $("#selectLearningSpecialty${learning_index+1} span").text($(this).text());
+					   $("#selectLearningSpecialtyhidden${learning_index+1}").val($(this).attr("rel"));
+					   $("#xmenuLearningSpecialty${learning_index+1}").hide();
+					   
+					 });
+					  
 		    		[/#list]
 		    	[#else]
 					$("#xmenuLearningSpecialty1").html(specialty);
@@ -839,6 +927,12 @@
 						emptytext:"选择专业",
 						hiddenID : "selectLearningSpecialtyhidden1"//隐藏域ID	
 					});
+					
+					 $(document).on("click","#xmenuLearningSpecialty1 li",function(){
+					       $("#selectLearningSpecialty1 span").text($(this).text());
+						   $("#selectLearningSpecialtyhidden1").val($(this).attr("rel"));
+						   $("#xmenuLearningSpecialty1").hide();
+					  });
 		    	[/#if]	
 		    	
 		    	// 工作经验
@@ -861,6 +955,12 @@
 							$("input[eidWork='beginDateWork"+${work_index+1}+"']").val(long_to_date(${work.beginData}));
 							$("input[eidWork='endDateWork"+${work_index+1}+"']").val(long_to_date(${work.endData}));
 						}
+						
+						$(document).on("click","#xmenuWorkJob${work_index+1} li",function(){
+						    $("#selectWorkJob${work_index+1} span").text($(this).text());
+                            $("#selectWorkJobhidden${work_index+1}").val($(this).attr("rel"));
+                            $("#xmenuWorkJob${work_index+1}").hide();
+                        });
 		    		[/#list]
 		    	[#else]
 					$("#xmenuWorkJob1").html(jobs);
@@ -872,6 +972,13 @@
 						emptytext:"选择工种",
 						hiddenID : "selectWorkJobhidden1"//隐藏域ID	
 					});
+					
+					$(document).on("click","#xmenuWorkJob1 li",function(){
+						    $("#selectWorkJob1 span").text($(this).text());
+                            $("#selectWorkJobhidden1").val($(this).attr("rel"));
+                            $("#xmenuWorkJob1").hide();
+                     });
+					
 		    	[/#if]	
 		    	
 					$("#xmenuVolunteerSpecialty1").html(specialty);
@@ -1481,75 +1588,6 @@
 									<input type="hidden" id="selectSkillSpecialtyhidden${skill_index+1}" name="majorTypeId" value="${skill.majorType.id}"/>
 									<input type="hidden" value="1" name="infoType">
 									<input type="hidden" value="${skill.id}" name="id">
-									<script>
-									  $(function(){
-									     $("#xmenuSkillSpecialty1 li").click(function(){
-										   $("#selectSkillSpecialty1 span").text($(this).text());
-										   $("#selectSkillSpecialtyhidden1").val($(this).attr("rel"));
-										   $("#xmenuSkillSpecialty1").hide();
-										});
-										$(document).on("click","#xmenuSkillSpecialty2 li",function(){
-									       $("#selectSkillSpecialty2 span").text($(this).text());
-										   $("#selectSkillSpecialtyhidden2").val($(this).attr("rel"));
-										   $("#xmenuSkillSpecialty2").hide();
-									   
-									   });
-									   $(document).on("click","#xmenuSkillSpecialty3 li",function(){
-									       $("#selectSkillSpecialty3 span").text($(this).text());
-										   $("#selectSkillSpecialtyhidden3").val($(this).attr("rel"));
-										   $("#xmenuSkillSpecialty3").hide();
-									   
-									   });
-									 $(document).on("click","#xmenuSkillSpecialty4 li",function(){
-									       $("#selectSkillSpecialty4 span").text($(this).text());
-										   $("#selectSkillSpecialtyhidden4").val($(this).attr("rel"));
-										   $("#xmenuSkillSpecialty4").hide();
-									   
-									   });
-									    $(document).on("click","#xmenuSkillSpecialty5 li",function(){
-									       $("#selectSkillSpecialty5 span").text($(this).text());
-										   $("#selectSkillSpecialtyhidden5").val($(this).attr("rel"));
-										   $("#xmenuSkillSpecialty5").hide();
-									   
-									   });
-									    $(document).on("click","#xmenuSkillSpecialty6 li",function(){
-									       $("#selectSkillSpecialty6 span").text($(this).text());
-										   $("#selectSkillSpecialtyhidden6").val($(this).attr("rel"));
-										   $("#xmenuSkillSpecialty6").hide();
-									   });
-										
-										$("#xmenuSkillJobs1 li").click(function(){
-										   $("#selectSkillJobs1 span").text($(this).text());
-										   $("#selectSkillJobshidden1").val($(this).attr("rel"));
-										   $("#xmenuSkillJobs1").hide();
-										});
-										$(document).on("click","#xmenuSkillJobs2 li",function(){
-									       $("#selectSkillJobs2 span").text($(this).text());
-										   $("#selectSkillJobshidden2").val($(this).attr("rel"));
-										   $("#xmenuSkillJobs2").hide();
-									   });
-									   $(document).on("click","#xmenuSkillJobs3 li",function(){
-									       $("#selectSkillJobs3 span").text($(this).text());
-										   $("#selectSkillJobshidden3").val($(this).attr("rel"));
-										   $("#xmenuSkillJobs3").hide();
-									   });
-									   $(document).on("click","#xmenuSkillJobs4 li",function(){
-									       $("#selectSkillJobs4 span").text($(this).text());
-										   $("#selectSkillJobshidden4").val($(this).attr("rel"));
-										   $("#xmenuSkillJobs4").hide();
-									   });
-									   $(document).on("click","#xmenuSkillJobs5 li",function(){
-									       $("#selectSkillJobs5 span").text($(this).text());
-										   $("#selectSkillJobshidden5").val($(this).attr("rel"));
-										   $("#xmenuSkillJobs5").hide();
-									   });
-									   $(document).on("click","#xmenuSkillJobs6 li",function(){
-									       $("#selectSkillJobs6 span").text($(this).text());
-										   $("#selectSkillJobshidden6").val($(this).attr("rel"));
-										   $("#xmenuSkillJobs6").hide();
-									   });
-									});
-									</script>
 									<div class="topnav">
 										<a id="selectSkillSpecialty${skill_index+1}" href="javascript:void(0);" class="as">
 											<span >
@@ -1772,46 +1810,7 @@
 								<td><font color="red">专业：</font></td>
 								<td colspan="3">
 									<input type="hidden" value="" id="selectLearningSpecialtyhidden1" name="majorTypeId"/>
-									<script>
-									  $(function(){
-									    $("#xmenuLearningSpecialty1 li").click(function(){
-										   $("#selectLearningSpecialty1 span").text($(this).text());
-										   $("#selectLearningSpecialtyhidden1").val($(this).attr("rel"));
-										   $("#xmenuLearningSpecialty1").hide();
-										});
-									   $(document).on("click","#xmenuLearningSpecialty2 li",function(){
-									       $("#selectLearningSpecialty2 span").text($(this).text());
-										   $("#selectLearningSpecialtyhidden2").val($(this).attr("rel"));
-										   $("#xmenuLearningSpecialty2").hide();
-									   
-									   });
-									   $(document).on("click","#xmenuLearningSpecialty3 li",function(){
-									       $("#selectLearningSpecialty3 span").text($(this).text());
-										   $("#selectLearningSpecialtyhidden3").val($(this).attr("rel"));
-										   $("#xmenuLearningSpecialty3").hide();
-									   
-									   });
-									   $(document).on("click","#xmenuLearningSpecialty4 li",function(){
-									       $("#selectLearningSpecialty4 span").text($(this).text());
-										   $("#selectLearningSpecialtyhidden4").val($(this).attr("rel"));
-										   $("#xmenuLearningSpecialty4").hide();
-									   
-									   });
-									   $(document).on("click","#xmenuLearningSpecialty5 li",function(){
-									       $("#selectLearningSpecialty5 span").text($(this).text());
-										   $("#selectLearningSpecialtyhidden5").val($(this).attr("rel"));
-										   $("#xmenuLearningSpecialty5").hide();
-									   
-									   });
-									   $(document).on("click","#xmenuLearningSpecialty6 li",function(){
-									       $("#selectLearningSpecialty6 span").text($(this).text());
-										   $("#selectLearningSpecialtyhidden6").val($(this).attr("rel"));
-										   $("#xmenuLearningSpecialty6").hide();
-									   
-									   });
-									  
-									  });
-									</script>
+									
 									<input type="hidden" value="2" name="infoType">
 									<div class="topnav">
 										<a id="selectLearningSpecialty1" href="javascript:void(0);" class="as">
@@ -1927,41 +1926,7 @@
 								<td>工种:</td>
 								<td>
 									<input type="hidden" value="" id="selectWorkJobhidden1" name="workTypeId"/>
-									<script>
-										$(function(){
-											 $("#xmenuWorkJob1 li").click(function(){
-                                                 $("#selectWorkJob1 span").text($(this).text());
-                                                 $("#selectWorkJobhidden1").val($(this).attr("rel"));
-                                                 $("#xmenuWorkJob1").hide();
-                                             });
-											$(document).on("click","#xmenuWorkJob2 li",function(){
-											    $("#selectWorkJob2 span").text($(this).text());
-                                                $("#selectWorkJobhidden2").val($(this).attr("rel"));
-                                                $("#xmenuWorkJob2").hide();
-                                            });
-											$(document).on("click","#xmenuWorkJob3 li",function(){
-											    $("#selectWorkJob3 span").text($(this).text());
-                                                $("#selectWorkJobhidden3").val($(this).attr("rel"));
-                                                $("#xmenuWorkJob3").hide();
-                                            });
-                                            $(document).on("click","#xmenuWorkJob4 li",function(){
-											    $("#selectWorkJob4 span").text($(this).text());
-                                                $("#selectWorkJobhidden4").val($(this).attr("rel"));
-                                                $("#xmenuWorkJob4").hide();
-                                            });
-                                            $(document).on("click","#xmenuWorkJob5 li",function(){
-											    $("#selectWorkJob5 span").text($(this).text());
-                                                $("#selectWorkJobhidden5").val($(this).attr("rel"));
-                                                $("#xmenuWorkJob5").hide();
-                                            });
-                                            $(document).on("click","#xmenuWorkJob6 li",function(){
-											    $("#selectWorkJob6 span").text($(this).text());
-                                                $("#selectWorkJobhidden6").val($(this).attr("rel"));
-                                                $("#xmenuWorkJob6").hide();
-                                            });
-										
-										});
-									</script>
+									
 									<input type="hidden" value="3" name="infoType">
 									<div class="topnav">
 										<a id="selectWorkJob1" href="javascript:void(0);" class="as">
