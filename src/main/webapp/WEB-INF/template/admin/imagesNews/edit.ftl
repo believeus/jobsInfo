@@ -13,74 +13,6 @@
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
 
-<style type="text/css">
-			.delete_pic{
-				color:#FFFFFF;
-				font-size:16px;
-			}
-			.brandImg a{
-				text-decoration:underline;
-			}
-			.brandImg span{
-				display:block;
-				position:absolute;
-				top:0px;left:0px;
-				width:200px;
-				height:130px;
-			}
-			
-			.brandImg{
-				border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
-			    border-radius: 2px 2px 2px 2px;
-			    border-style: solid;
-			    border-width: 1px;
-			    background-color: #666666;
-			    width:192px;
-			    height:150px;
-			    text-align:center;
-			    position:relative;
-			}
-			
-			.brandImg span:hover{
-				background-color:#FFFFFF;
-			    opacity: 0.7;
-			    filter:alpha(opacity=50);
-			    -moz-opacity:0.5;
-			    -khtml-opacity: 0.5;
-			}
-			
-			.brandImg span a{
-				display:block;
-				position:absolute;
-				top:50px;left:50px;
-			}
-			
-			.deleteProductImage:hover{
-				color:#C9033B !important;
-			}
-		</style>
-					
-	<script type="text/javascript">
-		function loadImgFast(img,i){
-				// 获取修改之前的图片链接。
-				var srcx=$(".brandImg:eq("+i+") img")[0].src;
-				if(srcx.indexOf("/resource/public/images/bg.png") < 0 && srcx.indexOf("data:image/jpeg;") < 0)
-				{
-				    // 不包含
-					deleteImg($(".brandImg:eq("+i+") input")[0].value);									    
-				}
-				if (img.files && img.files[0]){
-					var reader = new FileReader();
-					reader.onload = function(evt){$(".brandImg:eq("+i+") img")[0].src = evt.target.result;}
-		            reader.readAsDataURL(img.files[0]);	
-				}else if(window.navigator.userAgent.indexOf("MSIE")>=1){
-				   	file.select(); 
-		   			path = document.selection.createRange().text;
-		   			$(".brandImg:eq("+i+") img")[0].src = path;
-		   		} 
-			}
-		</script>
-					
 <script type="text/javascript">
 
 	
@@ -97,7 +29,7 @@
 		}
 		
 		function delete_pic(object,value){		
-			if ($(".delete_pic").size() <= 1) {
+			if ($(".img_list").size() <= 1) {
 				alert("必须至少保留一张空图片");				
 				// 获取图片是否有值
 				if($(object).closest("div").parent().find("img").attr("src")!="/resource/public/images/bg.png"){
@@ -116,7 +48,7 @@
 			}
 		}
 		
-	var a = 0;
+	var a = 1;
 $().ready(function() {
 
 		
@@ -164,20 +96,27 @@ $().ready(function() {
 	[/#list]
 	
 	$("#add_imgs").click(function(){
+		if($("#preview"+(a-1)).attr("src")=="/resource/public/images/bg.png"){
+			alert("请选择图片！");
+			return false;
+		}
 		[@compress single_line = true]
 			var html =
 				'<div class="img_list">
-					<span style="float:left">
-						<div class="brandImg">
-							<span>
-								<a class="click_upimgs" onclick="file'+a+'.click()" href="javascript:void(0);">点击上传图片</a>
+					<span style="float:left;border:1px solid #E4E4E4;width: 190px;">
+								 <div id="preview_wrapper'+a+'">    
+								        <div id="preview_fake'+a+'" style="border:1px solid;">  
+								            <img id="preview'+a+'" onload="onPreviewLoad(this,188,120)" src="/resource/public/images/bg.png"/>
+								        </div>    
+								    </div>    
+								    <br/>    
+								    <input id="upload_img'+a+'" type="file" oldvalue="" name="upload_img'+a+'" onchange="filename'+a+'.value=this.value;onUploadImgChange(this,188,120,\'preview'+a+'\',\'preview_fake'+a+'\',\'preview_size_fake'+a+'\');"/>  
+								    <input type="hidden" id="filename'+a+'" name="filename'+a+'">
+								    <br/>    
+								    <img id="preview_size_fake'+a+'"/> 
+								</p>
+								<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this,\'none\')" href="javascript:void(0);">删除</a></div>
 							</span>
-							<img style="width:190px;height:120px" src="/resource/public/images/bg.png" name="img"/>
-							<a class="delete_pic" href="javascript:void(0);" onclick="delete_pic(this,'+a+')">删除</a>
-						</div>
-						<input type="file" style="display:none" id="file'+a+'" name="file'+a+'" onchange="filename'+a+'.value=this.value;loadImgFast(this,'+a+')">
-						<input type="hidden" id="filename'+a+'" name="filename'+a+'">
-					</span>
 				</div>';
 		[/@compress]
 		if($(".img_list").size() < 12){
@@ -190,6 +129,230 @@ $().ready(function() {
 	
 });
 </script>
+<!-- 预览图片 -->
+	<style type="text/css">
+		#preview_fake1{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake1{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		}  
+		#upload_img1{
+			width: 188px;
+		} 
+		
+		#preview_fake2{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake2{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		}  
+		#upload_img2{
+			width: 188px;
+		} 
+		
+		#preview_fake3{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake3{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		}  
+		#upload_img3{
+			width: 188px;
+		} 
+		
+		#preview_fake4{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake4{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		}  
+		#upload_img4{
+			width: 188px;
+		} 
+		
+		#preview_fake5{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake5{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		}  
+		#upload_img5{
+			width: 188px;
+		} 
+		
+		#preview_fake6{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake6{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		}  
+		#upload_img6{
+			width: 188px;
+		} 
+		
+		#preview_fake7{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake7{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		}  
+		#upload_img7{
+			width: 188px;
+		} 
+		
+		#preview_fake8{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake8{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		} 
+		#upload_img8{
+			width: 188px;
+		} 
+		
+		#preview_fake9{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake9{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		} 
+		#upload_img9{
+			width: 188px;
+		} 
+		
+		#preview_fake10{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake10{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		} 
+		#upload_img10{
+			width: 188px;
+		} 
+		
+		#preview_fake11{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake11{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		} 
+		#upload_img11{
+			width: 188px;
+		} 
+		
+		#preview_fake12{ /* 该对象用户在IE下显示预览图片 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
+		}     
+		#preview_size_fake12{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
+		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);       
+		    visibility:hidden;
+		    width:0;
+		   	height:0;
+		} 
+		 #upload_img12{
+			width: 188px;
+		} 
+	
+	</style>
+	<script type="text/javascript">    
+		function onUploadImgChange(sender,offsetWidth,offsetHeight,preview,preview_fake,preview_size_fake){     
+		    if( !sender.value.match( /.jpg|.gif|.png|.bmp/i ) ){     
+		        alert('图片格式无效！');     
+		        return false;     
+		    }     
+		         
+		    
+		    var objPreview = document.getElementById( preview );     
+		    var objPreviewFake = document.getElementById( preview_fake );     
+		    var objPreviewSizeFake = document.getElementById( preview_size_fake );    
+		         
+		    if( sender.files &&  sender.files[0] ){  
+		        var reader = new FileReader();
+				reader.onload = function(evt){objPreview.src = evt.target.result;}
+		        reader.readAsDataURL(sender.files[0]);	   
+		        
+		    }else if( objPreviewFake.filters ){    
+		        // IE7,IE8 在设置本地图片地址为 img.src 时出现莫名其妙的后果     
+		        //（相同环境有时能显示，有时不显示），因此只能用滤镜来解决     
+		             
+		        // IE7, IE8因安全性问题已无法直接通过 input[file].value 获取完整的文件路径     
+		        sender.select();     
+		        var imgSrc = document.selection.createRange().text;     
+		        
+		        objPreviewFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
+		        objPreviewSizeFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
+		        autoSizePreview( objPreviewFake,offsetWidth,offsetHeight );     
+		        objPreview.style.display = 'none';     
+		    }     
+		}     
+		    
+		function onPreviewLoad(sender,offsetWidth,offsetHeight){    
+		    autoSizePreview( sender, offsetWidth, offsetHeight );     
+		}     
+		    
+		function autoSizePreview( objPre, originalWidth, originalHeight ){     
+		    var zoomParam = clacImgZoomParam( originalWidth, originalHeight, originalWidth, originalHeight );     
+		    objPre.style.width = zoomParam.width + 'px';     
+		    objPre.style.height = zoomParam.height + 'px';     
+		}     
+		    
+		function clacImgZoomParam( maxWidth, maxHeight, width, height ){     
+		    var param = { width:width, height:height, top:0, left:0 };     
+		         
+		    if( width>maxWidth || height>maxHeight ){     
+		        rateWidth = width / maxWidth;     
+		        rateHeight = height / maxHeight;     
+		             
+		        if( rateWidth > rateHeight ){     
+		            param.width =  maxWidth;     
+		            param.height = height / rateWidth;     
+		        }else{     
+		            param.width = width / rateHeight;     
+		            param.height = maxHeight;     
+		        }     
+		    }     
+		         
+		    param.left = (maxWidth - param.width) / 2;     
+		    param.top = (maxHeight - param.height) / 2;     
+		         
+		    return param;     
+		}      
+	</script>   
+	
 </head>
 <body>
 	<div class="path">
@@ -222,12 +385,19 @@ $().ready(function() {
 					[#list dataCenter.imgpath?string?split("#") as url]   
 					[#if url!=""]
 					<div class="img_list">
-						<span style="float:left">
-							<div class="brandImg">
-								<img style="width:190px;height:120px" [#if url?exists] src="/${url}" [#else]src="/resource/public/images/bg.png"[/#if] value="${url}"/>
-								<a class="delete_pic" href="javascript:void(0);" onclick="delete_pic(this,'${url}')">删除</a>
-							</div>
-							<input type="file" style="display:none" id="file" name="file" >
+						<span style="float:left;border:1px solid #E4E4E4;width: 190px">
+							<div id="preview_wrapper${url_index+1}">    
+								        <div id="preview_fake${url_index+1}" style="border:1px solid;">  
+								            <img id="preview${url_index+1}" onload="onPreviewLoad(this,188,120)" [#if url?exists] src="/${url}" [#else]src="/resource/public/images/bg.png"[/#if] value="${url}">
+								        </div>    
+								    </div>    
+								    <br/>    
+								    <input id="upload_img${url_index+1}" type="file" name="upload_img${url_index+1}" onchange="deleteImg('${url}');filename${url_index+1}.value=this.value;onUploadImgChange(this,188,120,'preview${url_index+1}','preview_fake${url_index+1}','preview_size_fake${url_index+1}');"/>  
+								    <input type="hidden" id="filename${url_index+1}" name="filename${url_index+1}">
+								    <br/>    
+								    <img id="preview_size_fake${url_index+1}"/> 
+								</p>
+								<div style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_pic(this,'${url}')" href="javascript:void(0);">删除</a></div>
 						</span>
 					</div>
 					[/#if]

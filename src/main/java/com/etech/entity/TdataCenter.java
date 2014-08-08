@@ -53,6 +53,8 @@ public class TdataCenter extends TbaseEntity implements Cloneable{
 	public void setType(int type) {
 		this.type = type;
 	}
+	
+	@Lob
 	public String getImgpath() {
 		return imgpath;
 	}
