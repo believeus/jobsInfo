@@ -3,7 +3,7 @@
 <head>
     <title>高级搜索</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <meta http-equiv="imagetoolbar" content="no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=8"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script type="text/javascript" src="/resource/public/js/jquery-X-Menu/js/jquery-1.7.2.min.js"></script>
     <link href="/resource/public/selectArea/css/cityLayout.css" type="text/css" rel="stylesheet">

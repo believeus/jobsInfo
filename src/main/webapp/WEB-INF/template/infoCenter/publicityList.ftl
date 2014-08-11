@@ -3,7 +3,7 @@
 <head>
     <title>公示公告</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <meta http-equiv="imagetoolbar" content="no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=8"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <link href="/resource/public/css/common.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="/resource/public/js/admin/jquery.js"></script>

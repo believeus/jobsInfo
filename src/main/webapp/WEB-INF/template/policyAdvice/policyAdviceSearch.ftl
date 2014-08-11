@@ -3,7 +3,7 @@
 <head>
     <title>政策咨询-搜索</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <meta http-equiv="imagetoolbar" content="no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=8"/>
     <script src="/resource/public/resources/scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="/resource/public/js/datePicker/WdatePicker.js"></script>
      <link href="/resource/public/css/common.css" rel="stylesheet" type="text/css" />

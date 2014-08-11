@@ -3,7 +3,7 @@
 <head>
     <title>简历指南</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <meta http-equiv="imagetoolbar" content="no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=8"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <style type="text/css">
    		.j_main{
