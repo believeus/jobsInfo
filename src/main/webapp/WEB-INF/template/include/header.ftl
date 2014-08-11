@@ -74,14 +74,7 @@
 </style>
 <!--IE-->
 <script type="text/javascript">
-	//给所有页面BODY加背景色
-	 window.onload=addColor();
-	 function addColor(){
-	 	if(window.location.pathname != "/imgShow.jhtml"){
-		 	document.body.style.background = "#FFFBF6";
-	 	}
-	 }
-
+	
 	$().ready(function(){
 		//$("body").css("background","#FFFBF6");
 		

@@ -101,8 +101,6 @@ public class ControllerCRUD {
 		center.setEditTime(System.currentTimeMillis());
 		center.setTop(Integer.valueOf(top));
 		center.setAlink(alink);
-		center.setWidth(width);
-		center.setHeight(height);
 		if (powerLevel != null) {
 			center.setPowerLevel(Integer.parseInt(powerLevel));
 		}else {
@@ -186,8 +184,6 @@ public class ControllerCRUD {
 		}
 		formDataCenter.setEditTime(System.currentTimeMillis());
 		formDataCenter.setCreateTime(dataCenter.getCreateTime());
-		formDataCenter.setWidth(width);
-		formDataCenter.setHeight(height);
 		BeanUtils.copyProperties(formDataCenter, dataCenter);
 		etechService.merge(dataCenter);
 	}

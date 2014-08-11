@@ -34,10 +34,6 @@ public class TdataCenter extends TbaseEntity implements Cloneable{
 	private int top;
 	private String alink;
 	
-	/** 图片宽 */
-	private Integer width;
-	/** 图片高 */
-	private Integer height; 
 	
 	@Field(store=Store.YES,index = Index.TOKENIZED, analyzer = @Analyzer(impl =IKAnalyzer.class ))
 	public String getTitle() {
@@ -124,18 +120,6 @@ public class TdataCenter extends TbaseEntity implements Cloneable{
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
-	}
-	public Integer getWidth() {
-		return width;
-	}
-	public void setWidth(Integer width) {
-		this.width = width;
-	}
-	public Integer getHeight() {
-		return height;
-	}
-	public void setHeight(Integer height) {
-		this.height = height;
 	}
 	
 }
