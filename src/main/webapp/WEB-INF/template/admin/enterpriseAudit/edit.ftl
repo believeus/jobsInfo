@@ -64,6 +64,10 @@
 		margin-right: 10px;
 		margin-bottom: 10px;
 	}
+	.shipin a {
+			color: #9356a4;
+		    text-decoration: underline;
+		}
 	</style>
 	<!-- 预览图片 -->
 	<style type="text/css">    
@@ -507,7 +511,7 @@ $().ready(function() {
 							<div>已上传视频截图：<a href="/${vedio.url}" title="点击查看" target="_blank">${vedio.originName}</a></div>
 							<div>已上传视频文件：<a href="/${vedio.vedioUrl}" title="点击查看" target="_blank">${vedio.vedioName}</a></div>
 							<div>视频描述：<lable>${vedio.descption}</label></div>
-							<div  style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_vedio(this,${vedio_index+1},${vedio.id})"  href="javascript:void(0);">删除</a></div>
+							<div  style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_vedio(this,${vedio_index+1},${vedio.id})"  style="color: #666666;text-decoration: none;" href="javascript:void(0);">删除</a></div>
 						</div>
 						[/#list]
 						[/#if]

@@ -11,12 +11,44 @@
 <link href="/resource/public/selectArea/css/cityLayout.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="/resource/public/js/jquery.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/jquery.validate.js"></script>
-<script type="text/javascript" src="/resource/public/js/admin/ueditor1_2_6_2/ueditor.config.js"></script><script type="text/javascript" src="/resource/public/js/admin/ueditor1_2_6_2/ueditor.all.js"></script>
+<script type="text/javascript" src="/resource/public/js/admin/ueditor1_2_6_2/ueditor.config.js"></script>
+<script type="text/javascript" src="/resource/public/js/admin/ueditor1_2_6_2/ueditor.all.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/list.js"></script>
  <style type="text/css">
+	#Img{
+		border-color: #B8B8B8 #DCDCDC #DCDCDC #B8B8B8;
+	    border-radius: 2px 2px 2px 2px;
+	    border-style: solid;
+	    border-width: 1px;
+	    background-color: #666666;
+	    width:190px !important;height:48px !important;
+	    position:relative;
+	}
 	
+	#Img span{
+		display:block;
+		position:absolute;
+		top:0px;left:0px;
+		width:190px !important;
+		height:48px !important;
+	}
+	
+	#Img span:hover{
+		background-color:#FFFFFF;
+	    opacity: 0.7;
+	    filter:alpha(opacity=50);
+	    -moz-opacity:0.5;
+	    -khtml-opacity: 0.5;
+	}
+	
+	#Img span a{
+		display:block;
+		position:absolute;
+		top:10px !important;
+		left:50px !important;
+	}
 	.list li {
 	    line-height: 23px;
 	}
@@ -32,8 +64,11 @@
 		margin-right: 10px;
 		margin-bottom: 10px;
 	}
+	.shipin a {
+			color: #9356a4;
+		    text-decoration: underline;
+		}
 	</style>
-	
 	<!-- 预览图片 -->
 	<style type="text/css">    
 		#preview_wrapper1{     
@@ -43,8 +78,8 @@
 		    background-color:#CCC;
 		    margin-top: 10px;     
 		}     
-		#preview_fake1{ /* 该对象用户在IE下显示预览图片 */  
-			border: 1px solid;   
+		#preview_fake1{ /* 该对象用户在IE下显示预览图片 */   
+			border: 1px solid;    
 		    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);     
 		}     
 		#preview_size_fake1{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */     
@@ -63,70 +98,7 @@
 		} 
 		
 	</style> 
-	<script type="text/javascript">    
-		function onUploadImgChangex(sender,offsetWidth,offsetHeight,preview,preview_fake,preview_size_fake){     
-		    if( !sender.value.match( /.jpg|.gif|.png|.bmp/i ) ){     
-		        alert('图片格式无效！');     
-		        return false;     
-		    }     
-		         
-		    
-		    var objPreview = document.getElementById( preview );     
-		    var objPreviewFake = document.getElementById( preview_fake );     
-		    var objPreviewSizeFake = document.getElementById( preview_size_fake );    
-		         
-		    if( sender.files &&  sender.files[0] ){  
-		        var reader = new FileReader();
-				reader.onload = function(evt){objPreview.src = evt.target.result;}
-		        reader.readAsDataURL(sender.files[0]);	   
-		        
-		    }else if( objPreviewFake.filters ){    
-		        // IE7,IE8 在设置本地图片地址为 img.src 时出现莫名其妙的后果     
-		        //（相同环境有时能显示，有时不显示），因此只能用滤镜来解决     
-		             
-		        // IE7, IE8因安全性问题已无法直接通过 input[file].value 获取完整的文件路径     
-		        sender.select();     
-		        var imgSrc = document.selection.createRange().text;     
-		        
-		        objPreviewFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
-		        objPreviewSizeFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
-		        autoSizePreview( objPreviewFake,offsetWidth,offsetHeight );     
-		        objPreview.style.display = 'none';     
-		    }     
-		}     
-		    
-		function onPreviewLoad(sender,offsetWidth,offsetHeight){    
-		    autoSizePreview( sender, offsetWidth, offsetHeight );     
-		}     
-		    
-		function autoSizePreview( objPre, originalWidth, originalHeight ){     
-		    var zoomParam = clacImgZoomParam( originalWidth, originalHeight, originalWidth, originalHeight );     
-		    objPre.style.width = zoomParam.width + 'px';     
-		    objPre.style.height = zoomParam.height + 'px';     
-		}     
-		    
-		function clacImgZoomParam( maxWidth, maxHeight, width, height ){     
-		    var param = { width:width, height:height, top:0, left:0 };     
-		         
-		    if( width>maxWidth || height>maxHeight ){     
-		        rateWidth = width / maxWidth;     
-		        rateHeight = height / maxHeight;     
-		             
-		        if( rateWidth > rateHeight ){     
-		            param.width =  maxWidth;     
-		            param.height = height / rateWidth;     
-		        }else{     
-		            param.width = width / rateHeight;     
-		            param.height = maxHeight;     
-		        }     
-		    }     
-		         
-		    param.left = (maxWidth - param.width) / 2;     
-		    param.top = (maxHeight - param.height) / 2;     
-		         
-		    return param;     
-		}      
-	</script>   
+	
 <script type="text/javascript">
 
 	function delete_pic(object,id){	
@@ -265,6 +237,70 @@ $().ready(function() {
 	
 });
 </script>
+ <script type="text/javascript">    
+		function onUploadImgChangex(sender,offsetWidth,offsetHeight,preview,preview_fake,preview_size_fake){     
+		    if( !sender.value.match( /.jpg|.gif|.png|.bmp/i ) ){     
+		        alert('图片格式无效！');     
+		        return false;     
+		    }     
+		         
+		    
+		    var objPreview = document.getElementById( preview );     
+		    var objPreviewFake = document.getElementById( preview_fake );     
+		    var objPreviewSizeFake = document.getElementById( preview_size_fake );    
+		         
+		    if( sender.files &&  sender.files[0] ){  
+		        var reader = new FileReader();
+				reader.onload = function(evt){objPreview.src = evt.target.result;}
+		        reader.readAsDataURL(sender.files[0]);	   
+		        
+		    }else if( objPreviewFake.filters ){    
+		        // IE7,IE8 在设置本地图片地址为 img.src 时出现莫名其妙的后果     
+		        //（相同环境有时能显示，有时不显示），因此只能用滤镜来解决     
+		             
+		        // IE7, IE8因安全性问题已无法直接通过 input[file].value 获取完整的文件路径     
+		        sender.select();     
+		        var imgSrc = document.selection.createRange().text;     
+		        
+		        objPreviewFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
+		        objPreviewSizeFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
+		        autoSizePreview( objPreviewFake,offsetWidth,offsetHeight );     
+		        objPreview.style.display = 'none';     
+		    }     
+		}     
+		    
+		function onPreviewLoad(sender,offsetWidth,offsetHeight){    
+		    autoSizePreview( sender, offsetWidth, offsetHeight );     
+		}     
+		    
+		function autoSizePreview( objPre, originalWidth, originalHeight ){     
+		    var zoomParam = clacImgZoomParam( originalWidth, originalHeight, originalWidth, originalHeight );     
+		    objPre.style.width = zoomParam.width + 'px';     
+		    objPre.style.height = zoomParam.height + 'px';     
+		}     
+		    
+		function clacImgZoomParam( maxWidth, maxHeight, width, height ){     
+		    var param = { width:width, height:height, top:0, left:0 };     
+		         
+		    if( width>maxWidth || height>maxHeight ){     
+		        rateWidth = width / maxWidth;     
+		        rateHeight = height / maxHeight;     
+		             
+		        if( rateWidth > rateHeight ){     
+		            param.width =  maxWidth;     
+		            param.height = height / rateWidth;     
+		        }else{     
+		            param.width = width / rateHeight;     
+		            param.height = maxHeight;     
+		        }     
+		    }     
+		         
+		    param.left = (maxWidth - param.width) / 2;     
+		    param.top = (maxHeight - param.height) / 2;     
+		         
+		    return param;     
+		}      
+	</script>   
 </head>
 <body>
 	<div class="path">
@@ -272,28 +308,10 @@ $().ready(function() {
 	</div>			
 		<table class="input">
 			<form id="inputForm" novalidate="novalidate"  action="/admin/enterpriseAudit/update.jhtml" encType="multipart/form-data"   method="post">
-					<input type="hidden" name="id" value="${tentUsers.id}" id="userId">
+					<input type="hidden" name="id" value="${tentUsers.id}">
 					<input type="hidden" id="status" name="status" value="${tentUsers.status}">
 					<input type="hidden" name="loginName" value="${tentUsers.loginName}">
 					<input type="hidden" name="password" value="${tentUsers.password}">
-					<tr>
-					    <td><font color="red">*</font>登录名:</td>
-						<td style="padding-right: 80px;">
-						<span>${tentUsers.loginName}</span>
-						<input type="hidden" value="${tentUsers.loginName}" oldvalue="${tentUsers.loginName}" id="loginName" name="loginName" readonly="readonly">
-						</td>
-						<script>
-							$(function(){
-							 $("#resetPwd").click(function(){
-								$.post("/admin/enterpriseList/resetPassword.jhtml",{"id":$("#userId").val()},function(){
-							  	  alert("密码更改成功！");
-							    });
-							 });
-							});
-						</script>
-						<td><input type="button" value="密码重置" id="resetPwd"/></td>
-						<td><span>重置密码后密码为：123456</span></td>
-					</tr>
 					<tr>
 						<td><font color="red">*</font>单位全称:</td>
 						<td style="padding-right: 80px;">
@@ -493,7 +511,7 @@ $().ready(function() {
 							<div>已上传视频截图：<a href="/${vedio.url}" title="点击查看" target="_blank">${vedio.originName}</a></div>
 							<div>已上传视频文件：<a href="/${vedio.vedioUrl}" title="点击查看" target="_blank">${vedio.vedioName}</a></div>
 							<div>视频描述：<lable>${vedio.descption}</label></div>
-							<div  style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_vedio(this,${vedio_index+1},${vedio.id})"  href="javascript:void(0);">删除</a></div>
+							<div  style="text-align: right; border-top: 1px dashed #E4E4E4; height: 24px; line-height: 24px; margin-right: 3px;"><a onclick="delete_vedio(this,${vedio_index+1},${vedio.id})"  style="color: #666666;text-decoration: none;" href="javascript:void(0);">删除</a></div>
 						</div>
 						[/#list]
 						[/#if]

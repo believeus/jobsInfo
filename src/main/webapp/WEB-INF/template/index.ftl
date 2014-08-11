@@ -126,8 +126,11 @@
     		line-height:20px;
     	}
     	.xinwen_ul_li{
-    		line-height:30px;
+    		line-height:26px;
     	}
+    	.xinwen_ul_li  a {
+		    font-size: 15px;
+		}
     	.biaoti{
 		    display: inline-block;
 		    height: 85px;
@@ -362,8 +365,8 @@
 										href="/videosInfo.jhtml?id=${new.id}"
 									[/#if]
 								>
-								[#if new.title?length > 25]
-									${new.title?string?substring(0,25)}...
+								[#if new.title?length > 23]
+									${new.title?string?substring(0,23)}...
 								[#else]
 									${new.title}
 								[/#if]
