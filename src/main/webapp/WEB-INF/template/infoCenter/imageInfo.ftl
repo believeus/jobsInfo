@@ -17,7 +17,30 @@ $(document).ready(function(){
 		frame_height: 100
 	});
 });
+
+	function loadImg(img, maxWidth, maxHeight){
+		
+		var width = img.width,
+            height = img.height;
+	    if( width>maxWidth || height>maxHeight ){     
+	        rateWidth = width / maxWidth;     
+	        rateHeight = height / maxHeight;     
+	             
+	        if( rateWidth > rateHeight ){     
+	            img.width =  maxWidth;     
+	            img.height = height / rateWidth;     
+	        }else{     
+	            img.width = width / rateHeight;     
+	            img.height = maxHeight;     
+	        }     
+	    }    
+		img.style.width = img.width + 'px';    
+		img.style.height = img.height + 'px';    
+		    
+    }
 </script>
+
+
 </head>
 
 <body bgcolor="#000000;">
@@ -35,7 +58,7 @@ $(document).ready(function(){
 <div id="photos" class="galleryview">
 	[#list pathList as path]
 	  <div class="panel">
-	     	<img src="${path}"/> 
+	     	<img src="${path}" onload="loadImg(this,'800','572')"/> 
 	    <div class="panel-overlay">
 	      	<div style="text-align:left;padding:0 15px;">
 				[#if data.content?length > 170 ]

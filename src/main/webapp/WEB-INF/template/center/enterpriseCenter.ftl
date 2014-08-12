@@ -1855,7 +1855,7 @@
 		.bg{position:absolute;z-index:999;filter:alpha(opacity=50);background:#666;opacity: 0.5;-moz-opacity: 0.5;left:0;top:0;height:100%;width:100%;min-height:1370px;}
 		.beian_winBG {MARGIN-TOP: -100px; LEFT: 50%; MARGIN-LEFT: -190px; WIDTH: 376px; POSITION: absolute; TOP: 50%; HEIGHT:200px;border:#666666 1px solid;z-index: 1000;}
 		#divOneStep{background-color: #fbfbfb; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 0 1px #fff inset; margin: 0 auto; padding: 20px 75px; position: relative;text-align: left;width: 240px;}
-		.pass_text{border: 1px solid #e3e3e3; border-radius: 3px;height: 30px; margin-bottom: 20px;padding-left: 10px;width: 210px;}
+		.pass_text{margin-top: 10px;border: 1px solid #e3e3e3; border-radius: 3px;height: 30px; margin-bottom: 20px;padding-left: 10px;width: 210px;}
 		.btn_submit{background-color: #ff6c1e; border: 1px solid #ef5f06; border-radius: 3px;color: #fff;cursor: pointer;font-size: 14px;font-weight: bold;margin-bottom: 35px; margin-top: 1px;padding: 8px 22px;text-align: left;font-family:"黑体"; /*2014-07-18 北科*/}
 	</style>
 	<div id="alert_win" style="display:none;">
@@ -1868,7 +1868,8 @@
 				<div id="need">
 					<form action="/user/center/updatepd.jhtml" method="post" id="pdFrom">
 						<input type="hidden" name="id" value="${sessionUser.id}">
-						<input class="pass_text" type="password"  autocomplete="off" name="password" placeholder="新密码"><br/>
+						<label>新密码</label>
+						<input class="pass_text" type="password"  autocomplete="off" name="password"><br/>
 						<input class="btn_submit" type="button" value="确定" id="btn_pd">
 						<input type="reset" value="重置" class="btn_submit" style="margin-left: 50px;">
 					</form>

@@ -46,7 +46,7 @@ public class ControllerIndex {
 		}
 		//工作动态
 		String hql="From TdataCenter dataCenter where dataCenter.type='1' order by id desc";
-		List<TdataCenter> works = (List<TdataCenter>)etechService.findListByHQL(hql);
+		List<TdataCenter> works = (List<TdataCenter>)etechService.findListByHQL(hql,4);
 		session.setAttribute("works",works ); 
 		
 		//新闻动态
@@ -61,7 +61,7 @@ public class ControllerIndex {
 		
 		//国家法律法规
 		hql="From TdataCenter dataCenter where dataCenter.type='10' or dataCenter.type='11' or dataCenter.type='12' or dataCenter.type='13' order by editTime desc";
-		List<TdataCenter> countryLawDataList = (List<TdataCenter>)etechService.findListByHQL(hql);
+		List<TdataCenter> countryLawDataList = (List<TdataCenter>)etechService.findListByHQL(hql,4);
 		session.setAttribute("countryLawDataList",countryLawDataList ); 
 		
 		// 专题报道
@@ -81,7 +81,7 @@ public class ControllerIndex {
 		
 		//招聘信息
 		hql = "From Trecruit trecruit where trecruit.status='1' and  trecruit.isview='发布' and trecruit.entUser.disable='0' order by trecruit.editTime desc";
-		List<Trecruit> zhaopList = (List<Trecruit>)etechService.findListByHQL(hql);
+		List<Trecruit> zhaopList = (List<Trecruit>)etechService.findListByHQL(hql,4);
 		session.setAttribute("zhaopList", zhaopList); 
 		
 		//求职信息

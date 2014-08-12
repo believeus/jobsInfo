@@ -12,6 +12,46 @@
 <script type="text/javascript" src="/resource/public/js/admin/ueditor1_2_6_2/ueditor.config.js"></script><script type="text/javascript" src="/resource/public/js/admin/ueditor1_2_6_2/ueditor.all.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/common.js"></script>
 <script type="text/javascript" src="/resource/public/js/admin/input.js"></script>
+<style type="text/css">
+	#preview_wrapper1 {
+	    background-color: #ccc;
+	    border: 1px solid;
+	    display: inline-block;
+	    height: 30px;
+	    width: 190px;
+	}
+	#preview_fake1 {
+	}
+	#preview_size_fake1 {
+	    height: 0;
+	    visibility: hidden;
+	    width: 0;
+	}
+	#preview1 {
+	    height: 30px;
+	    width: 190px;
+	}
+	
+	#preview_wrapper2 {
+	    background-color: #ccc;
+	    border: 1px solid;
+	    display: inline-block;
+	    height: 30px;
+	    width: 190px;
+	}
+	#preview_fake2 {
+	}
+	#preview_size_fake2 {
+	    height: 0;
+	    visibility: hidden;
+	    width: 0;
+	}
+	#preview2 {
+	    height: 30px;
+	    width: 190px;
+	}
+</style>
+
 <script type="text/javascript">
 $().ready(function() {
 
@@ -81,11 +121,31 @@ $().ready(function() {
 					<span class="requiredField">*</span>图片1:
 				</th>
 				<td>
-					<input type="file" name="img1"><br/><label style="color:#0000FF;">宽543px*高85px</label>
+					<div id="preview_wrapper1">    
+				        <div id="preview_fake1" >  
+				            <img id="preview1" onload="onPreviewLoad(this,190,30)" src="/resource/public/images/bg.png"/>
+				        </div>    
+				    </div>    
+				    <br/>    
+				    <input id="upload_img1" type="file" style="width: 190px;" name="upload_img1" onchange="filename1.value=this.value;onUploadImgChange(this,190,120,'preview1','preview_fake1','preview_size_fake1');"/>  
+				    <input type="hidden" id="filename1" name="filename1">
+				    <br/>    
+				    <img id="preview_size_fake1"/> 
+					<br/><label style="color:#0000FF;">宽543px*高85px</label>
 				</td>
 				<th><span class="requiredField">*</span>图片2:</th>
 				<td>
-					<input type="file" name="img2"><br/><label style="color:#0000FF;">宽165px*高85px</label>
+				<div id="preview_wrapper2">    
+				        <div id="preview_fake2" >  
+				            <img id="preview2" onload="onPreviewLoad(this,190,30)" src="/resource/public/images/bg.png"/>
+				        </div>    
+				    </div>    
+				    <br/>    
+				    <input id="upload_img2" type="file" style="width: 190px;" name="upload_img2" onchange="filename2.value=this.value;onUploadImgChange(this,190,120,'preview2','preview_fake2','preview_size_fake2');"/>  
+				    <input type="hidden" id="filename2" name="filename2">
+				    <br/>    
+				    <img id="preview_size_fake2"/> 	
+				<br/><label style="color:#0000FF;">宽165px*高85px</label>
 				</td>
 			</tr>
 			<tr>

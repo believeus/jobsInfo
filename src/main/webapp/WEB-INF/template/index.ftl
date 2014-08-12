@@ -145,7 +145,7 @@
 		    background:#FFFFFF;
     	}
     	.xinxi_1{
-		    height: 180px;
+		    height: 122px;
 		    margin-left: 7px;
 		    margin-top: 5px;
 		    width: 340px;
@@ -393,6 +393,62 @@
 			</div>
 			<div class="xinxi">
 				<table>
+				<tr>
+						<td>
+							<div class="xinxi_1">
+								<p class="xinxi_1_p"><span style="margin-left:30px;float:none;">创业信息</span></p>
+								<ul style="padding-left:25px;">
+										<li class="xinxi_1_li">
+											<a href="javascript:void(0);" title="">
+													潜江蓝星电脑创业信息
+											</a>
+											<span class="xinxi_1_span">2014-08-01</span>
+										</li>
+										<li class="xinxi_1_li">
+											<a href="javascript:void(0);" title="">
+													潜江可口可乐公司创业信息
+											</a>
+											<span class="xinxi_1_span">2014-08-01</span>
+										</li>
+										<li class="xinxi_1_li">
+											<a href="javascript:void(0);" title="">
+													武汉北科天翼有限责任公司创业信息
+											</a>
+											<span class="xinxi_1_span">2014-08-01</span>
+										</li>
+										<li class="xinxi_1_li">
+											<a href="javascript:void(0);" title="">
+													潜江第一儿童医院创业信息
+											</a>
+											<span class="xinxi_1_span">2014-08-01</span>
+										</li>
+								</ul>
+							</div>
+						</td>
+						<td>
+							<div class="xinxi_1">
+								<p class="xinxi_1_p"><span style="margin-left:30px;float:none;">培训信息</span></p>
+								<ul style="padding-left:25px;">
+											<li  class="xinxi_1_li">
+												<a href="javascript:void(0);">潜江第一儿童医院培训信息</a>
+												<span class="xinxi_1_span" style="">2014-08-01</span>
+											</li>
+											<li  class="xinxi_1_li">
+												<a href="javascript:void(0);">蓝詳技校汽车维修培训信息</a>
+												<span class="xinxi_1_span" style="">2014-08-01</span>
+											</li>
+											<li  class="xinxi_1_li">
+												<a href="javascript:void(0);">蓝星电脑维修培训信息</a>
+												<span class="xinxi_1_span" style="">2014-08-01</span>
+											</li>
+											<li  class="xinxi_1_li">
+												<a href="javascript:void(0);">北大青鸟计算机编程培训信息</a>
+												<span class="xinxi_1_span" style="">2014-08-01</span>
+											</li>
+								</ul>
+							</div>
+						</td>
+					</tr>
 					<tr>
 						<td>
 							<div class="xinxi_1">
