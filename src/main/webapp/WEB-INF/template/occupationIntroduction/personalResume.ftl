@@ -293,10 +293,10 @@
 						<td colspan="2" align="center" style="background:#EE981F;color:#FFFFFF;border-radius:4px;">用户登录</td>
 					</tr>
 					<tr>
-						<td colspan="2"><font color="red" size="2">${sessionUser.loginName}</font>，欢迎您登录！</td>
+						<td colspan="2"><font color="red" size="2">${sessionUser.loginName}</font><br/>欢迎您登录！</td>
 					</tr>
 					<tr>
-						<td colspan="2">上次登录时间:
+						<td colspan="2">上次登录时间:<br/>
 							<span style="font-size:13px;float:left;">
 								${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
 							</span>
@@ -415,19 +415,19 @@
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;width:65px">政治面貌:</td>
 									<td>${tcomUser.polity}</td>
-									<td style="background: #EEEEEE; text-align: right;width:90px;">家庭详细地址:</td>
+									<td style="background: #EEEEEE; text-align: right;width: 106px;">家庭详细地址:</td>
 									<td>${tcomUser.address}</td>
 								</tr>
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;">婚姻状况:</td>
 									<td>${tcomUser.marriage}</td>
-									<td style="background: #EEEEEE; text-align: right;width:90px;">原工作单位:</td>
+									<td style="background: #EEEEEE; text-align: right;width: 106px;">原工作单位:</td>
 									<td>${tcomUser.workspace}</td>
 								</tr>
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;">视力:</td>
 									<td>${tcomUser.eyesight}</td>
-									<td style="background: #EEEEEE; text-align: right;">《就失业证》号:</td>
+									<td style="background: #EEEEEE; text-align: right;width: 106px;">《就失业证》号:</td>
 									<td>${tcomUser.jobId}</td>
 								</tr>
 								<tr>
@@ -445,7 +445,7 @@
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;">联系电话:</td>
 									<td colspan="3">
-										[#if sessionUser?exists]
+										[#if sessionUser?exists && sessionUser.status==1]
 											${tcomUser.phoneNum}
 										[#else]
 											<a style="color:red;" href="/">登录后可以查看联系方式</a>

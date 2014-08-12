@@ -7,7 +7,6 @@ import java.util.Random;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.bcel.generic.NEW;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -47,7 +46,7 @@ public class ControllerOnlineShow {
 		
 		//图片新闻
 		hql = "From TdataCenter tdataCenter where tdataCenter.type='3' order by id desc";
-		List<TdataCenter> imgs = (List<TdataCenter>)etechService.findListByHQL(hql);
+		List<TdataCenter> imgs = (List<TdataCenter>)etechService.findListByHQL(hql,6);
 		request.setAttribute("imgs", imgs); 
 		String host=request.getHeader("Host");
 		request.setAttribute("host", host);

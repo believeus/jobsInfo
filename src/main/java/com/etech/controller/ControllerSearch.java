@@ -129,7 +129,7 @@ public class ControllerSearch {
 		return "occupationIntroduction/search";
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked", "rawtypes", "unused" })
 	@RequestMapping(value="/advanceSearchByContision")
 	public String advanceSearch(String data,String keyword,String majorTypeId,String workTypeId,
 			String area,String type,HttpServletRequest request,HttpSession session){
@@ -313,6 +313,7 @@ public class ControllerSearch {
 		Page page = etechService.getPage(hql, pageable);
 		request.setAttribute("recruitList", page);
 		request.setAttribute("location", "position");
+		request.setAttribute("data", "");
 		return "occupationIntroduction/advancedSearchJob";
 	}
 	// 简历搜索
@@ -330,6 +331,7 @@ public class ControllerSearch {
 		Page page = etechService.getPage(hql, pageable);
 		request.setAttribute("comInfoList", page);
 		request.setAttribute("location", "resume");
+		request.setAttribute("data", "");
 		return "occupationIntroduction/advancedSearchResume";
 	}
 		//搜索公司
@@ -347,6 +349,7 @@ public class ControllerSearch {
 			Page page = etechService.getPage(hql, pageable);
 			request.setAttribute("recruitList", page);
 			request.setAttribute("location", "company");
+			request.setAttribute("data", "");
 			return "occupationIntroduction/advancedSearchCompany";
 		}
 	@RequestMapping(value="/searchPolicyAdvice",method = RequestMethod.POST)

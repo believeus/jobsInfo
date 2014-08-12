@@ -325,10 +325,10 @@
 						<td colspan="2" align="center" style="background:#EE981F;color:#FFFFFF;border-radius:4px;">用户登录</td>
 					</tr>
 					<tr>
-						<td colspan="2"><font color="red" size="2">${sessionUser.loginName}</font>，欢迎您登录！</td>
+						<td colspan="2"><font color="red" size="2">${sessionUser.loginName}</font><br/>欢迎您登录！</td>
 					</tr>
 					<tr>
-						<td colspan="2">上次登录时间:
+						<td colspan="2">上次登录时间:<br/>
 							<span style="font-size:13px;float:left;">
 								${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
 							</span>
@@ -466,7 +466,7 @@
 								<tr>
 									<th>邮编:</th>
 									<td>
-										[#if "${sessionUser?exists}"]
+										[#if "${sessionUser?exists}" && sessionUser.status==1]
 											${entUser.zip}
 										[#else]
 											<a style="color:red;" href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
@@ -474,7 +474,7 @@
 									</td>
 									<th>手机:</th>
 									<td>
-										[#if "${sessionUser?exists}"]
+										[#if "${sessionUser?exists}"  && sessionUser.status==1]
 											${entUser.phoneFax}
 										[#else]
 											<a style="color:red;" href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
@@ -484,7 +484,7 @@
 								<tr>
 									<th>电话/传真:</th>
 									<td>
-										[#if "${sessionUser?exists}"]
+										[#if "${sessionUser?exists}"  && sessionUser.status==1]
 											${entUser.phoneFax}
 										[#else]
 											<a style="color:red;" href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>

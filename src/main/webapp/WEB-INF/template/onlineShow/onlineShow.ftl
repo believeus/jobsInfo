@@ -88,7 +88,7 @@ a:link{
 .tup_list{
 	width:140px;
 	height:160px;
-	margin:0 10px;
+	margin: 10px 10px 0;
 	float:left;
 }
 </style></head>

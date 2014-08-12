@@ -81,6 +81,7 @@
 		}
 		.selected{
 			color:#0000FF;
+			margin-top: 10px;
 		}
 		.selected a {
 		    border: 1px solid #E4925A;
@@ -458,7 +459,7 @@
 							</div>
 						</td>
 						<td>
-							<input type="text" name="area" id="start1" value="[#if area !=""]${area}[#else]选择城市[/#if]" autocomplete="off" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" style="width:auto;min-width:150px;" readonly="readonly">
+							<input type="text" name="area" id="start1" value="[#if area !=""]${area}[#else]选择城市[/#if]" autocomplete="off" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" style="width:auto;min-width:150px;height: 24px;margin-top: 1px;" readonly="readonly">
 							<!--/////地区插件///////////////////////////////////////////////////////////////////-->
 								<div class="provinceCityAll">
 								  <div class="tabs clearfix">
