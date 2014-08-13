@@ -38,7 +38,7 @@ a:link{
 .middle_{
 	height:30px; 
 	border-bottom: 1px solid #e4e4e4; 
-	background: url(/resource/public/images/background.png) repeat scroll 0 0 rgba(0, 0, 0, 0);
+	background: url(/resource/public/images/background.png);
 	font-size:12px;
 	font-weight:bold;
 }

@@ -442,28 +442,17 @@
 	
 	<script type="text/javascript" charset="UTF-8">
 				function showDialogSave(){
-					$("#dialog").dialog({
-					    bgiframe: true,
-					    resizable: false,
-					    modal: true,
-					    buttons: {
-					        '确定': function() {
-					        	//提交
-					        	$("#InfoForm").ajaxSubmit({
-					            	 type: "post",
-								     url: "/enterprise/submit-account-Info.jhtml",
-								     dataType: "json",
-								     success: function(data){
-								     	submitMap();
-								     }
-				        		});	
-					           
-					        },
-					        '取消': function() {
-					            location.reload(true);
-					        }
-					    }
-					});
+					if (confirm("修改企业基本信息，需要管理员重新审核\r\n且审核未通过前不能进行聘信的相关操作！\r\n是否要继续保存？") == true) {
+						showdiv();
+						$("#InfoForm").ajaxSubmit({
+			            	 type: "post",
+						     url: "/enterprise/submit-account-Info.jhtml",
+						     dataType: "json",
+						     success: function(data){
+						     	submitMap();
+						 }
+				        });	
+					}
 					
 				}
 		
@@ -705,14 +694,8 @@
 		}
 		
 		function showDialog(id,object){
-			$("#dialog").dialog({
-			    bgiframe: true,
-			    resizable: false,
-			    modal: true,
-			    buttons: {
-			        '确定': function() {
-			        	$(this).dialog('close');
-			        	$.ajax({
+			if (confirm("确定要删除吗？") == true) {
+				$.ajax({
 							url: "/enterprise-user/center/delete-recruit.jhtml",
 							type: "POST",
 							data: {'id':id},
@@ -724,14 +707,7 @@
 								 }
 							}
 						});
-			           
-			        },
-			        '取消': function() {
-			            $(this).dialog('close');
-			        }
-			    }
-			});
-			
+			}
 		}
 		
 		function changeIsview(id){
@@ -1166,9 +1142,6 @@
 						<div style="float: left; width: 50px; margin-left: 20px;">
 							<input id="update_mima" type="button" value="修改密码" onClick="alert_win.style.display='block';" style="cursor:pointer;width: 80px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
 						</div>
-						<div id="dialog" title="&nbsp;" style="display: none;">
-							<p style="text-align: center;">修改企业基本信息，需要管理员重新审核，且审核未通过前不能进行招聘信的相关操作！ 是否要继续保存？</p>
-						</div>
 					</div>
 					<div id="baseDiv" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<div class="" style="height: 480px; overflow: hidden; float: left; width: 660px; margin-left: 30px; margin-top: 10px;margin-right:10px;">
@@ -1547,9 +1520,6 @@
 								<td><a href="javascript:void(0)" onclick="changeIsview(${recruit.id});" title="点击即可修改" id="isview${recruit.id}">${recruit.isview}</a></td>
 								<td><a href="/editRecruit.jhtml?id=${recruit.id}" style="margin-right: 5px;" id="editx" >编辑</a>
 								<a href="javascript:void(0)" onclick="showDialog(${recruit.id},this)">删除</a>
-								<div id="dialog" title="&nbsp;" style="display: none;">
-									<p style="text-align: center;">确定要删除吗？</p>
-								</div>
 								</td>
 							</tr>
 							[/#list]

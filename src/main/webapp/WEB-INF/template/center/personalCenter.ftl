@@ -293,14 +293,8 @@
     		[/#if]
     		
     	function showDialog(id){
-			$("#dialog").dialog({
-			    bgiframe: true,
-			    resizable: false,
-			    modal: true,
-			    buttons: {
-			        '确定': function() {
-			        	$(this).dialog('close');
-			        	$.ajax({
+    		  if (confirm("确定要删除吗？") == true) {
+			       $.ajax({
 							url: "/common-user/submit-deleteids.jhtml",
 							type: "POST",
 							data: {"ids":id},
@@ -309,27 +303,15 @@
 							success: function() {
 									location.reload(true);
 							}
-						});
-			           
-			        },
-			        '取消': function() {
-			            $(this).dialog('close');
-			        }
-			    }
-			});
-			
+					});
+			        
+			    } 
 		}
 		
 		//删除志愿
 		function showDialog_V(id,object){
-			$("#dialog_V").dialog({
-			    bgiframe: true,
-			    resizable: false,
-			    modal: true,
-			    buttons: {
-			        '确定': function() {
-			        	$(this).dialog('close');
-			        	$.ajax({
+			  if (confirm("确定要删除吗？") == true) {
+			  	$.ajax({
 							url: "/enterprise-user/center/delete-volunteer.jhtml",
 							type: "POST",
 							data: {'id':id},
@@ -341,14 +323,7 @@
 								 }
 							}
 						});
-			           
-			        },
-			        '取消': function() {
-			            $(this).dialog('close');
-			        }
-			    }
-			});
-			
+			  }
 		}
 		
 		
@@ -1142,14 +1117,8 @@
     			
   			
 		  			function showDialog(id,object){
-					$("#dialog").dialog({
-					    bgiframe: true,
-					    resizable: false,
-					    modal: true,
-					    buttons: {
-					        '确定': function() {
-					        	$(this).dialog('close');
-					        	$.ajax({
+		  				if (confirm("确定要删除吗？") == true) {
+		  					$.ajax({
 									url: "/enterprise-user/center/delete-recruit.jhtml",
 									type: "POST",
 									data: {'id':id},
@@ -1161,20 +1130,12 @@
 										 }
 									}
 								});
-					           
-					        },
-					        '取消': function() {
-					            $(this).dialog('close');
-					        }
-					    }
-					});
-					
+		  				}
 				}
   			
   			
 				// ajax 提交验证和保存，先提交图片再提交个人信息。
 				function submitValid(submitx){
-						showdiv();
 						// 上传图片，并且得到图片路径返回值。
 						if(checkChange==1){
 							$("#imageForm").ajaxSubmit(function (data) {
@@ -1198,6 +1159,34 @@
 						
 					}
 					
+				function validData(){
+					// 验证具备技能信息。
+					var specialtyx=$("#selectSkillSpecialty"+(b-1)).find("span").text();
+		    			if(specialtyx=="选择专业"){
+		    				alert("请完整填写具备技能必填项！");
+		    				return false;
+		    		};
+		    		// 验证学习经历信息。
+    				var beginDateLearning=$("#beginDateLearning"+(a-1)).val();
+	    			var endDateLearning=$("#endDateLearning"+(a-1)).val();
+	    			var schoolLearning=$("#schoolLearning"+(a-1)).val();
+	    			var selectLearningSpecialtyhidden=$("#selectLearningSpecialtyhidden"+(a-1)).val();
+	    			if(beginDateLearning==""||endDateLearning==""||schoolLearning==""||selectLearningSpecialtyhidden==""){
+	    				alert("请完整填写学习经历必填项！");
+	    				return false;
+	    			};
+	    			// 验证工作经验信息。
+	    			var beginDateWork=$("#beginDateWork"+(c-1)).val();
+	    			var endDateWork=$("#endDateWork"+(c-1)).val();
+	    			var workspaceWork=$("#workspaceWork"+(c-1)).val();
+	    			var dutyWork=$("#dutyWork"+(c-1)).val();
+	    			if(beginDateWork==""||endDateWork==""||workspaceWork==""||dutyWork==""){
+	    				alert("请完整填写工作经验必填项！");
+	    				return false;
+	    			};
+	    			showdiv();
+					submitSkill();
+				}
 		    	// 提交用户信息
 				function submitInfo(submitx){
 						$("#freeTrain").val($('input:radio[name="freeTrain"]:checked').val());
@@ -1210,7 +1199,7 @@
 						     dataType: "json",
 						     success: function(data){
 		        				if(data.message == "success" && $("#submit").val() == "submit"){
-									submitSkill();
+									validData();
 								}else if(data.property=="idcardIsNull"){
 									// 设置年龄和性别为可填写。
 									$("#ageH").attr("style","");
@@ -1570,9 +1559,6 @@
 								    <img id="preview_size_fake"/>    
 								</form>			
 						</div>
-					</div>
-					<div id="dialog" title="&nbsp;" style="display: none;">
-							<p style="text-align: center;">确定要删除吗？</p>
 					</div>
 					<div style="height: 30px; width: 728px;">
 						<span style="float:left;">具备技能&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">(红色字体为必填项)</font>
@@ -2032,9 +2018,6 @@
 								<td>
 									<a href="/editVolunteer.jhtml?id=${volunteer.id}">编辑</a>
 									<a href="javascript:void(0)" onclick="showDialog_V(${volunteer.id},this)">删除</a>
-									<div id="dialog_V" title="&nbsp;" style="display: none;">
-										<p style="text-align: center;">确定要删除吗？</p>
-									</div>
 								</td>
 							</tr>
 							[/#if]
