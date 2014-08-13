@@ -205,6 +205,16 @@
 		.list input {
 			width:80px;
 		}
+		/**修改登录样式*/
+		.denglu-div {
+		    height: 50px;
+		    line-height: 50px;
+		    padding: 0 10px;
+		    width: auto;
+		}
+		.denglu-div input{
+			float:left;
+		}
     </style>
     
 	
@@ -1087,6 +1097,10 @@
     			$("#base_xinxi").css("display","none");
     			$("#bianji_xinxi").css("display","block");
     		}
+    		$("#logout").click(function() {
+					// 需要跳转到注册页面
+					Etech.logout();
+			});
     	});
 	</script>
 </head>
@@ -1095,30 +1109,25 @@
 	<div class="j_main w">
 		<div class="j_main_left">
 			<div class="j_main_left_1" style="background:url(/resource/public/images/ggwsydl.png) no-repeat; width:258px; height:222px;border:1px solid #f2c49f;">
-				<table style="margin:55px 0 0 15px;" border="0">
-					<!--<tr>
-						<td colspan="2" align="center" style="background:#EE981F;color:#FFFFFF;border-radius:4px;">用户登录</td>
-					</tr>-->
-					<tr>
-						<td height="45" align="center" width="30"><img src="/resource/public/images/dlr.png" /></td>
-						<td style="font-family:'黑体';font-size:14px;color:#ef4300;">${sessionUser.loginName}</td>
-						<td style="font-family:'黑体';font-size:12px;color:#858585;">，欢迎您登录！</td>
-					</tr>
-					<tr>
-						<td height="45" align="center"><img src="/resource/public/images/dlsj.png" /></td>
-						<td style="font-family:'宋体';font-size:12px;color:#858585;">上次登录</td>
-						<td style="font-family:'宋体';font-size:12px;color:#858585;">${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}</td>
-					
-					</tr>
-					<tr>
-						<td align="center" colspan="3" height="60">
-							<input type="button" style="background:url(/resource/public/images/ggw-yhdlh.png) no-repeat; width:113px;height:37px;border:0;color:#ffffff;font-size:16px;font-weight:bold;font-family:'黑体';" value="企业中心"
-							onclick="javascript:[#if sessionUser.class.name == "com.etech.entity.TcomUser"]window.location.href='/common-user/center.jhtml';[#else] window.location.href='/enterprise-user/center.jhtml';[/#if]" 
-							>
-							<input type="button" onclick="Etech.logout();" style="width:104px;height:37px; background:url(/resource/public/images/tc.png) no-repeat;border:0;" value="">
-						</td>
-					</tr>
-				</table>
+			<div style="padding: 53px 0 0;">
+						<div class="denglu-div">
+							<img src="/resource/public/images/dlr.png" />
+							${sessionUser.loginName}
+							欢迎您登录！
+						</div>
+						<div class="denglu-div">
+							<img src="/resource/public/images/dlsj.png" />
+							上次登录
+							${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
+						</div>
+						<div class="denglu-div">
+							<input type="button" style="margin-right:10px;background:url(/resource/public/images/ggw-yhdlh.png) no-repeat; width:113px;height:37px;border:0;color:#ffffff;font-size:16px;font-family:'黑体';font-weight:bold;" 
+								value="[#if sessionUser.class.name == "com.etech.entity.TcomUser"]个人中心[#elseif sessionUser.class.name == "com.etech.entity.TentUser"]企业中心[#else]管理员后台[/#if]"
+								onclick="javascript:[#if sessionUser.class.name == "com.etech.entity.TcomUser"]window.location.href='/common-user/center.jhtml';[#elseif sessionUser.class.name == "com.etech.entity.TentUser"] window.location.href='/enterprise-user/center.jhtml';[#else]window.location.href='/admin/common/main.jhtml';[/#if]" 
+								>
+								<input id="logout" type="button" style="background:url(/resource/public/images/tc.png) no-repeat;border:0; width: 104px;height:37px;" value="">
+						</div>
+					</div>
 			</div>
 			<div class="j_main_left_1" style="margin-top:10px;height:auto;text-align:center;border:1px solid #E4630F;border-radius:4px;">
 				<p style="background: #EE981F; text-align: center; margin: 5px; padding: 5px; border-radius: 5px; border: 0px none; color: #FFFFFF;">人才推荐</p>

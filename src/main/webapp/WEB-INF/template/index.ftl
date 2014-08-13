@@ -206,6 +206,17 @@
 		.jiuye_1_list img {
 		    border-radius: 5px;
 		}
+		
+		/**修改登录样式*/
+		.denglu-div {
+		    height: 50px;
+		    line-height: 50px;
+		    padding: 0 10px;
+		    width: auto;
+		}
+		.denglu-div input{
+			float:left;
+		}
     </style>
     <style type="text/css">
 		#banner {position:relative; width:314px; height:286px; overflow:hidden;}
@@ -576,21 +587,42 @@
 			
 			[#if sessionUser?exists]
 				<div class="denglu" id="denglu2" style="background:url(/resource/public/images/ggwsydl.png) no-repeat;width:260px;height:222px;border:1px solid #f2c49f;">
+					<div style="padding: 53px 0 0;">
+						<div class="denglu-div">
+							<img src="/resource/public/images/dlr.png" />
+							${sessionUser.loginName}
+							欢迎您登录！
+						</div>
+						<div class="denglu-div">
+							<img src="/resource/public/images/dlsj.png" />
+							上次登录
+							${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
+						</div>
+						<div class="denglu-div">
+							<input type="button" style="margin-right:10px;background:url(/resource/public/images/ggw-yhdlh.png) no-repeat; width:113px;height:37px;border:0;color:#ffffff;font-size:16px;font-family:'黑体';font-weight:bold;" 
+								value="[#if sessionUser.class.name == "com.etech.entity.TcomUser"]个人中心[#elseif sessionUser.class.name == "com.etech.entity.TentUser"]企业中心[#else]管理员后台[/#if]"
+								onclick="javascript:[#if sessionUser.class.name == "com.etech.entity.TcomUser"]window.location.href='/common-user/center.jhtml';[#elseif sessionUser.class.name == "com.etech.entity.TentUser"] window.location.href='/enterprise-user/center.jhtml';[#else]window.location.href='/admin/common/main.jhtml';[/#if]" 
+								>
+								<input id="logout" type="button" style="background:url(/resource/public/images/tc.png) no-repeat;border:0; width: 104px;height:37px;" value="">
+						</div>
+					</div>
+				
+				<!--
+				
 				<table style="margin-top:55px;margin-left:15px;" border="0">
-					<!--<tr class="denglu_tr">
+					<tr class="denglu_tr">
 						<td colspan="2" align="center" style="background:url(/resource/public/images/beijingse.png);line-height:28px;color:#FFFFFF;border-radius:4px;">用户登录</td>
-					</tr>-->
+					</tr>
+					
 					<tr>
 						 <td align="center" ><img src="/resource/public/images/dlr.png" /></td>
 						 <td align="center" style="color:#ef4300;font-family:'黑体';font-size:17px;" colspan="2">${sessionUser.loginName}</td>
-					</tr>
-					<tr>
 			           <td align="center" style="color:#858585;font-family:'黑体';font-size:17px;" colspan="3">欢迎您登录！</td>
 			        </tr>
 					<tr>
 						 <td align="center"><img src="/resource/public/images/dlsj.png" /></td>
 						<td height="45" align="center" style="color:#858585;font-family:'宋体';font-size:12px;">上次登录</td>
-						<td style="color:#858585;font-family:'宋体';font-size:12px;">${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
+						<td style="color:#858585;font-family:'宋体';font-size:12px;">${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}</td>
 					</tr>
 					<tr>
 						<td align="center" height="60" colspan="3">
@@ -602,6 +634,8 @@
 						</td>
 					</tr>
 				</table>
+				
+				-->
 			</div>
 			[#else]
 				<div class="denglu" id="denglu1" style="background:url(/resource/public/images/ggwsydl.png) no-repeat;width:260px;height:222px;border:1px solid #f2c49f;">

@@ -24,6 +24,16 @@
 	<script src="/resource/public/js/uploadify3.2.1/jquery.uploadify.js" charset="utf-8"></script>
 
     <style type="text/css">
+    	/**修改登录样式*/
+		.denglu-div {
+		    height: 50px;
+		    line-height: 50px;
+		    padding: 0 10px;
+		    width: auto;
+		}
+		.denglu-div input{
+			float:left;
+		}
    		.j_main{
     		width:1000px;
     		height:auto;
@@ -341,36 +351,36 @@
 	        		});
 			  })
 		}
+		$("#logout").click(function() {
+					// 需要跳转到注册页面
+					Etech.logout();
+			});
 	});
 </script>
 <body>
 	[#include "/include/header.ftl" /]
 	<div class="j_main w">
 		<div class="j_main_left">
-			<div class="j_main_left_1" style="border:0;height:auto;border:1px solid #E4630F;border-radius:4px;">
-				<table style="padding: 6px 19px 19px;">
-					<tr>
-						<td colspan="2" align="center" style="background:#EE981F;color:#FFFFFF;border-radius:4px;">用户登录</td>
-					</tr>
-					<tr>
-						<td colspan="2"><font color="red" size="2">${sessionUser.loginName}</font>，欢迎您登录！</td>
-					</tr>
-					<tr>
-						<td colspan="2">上次登录时间:
-							<span style="font-size:13px;float:left;">
-								${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
-							</span>
-						</td>
-					</tr>
-					<tr>
-						<td align="center" colspan="2" style="padding-top: 20px;">
-							<input type="button" style="margin-right: 10px;background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 75px;height:27px;" value="个人中心"
-							onclick="javascript:[#if sessionUser.class.name == "com.etech.entity.TcomUser"]window.location.href='/common-user/center.jhtml';[#else] window.location.href='/enterprise-user/center.jhtml';[/#if]" 
-							>
-							<input type="button" onclick="Etech.logout();" style="background: none repeat scroll 0 0 #6DBE3A;border: 1px solid #1C960C;border-radius: 4px;color: #FFFFFF; width: 75px;height:27px;" value="退出">
-						</td>
-					</tr>
-				</table>
+			<div class="j_main_left_1" style="background:url(/resource/public/images/ggwsydl.png) no-repeat; width:258px; height:222px;border:1px solid #f2c49f;">
+				<div style="padding: 53px 0 0;">
+						<div class="denglu-div">
+							<img src="/resource/public/images/dlr.png" />
+							${sessionUser.loginName}
+							欢迎您登录！
+						</div>
+						<div class="denglu-div">
+							<img src="/resource/public/images/dlsj.png" />
+							上次登录
+							${sessionUser.lastLoginData?number_to_datetime}&nbsp;${sessionUser.lastLoginData?number_to_time}
+						</div>
+						<div class="denglu-div">
+							<input type="button" style="margin-right:10px;background:url(/resource/public/images/ggw-yhdlh.png) no-repeat; width:113px;height:37px;border:0;color:#ffffff;font-size:16px;font-family:'黑体';font-weight:bold;" 
+								value="[#if sessionUser.class.name == "com.etech.entity.TcomUser"]个人中心[#elseif sessionUser.class.name == "com.etech.entity.TentUser"]企业中心[#else]管理员后台[/#if]"
+								onclick="javascript:[#if sessionUser.class.name == "com.etech.entity.TcomUser"]window.location.href='/common-user/center.jhtml';[#elseif sessionUser.class.name == "com.etech.entity.TentUser"] window.location.href='/enterprise-user/center.jhtml';[#else]window.location.href='/admin/common/main.jhtml';[/#if]" 
+								>
+								<input id="logout" type="button" style="background:url(/resource/public/images/tc.png) no-repeat;border:0; width: 104px;height:37px;" value="">
+						</div>
+					</div>
 			</div>
 			<div class="j_main_left_1" style="margin-top:10px;height:auto;text-align:center;border:1px solid #E4630F;border-radius:4px;">
 				<p style="background: #EE981F; text-align: center; margin: 5px; padding: 5px; border-radius: 5px; border: 0px none; color: #FFFFFF;">人才推荐</p>
