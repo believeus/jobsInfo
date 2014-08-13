@@ -590,7 +590,7 @@
 					<div style="padding: 53px 0 0;">
 						<div class="denglu-div">
 							<img src="/resource/public/images/dlr.png" />
-							${sessionUser.loginName}
+							<span style="color:#FFC12B;">${sessionUser.loginName}</span>
 							欢迎您登录！
 						</div>
 						<div class="denglu-div">
