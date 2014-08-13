@@ -55,6 +55,13 @@ $().ready(function() {
 		}
 	});
 	
+	$("#phoneNum").blur(function(){
+		var phoneNum =$(this).val();
+		var regPartton=/^(?:13\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/; //验证手机号
+		if(!regPartton.test(phoneNum)){
+			alert("手机格式不正确！");
+		}
+	});
 });
 </script>
 </head>
@@ -126,7 +133,7 @@ $().ready(function() {
 				</tr>
 				<tr>
 					<th>手机号码:</th>
-					<td><input type="text" id="phoneNum" name="phoneNum" value="${user.phoneNum}"></td>
+					<td><input type="text" id="phoneNum" name="phoneNum" value="${user.phoneNum}" onkeyup="value=this.value.replace(/\D+/g,'')"></td>
 				</tr>
 				<tr>
 					<th>二女户:</th>
@@ -151,7 +158,7 @@ $().ready(function() {
 				</tr>
 				<tr>
 					<th>身份证号:</th>
-					<td><input type="text" id="idcard" name="idcard" value="${user.idcard}"  onkeyup="value=this.value.replace(/\D+x/g,'')" minlength="15" minlength="18"></td>
+					<td><input type="text" id="idcard" name="idcard" value="${user.idcard}"  onkeyup="value=this.value.replace(/\D+/g,'')" minlength="15" minlength="18"></td>
 				</tr>
 				<tr>
 					<th>文化程度:</th>
