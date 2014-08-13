@@ -145,36 +145,30 @@ $().ready(function() {
 		}
 	});
 	
-		// 表单验证
-		$inputForm.validate({
-			submitHandler: function(form){  
-				   submitJobs();
-   			}  
-		});
-	
-		//封装ajax信息提交
-		function submitJobs(){
-				var tag=false;
+	   $("#inputForm").submit(function() {
+               	var tag=false;
 	    		if($("#selectSkillJobshidden1").val() == ""){
 	    			alert("请选择工种");
 	    			tag=true;
+	    			return false;
 	    		}else if($("#workspace1").val() == ""){
 	    			alert("请输入工作地点");
 	    			tag=true;
+	    			return false;
 	    		}else{
 		    		if(tag==false){
 		    			showdiv();
 		    			if($("#beginDate").val()!=""){
-							var viewData=new Date($("#beginDate").val().replace(/-/g,",")).getTime();
+							var viewData=new Date($("#beginDate").val().replace(/-/g,"/")).getTime();
 							$("#viewData").val(viewData);
 						}else{
 							$("#viewData").remove();
 						}
-						$(form).submit();  
 	    			}
 	    		}
-				  
-			}
+               return true;
+        });
+
 });
 </script>
 </head>

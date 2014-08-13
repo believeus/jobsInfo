@@ -111,14 +111,17 @@ public class ControllerStationAudit {
 	 * @return
 	 */
 	@RequestMapping(value = "/update")
-	public String updateNewsView(Trecruit recruit,Integer workTypeId,Integer majorTypeId,Integer userId){
-		TentUser entUser=(TentUser)etechService.findObjectById(TentUser.class, userId);
+	public String updateNewsView(Trecruit recruit,HttpServletRequest request){
+		String workTypeId=request.getParameter("workTypeId");
+		String majorTypeId = request.getParameter("majorTypeId");
+		String userId = request.getParameter("userId");
+		TentUser entUser=(TentUser)etechService.findObjectById(TentUser.class, Integer.parseInt(userId));
 		if (workTypeId != null) {
-			TmajorType workType = (TmajorType) etechService.findObjectById(TmajorType.class, workTypeId);
+			TmajorType workType = (TmajorType) etechService.findObjectById(TmajorType.class, Integer.parseInt(workTypeId));
 			recruit.setWorkType(workType);
 		}
 		if (majorTypeId != null) {
-			TmajorType majorType = (TmajorType) etechService.findObjectById(TmajorType.class, majorTypeId);
+			TmajorType majorType = (TmajorType) etechService.findObjectById(TmajorType.class, Integer.parseInt(majorTypeId));
 			recruit.setMajorType(majorType);
 		}
 		recruit.setEntUser(entUser);
