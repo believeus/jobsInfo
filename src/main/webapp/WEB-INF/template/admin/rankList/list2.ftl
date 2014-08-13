@@ -62,8 +62,9 @@ $().ready(function() {
 				<td>
 					${center.editDate?number_to_datetime?string?substring(0,7)?replace("-","年")}月
 				</td>
+				
 				<td>
-					<a href="/admin/monthSupplyList/monthySupplyList.jhtml">[查看]</a>
+					<a href="/admin/monthSupplyList/monthySupplyList.jhtml?year=${center.editDate?number_to_datetime?string?substring(0,4)}&month=${center.editDate?number_to_datetime?string?substring(5,7)}">[查看]</a>
 				</td>
 			</tr>
 			[/#list]

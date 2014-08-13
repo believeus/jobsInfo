@@ -46,6 +46,7 @@ public class ControllerDemandList {
 		request.setAttribute("monthlyDemandList", page);
 		return "dataChannel/xuqiupaihangList";
 	}
+	// 根据月份查需需求
 	@RequestMapping(value="/xuqiupaihangOrderMonth")
 	public String xuqiupaihangOrderMonth(HttpServletRequest request,String year,String month){
 		 //当前页
@@ -77,6 +78,8 @@ public class ControllerDemandList {
 		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		Page<?> page = etechService.getPage(hql, pageable);
 		request.setAttribute("monthlyDemandList", page);
+		request.setAttribute("year", year);
+		request.setAttribute("month", month);
        return "dataChannel/xuqiupaihangOrderMonth";
 	}
 	}

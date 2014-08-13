@@ -1,19 +1,16 @@
 package com.etech.controller.admin;
 
 import java.util.Calendar;
-import java.util.List;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.etech.entity.Trecruit;
 import com.etech.service.EtechService;
 import com.etech.util.Page;
 import com.etech.util.Pageable;
@@ -54,25 +51,37 @@ public class ControllerMonthlyDemandList extends ControllerCRUD{
 	 * @return
 	 */
 	@RequestMapping(value = "/monthyDemandList")
-	public String list(HttpServletRequest request){
-		 //获取当前月第一天：
-        Calendar c = Calendar.getInstance();   
-        c.add(Calendar.MONTH, 0);
-        c.set(Calendar.DAY_OF_MONTH,1);//设置为1号,当前日期既为本月第一天
-        long beginTime=c.getTimeInMillis();
-       
-        //获取当前月最后一天
-        Calendar ca = Calendar.getInstance();   
-        ca.set(Calendar.DAY_OF_MONTH, ca.getActualMaximum(Calendar.DAY_OF_MONTH)); 
-        long endTime=ca.getTimeInMillis();
-		//需求排行
-        String hql = "from Trecruit recruit "
+	public String list(HttpServletRequest request,String year,String month){
+		 //当前页
+        String pageNumber = request.getParameter("pageNumber");
+        // 如果为空，则设置为1
+        if (StringUtils.isEmpty(pageNumber)) {
+                pageNumber="1";
+        }
+        Pattern regex = Pattern.compile("0[1-9]");
+        Matcher matcher = regex.matcher(month);
+        if(matcher.find()){
+                month = matcher.group().replace("0", "");
+        }
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR,Integer.valueOf(year));
+        cal.set(Calendar.MONTH, (Integer.valueOf(month)-1));
+        
+        cal.set(Calendar.DAY_OF_MONTH, 1);
+        long beginTime = cal.getTimeInMillis();
+        
+        cal.add(Calendar.MONTH, 1);  
+        cal.set(Calendar.DAY_OF_MONTH, 0);
+        long endTime=cal.getTimeInMillis();
+   		String hql = "from Trecruit recruit "
    			   + "where recruit.editTime >='"+beginTime+"' and recruit.editTime <='"+endTime+"' "
    			   + "and recruit.status=1 and recruit.entUser.status=1 and recruit.entUser.disable=0 "
    			   + "group by recruit.jobPost order by count(recruit.jobPost) desc";
-		@SuppressWarnings("unchecked")
-		List<Trecruit> demand = (List<Trecruit>)etechService.findListByHQL(hql,10);
-		request.setAttribute("demand", demand);
+		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
+		Page<?> page = etechService.getPage(hql, pageable);
+		request.setAttribute("year", year);
+		request.setAttribute("month", month);
+		request.setAttribute("demand", page);
 		return "admin/rankList/monthyList";
 	}
 	/**

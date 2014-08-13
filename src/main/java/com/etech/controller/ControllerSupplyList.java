@@ -79,6 +79,8 @@ public class ControllerSupplyList {
 		Page<?> page = etechService.getPage(hql, pageable);
 		log.debug(page.getContent().size());
 		request.setAttribute("monthSupplyList", page);
+		request.setAttribute("month", month);
+		request.setAttribute("year", year);
 		return "dataChannel/gongjipaihangOrderMonth";
 	}
 }

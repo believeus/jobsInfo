@@ -117,7 +117,7 @@
 				</p>
 			</div>
 			<div class="j_main_right_2" style="border:1px solid #e4e4e4;">
-			<form id="listForm" action="gongjipaihangList.jhtml">
+			<form id="listForm" action="/gongjipaihangOrderMonth.jhtml">
 				<ol>
 					[#list monthSupplyList.content as supply]
 						<li>
@@ -125,6 +125,8 @@
 						</li>
 					[/#list]
 				</ol>
+				<input type="hidden" name="month" value="${month}"/>
+				<input type="hidden" name="year" value="${year}"/>
 				[@pagination pageNumber = monthSupplyList.pageNumber totalPages = monthSupplyList.totalPages]
 					[#include "/include/pagination.ftl"]
 				[/@pagination]

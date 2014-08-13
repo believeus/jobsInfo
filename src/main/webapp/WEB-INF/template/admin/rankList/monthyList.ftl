@@ -21,7 +21,7 @@ $().ready(function() {
 	<div class="path">
 		<a href="/admin/common/main.jhtml" target="_parent">首页</a> &raquo; 内容列表 <span>共${demand?size}条记录</span>
 	</div>
-	<form id="listForm" action="list.jhtml" method="get">
+	<form id="listForm" action="/admin/monthlyDemandList/monthyDemandList.jhtml method="get">
 		<div class="bar">
 			<div class="buttonWrap">
 				<a href="javascript:;" id="refreshButton" class="iconButton">
@@ -39,7 +39,7 @@ $().ready(function() {
 					<a href="javascript:;" class="sort" name="adPosition">工种</a>
 				</th>
 			</tr>
-			[#list demand as center]
+			[#list demand.content as center]
 			<tr>
 				<td>
 					<span title="${center.id}">${center_index+1}</span>
@@ -48,7 +48,12 @@ $().ready(function() {
 					${center.workType.name}
 				</td>
 			</tr>
-			[/#list] 
+			[/#list]
+			<input type="hidden" name="month" value="${month}"/>
+		    <input type="hidden" name="year" value="${year}"/>
+			[@pagination pageNumber = demand.pageNumber totalPages = demand.totalPages]
+					[#include "/include/pagination.ftl"]
+			[/@pagination]
 		</table>
 	</form>
 </body>
