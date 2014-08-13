@@ -581,10 +581,12 @@
 						<td colspan="2" align="center" style="background:url(/resource/public/images/beijingse.png);line-height:28px;color:#FFFFFF;border-radius:4px;">用户登录</td>
 					</tr>-->
 					<tr>
-						 <td height="45" width="30" align="center" ><img src="/resource/public/images/dlr.png" /></td>
-						 <td align="center" style="color:#ef4300;font-family:'黑体';font-size:17px;">${sessionUser.loginName}</td>
-						 <td style="color:#858585;font-family:'黑体';font-size:17px;">，欢迎您登录！</td>
+						 <td align="center" ><img src="/resource/public/images/dlr.png" /></td>
+						 <td align="center" style="color:#ef4300;font-family:'黑体';font-size:17px;" colspan="2">${sessionUser.loginName}</td>
 					</tr>
+					<tr>
+			           <td align="center" style="color:#858585;font-family:'黑体';font-size:17px;" colspan="3">欢迎您登录！</td>
+			        </tr>
 					<tr>
 						 <td align="center"><img src="/resource/public/images/dlsj.png" /></td>
 						<td height="45" align="center" style="color:#858585;font-family:'宋体';font-size:12px;">上次登录</td>

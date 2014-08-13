@@ -637,11 +637,31 @@
 					[#list recruitList.content as recruit]
 					[#if recruit.entUser.status==1 && recruit.entUser.disable==0]
 					<tr>
-						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml?id=${recruit.id}#zw">${recruit.jobPost}</a></td>
-						<td><a style="color:#0101FF"  href="/enterpriseInformation.jhtml?id=${recruit.id}">${recruit.company}</a></td>
+						<td><a style="color:#0101FF;" href="/enterpriseInformation.jhtml?id=${recruit.id}#zw" title="${recruit.jobPost}">
+						[#if recruit.jobPost?length > 10]
+							${recruit.jobPost?string?substring(0,10)}...
+						[#else]
+							${recruit.jobPost}
+						[/#if]
+						</a></td>
+						<td><a style="color:#0101FF"  href="/enterpriseInformation.jhtml?id=${recruit.id}" title="${recruit.company}">
+						[#if recruit.company?length > 10]
+							${recruit.company?string?substring(0,10)}...
+						[#else]
+							${recruit.company}
+						[/#if]
+						</a></td>
 						<td style="color:#0101FF;">${recruit.salary}</td>
 						<td>${recruit.worknum}</td>
-						<td>${recruit.workspace}</td>
+						<td>
+						<span title="${recruit.workspace}">
+						[#if recruit.workspace?length > 11]
+							${recruit.workspace?string?substring(0,11)}...
+						[#else]
+							${recruit.workspace}
+						[/#if]
+						</span>
+						</td>
 						<td>${recruit.editTime?number_to_date} ${recruit.editTime?number_to_time}</td>
 					</tr>
 					[/#if]

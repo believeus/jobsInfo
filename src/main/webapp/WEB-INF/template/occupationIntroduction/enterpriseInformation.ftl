@@ -466,7 +466,7 @@
 								<tr>
 									<th>邮编:</th>
 									<td>
-										[#if "${sessionUser?exists}" && sessionUser.status==1]
+										[#if sessionUser?exists && sessionUser.status==1]
 											${entUser.zip}
 										[#else]
 											<a style="color:red;" href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
@@ -474,7 +474,7 @@
 									</td>
 									<th>手机:</th>
 									<td>
-										[#if "${sessionUser?exists}"  && sessionUser.status==1]
+										[#if sessionUser?exists  && sessionUser.status==1]
 											${entUser.phoneFax}
 										[#else]
 											<a style="color:red;" href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
@@ -484,7 +484,7 @@
 								<tr>
 									<th>电话/传真:</th>
 									<td>
-										[#if "${sessionUser?exists}"  && sessionUser.status==1]
+										[#if sessionUser?exists  && sessionUser.status==1]
 											${entUser.phoneFax}
 										[#else]
 											<a style="color:red;" href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>

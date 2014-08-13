@@ -598,9 +598,23 @@
 					[#list comInfoList.content as info]
 					<tr>
 						<td><a style="color:#0101FF;" href="/personalResume.jhtml?id=${info.comUser.id}">${info.comUser.trueName}</a></td>
-						<td><a style="color:#0101FF" >${info.jobPost}</a></td>
+						<td><a style="color:#0101FF" title="${info.jobPost}">
+						[#if info.jobPost?length > 12]
+							${info.jobPost?string?substring(0,12)}...
+						[#else]
+							${info.jobPost}
+						[/#if]
+						</a></td>
 						<td style="color:#0101FF;">${info.expectSalary}</td>
-						<td>${info.expectArea}</td>
+						<td>
+						<span title="${info.expectArea}">
+						[#if info.expectArea?length > 11]
+							${info.expectArea?string?substring(0,11)}...
+						[#else]
+							${info.expectArea}
+						[/#if]
+						</span>
+						</td>
 						<td>${info.editDate?number_to_date} ${info.editDate?number_to_time}</td>
 					</tr>
 				   [/#list]
