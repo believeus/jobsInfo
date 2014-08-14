@@ -625,6 +625,7 @@
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
+					<encoding>utf-8</encoding> 
 					<!--Begin Name:wuqiwei Date:2013-12-21 AddReason:mvn compile 会使用该路径下的所有类和依赖的jar包编译源文件 -->
 					<compilerArgument>-Djava.ext.dirs=src/main/webapp/WEB-INF/lib</compilerArgument>
 					<!--End Name:wuqiwei Date:2013-12-21 AddReason:mvn compile 会使用该路径下的所有类和依赖的jar包编译源文件 -->
