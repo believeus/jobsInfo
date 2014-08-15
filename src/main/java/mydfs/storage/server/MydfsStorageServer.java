@@ -99,7 +99,6 @@ public class MydfsStorageServer {
 			this.pathPrefix = "group/M00";
 	}
 
-	@SuppressWarnings("resource")
 	public void startServer() throws IOException {
 		serverSocket = new ServerSocket();
 		//ServerSocket 绑定的ip和端口号
@@ -214,8 +213,9 @@ public class MydfsStorageServer {
 											bos.flush();
 										}
 										storepath = storepath + "."+extension ;
-										// 将文件改名
-										file.renameTo(new File(storepath));
+										/**Begin Author:wuqiwei Date:2014-08-15  AddReason:解决windows不能重名名*/
+										FileToolkit.reName(file,new File(storepath));
+										/**End Author:wuqiwei Date:2014-08-15  AddReason:解决windows不能重名名*/
 										storepath=storepath.replaceAll(basepath, pathPrefix);
 										System.out.println("access path:"+storepath);
 										out = socket.getOutputStream();

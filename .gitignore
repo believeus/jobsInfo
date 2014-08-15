@@ -1,1 +1,4 @@
 /target/
+.mymetadata
+.settings/com.genuitec.eclipse.j2eedt.core.prefs
+.settings/org.eclipse.core.resources.prefs
