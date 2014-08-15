@@ -14,13 +14,12 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.net.URL;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javax.activation.MimetypesFileTypeMap;
 
 /**
  * @author wuqiwei
@@ -133,6 +132,7 @@ public class MydfsStorageServer {
 									if(status.equals("receive")){
 										// 读取到请求的url
 										String url = datais.readUTF();
+										System.out.println("access url:"+url);
 										Pattern regex = Pattern.compile("/[A-Z0-9]{2}/[A-Z0-9]{2}/[A-Za-z0-9-]+\\.[a-zA-Z]+");
 										Matcher matcher = regex.matcher(url);
 										if(matcher.find()){
@@ -144,6 +144,13 @@ public class MydfsStorageServer {
 											byte[] buf=new byte[1024];
 											int len=0;
 											File file=new File(storepath);
+											// 如果文件不存在，指定文件返回一张默认图片
+											if(!file.exists()){
+												URL classPath = MydfsStorageServer.class.getResource("");
+												String unfindImg=(classPath.toString()+"404.jpg").replace("file:", "");
+												System.out.println("current file:"+unfindImg);
+												file=new File(unfindImg);
+											}
 											InputStream inputStream=new FileInputStream(file);
 											BufferedInputStream bis=new BufferedInputStream(inputStream);
 											while ((len=bis.read(buf))!=-1) {
@@ -153,11 +160,31 @@ public class MydfsStorageServer {
 											System.out.println(url+" output success");
 											bos.close();
 											inputStream.close();
+										// 如果不匹配返回一张默认的图片
+										}else {
+											OutputStream outputStream = socket.getOutputStream();
+											BufferedOutputStream bos=new BufferedOutputStream(outputStream);
+											byte[] buf=new byte[1024];
+											int len=0;
+											// 获得当前类所在路径
+											URL classPath = MydfsStorageServer.class.getResource("");
+											// linux 下文件路径是以file:开头
+											String unfindImg=(classPath.toString()+"404.jpg").replace("file:", "");
+											System.out.println("current file:"+unfindImg);
+											File file=new File(unfindImg);
+											InputStream inputStream=new FileInputStream(file);
+											BufferedInputStream bis=new BufferedInputStream(inputStream);
+											while ((len=bis.read(buf))!=-1) {
+												bos.write(buf, 0, len);
+												bos.flush();
+											}
+											System.out.println(file.getName()+" output success");
+											bos.close();
+											inputStream.close();
 										}
-										return;
 									}
 									// 文件上传
-									if(status.equals("upload")){
+									else if(status.equals("upload")){
 										// 获取文件后缀名
 										String extension=datais.readUTF();
 										System.out.println("client file stuffix: "+extension);
@@ -186,15 +213,7 @@ public class MydfsStorageServer {
 											bos.write(buf, 0, len);
 											bos.flush();
 										}
-										// 获取文件的类型
-										String fileType = FileType.getTypeByFile(file);
-										new MimetypesFileTypeMap();
-										//如果查询的后缀名不在定义范围内
-										//或者解析出的后缀不合客户端一致,以客户端的为准,使用客户端传递过来的后缀名
-										if(fileType==null||!extension.equals(fileType)){
-											fileType=extension;
-										}
-										storepath = storepath + "."+fileType ;
+										storepath = storepath + "."+extension ;
 										// 将文件改名
 										file.renameTo(new File(storepath));
 										storepath=storepath.replaceAll(basepath, pathPrefix);
@@ -206,10 +225,9 @@ public class MydfsStorageServer {
 										bos.close();
 										br.close();
 										socketOut.close();
-										return;
 									}
 									// 删除StoreServer中的数据
-									if(status.equals("remove")){
+									else if(status.equals("remove")){
 										boolean success=false;
 										OutputStream out = socket.getOutputStream();
 										DataOutputStream dataos = new DataOutputStream(out);
@@ -226,7 +244,6 @@ public class MydfsStorageServer {
 										dataos.writeBoolean(success);
 										dataos.flush();
 										dataos.close();
-										return;
 									}
 									
 								} catch (IOException e) {
@@ -257,11 +274,11 @@ public class MydfsStorageServer {
 		}
 	}
 	public static void main(String[] args) {
-		MydfsStorageServer mydfsStorageServer=new MydfsStorageServer(9999, "/data/mydfs/store/", 4, "192.168.1.120");
-		try {
-			mydfsStorageServer.startServer();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		//file:/home/wuqiwei/workspace/jobsInfo/src/main/webapp/WEB-INF/classes/mydfs/storage/server/404.jpg
+		String classPath ="D:/home/wuqiwei/workspace/jobsInfo/src/main/webapp/WEB-INF/classes/mydfs/storage/server/404.jpg";
+		classPath=classPath.replace("file:", "");
+		String unfindImg=(classPath.toString()+"404.jpg");
+		System.out.println(unfindImg);
+		
 	}
 }
