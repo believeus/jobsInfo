@@ -273,12 +273,4 @@ public class MydfsStorageServer {
 			e.printStackTrace();
 		}
 	}
-	public static void main(String[] args) {
-		//file:/home/wuqiwei/workspace/jobsInfo/src/main/webapp/WEB-INF/classes/mydfs/storage/server/404.jpg
-		String classPath ="D:/home/wuqiwei/workspace/jobsInfo/src/main/webapp/WEB-INF/classes/mydfs/storage/server/404.jpg";
-		classPath=classPath.replace("file:", "");
-		String unfindImg=(classPath.toString()+"404.jpg");
-		System.out.println(unfindImg);
-		
-	}
 }
