@@ -312,6 +312,7 @@ $().ready(function() {
 					<input type="hidden" id="status" name="status" value="${tentUsers.status}">
 					<input type="hidden" name="loginName" value="${tentUsers.loginName}">
 					<input type="hidden" name="password" value="${tentUsers.password}">
+					<input type="hidden" name="lastLoginData" value="${tentUsers.lastLoginData}" />
 					<tr>
 						<td><font color="red">*</font>单位全称:</td>
 						<td style="padding-right: 80px;">

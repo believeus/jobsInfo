@@ -74,6 +74,7 @@ $().ready(function() {
 		<input type="hidden" name="freeTrain" value="${user.freeTrain}" id="freeTrain"/>
 		<input type="hidden" name="freeIntro" value="${user.freeTrain}" id="freeIntro"/>
 		<input type="hidden" name="imgHead" value="${user.imgHead}" id="imgHead"/>
+		<input type="hidden" name="lastLoginData" value="${user.lastLoginData}" />
 		<table class="input">
 				<tr>
 				    <script>
