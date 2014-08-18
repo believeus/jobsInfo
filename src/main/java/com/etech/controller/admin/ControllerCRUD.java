@@ -44,9 +44,6 @@ public class ControllerCRUD {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		
 		String storepath = "";
-		BufferedImage bi;
-		int width = 800;
-		int height = 575;
 		int count=0;
 		Map<String, MultipartFile> files = multipartRequest.getFileMap();
 		for (MultipartFile file : files.values()) {
@@ -67,11 +64,6 @@ public class ControllerCRUD {
 					storepath += "#";
 				}
 				storepath += mydfsTrackerServer.upload(inputStream, extention);
-				
-				bi = ImageIO.read(file.getInputStream());
-				width = bi.getWidth();
-				height = bi.getHeight();
-				System.out.println(width+"==="+height);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

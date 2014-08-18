@@ -13,7 +13,7 @@ public class JsonOutToBrower {
 	/* 将map类型转换成json格式输出到浏览器 */
 	public static void out(Map<String,Object> map, HttpServletResponse response) {
 		try {
-			response.setContentType("text/html;charset=UTF-8");
+			response.setContentType("text/html;charset=GBK");
 			OutputStream out = response.getOutputStream();
 			JSONObject json=JSONObject.fromObject(map);
 			PrintWriter writer = new PrintWriter(out);
