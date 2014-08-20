@@ -13,6 +13,8 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -21,9 +23,11 @@ import org.springframework.util.StringUtils;
 
 import com.etech.entity.TmajorType;
 import com.etech.service.EtechService;
+import com.etech.util.EtechGobal;
 
 @Component
 public class InitMajor implements ApplicationListener<ApplicationEvent> {
+	private static final Log log=LogFactory.getLog(InitMajor.class);
 	@Resource
 	private EtechService etechService;
 	@Override
@@ -31,7 +35,7 @@ public class InitMajor implements ApplicationListener<ApplicationEvent> {
 		if (event instanceof ContextRefreshedEvent) {
 			Properties props=new Properties();
 			try {
-				props.load(new InputStreamReader(InitMajor.class.getClassLoader().getResourceAsStream("major"), "UTF-8"));
+				props.load(new InputStreamReader(InitMajor.class.getClassLoader().getResourceAsStream("major"), EtechGobal.encoding));
 				String result = props.getProperty("isInitmajor");
 				System.out.println(result);
 				if(result.equals("true")){
@@ -40,6 +44,7 @@ public class InitMajor implements ApplicationListener<ApplicationEvent> {
 					while (iterator.hasNext()) {
 						Map.Entry<Object,Object> entry = (Map.Entry<Object,Object>) iterator.next();
 						String key = (String)entry.getKey();
+						log.debug("current key:"+key);
 						if(key.equals("isInitmajor")){
 							continue;
 						}
@@ -65,6 +70,9 @@ public class InitMajor implements ApplicationListener<ApplicationEvent> {
 			}
 		}
 	}
-
+	public static void main(String[] args) {
+		String encoding=System.getProperty("file.encoding");
+		System.err.println(encoding);
+	}
 
 }
