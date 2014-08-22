@@ -466,16 +466,28 @@
 								<tr>
 									<th>邮编:</th>
 									<td>
-										[#if sessionUser?exists && sessionUser.status==1]
-											${entUser.zip}
+										[#if sessionUser?exists ]
+											[#if (sessionUser?string?contains("TentUser") && sessionUser.status==1)||(sessionUser?string?contains("Tadmin"))]
+													${entUser.zip}
+											[#elseif sessionUser?string?contains("TcomUser")]
+													${entUser.zip}
+											[#else]
+												<a style="color:red;" href="/" title="企业审核通过后可以查看联系方式">企业审核通过后可以查看联系方式</a>
+											[/#if]
 										[#else]
 											<a style="color:red;" href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
 										[/#if]
 									</td>
 									<th>手机:</th>
 									<td>
-										[#if sessionUser?exists  && sessionUser.status==1]
-											${entUser.phoneFax}
+										[#if sessionUser?exists]
+											[#if (sessionUser?string?contains("TentUser") && sessionUser.status==1)||(sessionUser?string?contains("Tadmin"))]
+													${entUser.phoneFax}
+											[#elseif sessionUser?string?contains("TcomUser")]
+													${entUser.phoneFax}
+											[#else]
+												<a style="color:red;" href="/" title="企业审核通过后可以查看联系方式">企业审核通过后可以查看联系方式</a>
+											[/#if]
 										[#else]
 											<a style="color:red;" href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
 										[/#if]
@@ -484,8 +496,14 @@
 								<tr>
 									<th>电话/传真:</th>
 									<td>
-										[#if sessionUser?exists  && sessionUser.status==1]
-											${entUser.phoneFax}
+										[#if sessionUser?exists]
+											[#if (sessionUser?string?contains("TentUser") && sessionUser.status==1)||(sessionUser?string?contains("Tadmin"))]
+													${entUser.phoneFax}
+											[#elseif sessionUser?string?contains("TcomUser")]
+													${entUser.phoneFax}
+											[#else]
+												<a style="color:red;" href="/" title="企业审核通过后可以查看联系方式">企业审核通过后可以查看联系方式</a>
+											[/#if]
 										[#else]
 											<a style="color:red;" href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
 										[/#if]
@@ -684,16 +702,28 @@
 							</p>
 							<h4>联系方式：</h4>
 							<p style="margin: 0px; width: 570px; line-height: 22px;">
-								[#if "${sessionUser?exists}"]
-									${trecruit.entUser.phoneFax}
+								[#if sessionUser?exists]
+									[#if (sessionUser?string?contains("TentUser") && sessionUser.status==1)||(sessionUser?string?contains("Tadmin"))]
+											${trecruit.entUser.phoneFax}
+									[#elseif sessionUser?string?contains("TcomUser")]
+											${trecruit.entUser.phoneFax}
+									[#else]
+										<a style="color:red;" href="/" title="企业审核通过后可以查看联系方式">企业审核通过后可以查看联系方式</a>
+									[/#if]
 								[#else]
 									<a style="color:red;" href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
 								[/#if]
 							</p>
 							<h4>公司地点：</h4>
 							<p style="margin: 0px; width: 570px; line-height: 22px;">
-								[#if "${sessionUser?exists}"]
-									${trecruit.entUser.detailAddress}
+								[#if sessionUser?exists]
+									[#if (sessionUser?string?contains("TentUser") && sessionUser.status==1)||(sessionUser?string?contains("Tadmin"))]
+											${trecruit.entUser.detailAddress}
+									[#elseif sessionUser?string?contains("TcomUser")]
+											${trecruit.entUser.detailAddress}
+									[#else]
+										<a style="color:red;" href="/" title="企业审核通过后可以查看联系方式">企业审核通过后可以查看联系方式</a>
+									[/#if]
 								[#else]
 									<a style="color:red;" href="/" title="登录后可以查看联系方式">登录后可以查看联系方式</a>
 								[/#if]
