@@ -445,7 +445,7 @@
 								<tr>
 									<td style="background: #EEEEEE; text-align: right;">联系电话:</td>
 									<td colspan="3">
-										[#if (sessionUser?exists && sessionUser?string?contains("TentUser") && sessionUser.status==1 )||(sessionUser?string?contains("Tadmin"))]
+										[#if (sessionUser?exists && sessionUser?string?contains("TentUser") && sessionUser.status==1 )||(sessionUser?exists && sessionUser?string?contains("Tadmin"))]
 											${tcomUser.phoneNum}
 										[#else]
 											<a style="color:red;" href="/" title="企业审核通过后可以查看联系方式">企业审核通过后可以查看联系方式</a>
