@@ -127,6 +127,6 @@ public class EtechGobal {
 	// 求职者选择志愿
 	public static final int  seekerWish=4;
 	//获取当前操作系统的文件编码
-	public static final String encoding=System.getProperty("file.encoding");
+	public static final String encoding="UTF-8";
 	
 }

@@ -145,8 +145,8 @@ public class MydfsStorageServer {
 											File file=new File(storepath);
 											// 如果文件不存在，指定文件返回一张默认图片
 											if(!file.exists()){
-												URL classPath = MydfsStorageServer.class.getResource("");
-												String unfindImg=(classPath.toString()+"404.jpg").replace("file:", "");
+												URL classPath = MydfsStorageServer.class.getClassLoader().getResource("404.jpg");
+												String unfindImg=(classPath.toString()).replace("file:", "");
 												System.out.println("current file:"+unfindImg);
 												file=new File(unfindImg);
 											}

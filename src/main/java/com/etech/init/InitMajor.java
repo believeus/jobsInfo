@@ -49,6 +49,7 @@ public class InitMajor implements ApplicationListener<ApplicationEvent> {
 							continue;
 						}
 						String value=(String)entry.getValue();
+						log.debug("info name:"+value);
 						if(StringUtils.isEmpty(etechService.findObjectByProperty(TmajorType.class, "codeId", Integer.parseInt(key)))){
 							TmajorType tmajorType=new TmajorType();
 							tmajorType.setCodeId(Integer.parseInt(key));
