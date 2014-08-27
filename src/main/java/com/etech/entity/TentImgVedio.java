@@ -3,6 +3,7 @@ package com.etech.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -29,11 +30,12 @@ public class TentImgVedio extends TbaseEntity {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
+    /**Begin Author:wuqiwei Data:20l4-08-27 AddReason:change the type to longtext avoid the descption too long */
+	@Lob
 	public String getDescption() {
 		return descption;
 	}
-
+	/**End Author:wuqiwei Data:20l4-08-27 AddReason:change the type to longtext avoid the descption too long */
 	public void setDescption(String descption) {
 		this.descption = descption;
 	}
