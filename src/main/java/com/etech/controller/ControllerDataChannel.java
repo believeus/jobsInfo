@@ -59,7 +59,7 @@ public class ControllerDataChannel {
         ca.set(Calendar.DAY_OF_MONTH, ca.getActualMaximum(Calendar.DAY_OF_MONTH)); 
         long endTime=ca.getTimeInMillis();
         System.out.println("endTime:"+endTime);
-		//需求排行
+       //招聘信息 审核通过的recruit.status='1'  所属企业没有被删除的recruit.entUser.disable='0' 该企业审核通过trecruit.entUser.status=1
 		hql="from Trecruit recruit left join fetch recruit.workType "
 		   + "where recruit.editTime >="+beginTime+" and recruit.editTime <="+endTime +" and  recruit.workType!=null "
 		   + "and recruit.status=1 and recruit.entUser.status=1 and recruit.entUser.disable=0  and recruit.isview='发布' "

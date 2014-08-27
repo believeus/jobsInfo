@@ -61,8 +61,8 @@ public class ControllerJobIntroduce {
 		List<TdataCenter> enterpriseHeaderImgs = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("enterpriseHeaderImgs", enterpriseHeaderImgs);
 		
-		//招聘信息 审核通过的status='1'  所属企业没有被删除的disable='0'
-		hql = "From Trecruit trecruit where trecruit.status='1' and trecruit.isview='发布' and trecruit.entUser.disable='0' order by id desc";
+		//招聘信息 审核通过的status='1'  所属企业没有被删除的disable='0' 该企业审核通过trecruit.entUser.status=1
+		hql = "From Trecruit trecruit where trecruit.status='1' and trecruit.isview='发布' and trecruit.entUser.disable='0' and trecruit.entUser.status=1 order by id desc";
 		List<Trecruit> zhaopList = (List<Trecruit>)etechService.findListByHQL(hql,15);
 		request.setAttribute("zhaopList", zhaopList); 
 		

@@ -64,30 +64,20 @@ $().ready(function() {
 				</th>
 			</tr>
 			[#list roles.content as role]
+			 [#if role.id >3]
 				<tr>
 				<td>
-					[#if role.id ==1]
-					[#elseif role.id == 2]
-					[#elseif role.id == 3]
-					[#elseif role.id == 4]
-					[#else]
-					 <input type="checkbox" name="ids" value="${role.id}" />
-					[/#if]
+					 <input type="checkbox"  [#if role.id ==4] disabled="disabled" [/#if] name="ids" value="${role.id}" />
 				</td>
 				<td>
 					${role.roleName}
 				</td>
 				<td>${role.description}</td>
 				<td>
-					[#if role.roleName == "个人用户权限"]
-					[#elseif role.roleName == "企业用户权限"]
-					[#elseif role.roleName == "匿名用户权限"]
-					[#elseif role.roleName == "超级管理员权限"]
-					[#else]
-						<a href="edit.jhtml?id=${role.id}">[修改]</a>
-					[/#if]
+					  <a href="[#if role.id ==4]javascript:void(0);[#else] edit.jhtml?id=${role.id}[/#if]">[#if role.id ==4]该权限不允许修改[#else]修改[/#if]</a>
 				</td>
-			</tr>
+			    </tr>
+			 [/#if]
 			[/#list]
 		</table>
 		[@pagination pageNumber = roles.pageNumber totalPages = roles.totalPages]
