@@ -71,7 +71,7 @@ public class ControllerMailBox extends ControllerCRUD{
 	 * 编辑局长信箱
 	 * @return
 	 */
-	@RequiresPermissions("mailBox:modify")
+	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -85,6 +85,7 @@ public class ControllerMailBox extends ControllerCRUD{
 	 * 保存局长信箱
 	 * @return
 	 */
+	@RequiresPermissions("mailBox:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
@@ -94,6 +95,7 @@ public class ControllerMailBox extends ControllerCRUD{
 	 * 修改局长信箱
 	 * @return
 	 */
+	@RequiresPermissions("mailBox:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter mailBox,HttpServletRequest request){
 		super.updataDataInfo(mailBox, request);

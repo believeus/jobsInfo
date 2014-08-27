@@ -110,7 +110,6 @@ public class ControllerEnterpriseList {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	@RequiresPermissions("enterpriseList:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		log.debug("current controller is newsListView !");
@@ -146,6 +145,7 @@ public class ControllerEnterpriseList {
 	 * 保存企业
 	 * @return
 	 */
+	@RequiresPermissions("enterpriseList:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(){
 		
@@ -155,6 +155,7 @@ public class ControllerEnterpriseList {
 	 * 修改企业
 	 * @return
 	 */
+	@RequiresPermissions("enterpriseList:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TentUser formUser,HttpServletRequest request,Integer MapId){
 		

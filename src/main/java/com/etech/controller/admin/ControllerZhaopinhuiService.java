@@ -71,7 +71,7 @@ public class ControllerZhaopinhuiService extends ControllerCRUD{
 	 * 编辑招聘会
 	 * @return
 	 */
-	@RequiresPermissions("recruit:modify")
+	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -85,6 +85,7 @@ public class ControllerZhaopinhuiService extends ControllerCRUD{
 	 * 保存招聘会
 	 * @return
 	 */
+	@RequiresPermissions("recruit:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
@@ -94,6 +95,7 @@ public class ControllerZhaopinhuiService extends ControllerCRUD{
 	 * 修改招聘会
 	 * @return
 	 */
+	@RequiresPermissions("recruit:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);

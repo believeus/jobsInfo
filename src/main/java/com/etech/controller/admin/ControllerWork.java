@@ -74,7 +74,7 @@ public class ControllerWork extends ControllerCRUD {
 	 * 编辑工作
 	 * @return
 	 */
-	@RequiresPermissions("workDinamic:modify")
+	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -88,6 +88,7 @@ public class ControllerWork extends ControllerCRUD {
 	 * 保存工作
 	 * @return
 	 */
+	@RequiresPermissions("workDinamic:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
@@ -97,19 +98,20 @@ public class ControllerWork extends ControllerCRUD {
 	 * 修改工作
 	 * @return
 	 */
-	
+	@RequiresPermissions("workDinamic:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);
 		return "redirect:/admin/work/list.jhtml";
 	}
-	
+	@RequiresPermissions("workDinamic:modify")
 	@RequestMapping(value="/workTop")
 	public String newsTop(int id){
 		super.top(id);
 		etechService.updata(TdataCenter.class, "id", id, "editTime", System.currentTimeMillis());
 		return "redirect:/admin/work/list.jhtml";
 	}
+	@RequiresPermissions("workDinamic:modify")
 	@RequestMapping(value="/unWorkTop")
 	public String unNewsTop(int id){
 		super.unTop(id);

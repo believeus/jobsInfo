@@ -71,7 +71,7 @@ public class ControllerLinks extends ControllerCRUD{
 	 * 编辑友情链接
 	 * @return
 	 */
-	@RequiresPermissions("links:modify")
+	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -85,6 +85,7 @@ public class ControllerLinks extends ControllerCRUD{
 	 * 保存友情链接
 	 * @return
 	 */
+	@RequiresPermissions("links:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
@@ -94,6 +95,7 @@ public class ControllerLinks extends ControllerCRUD{
 	 * 修改友情链接
 	 * @return
 	 */
+	@RequiresPermissions("links:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);

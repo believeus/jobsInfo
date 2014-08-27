@@ -71,7 +71,7 @@ public class ControllerBusHandle extends ControllerCRUD{
 	 * 编辑业务办理
 	 * @return
 	 */
-	@RequiresPermissions("busHandle:modify")
+
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -85,6 +85,7 @@ public class ControllerBusHandle extends ControllerCRUD{
 	 * 保存业务办理
 	 * @return
 	 */
+	@RequiresPermissions("busHandle:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
@@ -94,6 +95,7 @@ public class ControllerBusHandle extends ControllerCRUD{
 	 * 修改业务办理
 	 * @return
 	 */
+	@RequiresPermissions("busHandle:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);

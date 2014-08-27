@@ -71,7 +71,7 @@ public class ControllerAdminCountryLaw extends ControllerCRUD{
 	 * 编辑"国家法律法规"
 	 * @return
 	 */
-	@RequiresPermissions("countryLaws:modify")
+	//@RequiresPermissions("countryLaws:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -85,6 +85,7 @@ public class ControllerAdminCountryLaw extends ControllerCRUD{
 	 * 保存"国家法律法规"
 	 * @return
 	 */
+	@RequiresPermissions("countryLaws:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
@@ -94,6 +95,7 @@ public class ControllerAdminCountryLaw extends ControllerCRUD{
 	 * 修改"国家法律法规"
 	 * @return
 	 */
+	@RequiresPermissions("countryLaws:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);

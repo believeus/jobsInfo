@@ -80,6 +80,7 @@ public class ControllerAdmin{
 	/**
 	 * 保存
 	 */
+	@RequiresPermissions("admin:create")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(Tadmin admin,int roleId) {
 		Assert.assertNotSame("用户名不能为空", "", admin.getLoginName().trim());
@@ -116,6 +117,7 @@ public class ControllerAdmin{
 	/**
 	 * 更新
 	 */
+	@RequiresPermissions("admin:modify")
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(Tadmin editAdmin,int roleId) {
 		log.debug("roleId:"+roleId);

@@ -74,7 +74,7 @@ public class ControllerVedioNews extends ControllerCRUD{
 	 * 编辑视频新闻
 	 * @return
 	 */
-	@RequiresPermissions("newsVideo:modify")
+	//@RequiresPermissions("newsVideo:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -88,6 +88,7 @@ public class ControllerVedioNews extends ControllerCRUD{
 	 * 保存视频新闻
 	 * @return
 	 */
+	@RequiresPermissions("newsVideo:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
@@ -97,6 +98,7 @@ public class ControllerVedioNews extends ControllerCRUD{
 	 * 修改视频新闻
 	 * @return
 	 */
+	@RequiresPermissions("newsVideo:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);

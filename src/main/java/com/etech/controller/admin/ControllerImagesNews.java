@@ -76,7 +76,7 @@ public class ControllerImagesNews extends ControllerCRUD{
 	 * 编辑图片新闻
 	 * @return
 	 */
-	@RequiresPermissions("newsImg:modify")
+	//@RequiresPermissions("newsImg:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -90,6 +90,7 @@ public class ControllerImagesNews extends ControllerCRUD{
 	 * 保存图片新闻
 	 * @return
 	 */
+	@RequiresPermissions("newsImg:modify")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
@@ -99,6 +100,7 @@ public class ControllerImagesNews extends ControllerCRUD{
 	 * 修改图片新闻
 	 * @return
 	 */
+	@RequiresPermissions("newsImg:modify")
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updateNewsView(TdataCenter editDataCenter,String ids,HttpServletRequest request) {
 		if (!StringUtils.isEmpty(ids)) {

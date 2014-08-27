@@ -71,7 +71,7 @@ public class ControllerAnalysisReport extends ControllerCRUD{
 	 * 编辑供求分析报告
 	 * @return
 	 */
-	@RequiresPermissions("requireAnalyseReport:modify")
+	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -85,6 +85,7 @@ public class ControllerAnalysisReport extends ControllerCRUD{
 	 * 保存供求分析报告
 	 * @return
 	 */
+	@RequiresPermissions("requireAnalyseReport:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
@@ -94,6 +95,7 @@ public class ControllerAnalysisReport extends ControllerCRUD{
 	 * 修改供求分析报告
 	 * @return
 	 */
+	@RequiresPermissions("requireAnalyseReport:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);

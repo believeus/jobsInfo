@@ -71,7 +71,7 @@ public class ControllerWagePriceGuide extends ControllerCRUD{
 	 * 编辑工资指导价位
 	 * @return
 	 */
-	@RequiresPermissions("salaryGuide:modify")
+	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -85,6 +85,7 @@ public class ControllerWagePriceGuide extends ControllerCRUD{
 	 * 保存工资指导价位
 	 * @return
 	 */
+	@RequiresPermissions("salaryGuide:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
@@ -94,6 +95,7 @@ public class ControllerWagePriceGuide extends ControllerCRUD{
 	 * 修改工资指导价位
 	 * @return
 	 */
+	@RequiresPermissions("salaryGuide:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);

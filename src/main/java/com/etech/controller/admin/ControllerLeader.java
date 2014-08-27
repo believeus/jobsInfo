@@ -70,7 +70,6 @@ public class ControllerLeader extends ControllerCRUD{
 	 * 编辑局领导
 	 * @return
 	 */
-	@RequiresPermissions("lead:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -84,6 +83,7 @@ public class ControllerLeader extends ControllerCRUD{
 	 * 保存局领导
 	 * @return
 	 */
+	@RequiresPermissions("lead:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
@@ -93,6 +93,7 @@ public class ControllerLeader extends ControllerCRUD{
 	 * 修改局领导
 	 * @return
 	 */
+	@RequiresPermissions("lead:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);

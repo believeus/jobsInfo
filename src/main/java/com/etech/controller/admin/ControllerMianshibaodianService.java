@@ -71,7 +71,7 @@ public class ControllerMianshibaodianService extends ControllerCRUD{
 	 * 编辑面试宝典
 	 * @return
 	 */
-	@RequiresPermissions("interview:modify")
+	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -85,6 +85,7 @@ public class ControllerMianshibaodianService extends ControllerCRUD{
 	 * 保存面试宝典
 	 * @return
 	 */
+	@RequiresPermissions("interview:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
@@ -94,6 +95,7 @@ public class ControllerMianshibaodianService extends ControllerCRUD{
 	 * 修改面试宝典
 	 * @return
 	 */
+	@RequiresPermissions("interview:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);

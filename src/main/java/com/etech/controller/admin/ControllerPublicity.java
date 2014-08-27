@@ -71,7 +71,7 @@ public class ControllerPublicity extends ControllerCRUD {
 	 * 编辑公告公示
 	 * @return
 	 */
-	@RequiresPermissions("infoCenterNotice:modify")
+	//@RequiresPermissions("infoCenterNotice:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -85,6 +85,7 @@ public class ControllerPublicity extends ControllerCRUD {
 	 * 保存公告公示
 	 * @return
 	 */
+	@RequiresPermissions("infoCenterNotice:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
@@ -94,6 +95,7 @@ public class ControllerPublicity extends ControllerCRUD {
 	 * 修改公告公示
 	 * @return
 	 */
+	@RequiresPermissions("infoCenterNotice:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);

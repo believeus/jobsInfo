@@ -89,7 +89,6 @@ public class ControllerEnterpriseAudit{
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	@RequiresPermissions("enterpriseAudit:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		String id=request.getParameter("id");
@@ -131,11 +130,13 @@ public class ControllerEnterpriseAudit{
 	 * 保存企业审核
 	 * @return
 	 */
+	@RequiresPermissions("enterpriseAudit:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(){
 		
 		return "redirect:/admin/enterpriseAudit/list.jhtml";
 	}
+	@RequiresPermissions("enterpriseAudit:modify")
 	@RequestMapping("/review")
 	public String review(int id,String status){
 		TentUser user=(TentUser)etechService.findObjectById(TentUser.class, id);
@@ -149,6 +150,7 @@ public class ControllerEnterpriseAudit{
 	 * 修改企业审核
 	 * @return
 	 */
+	@RequiresPermissions("enterpriseAudit:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TentUser formUser,String ids, String vIds,HttpServletRequest request,Integer MapId){
 		

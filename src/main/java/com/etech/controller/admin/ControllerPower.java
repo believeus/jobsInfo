@@ -100,7 +100,6 @@ public class ControllerPower {
 	 * @return
 	 */
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	@RequiresPermissions("role:modify")
 	public String editNewsView(int id,HttpServletRequest request) {
 		request.setAttribute("roleId", id);
 		Trole role=(Trole)etechService.findObjectById(Trole.class, id);
@@ -113,6 +112,7 @@ public class ControllerPower {
 	 * 保存角色
 	 * @return
 	 */
+	@RequiresPermissions("role:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(Trole role){
 		Assert.assertNotSame("角色名必须填写","", role.getRoleName().trim());
@@ -127,6 +127,7 @@ public class ControllerPower {
 	 * @return
 	 */
 	@RequestMapping(value = "/update")
+	@RequiresPermissions("role:modify")
 	public String updateNewsView(HttpServletRequest request){
 		String roleId = request.getParameter("roleId");	
 		log.debug("roleId:"+roleId);

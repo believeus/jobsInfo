@@ -96,11 +96,9 @@ $().ready(function() {
 					<a href="" style="text-decoration:underline;margin-right:10px;">升</a>
 					<a href="" style="text-decoration:underline;">降</a>
 				</td>-->
-				[@shiro.hasPermission name="newsImg:modify"]
 				<td>
 					<a href="edit.jhtml?id=${center.id}">[修改]</a>
 				</td>
-				[/@shiro.hasPermission]
 			</tr>
 			[/#list]
 		</table>

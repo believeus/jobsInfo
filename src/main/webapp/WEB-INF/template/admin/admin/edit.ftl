@@ -109,6 +109,8 @@ $().ready(function() {
 				</select>
 				</td>
 			</tr>
+			[#else]
+			 <input type="hidden" name="roleId" id="roleId"/>
 			[/#if]
 			<tr>
 				<th>

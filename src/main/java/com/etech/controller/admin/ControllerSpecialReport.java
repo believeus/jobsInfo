@@ -71,7 +71,7 @@ public class ControllerSpecialReport extends ControllerCRUD{
 	 * 编辑专题
 	 * @return
 	 */
-	@RequiresPermissions("subjectReport:modify")
+	//@RequiresPermissions("subjectReport:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -85,6 +85,7 @@ public class ControllerSpecialReport extends ControllerCRUD{
 	 * 保存专题
 	 * @return
 	 */
+	@RequiresPermissions("subjectReport:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfoforsp(request);
@@ -94,6 +95,7 @@ public class ControllerSpecialReport extends ControllerCRUD{
 	 * 修改专题
 	 * @return
 	 */
+	@RequiresPermissions("subjectReport:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfoforsp(editDataCenter, request);

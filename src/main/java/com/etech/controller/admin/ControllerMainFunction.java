@@ -71,7 +71,7 @@ public class ControllerMainFunction extends ControllerCRUD{
 	 * 编辑主要职能
 	 * @return
 	 */
-	@RequiresPermissions("mainDuty:modify")
+
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -85,6 +85,7 @@ public class ControllerMainFunction extends ControllerCRUD{
 	 * 保存主要职能
 	 * @return
 	 */
+	@RequiresPermissions("mainDuty:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
@@ -94,6 +95,7 @@ public class ControllerMainFunction extends ControllerCRUD{
 	 * 修改主要职能
 	 * @return
 	 */
+	@RequiresPermissions("mainDuty:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);

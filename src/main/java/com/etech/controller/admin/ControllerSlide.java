@@ -80,7 +80,7 @@ public class ControllerSlide extends ControllerCRUD{
 	 * 编辑幻灯片
 	 * @return
 	 */
-	@RequiresPermissions("slide:modify")
+
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -94,6 +94,7 @@ public class ControllerSlide extends ControllerCRUD{
 	 * 保存幻灯片
 	 * @return
 	 */
+	@RequiresPermissions("slide:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfoforsd(request);
@@ -103,6 +104,7 @@ public class ControllerSlide extends ControllerCRUD{
 	 * 修改幻灯片
 	 * @return
 	 */
+	@RequiresPermissions("slide:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfoforsd(editDataCenter, request);

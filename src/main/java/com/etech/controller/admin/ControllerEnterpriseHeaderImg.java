@@ -80,7 +80,7 @@ public class ControllerEnterpriseHeaderImg extends ControllerCRUD{
 	 * 编辑企业电子图
 	 * @return
 	 */
-	@RequiresPermissions("enterpriseHeaderImg:modify")
+	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -94,6 +94,7 @@ public class ControllerEnterpriseHeaderImg extends ControllerCRUD{
 	 * 保存企业电子图
 	 * @return
 	 */
+	@RequiresPermissions("enterpriseHeaderImg:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
@@ -103,6 +104,7 @@ public class ControllerEnterpriseHeaderImg extends ControllerCRUD{
 	 * 修改企业电子图
 	 * @return
 	 */
+	@RequiresPermissions("enterpriseHeaderImg:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);

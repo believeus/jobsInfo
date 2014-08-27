@@ -71,7 +71,7 @@ public class ControllerCityLaw extends ControllerCRUD{
 	 * 编辑地方法律法规
 	 * @return
 	 */
-	@RequiresPermissions("localLaws:modify")
+	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -85,6 +85,7 @@ public class ControllerCityLaw extends ControllerCRUD{
 	 * 保存地方法律法规
 	 * @return
 	 */
+	@RequiresPermissions("localLaws:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
@@ -94,6 +95,7 @@ public class ControllerCityLaw extends ControllerCRUD{
 	 * 修改地方法律法规
 	 * @return
 	 */
+	@RequiresPermissions("localLaws:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfo(editDataCenter, request);

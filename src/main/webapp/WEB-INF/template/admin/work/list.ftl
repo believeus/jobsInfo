@@ -94,11 +94,9 @@ $().ready(function() {
 						<a href="/admin/work/workTop.jhtml?id=${center.id}"><font color="red">点击置顶</font></a>
 					[/#if]
 				</td>
-				[@shiro.hasPermission name="workDinamic:modify"]
 				<td>
 					<a href="edit.jhtml?id=${center.id}">[修改]</a>
 				</td>
-				[/@shiro.hasPermission]
 			</tr>
 			[/#list]
 		</table>

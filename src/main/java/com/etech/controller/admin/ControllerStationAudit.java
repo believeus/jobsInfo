@@ -69,7 +69,7 @@ public class ControllerStationAudit {
 	 * @return
 	 */
 	// 待审核列表编辑页
-	@RequiresPermissions("stationAudit:modify")
+
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(Integer id,HttpServletRequest request) {
 		Trecruit recruit=(Trecruit)etechService.findObjectById(Trecruit.class, id);
@@ -110,6 +110,7 @@ public class ControllerStationAudit {
 	 * 修改岗位审核
 	 * @return
 	 */
+	@RequiresPermissions("stationAudit:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(Trecruit recruit,HttpServletRequest request){
 		String workTypeId=request.getParameter("workTypeId");
@@ -129,6 +130,7 @@ public class ControllerStationAudit {
 		etechService.merge(recruit);
 		return "redirect:/admin/stationAudit/list.jhtml";
 	}
+	@RequiresPermissions("stationAudit:modify")
 	@RequestMapping(value = "/review", method = RequestMethod.GET)
 	public String review(HttpServletRequest request){
 		String id=request.getParameter("id");

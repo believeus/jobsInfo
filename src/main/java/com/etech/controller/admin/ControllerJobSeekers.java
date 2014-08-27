@@ -101,7 +101,7 @@ public class ControllerJobSeekers {
 	 * 编辑求职者
 	 * @return
 	 */
-	@RequiresPermissions("jobSeekersList:modify")
+	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(int id,HttpServletRequest request) {
 		log.debug("current controller is newsListView !");
@@ -114,6 +114,7 @@ public class ControllerJobSeekers {
 	 * 保存求职者
 	 * @return
 	 */
+	@RequiresPermissions("jobSeekersList:create")
 	@RequestMapping(value = "/save", method = RequestMethod.GET)
 	public String saveNewsView(){
 		return "redirect:/admin/jobSeekersList/list.jhtml";
@@ -122,6 +123,7 @@ public class ControllerJobSeekers {
 	 * 修改求职者
 	 * @return
 	 */
+	@RequiresPermissions("jobSeekersList:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TcomUser formUser){
 		log.debug("/admin/jobSeekersList/list.jhtml");

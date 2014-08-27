@@ -71,7 +71,7 @@ public class ControllerZiliaoDownLoad extends ControllerCRUD{
 	 * 编辑资料下载
 	 * @return
 	 */
-	@RequiresPermissions("requireAnalyseReport:modify")
+	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -85,6 +85,7 @@ public class ControllerZiliaoDownLoad extends ControllerCRUD{
 	 * 保存资料下载
 	 * @return
 	 */
+	@RequiresPermissions("requireAnalyseReport:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfofordl(request);
@@ -94,6 +95,7 @@ public class ControllerZiliaoDownLoad extends ControllerCRUD{
 	 * 修改资料下载
 	 * @return
 	 */
+	@RequiresPermissions("requireAnalyseReport:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request){
 		super.updataDataInfofordl(editDataCenter, request);

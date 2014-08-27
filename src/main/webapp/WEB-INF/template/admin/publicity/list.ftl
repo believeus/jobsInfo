@@ -79,11 +79,9 @@ $().ready(function() {
 				<td>
 					${center.title}
 				</td>
-				[@shiro.hasPermission name="infoCenterNotice:modify"]
 				<td>
 					<a href="edit.jhtml?id=${center.id}">[修改]</a>
 				</td>
-				[/@shiro.hasPermission]
 			</tr>
 			[/#list]
 		</table>

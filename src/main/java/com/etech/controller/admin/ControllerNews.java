@@ -80,7 +80,7 @@ public class ControllerNews extends ControllerCRUD{
 	 * 
 	 * @return
 	 */
-	@RequiresPermissions("newsDinamic:modify")
+	//@RequiresPermissions("newsDinamic:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -95,6 +95,7 @@ public class ControllerNews extends ControllerCRUD{
 	 * 
 	 * @return
 	 */
+	@RequiresPermissions("newsDinamic:modify")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request) {
 		super.savaDataInfo(request);
@@ -107,6 +108,7 @@ public class ControllerNews extends ControllerCRUD{
 	 * 
 	 * @return
 	 */
+	@RequiresPermissions("newsDinamic:modify")
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updateNewsView(TdataCenter editDataCenter,HttpServletRequest request) {
 		super.updataDataInfo(editDataCenter, request);
