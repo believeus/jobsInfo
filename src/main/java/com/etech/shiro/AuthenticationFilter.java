@@ -14,6 +14,8 @@ import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.springframework.util.StringUtils;
 import com.etech.entity.Tadmin;
 import com.etech.entity.TbaseUser;
+import com.etech.entity.TcomUser;
+import com.etech.entity.TentUser;
 import com.etech.service.EtechService;
 import com.etech.util.Location;
 
@@ -34,8 +36,18 @@ public class AuthenticationFilter extends FormAuthenticationFilter {
 			String username=request.getParameter("loginName");
 			String password=request.getParameter("password");
 			TbaseUser sessionUser = (TbaseUser)etechService.findObjectByProperty(TbaseUser.class, "loginName", username);
+		
 			String refered=request.getHeader("Referer");
 			log.debug("refer:"+refered);
+			/**Begin Author:wuqiwei Data:2014-07-03 AddReason:一般用户和企业用户不许登陆后台*/
+			if (!StringUtils.isEmpty(refered)&&refered.contains("/admin/login.jhtml")) {
+				if(sessionUser instanceof TcomUser||sessionUser instanceof TentUser){
+					String uri="/admin/login.jhtml";
+					Location.uri(response,uri);
+					return false;
+				}
+			}
+			/**End Author:wuqiwei Data:2014-07-03 AddReason:一般用户和企业用户不许登陆后台*/
 			// 用户名不存在
 			if(StringUtils.isEmpty(sessionUser)){
 				// 通过后台登录

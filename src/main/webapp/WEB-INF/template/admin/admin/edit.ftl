@@ -102,7 +102,9 @@ $().ready(function() {
 				<td>
 				<select name="roleId" id="roleId">
 					[#list roles as role]
+						[#if role.id > 3]
 						<option value="${role.id}">${role.roleName}</option>
+						[/#if]
 					[/#list]
 				</select>
 				</td>
