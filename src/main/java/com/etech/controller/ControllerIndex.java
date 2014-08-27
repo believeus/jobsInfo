@@ -47,57 +47,54 @@ public class ControllerIndex {
 		//工作动态
 		String hql="From TdataCenter dataCenter where dataCenter.type='1' order by id desc";
 		List<TdataCenter> works = (List<TdataCenter>)etechService.findListByHQL(hql,4);
-		session.setAttribute("works",works ); 
+		request.setAttribute("works",works ); 
 		
 		//新闻动态
 		hql="From TdataCenter dataCenter where dataCenter.type='0' order by editTime desc";
 		List<TdataCenter> news = (List<TdataCenter>)etechService.findListByHQL(hql);
-		session.setAttribute("news",news ); 
+		request.setAttribute("news",news ); 
 		
 		// 公告公示
 		hql="From TdataCenter dataCenter where dataCenter.type='2' order by id desc";
 		List<TdataCenter> notices = (List<TdataCenter>)etechService.findListByHQL(hql);
-		session.setAttribute("notices",notices ); 
+		request.setAttribute("notices",notices ); 
 		
 		//国家法律法规
 		hql="From TdataCenter dataCenter where dataCenter.type='10' or dataCenter.type='11' or dataCenter.type='12' or dataCenter.type='13' order by editTime desc";
 		List<TdataCenter> countryLawDataList = (List<TdataCenter>)etechService.findListByHQL(hql,4);
-		session.setAttribute("countryLawDataList",countryLawDataList ); 
+		request.setAttribute("countryLawDataList",countryLawDataList ); 
 		
 		// 专题报道
 		hql="From TdataCenter dataCenter where dataCenter.type='5' order by id desc";
 		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
-		session.setAttribute("subjectReport", subjectReport); 
+		request.setAttribute("subjectReport", subjectReport); 
 		
 		// 幻灯片
 		hql="From TdataCenter dataCenter where dataCenter.type='19'";
 		List<TdataCenter> slide = (List<TdataCenter>)etechService.findListByHQL(hql);
-		session.setAttribute("slide", slide); 
+		request.setAttribute("slide", slide); 
 		
 		// 友情链接
 		hql="From TdataCenter dataCenter where dataCenter.type='24' order by id desc";
 		List<TdataCenter> links = (List<TdataCenter>)etechService.findListByHQL(hql);
-		session.setAttribute("links", links); 
+		request.setAttribute("links", links); 
 		
-		//招聘信息
-		hql = "From Trecruit trecruit where trecruit.status='1' and  trecruit.isview='发布' and trecruit.entUser.disable='0' order by trecruit.editTime desc";
-		List<Trecruit> zhaopList = (List<Trecruit>)etechService.findListByHQL(hql,4);
-		session.setAttribute("zhaopList", zhaopList); 
+	
 		
 		//求职信息
 		hql	= "From TcomInfo tcomInfo where tcomInfo.comUser.disable='0' and tcomInfo.infoType='4' order by tcomInfo.editDate desc";
 		List<TcomInfo> qiuzhiList = (List<TcomInfo>)etechService.findListByHQL(hql,4);
-		session.setAttribute("qiuzhiList", qiuzhiList); 
+		request.setAttribute("qiuzhiList", qiuzhiList); 
 		
 		//图片新闻
 		hql = "From TdataCenter tdataCenter where tdataCenter.type='3' order by id desc";
 		List<TdataCenter> imgs = (List<TdataCenter>)etechService.findListByHQL(hql);
-		session.setAttribute("imgs", imgs); 
+		request.setAttribute("imgs", imgs); 
 		
 		//业务办理
 		hql = "From TdataCenter tdataCenter where tdataCenter.type='21' order by id desc";
 		List<TdataCenter> busHandles = (List<TdataCenter>)etechService.findListByHQL(hql);
-		session.setAttribute("busHandles", busHandles); 
+		request.setAttribute("busHandles", busHandles); 
 		
 		//置顶内容 ：新闻动态、工作动态、图片新闻、视频新闻
 		hql="From TdataCenter dataCenter where dataCenter.top='1' order by editTime desc";

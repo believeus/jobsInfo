@@ -63,12 +63,12 @@ public class ControllerJobIntroduce {
 		
 		//招聘信息 审核通过的status='1'  所属企业没有被删除的disable='0'
 		hql = "From Trecruit trecruit where trecruit.status='1' and trecruit.isview='发布' and trecruit.entUser.disable='0' order by id desc";
-		List<Trecruit> zhaopList = (List<Trecruit>)etechService.findListByHQL(hql);
+		List<Trecruit> zhaopList = (List<Trecruit>)etechService.findListByHQL(hql,15);
 		request.setAttribute("zhaopList", zhaopList); 
 		
 		//求职信息   所属企业没有被删除的disable='0'
 		hql	= "From TcomInfo tcomInfo where tcomInfo.comUser.disable='0' and tcomInfo.infoType='4' order by tcomInfo.editDate desc";
-		List<TcomInfo> qiuzhiList = (List<TcomInfo>)etechService.findListByHQL(hql);
+		List<TcomInfo> qiuzhiList = (List<TcomInfo>)etechService.findListByHQL(hql,15);
 		request.setAttribute("qiuzhiList", qiuzhiList); 
 		
 		//企业图片
