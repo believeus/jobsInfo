@@ -44,7 +44,7 @@
 						deleteImg(value);					
 				}
 				$(object).closest("div").parent().parent().remove();
-				a--;
+				//a--; 不需要减少，图片会出现错误。
 			}
 		}
 		

@@ -544,7 +544,7 @@
 				if(id!=0){
 					deleteImg(id);					
 				}
-				c--;
+				//c--;  不需要减少，图片会出现错误。
 				$(object).closest("div").parent().parent().remove();
 			}
 		}

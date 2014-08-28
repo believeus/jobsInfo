@@ -1487,7 +1487,7 @@
 								</tr>
 								<tr>
 									<td>身份证号:</td>
-									<td><input type="text" id="idcard" name="idcard" value="${sessionUser.idcard}" onchange="alert('zzzzzzz');"  onkeyup="value=this.value.replace(/\D+/g,'')" minlength="15" minlength="18"></td>
+									<td><input type="text" id="idcard" name="idcard" value="${sessionUser.idcard}"  onkeyup="value=this.value.replace(/\D+/g,'')" minlength="15" minlength="18"></td>
 								</tr>
 								<tr>
 									<td>文化程度:</td>

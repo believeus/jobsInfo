@@ -130,7 +130,9 @@ public class ControllerRegister {
 			}
 			
 			//验证身份证号是否存在过
-			TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TcomUser.class, EtechGobal.idcard, regUser.getIdcard());
+			//TbaseUser user = (TbaseUser) etechService.findObjectByProperty(TcomUser.class, EtechGobal.idcard, regUser.getIdcard());
+			String hql = "from TbaseUser as entity where entity.idcard="+regUser.getIdcard()+"  and entity.disable='0'";
+			TbaseUser user = (TbaseUser)etechService.findObjectByHql(hql);
 			log.debug("idcard:"+regUser.getIdcard());
 			log.debug("current user:"+user);
 			if (!StringUtils.isEmpty(sessionUser)) {
