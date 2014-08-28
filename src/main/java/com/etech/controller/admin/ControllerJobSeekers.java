@@ -5,9 +5,11 @@ import java.net.URLDecoder;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -17,6 +19,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.HtmlUtils;
+
 import com.etech.entity.TcomUser;
 import com.etech.service.EtechService;
 import com.etech.util.JsonOutToBrower;
@@ -125,7 +129,7 @@ public class ControllerJobSeekers {
 	 */
 	@RequiresPermissions("jobSeekersList:modify")
 	@RequestMapping(value = "/update")
-	public String updateNewsView(TcomUser formUser){
+	public String update(TcomUser formUser){
 		log.debug("/admin/jobSeekersList/list.jhtml");
 		log.debug(formUser.getWorkspace());
 		TcomUser comUser=(TcomUser)etechService.findObjectById(TcomUser.class, formUser.getId());
@@ -134,6 +138,23 @@ public class ControllerJobSeekers {
 		}else {
 			formUser.setPassword(DigestUtils.md5Hex(formUser.getPassword()));
 		}
+		if(!StringUtils.isEmpty(formUser.getAddress())){
+			String address=HtmlUtils.htmlEscape(formUser.getAddress());
+			formUser.setAddress(address);
+		}
+		if(!StringUtils.isEmpty(formUser.getWorkspace())){
+			String workspace=HtmlUtils.htmlEscape(formUser.getWorkspace());
+			formUser.setWorkspace(workspace);
+		}
+		if(!StringUtils.isEmpty(formUser.getStrongPoint())){
+			String strongPoint=HtmlUtils.htmlEscape(formUser.getStrongPoint());
+			formUser.setStrongPoint(strongPoint);
+		}
+		if(!StringUtils.isEmpty(formUser.getNation())){
+			String nation=HtmlUtils.htmlEscape(formUser.getNation());
+			formUser.setNation(nation);
+		}
+		
 		formUser.setRoles(comUser.getRoles());
 		formUser.setComInfo(comUser.getComInfo());
 		formUser.setEditDate(System.currentTimeMillis());

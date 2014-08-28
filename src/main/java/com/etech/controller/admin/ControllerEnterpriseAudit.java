@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.util.HtmlUtils;
 
 import com.etech.entity.TentImgVedio;
 import com.etech.entity.TentUser;
@@ -152,7 +153,7 @@ public class ControllerEnterpriseAudit{
 	 */
 	@RequiresPermissions("enterpriseAudit:modify")
 	@RequestMapping(value = "/update")
-	public String updateNewsView(TentUser formUser,String ids, String vIds,HttpServletRequest request,Integer MapId){
+	public String update(TentUser formUser,String ids, String vIds,HttpServletRequest request,Integer MapId){
 		
 		TentUser entUser=(TentUser) etechService.findObjectById(TentUser.class,formUser.getId());
 		TentImgVedio map=null;
@@ -201,7 +202,21 @@ public class ControllerEnterpriseAudit{
 				etechService.deleteObjectById(TentImgVedio.class, Integer.valueOf(id));
 			}
 		}
-				
+		String shorName=request.getParameter("shorName");
+		shorName=HtmlUtils.htmlEscape(shorName);
+		String contacts=HtmlUtils.htmlEscape(request.getParameter("contacts"));
+		String legalMan=HtmlUtils.htmlEscape(request.getParameter("legalMan"));
+		String detailAddress=HtmlUtils.htmlEscape(request.getParameter("detailAddress"));
+		String address=HtmlUtils.htmlEscape(request.getParameter("address"));
+		String introduce=HtmlUtils.htmlEscape(request.getParameter("introduce"));
+		String trade=HtmlUtils.htmlEscape(request.getParameter("trade"));
+		formUser.setShorName(shorName);
+		formUser.setContacts(contacts);
+		formUser.setLegalMan(legalMan);
+		formUser.setDetailAddress(detailAddress);
+		formUser.setAddress(address);
+		formUser.setIntroduce(introduce);
+		formUser.setTrade(trade);
 		formUser.setEditDate(System.currentTimeMillis());
 		formUser.setRoles(entUser.getRoles());
 		formUser.setRecruit(entUser.getRecruit());

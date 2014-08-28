@@ -25,6 +25,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.util.HtmlUtils;
 
 import com.etech.entity.TdataCenter;
 import com.etech.service.EtechService;
@@ -75,7 +76,9 @@ public class ControllerCRUD {
 		}
 		
 		String title=request.getParameter("title");
+		title=HtmlUtils.htmlEscape(title);
 		String author=request.getParameter("author");
+		author=HtmlUtils.htmlEscape(author);
 		String powerLevel = request.getParameter("powerLevel");
 		String powerProperty = request.getParameter("powerProperty");
 		/**Begin Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
@@ -174,6 +177,12 @@ public class ControllerCRUD {
 		if(StringUtils.isEmpty(storepath)) {
 			formDataCenter.setImgpath(dataCenter.getImgpath());
 		}
+		String title=request.getParameter("title");
+		title=HtmlUtils.htmlEscape(title);
+		String author=request.getParameter("author");
+		author=HtmlUtils.htmlEscape(author);
+		formDataCenter.setTitle(title);
+		formDataCenter.setAuthor(author);
 		formDataCenter.setEditTime(System.currentTimeMillis());
 		formDataCenter.setCreateTime(dataCenter.getCreateTime());
 		BeanUtils.copyProperties(formDataCenter, dataCenter);
@@ -265,7 +274,9 @@ public class ControllerCRUD {
 		}
 		
 		String title=request.getParameter("title");
+		title=HtmlUtils.htmlEscape(title);
 		String author=request.getParameter("author");
+		author=HtmlUtils.htmlEscape(author);
 		/**Begin Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
 		String content=request.getParameter("content");
 		/**End Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
@@ -335,6 +346,12 @@ public class ControllerCRUD {
 		}else {			
 			formDataCenter.setImgpath(storepath);
 		}
+		String title=request.getParameter("title");
+		title=HtmlUtils.htmlEscape(title);
+		String author=request.getParameter("author");
+		author=HtmlUtils.htmlEscape(author);
+		formDataCenter.setTitle(title);
+		formDataCenter.setAuthor(author);
 		formDataCenter.setEditTime(System.currentTimeMillis());
 		formDataCenter.setCreateTime(dataCenter.getCreateTime());
 		BeanUtils.copyProperties(formDataCenter, dataCenter);
@@ -368,8 +385,10 @@ public class ControllerCRUD {
 		}
 		int type=Integer.parseInt(request.getParameter("type"));
 		String title1=request.getParameter("title1");
+		title1=HtmlUtils.htmlEscape(title1);
 		String alink1=request.getParameter("alink1");
 		String title2=request.getParameter("title2");
+		title2=HtmlUtils.htmlEscape(title2);
 		String alink2=request.getParameter("alink2");
 		TdataCenter center=new TdataCenter();
 		center.setType(type);
@@ -415,8 +434,10 @@ public class ControllerCRUD {
 		}
 		TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, formDataCenter.getId());
 		String title1=request.getParameter("title1");
+		title1=HtmlUtils.htmlEscape(title1);
 		String alink1=request.getParameter("alink1");
 		String title2=request.getParameter("title2");
+		title2=HtmlUtils.htmlEscape(title2);
 		String alink2=request.getParameter("alink2");
 		dataCenter.setTitle(title1+"#"+title2);
 		dataCenter.setAlink(alink1+"#"+alink2);
@@ -456,7 +477,9 @@ public class ControllerCRUD {
 		}
 		
 		String title=request.getParameter("title");
+		title=HtmlUtils.htmlEscape(title);
 		String author=request.getParameter("author");
+		author=HtmlUtils.htmlEscape(author);
 		/**Begin Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
 		String content=request.getParameter("content");
 		/**End Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
@@ -506,6 +529,12 @@ public class ControllerCRUD {
 		if(StringUtils.isEmpty(storepath)) {
 			formDataCenter.setImgpath(dataCenter.getImgpath());
 		}
+		String title=request.getParameter("title");
+		title=HtmlUtils.htmlEscape(title);
+		String author=request.getParameter("author");
+		author=HtmlUtils.htmlEscape(author);
+		formDataCenter.setTitle(title);
+		formDataCenter.setAuthor(author);
 		formDataCenter.setEditTime(System.currentTimeMillis());
 		formDataCenter.setCreateTime(dataCenter.getCreateTime());
 		BeanUtils.copyProperties(formDataCenter, dataCenter);
