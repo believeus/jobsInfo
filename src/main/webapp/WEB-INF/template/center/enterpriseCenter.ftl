@@ -520,7 +520,13 @@
 		function delete_pic(object,id){		
 			if ($(".qiyepic").size() <= 1) {
 				changpic=true;
-				alert("必须至少保留一张空图片");		
+				alert("必须至少保留一张空图片");
+				
+				// 清空图片,防止a图片删除之后又上传a图片。file会认为是同一个文件。
+				var file = $(object).closest("div").parent().find("[name^='upload_img']");
+				file.after(file.clone().val(""));
+				file.remove(); 	
+				
 				// 获取图片是否有值
 				if($(object).closest("div").parent().find("img").attr("src")!="/resource/public/images/bg.png"){
 					// 清空图片和描述
