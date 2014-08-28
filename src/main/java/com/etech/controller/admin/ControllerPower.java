@@ -58,7 +58,7 @@ public class ControllerPower {
 		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		String searchValue = request.getParameter("searchValue");
 		if (!StringUtils.isEmpty(searchValue)) {
-			searchValue=URLDecoder.decode(searchValue, "utf-8");
+			searchValue=searchValue.trim();
 			log.debug("根据管理员名称查询："+searchValue);
 			hql="FROM Trole role where role.disable=0 and role.roleName like '%"+searchValue+"%' order by role.editDate desc";
 			request.setAttribute("searchValue", searchValue);

@@ -28,11 +28,7 @@ $().ready(function() {
 				</a>
 			</div>
 			<div class="menuWrap">
-				<div class="search">
-					<span id="searchPropertySelect" class="arrow">&nbsp;</span>
-					<input type="text" id="searchValue" name="searchValue" value="${searchValue}" maxlength="200" />
-					<button type="submit">&nbsp;</button>
-				</div>
+				
 				<div class="popupMenu">
 					<ul id="searchPropertyOption">
 						<li>

@@ -133,6 +133,7 @@ public class ControllerSearch {
 	@RequestMapping(value="/advanceSearchByContision")
 	public String advanceSearch(String data,String keyword,String majorTypeId,String workTypeId,
 			String area,String type,HttpServletRequest request,HttpSession session){
+		keyword=keyword.trim();
 		if("GET".equals(request.getMethod())){
 			if(!StringUtils.isEmpty(keyword)){
 				try {
@@ -365,7 +366,7 @@ public class ControllerSearch {
 				log.debug("endDate:"+endDate);
 			}
 			TdataCenter formDataCenter=new TdataCenter();
-			String title=request.getParameter("title");
+			String title=request.getParameter("title").trim();
 			String powerLevel=request.getParameter("powerLevel");
 			String powerProperty=request.getParameter("powerProperty");
 			formDataCenter.setTitle(title);
@@ -385,6 +386,7 @@ public class ControllerSearch {
 			@SuppressWarnings("unchecked")
 			List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
 			request.setAttribute("subjectReport", subjectReport);
+			request.setAttribute("keyword", title);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

@@ -176,7 +176,7 @@
 							关键字：
 						</td>
 						<td>
-							<input type="text" name="title" style="width:150px;">
+							<input type="text" value="${keyword}" name="title" style="width:150px;">
 						</td>
 						<td>
 							发布日期：

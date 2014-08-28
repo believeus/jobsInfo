@@ -52,7 +52,7 @@ public class ControllerStationList {
 		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		String searchValue = request.getParameter("searchValue");
 		if (!StringUtils.isEmpty(searchValue)) {
-			searchValue=URLDecoder.decode(searchValue, "utf-8");
+			searchValue=searchValue.trim();
 			log.debug("根据工种名称查询："+searchValue);
 			hql="From Trecruit trecruit  where trecruit.status=1 and trecruit.entUser.disable='0' and trecruit.workType.name like '%"+searchValue+"%'  order by trecruit.editTime desc";
 			request.setAttribute("searchValue", searchValue);

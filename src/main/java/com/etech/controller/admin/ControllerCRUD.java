@@ -211,9 +211,13 @@ public class ControllerCRUD {
 		String hql="";
 		String searchValue = request.getParameter("searchValue");
 		if (!StringUtils.isEmpty(searchValue)) {
-			searchValue=URLDecoder.decode(searchValue, "utf-8");
+			searchValue=searchValue.trim();
 			log.debug("根据title查询："+searchValue);
-			hql="From TdataCenter center where center.type='"+type+"' and title like '%"+searchValue+"%' order by editTime desc";
+			hql="From TdataCenter center where center.type='"+type+"' ";
+			if(!StringUtils.isEmpty(searchValue)){
+				hql+="and title like '%"+searchValue+"%'";
+			}
+			hql+=" order by editTime desc";
 			request.setAttribute("searchValue", searchValue);
 		}else {
 			hql="From TdataCenter center where center.type='"+type+"' order by center.top desc,center.editTime desc";			

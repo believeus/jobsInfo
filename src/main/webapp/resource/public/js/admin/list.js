@@ -185,12 +185,6 @@ $().ready( function() {
 	
 	// 表单提交
 	$listForm.submit(function() {
-		var searchValue=$("#searchValue").val();
-		if(searchValue!=""){
-			// 会乱码，所有要编码
-			searchValue=encodeURI(searchValue);
-			$("#searchValue").val(searchValue);
-		}
 		if (!/^\d*[1-9]\d*$/.test($pageNumber.val())) {
 			$pageNumber.val("1");
 		}

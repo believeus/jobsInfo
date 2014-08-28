@@ -65,7 +65,7 @@ public class ControllerEnterpriseList {
 		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		String searchValue = request.getParameter("searchValue");
 		if (!StringUtils.isEmpty(searchValue)) {
-			searchValue=URLDecoder.decode(searchValue, "utf-8");
+			searchValue=searchValue.trim();
 			log.debug("根据公司名称查询："+searchValue);
 			hql="FROM TentUser user where user.status=1 and user.disable=0 and user.fullName like '%"+searchValue+"%' order by user.editDate desc";
 			request.setAttribute("searchValue", searchValue);
