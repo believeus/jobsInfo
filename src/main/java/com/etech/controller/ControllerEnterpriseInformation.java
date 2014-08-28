@@ -31,7 +31,7 @@ public class ControllerEnterpriseInformation {
 	private EnterpriseUserService enterpriseUserService;
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/enterpriseInformation", method = RequestMethod.GET)
-	public String policyAdviceView(HttpSession session,Integer id,String vid,HttpServletRequest request) {
+	public String policyAdviceView(Integer id,String vid,HttpServletRequest request) {
 		//id 招聘信息id
 		//eid = trecruit.getEntUser().getId() 企业id
 		Trecruit trecruit = (Trecruit)etechService.findObjectById(Trecruit.class, id);
@@ -39,11 +39,11 @@ public class ControllerEnterpriseInformation {
 		if (trecruit != null) {
 			tentUser = (TentUser)etechService.findObjectById(TentUser.class, trecruit.getEntUser().getId());
 		}
-		session.setAttribute("trecruit", trecruit);
-		session.setAttribute("entUser", tentUser);
+		request.setAttribute("trecruit", trecruit);
+		request.setAttribute("entUser", tentUser);
 		if (vid != null) {//点击视频
 			TentImgVedio tentImgVedio = (TentImgVedio)etechService.findObjectById(TentImgVedio.class, Integer.parseInt(vid));
-			session.setAttribute("tentImgVedio", tentImgVedio);
+			request.setAttribute("tentImgVedio", tentImgVedio);
 		}
 		String hql = "";
 		//招聘信息

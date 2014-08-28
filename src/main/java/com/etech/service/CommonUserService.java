@@ -31,8 +31,8 @@ public class CommonUserService {
 		// 查询志愿信息获取招聘信息
 		if(!workTypeIds.isEmpty()){
 			String ids=workTypeIds.toString().replace("[", "(").replaceAll("]", ")");
-			// 查找通过审核的并且匹配求职者填写志愿的招聘岗位
-			String hql="From Trecruit recruit left join fetch recruit.entUser  where recruit.workType.id in "+ids+" and recruit.status=1";
+			// 查找通过审核的并且匹配求职者填写志愿的招聘岗位,该企业已经被审核通过
+			String hql="From Trecruit recruit left join fetch recruit.entUser where recruit.workType.id in "+ids+" and recruit.status=1 and recruit.entUser.status=1 and recruit.entUser.disable=0";
 			log.debug(hql);
 			List<Trecruit> recruits = (List<Trecruit>)etechService.findListByHQL(hql, 15);
 			// 随机获取三个招聘职位

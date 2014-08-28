@@ -23,7 +23,7 @@ public class ControllerInfoCenter {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/infoCenter", method = RequestMethod.GET)
 	public String infoCenter(HttpServletRequest request) {
-		String hql="From TdataCenter dataCenter where dataCenter.type='0' order by id desc";
+		String hql="From TdataCenter dataCenter where dataCenter.type='0' order by editTime desc";
 		List<TdataCenter> news = (List<TdataCenter>)etechService.findListByHQL(hql);
 		
 		//置顶内容 ：新闻动态、工作动态、图片新闻、视频新闻
@@ -45,19 +45,19 @@ public class ControllerInfoCenter {
 		/**End Author:wuqiwei Data:2014:07-13 AddReason:去除html标签*/
 		request.setAttribute("newsTop", dataCenterList);
 		
-		hql="From TdataCenter dataCenter where dataCenter.type='1' order by id desc";
+		hql="From TdataCenter dataCenter where dataCenter.type='1' order by editTime desc";
 		List<TdataCenter> works = (List<TdataCenter>)etechService.findListByHQL(hql);
 		
-		hql="From TdataCenter dataCenter where dataCenter.type='2' order by id desc";
+		hql="From TdataCenter dataCenter where dataCenter.type='2' order by editTime desc";
 		List<TdataCenter> notices = (List<TdataCenter>)etechService.findListByHQL(hql);
 		
-		hql="From TdataCenter dataCenter where dataCenter.type='3' order by id desc";
+		hql="From TdataCenter dataCenter where dataCenter.type='3' order by editTime desc";
 		List<TdataCenter> imgs = (List<TdataCenter>)etechService.findListByHQL(hql);
 		
-		hql="From TdataCenter dataCenter where dataCenter.type='4' order by id desc";
+		hql="From TdataCenter dataCenter where dataCenter.type='4' order by editTime desc";
 		List<TdataCenter> vedios = (List<TdataCenter>)etechService.findListByHQL(hql);
 		
-		hql="From TdataCenter dataCenter where dataCenter.type='5' order by id desc";
+		hql="From TdataCenter dataCenter where dataCenter.type='5' order by editTime desc";
 		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
 		
 		request.setAttribute("news", news);// 新闻动态
