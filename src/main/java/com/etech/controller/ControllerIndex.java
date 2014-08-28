@@ -87,12 +87,12 @@ public class ControllerIndex {
 		request.setAttribute("qiuzhiList", qiuzhiList); 
 		
 		//图片新闻
-		hql = "From TdataCenter tdataCenter where tdataCenter.type='3' order by id desc";
+		hql="From TdataCenter dataCenter where dataCenter.type='3' order by dataCenter.editTime desc";
 		List<TdataCenter> imgs = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("imgs", imgs); 
 		
 		//业务办理
-		hql = "From TdataCenter tdataCenter where tdataCenter.type='21' order by id desc";
+		hql = "From TdataCenter tdataCenter where tdataCenter.type='21' order by tdataCenter.editTime desc";
 		List<TdataCenter> busHandles = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("busHandles", busHandles); 
 		
