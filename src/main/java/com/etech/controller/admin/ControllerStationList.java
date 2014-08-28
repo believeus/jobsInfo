@@ -90,7 +90,6 @@ public class ControllerStationList {
 	 * @return
 	 */
 	// 编辑审核通过的招聘岗位列表
-	@RequiresPermissions("stationList:modify")
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(int id,HttpServletRequest request) {
 		Trecruit recruit=(Trecruit)etechService.findObjectById(Trecruit.class, id);
@@ -112,6 +111,7 @@ public class ControllerStationList {
 	 * 修改岗位
 	 * @return
 	 */
+	@RequiresPermissions("stationList:modify")
 	@RequestMapping(value = "/update")
 	public String updateNewsView(Trecruit recruit,Integer workTypeId,Integer majorTypeId,Integer userId){
 		TentUser entUser=(TentUser)etechService.findObjectById(TentUser.class, userId);

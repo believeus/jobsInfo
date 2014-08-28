@@ -95,7 +95,7 @@ public class ControllerNews extends ControllerCRUD{
 	 * 
 	 * @return
 	 */
-	@RequiresPermissions("newsDinamic:modify")
+	@RequiresPermissions("newsDinamic:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request) {
 		super.savaDataInfo(request);

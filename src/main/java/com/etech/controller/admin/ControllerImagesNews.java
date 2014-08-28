@@ -90,7 +90,7 @@ public class ControllerImagesNews extends ControllerCRUD{
 	 * 保存图片新闻
 	 * @return
 	 */
-	@RequiresPermissions("newsImg:modify")
+	@RequiresPermissions("newsImg:create")
 	@RequestMapping(value = "/save")
 	public String saveNewsView(HttpServletRequest request){
 		super.savaDataInfo(request);
