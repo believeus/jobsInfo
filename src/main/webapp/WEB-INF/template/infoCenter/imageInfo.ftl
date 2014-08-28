@@ -60,12 +60,8 @@ $(document).ready(function(){
 	  <div class="panel">
 	     	<img src="${path}" onload="loadImg(this,'800','572')"/> 
 	    <div class="panel-overlay">
-	      	<div style="text-align:left;padding:0 15px;" title="${data.content}">
-				[#if data.content?length > 170 ]
-					${data.content?string?substring(0,170)}...
-				[#else]
+	      	<div style="text-align:left;padding:0 15px;">
 					${data.content}
-				[/#if]
 	  		</div>
 	    </div>
 	  </div>

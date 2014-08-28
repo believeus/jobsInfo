@@ -387,7 +387,7 @@ $().ready(function() {
 					内容:
 				</th>
 				<td colspan="3">
-					<textarea id="editor" name="content" class="" style="width:80%;height:90px;"></textarea>
+					<textarea id="editor" maxlength="300" name="content" class="" style="width:80%;height:90px;"></textarea>
 				</td>
 			</tr>
 			<tr>

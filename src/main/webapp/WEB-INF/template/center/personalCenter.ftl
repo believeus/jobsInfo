@@ -62,7 +62,8 @@
 				$(sender).remove(); 	    
 		        return false;     
 		    }     
-		         
+		    
+		    checkChange=1;  
 		    var objPreview = document.getElementById( 'preview' );     
 		    var objPreviewFake = document.getElementById( 'preview_fake' );     
 		    var objPreviewSizeFake = document.getElementById( 'preview_size_fake' );    
@@ -1553,7 +1554,7 @@
 								        </div>    
 								    </div>    
 								    <br/>    
-								    <input id="upload_img" type="file" name="upload_img" onchange="filename0.value=this.value;checkChange=1;onUploadImgChange(this)"/>  
+								    <input id="upload_img" type="file" name="upload_img" onchange="filename0.value=this.value;onUploadImgChange(this)"/>  
 								     <div style="color: #000000; font-size: 12px; position: relative; padding-top: 25px; width: 122px;text-align:center;">建议图片大小：</div>
              						 <div style="color: #000000; font-size: 12px; position: relative; padding: 0px; width: 122px;text-align:center;">宽122px*高150px</div>  
 								    <input type="hidden" id="filename0" name="filename0">

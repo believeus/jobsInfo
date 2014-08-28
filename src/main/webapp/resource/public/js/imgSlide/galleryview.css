@@ -65,7 +65,7 @@ p {
 
 /* GALLERY PANELS */
 .panel {
-	height:600px !important;
+	height:615px !important;
 	width:1000px !important;
 	background:#000000 !important;
 	text-align:center;
@@ -92,7 +92,7 @@ p {
 .panel .panel-overlay {
 	color: white;
 	font-size: 0.7em;
-	top:530px !important;
+	top:505px !important;
     width: 982px !important;
 }
 
