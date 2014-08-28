@@ -105,7 +105,9 @@ $().ready(function() {
 	<script type="text/javascript">    
 		function onUploadImgChangex(sender,offsetWidth,offsetHeight,preview,preview_fake,preview_size_fake){     
 		    if( !sender.value.match( /.jpg|.gif|.png|.bmp/i ) ){     
-		        alert('图片格式无效！');     
+		        alert('图片格式无效！'); 
+		         $(sender).after($(sender).clone().val(""));
+				$(sender).remove(); 	    
 		        return false;     
 		    }     
 		         

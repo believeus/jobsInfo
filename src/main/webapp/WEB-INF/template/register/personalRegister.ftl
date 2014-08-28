@@ -210,7 +210,7 @@ th{
             	<tr>
             		<th>性别：</th>
             		<td>
-            			<label><input type="radio" id="boy" name="sex"  value="man" checked="true" style="width: 10px;height: 12px;border:0;"/>男&nbsp;&nbsp;</label>
+            			<label><input type="radio" id="boy" name="sex"  value="man" checked="true" style="width: 10px;height: 12px;border:0;"/>&nbsp;&nbsp;男&nbsp;&nbsp;</label>
                 		<label><input type="radio" id="girl" name="sex" value="woman" checked="false" style="width: 10px;height: 12px;border:0;"/>&nbsp;&nbsp;女</label>
             		</td>
             	</tr>

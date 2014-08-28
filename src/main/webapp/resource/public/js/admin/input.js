@@ -123,6 +123,8 @@ if(typeof(KindEditor) != "undefined") {
 	function onUploadImgChange(sender,offsetWidth,offsetHeight,preview,preview_fake,preview_size_fake){     
 	    if( !sender.value.match( /.jpg|.gif|.png|.bmp/i ) ){     
 	        alert('图片格式无效！');     
+	        $(sender).after($(sender).clone().val(""));
+			$(sender).remove(); 	
 	        return false;     
 	    }     
 	         
