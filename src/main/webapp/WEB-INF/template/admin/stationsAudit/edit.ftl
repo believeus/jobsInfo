@@ -92,6 +92,7 @@
 				</div>';
 	[/@compress]
 $().ready(function() {
+	
 	$("#workyear1").val("${recruit.workyear}");
  	$("#sex1").val("${recruit.sex}");
  	$("#eduLevel1").val("${recruit.eduLevel}");
@@ -155,7 +156,11 @@ $().ready(function() {
 	    			alert("请输入工作地点");
 	    			tag=true;
 	    			return false;
-	    		}else{
+	    		}else if($("#beginDate").val()==""){
+    				alert("请选择面试时间");
+    				tag=true;
+	    			return false;
+    			}else{
 		    		if(tag==false){
 		    			showdiv();
 		    			if($("#beginDate").val()!=""){
@@ -226,8 +231,8 @@ $().ready(function() {
 					<td>
 						<select id="sex1" name="sex" style="width: 183px;">
 							<option value="">不限</option>
-							<option value="woman">男</option>
-							<option value="man">女</option>
+							<option value="woman">女</option>
+							<option value="man">男</option>
 						</select>
 					</td>
 				</tr>
@@ -409,7 +414,7 @@ $().ready(function() {
 							<option value="长期">长期</option>
 						</select>
 					</td>
-					<th>面试时间:</th>
+					<th><font color="red">*</font>面试时间:</th>
 					<td>
 						<input type="text" value="[#if recruit.viewData!=0]${recruit.viewData?number_to_date}[/#if]" name="beginDate" id="beginDate"   style="width:172px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
 				    	<input type="hidden"  name="endDate" id="endDate"  style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />

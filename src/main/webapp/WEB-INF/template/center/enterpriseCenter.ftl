@@ -974,12 +974,14 @@
     			alert("请输入单位简介");
     		}else{
     			var tag=false;
+    			var tip=0;
     			var selects = $("#base_xinxi select");//判断下拉框是否选值
 	    		selects.each(function(index,obj){
 	    			if($(this).val() == ""){
+	    				tip++;
 	    				tag=true;
 	    				$(this).css("color","red");
-	    				if(index == 1){
+	    				if(tip == 1){
 		    				alert("请选择下拉框信息");
 	    				}
 	    			}
@@ -1037,6 +1039,8 @@
     		}else if($("#start1").val() == ""){
     			alert("请输入工作地点");
     			tag=true;
+    		}else if($("#beginDate").val()==""){
+    			alert("请选择面试时间");
     		}else{
 	    		if(tag==false){
 	    			showdiv();
@@ -1533,8 +1537,8 @@
 						</table>
 					</div>
 					<div style="height: 30px; width: 728px;">
-						<span style="float:left;">添加/编辑招聘信息</span>
-						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 490px; float: left; margin-left: 10px; margin-top: 9px;"></div>
+						<span style="float:left;">添加/编辑招聘信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">(红色字体为必填项)</font></span>
+						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 390px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 						<div style="float: left; width: 50px; margin-left: 20px;">
 							<input id="add_zhaopin" type="hidden" value="添加" style="width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
 						</div>
@@ -1556,7 +1560,7 @@
 									<td><input type="text" id="worknum1" name="worknum" onkeyup="value=this.value.replace(/\D+/g,'')" maxlength="3"></td>
 								</tr>
 								<tr>
-									<td><span style="padding:0;">*</span>工种:</td>
+									<td><font color="red">工种:</font></td>
 									<td>
 									<input type="hidden" value="" id="selectJobshidden1" name="workTypeId"/>
 									<div class="topnav">
@@ -1656,7 +1660,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><span style="padding:0;">*</span>工作地点:</td>
+									<td><font color="red">工作地点:</font></td>
 									<td>
 										<input type="text" name="workspace"  class="city_input  inputFocus proCityQueryAll proCitySelAll current2"  autocomplete="off" id="start1" name="expectArea" readonly="readonly">
 									<!--////////////////////////////////////////////////////////////////////////-->
@@ -1756,7 +1760,7 @@
 											<option value="长期">长期</option>
 										</select>
 									</td>
-									<td>面试时间:</td>
+									<td><font color="red">面试时间:</font></td>
 									<td>
 									<input type="text" name="beginDate" id="beginDate"   style="width:178px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
 								    <input type="hidden"  name="endDate" id="endDate"  style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
