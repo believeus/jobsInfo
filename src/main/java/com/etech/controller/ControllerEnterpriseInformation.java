@@ -1,6 +1,7 @@
 package com.etech.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -48,7 +49,7 @@ public class ControllerEnterpriseInformation {
 		//招聘信息
 		List<Trecruit> trecruitList = null ;
 		List<TentImgVedio> vedios = null;
-		List<TentImgVedio> Maps = null;
+		List<TentImgVedio> Maps = new ArrayList<TentImgVedio>();
 		List<TcomUser> talentRecommend = null;
 		if (trecruit != null) {
 			hql = "From Trecruit recruit where recruit.entUser.id='"+trecruit.getEntUser().getId()+"' and recruit.entUser.disable='0' and recruit.status='1' and  recruit.isview='发布'";
