@@ -59,7 +59,8 @@
 		    if( !sender.value.match( /.jpg|.gif|.png|.bmp/i ) ){     
 		        alert('图片格式无效！');  
 		        $(sender).after($(sender).clone().val(""));
-				$(sender).remove(); 	    
+				$(sender).remove(); 
+				checkChange=0;  	    
 		        return false;     
 		    }     
 		    
