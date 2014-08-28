@@ -76,6 +76,13 @@ $().ready(function() {
 		<input type="hidden" name="imgHead" value="${user.imgHead}" id="imgHead"/>
 		<input type="hidden" name="lastLoginData" value="${user.lastLoginData}" />
 		<table class="input">
+			[#if user.imgHead!=""]
+				<tr>
+					<th>照片:</th>
+					<td><img src="/${user.imgHead}" width="122px"  height="150px"/></td>
+				</tr>
+			[/#if]
+				
 				<tr>
 				    <script>
 						$(function(){
