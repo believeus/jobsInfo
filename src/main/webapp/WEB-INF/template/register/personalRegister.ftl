@@ -167,7 +167,9 @@ th{
 					// 需要跳转到注册页面
 					window.location.href="/enterpriseReg.jhtml";
 				});
-				
+				$("input[value='重填']").click(function (){
+				    $("#Error").hide();
+				});
 			})
 	</script>
 

@@ -42,8 +42,23 @@ public class ControllerInfoCenter {
 				e.printStackTrace();
 			}
 		}
+		
+		List<TdataCenter> dataCenterList2=new ArrayList<TdataCenter>();
+		if(dataCenterList.size()>11)
+		{
+			for(int i=0;i<11;i++)
+			{
+				dataCenterList2.add(dataCenterList.get(i));
+			}
+			request.setAttribute("newsTop", dataCenterList2);
+		}
+		else
+		{
+			request.setAttribute("newsTop", dataCenterList);
+		}
+		
 		/**End Author:wuqiwei Data:2014:07-13 AddReason:去除html标签*/
-		request.setAttribute("newsTop", dataCenterList);
+		//request.setAttribute("newsTop", dataCenterList);
 		
 		hql="From TdataCenter dataCenter where dataCenter.type='1' order by editTime desc";
 		List<TdataCenter> works = (List<TdataCenter>)etechService.findListByHQL(hql);

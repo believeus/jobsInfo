@@ -150,6 +150,9 @@ th{
 					window.location.href="/personalReg.jhtml";
 				});
 				
+				$("input[value='重填']").click(function (){
+				    $("#Error").hide();
+				});
 			})
 	</script>		    
 <div class="qiyezhuce" >

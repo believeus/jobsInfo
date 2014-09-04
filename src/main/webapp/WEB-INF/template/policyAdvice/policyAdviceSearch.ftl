@@ -134,9 +134,21 @@
 			color:#FFFFFF;
 		}
     </style>
+   
 </head>
 <body>
 	[#include "/include/header.ftl" /]
+	<script type="text/javascript">
+	      $(function (){
+	      	 var powerLevel = ${powerLevel};
+	         var powerProperty = ${powerProperty};
+	         $("select[name='powerLevel']").val(powerLevel);
+	         $("select[name='powerProperty']").val(powerProperty);
+ 	     
+	      })
+	     
+	</script>
+	
 	<div class="j_main w">
 		<div class="j_main_left">
 			<div class="j_main_left_1" style="background:#F3F3F3;">
@@ -182,8 +194,8 @@
 							发布日期：
 						</td>
 						<td>起:
-						<input type="text"  id="beginDate" name="beginDate" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
-						止: <input type="text" id="endDate" name="endDate" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
+						<input type="text"  id="beginDate" name="beginDate" style="width:100px;height:25px" class="text Wdate" value="${beginDate}" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
+						止: <input type="text" id="endDate" name="endDate" style="width:100px;height:25px" class="text Wdate" value="${endDate}" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />
 						</td>
 						<td rowspan="2" ><!--style="background: url(/resource/public/images/chaxun.png); border-radius: 4px;"-->
 							<input id="select_p" type="submit" value="查询"  style="cursor: pointer; height: 63px; width: 63px;">

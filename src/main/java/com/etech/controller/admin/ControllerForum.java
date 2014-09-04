@@ -28,11 +28,13 @@ public class ControllerForum extends ControllerCRUD{
 	 * 网站论坛列表
 	 * @return
 	 */
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/list")
 	public String newsListView(HttpServletRequest request) {
 		List<?> dataCenters = null;//super.listDataInfo(request,EtechGobal.forum);
 		request.setAttribute("dataCenters",dataCenters);
-		return "admin/forum/list";
+		String searchValue = request.getParameter("searchValue");
+		request.setAttribute("searchValue", searchValue);
+		return "admin/forum/list";   
 	}
 	
 	/**

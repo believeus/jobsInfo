@@ -1,6 +1,7 @@
 package com.etech.controller.admin;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -70,7 +71,7 @@ public class ControllerNews extends ControllerCRUD{
 	public String addNewsView(HttpServletRequest request) {
 		//新闻动态
 		List<?> dataCenters = super.listDataInfoByTop(request,EtechGobal.newsDinamic);
-		request.setAttribute("size",dataCenters.size());
+		request.setAttribute("size",dataCenters.size()); 
 		request.setAttribute("type",EtechGobal.newsDinamic);
 		return "admin/news/add";
 	}
@@ -80,7 +81,7 @@ public class ControllerNews extends ControllerCRUD{
 	 * 
 	 * @return
 	 */
-	//@RequiresPermissions("newsDinamic:modify")
+	//@RequiresPermissions("newsDinamic:modify") 这个是验证是否需要有修改权限。
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editNewsView(HttpServletRequest request) {
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -89,6 +90,20 @@ public class ControllerNews extends ControllerCRUD{
 		request.setAttribute("type",EtechGobal.newsDinamic);
 		return "admin/news/edit";
 	}
+	
+	
+	//解决引号不能显示问题（黄知华）
+//		@RequiresPermissions("newsDinamic:modify")
+//		@RequestMapping(value = "/edit", method = RequestMethod.GET)
+//		public String editNewsView(HttpServletRequest request) throws UnsupportedEncodingException {
+//			int id=Integer.parseInt(request.getParameter("id"));
+//			TdataCenter dataCenter=(TdataCenter)etechService.findObjectById(TdataCenter.class, id);
+//			dataCenter.setAuthor(URLEncoder.encode(dataCenter.getAuthor(),"utf-8"));
+//			dataCenter.setTitle(URLEncoder.encode(dataCenter.getTitle(),"utf-8"));
+//			request.setAttribute("dataCenter", dataCenter);
+//			request.setAttribute("type",EtechGobal.newsDinamic);
+//			return "admin/news/edit";
+//		}
 
 	/**
 	 * 保存新闻

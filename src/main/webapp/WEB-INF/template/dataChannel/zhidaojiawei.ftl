@@ -5,10 +5,11 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=8"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <style type="text/css">
+      <style type="text/css">
    		.j_main{
     		width:1000px;
     		height:auto;
+    		//margin-top:-6px;
     	}
 		.j_main_left{
     		float:left;
@@ -18,10 +19,10 @@
     		margin-right:6px;
 		}
 		.j_main_left_1{
-			border: 1px solid #CDCDCD;
-		    border-radius: 4px;
-		    height: 251px;
-		    width: 258px;
+			width:258px;
+			height:251px;
+    		border:1px solid #e4e4e4;
+    		border-radius:4px;
 		}
 		.j_main_left_1 p{
 		    color: #BF0906;
@@ -67,16 +68,7 @@
 			height:auto;
 			margin-top:10px;
 		}
-		.j_main_right_2 li{
-    		margin-right: 30px;
-    		font-size: 14px;
-    		line-height:35px;
-		}
-		.j_main_right_2 span{
-			float: right;
-			font-size: 14px;
-		}
-		.j_main_right_2 p{
+		.j_main_right_2_p{
 			padding:0 40px;
 			font-size:13px;
 		}
@@ -121,9 +113,9 @@
 				<h2 style="text-align:center;font-weight:normal;">${data.title}</h2>
 				<p style="text-align:center;">来源：[#if data.title?exists]${data.author}[#else]潜江公共就业服务网[/#if] 发布时间：${data.editTime?number_to_datetime}&nbsp;${data.editTime?number_to_time} 浏览次数： 147次</p>
 				<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">
-				<p style="text-align: center;">
+				<div class="j_main_right_2_p" style="">
 					${data.content}
-				</p>
+				</div>
 			</div>
 		</div>
 	</div>

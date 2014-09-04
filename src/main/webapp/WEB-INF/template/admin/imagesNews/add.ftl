@@ -293,8 +293,10 @@ $().ready(function() {
 		        //（相同环境有时能显示，有时不显示），因此只能用滤镜来解决     
 		             
 		        // IE7, IE8因安全性问题已无法直接通过 input[file].value 获取完整的文件路径     
-		        sender.select();     
-		        var imgSrc = document.selection.createRange().text;     
+		        sender.select();  
+		       
+		         window.parent.document.body.focus();   
+		        var imgSrc = document.selection.createRange().htmlText;     
 		        
 		        objPreviewFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
 		        objPreviewSizeFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     

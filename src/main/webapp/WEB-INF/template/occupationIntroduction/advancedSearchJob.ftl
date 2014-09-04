@@ -161,12 +161,14 @@
 			$this=$(obj);
 			// 得到当前a标签id值
 			var aId=$this.attr("id");
+			
 			// 判断是否在同一组
 			var group=$this.attr("group");
 			// 判断当前连接的class 是否是选中的状态
 			var claxx=$this.attr("class");
 			var data="";
 			var str="${data}";
+		    
 			var str3=str.split("-");
 			var ifx=false;
 			// 不是选中状态
@@ -187,6 +189,9 @@
 						}
 					}
 				} 
+				
+				
+				
 				//当前a值没有做替换使用则加上这个条件。
 				if(ifx!=true){
 					if(data!=""){
@@ -195,7 +200,7 @@
 					data=data+aId;
 				}
 				// 发送form表单提交。
-				
+			
 				$("#data").val(data);
 				$("#listForm").submit();
 	        	
@@ -525,7 +530,7 @@
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近15天_0" name="近15天">近15天</a></li>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近30天_0" name="近30天">近30天</a></li>
 							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近60天_0" name="近60天">近60天</a></li>
-							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近60天以上_0" name="近60天以上">近60天以上</a></li>
+							<li><a href="javascript:void(0);" onclick="javascript:Aclick(this);" group="0" id="近80天以上_0" name="近60天以上">近60天以上</a></li>
 						</ul>
 					</div>
 				</div>

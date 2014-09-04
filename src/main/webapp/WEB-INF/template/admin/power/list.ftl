@@ -20,7 +20,7 @@ $().ready(function() {
 	<div class="path">
 		<a href="/admin/common/main.jhtml" target="_parent">首页</a> &raquo; 权限列表 <span>共${roles.total}条记录</span>
 	</div>
-	<form id="listForm" action="list.jhtml" method="get">
+	<form id="listForm" action="list.jhtml" method="post">
 		<div class="bar">
 			<a href="add.jhtml" class="iconButton">
 				<span class="addIcon">&nbsp;</span>添加

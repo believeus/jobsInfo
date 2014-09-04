@@ -161,10 +161,7 @@ $().ready(function() {
 	    		}else if($("#workspace1").val() == ""){
 	    			alert("请输入工作地点");
 	    			tag=true;
-	    		}else if($("#beginDate").val()==""){
-    				alert("请选择面试时间");
-    				tag=true;
-    			}else{
+	    		}else{
 		    		if(tag==false){
 		    			showdiv();
 		    			if($("#beginDate").val()!=""){
@@ -180,6 +177,12 @@ $().ready(function() {
 			}
 			
 });
+
+//修改后台技能等级问题。
+$(function(){
+  var levelskills = $("#levelskills").val();
+  $("#eteLevel1").val(levelskills);
+})
 </script>
 </head>
 <body>
@@ -187,7 +190,8 @@ $().ready(function() {
 		<a href="/admin/common/main.jhtml" target="_parent">首页</a> &raquo; 编辑内容
 	</div>
 	
-	
+	//修改后台技能等级不一致问题
+	<input type="hidden" id="levelskills" value="${recruit.eteLevel}"/>
 	
 	<form id="inputForm" novalidate="novalidate"  action="/admin/stationList/update.jhtml" method="post">
 		<input type="hidden" name="id" value="${recruit.id}"/>
@@ -419,7 +423,7 @@ $().ready(function() {
 							<option value="长期">长期</option>
 						</select>
 					</td>
-					<th><font color="red">*</font>面试时间:</th>
+					<th>面试时间:</th>
 					<td>
 						<input type="text" value="[#if recruit.viewData!=0]${recruit.viewData?number_to_date}[/#if]" name="beginDate" id="beginDate"   style="width:172px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
 				    	<input type="hidden"  name="endDate" id="endDate"  style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />

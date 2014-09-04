@@ -79,8 +79,9 @@
 		        //（相同环境有时能显示，有时不显示），因此只能用滤镜来解决     
 		             
 		        // IE7, IE8因安全性问题已无法直接通过 input[file].value 获取完整的文件路径     
-		        sender.select();     
-		        var imgSrc = document.selection.createRange().text;     
+		        sender.select(); 
+		        window.document.body.focus();    
+		        var imgSrc = document.selection.createRange().htmlText;     
 		             
 		        objPreviewFake.filters.item(     
 		            'DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
@@ -330,7 +331,7 @@
 			  }
 		}
 		
-		
+			   /* wuqiwei
 	    		// 删除信息
 		    	function deleteDiv(object,type,tag){
 	    				// 得到最外层的div
@@ -411,7 +412,91 @@
 						 }
 					
 	    	};
-	    	
+	    	*/
+	    	// 删除信息 解决点击取消继续删除的问题
+		    	function deleteDiv(object,type,tag){ 
+	    				// 得到最外层的div
+	    				var div=$(object).parent().parent().parent().parent().parent().parent().parent();
+	    				var clazz=div.attr("class");
+	    				
+	    				if ($("."+clazz).find("div."+clazz+"_div").size() <= 1) {
+							// 获取需要删除的id
+							var id=$(object).parent().parent().parent().find("input[name='id']");
+							if(id.length > 0){
+							  id=id.val();
+							  showDialog(id);
+							}else{
+								alert("必须至少保留一个参数");	
+								// 清空表单的值。
+						 		var tablex=$(object).parent().parent().parent().parent();
+								 if(type==1){
+								 		tablex.find("#selectSkillSpecialtyhidden"+tag).val("");
+								 		tablex.find("#selectSkillJobshidden"+tag).val("");
+								 		tablex.find("#skillLevel"+tag).val("");
+								 		tablex.find("#workingLifeSkill"+tag).val("");
+								 		tablex.find("#noteSkill"+tag).val("");
+								 		tablex.find("#selectSkillSpecialty"+tag).find("span").text("选择专业");
+								 		tablex.find("#selectSkillJobs"+tag).find("span").text("选择工种");
+								 		
+								 }else if(type==2){
+								 		tablex.find("#beginDateLearning"+tag).val("");
+								 		tablex.find("#endDateLearning"+tag).val(""); 
+								 		tablex.find("#schoolLearning"+tag).val("");
+								 		tablex.find("#deptLearning"+tag).val("");
+								 		tablex.find("#selectLearningSpecialtyhidden"+tag).val("");
+								 		tablex.find("#selectLearningSpecialty"+tag).find("span").text("选择专业")
+								 		
+								 }else if(type==3){
+								 		tablex.find("#beginDateWork"+tag).val("");
+								 		tablex.find("#endDateWork"+tag).val("");  
+								 		tablex.find("#workspaceWork"+tag).val("");
+								 		tablex.find("#dutyWork"+tag).val("");
+								 		tablex.find("#noteWork"+tag).val("");
+								 		tablex.find("#selectWorkJobhidden"+tag).val("");
+								 		tablex.find("#selectWorkJob"+tag).find("span").text("选择工种")
+								 
+								 }else if(type==4){
+								 		
+								 		tablex.find("#selectVolunteerSpecialtyhidden"+tag).val("");
+								 		tablex.find("#workWay"+tag).val("");
+								 		tablex.find("#selectVolunteerJobshidden"+tag).val("");
+								 		tablex.find("#noteVolunteer"+tag).val("");
+								 		tablex.find("#start"+tag).val("");
+								 		tablex.find("#expectSalaryVolunteer"+tag).val("");
+								 		tablex.find("#selectVolunteerSpecialty"+tag).find("span").text("选择专业");
+								 		tablex.find("#selectVolunteerJobs"+tag).find("span").text("选择工种");
+								 		
+								 }					
+							}
+							
+							
+						} else {
+							// 获取需要删除的id
+							var id=$(object).parent().parent().parent().find("input[name='id']");
+							var result =true;
+							if(id.length > 0){
+								id=id.val();
+								result = showDialog(id);
+							}
+							// 删除。
+							if(result){
+						      $(object).closest("div").remove();
+						    }
+						    else{
+						    	return false;
+						    }
+						}
+						/* if(type==1&&b>2){
+								b--;						 	
+						 }else if(type==2&&a>2){
+								a--;
+						 }else if(type==3&&c>2){
+								c--;						 	
+						 }else if(type==4&&d>2){
+						 		d--;						 	
+						 }*/
+					
+	    	};
 	    	   // ajax 提交验证和登录。
 		    	function deleteIds(value){
 		    		
@@ -482,7 +567,7 @@
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="SkillForm'+b+'">	
 						<table>
 							<tr>
-								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">'+b+'</td>
+								<td rowspan="4" style="background:#DCDCDC;color:#F57200;" name="order">'+b+'</td>
 							</tr>
 							<tr>
 								<td><font color="red">专业：</font></td>
@@ -599,19 +684,66 @@
     				alert("请完整填写必填项！");
     				return false;
     			};
+    			
+    			/*
     			[@compress single_line = true]
     				var trHtml = 
     				'<div class="xuexi_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="LearningForm'+a+'">	
 						<table>
 							<tr>
-								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">'+a+'</td>
+								<td rowspan="4" style="background:#DCDCDC;color:#F57200;" name="order">'+a+'</td>
 							</tr>
 							<tr>
 								<td><font color="red">起始时间:</font></td>
 								<td colspan="3">
 								<input type="text" name="beginDateLearning'+a+'" id="beginDateLearning'+a+'" eidLearning="beginDateLearning'+a+'" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: new Date()});"  />
 								<font color="red">结束时间:</font> <input type="text" name="endDateLearning'+a+'" id="endDateLearning'+a+'" eidLearning="endDateLearning'+a+'" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({minDate: \'#F{$dp.$D(beginDateLearning'+a+')}\'});"/>
+								<input type="hidden" name="beginData" value=""/>
+								<input type="hidden" name="endData" value=""/>
+								</td>
+							</tr>
+							<tr>
+								<td><font color="red">学校名称:</font></td>
+								<td style="padding-right:100px;"><input type="text" id="schoolLearning'+a+'" name="workspace"></td>
+								<td>系别:</td>
+								<td><input type="text" id="deptLearning'+a+'" name="dept"> </td>
+							</tr>
+							<tr>
+								<td><font color="red">专业：</font></td>
+								<td colspan="3">
+									<input type="hidden" value="" id="selectLearningSpecialtyhidden'+a+'" name="majorTypeId" value=""/>
+									<input type="hidden" value="2" name="infoType">
+									<input type="hidden" value="" id="LearningId'+a+'"/>
+									<div class="topnav">
+										<a id="selectLearningSpecialty'+a+'" href="javascript:void(0);" class="as">
+											<span >
+												选择专业
+											</span>		
+										</a>	
+									</div>
+								</td>
+								<td rowspan="3"><a class="delete_xuexi"  onclick="deleteDiv(this,2,'+a+')" href="javascript:void(0);">删除</a></td>
+							</tr>
+						</table>
+						</form>
+					</div>';
+				[/@compress]
+				*/
+				
+				[@compress single_line = true]
+    				var trHtml = 
+    				'<div class="xuexi_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="LearningForm'+a+'">	
+						<table>
+							<tr>
+								<td rowspan="4" style="background:#DCDCDC;color:#F57200;" name="order">'+a+'</td>
+							</tr>
+							<tr>
+								<td><font color="red">起始时间:</font></td>
+								<td colspan="3">
+								<input type="text" name="beginDateLearning'+a+'" id="beginDateLearning'+a+'" eidLearning="beginDateLearning'+a+'" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker({maxDate: new Date()});"  />
+								<font color="red">结束时间:</font> <input type="text" name="endDateLearning'+a+'" id="endDateLearning'+a+'" eidLearning="endDateLearning'+a+'" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string('yyyy-MM-dd'))!}" onfocus="WdatePicker();"/>
 								<input type="hidden" name="beginData" value=""/>
 								<input type="hidden" name="endData" value=""/>
 								</td>
@@ -689,19 +821,66 @@
     				alert("请完整填写必填项！");
     				return false;
     			};
+    			/*
     			[@compress single_line = true]
     				var trHtml = 
     				'<div class="gongzuo_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="WorkForm'+c+'">	
 						<table>
 							<tr>
-								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">'+c+'</td>
+								<td rowspan="4" style="background:#DCDCDC;color:#F57200;" name="order">'+c+'</td>
 							</tr>
 							<tr>
 								<td><font color="red">起始时间:</font></td>
 								<td colspan="3">
 								<input type="text" id="beginDateWork'+c+'" name="beginDateWork'+c+'" eidWork="beginDateWork'+c+'" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string("yyyy-MM-dd"))!}"  onfocus="WdatePicker({maxDate: new Date()});"  />
 								<font color="red">结束时间:</font> <input type="text" id="endDateWork'+c+'" eidWork="endDateWork'+c+'" name="endDateWork'+c+'" style="width:100px;height:25px"class="text Wdate"value="${(endDate?string("yyyy-MM-dd"))!}"  onfocus="WdatePicker({minDate: \'#F{$dp.$D(beginDateWork'+c+')}\'});" />
+								<input type="hidden" name="beginData" value=""/>
+								<input type="hidden" name="endData" value=""/>
+								</td>	
+							</tr>
+							<tr>
+								<td><font color="red">工作单位:</font></td>
+								<td style="padding-right:100px;"><input type="text" id="workspaceWork'+c+'" name="workspace"></td>
+								<td><font color="red">职务:</font></td>
+								<td><input type="text" id="dutyWork'+c+'" name="duty"></td>
+							</tr>
+							<tr>
+								<td>工种:</td>
+								<td>
+									<input type="hidden" value="" id="selectWorkJobhidden'+c+'" name="workTypeId"/>
+									<input type="hidden" value="3" name="infoType">
+									<div class="topnav">
+										<a id="selectWorkJob'+c+'" href="javascript:void(0);" class="as">
+											<span >
+												选择工种
+											</span>		
+										</a>	
+									</div>
+								</td>
+								<td>工作内容:</td>
+								<td ><input type="text" id="noteWork'+c+'" name="note"></td>
+								<td rowspan="3"><a class="delete_gongzuo"  onclick="deleteDiv(this,3,'+c+')" href="javascript:void(0);">删除</a></td>
+							</tr>
+						</table>
+						</form>
+					</div>';
+				[/@compress]
+				*/
+				
+				[@compress single_line = true]
+    				var trHtml = 
+    				'<div class="gongzuo_div" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
+						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="WorkForm'+c+'">	
+						<table>
+							<tr>
+								<td rowspan="4" style="background:#DCDCDC;color:#F57200;" name="order">'+c+'</td>
+							</tr>
+							<tr>
+								<td><font color="red">起始时间:</font></td>
+								<td colspan="3">
+								<input type="text" id="beginDateWork'+c+'" name="beginDateWork'+c+'" eidWork="beginDateWork'+c+'" style="width:100px;height:25px" class="text Wdate" value="${(beginDate?string("yyyy-MM-dd"))!}"  onfocus="WdatePicker({maxDate: new Date()});"  />
+								<font color="red">结束时间:</font> <input type="text" id="endDateWork'+c+'" eidWork="endDateWork'+c+'" name="endDateWork'+c+'" style="width:100px;height:25px" class="text Wdate" value="${(endDate?string("yyyy-MM-dd"))!}" onfocus="WdatePicker();" />
 								<input type="hidden" name="beginData" value=""/>
 								<input type="hidden" name="endData" value=""/>
 								</td>	
@@ -760,7 +939,6 @@
 				 	 	$(selectWorks).find("span").text($(this).text());
 				   		$(selectWorkshidden).val($(this).attr("rel"));
 				   		$(xmenuWorks).hide();
-				 
 				 })
 				
 				if($(".gongzuo").find("div.gongzuo_div").size() <6){
@@ -999,63 +1177,82 @@
 					}
 				});
 				
-    	
+    	        
     			// 提交信息列表
     			function submitSkill(){
     				// alert("xxxxx具备技能xxxxxxxxxx");
     				  // 获取form表单个数
-    				  var size=$(".jineng").find("div.jineng_div").size();
-    				  $("div.jineng_div").each(function(index){
-    				  		index++;
-				 			$("#SkillForm"+index).ajaxSubmit({
-				            	 type: "post",
-							     url: "/common-user/center/submit-comInfo.jhtml",
-							     dataType: "json",
-							     success: function(result){
-							     	if(index==size){
-				 		   				submitLearnging();  
-							     	}
-							     }
-			        		});	
-    				  })
-    			}
-    			
-    			function submitLearnging(){
-    				 //alert("xxxxx学习经历xxxxxxxxxx");
-    				   // 获取form表单个数
-    				  var size=$(".xuexi").find("div.xuexi_div").size();
-    				  $("div.xuexi_div").each(function(index){
-		    				var tag=false;
-    				  		index++;
-    				  		// 转换时间类型为long类型。
-    				  		var beginDate=$("#beginDateLearning"+index).val();
-							var endDate=$("#endDateLearning"+index).val();
-	    					if(beginDate!=""||endDate!=""){
-		    					beginDate=new Date(beginDate.replace(/-/g,"/")).getTime();
-	    						endDate=new Date(endDate.replace(/-/g,"/")).getTime(); 				
-	    					}else{
-	    						tag=true;
-	    					}
-	    					$(this).find("input[name='beginData']").val(beginDate);
-	    					$(this).find("input[name='endData']").val(endDate);
-	    					if(tag==false){
-		    					$("#LearningForm"+index).ajaxSubmit({
+    				   var size=$(".jineng").find("div.jineng_div").size();
+    				   // 获取所有编号值
+    				   var orders="";
+    				   $("div.jineng_div").each(function(index){
+    				      var num=$(this).find("[name='order']").text();
+    				      orders+="#"+num;
+    				   })
+    				    var array = orders.split("#");
+						$(array).each(function(index,value){
+						    if(value!=""){
+						    	 index++;
+					 			 $("#SkillForm"+value).ajaxSubmit({
 					            	 type: "post",
 								     url: "/common-user/center/submit-comInfo.jhtml",
 								     dataType: "json",
 								     success: function(result){
 								     	if(index==size){
-					 		   				submitWorks();    				 						     	
+					 		   				submitLearnging();  
 								     	}
 								     }
-				        		});	
-	    					}else{
-	    						if(index==size){
-					 		   		submitWorks();    				 						     	
-								}
-	    					}
-	    					
-	    				 })
+				        		});	 
+						    }
+						});
+    			}
+    			
+    			
+    			function submitLearnging(){
+    				 //alert("xxxxx学习经历xxxxxxxxxx");
+    				   // 获取form表单个数
+    				  var size=$(".xuexi").find("div.xuexi_div").size();
+    				  
+    				   // 获取所有编号值
+    				   var orders="";
+    				   $("div.xuexi_div").each(function(index){
+    				      var num=$(this).find("[name='order']").text();
+    				      orders+="#"+num;
+    				   })
+    				    var array = orders.split("#");
+    				    $(array).each(function(index,value){
+    				    	if(value!=""){
+    				    		var tag=false;
+	    				  		// 转换时间类型为long类型。
+	    				  		var beginDate=$("#beginDateLearning"+value).val();
+								var endDate=$("#endDateLearning"+value).val();
+		    					if(beginDate!=""||endDate!=""){
+			    					beginDate=new Date(beginDate.replace(/-/g,"/")).getTime();
+		    						endDate=new Date(endDate.replace(/-/g,"/")).getTime(); 				
+		    					}else{
+		    						tag=true;
+		    					}
+		    					$("#LearningForm"+value).find("input[name='beginData']").val(beginDate);
+		    					$("#LearningForm"+value).find("input[name='endData']").val(endDate);
+		    					if(tag==false){
+			    					$("#LearningForm"+value).ajaxSubmit({
+						            	 type: "post",
+									     url: "/common-user/center/submit-comInfo.jhtml",
+									     dataType: "json",
+									     success: function(result){
+									     	if(index==size){
+						 		   				submitWorks();    				 						     	
+									     	}
+									     }  
+					        		});	
+		    					}else{
+		    						if(index==size){
+						 		   		submitWorks();    				 						     	
+									}
+		    					}
+    				    	
+    				    	 }
+						});
     			}
     			
     			function submitWorks(){
@@ -1065,36 +1262,44 @@
     				//alert("xxxxxxxx工作经验xxxxxxx");
     				  // 获取form表单个数
     				  var size=$(".gongzuo").find("div.gongzuo_div").size();
-    				  $("div.gongzuo_div").each(function(index){
-		   				    var tag=false;
-    				  		index++;
-    				  		var beginDate=$("#beginDateWork"+index).val();
-							var endDate=$("#endDateWork"+index).val();
-							if(beginDate!=""||endDate!=""){
-		    					beginDate=new Date(beginDate.replace(/-/g,"/")).getTime();
-	    						endDate=new Date(endDate.replace(/-/g,"/")).getTime(); 				
-	    					}else{
-	    						tag=true;
-	    					}
-	    					if(tag==false){
-		    				  $(this).find("input[name='beginData']").val(beginDate);
-		    				  $(this).find("input[name='endData']").val(endDate);
-		    				  $("#WorkForm"+index).ajaxSubmit({
-					            	type: "post",
-								     url: "/common-user/center/submit-comInfo.jhtml",
-								     dataType: "json",
-								     success: function(result){
-								     	if(index==size){
-					 		   				deleteIds(value);    				 						     	
-								     	}
-								     }
-				        		});
-	    					}else{
-	    						if(index==size){
-					 		   		deleteIds(value);    				 						     	
-								}
-	    					}
-    				  })
+    				   // 获取所有编号值
+    				   var orders="";
+    				   $("div.gongzuo_div").each(function(index){
+    				      var num=$(this).find("[name='order']").text();
+    				      orders+="#"+num;
+    				   })
+    				    var array = orders.split("#");
+    				    $(array).each(function(index,value){
+    				    	if(value!=""){
+    				    		var tag=false;
+	    				  		var beginDate=$("#beginDateWork"+value).val();
+								var endDate=$("#endDateWork"+value).val();
+								if(beginDate!=""||endDate!=""){
+			    					beginDate=new Date(beginDate.replace(/-/g,"/")).getTime();
+		    						endDate=new Date(endDate.replace(/-/g,"/")).getTime(); 				
+		    					}else{
+		    						tag=true;
+		    					}
+		    					if(tag==false){
+			    				  $("#WorkForm"+value).find("input[name='beginData']").val(beginDate);
+			    				   $("#WorkForm"+value).find("input[name='endData']").val(endDate);
+			    				  $("#WorkForm"+value).ajaxSubmit({
+						            	type: "post",
+									     url: "/common-user/center/submit-comInfo.jhtml",
+									     dataType: "json",
+									     success: function(result){
+									     	if(index==size){
+						 		   				deleteIds(value);    				 						     	
+									     	}
+									     }
+					        		});
+		    					}else{
+		    						if(index==size){
+						 		   		deleteIds(value);    				 						     	
+									}
+		    					}
+    				    	}
+						});
     			}
     			
     			function submitVolunteer(){
@@ -1119,7 +1324,7 @@
     				 
     			}
     			
-  			
+  			/*解决删除点击取消继续删除的问题
 		  			function showDialog(id,object){
 		  				if (confirm("确定要删除吗？") == true) {
 		  					$.ajax({
@@ -1136,27 +1341,53 @@
 								});
 		  				}
 				}
-  			
+  			*/
+  			//解決点击取消继续删除的问题 黄知华
+					function showDialog(id,object){
+						var result =confirm("确定要删除吗？");
+		  				if (result) {
+		  					$.ajax({
+									url: "/enterprise-user/center/delete-recruit.jhtml",
+									type: "POST",
+									data: {'id':id},
+									dataType: "json",
+									cache: false,
+									success: function(data) {
+										 if(data.message=="success"){								 
+										 	$(object).parent().parent().remove();
+										 }
+									}
+								});
+		  				}
+		  				return result;
+				}
   			
 				// ajax 提交验证和保存，先提交图片再提交个人信息。
 				function submitValid(submitx){
 						// 上传图片，并且得到图片路径返回值。
 						if(checkChange==1){
-							$("#imageForm").ajaxSubmit(function (data) {
-								data=data.replace("<PRE>","").replace("</PRE>","");
-								var imgHead = $("#imgHead");
-								 //如果大于0 标识 id 为imgHead的对象存在，否则不存在
-								 if (imgHead.length > 0) { 
-							     	//对象存在的处理逻辑
-						            $("#imgHead").val(data);
-							    } else {
-							      	//对象不存在的处理逻辑
-							      	var html='<input id="imgHead" type="hidden" name="imgHead" value="'+data+'">';
-									$("#InfoForm").append(html);
-							   }
-					            submitInfo(submitx);
-					            return false;
-				        	});	
+						    $("#imageForm").ajaxSubmit({
+    				  			 type: "post",
+							     url: "/upload.jhtml",
+							     dataType: "json",
+							     success: function(data){
+							        data=data.path;
+							     	data=data.replace("<PRE>","").replace("</PRE>","");
+									var imgHead = $("#imgHead");
+									 //如果大于0 标识 id 为imgHead的对象存在，否则不存在
+									 if (imgHead.length > 0) { 
+								     	//对象存在的处理逻辑
+							            $("#imgHead").val(data);
+								    } else {
+								      	//对象不存在的处理逻辑
+								      	var html='<input id="imgHead" type="hidden" name="imgHead" value="'+data+'">';
+										$("#InfoForm").append(html);
+								   }
+						            submitInfo(submitx);
+						            return false;
+								    }
+			        		});
+			        		
 						}else{
 							submitInfo(submitx);
 						}
@@ -1314,6 +1545,7 @@
 					Etech.logout();
 			});
     	});
+    	
 	</script>
 </head>
 <body>
@@ -1554,10 +1786,11 @@
 								       	 <img id="preview" onload="onPreviewLoad(this)" src="[#if sessionUser.imgHead!=""]/${sessionUser.imgHead}[#else]/resource/public/images/bg1.png[/#if]"/>    
 								        </div>    
 								    </div>    
-								    <br/>    
-								    <input id="upload_img" type="file" name="upload_img" onchange="filename0.value=this.value;onUploadImgChange(this)"/>  
-								     <div style="color: #000000; font-size: 12px; position: relative; padding-top: 25px; width: 122px;text-align:center;">建议图片大小：</div>
-             						 <div style="color: #000000; font-size: 12px; position: relative; padding: 0px; width: 122px;text-align:center;">宽122px*高150px</div>  
+								    <br/>   
+								    <!--此处解决file控件兼容性问题-->
+								   	<input style="width: 122px;" id="upload_img" type="file"  name="upload_img" onchange="filename0.value=this.value;onUploadImgChange(this)"/>   
+								    <div style="color: #000000; font-size: 12px; position: relative; padding-top: 25px; width: 122px;text-align:center;">建议图片大小：</div>
+             						<div style="color: #000000; font-size: 12px; position: relative; padding: 0px; width: 122px;text-align:center;">宽122px*高150px</div>  
 								    <input type="hidden" id="filename0" name="filename0">
 								    <br/>    
 								    <img id="preview_size_fake"/>    
@@ -1580,7 +1813,7 @@
 						<table >
 						
 							<tr>
-								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">${skill_index+1}</td>
+								<td rowspan="4" style="background:#DCDCDC;color:#F57200;" name="order">${skill_index+1}</td>
 							</tr>
 							<tr>
 								<td><font color="red">专业：</font></td>
@@ -1661,7 +1894,7 @@
 						<table>
 						
 							<tr>
-								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">1</td>
+								<td rowspan="4" style="background:#DCDCDC;color:#F57200;" name="order">1</td>
 							</tr>
 							<tr>
 								<td><font color="red">专业：</font></td>
@@ -1728,7 +1961,7 @@
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="LearningForm${learning_index+1}">	
 						<table>
 							<tr>
-								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">${learning_index+1}</td>
+								<td rowspan="4" style="background:#DCDCDC;color:#F57200;" name="order">${learning_index+1}</td>
 							</tr>
 							<tr>
 								<td><font color="red">起始时间:</font></td>
@@ -1785,7 +2018,7 @@
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="LearningForm1">	
 						<table>
 							<tr>
-								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">1</td>
+								<td rowspan="4" style="background:#DCDCDC;color:#F57200;" name="order">1</td>
 							</tr>
 							<tr>
 								<td><font color="red">起始时间:</font></td>
@@ -1844,7 +2077,7 @@
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="WorkForm${work_index+1}">	
 						<table>
 							<tr>
-								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">${work_index+1}</td>
+								<td rowspan="4" style="background:#DCDCDC;color:#F57200;" name="order">${work_index+1}</td>
 							</tr>
 							<tr>
 								<td><font color="red">起始时间:</font></td>
@@ -1902,7 +2135,7 @@
 						<form novalidate="novalidate"  action="/common-user/center/submit-comInfo.jhtml" method="post" id="WorkForm1">	
 						<table>
 							<tr>
-								<td rowspan="4" style="background:#DCDCDC;color:#F57200;">1</td>
+								<td rowspan="4" style="background:#DCDCDC;color:#F57200;" name="order">1</td>
 							</tr>
 							<tr>
 								<td><font color="red">起始时间:</font></td>

@@ -21,7 +21,7 @@ $().ready(function() {
 	<div class="path">
 		<a href="/admin/common/main.jhtml" target="_parent">首页</a> &raquo; 管理员列表 <span>共${admins.total}条记录</span>
 	</div>
-	<form id="listForm" action="list.jhtml" method="get">
+	<form id="listForm" action="list.jhtml" method="post">
 		<div class="bar">
 			<a href="add.jhtml" class="iconButton">
 				<span class="addIcon">&nbsp;</span>添加
@@ -37,7 +37,7 @@ $().ready(function() {
 			<div class="menuWrap">
 				<div class="search">
 					<span id="searchPropertySelect" class="arrow">&nbsp;</span>
-					<input type="text" id="searchValue" name="searchValue" value="" maxlength="200" />
+					<input type="text" id="searchValue" name="searchValue" value="${searchValue}" maxlength="200" />
 					<button type="submit">&nbsp;</button>
 				</div>
 				<div class="popupMenu">

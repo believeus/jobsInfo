@@ -67,6 +67,12 @@ public class ControllerVideos {
 		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		Page<?> page = etechService.getPage(hql, pageable);
 		request.setAttribute("videos", page);
+		
+		// 专题
+		hql="From TdataCenter dataCenter where dataCenter.type='5' order by editTime desc";
+		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
+		request.setAttribute("subjectReport", subjectReport);
+		
 		return "infoCenter/videosList";
 	}
 }

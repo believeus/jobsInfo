@@ -27,7 +27,7 @@
 		<property name="hibernate.current_session_context_class">thread</property>
 		
 		<property name="hibernate.search.default.directory_provider">org.hibernate.search.store.FSDirectoryProvider</property>
-		<property name="hibernate.search.default.indexBase">/data/index/store</property>
+		<property name="hibernate.search.default.indexBase">D:/data/index/store</property>
 		<property name="hibernate.search.analyzer">org.wltea.analyzer.lucene.IKAnalyzer</property>
 		<property name="hibernate.search.autoregister_listeners">true</property>
 		<property name="hibernate.search.indexing_strategy">event</property>

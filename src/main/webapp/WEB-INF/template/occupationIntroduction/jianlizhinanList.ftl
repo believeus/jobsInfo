@@ -103,7 +103,7 @@
 	<div class="j_main w">
 		<div class="j_main_left">
 			<div class="j_main_left_1" style="background:#F3F3F3;">
-				<p>工作指南<span>Work Instructions</span></p>
+				<p>职业介绍<!--工作指南--><span>Career Presentation</span></p>
 				<ul style="padding-left:0;margin:0;">
 					<li><a href="/zhaopinhuiList.jhtml">招聘会</a></li>
 					<li><a href="/qiuzhizhidaoList.jhtml">求职指导</a></li>

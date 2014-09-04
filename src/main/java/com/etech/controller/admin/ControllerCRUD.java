@@ -86,6 +86,9 @@ public class ControllerCRUD {
 		/**End Author:wuqiwei Data:2014-06-19 Email:1058633117@qq.com AddReason:需要事先对可能破坏 HTML 文档结构的动态数据进行转义处理*/
 		String top=request.getParameter("top");
 		String alink=request.getParameter("alink");
+		
+		System.out.println("======================新闻标题："+title+"===================");
+		
 		if (top == null) {
 			top = "0";
 		}
@@ -210,6 +213,7 @@ public class ControllerCRUD {
 	public Page<?> pageDataInfo(HttpServletRequest request,int type,Pageable pageable) throws UnsupportedEncodingException {
 		String hql="";
 		String searchValue = request.getParameter("searchValue");
+		
 		if (!StringUtils.isEmpty(searchValue)) {
 			searchValue=searchValue.trim();
 			log.debug("根据title查询："+searchValue);
@@ -218,11 +222,12 @@ public class ControllerCRUD {
 				hql+="and title like '%"+searchValue+"%'";
 			}
 			hql+=" order by editTime desc";
-			request.setAttribute("searchValue", searchValue);
+			
 		}else {
 			hql="From TdataCenter center where center.type='"+type+"' order by center.top desc,center.editTime desc";			
 		}
 		Page<?> page = etechService.getPage(hql, pageable);
+		request.setAttribute("searchValue", searchValue);
 		return page;
 	}
 	

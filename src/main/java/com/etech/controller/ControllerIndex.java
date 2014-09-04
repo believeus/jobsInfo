@@ -79,7 +79,10 @@ public class ControllerIndex {
 		List<TdataCenter> links = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("links", links); 
 		
-	
+		//招聘信息
+	    hql = "From Trecruit trecruit where trecruit.status='1' and  trecruit.isview='发布' and trecruit.entUser.disable='0' order by trecruit.editTime desc";
+		List<Trecruit> zhaopList = (List<Trecruit>)etechService.findListByHQL(hql,4);
+		session.setAttribute("zhaopList", zhaopList); 
 		
 		//求职信息
 		hql	= "From TcomInfo tcomInfo where tcomInfo.comUser.disable='0' and tcomInfo.infoType='4' order by tcomInfo.editDate desc";
@@ -113,7 +116,22 @@ public class ControllerIndex {
 			}
 		}
 		/**End Author:wuqiwei Data:2014:07-13 AddReason:去除html标签*/
-		request.setAttribute("newsTop", dataCenterList);
+		/*张维丽*/
+		List<TdataCenter> dataCenterList2=new ArrayList<TdataCenter>();
+		if(dataCenterList.size()>11)
+		{
+			for(int i=0;i<11;i++)
+			{
+				dataCenterList2.add(dataCenterList.get(i));
+			}
+			request.setAttribute("newsTop", dataCenterList2);
+		}
+		else
+		{
+			request.setAttribute("newsTop", dataCenterList);
+		}
+		
+		/*request.setAttribute("newsTop", dataCenterList);*/
 		
 		/*End Author:wuqiwei Data:2014-06-11 AddReason:shiro登录成功之后会跳转到主页面,此处控制后台登录后进入后台主页面*/
 		log.debug("current controller is defaultIndex !");

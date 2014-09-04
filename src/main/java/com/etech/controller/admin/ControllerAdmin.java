@@ -161,13 +161,13 @@ public class ControllerAdmin{
 		String searchValue = request.getParameter("searchValue");
 		if (!StringUtils.isEmpty(searchValue)) {
 			searchValue=URLDecoder.decode(searchValue, "utf-8");
-			log.debug("根据管理员名称查询："+searchValue);
+			log.debug("------------------根据管理员名称查询："+searchValue);
 			if(admin.getLoginName().equals("admin")){
 			 hql="FROM Tadmin admin where admin.disable=0 and admin.loginName like '%"+searchValue+"%' order by admin.editDate desc";
-			 request.setAttribute("searchValue", searchValue);
+			 //request.setAttribute("searchValue", searchValue);
 			}else {
 			  hql="FROM Tadmin admin where admin.disable=0 and admin.id='"+ admin.getId()+"'";
-			  request.setAttribute("searchValue", searchValue);
+			 // request.setAttribute("searchValue", searchValue);
 			}
 		}else {
 			// 只有管理员能看到其他管理员
@@ -181,6 +181,7 @@ public class ControllerAdmin{
 		//查询待审核的企业用户
 		Page<?> page = etechService.getPage(hql, pageable);
 		request.setAttribute("admins", page);
+		request.setAttribute("searchValue", searchValue);
 		return "/admin/admin/list";
 	}
 	@RequiresPermissions("admin:delete")

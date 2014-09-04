@@ -1,5 +1,9 @@
 package com.etech.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,12 +17,12 @@ import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
+import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.SortField;
 import org.apache.lucene.search.TermQuery;
-import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.search.TermRangeQuery;
 import org.apache.lucene.util.Version;
 import org.hibernate.Session;
@@ -39,6 +43,7 @@ import com.etech.util.Pageable;
 @Service
 public class JobSearchService {
 	private static final Log log=LogFactory.getLog(JobSearchService.class);
+	  SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");   
 	@Resource
 	private SessionFactory sessionFactory;
 	@Resource
@@ -55,7 +60,7 @@ public class JobSearchService {
 			tx.begin();
 			// 用BooleanQuery来做搜索条件的组合，即多条件查询
 			BooleanQuery booleanQuery = new BooleanQuery();
-			
+		
 			// 发布时间
 			if(!StringUtils.isEmpty(issueTime)){
 				try {
@@ -66,12 +71,33 @@ public class JobSearchService {
 						log.debug("issueTime:"+issueTime);
 						// 3600*60*60*24
 						//当前时间为标准,近n天
+						
 						long endTime=System.currentTimeMillis();
-						log.debug("endTime:"+endTime);
-						long beginTime=endTime-(Integer.valueOf(issueTime)*1000*60*60*24);
-						log.debug("beginTime:"+beginTime);
+						
+						log.debug("endTime:"+JobSearchService.showDateString(endTime));
+						
+						System.out.println("=========================类型:"+issueTime);
+						//long beginTime=endTime-(Integer.valueOf(issueTime)*1000*60*60*24);
+						
+					   /**
+					    * 刘杰修改 2014-8-29  修改时间
+					    */
+					   Calendar c=Calendar.getInstance();   
+					   c.setTime(new Date());   
+					   c.add(Calendar.DATE,-Integer.parseInt(issueTime));   
+					   Date d2=c.getTime();   
+					    
+					try {
+						Date dt = dateFormat.parse(dateFormat.format(d2));
+						long beginTime= dt.getTime();
 						TermRangeQuery issueRangeQuery=new TermRangeQuery("editTime", String.valueOf(beginTime),String.valueOf(endTime),true, true);
 						booleanQuery.add(issueRangeQuery,Occur.MUST);
+					} catch (java.text.ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					  
+					  
 					}
 				} catch (PatternSyntaxException ex) {
 					ex.printStackTrace();
@@ -155,4 +181,22 @@ public class JobSearchService {
 		return new Page(recruitList, total, pageable);
 	}
 	
+	
+	public static String showDateString(Long dateLong){
+		long time=Long.valueOf(dateLong);  
+		 SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+		 String y = sdf.format(new Date(time));
+		 return y;
+	}
+	
+	public static void main(String[] args) {
+		  SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+		   Calendar c=Calendar.getInstance();   
+		   c.setTime(new Date());   
+		   c.add(Calendar.DATE,-3);   
+		   Date d2=c.getTime();   
+		   String beginTime=dateFormat.format(d2);   
+		   System.out.println("==========================新的时间:"+beginTime+"==================================");
+		  
+	}
 }

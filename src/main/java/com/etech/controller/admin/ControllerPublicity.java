@@ -42,6 +42,7 @@ public class ControllerPublicity extends ControllerCRUD {
 		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		Page<?> page = super.pageDataInfo(request,EtechGobal.infoCenterNotice,pageable);
 		request.setAttribute("dataCenters",page);
+		
 		return "admin/publicity/list";
 	}
 	

@@ -156,11 +156,7 @@ $().ready(function() {
 	    			alert("请输入工作地点");
 	    			tag=true;
 	    			return false;
-	    		}else if($("#beginDate").val()==""){
-    				alert("请选择面试时间");
-    				tag=true;
-	    			return false;
-    			}else{
+	    		}else {
 		    		if(tag==false){
 		    			showdiv();
 		    			if($("#beginDate").val()!=""){
@@ -175,13 +171,20 @@ $().ready(function() {
         });
 
 });
+
+//解决技能等级不能绑定问题
+$(function(){
+  var skilllevel = $("#getskillvalue").val();
+  $("#eteLevel1").val(skilllevel);
+});
 </script>
 </head>
 <body>
 	<div class="path">
 		<a href="/admin/common/main.jhtml" target="_parent">首页</a> &raquo; 编辑内容
 	</div>
-	
+	<!--解决技能等级不能绑定问题-->
+	<input type="hidden" id="getskillvalue" value="${recruit.eteLevel}"/>
 	
 	
 	<form id="inputForm" novalidate="novalidate"  action="/admin/stationAudit/update.jhtml" method="post">
@@ -414,7 +417,7 @@ $().ready(function() {
 							<option value="长期">长期</option>
 						</select>
 					</td>
-					<th><font color="red">*</font>面试时间:</th>
+					<th>面试时间:</th>
 					<td>
 						<input type="text" value="[#if recruit.viewData!=0]${recruit.viewData?number_to_date}[/#if]" name="beginDate" id="beginDate"   style="width:172px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
 				    	<input type="hidden"  name="endDate" id="endDate"  style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />

@@ -1,5 +1,7 @@
 package com.etech.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -41,6 +43,7 @@ public class PolicyAdviceService {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Page searchPolicyAdvicePage(TdataCenter formDataCenter,Long beginData,Long endDate,Pageable pageable){
 		List<TdataCenter> dataCenterList=null;
+		PolicyAdviceService pAdviceService = new PolicyAdviceService();
 		int total=0;
 		log.debug("title:"+formDataCenter.getTitle());
 		log.debug("beginData:"+beginData);
@@ -81,8 +84,18 @@ public class PolicyAdviceService {
 			// 时间范围查询
 			if(!StringUtils.isEmpty(beginData)&&!StringUtils.isEmpty(endDate)){
 				// 范围查询条件
-				TermRangeQuery rangeQuery=new TermRangeQuery("editTime", String.valueOf(beginData), String.valueOf(endDate), true, true);
+				//TermRangeQuery rangeQuery=new TermRangeQuery("editTime", String.valueOf(beginData), String.valueOf(endDate), true, true);
+				
+				/**
+				 * 刘杰2014-8-29 修改时间
+				 */
+				String bdate= pAdviceService.dateVlaueSet(beginData, "-");
+				String edate= pAdviceService.dateVlaueSet(endDate, "+");
+				System.out.println("创建时间---------"+bdate+"-----------------------");
+				System.out.println("结束时间---------"+edate+"-----------------------");
+				TermRangeQuery rangeQuery=new TermRangeQuery("editTime", bdate, edate, true, true);
 				booleanQuery.add(rangeQuery,Occur.MUST);
+				
 			}
 			//查询  国家法规 国家文件 地方法规 地方文件
 			TermRangeQuery advicePolicyQuery=new TermRangeQuery("type", "10", "13", true,true);
@@ -106,5 +119,37 @@ public class PolicyAdviceService {
 			e.printStackTrace();
 		}
 		return new Page(dataCenterList, total, pageable);
+	}
+	
+	/**
+	 * 2014-8-29 刘杰添加 日期加减
+	 */
+	public String dateVlaueSet(Long dateLong,String op){
+	     long time=Long.valueOf(dateLong);  
+		 SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+		 String y = sdf.format(new Date(time));
+		 System.out.println("初始化:"+y);
+		 int temp = Integer.parseInt(y.substring(9,10));
+		 String edataString = "";
+		 String beginString = "";
+		
+		 beginString = y.substring(0, 9);
+		 edataString = y.substring(10,y.length());
+		 String dLong ="";
+		 if(op=="+"){
+			 dLong = beginString+(temp+1)+edataString;
+		 }else {
+			 dLong = beginString+(temp-1)+edataString;
+		}
+		 long b = 0;
+		try {
+			Date dt = sdf.parse(dLong);
+			b = dt.getTime();
+			
+		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}        
+		 return String.valueOf(b);
 	}
 }

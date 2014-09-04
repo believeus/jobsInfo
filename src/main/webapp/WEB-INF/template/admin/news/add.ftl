@@ -67,6 +67,36 @@ $().ready(function() {
 	});
 	
 });
+
+
+/*function onUploadImgChange(sender,offsetWidth,offsetHeight,preview,preview_fake,preview_size_fake){    
+         
+	    if(!sender.value.match( /.jpg|.gif|.png|.bmp/i)){     
+	        alert('图片格式无效！');     
+	        $(sender).after($(sender).clone().val(""));
+			$(sender).remove(); 	
+	        return false;     
+	    }     
+	         
+	    var objPreview = document.getElementById(preview);     
+	    var objPreviewFake = document.getElementById(preview_fake);     
+	    var objPreviewSizeFake = document.getElementById(preview_size_fake);    
+	    if( sender.files &&  sender.files[0] ){  
+	        var reader = new FileReader();
+			reader.onload = function(evt){objPreview.src = evt.target.result;}
+	        reader.readAsDataURL(sender.files[0]);	   
+	        
+	    }else if(objPreviewFake.filters){    
+	         sender.select();
+	         //sender.blur();
+	         window.parent.document.body.focus();
+	         var imgSrc = document.selection.createRange().htmlText;
+	        objPreviewFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;
+	        objPreviewSizeFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;
+	        autoSizePreview(objPreviewFake,offsetWidth,offsetHeight);     
+	        objPreview.style.display = 'none';     
+	    }     
+	} */    
 </script>
 </head>
 <body>

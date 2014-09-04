@@ -693,7 +693,14 @@
 									<th>招聘期限:</th>
 									<td>${trecruit.worklimit}</td>
 									<th>面试时间:</th>
-									<td></td>
+									<td title="${trecruit.viewData}">
+										[#if trecruit.viewData > 0]
+											${trecruit.viewData?number_to_date}
+										[#else]
+											待定
+										[/#if]
+									</td>
+
 								</tr>
 							</table>
 							<h4>职位描述：</h4>

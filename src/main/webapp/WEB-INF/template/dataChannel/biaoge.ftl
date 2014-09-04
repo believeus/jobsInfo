@@ -18,7 +18,10 @@
     		overflow:hidden;
     		margin-right:6px;
 		}
-		.j_main_left_1{
+		
+		
+[#--左边菜单样式begin--]
+	   .j_main_left_1{
 			border: 1px solid #CDCDCD;
 		    border-radius: 4px;
 		    height: auto;
@@ -46,6 +49,8 @@
 			margin-left:40px;
 			font-size:17px;
 		}
+	[#--左边菜单样式end--]
+	
 		.j_main_right{
 			float:left;
     		width:730px;
@@ -63,21 +68,13 @@
 		    border: 1px solid #e4e4e4;
 		    font-size:13px;
 		}
+		
 		.j_main_right_2{
 			width:727px;
 			height:auto;
 			margin-top:10px;
 		}
-		.j_main_right_2 li{
-    		margin-right: 30px;
-    		font-size: 14px;
-    		line-height:35px;
-		}
-		.j_main_right_2 span{
-			float: right;
-			font-size: 14px;
-		}
-		.j_main_right_2 p{
+		.j_main_right_2_p{
 			padding:0 40px;
 			font-size:13px;
 		}
@@ -136,10 +133,10 @@
 				<h2 style="text-align:center;font-weight:normal;">${data.title}</h2>
 				<p style="text-align:center;">来源：[#if data.title?exists]${data.author}[#else]潜江公共就业服务网[/#if] 发布时间：${data.editTime?number_to_datetime} </p>
 				<img src="/resource/public/images/line.png" style="padding: 0px 20px; width: 675px;">
-				<p style="text-align: center;">
+				<div class="j_main_right_2_p">
 					${data.content}
-				</p>
-				<p><a href="${data.imgpath?string?split("#")[1]}" title="点击下载" style="color:#0000FF;">附件：${data.imgpath?string?split("#")[0]}</a></p>
+				</div>
+				<p><a href="${data.imgpath?string?split("#")[1]}" title="点击下载" style="color:#0000FF;">附件下载：${data.imgpath?string?split("#")[0]}</a></p>
 			</div>
 		</div>
 	</div>

@@ -1,6 +1,8 @@
 package com.etech.controller;
 
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,6 +29,9 @@ public class ControllerWork {
 	public String workInfoView(Integer id,HttpServletRequest request) {
 		TdataCenter dataCenter = (TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		request.setAttribute("data", dataCenter);
+		String hql="From TdataCenter dataCenter where dataCenter.type='5'";
+		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
+		request.setAttribute("subjectReport", subjectReport);
 		return "infoCenter/workInfo";
 	}
 	
@@ -41,6 +46,11 @@ public class ControllerWork {
 		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		Page<?> page = etechService.getPage(hql, pageable);
 		request.setAttribute("works",page);
+		
+		// 专题
+				hql="From TdataCenter dataCenter where dataCenter.type='5' order by editTime desc";
+				List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
+				request.setAttribute("subjectReport", subjectReport);
 		return "infoCenter/workList";
 	}
 }

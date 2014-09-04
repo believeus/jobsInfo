@@ -146,6 +146,8 @@ public class ControllerSearch {
 		}
 		// 第一组：发布日期 第二组:起薪范围 第三组：工作性质
 		// 第三组：学历性质 第四组:工作年限 第五组：公司性质
+		
+		System.out.println("----------------------------------选择的时间："+data+"--------------------------------");
 		String issueTime="issueTime";
 		String salaryRange="salaryRange";
 		String workType="workType";
@@ -382,11 +384,24 @@ public class ControllerSearch {
 			request.setAttribute("dataCenterList", dataCenterList);
 			
 			// 专题报道
-			String hql="From TdataCenter dataCenter where dataCenter.type='5' order by editTime desc";
+			//String hql="From TdataCenter dataCenter where dataCenter.type='5' order by editTime desc";
+			String hql="From TdataCenter dataCenter where dataCenter.type='5' and  dataCenter.createTime>="+beginDate+" and dataCenter.editTime<="+endDate+" order by dataCenter.editTime desc";
 			@SuppressWarnings("unchecked")
 			List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
 			request.setAttribute("subjectReport", subjectReport);
 			request.setAttribute("keyword", title);
+			
+			/**
+			 * 刘杰2014-8-29修改 获取时间
+			 */
+			String bDate = request.getParameter("beginDate");
+			String eDate = request.getParameter("endDate");
+			request.setAttribute("beginDate", bDate);
+			request.setAttribute("endDate", eDate);
+			request.setAttribute("powerLevel", powerLevel);
+			request.setAttribute("powerProperty", powerProperty);
+			System.out.println("------------------效力等级:"+powerLevel);
+			System.out.println("------------------效力属性:"+powerProperty);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

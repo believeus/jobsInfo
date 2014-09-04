@@ -352,8 +352,9 @@
 		        //（相同环境有时能显示，有时不显示），因此只能用滤镜来解决     
 		             
 		        // IE7, IE8因安全性问题已无法直接通过 input[file].value 获取完整的文件路径     
-		        sender.select();     
-		        var imgSrc = document.selection.createRange().text;     
+		        sender.select(); 
+		        window.document.body.focus();    
+		        var imgSrc = document.selection.createRange().htmlText;    
 		        
 		        objPreviewFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
 		        objPreviewSizeFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
@@ -581,7 +582,8 @@
 						filev.after(filev.clone().val(""));
 						filev.remove(); 
 						// 清空文本框
-						$("#vedioForm"+formId).find("[name='descption']").val("");
+						$("#vedioForm"+formId).find("[name='descption']").val("添加描述");
+						
 					}
 				} else {
 					if(id!=0){
@@ -662,7 +664,7 @@
 		
 		var inum=1;
 		// 上传企业图片
-		function submitImgs(){
+		[#--function submitImgs(){
 			   for(var i=1;i<8;i++){
 			      	if($("#ImgForm"+i).length > 0){
 			      		$("#ImgForm"+i).ajaxSubmit({
@@ -678,7 +680,28 @@
 				    		});	
 			      	}
 			   }
+		}--]
+		//huangzhihua
+		// 上传企业图片
+		function submitImgs(){
+			  var total = $(".qiyepic").length;
+			   for(var i=1;i<8;i++){
+			      	if($("#ImgForm"+i).length > 0){
+			      		$("#ImgForm"+i).ajaxSubmit({
+			            	 type: "post",
+						     url: "/enterprise-user/center/upload.jhtml",
+						     dataType: "json",
+						     success: function(data){
+						     		inum++;
+							     	if(inum==total){
+										submitVedio();				     	
+						     		}
+						    	 }
+				    		});	
+			      	}
+			   }
 		}
+		
 		
 		var vnum=0;
 		// 上传视频
@@ -857,6 +880,9 @@
 		
     	//添加企业视频
     	$("#add_vedio").click(function(){
+    	    
+    	    
+    	    
     		[@compress single_line = true]
     		var html = 
     			'<div class="shipin" style="width:690px;height:auto;overflow:hidden;background:#EEEEEE;margin:0 20px;margin-bottom:15px;">
@@ -871,6 +897,7 @@
 					<table width="690">
 						<tr id="pathTr">
 							<th style="text-align: left; padding-left: 10px;">
+							
 								视频截图:
 							</th>
 							<td >
@@ -950,30 +977,43 @@
     		
     		if($("#fullName").val() == ""){
     			alert("请输入单位全称");
+    			return false;
     		} else if($("#shorName").val() == ""){
     			alert("请输入单位简称");
+    			return false;
     		}else if($("#legalMan").val() == ""){
     			alert("请输入法人代表");
+    			return false;
     		}else if($("#area").val() == ""){
     			alert("请输入所属地区");
+    			return false;
     		}else if($("#trade").val() == ""){
     			alert("请输入所属行业");
+    			return false;
     		}else if($("#regMoney").val() == ""){
     			alert("请输入注册资金");
+    			return false;
     		}else if($("#detailAddress").val() == ""){
     			alert("请输入详细地址");
+    			return false;
     		}else if($("#contacts").val() == ""){
     			alert("请输入联系人");
+    			return false;
     		}else if($("#address").val() == ""){
     			alert("请输入通讯地址");
+    			return false;
     		}else if($("#zip").val() == ""){
     			alert("请输入邮政编码");
+    			return false;
     		}else if($("#phoneNum").val() == ""){
     			alert("请输入手机号码");
+    			return false;
     		}else if($("#phoneFax").val() == ""){
     			alert("请输入电话/传真");
+    			return false;
     		}else if($("#introduce").val() == ""){
     			alert("请输入单位简介");
+    			return false;
     		}else{
     			var tag=false;
     			var tip=0;
@@ -998,24 +1038,54 @@
 		   				if(id.length==0){
 		   					var  fileImg = $("#vedioForm"+i).find(":input[name='fileImg']").val();
 		   					var  fileVedio = $("#vedioForm"+i).find(":input[name='fileVedio']").val();
-		   					if(fileImg!=""&&fileVedio==""){
-		   						count++;
-		   						tag=true;
-		   						alert(" 请完整视频的上传：视频文件");
-		   						$("#vedioForm"+i).find(":input[name='fileVedio']").css("color","red");
-		   						return;
-		   					}else if(fileImg==""&&fileVedio!=""){
-		   						count++
-		   						tag=true;
-		   						alert(" 请完整视频的上传：视频截图");
-		   						$("#vedioForm"+i).find(":input[name='fileImg']").css("color","red");
-		   						return;		   						
-		   					}else{
-								count++;
-								if(tag!=false&&count!=v){
-									return;
-				   				}   					
-		   					}
+		   					var  descption = $("#vedioForm"+i).find("[name='descption']").val();
+		   					    if(descption!="添加描述" || fileImg!="" || fileVedio!=""){
+		   					    	if(fileImg==""){
+		   					    	    alert("请完整视频的上传：视频截图!");
+		   					    		return false;
+		   					    	}
+		   					    	
+		   					    	if(fileVedio==""){
+		   					    		alert("请完整视频的上传：视频文件!");
+		   					    		return false;
+		   					    	}
+		   					    }
+		   					    
+		   					     //当有一个视频信息时 ， 后面的都需要验证
+		   					    /* if(i>1){
+		   					         if(fileImg==""){
+		   					    	    alert("请完整视频的上传：视频截图!");
+		   					    		return false;
+		   					    	}
+		   					    	
+		   					    	if(fileVedio==""){
+		   					    		alert("请完整视频的上传：视频文件!");
+		   					    		return false;
+		   					    	}
+		   					     }*/
+		   					     
+		   					    
+			   					if(fileImg!=""&&fileVedio==""){
+			   						count++;
+			   						tag=true;
+			   						alert(" 请完整视频的上传：视频文件");
+			   						$("#vedioForm"+i).find(":input[name='fileVedio']").css("color","red");
+			   						return;
+			   					}else if(fileImg==""&&fileVedio!=""){
+			   						count++
+			   						tag=true;
+			   						alert(" 请完整视频的上传：视频截图");
+			   						$("#vedioForm"+i).find(":input[name='fileImg']").css("color","red");
+			   						return;		   						
+			   					}else{
+									count++;
+									if(tag!=false&&count!=v){
+										return;
+					   				}   					
+			   					}
+		   					
+		   					
+		   					
 		   				}else{
 		   					count++;
 		   				}
@@ -1041,9 +1111,7 @@
     		}else if($("#start1").val() == ""){
     			alert("请输入工作地点");
     			tag=true;
-    		}else if($("#beginDate").val()==""){
-    			alert("请选择面试时间");
-    		}else{
+    		}else {
 	    		if(tag==false){
 	    			showdiv();
 	    			submitJobs(value);
@@ -1405,7 +1473,7 @@
 						<span style="float:left;">企业视频</span>
 						<div style="border: 1px dashed #E4E4E4; height: 0px; width: 550px; float: left; margin-left: 10px; margin-top: 9px;"></div>
 						<div style="float: left; width: 50px; margin-left: 20px;">
-							<input id="add_vedio" type="button" value="添加" style="width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">
+							<!--<input id="add_vedio" type="button" value="添加" style="width: 50px; background: #FFFCDD; border: 1px solid #DCAE70; border-radius: 4px; height: 26px;">-->
 						</div>
 					</div>
 					<div id="shipins" class="shipin_parent">
@@ -1762,7 +1830,7 @@
 											<option value="长期">长期</option>
 										</select>
 									</td>
-									<td><font color="red">面试时间:</font></td>
+									<td>面试时间:</td>
 									<td>
 									<input type="text" name="beginDate" id="beginDate"   style="width:178px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
 								    <input type="hidden"  name="endDate" id="endDate"  style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />

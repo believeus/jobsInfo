@@ -363,7 +363,7 @@
 			<div class="xinwen">
 				<ul class="xinwen_ul" style="padding-left: 25px;">
 					[#list newsTop as new]
-						[#if new_index > 1 && new_index < 12]	
+						[#-- [#if new_index > 0 && new_index < 12] --]	
 							<li class="xinwen_ul_li">
 								<a title="${new.title}" 
 									[#if new.type = 0]
@@ -383,7 +383,7 @@
 								[/#if]
 								</a>
 							</li>
-						[/#if]
+						[#-- [/#if] --]  
 						[/#list]
 				</ul>
 			</div>

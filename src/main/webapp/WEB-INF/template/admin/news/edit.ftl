@@ -67,12 +67,17 @@ $().ready(function() {
 	});
 	
 });
+
+
 </script>
 </head>
 <body>
 	<div class="path">
 		<a href="/admin/common/main.jhtml" target="_parent">首页</a> &raquo; 编辑内容
 	</div>
+	<!--此处是修改双引号显示不出来的问题的 huangzhihua-->
+	<input type="hidden" id="getauthor" value="${dataCenter.author}" />
+	<input type="hidden" id="gettitle" value="${dataCenter.title}" />
 	<form id="inputForm" action="update.jhtml" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="${dataCenter.id}"/>
 		<input type="hidden" name="type" value="${type}"/>

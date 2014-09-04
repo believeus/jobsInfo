@@ -1,5 +1,7 @@
 package com.etech.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -24,9 +26,14 @@ public class ControllerPublicity {
 	private EtechService etechService;
 	
 	@RequestMapping(value = "/publicityInfo", method = RequestMethod.GET)
-	public String publicityInfoView(HttpSession session,Integer id) {
+	public String publicityInfoView(HttpSession session,Integer id,HttpServletRequest request) {
 		TdataCenter dataCenter = (TdataCenter)etechService.findObjectById(TdataCenter.class, id);
 		session.setAttribute("data", dataCenter);
+		
+		// 专题
+				String hql="From TdataCenter dataCenter where dataCenter.type='5' order by editTime desc";
+				List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
+				request.setAttribute("subjectReport", subjectReport);
 		return "infoCenter/publicityInfo";
 	}
 	
@@ -43,6 +50,12 @@ public class ControllerPublicity {
 		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		Page<?> page = etechService.getPage(hql, pageable);
 		request.setAttribute("datas", page);
+		
+		// 专题
+				hql="From TdataCenter dataCenter where dataCenter.type='5' order by editTime desc";
+				List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
+				request.setAttribute("subjectReport", subjectReport);
+		
 		return "infoCenter/publicityList";
 	}
 }

@@ -35,7 +35,6 @@ public class ControllerNews {
 		String hql="From TdataCenter dataCenter where dataCenter.type='5'";
 		List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
 		request.setAttribute("subjectReport", subjectReport);
-		
 		return "infoCenter/newsInfo";
 	}
 	
@@ -50,6 +49,10 @@ public class ControllerNews {
 		Pageable pageable=new Pageable(Integer.valueOf(pageNumber),null);
 		Page<?> page = etechService.getPage(hql, pageable);
 		request.setAttribute("news",page);
+		// 专题
+			    hql="From TdataCenter dataCenter where dataCenter.type='5'";
+				List<TdataCenter> subjectReport = (List<TdataCenter>)etechService.findListByHQL(hql);
+				request.setAttribute("subjectReport", subjectReport);
 		return "infoCenter/newsList";
 	}
 }

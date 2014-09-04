@@ -356,8 +356,6 @@
     		}else if($("#workspace1").val() == ""){
     			alert("请输入工作地点");
     			tag=true;
-    		}else if($("#beginDate").val()==""){
-    			alert("请选择面试时间");
     		}else{
 	    		if(tag==false){
 	    			showdiv();
@@ -370,10 +368,14 @@
 					// 需要跳转到注册页面
 					Etech.logout();
 			});
-		
+			//此处用来绑定技能等级 黄知华
+			var skilllevel=$("#skilllevel").val();
+			$("#eteLevel1").val(skilllevel);
 	});
 </script>
 <body>
+<!--此处绑定技能等级隐藏域 黄知华-->
+<input type="hidden" id="skilllevel" value="${recruit.eteLevel}"/>
 	[#include "/include/header.ftl" /]
 	<div class="j_main w">
 		<div class="j_main_left">
@@ -670,7 +672,7 @@
 											<option value="长期">长期</option>
 										</select>
 									</td>
-									<td><font color="red">面试时间:</font></td>
+									<td>面试时间:</td>
 									<td>
 									<input type="text" value="[#if recruit.viewData!=0]${recruit.viewData?number_to_date}[/#if]" name="beginDate" id="beginDate"   style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
 								    <input type="hidden"  name="endDate" id="endDate"  style="width:100px;height:25px" class="text Wdate"  onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" />

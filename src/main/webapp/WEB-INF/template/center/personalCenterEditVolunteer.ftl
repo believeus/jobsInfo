@@ -356,8 +356,16 @@
 					Etech.logout();
 			});
 	});
+	
+	//解决月薪要求绑定问题
+	$(function(){
+		 var monthmoney = $("#monthmoney").val();
+		 $("#expectSalaryVolunteer1").val(monthmoney);
+	})
 </script>
 <body>
+	<!--解决月薪要求绑定问题-->
+	<input type="hidden" id="monthmoney" value="${conInfo.expectSalary}"/>
 	[#include "/include/header.ftl" /]
 	<div class="j_main w">
 		<div class="j_main_left">

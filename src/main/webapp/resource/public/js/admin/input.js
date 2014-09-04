@@ -121,40 +121,35 @@ if(typeof(KindEditor) != "undefined") {
 
 // 图片预览
 	function onUploadImgChange(sender,offsetWidth,offsetHeight,preview,preview_fake,preview_size_fake){     
-	    if( !sender.value.match( /.jpg|.gif|.png|.bmp/i ) ){     
+	    if(!sender.value.match( /.jpg|.gif|.png|.bmp/i)){     
 	        alert('图片格式无效！');     
 	        $(sender).after($(sender).clone().val(""));
 			$(sender).remove(); 	
 	        return false;     
 	    }     
 	         
-	    var objPreview = document.getElementById( preview );     
-	    var objPreviewFake = document.getElementById( preview_fake );     
-	    var objPreviewSizeFake = document.getElementById( preview_size_fake );    
-	         
+	    var objPreview = document.getElementById(preview);     
+	    var objPreviewFake = document.getElementById(preview_fake);     
+	    var objPreviewSizeFake = document.getElementById(preview_size_fake);    
 	    if( sender.files &&  sender.files[0] ){  
 	        var reader = new FileReader();
 			reader.onload = function(evt){objPreview.src = evt.target.result;}
 	        reader.readAsDataURL(sender.files[0]);	   
 	        
-	    }else if( objPreviewFake.filters ){    
+	    }else if(objPreviewFake.filters){    
 	        // IE7,IE8 在设置本地图片地址为 img.src 时出现莫名其妙的后果     
-	        //（相同环境有时能显示，有时不显示），因此只能用滤镜来解决     
-	             
+	        //（相同环境有时能显示，有时不显示），因此只能用滤镜来解决        
 	        // IE7, IE8因安全性问题已无法直接通过 input[file].value 获取完整的文件路径     
 	        sender.select();     
-	        var imgSrc = document.selection.createRange().text;     
-	             
-	        objPreviewFake.filters.item(     
-	            'DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
-	        objPreviewSizeFake.filters.item(     
-	            'DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
-	             
-	        autoSizePreview( objPreviewFake,offsetWidth,offsetHeight );     
+	        window.parent.document.body.focus();
+	        var imgSrc = document.selection.createRange().htmlText;     
+	        objPreviewFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
+	        objPreviewSizeFake.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = imgSrc;     
+	        autoSizePreview(objPreviewFake,offsetWidth,offsetHeight);     
 	        objPreview.style.display = 'none';     
 	    }     
 	}     
-	    
+	  
 	function onPreviewLoad(sender,offsetWidth,offsetHeight){    
 	    autoSizePreview( sender, offsetWidth, offsetHeight );     
 	}     

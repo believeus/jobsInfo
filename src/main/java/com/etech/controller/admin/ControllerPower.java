@@ -47,7 +47,10 @@ public class ControllerPower {
 	 * @return
 	 * @throws UnsupportedEncodingException 
 	 */
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	//2014-刘杰修改 请求方式
+	//@RequestMapping(value = "/list", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/list")
 	public String newsListView(HttpServletRequest request) throws UnsupportedEncodingException {
 		String hql="";
 		String pageNumber = request.getParameter("pageNumber");
